@@ -140,19 +140,20 @@
 % Title must be 150 characters or less
 \begin{flushleft}
 {\Large
-\textbf{Title}
+\textbf{Metagenomics Assemblers Evaluation [Or Whatever Titus suggests :)] }
 }
 % Insert Author names, affiliations and corresponding author email.
 \\
-Whoever$^{1}$, 
-Sherine Awad$^{2}$, 
-Whatever order$^{3,\ast}$
+ 
+author$^{1}$, 
+Sherine Awad [In whatever order and with whoever should be added] $^{2}$, 
+author$^{3,\ast}$
 \\
-\bf{1} Author1  Dept/Program/Center, Institution Name, City, State, Country
+\bf{2} Author1  Dept/Program/Center, Institution Name, City, State, Country
 \\
-\bf{2} Same as Titus Departments/Program/Center, Institution Name, City, State, Country
+\bf{3} Same as Titus Departments/Program/Center, Institution Name, City, State, Country
 \\
-\bf{3} Author3 Dept/Program/Center, Institution Name, City, State, Country
+\bf{4} Author3 Dept/Program/Center, Institution Name, City, State, Country
 \\
 $\ast$ E-mail: Corresponding author@institute.edu
 \end{flushleft}
@@ -176,26 +177,33 @@ $\ast$ E-mail: Corresponding author@institute.edu
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
 % authors may use "Analysis" 
 \section*{Materials and Methods}
-Polar (write correct name) datasets where downloaded from XX. The dataset represent XX brief description for the data. 
+Podar (write correct name) datasets where downloaded from XX. The dataset represent XX brief description for the data. 
 
-\subsection*{Assembly Treatments -or call it protocol- }
+\subsection*{Preparing Reads Treatments  }
 \begin{enumerate}
- \item {\bf Quality Filtering:} Low quality bases were trimmed and low quality reads were removed using trimmomatic. After quality trimming reads were either directly assembled, or first
+ \item {\bf Quality Filtering:} In this treatment, low quality bases were trimmed and low quality reads were removed using trimmomatic \cite{trimmomatic}. After quality trimming reads were either directly assembled, or first
  preprocessed with digital normalization and then assembled.
 
- \item {\bf Digital Normalization:} Digital normalization (diginorm) is a technique that down samples reads from highly abundant transcripts while retaining
- approximately the full sequence information content of the reads \cite{Brown2012}
- \item {\bf Partitioning:} 
- \item {\bf Reinflation:}
+ \item {\bf Digital Normalization:} Digital normalization works after sequencing data has been generated, progressively
+removing high-coverage reads from shotgun data sets. This normalizes average coverage to a
+specified value, reducing sampling variation while removing reads, and also removing the many errors
+contained within those reads. This data and error reduction results in dramatically decreased computational
+requirements for de novo assembly. Moreover, unlike experimental normalization where abundance
+information is removed prior to sequencing, in digital normalization this information can be recovered
+from the unnormalized reads \cite{Brown2012}
+ \item {\bf Partitioning:} In this treatment,  we partitioned the filtered data set based on de Bruijn graph connectivity and assembled each partition independently.  Subsequently, partitioning
+separates reads based on transitive connectivity, resulting in easily assembled subsets of
+reads.
+ \item {\bf Reinflation:} 
 \end{enumerate}
 
-After Quality trimming, we either preprocess the data using digital normalization, partitioning, or reinflation. We the result assembly using four different assemblers; Velvet (cite), Idba (cite), Spades (cite), and Megahit (cite) and using the various assembly treatments. 
+After Quality trimming, we either preprocess the reads using digital normalization, partitioning, or reinflation. We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idea}, Spades \cite{spades}, and Megahit \cite{megahit} and using the various reads treatments. 
 
 % Results and Discussion can be combined.
 \section*{Results}
 
 % We only support three levels of headings, please do not create a heading level below \subsubsection.
-\subsection*{Evaluating Assembly  Quality Using Various Assembly Treatments}  %Sherine: Titles will changed 
+\subsection*{Evaluating Assembly  Quality Using Various Reads Treatments}  %Sherine: Titles will changed 
 Table \ref {table:assembly-evaluation}  shows .
 Table \ref {table:reads-mapping} shows .
 
@@ -212,11 +220,15 @@ Table \ref {table:reads-mapping} shows .
 \hline
 \textbf{Unaligned Length}  & 8,977,149&10,909,693&11,317,834&- \\ [1ex]
 \hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\hline
 \multicolumn{5}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
 \hline
 \textbf{Genome Fraction}  &90.969&	91.003	&90.082 &88.346\\
 \hline
 \textbf{Unaligned Length}  &10,709,716&10,637,811&10,644,357&10,288,486 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
 \hline
 \multicolumn{5}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
 \hline
@@ -224,11 +236,15 @@ Table \ref {table:reads-mapping} shows .
 \hline
 \textbf{Unaligned Length}  &10,597,529&10,621,398	&10,500,235&10,461,672 \\ [1ex]
 \hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\hline
 \multicolumn{5}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
 \hline
 \textbf{Genome Fraction} &89.961&	&	88.769& \\
 \hline
 \textbf{Unaligned Length}&10,525,444& &	10,565,036&	 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
 \hline
 
 \end{tabular}
@@ -237,7 +253,7 @@ Table \ref {table:reads-mapping} shows .
 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \begin{table}[ht]
-\caption{Evaluating Assembly Using Different Treatments }
+\caption{Raw Reads Mapping to Assembly With Different Treatment Analysis }
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -267,7 +283,10 @@ Table \ref {table:reads-mapping} shows .
 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \subsection*{Time and Memory Comparisons}
-Table \ref {table:time-memory}  shows the  running time and memory utilizations for four assemblers and different treatments. 
+Table \ref {table:time-memory}  shows the  running time and memory utilizations for four assemblers and different reads treatments.
+There is no significant enhancement difference in Genome fraction and unaligned contains length. However, the results show a significant decrease in running time and memory utilization based on some treatments.  
+
+%add detailed explanation for the table
 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \begin{table}[ht]
@@ -310,13 +329,14 @@ Table \ref {table:time-memory}  shows the  running time and memory utilizations 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-\subsubsection*{SubSubsection 1.1}
-
+ 
 \subsection*{Assembly Validation}
+\subsubsection*{Raw Reads Mapping}
 
-We estimated the percentage of unaligned sequences  by each assembly treatment and using the five assemblers. We mapped the raw reads to each assembly. Then we extracted the unaligned sequences to each assembly. 
-Table XX shows the percentages of unaligned sequences from raw reads to each assembly treatment using the five assemblers under study. 
+We estimated the percentage of unaligned sequences  by each assembly treatment and using the four assemblers. We mapped the raw reads to each assembly. Then we extracted the unaligned sequences to each assembly. 
+Table XX shows the percentages of unaligned sequences from raw reads to each assembly treatment using the four assemblers under study. 
 
+For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped. Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
 
 \section*{Discussion}
 Main points
