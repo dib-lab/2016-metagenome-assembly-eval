@@ -1,0 +1,444 @@
+% Template for PLoS
+% Version 2.0 July 2014
+%
+% To compile to pdf, run:
+% latex plos.template
+% bibtex plos.template
+% latex plos.template
+% latex plos.template
+% dvipdf plos.template
+%
+% % % % % % % % % % % % % % % % % % % % % %
+%
+% -- IMPORTANT NOTE
+%
+% Be advised that this is merely a template 
+% designed to facilitate accurate translation of manuscript content 
+% into our production files. 
+%
+% This template contains extensive comments intended 
+% to minimize problems and delays during our production 
+% process. Please follow the template 
+% whenever possible.
+%
+% % % % % % % % % % % % % % % % % % % % % % % 
+%
+% Once your paper is accepted for publication and enters production, 
+% PLEASE REMOVE ALL TRACKED CHANGES in this file and leave only
+% the final text of your manuscript.
+%
+% DO NOT ADD EXTRA PACKAGES TO THIS TEMPLATE unless absolutely necessary.
+% Packages included in this template are intentionally
+% limited and basic in order to reduce the possibility
+% of issues during our production process.
+%
+% % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- FIGURES AND TABLES
+%
+% DO NOT INCLUDE GRAPHICS IN YOUR MANUSCRIPT
+% - Figures should be uploaded separately from your manuscript file. 
+% - Figures generated using LaTeX should be extracted and removed from the PDF before submission. 
+% - Figures containing multiple panels/subfigures must be combined into one image file before submission.
+% See http://www.plosone.org/static/figureGuidelines for PLOS figure guidelines.
+%
+% Tables should be cell-based and may not contain:
+% - tabs/spacing/line breaks within cells to alter layout
+% - vertically-merged cells (no tabular environments within tabular environments, do not use \multirow)
+% - colors, shading, or graphic objects
+% See http://www.plosone.org/static/figureGuidelines#tables for table guidelines.
+%
+% For sideways tables, use the {rotating} package and use \begin{sidewaystable} instead of \begin{table} in the appropriate section. PLOS guidelines do not accomodate sideways figures.
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- EQUATIONS, MATH SYMBOLS, SUBSCRIPTS, AND SUPERSCRIPTS
+%
+% IMPORTANT
+% Below are a few tips to help format your equations and other special characters according to our specifications. For more tips to help reduce the possibility of formatting errors during conversion, please see our LaTeX guidelines at http://www.plosone.org/static/latexGuidelines
+%
+% Please be sure to include all portions of an equation in the math environment, and for any superscripts or subscripts also include the base number/text. For example, use $mathrm{mm}^2$ instead of mm$^2$ (do not use \textsuperscript command).
+%
+% DO NOT USE the \rm command to render mathmode characters in roman font, instead use $\mathrm{}$
+% For bolding characters in mathmode, please use $\mathbf{}$ 
+%
+% Please add line breaks to long equations when possible in order to fit our 2-column layout. 
+%
+% For inline equations, please do not include punctuation within the math environment unless this is part of the equation.
+%
+% For spaces within the math environment please use the \; or \: commands, even within \text{} (do not use smaller spacing as this does not convert well).
+%
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+
+
+
+\documentclass[10pt]{article}
+\usepackage{colortbl}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+ 
+\usepackage{hyperref}
+
+% line numbers
+\usepackage{lineno}
+
+% ligatures disabled
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% rotating package for sideways tables
+%\usepackage{rotating}
+
+% If you wish to include algorithms, please use one of the packages below. Also, please see the algorithm section of our LaTeX guidelines (http://www.plosone.org/static/latexGuidelines) for important information about required formatting.
+%\usepackage{algorithmic}
+%\usepackage{algorithmicx}
+
+% Use doublespacing - comment out for single spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm 
+\textheight 21cm
+
+% Bold the 'Figure #' in the caption and separate it with a period
+% Captions will be left justified
+\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+
+
+ 
+ % Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+% Leave date blank
+\date{}
+
+\pagestyle{myheadings}
+
+%% Include all macros below. Please limit the use of macros.
+
+%% END MACROS SECTION
+
+
+\begin{document}
+
+
+% Title must be 150 characters or less
+\begin{flushleft}
+{\Large
+\textbf{Metagenomics Assemblers Evaluation [Or Whatever Titus suggests :)] }
+}
+% Insert Author names, affiliations and corresponding author email.
+\\
+ 
+author$^{1}$, 
+Sherine Awad [In whatever order and with whoever should be added] $^{2}$, 
+author$^{3,\ast}$
+\\
+\bf{2} Author1  Dept/Program/Center, Institution Name, City, State, Country
+\\
+\bf{3} Same as Titus Departments/Program/Center, Institution Name, City, State, Country
+\\
+\bf{4} Author3 Dept/Program/Center, Institution Name, City, State, Country
+\\
+$\ast$ E-mail: Corresponding author@institute.edu
+\end{flushleft}
+
+% Please keep the abstract between 250 and 300 words
+\section*{Abstract}
+
+% Please keep the Author Summary between 150 and 200 words
+% Use first person. PLOS ONE authors please skip this step. 
+% Author Summary not valid for PLOS ONE submissions.   
+\section*{Author Summary}
+
+
+
+\section*{Introduction}
+
+
+
+
+% You may title this section "Methods" or "Models". 
+% "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
+% authors may use "Analysis" 
+\section*{Materials and Methods}
+
+\subsection*{Datasets}
+
+
+Podar (write correct name) datasets where downloaded from XX. The dataset represent XX brief description for the data. 
+
+\subsection*{Pre-assembly Treatments  }
+
+We assembled the reads using a combination of different preprocessing and assembly approaches.  The preprocessing treatments are:
+\begin{enumerate}
+ \item {\bf Quality Filtering:} In this treatment, low quality bases were trimmed and low quality reads were removed using trimmomatic \cite{trimmomatic}. After quality trimming reads were either directly assembled, or first
+ preprocessed with digital normalization and then assembled.
+The original datasets contains  5536289548 base pairs  and 54814748 sequences in the  left pair and 5536289548 base pairs  and 54814748 sequences in the right pair. 
+
+After quality filtering, the paired-ended file contains 10547795822  base pairs 104433622 sequences while the single-ended file contains  184437913 base pairs and 1893243 sequences. 
+
+ \item {\bf Digital Normalization:} Digital normalization works after sequencing data has been generated, progressively
+removing high-coverage reads from shotgun data sets. This normalizes average coverage to a
+specified value, reducing sampling variation while removing reads, and also removing the many errors
+contained within those reads. This data and error reduction results in dramatically decreased computational
+requirements for de novo assembly. Moreover, unlike experimental normalization where abundance
+information is removed prior to sequencing, in digital normalization this information can be recovered
+from the unnormalized reads \cite{Brown2012}
+After digital normalization, the pair ended file contains 1687588894 base pairs and 16853716 sequences  while the single ended file contains 5859253 base pairs and 64638 sequences. 
+
+ \item {\bf Partitioning:} In this treatment,  we partitioned the filtered data set based on de Bruijn graph connectivity and assembled each partition independently.  Subsequently, partitioning
+separates reads based on transitive connectivity, resulting in easily assembled subsets of
+reads.
+ \item {\bf Reinflation:} 
+\end{enumerate}
+
+\subsection*{Metagenomes Assembly}
+We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idea}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments. 
+
+% Results and Discussion can be combined.
+\section*{Results}
+
+% We only support three levels of headings, please do not create a heading level below \subsubsection.
+\subsection*{Metagenomes Metrics}   
+Table \ref {table:qualtiy-metrics} shows various quality metrics for the results of the assembly using combinations of four different assemblers and different preprocessing treatments. Table \ref {table:reads-mapping} shows  the percentage of unaligned sequences when mapping the raw reads to the results assembly. 
+
+\begin{table}[ht]
+\caption{Assembly Quality Metrics}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} & \textbf{Reinflation} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{5}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}& 72.949&	89.043	&88.879&- \\
+\hline
+\textbf{Unaligned Length}  & 8,977,149&10,909,693&11,317,834&- \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\hline
+\textbf{N50} &38028 &18944 &8504	&- \\ [1ex]
+\hline
+\multicolumn{5}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}  &90.969&	91.003	&90.082 &88.346\\
+\hline
+\textbf{Unaligned Length}  &10,709,716&10,637,811&10,644,357&10,288,486 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\hline
+\textbf{N50}&4,977,3&4,782,8&2,657,5&2,984,0 \\ [1ex]
+\hline
+\multicolumn{5}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}  &90.424	&90.173	&89.272	&89.798 \\
+\hline
+\textbf{Unaligned Length}  &10,597,529&10,621,398	&10,500,235&10,461,672 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\hline
+\textbf{N50}&4,277,3&3,558,0&2,231,9&2,698,9\\ [1ex]
+\hline
+\multicolumn{5}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction} &89.961&	&	88.769& \\
+\hline
+\textbf{Unaligned Length}&10,525,444& &	10,565,036&	 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\hline
+\textbf{N50} &3,176,9&	&1,539,3&	  \\ [1ex]
+\hline
+
+\end{tabular}
+\label{table:qualtiy-metrics}
+\end{table}
+
+%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{table}[ht]
+\caption{Reads Mapping }
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} & \textbf{Reinflation} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{5}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&  &	 &  &- \\ 
+\hline
+\multicolumn{5}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences} &2092523 &2761871&3602590	&\\
+\hline
+\multicolumn{5}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&3013782	& &3579651&	 \\
+\hline
+\multicolumn{5}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences} & &	& & \\
+\hline
+
+
+\end{tabular}
+\label{table:reads-mapping}
+\end{table}
+
+%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection*{Resources Requirements Reduction based on Digital Normalization, Partitioning}
+Table \ref {table:time-memory}  shows the  running time and memory utilizations for four assemblers and different reads treatments.
+The results assembly after digitial normalization, partitioning, and reinflation show a significant decrease in running time and memory utilization.
+For Idba, digital normalization reduces ~27 hours in the running time. While partitioning  reduces ~25 hours in the running time. 
+For SPAdes, digital normalization reduces ~52 hours in the running time. While partitioning  reduces ~59 hours in the running time. 
+For Velvet, digital normalization reduces ~54 hours in the running time. While partitioning  reduces ~56 hours in the running time. 
+For Megahit, digital normalization reduces ~XX hours in the running time. While partitioning  reduces ~XX hours in the running time. 
+
+Digital normalization and Partitioning also reduce memory requirements. For Idba, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
+For SPAdes, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
+For megahit, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
+
+ 
+
+\subsection*{Reinflation Increases Memory Requirements}
+
+%add detailed explanation for the table
+ 
+%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{table}[ht]
+\caption{Running Time and Memory Utilization}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} & \textbf{Reinflation} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{5}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time} &60:42:52 & 6:48:46 & 4:30:36 &- \\ 
+\hline
+\textbf{Memory Utilization in KB}&1594851536 &827412304 &1156729920&- \\ 
+\hline
+\multicolumn{5}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time} &  33:53:46  &	6:34:24 &6:34:24&2:33:17 \\ 
+\hline
+\textbf{Memory Utilization in KB}& 129853424 &	104736448 & 93584624  &393938608 \\ 
+\hline
+\multicolumn{5}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time} &67:02:16&15:53:10&7:54:26&6:50:46 \\
+\hline
+\textbf{Memory Utilization in KB}&400340512&127423856&129715072 &434531888\\ 
+\hline
+\multicolumn{5}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time} & &	&0:00:27& \\
+\hline
+\textbf{Memory Utilization in KB}&  &	 &7548668& \\ 
+\hline
+
+
+\end{tabular}
+\label{table:time-memory}
+\end{table}
+
+%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ 
+ \subsection*{Reads Mapping}
+
+We estimated the percentage of unaligned sequences  by each assembly treatment and using the four assemblers. We mapped the raw reads to each assembly. Then we extracted the unaligned sequences to each assembly. 
+Table XX shows the percentages of unaligned sequences from raw reads to each assembly treatment using the four assemblers under study.  For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and paired reads were mapped only. %(both paired ends and singletons were mapped.) 
+
+Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
+
+\section*{Discussion}
+Main points
+Explain the significance of each treatment
+ 
+ 
+  
+% Do NOT remove this, even if you are not including acknowledgments.
+
+\section*{Acknowledgments}
+
+
+\section*{References}
+
+% Either type in your references using
+%\begin{thebibliography}{}
+% \bibitem{brown12}
+%C. Titus Brown and  Adina Howe and Qingpeng Zhang  and Alexis B. Pyrkosz and Timothy H. Brom, A Reference-Free Algorithm for Computational Normalization of Shotgun Sequencing Data
+ %\end{thebibliography}
+%
+% OR
+%
+% Compile your BiBTeX database using our plos2009.bst
+% style file and paste the contents of your .bbl file
+% here.
+% 
+
+
+ % Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2009}
+%--------Added by Sherine----------------------------------------------
+\bibliography{references}
+
+ %------------------------------------------------------------------------------
+\section*{Figure Legends}
+% This section is for figure legends only, do not include
+% graphics in your manuscript file.
+%
+%\begin{figure}
+%\caption{
+%{\bf Bold the first sentence.}  Rest of figure caption.  
+%}
+%\label{Figure_label}
+%\end{figure}
+
+
+\section*{Tables}
+% 
+% See introductory notes if you wish to include sideways tables.
+%
+% NOTE: Please look over our table guidelines at http://www.plosone.org/static/figureGuidelines#tables to make sure that your tables meet our requirements. Certain types of spacing, cell merging, and other formatting tricks may have unintended results and will be returned for revision.
+%
+%\begin{table}[!ht]
+%\caption{
+%\bf{Table title}}
+%\begin{tabular}{|c|c|c|}
+%table information
+%\end{tabular}
+%\begin{flushleft}Table caption
+%\end{flushleft}
+%\label{tab:label}
+% \end{table}
+
+\section*{Supporting Information Legends}
+%
+% Please enter your Supporting Information captions below in the following format:
+%\item{\bf Figure SX. Enter mandatory title here.} Enter optional descriptive information here.
+% 
+%\begin{description}
+%\item {\bf}
+%\item {\bf}
+%\end{description}
+
+\end{document}
+
