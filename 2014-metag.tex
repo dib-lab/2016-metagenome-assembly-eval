@@ -177,12 +177,21 @@ $\ast$ E-mail: Corresponding author@institute.edu
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
 % authors may use "Analysis" 
 \section*{Materials and Methods}
+
+\subsection*{Datasets}
+
+
 Podar (write correct name) datasets where downloaded from XX. The dataset represent XX brief description for the data. 
 
-\subsection*{Preparing Reads Treatments  }
+\subsection*{Pre-assembly Treatments  }
+
+We assembled the reads using a combination of different preprocessing and assembly approaches.  The preprocessing treatments are:
 \begin{enumerate}
  \item {\bf Quality Filtering:} In this treatment, low quality bases were trimmed and low quality reads were removed using trimmomatic \cite{trimmomatic}. After quality trimming reads were either directly assembled, or first
  preprocessed with digital normalization and then assembled.
+The original datasets contains  5536289548 base pairs  and 54814748 sequences in the  left pair and 5536289548 base pairs  and 54814748 sequences in the right pair. 
+
+After quality filtering, the paired-ended file contains 10547795822  base pairs 104433622 sequences while the single-ended file contains  184437913 base pairs and 1893243 sequences. 
 
  \item {\bf Digital Normalization:} Digital normalization works after sequencing data has been generated, progressively
 removing high-coverage reads from shotgun data sets. This normalizes average coverage to a
@@ -191,134 +200,128 @@ contained within those reads. This data and error reduction results in dramatica
 requirements for de novo assembly. Moreover, unlike experimental normalization where abundance
 information is removed prior to sequencing, in digital normalization this information can be recovered
 from the unnormalized reads \cite{Brown2012}
+After digital normalization, the pair ended file contains 1687588894 base pairs and 16853716 sequences  while the single ended file contains 5859253 base pairs and 64638 sequences. 
+
  \item {\bf Partitioning:} In this treatment,  we partitioned the filtered data set based on de Bruijn graph connectivity and assembled each partition independently.  Subsequently, partitioning
 separates reads based on transitive connectivity, resulting in easily assembled subsets of
 reads.
- \item {\bf Reinflation:} 
+ 
 \end{enumerate}
 
-After Quality trimming, we either preprocess the reads using digital normalization, partitioning, or reinflation. We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idea}, Spades \cite{spades}, and Megahit \cite{megahit} and using the various reads treatments. 
+\subsection*{Metagenomes Assembly}
+We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idea}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments. 
 
 % Results and Discussion can be combined.
 \section*{Results}
 
 % We only support three levels of headings, please do not create a heading level below \subsubsection.
-\subsection*{Evaluating Assembly  Quality Using Various Reads Treatments}  %Sherine: Titles will changed 
-Table \ref {table:assembly-evaluation}  shows .
-Table \ref {table:reads-mapping} shows .
+\subsection*{Metagenomes Metrics}   
+Table \ref {table:qualtiy-metrics} shows various quality metrics for the results of the assembly using combinations of four different assemblers and different preprocessing treatments. Table \ref {table:reads-mapping} shows  the percentage of unaligned sequences when mapping the raw reads to the results assembly. 
 
 \begin{table}[ht]
-\caption{Evaluating Assembly Using Different Treatments }
+\caption{Assembly Quality Metrics}
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} & \textbf{Reinflation} \\ [0.5ex] % inserts table %heading
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
 \hline
- \multicolumn{5}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{Genome Fraction}& 72.949&	89.043	&88.879&- \\
+\textbf{Genome Fraction}& 72.949&89.043&88.879 \\
 \hline
-\textbf{Unaligned Length}  & 8,977,149&10,909,693&11,317,834&- \\ [1ex]
+\textbf{Unaligned Length} &8,977,149&10,909,693&11,317,834\\ [1ex]
 \hline
-\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\textbf{Misassembled contigs length  }&16566891&25594315&16922852 \\ [1ex]
 \hline
-\multicolumn{5}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\textbf{N50} &38028 &18944 &8504 \\ [1ex]
 \hline
-\textbf{Genome Fraction}  &90.969&	91.003	&90.082 &88.346\\
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{Unaligned Length}  &10,709,716&10,637,811&10,644,357&10,288,486 \\ [1ex]
+\textbf{Genome Fraction} &90.969&	91.003&90.082 \\   
 \hline
-\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\textbf{Unaligned Length}  &10,709,716&10,637,811&10,644,357 \\ [1ex]
 \hline
-\multicolumn{5}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\textbf{Misassembled contigs length  }&21777032&27668818&18440791  \\ [1ex]
 \hline
-\textbf{Genome Fraction}  &90.424	&90.173	&89.272	&89.798 \\
+\textbf{N50}&4,977,3&4,782,8&2,657,5 \\ [1ex]
 \hline
-\textbf{Unaligned Length}  &10,597,529&10,621,398	&10,500,235&10,461,672 \\ [1ex]
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\textbf{Genome Fraction} &90.424&90.173&89.272\\
 \hline
-\multicolumn{5}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\textbf{Unaligned Length} &10,597,529&10,621,398&10,500,235 \\ [1ex]
 \hline
-\textbf{Genome Fraction} &89.961&	&	88.769& \\
+\textbf{Misassembled contigs length  }&28238787&23103154&14338099  \\ [1ex]
 \hline
-\textbf{Unaligned Length}&10,525,444& &	10,565,036&	 \\ [1ex]
+\textbf{N50}&4,277,3&3,558,0&2,231,9\\ [1ex]
 \hline
-\textbf{Misassembled contigs length  }  & & & &  \\ [1ex]
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction} &90.358&89.92&88.769 \\
+\hline
+\textbf{Unaligned Length}&10686421&10581435&10564244 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }&11927502&17319534&11814070 \\ [1ex]
+\hline
+\textbf{N50} &35254&35427&17492 \\ [1ex]
 \hline
 
 \end{tabular}
-\label{table:assembly-evaluation}
+\label{table:qualtiy-metrics}
 \end{table}
 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-\begin{table}[ht]
-\caption{Raw Reads Mapping to Assembly With Different Treatment Analysis }
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} & \textbf{Reinflation} \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{5}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&  &	 &  &- \\ 
-\hline
-\multicolumn{5}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences} &2092523 &2761871&3602590	&\\
-\hline
-\multicolumn{5}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&3013782	& &3579651&	 \\
-\hline
-\multicolumn{5}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences} & &	& & \\
-\hline
-
-
-\end{tabular}
-\label{table:reads-mapping}
-\end{table}
 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-\subsection*{Time and Memory Comparisons}
+\subsection*{Time and memory utilizations for assemblies using different treatments}
 Table \ref {table:time-memory}  shows the  running time and memory utilizations for four assemblers and different reads treatments.
-There is no significant enhancement difference in Genome fraction and unaligned contains length. However, the results show a significant decrease in running time and memory utilization based on some treatments.  
+ 
+For Idba, digital normalization reduces ~27 hours in the running time. While partitioning  reduces ~25 hours in the running time. 
+For SPAdes, digital normalization reduces ~52 hours in the running time. While partitioning  reduces ~59 hours in the running time. 
+For Velvet, digital normalization reduces ~54 hours in the running time. While partitioning  reduces ~56 hours in the running time. 
+For Megahit, digital normalization reduces ~XX hours in the running time. While partitioning  reduces ~XX hours in the running time. 
+
+Digital normalization and Partitioning also reduce memory requirements. For Idba, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
+For SPAdes, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
+For megahit, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
+
+ 
+
+%\subsection*{Memory requirements increase with re-inflation with no significant enhancement in assembly quality}
 
 %add detailed explanation for the table
-
+ 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \begin{table}[ht]
 \caption{Running Time and Memory Utilization}
 \centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c| }
 \hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} & \textbf{Reinflation} \\ [0.5ex] % inserts table %heading
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
 \hline
- \multicolumn{5}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{Running Time} &60:42:52 & 6:48:46 & 4:30:36 &- \\ 
+\textbf{Running Time} &60:42:52 &6:48:46 &4:30:36   \\ 
 \hline
-\textbf{Memory Utilization in KB}&1594851536 &827412304 &1156729920&- \\ 
+\textbf{Memory Utilization in KB}&1594851536 &827412304 &1156729920  \\ 
 \hline
-\multicolumn{5}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{Running Time} &  33:53:46  &	6:34:24 &6:34:24&2:33:17 \\ 
+\textbf{Running Time} &33:53:46&6:34:24 &8:30:29  \\ 
+\hline`
+\textbf{Memory Utilization in KB}& 129853424 &	104736448 & 93584624    \\ 
 \hline
-\textbf{Memory Utilization in KB}& 129853424 &	104736448 & 93584624  &393938608 \\ 
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
 \hline
-\multicolumn{5}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\textbf{Running Time} &67:02:16&15:53:10&7:54:26  \\
 \hline
-\textbf{Running Time} &67:02:16&15:53:10&7:54:26&6:50:46 \\
+\textbf{Memory Utilization in KB}&400340512&127423856&129715072  \\ 
 \hline
-\textbf{Memory Utilization in KB}&400340512&127423856&129715072 &434531888\\ 
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
 \hline
-\multicolumn{5}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\textbf{Running Time}&1:52:55&0:30:23&1:23:28 \\
 \hline
-\textbf{Running Time} & &	&0:00:27& \\
-\hline
-\textbf{Memory Utilization in KB}&  &	 &7548668& \\ 
+\textbf{Memory Utilization in KB}&35034096&19805888&198756832 \\ 
 \hline
 
 
@@ -330,17 +333,115 @@ There is no significant enhancement difference in Genome fraction and unaligned 
 
 
  
-\subsection*{Assembly Validation}
-\subsubsection*{Raw Reads Mapping}
+ \subsection*{More about misassembles}  
+ 
+ \~Still I need an experiment to investigate mis-assemblies more
+  
+ \subsection*{Mapping assemblies to quality filtered reads} 
 
-We estimated the percentage of unaligned sequences  by each assembly treatment and using the four assemblers. We mapped the raw reads to each assembly. Then we extracted the unaligned sequences to each assembly. 
-Table XX shows the percentages of unaligned sequences from raw reads to each assembly treatment using the four assemblers under study. 
+We estimated the percentage of unaligned sequences  by each assembly treatment and using the four assemblers. We mapped the quality filtered reads to each assembly. Then we extracted the unaligned sequences to each assembly. 
+Table ~ref{reads-mapping} shows the percentages of unaligned sequences from quality filtered reads to each assembly treatment using the four assemblers under study.  For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped. 
+Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
 
-For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped. Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
+\begin{table}[ht]
+\caption{Reads Mapping }
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&8324608&2205698&2697788  \\ 
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences} &495570 &549791&1302356	\\
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&714474& 842268&1408063	 \\
+\hline
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&467660&622684&1487942\\
+\hline
+
+
+\end{tabular}
+\label{table:reads-mapping}
+\end{table}
+
+ \subsection*{Mapping unaligned reads of all assemblers and treatments to the unaligned reads of IDBA  assembly using quality treatment} 
+In this experiment, we mapped unaligned reads of each assembly with different treatments to the the unaligned reads of idba assembly using quality filtered treatment. 
+The purpose of this experiment is to identify whether the unaligned reads are common. 
+
+\begin{table}[ht]
+\caption{Mapping unaligned reads to Idba quality-filtered assembly }
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}&80.613&92.034&98.013  \\
+\hline
+\textbf{Unaligned Length}&2475529&3192491&64539560 \\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}&-&91.53 &94.738 \\   
+\hline
+\textbf{Unaligned Length}&-&498299&37437754 \\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}&91.922&93.959&94.826 \\
+\hline
+\textbf{Unaligned Length}&2174574&1951911&2398664 \\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction} & & &  \\
+\hline
+\textbf{Unaligned Length}& &  &  \\ [1ex]
+ 
+\hline
+
+\end{tabular}
+\label{table:unaligned-mapping}
+\end{table}
 
 \section*{Discussion}
-Main points
-Explain the significance of each treatment
+ 
+ \subsection*{Assembly works pretty well} 
+ 
+ \subsection*{Digital normalization and partitioning significantly reduce running time and memory utilizations}
+ \subsection*{Or Megahit Idba shows the lowest number of unaligned reads among different treatments}  
+  
+ \subsection*{Velvet shows the highest number of unaligned reads among different treatments} 
+
+
+\begin{enumerate}
+
+ \item {\bf  How well do different assemblers recover metagenomes?}
+ \item {\bf  Why do contigs misassemble/what is in common between mis-assemblies}
+ \item {\bf How do different treatments affect assembly quality?}
+ \item {\bf  How do the different treatments affect computational requirements?}
+ 
+  \item {\bf ---stuff from results --may be combine results and discussion}  
+ \item {\bf Assembly works pretty good} 
+  \item {\bf Discuss all/most of the metrics and justify them -- not only pick one or 2 important metrics} 
+  % \item {\bf Assembly quality is not affected by treatments} 
+ %\item {\bf Digital Normalization and Partitioning increase time and memory resource utilization}
+ %\item {\bf Re-inflation does not enhance assembly quality but utilizes more time/memory resources} 
+ \item{\bf talk about misassembles and justify them}  
+  \item{\bf talk about  unalignment and justify them}  
+ \item{\bf explain how every treatment -- leads to memory or time enhancements }
+ 
+  
+ \end{enumerate} 
  
  
   
