@@ -209,7 +209,7 @@ reads.
 \end{enumerate}
 
 \subsection*{Metagenomes Assembly}
-We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idea}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments. 
+We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idba}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments;   quality filtering, digital normalization, and partitioning. We examined the assembly quality of each assembler and treatment sing Quast \cite{quast}. 
 
 % Results and Discussion can be combined.
 \section*{Results}
@@ -217,7 +217,7 @@ We assembled the reads using four different assemblers; Velvet \cite{velvet}, Id
 % We only support three levels of headings, please do not create a heading level below \subsubsection.
 \subsection*{Metagenomes Metrics}   
 Table \ref {table:qualtiy-metrics} shows various quality metrics for the results of the assembly using combinations of four different assemblers and different preprocessing treatments.
-The unaligned length is the total length of all unaligned regions in the assembly.  The unaligned length for assembly using velvet is 8977149, 10909693, and 11317834 using quality filtered reads, digital normalization, and partitioning respectively. For IDBA assembly, the unaligned length is 10709716, 10637811, and 10644357 using quality filtered reads, digital normalization, and partitioning respectively. For megahit assembly, the unaligned length is 10686421, 10581435, and10564244 using quality filtered reads, digital normalization, and partitioning respectively.   For SPAdes assembly, the unaligned length is 10597529, 10621398, and 10500235 using quality filtered reads, digital normalization, and partitioning respectively. 
+The unaligned length is the total length of all unaligned regions in the assembly.  The unaligned length for assembly using velvet is 8977149, 10909693, and 11317834 using quality filtered reads, digital normalization, and partitioning respectively. For IDBA assembly, the unaligned length is 10709716, 10637811, and 10644357 using quality filtered reads, digital normalization, and partitioning respectively. For Megahit assembly, the unaligned length is 10686421, 10581435, and10564244 using quality filtered reads, digital normalization, and partitioning respectively.   For SPAdes assembly, the unaligned length is 10597529, 10621398, and 10500235 using quality filtered reads, digital normalization, and partitioning respectively. 
 
 The genome fraction \% is the percentage of aligned bases in the reference. A base in the reference is aligned if there is at least one contig with at least one alignment to this base. For Velvet assembly,  the genome fraction percentage is 72.949 \%, 89.043\%, and 88.879\%  using quality filtered reads, digital normalization, and partitioning respectively. The genome fraction percentage of IDBA assembly is 90.969 \%, 91.003\%, and 90.082\% using quality filtered reads, digital normalization, and partitioning respectively.  For SPAdes assembly, the genome fraction percentage is 90.424\%, 90.173\%, and 89.272\% using quality filtered reads, digital normalization, and partitioning respectively. The genome fraction percentage of megahit assembly is 90.358\%, 89.92\%, and 88.769\% using quality filtered reads, digital normalization, and partitioning respectively. 
  
@@ -285,10 +285,10 @@ Misassembled contains length for SPAdes is 752, 881, and 654  using quality filt
 Table \ref {table:time-memory}  shows the  running time and memory utilizations for four assemblers and different reads treatments.
  
 
-For Velvet assemblies, it  took  ~ 60 hours using quality filtered reads, while it took only  6 hours using digital normalizations and   4 hours using partitioning which is approximately 10\% and less of time utilized using quality filtered reads.  For IDBA assemblies, it took ~33 hours using quality filtered reads, while it took ~ 6 hours using digital normalization and ~8 hours using partitioning, approximately less than ~7\% of time utilized using quality filtered reads.
-SPAdes assemblies utilized ~67:02:16 hours using quality filtered reads  while it took ~15 hours and ~7 hours using digital normalization and partitioning respectively less than 5\% of time utilized using quality filtered reads.
-  
- 
+For Velvet assemblies, it  took $\sim 60$ hours using quality filtered reads, while it took only  $\sim 6$ hours using digital normalizations and  $\sim 4$ hours using partitioning which is approximately 10\% and less of time utilized using quality filtered reads.  For IDBA assemblies, it took $\sim 33$ hours using quality filtered reads, while it took $\sim 6$ hours using digital normalization and $\sim 8$ hours using partitioning, approximately less than $\sim 7\% $of time utilized using quality filtered reads. SPAdes assemblies utilized $\sim 67$ hours using quality filtered reads  while it took $\sim15$ hours and $\sim 7$ hours using digital normalization and partitioning respectively less than 5\% of time utilized using quality filtered reads.
+
+For Velvet assemblies, it used used $\sim 1594851536 $ KB of memory using quality filtered reads, while it used one $\sim 827412304$ KB and $\sim 1156729920 $ KB of memory when applying digital normalization and partitioning respectively. For IDBA assemblies, it used used $\sim 129853424 $ KB of memory using quality filtered reads, while it used one $\sim 104736448$ KB and $\sim 93584624  $ KB of memory when applying digital normalization and partitioning respectively. For SPAdes assemblies, it used used $\sim 129853424 $ KB of memory using quality filtered reads, while it used one $\sim 104736448$ KB and $\sim 93584624  $ KB of memory when applying digital normalization and partitioning respectively. 
+
 
 %\subsection*{Memory requirements increase with re-inflation with no significant enhancement in assembly quality}
 
