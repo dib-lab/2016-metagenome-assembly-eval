@@ -88,8 +88,8 @@
 
 % line numbers
 \usepackage{lineno}
-
-% ligatures disabled
+ 
+ % ligatures disabled
 \usepackage{microtype}
 \DisableLigatures[f]{encoding = *, family = * }
 
@@ -209,14 +209,22 @@ reads.
 \end{enumerate}
 
 \subsection*{Metagenomes Assembly}
-We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idea}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments. 
+We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idba}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments;   quality filtering, digital normalization, and partitioning. We examined the assembly quality of each assembler and treatment sing Quast \cite{quast}. 
 
 % Results and Discussion can be combined.
 \section*{Results}
 
 % We only support three levels of headings, please do not create a heading level below \subsubsection.
 \subsection*{Metagenomes Metrics}   
-Table \ref {table:qualtiy-metrics} shows various quality metrics for the results of the assembly using combinations of four different assemblers and different preprocessing treatments. Table \ref {table:reads-mapping} shows  the percentage of unaligned sequences when mapping the raw reads to the results assembly. 
+Table \ref {table:qualtiy-metrics} shows various quality metrics for the results of the assembly using combinations of four different assemblers and different preprocessing treatments.
+The unaligned length is the total length of all unaligned regions in the assembly.  The unaligned length for assembly using velvet is 8977149, 10909693, and 11317834 using quality filtered reads, digital normalization, and partitioning respectively. For IDBA assembly, the unaligned length is 10709716, 10637811, and 10644357 using quality filtered reads, digital normalization, and partitioning respectively. For Megahit assembly, the unaligned length is 10686421, 10581435, and10564244 using quality filtered reads, digital normalization, and partitioning respectively.   For SPAdes assembly, the unaligned length is 10597529, 10621398, and 10500235 using quality filtered reads, digital normalization, and partitioning respectively. 
+
+The genome fraction \% is the percentage of aligned bases in the reference. A base in the reference is aligned if there is at least one contig with at least one alignment to this base. For Velvet assembly,  the genome fraction percentage is 72.949 \%, 89.043\%, and 88.879\%  using quality filtered reads, digital normalization, and partitioning respectively. The genome fraction percentage of IDBA assembly is 90.969 \%, 91.003\%, and 90.082\% using quality filtered reads, digital normalization, and partitioning respectively.  For SPAdes assembly, the genome fraction percentage is 90.424\%, 90.173\%, and 89.272\% using quality filtered reads, digital normalization, and partitioning respectively. The genome fraction percentage of megahit assembly is 90.358\%, 89.92\%, and 88.769\% using quality filtered reads, digital normalization, and partitioning respectively. 
+ 
+Misassembled contigs length is the total number of bases in misassembled contigs . For Velvet assembly, misassemble contigs length is 631, 3104, and 3337 using quality filtered reads, digital normalization, and partitioning respectively. For IDBA assembly,  misassemble contigs length is 1032, 916, and 828 using quality filtered reads, digital normalization, and partitioning respectively.
+Misassembled contains length for SPAdes is 752, 881, and 654  using quality filtered reads, digital normalization, and partitioning respectively. For Megahit assembly, misassemble contains length is 648, 780, and 677 using quality filtered reads, digital normalization, and partitioning respectively.
+
+% Table \ref {table:reads-mapping} shows  the percentage of unaligned sequences when mapping the raw reads to the results assembly. 
 
 \begin{table}[ht]
 \caption{Assembly Quality Metrics}
@@ -276,16 +284,11 @@ Table \ref {table:qualtiy-metrics} shows various quality metrics for the results
 \subsection*{Time and memory utilizations for assemblies using different treatments}
 Table \ref {table:time-memory}  shows the  running time and memory utilizations for four assemblers and different reads treatments.
  
-For Idba, digital normalization reduces ~27 hours in the running time. While partitioning  reduces ~25 hours in the running time. 
-For SPAdes, digital normalization reduces ~52 hours in the running time. While partitioning  reduces ~59 hours in the running time. 
-For Velvet, digital normalization reduces ~54 hours in the running time. While partitioning  reduces ~56 hours in the running time. 
-For Megahit, digital normalization reduces ~XX hours in the running time. While partitioning  reduces ~XX hours in the running time. 
 
-Digital normalization and Partitioning also reduce memory requirements. For Idba, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
-For SPAdes, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
-For megahit, digital normalization reduces ~XX KB of memory utilization. While partitioning reduces ~XX KB of memory utilization.
+For Velvet assemblies, it  took $\sim 60$ hours using quality filtered reads, while it took only  $\sim 6$ hours using digital normalizations and  $\sim 4$ hours using partitioning which is approximately 10\% and less of time utilized using quality filtered reads.  For IDBA assemblies, it took $\sim 33$ hours using quality filtered reads, while it took $\sim 6$ hours using digital normalization and $\sim 8$ hours using partitioning, approximately less than $\sim 7\% $of time utilized using quality filtered reads. SPAdes assemblies utilized $\sim 67$ hours using quality filtered reads  while it took $\sim15$ hours and $\sim 7$ hours using digital normalization and partitioning respectively less than 5\% of time utilized using quality filtered reads.
 
- 
+For Velvet assemblies, it used used $\sim 1594851536 $ KB of memory using quality filtered reads, while it used one $\sim 827412304$ KB and $\sim 1156729920 $ KB of memory when applying digital normalization and partitioning respectively. For IDBA assemblies, it used used $\sim 129853424 $ KB of memory using quality filtered reads, while it used one $\sim 104736448$ KB and $\sim 93584624  $ KB of memory when applying digital normalization and partitioning respectively. For SPAdes assemblies, it used used $\sim 129853424 $ KB of memory using quality filtered reads, while it used one $\sim 104736448$ KB and $\sim 93584624  $ KB of memory when applying digital normalization and partitioning respectively. 
+
 
 %\subsection*{Memory requirements increase with re-inflation with no significant enhancement in assembly quality}
 
@@ -416,34 +419,19 @@ The purpose of this experiment is to identify whether the unaligned reads are co
 \section*{Discussion}
  
  \subsection*{Assembly works pretty well} 
+ Except for Velvet assembly using quality filtered reads, the genome fraction percentage is  88\% or higher.  Unaligned length is less than 1\% for all assemblers and using different treatments. 
+ Misassembled length is less than 1.3\% for all assemblers and using different treatments.
  
  \subsection*{Digital normalization and partitioning significantly reduce running time and memory utilizations}
- \subsection*{Or Megahit Idba shows the lowest number of unaligned reads among different treatments}  
-  
- \subsection*{Velvet shows the highest number of unaligned reads among different treatments} 
+ 
+ The difference between genome fraction percentage using quality filtered reads vs digital normalizations and partitioning doesn't exceed 1\%. However, the time and memory  resource are reduced a lot using digital normalization and partitioning. 
+ 
+ 
+ \subsection*{Unaligned reads are common among different assemblers}
+ Mapping the unaligned reads of different assemblies and different treatments to the unaligned reads of  IDBA  assembly using quality filtered , shows genome fraction percentage is 91\% or higher. This means the unaligned reads are common among assemblers and they are likely to be because of contamination. 
 
 
-\begin{enumerate}
 
- \item {\bf  How well do different assemblers recover metagenomes?}
- \item {\bf  Why do contigs misassemble/what is in common between mis-assemblies}
- \item {\bf How do different treatments affect assembly quality?}
- \item {\bf  How do the different treatments affect computational requirements?}
- 
-  \item {\bf ---stuff from results --may be combine results and discussion}  
- \item {\bf Assembly works pretty good} 
-  \item {\bf Discuss all/most of the metrics and justify them -- not only pick one or 2 important metrics} 
-  % \item {\bf Assembly quality is not affected by treatments} 
- %\item {\bf Digital Normalization and Partitioning increase time and memory resource utilization}
- %\item {\bf Re-inflation does not enhance assembly quality but utilizes more time/memory resources} 
- \item{\bf talk about misassembles and justify them}  
-  \item{\bf talk about  unalignment and justify them}  
- \item{\bf explain how every treatment -- leads to memory or time enhancements }
- 
-  
- \end{enumerate} 
- 
- 
   
 % Do NOT remove this, even if you are not including acknowledgments.
 

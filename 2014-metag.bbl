@@ -1,17 +1,65 @@
-%% This BibTeX bibliography file was created using BibDesk.
-%% http://bibdesk.sourceforge.net/
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+\providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{trimmomatic}
+Bolger AM, Lohse M, Usadel B (2014) Trimmomatic: A flexible trimmer for
+  illumina sequence data.
+\newblock Bioinformatics 30: 2114-2120.
+\bibAnnoteFile{trimmomatic}
 
-%% Saved with string encoding Unicode (UTF-8) 
+\bibitem{Brown2012}
+Brown CT, Howe A, Zhang Q, Pyrkosz AB, Brom TH (2012) A reference-free
+  algorithm for computational normalization of shotgun sequencing data.
+\newblock arXiv e-print 12034802 .
+\bibAnnoteFile{Brown2012}
 
+\bibitem{velvet}
+Zerbino DR, Birney E (2008) Velvet: algorithms for de novo short read assembly
+  using de bruijn graphs.
+\newblock Genome Research 18: 821-829.
+\bibAnnoteFile{velvet}
 
-@article{Brown2012,
-	Author = {C Titus Brown and Adina Howe and Qingpeng Zhang and Alexis B Pyrkosz and Timothy H Brom},
-	Journal = { },
-	Month = {May},
-	Number = { },
-	Title = {A reference-free algorithm for computational normalization of shotgun sequencing data},
-	Volume = { },
-	Year = {2012}
-}
+\bibitem{idba}
+Peng Y, Leung HC, Yiu S, Chin FY (2012) Idba-ud: a de novo assembler for
+  single-cell and metagenomic sequencing data with highly uneven depth.
+\newblock Bioinformatics 28: 1420-1428.
+\bibAnnoteFile{idba}
 
+\bibitem{spades}
+Bankevich A, Nurk S, Antipov D, Gurevich AA, Dvorkin M, et~al. (2012) Spades: A
+  new genome assembly algorithm and its applications to single-cell sequencing.
+\newblock Journal of Computational Biology 19: 455-477.
+\bibAnnoteFile{spades}
+
+\bibitem{megahit}
+Li D, Liu CM, Luo R, Sadakane K, Lam TW (2014) Megahit: An ultra-fast
+  single-node solution for large and complex metagenomics assembly via succinct
+  de bruijn graph.
+\newblock Bioinformatics .
+\bibAnnoteFile{megahit}
+
+\bibitem{quast}
+Alexey~Gurevich NV Vladislav~Saveliev, Tesler G (2013) Quast: quality
+  assessment tool for genome assemblies.
+\newblock Bioinformatics 28: 1072-1075.
+\bibAnnoteFile{quast}
+
+\bibitem{samtools}
+H L, B H, A W, T F, J R, et~al. (2009) The sequence alignment/map format and
+  samtools.
+\newblock Bioinformatics 25.
+\bibAnnoteFile{samtools}
+
+\end{thebibliography}
