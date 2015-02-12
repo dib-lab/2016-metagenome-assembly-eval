@@ -210,7 +210,7 @@ protocol-partition-below: ${DIGINORM}/normC5k20.kh ${DIGINORM}/*.kak.*.fq.gz
 	cd ${PARTITION} && python ${KHMER}/sandbox/filter-below-abund.py ${DIGINORM}/normC5k20.kh ${DIGINORM}/*.kak.*.fq.gz 
 
 
-protocol-partition-rename-1: 
+protocol-partition-rename-1: ${PARTITION}/${PREFIX}.pe.kak.qc.fq.gz.below  ${PARTITION}/${PREFIX}.se.kak.qc.fq.gz.below
 	cd ${PARTITION} && mv ${PREFIX}.pe.kak.qc.fq.gz.below  ${PREFIX}.pe.kak.qc.fq.gz.below.fq &&  mv ${PREFIX}.se.kak.qc.fq.gz.below ${PREFIX}.se.kak.qc.fq.gz.below.fq 
 
 protocol-partition-run: ${PARTITION}/${PREFIX}.pe.kak.qc.fq.gz.below.fq  ${PARTITION}/${PREFIX}.se.kak.qc.fq.gz.below.fq 
