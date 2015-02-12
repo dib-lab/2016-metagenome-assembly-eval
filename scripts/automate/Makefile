@@ -5,8 +5,6 @@ DATA=/mnt/data
 QUALITY=/mnt/quality-make
 DIGINORM=/mnt/diginorm-make
 PARTITION=/mnt/partition-make
-REINFLATION=/mnt/reinflation-make
-INTERLEAVED=/mnt/interleaved-make
 PREFIX=extract
 KAK=kak
 
