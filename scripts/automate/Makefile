@@ -9,9 +9,8 @@ REINFLATION=/mnt/reinflation-make
 INTERLEAVED=/mnt/interleaved-make
 PREFIX=extract
 KAK=kak
-KSIZES='seq 19 2 51'
 
-all: reinflation
+all: 
 
 #########################################
 quality: interleaving-1 \
@@ -91,43 +90,29 @@ idba-partition: partition \
 	idba-partition-2 \
 	idba-partition-3 \
 	finalize-idba-partition
-#--------------------------------------------------Velvet Reinflation----------------------------------------------------------
-velvet-reinflation: reinflation \
-	velvet-reinflation-1 \
-	velvet-reinflation-2 
-#--------------------------------------------------Spades Reinflation----------------------------------------------------------
-spades-reinflation: reinflation \
-	spades-reinflation-1 \
-	spades-reinflation-2 \
-	finalize-spades-reinflation
-#-------------------------------------------------IDBA Reinflation--------------------------------------------------------------
-idba-reinflation: reinflation \
-	idba-reinflation-1 \
-	idba-reinflation-2 \
-	finalize-idba-reinflation
 #-----------------------------------------------------------QUALITY STARTS----------------------------------------------------------------------------------- 
 interleaving-1: ${DATA}/${PREFIX}-1.fastq.gz  ${DATA}/${PREFIX}-2.fastq.gz
 	java -jar ${TRIM}/trimmomatic-0.30.jar PE ${DATA}/${PREFIX}-1.fastq.gz  ${DATA}/${PREFIX}-2.fastq.gz  ${QUALITY}/s1_pe ${QUALITY}/s1_se ${QUALITY}/s2_pe ${QUALITY}/s2_se ILLUMINACLIP:/usr/local/share/adapters/TruSeq3-PE.fa:2:30:10
 	${KHMER}/scripts/interleave-reads.py ${QUALITY}/s1_pe ${QUALITY}/s2_pe | gzip -9c > ${QUALITY}/${PREFIX}.pe.fq.gz
 	cat ${QUALITY}/s1_se ${QUALITY}/s2_se | gzip -9c > ${QUALITY}/${PREFIX}.se.fq.gz
 
-interleaving-2: interleaving-1
+interleaving-2: ${QUALITY}/${PREFIX}.se.fq.gz ${QUALITY}/${PREFIX}.pe.fq.gz
 	gunzip -c ${QUALITY}/${PREFIX}.pe.fq.gz | fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ${QUALITY}/${PREFIX}.pe.qc.fq.gz
 	gunzip -c ${QUALITY}/${PREFIX}.se.fq.gz | fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ${QUALITY}/${PREFIX}.se.qc.fq.gz
 
-interleaving-3: interleaving-2
+interleaving-3: ${QUALITY}/${PREFIX}.pe.qc.fq.gz  ${QUALITY}/${PREFIX}.se.qc.fq.gz
 	cd ${QUALITY} && extract-paired-reads.py ${QUALITY}/${PREFIX}.pe.qc.fq.gz 
 
-protocol-quality-rename-1: interleaving-3
-	cd ${QUALITY} && ./qc-rename-1.sh \ 
+protocol-quality-rename-1: ${QUALITY}/${PREFIX}.pe.qc.fq.gz.pe
+	cd ${QUALITY} && ./qc-rename-1.sh \
 	touch protocol-quality-rename-1
 
 
-protocol-quality-rename-2: 
+protocol-quality-rename-2: ${QUALITY}/${PREFIX}.pe.qc.fq.gz.se 
 	cd ${QUALITY} && ./qc-rename-2.sh \
 	touch protocol-quality-rename-2
 #----------------------------------------------------------------VELVET QUALITY ------------------------------------------------------------------------------
-velvet-quality-1: 
+velvet-quality-1: ${QUALITY}/${PREFIX}.pe.qc.fq.gz  ${QUALITY}/${PREFIX}.se.qc.fq.gz 
 	cd ${QUALITY} && ./velvet-qc.sh
 	touch velvet-quality-1
 
@@ -135,7 +120,7 @@ finalize-velvet-quality:
 	cd ${QUALITY} && python ${KHMER}/sandbox/calc-best-assembly.py ${PREFIX}.velvet.*.d/contigs.fa -o velvet-quality-best.fa &&  python ${KHMER}/sandbox/multi-rename.py assembly  velvet-quality-best.fa >velvet-quality-assembly.fa
 
 #--------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
-spades-quality-1: 
+spades-quality-1: ${QUALITY}/${PREFIX}.pe.qc.fq.gz 
 	cd ${QUALITY} && ./spades-qc.sh 
 	touch spades-quality-1
 
@@ -147,13 +132,13 @@ finalize-spades-quality: ${QUALITY}/${PREFIX}.spades.d/contigs.fasta
 	cd ${QUALITY} && python ${KHMER}/sandbox/multi-rename.py assembly spades-quality-best.fa > spades-quality-assembly.fa
 
 #------------------------------------------------------------------IDBA QUALITY-------------------------------------------------------------------------------
-idba-quality-1:
+idba-quality-1: ${QUALITY}/${PREFIX}/.pe.qc.fq.gz
 	cd ${QUALITY} && ./idba-qc.sh && touch idba-quality-1
 
 idba-quality-2: ${QUALITY}/${PREFIX}.pe.fa
 	cd ${QUALITY}  && /usr/bin/time -a -o iqc.txt idba_ud --pre_correction -r ${PREFIX}.pe.fa -o ${PREFIX}.idba.d 
 
-finalize-idba-quality: 
+finalize-idba-quality: ${PREFIX}.idba.d/scaffold.fa
 	cd ${QUALITY} && python ${KHMER}/sandbox/calc-best-assembly.py  ${PREFIX}.idba.d/scaffold.fa -o idba-quality-best.fa
 	cd ${QUALITY} && python ${KHMER}/sandbox/multi-rename.py assembly  idba-quality-best.fa > idba-quality-assembly.fa
 
@@ -167,7 +152,7 @@ protocol-diginorm-C20: ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.
 protocol-diginorm-filter: ${DIGINORM}/normC20k20.kh
 	cd ${DIGINORM}  && filter-abund.py -V ${DIGINORM}/normC20k20.kh ${DIGINORM}/*.keep 
 
-protocol-diginorm-extract: protocol-diginorm-filter
+protocol-diginorm-extract: 
 	cd ${DIGINORM} && extract-paired-reads.py ${DIGINORM}/${PREFIX}.pe.qc.fq.gz.keep.abundfilt; \
 
 protocol-diginorm-C5:
@@ -207,7 +192,7 @@ idba-diginorm-1:
 	cd ${DIGINORM} && ./idba-dig.sh 
 	touch idba-diginorm-2
 
-idba-diginorm-2: idba-diginorm-1
+idba-diginorm-2: 
 	cd ${DIGINORM}  &&  /usr/bin/time -a -o idig.txt idba_ud --pre_correction -r ${DIGINORM}/${PREFIX}.pe.kak.fa  -o ${DIGINORM}/${PREFIX}.idba.d
 
 finalize-idba-diginorm:	
@@ -221,22 +206,22 @@ protocol-partition-below: ${DIGINORM}/normC5k20.kh ${DIGINORM}/*.kak.*.fq.gz
 	cd ${PARTITION} && python ${KHMER}/sandbox/filter-below-abund.py ${DIGINORM}/normC5k20.kh ${DIGINORM}/*.kak.*.fq.gz 
 
 
-protocol-partition-rename-1: protocol-partition-below
+protocol-partition-rename-1: 
 	cd ${PARTITION} && mv ${PREFIX}.pe.kak.qc.fq.gz.below  ${PREFIX}.pe.kak.qc.fq.gz.below.fq &&  mv ${PREFIX}.se.kak.qc.fq.gz.below ${PREFIX}.se.kak.qc.fq.gz.below.fq 
 
 protocol-partition-run: ${PARTITION}/${PREFIX}.pe.kak.qc.fq.gz.below.fq  ${PARTITION}/${PREFIX}.se.kak.qc.fq.gz.below.fq 
 	cd ${PARTITION} && ${KHMER}/scripts/do-partition.py -k 32 -x 1e9 --threads 4 kak ${PARTITION}/*.kak.qc.fq.gz.below.fq
 
 
-protocol-partition-extract: protocol-partition-run
+protocol-partition-extract: 
 	cd ${PARTITION} && ${KHMER}/scripts/extract-partitions.py -X 100000 kak *.part
 
 
-protocol-partition-rename-2: protocol-partition-extract 
+protocol-partition-rename-2:  
 	cd ${PARTITION} && ./seperate.sh \ 
 	touch protocol-partition-rename-2
 
-protocol-partition-compress: protocol-partition-rename-2 
+protocol-partition-compress: 
 	cd ${PARTITION} && gzip *.pe.fq  *.se.fq
 
 #--------------------------------------------------------------------Velvet Partition-------------------------------------------------------------------------
@@ -281,55 +266,6 @@ idba-partition-3:
 finalize-idba-partition:
 	python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/idba-partition-best.group*.fa > ${PARTITION}/idba-partition-assembly.fa
 
-#------------------------------------------------------------------REINFLATION STARTS-------------------------------------------------------------------------
-linking-partition: 
-	ln -fs ${PARTITION}/*.* ${REINFLATION}
-
-protocol-reinflation-recover: ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz 
-	cd ${REINFLATION} && python ${KHMER}/sandbox/sweep-files.py -x 3e8 --db ${REINFLATION}/kak.group*.fq --query ${QUALITY}/*.*.qc.fq.gz
-
-protocol-reinflation-split: protocol-reinflation-recover
-	cd ${REINFLATION} && ./split.sh && touch protocol-reinflation-split 
-
-protocol-reinflation-compress: protocol-reinflation-split
-	cd ${REINFLATION} && gzip *.nodn.se.fq *.nodn.pe.fq 
-
-protocol-reinflation-clean:
-	cd ${REINFLATION} && rm *.part kak.group*.fq *.kh *.below.fq *.sweep.fq
-#---------------------------------------------------------------Velvet Reinflation----------------------------------------------------------------------------
-velvet-reinflation-1:
-	cd ${REINFLATION} && ./velvet-reinflation.sh
-	touch velvet-reinflation-1
-
-velvet-reinflation-2: 
-	cd ${REINFLATION} && ./velvet-reinf-finalize.sh
-	touch velvet-reinflation-2
-
-#---------------------------------------------------------------Spades Reinflation----------------------------------------------------------------------------
-spades-reinflation-1:
-
-	cd ${REINFLATION} && ./spades-reinf.sh \
-	touch spades-reinflation-1
-
-spades-reinflation-2:
-
-	cd ${REINFLATION} && ./spades-reinf-run.sh \
-	touch spades-reinflation-2
-
-finalize-spades-reinflation:
-	cd ${REINFLATION} && ./spades-reinf-finalize.sh \
-	touch finalize-spades-reinflation
-#---------------------------------------------------------------IDBA Reinflation------------------------------------------------------------------------------
-idba-reinflation-1:
-	cd ${REINFLATION} && ./idba-reinf.sh \
-	touch idba-reinflation-1
-
-idba-reinflation-2:	
-	cd ${REINFLATION} && ./idba-reinf-run.sh \
-	touch idba-reinflation-2	
-finalize-idba-reinflation:
-	cd ${REINFLATION} && ./idba-reinf-finalize.sh \
-	touch finalize-idba-reinflation	
 #-------------------------------------------------------------------QUAST-------------------------------------------------------------------------------------
 quast: 
 	python ${QUAST}/quast.py -R ${data}/mircea.fa  -o ${QUALITY}/quast-velvet-quality/ ${QUALITY}/velvet-quality-assembly.fa \
