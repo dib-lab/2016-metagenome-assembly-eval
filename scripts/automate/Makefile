@@ -36,13 +36,6 @@ partition: diginorm \
 	protocol-partition-rename-2 \
 	protocol-partition-compress 
 #######################################
-reinflation: partition \
-	linking-partition \
-	protocol-reinflation-recover \
-	protocol-reinflation-split \
-	protocol-reinflation-compress \
-	protocol-reinflation-clean 
-#########################################
 
 #--------------------------------------------Velvet Quality--------------------------------------------------------
 velvet-quality:quality \
@@ -92,12 +85,12 @@ idba-partition: partition \
 	finalize-idba-partition
 #-----------------------------------------------------------QUALITY STARTS----------------------------------------------------------------------------------- 
 interleaving-1: ${DATA}/${PREFIX}-1.fastq.gz  ${DATA}/${PREFIX}-2.fastq.gz
-	java -jar ${TRIM}/trimmomatic-0.30.jar PE ${DATA}/${PREFIX}-1.fastq.gz  ${DATA}/${PREFIX}-2.fastq.gz  ${QUALITY}/s1_pe ${QUALITY}/s1_se ${QUALITY}/s2_pe ${QUALITY}/s2_se ILLUMINACLIP:/usr/local/share/adapters/TruSeq3-PE.fa:2:30:10
-	${KHMER}/scripts/interleave-reads.py ${QUALITY}/s1_pe ${QUALITY}/s2_pe | gzip -9c > ${QUALITY}/${PREFIX}.pe.fq.gz
+	java -jar ${TRIM}/trimmomatic-0.30.jar PE ${DATA}/${PREFIX}-1.fastq.gz  ${DATA}/${PREFIX}-2.fastq.gz  ${QUALITY}/s1_pe ${QUALITY}/s1_se ${QUALITY}/s2_pe ${QUALITY}/s2_se ILLUMINACLIP:/usr/local/share/adapters/TruSeq3-PE.fa:2:30:10 \
+	${KHMER}/scripts/interleave-reads.py ${QUALITY}/s1_pe ${QUALITY}/s2_pe | gzip -9c > ${QUALITY}/${PREFIX}.pe.fq.gz \
 	cat ${QUALITY}/s1_se ${QUALITY}/s2_se | gzip -9c > ${QUALITY}/${PREFIX}.se.fq.gz
 
 interleaving-2: ${QUALITY}/${PREFIX}.se.fq.gz ${QUALITY}/${PREFIX}.pe.fq.gz
-	gunzip -c ${QUALITY}/${PREFIX}.pe.fq.gz | fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ${QUALITY}/${PREFIX}.pe.qc.fq.gz
+	gunzip -c ${QUALITY}/${PREFIX}.pe.fq.gz | fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ${QUALITY}/${PREFIX}.pe.qc.fq.gz \
 	gunzip -c ${QUALITY}/${PREFIX}.se.fq.gz | fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ${QUALITY}/${PREFIX}.se.qc.fq.gz
 
 interleaving-3: ${QUALITY}/${PREFIX}.pe.qc.fq.gz  ${QUALITY}/${PREFIX}.se.qc.fq.gz
@@ -113,7 +106,7 @@ protocol-quality-rename-2: ${QUALITY}/${PREFIX}.pe.qc.fq.gz.se
 	touch protocol-quality-rename-2
 #----------------------------------------------------------------VELVET QUALITY ------------------------------------------------------------------------------
 velvet-quality-1: ${QUALITY}/${PREFIX}.pe.qc.fq.gz  ${QUALITY}/${PREFIX}.se.qc.fq.gz 
-	cd ${QUALITY} && ./velvet-qc.sh
+	cd ${QUALITY} && ./velvet-qc.sh 
 	touch velvet-quality-1
 
 finalize-velvet-quality: 
@@ -121,14 +114,14 @@ finalize-velvet-quality:
 
 #--------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
 spades-quality-1: ${QUALITY}/${PREFIX}.pe.qc.fq.gz 
-	cd ${QUALITY} && ./spades-qc.sh 
+	cd ${QUALITY} && ./spades-qc.sh \
 	touch spades-quality-1
 
 spades-quality-2:  ${QUALITY}/${PREFIX}.pe.qc.fq.gz 
 	cd ${QUALITY} && /usr/bin/time -o sqc.txt spades.py --sc --pe1-12 ${QUALITY}/${PREFIX}.pe.qc.fq.gz -o ${PREFIX}.spades.d	
 
 finalize-spades-quality: ${QUALITY}/${PREFIX}.spades.d/contigs.fasta  
-	cd ${QUALITY} && python ${KHMER}/sandbox/calc-best-assembly.py ${PREFIX}.spades.d/contigs.fasta -o spades-quality-best.fa 
+	cd ${QUALITY} && python ${KHMER}/sandbox/calc-best-assembly.py ${PREFIX}.spades.d/contigs.fasta -o spades-quality-best.fa \
 	cd ${QUALITY} && python ${KHMER}/sandbox/multi-rename.py assembly spades-quality-best.fa > spades-quality-assembly.fa
 
 #------------------------------------------------------------------IDBA QUALITY-------------------------------------------------------------------------------
@@ -139,7 +132,7 @@ idba-quality-2: ${QUALITY}/${PREFIX}.pe.fa
 	cd ${QUALITY}  && /usr/bin/time -a -o iqc.txt idba_ud --pre_correction -r ${PREFIX}.pe.fa -o ${PREFIX}.idba.d 
 
 finalize-idba-quality: ${PREFIX}.idba.d/scaffold.fa
-	cd ${QUALITY} && python ${KHMER}/sandbox/calc-best-assembly.py  ${PREFIX}.idba.d/scaffold.fa -o idba-quality-best.fa
+	cd ${QUALITY} && python ${KHMER}/sandbox/calc-best-assembly.py  ${PREFIX}.idba.d/scaffold.fa -o idba-quality-best.fa \
 	cd ${QUALITY} && python ${KHMER}/sandbox/multi-rename.py assembly  idba-quality-best.fa > idba-quality-assembly.fa
 
 #-----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
@@ -178,7 +171,7 @@ finalize-velvet-diginorm:
 	cd ${DIGINORM} && python ${KHMER}/sandbox/multi-rename.py assembly velvet-diginorm-best.fa > velvet-diginorm-assembly.fa 
 #----------------------------------------------------------------SPADES DIGINORM------------------------------------------------------------------------------
 spades-diginorm-1:
-	cd ${DIGINORM} && ./spades-dig.sh 
+	cd ${DIGINORM} && ./spades-dig.sh \
 	touch spades-diginorm-1
 
 spades-diginorm-2: ${DIGINORM}/${PREFIX}.pe.kak.qc.fq.gz	
@@ -189,14 +182,14 @@ finalize-spades-diginorm:
 	cd ${DIGINORM} && python ${KHMER}/sandbox/multi-rename.py assembly ${DIGINORM}/spades-diginorm-best.fa > ${DIGINORM}/spades-diginorm-assembly.fa
 #-------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
 idba-diginorm-1: 
-	cd ${DIGINORM} && ./idba-dig.sh 
+	cd ${DIGINORM} && ./idba-dig.sh \
 	touch idba-diginorm-2
 
 idba-diginorm-2: 
 	cd ${DIGINORM}  &&  /usr/bin/time -a -o idig.txt idba_ud --pre_correction -r ${DIGINORM}/${PREFIX}.pe.kak.fa  -o ${DIGINORM}/${PREFIX}.idba.d
 
 finalize-idba-diginorm:	
-	cd ${DIGINORM} && python ${KHMER}/sandbox/calc-best-assembly.py  ${DIGINORM}/${PREFIX}.idba.d/scaffold.fa -o ${DIGINORM}/idba-diginorm-best.fa
+	cd ${DIGINORM} && python ${KHMER}/sandbox/calc-best-assembly.py  ${DIGINORM}/${PREFIX}.idba.d/scaffold.fa -o ${DIGINORM}/idba-diginorm-best.fa \
 	cd ${DIGINORM} && python ${KHMER}/sandbox/multi-rename.py assembly  idba-diginorm-best.fa > ${DIGINORM}/idba-diginorm-assembly.fa
 #-------------------------------------------------------------------PARTITION STARTS--------------------------------------------------------------------------
 linking-diginorm: 
@@ -218,7 +211,7 @@ protocol-partition-extract:
 
 
 protocol-partition-rename-2:  
-	cd ${PARTITION} && ./seperate.sh \ 
+	cd ${PARTITION} && ./seperate.sh \
 	touch protocol-partition-rename-2
 
 protocol-partition-compress: 
@@ -226,41 +219,41 @@ protocol-partition-compress:
 
 #--------------------------------------------------------------------Velvet Partition-------------------------------------------------------------------------
 velvet-partition-1: 
-	cd ${PARTITION} && ./velvet-part.sh 
+	cd ${PARTITION} && ./velvet-part.sh \
 	touch velvet-partition-1
 
 velvet-partition-2:
-	cd ${PARTITION} &&  ./velvet-part-finalize.sh
+	cd ${PARTITION} &&  ./velvet-part-finalize.sh \
 	touch velvet-partition-2
 finalize-velvet-partition:
 	        python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/velvet-partition-best.group*.fa > ${PARTITION}/velvet-partition-assembly.fa
 
 #-------------------------------------------------------------------Spades Partition--------------------------------------------------------------------------
 spades-partition-1:
-	cd ${PARTITION} && ./spades-part.sh 
+	cd ${PARTITION} && ./spades-part.sh \
 	touch spades-partition-1
 
 spades-partition-2:
-	cd ${PARTITION} && ./spades-part-run.sh
+	cd ${PARTITION} && ./spades-part-run.sh \
 	touch spades-partition-2
 
 spades-partition-3:
-	cd ${PARTITION} && ./spades-part-finalize.sh
+	cd ${PARTITION} && ./spades-part-finalize.sh \
 	touch spades-partition-3
 
 finalize-spades-partition: 
 	python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/spades-partition-best.group*.fa > ${PARTITION}/spades-partition-assembly.fa
 #------------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
 idba-partition-1:
-	cd ${PARTITION} && ./idba-part.sh 
+	cd ${PARTITION} && ./idba-part.sh \
 	touch idba-partition-1
 
 idba-partition-2: 
-	cd ${PARTITION} && ./idba-part-run.sh
+	cd ${PARTITION} && ./idba-part-run.sh \
 	touch idba-partition-2
 
 idba-partition-3:
-	cd ${PARTITION} && ./idba-part-finalize.sh
+	cd ${PARTITION} && ./idba-part-finalize.sh \
 	touch idba-partition-3
 
 finalize-idba-partition:
