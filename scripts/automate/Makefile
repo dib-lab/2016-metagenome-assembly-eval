@@ -177,7 +177,7 @@ spades-diginorm-1:
 spades-diginorm-2: ${DIGINORM}/${PREFIX}.pe.kak.qc.fq.gz	
 	cd ${DIGINORM} && /usr/bin/time -a -o sdig.txt spades.py --sc --pe1-12 ${DIGINORM}/${PREFIX}.pe.kak.qc.fq.gz -o ${DIGINORM}/${PREFIX}.spades.d
 	
-finalize-spades-diginorm:
+finalize-spades-diginorm:  ${DIGINORM}/${PREFIX}.spades.d/contigs.fasta 
 	cd ${DIGINORM} && python ${KHMER}/sandbox/calc-best-assembly.py ${DIGINORM}/${PREFIX}.spades.d/contigs.fasta -o ${DIGINORM}/spades-diginorm-best.fa
 	cd ${DIGINORM} && python ${KHMER}/sandbox/multi-rename.py assembly ${DIGINORM}/spades-diginorm-best.fa > ${DIGINORM}/spades-diginorm-assembly.fa
 #-------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
