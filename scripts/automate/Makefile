@@ -200,7 +200,7 @@ idba-diginorm-1:
 idba-diginorm-2: 
 	cd ${DIGINORM}  &&  /usr/bin/time -a -o idig.txt idba_ud --pre_correction -r ${DIGINORM}/${PREFIX}.pe.kak.fa  -o ${DIGINORM}/${PREFIX}.idba.d
 
-finalize-idba-diginorm:	
+finalize-idba-diginorm: ${DIGINORM}/${PREFIX}.idba.d/scaffold.fa	
 	cd ${DIGINORM} && python ${KHMER}/sandbox/calc-best-assembly.py  ${DIGINORM}/${PREFIX}.idba.d/scaffold.fa -o ${DIGINORM}/idba-diginorm-best.fa \
 	cd ${DIGINORM} && python ${KHMER}/sandbox/multi-rename.py assembly  idba-diginorm-best.fa > ${DIGINORM}/idba-diginorm-assembly.fa
 #-------------------------------------------------------------------PARTITION STARTS--------------------------------------------------------------------------
