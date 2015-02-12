@@ -29,7 +29,7 @@ quality: interleaving-1 \
 	protocol-quality-rename-1 \
 	protocol-quality-rename-2 	
 #########################################
-diginorm: quality \
+diginorm: ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz \
 	linking-quality \
         protocol-diginorm-C20 \
         protocol-diginorm-filter \
@@ -37,7 +37,7 @@ diginorm: quality \
         protocol-diginorm-C5 \
 	protocol-diginorm-combine-pe-se
 ########################################
-partition: diginorm \
+partition: ${DIGINORM}.${PREFIX}.pe.kak.qc.fq.gz ${DIGINORM}.${PREFIX}.se.kak.qc.fq.gz \
 	linking-diginorm \
 	protocol-partition-below \
 	protocol-partition-rename-1 \
