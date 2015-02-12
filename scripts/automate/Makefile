@@ -10,7 +10,19 @@ INTERLEAVED=/mnt/interleaved-make
 PREFIX=extract
 KAK=kak
 
-all: 
+all: quality \
+	diginorm \
+	partition \
+	velvet-quality \
+	spades-quality \
+	idba-quality \
+	velvet-diginorm \
+	spades-diginorm \
+	idba-diginorm \
+	velvet-partition \
+	spades-partition \
+	idba-partition \
+	quast	
 
 #########################################
 quality: interleaving-1 \
@@ -269,7 +281,4 @@ quast:
 	python ${QUAST}/quast.py -R ${data}/mircea.fa  -o ${PARTITION}/quast-spades-partition/ ${PARTITION}/spades-partition-massembly.fa \
 	python ${QUAST}/quast.py -R ${data}/mircea.fa  -o ${PARTITION}/quast-velvet-partition/ ${PARTITION}/velvet-partition-assembly.fa \
 	python ${QUAST}/quast.py -R ${data}/mircea.fa  -o ${PARTITION}/quast-idba-partition/ ${PARTITION}/idba-partition-assembly.fa \
-	python ${QUAST}/quast.py -R ${data}/mircea.fa  -o ${REINFLATION}/quast-spades-reinflation/ ${REINFLATION}/spades-reinflation-assembly.fa \
-	python ${QUAST}/quast.py -R ${data}/mircea.fa  -o ${REINFLATION}/quast-velvet-reinflation/ ${REINFLATION}/velvet-reinflation-assembly.fa \
-	python ${QUAST}/quast.py -R ${data}/mircea.fa  -o ${REINFLATION}/quast-idba-reinflation/ ${REINFLATION}/idba-reinflation-assembly.fa
 
