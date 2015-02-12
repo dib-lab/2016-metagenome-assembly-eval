@@ -23,13 +23,14 @@ all: quality \
 	quast	
 
 #########################################
-quality: interleaving-1 \
+quality: ${DATA}/${PREFIX}-1.fastq.gz  ${DATA}/${PREFIX}-2.fastq.gz 
+	interleaving-1 \
 	interleaving-2 \
 	interleaving-3 \
 	protocol-quality-rename-1 \
 	protocol-quality-rename-2 	
 #########################################
-diginorm: ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz \
+diginorm: ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz 
 	linking-quality \
         protocol-diginorm-C20 \
         protocol-diginorm-filter \
@@ -37,7 +38,7 @@ diginorm: ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz \
         protocol-diginorm-C5 \
 	protocol-diginorm-combine-pe-se
 ########################################
-partition: ${DIGINORM}.${PREFIX}.pe.kak.qc.fq.gz ${DIGINORM}.${PREFIX}.se.kak.qc.fq.gz \
+partition: ${DIGINORM}.${PREFIX}.pe.kak.qc.fq.gz ${DIGINORM}.${PREFIX}.se.kak.qc.fq.gz 
 	linking-diginorm \
 	protocol-partition-below \
 	protocol-partition-rename-1 \
@@ -48,31 +49,31 @@ partition: ${DIGINORM}.${PREFIX}.pe.kak.qc.fq.gz ${DIGINORM}.${PREFIX}.se.kak.qc
 #######################################
 
 #--------------------------------------------Velvet Quality--------------------------------------------------------
-velvet-quality:quality \
+velvet-quality:  ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz 
 	velvet-quality-1 \
 	finalize-velvet-quality
 #--------------------------------------------Spades Quality--------------------------------------------------------
-spades-quality: quality \
+spades-quality:  ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz 
 	spades-quality-1 \
 	spades-quality-2 \
 	finalize-spades-quality
 #---------------------------------------------IDBA Quality---------------------------------------------------------
-idba-quality: quality \
+idba-quality:  ${QUALITY}/${PREFIX}.pe.qc.fq.gz ${QUALITY}/${PREFIX}.se.qc.fq.gz 
 	idba-quality-1 \
 	idba-quality-2 \
 	finalize-idba-quality	
 #----------------------------------------------Velvet Diginorm---------------------------------------------------------
-velvet-diginorm: diginorm \
+velvet-diginorm: ${DIGINORM}.${PREFIX}.pe.kak.qc.fq.gz ${DIGINORM}.${PREFIX}.se.kak.qc.fq.gz
 	velvet-diginorm-1 \
 	finalize-velvet-diginorm 
 
 #----------------------------------------------Spades Diginorm---------------------------------------------------------
-spades-diginorm: diginorm \
+spades-diginorm: ${DIGINORM}.${PREFIX}.pe.kak.qc.fq.gz ${DIGINORM}.${PREFIX}.se.kak.qc.fq.gz
 	spades-diginorm-1 \
 	spades-diginorm-2 \
 	finalize-spades-diginorm	
 #----------------------------------------------IDBA Diginorm----------------------------------------------------------
-idba-diginorm: diginorm  \
+idba-diginorm: ${DIGINORM}.${PREFIX}.pe.kak.qc.fq.gz ${DIGINORM}.${PREFIX}.se.kak.qc.fq.gz
 	idba-diginorm-1 \
 	idba-diginorm-2 \
 	finalize-idba-diginorm 
