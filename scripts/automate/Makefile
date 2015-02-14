@@ -166,7 +166,7 @@ protocol-diginorm-C5:
 protocol-diginorm-combine: ${DIGINORM}/${PREFIX}.pe.qc.fq.gz.keep.abundfilt.pe.keep ${DIGINORM}/${PREFIX}.pe.qc.fq.gz.keep.abundfilt.se.keep ${DIGINORM}\${PREFIX}.se.qc.fq.gz.keep.abundfilt.keep
 	cd ${DIGINORM} && cat ${DIGINORM}\${PREFIX}.pe.qc.fq.gz.keep.abundfilt.pe.keep  ${DIGINORM}\${PREFIX}.pe.qc.fq.gz.keep.abundfilt.se.keep |gzip -c >${DIGINORM}\${PREFIX}.pe.kak.qc.fq.gz  && gzip -c ${DIGINORM}\${PREFIX}.se.qc.fq.gz.keep.abundfilt.keep > ${DIGINORM}\${PREFIX}.se.kak.qc.fq.gz      
 
-protocol-diginorm-combine-pe-se:
+protocol-diginorm-combine-pe-se: ${DIGINORM}/*.abundfilt.pe  ${DIGINORM}/*.se.qc.fq.gz.keep.abundfilt
 	cd ${DIGINORM} && ./diginorm-combine-pe.sh && ./diginorm-combine-se.sh \
         touch protocol-diginorm-combine-pe-se
 #----------------------------------------------------------------VELVET DIGINORM-----------------------------------------------------------------------------
@@ -221,11 +221,11 @@ protocol-partition-extract:
 	cd ${PARTITION} && ${KHMER}/scripts/extract-partitions.py -X 100000 kak *.part
 
 
-protocol-partition-rename-2:  
+protocol-partition-rename-2: ${PARTITION}/kak*.fq 
 	cd ${PARTITION} && ./seperate.sh \
 	touch protocol-partition-rename-2
 
-protocol-partition-compress: 
+protocol-partition-compress: ${PARTITION}/*.pe.fq  ${PARTITION}/*.se.fq 
 	cd ${PARTITION} && gzip *.pe.fq  *.se.fq
 
 #--------------------------------------------------------------------Velvet Partition-------------------------------------------------------------------------
@@ -236,7 +236,7 @@ velvet-partition-1: ${PARTITION}/kak*.pe.fq.gz  ${PARTITION}/kak*.se.fq.gz
 velvet-partition-2: ${PARTITION}/kak.group*.pe.fq.gz  ${PARTITION}/kak.group*.se.fq.gz
 	cd ${PARTITION} &&  ./velvet-part-finalize.sh \
 	touch velvet-partition-2
-finalize-velvet-partition:
+finalize-velvet-partition: ${PARTITION}/velvet-partition-best.group*.fa 
 	        python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/velvet-partition-best.group*.fa > ${PARTITION}/velvet-partition-assembly.fa
 
 #-------------------------------------------------------------------Spades Partition--------------------------------------------------------------------------
@@ -252,7 +252,7 @@ spades-partition-3:${PARTITION}/kak.group*.pe.fq.gz
 	cd ${PARTITION} && ./spades-part-finalize.sh \
 	touch spades-partition-3
 
-finalize-spades-partition: 
+finalize-spades-partition:  ${PARTITION}/spades-partition-best.group*.fa
 	python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/spades-partition-best.group*.fa > ${PARTITION}/spades-partition-assembly.fa
 #------------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
 idba-partition-1: ${PARTITION}/kak*.pe.fq
@@ -267,7 +267,7 @@ idba-partition-3:${PARTITION}/kak.group*.pe.fq.gz
 	cd ${PARTITION} && ./idba-part-finalize.sh \
 	touch idba-partition-3
 
-finalize-idba-partition:
+finalize-idba-partition: ${PARTITION}/idba-partition-best.group*.fa
 	python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/idba-partition-best.group*.fa > ${PARTITION}/idba-partition-assembly.fa
 
 #-------------------------------------------------------------------QUAST-------------------------------------------------------------------------------------
