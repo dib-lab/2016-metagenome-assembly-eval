@@ -181,7 +181,7 @@ finalize-velvet-diginorm:
 	cd ${DIGINORM} && python ${KHMER}/sandbox/calc-best-assembly.py ${PREFIX}.velvet.*.d/contigs.fa -o velvet-diginorm-best.fa 
 	cd ${DIGINORM} && python ${KHMER}/sandbox/multi-rename.py assembly velvet-diginorm-best.fa > velvet-diginorm-assembly.fa 
 #----------------------------------------------------------------SPADES DIGINORM------------------------------------------------------------------------------
-spades-diginorm-1:
+spades-diginorm-1:${DIGINORM}/*.pe.kak.qc.fq.gz
 	cd ${DIGINORM} && ./spades-dig.sh \
 	touch spades-diginorm-1
 
@@ -192,11 +192,11 @@ finalize-spades-diginorm:  ${DIGINORM}/${PREFIX}.spades.d/contigs.fasta
 	cd ${DIGINORM} && python ${KHMER}/sandbox/calc-best-assembly.py ${DIGINORM}/${PREFIX}.spades.d/contigs.fasta -o ${DIGINORM}/spades-diginorm-best.fa
 	cd ${DIGINORM} && python ${KHMER}/sandbox/multi-rename.py assembly ${DIGINORM}/spades-diginorm-best.fa > ${DIGINORM}/spades-diginorm-assembly.fa
 #-------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
-idba-diginorm-1: 
+idba-diginorm-1: ${DIGINORM}/*.pe.kak.qc.fq.gz  
 	cd ${DIGINORM} && ./idba-dig.sh \
 	touch idba-diginorm-2
 
-idba-diginorm-2: 
+idba-diginorm-2: ${DIGINORM}/${PREFIX}.pe.kak.fa 
 	cd ${DIGINORM}  &&  /usr/bin/time -a -o idig.txt idba_ud --pre_correction -r ${DIGINORM}/${PREFIX}.pe.kak.fa  -o ${DIGINORM}/${PREFIX}.idba.d
 
 finalize-idba-diginorm: ${DIGINORM}/${PREFIX}.idba.d/scaffold.fa	
@@ -229,41 +229,41 @@ protocol-partition-compress:
 	cd ${PARTITION} && gzip *.pe.fq  *.se.fq
 
 #--------------------------------------------------------------------Velvet Partition-------------------------------------------------------------------------
-velvet-partition-1: 
+velvet-partition-1: ${PARTITION}/kak*.pe.fq.gz  ${PARTITION}/kak*.se.fq.gz 
 	cd ${PARTITION} && ./velvet-part.sh \
 	touch velvet-partition-1
 
-velvet-partition-2:
+velvet-partition-2: ${PARTITION}/kak.group*.pe.fq.gz  ${PARTITION}/kak.group*.se.fq.gz
 	cd ${PARTITION} &&  ./velvet-part-finalize.sh \
 	touch velvet-partition-2
 finalize-velvet-partition:
 	        python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/velvet-partition-best.group*.fa > ${PARTITION}/velvet-partition-assembly.fa
 
 #-------------------------------------------------------------------Spades Partition--------------------------------------------------------------------------
-spades-partition-1:
+spades-partition-1:${PARTITION}/kak*.pe.fq.gz
 	cd ${PARTITION} && ./spades-part.sh \
 	touch spades-partition-1
 
-spades-partition-2:
+spades-partition-2:${PARTITION}/*.pe.fq
 	cd ${PARTITION} && ./spades-part-run.sh \
 	touch spades-partition-2
 
-spades-partition-3:
+spades-partition-3:${PARTITION}/kak.group*.pe.fq.gz
 	cd ${PARTITION} && ./spades-part-finalize.sh \
 	touch spades-partition-3
 
 finalize-spades-partition: 
 	python ${KHMER}/sandbox/multi-rename.py assembly ${PARTITION}/spades-partition-best.group*.fa > ${PARTITION}/spades-partition-assembly.fa
 #------------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
-idba-partition-1:
+idba-partition-1: ${PARTITION}/kak*.pe.fq
 	cd ${PARTITION} && ./idba-part.sh \
 	touch idba-partition-1
 
-idba-partition-2: 
+idba-partition-2: ${PARTITION}/*.pe.fa 
 	cd ${PARTITION} && ./idba-part-run.sh \
 	touch idba-partition-2
 
-idba-partition-3:
+idba-partition-3:${PARTITION}/kak.group*.pe.fq.gz
 	cd ${PARTITION} && ./idba-part-finalize.sh \
 	touch idba-partition-3
 
