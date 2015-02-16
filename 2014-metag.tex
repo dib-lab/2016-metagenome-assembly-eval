@@ -171,10 +171,21 @@ $\ast$ E-mail: Corresponding author@institute.edu
 \section*{Introduction}
 
 Metagenome is the sequencing of DNA in an environmental sample. While whole genome sequencing (WGS) usually targets one genome, metagenome targets several ones. Here rises the metagenome assembly problem, from the genomic diversity and variable abundance within populations. 
-In this paper, we propose a comparative study for four different assemblers; Velvet \cite{velvet}, SPAdes \cite {spades}, IDBA \cite{idba}, and Megahit \cite{megahit}.  We provide a detailed analysis on how each one behave on metagenome data. 
+In this paper, we propose a comparative study for four different assemblers; Velvet \cite{velvet}, SPAdes \cite {spades}, IDBA-UD \cite{idba}, and Megahit \cite{megahit}.  We provide a detailed analysis on how each one behave on metagenome data. 
 
 
 Velvet \cite{velvet} is a group de Bruin graph-based sequence assembly methods for very short reads that can both remove errors. It also uses read pair information to resolve a large number of repeats.  The error correction algorithm merges the sequences that belongs together. Then the repeat solver algorithm separates parts that share overlaps. 
+
+
+Spades \cite{spades} is an assembler for both single-cell and standard (multicell) assembly. SPAdes generates single-cell assemblies and provides information about genomes of uncultivatable bacteria that vastly exceeds what may be obtained via traditional metagenomics studies. 
+
+IDBA-UD \cite{idba} is a de Bruijn graph approach for assembling reads from single cell sequencing or metagenomic sequencing technologies with uneven sequencing depths. IDBA-UD uses multiple depth-relative thresholds to remove erroneous k-mers in both low-depth and high-depth regions. It also uses paired-end information  to solve the branch problem of low-depth short repeat regions. It applies and error correction step to correct reads of high-depth
+regions that can be aligned to high confident contigs.
+
+
+Megahit \cite{megahit} is a new approach that constructs a succinct de Bruijn graph using multiple k-mers, and uses a novel "mercy k-mer" approach that preserves low-abundance regions of reads. It also uses GPUs to accelerate the graph construction.
+
+In this paper, we evaluate the assemblies resulted from the four different assemblers based on several quality metrics and using several preprocessing treatments. 
 
 % You may title this section "Methods" or "Models". 
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
