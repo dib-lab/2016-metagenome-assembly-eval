@@ -170,8 +170,11 @@ $\ast$ E-mail: Corresponding author@institute.edu
 
 \section*{Introduction}
 
+Metagenome is the sequencing of DNA in an environmental sample. While whole genome sequencing (WGS) usually targets one genome, metagenome targets several ones. Here rises the metagenome assembly problem, from the genomic diversity and variable abundance within populations. 
+In this paper, we propose a comparative study for four different assemblers; Velvet \cite{velvet}, SPAdes \cite {spades}, IDBA \cite{idba}, and Megahit \cite{megahit}.  We provide a detailed analysis on how each one behave on metagenome data. 
 
 
+Velvet \cite{velvet} is a group de Bruin graph-based sequence assembly methods for very short reads that can both remove errors. It also uses read pair information to resolve a large number of repeats.  The error correction algorithm merges the sequences that belongs together. Then the repeat solver algorithm separates parts that share overlaps. 
 
 % You may title this section "Methods" or "Models". 
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
