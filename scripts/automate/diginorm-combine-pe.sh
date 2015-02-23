@@ -1,8 +1,8 @@
 #!/bin/bash
 
-for i in *.abundfilt.pe
-do
-    newfile=$(basename $i .pe.qc.fq.gz.keep.abundfilt.pe)
-    echo newfile is $newfile
-    gzip -c $i > $newfile.pe.kak.qc.fq.gz
+for pe in *.pe.qc.fq.gz.keep.abundfilt.pe.keep
+	do 
+	se=${pe/pe.keep/se.keep}
+	newfile=${pe/.pe.qc.fq.gz.keep.abundfilt.pe.keep/.pe.kak.qc.fq.gz}
+	cat $pe $se |gzip -c > $newfile
 done
