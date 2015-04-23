@@ -1,0 +1,93 @@
+From - Fri Oct 25 14:03:48 2002
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Return-Path: <pbb@aero-optics.com>
+Received: from ifi.informatik.uni-stuttgart.de (ifi [129.69.211.1])
+	by informatik.uni-stuttgart.de (8.9.3/8.9.3) with ESMTP id VAA11776
+	for <lagally@linde.informatik.uni-stuttgart.de>; Thu, 24 Oct 2002 21:48:24 +0200
+Received: from alias.acm.org (alias.acm.org [199.222.69.90]) by ifi.informatik.uni-stuttgart.de (8.9.3/2.2) with ESMTP id VAA19114 for <lagally@informatik.uni-stuttgart.de>; Thu, 24 Oct 2002 21:48:22 +0200 (MET DST)
+Received: from mr3.ash.ops.us.uu.net ([198.5.241.88])
+        by alias.acm.org (ACM Email Forwarding Service) with ESMTP id COB73880
+        for <lagallyk@acm.org>; Thu, 24 Oct 2002 15:49:48 -0400
+Received: from aero-optics.com by mr3.ash.ops.us.uu.net with ESMTP 
+	(peer crosschecked as: AeroOptics-GW.CUSTOMER.DSL.ALTER.NET [206.114.228.171])
+	id QQnlzr17811
+	for <lagallyk@acm.org>; Thu, 24 Oct 2002 19:48:19 GMT
+Message-ID: <3DB84F29.3ED9EB87@aero-optics.com>
+Date: Thu, 24 Oct 2002 12:51:05 -0700
+From: "Peter B.C. Barton" <pbb@aero-optics.com>
+X-Sender: "Peter B.C. Barton" <mail247815@mail247815.smtpserver.pop.net> (Unverified)
+X-Mailer: Mozilla 4.61 [en]C-gatewaynet  (WinNT; I)
+X-Accept-Language: en
+MIME-Version: 1.0
+To: lagallyk@acm.org
+Subject: Re: ArabTeX on the PC
+References: <3DB80D10.31734B8@aero-optics.com> <3DB844A2.9040900@informatik.uni-stuttgart.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Professor Lagally,
+
+Your instructions and help are greatly appreciated.   You asked to be notified
+if your instructions work - YES they do!   For future reference (for other lost
+souls) the MiKTeX database is refreshed by running config.bat found in the
+C:\texmf\miktex\config directory.
+
+Peter Barton
+
+
+
+
+
+Klaus Lagally wrote:
+
+> Peter B.C. Barton wrote:
+> > Professor Lagally,
+> >
+> > I am not a "TeXpert" and have a question regarding ArabTeX compatibility
+> > on the PC.        The ArabTeX homepage specifically mentions PCTeX and
+> > emTeX.   I was hoping to employ ArabTeX using MiKTeX.   I understand
+> > that ArabTeX will run on any standard implementation of TeX/LaTeX but I
+> > am not able to determine if MiKTeX is standard or non-standard.    I
+> > would appreciate any words of advice.
+> >
+> > regards,
+> >
+> > Peter Barton
+>
+> MiKTeX is standard, and works well with ArabTeX. As far as I know MiKTeX
+> uses the standard TeX Directory Structure; to install ArabTeX do the
+> following (according to folklore I cannot check):
+>
+> - unpack ARABTEX.ZIP into some temporary directory, keeping the
+> subdirectory structure intact.
+>
+> - locate your LOCAL TeXMF tree (probably C:\localtexmf\) and therein create:
+>
+> -- a subdirectory \tex\latex\arabtex\ for all files within TEXINPUT
+> -- a subdirectory \fonts\tfm\arabtex\ for all files within TFM
+> -- a subdirectory \fonts\source\arabtex\ for all files within MFINPUT
+> -- a subdirectory \fonts\type1\arabtex\ for all files within PSFONTS
+>
+> - move the files to the appropriate places. The file PSFONTS\arabtex.map
+> is used by DVIPS and should possibly go somewhere else, according to
+> your local needs.
+>
+> - call "texhash" or "texconfig" (or whatever the command is) to refresh
+> your TeX file name database.
+>
+> - move the documentation and whatever else is left over to some
+> convenient place.
+>
+> This is all I know about MiKTeX. Since I do not run Windows I cannot
+> check everything; please tell me if it works.
+>
+> Good luck!
+>
+> KL
+> --
+> Prof. Dr. Klaus Lagally  | mailto:lagally@informatik.uni-stuttgart.de
+> Institut fuer Informatik | Tel.  +49-711-7816392 |  Zeige mir deine Uhr,
+> Breitwiesenstrasse 20-22 | FAX   +49-711-7816370 |  und ich sage dir,
+> 70565 Stuttgart, GERMANY |                       |  wie spaet es ist.
+>

@@ -1,0 +1,155 @@
+README.305                                                      15.03.1997
+--------------------------------------------------------------------------
+                           ArabTeX Version 3.05
+                           ====================
+--------------------------------------------------------------------------
+        Additional features not described in the User Manual
+
+|       For changes after version 3.02 see change bars in the margin
+--------------------------------------------------------------------------
+
+        1. Bidirectional linebreaking
+        -----------------------------
+        Within a Roman paragraph, Arabic insertions may be included
+        by the construct \<Arabic text> ( <Arabic text> initially does
+        the same but may be redefined by the user for other purposes).
+        This construct, though efficient, has the inherent limitation
+        that the contents must fit on the current line, or else the
+        user has to break the text by \| or \break at some reasonable
+        place. Likewise, within an Arabic paragraph Roman insertions
+        may be included by <Roman text>, with the same limitations.
+
+        In many cases, as e.g. in the User Manual, insertions are very
+        short by nature, so the limitations pose no problem. For other
+        applications where the included quotations are much longer than
+        part of a line, some additional commands are provided. These are
+|       much less efficient and also have a high demand on storage, so
+|       they should only be used when necessary.
+
+        - \RL {Arabic text} allows an insertion of arbitrary length; the
+        lines will be broken automatically. Due to some limitations that
+        are inherent in TeX's algorithm, the line containing the start of
+        the insertion may come out underfull, and also its baseline may be 
+        broken. Whenever this happens (only in main vertical mode, never 
+        within footnotes, parboxes, or minipages), use of the command
+        \goodpar {paragraphs} may help (see below.)
+
+        - \LR {Roman text} does the same for long Roman insertions in an
+        Arabic paragraph. Here there is no problem with the baseline.
+
+        - \goodpar {Roman paragraphs} will fix the problems with \RL for 
+        insertions within the included paragraphs, but might lead to main 
+        memory overflow; so use it with care, or use Big TeX.
+
+        - \mbox {\RL {Arabic text}} is equivalent to \<Arabic text>: no
+        line-breaking, as usual.
+
+        - \RL in Arabic mode, and \LR in Roman mode, do no harm but are
+        redundant.
+
+        - the user may, at her/his own risk, include \LR portions within
+        \RL portions, and vice versa. This may lead to some interesting
+        effects (for details, see: Donald E. Knuth and Pierre MacKay,
+        Mixing right-to-left texts with left-to-right texts, TUGboat,
+        Volume 8(1987), No. 1, p. 14 - 25)
+
+--------------------------------------------------------------------------
+
+        2. Processing Hebrew with ArabTeX
+        ---------------------------------
+        An experimental extension that (partially) supports Hebrew may
+        be installed by the LaTeX option "hebtex", or \input hebtex.sty.
+|       It provides an additional language mode \sethebrew, and several 
+|       common encodings of texts in Hebrew, that may be switched by 
+|       the \setcode command. One of the encodings is compatible with 
+|       Dov Grobgeld's editor HED, so files prepared for HebrewTeX are 
+||      supposed to be compatible, including most HebrewTeX commands
+||      (the Hebrew date quite probably does NOT work correctly).
+||      Hebrew "newcode" encoding (ISO 8859-8) probably works too, but 
+        has not yet been tested extensively. In addition, the standard 
+        ArabTeX transliteration encoding is also available.
+
+||      For more information, see the text file "hebrew.305". Please
+||      observe that the encoding of vowels written "plene" has been 
+||      changed (due to user suggestions!)
+
+--------------------------------------------------------------------------
+
+        3. Support for Arabic Windows
+        -----------------------------
+        Isam G. Ishaq programmed, and donated, a new reading module for 
+|       the Arabic encoding CP 1256 supported by Arabic Windows. It is 
+        installed as a LaTeX option "arabwin" and may be activated by 
+|       \setcode {arabwin} or \setcode {cp1256}.
+        Some documentation is contained in the file "arwindoc.tex"; try
+        to process it with ArabTeX, or just read the ASCII text.
+
+        As we had little opportunity to test it, this module is supplied 
+        as is, without any warranty (as usual), nor support.
+
+--------------------------------------------------------------------------
+
+        4. Support for EDMAC
+        --------------------
+        In the transition from EDMAC 3.00 to EDMAC 3.15, some internal
+||      interfaces have changed. ArabTeX 3.05 will adjust itself to the
+        version used automatically.
+
+        The EDMAC commands \pstart, \pend, and \autopar can now also be
+        used within an Arabic paragraph.
+
+--------------------------------------------------------------------------
+
+|       5. Module Reporting
+|       -------------------
+|       A complete list of the modules loaded in a particular run will
+|       be put into the log file (before the run statistics), if LaTeX
+|       is used. This is believed to be useful when tracing down errors. 
+|       This list is also available to the user, even with Plain TeX, 
+|       as the contents of the new control sequence \arabtexconfig. 
+|       This feature may disappear again.
+
+--------------------------------------------------------------------------
+
+|       6. Running ArabTeX with LaTeX2e
+|       -------------------------------
+|       Up to now we experienced no problems; the only changes we found
+|       necessary are loading ArabTeX and its suboptions not as class 
+|       options but by using the command \usepackage.
+
+--------------------------------------------------------------------------
+||      7. Arabic document classes
+||      --------------------------
+||      The experimental LaTeX2e classes "arabart", "arabbook", "arabrep"
+||      extend the standard classes "article", "book", and "report" in 
+||      two respects:
+||      
+||      - The overall document layout has been "arabized": page numbers
+||        are in Indic numerals, and columns run from right to left.
+||        
+||      - Within Arabic environments bracketed by \begin{arabtext} and
+||        \end{arabtext} most LaTeX commands are allowed, including all
+||        sectioning commands, \tabular, \tabbing, even \tableofcontents,
+||        and use an "Arabic looking" format. All arguments that denote 
+||        text to be typeset are interpreted according to the currently
+||        activated Arabic encoding. Other arguments keep their standard
+||        meaning, including the preamble of \tabular, whose columns are
+||        processed from left to right (visual formatting).
+||        
+||      - Outside of Arabic environments the LaTeX commands revert to the
+||        standard meaning.
+||        
+||      The new classes are still in "alpha" status; reports are welcome.
+
+--------------------------------------------------------------------------
+            Prof. Klaus Lagally
+            Institut fuer Informatik
+            Universitaet Stuttgart
+            Breitwiesenstrasse 20-22
+            D-70565 Stuttgart
+            GERMANY
+
+            lagally@informatik.uni-stuttgart.de
+--------------------------------------------------------------------------
+|       Copyright (c) 1990 - 1997, Klaus Lagally
+--------------------------------------------------------------------------

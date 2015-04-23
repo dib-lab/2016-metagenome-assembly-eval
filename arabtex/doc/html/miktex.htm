@@ -1,0 +1,180 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>MiKTeX 2.1 FAQ</title><link rel="stylesheet" href="miktexman.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.39"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div id="d40e2" class="article"><div class="titlepage"><div><h2 class="title"><a name="d40e2"></a>MiKTeX 2.1 FAQ</h2></div><div><h3 class="author">Christian Schenk</h3></div><div><p class="copyright">Copyright &copy; 2001 Christian Schenk</p></div><div><div class="legalnotice"><p>
+	Permission is granted to make and distribute verbatim copies
+	of this manual provided the copyright notice and this
+	permission notice are preserved on all copies.
+      </p><p>
+	Permission is granted to copy and distribute modified versions
+	of this manual under the conditions for verbatim copying,
+	provided that the entire resulting derived work is distributed
+	under the terms of a permission notice identical to this one.
+      </p><p>
+	Permission is granted to copy and distribute translations of
+	this manual into another language, under the above conditions
+	for modified versions, except that this permission notice may
+	be stated in a translation approved by the Free Software
+	Foundation.
+      </p></div></div><hr></div><div id="d40e42" class="preface"><div class="titlepage"><div><h2 class="title"><a name="d40e42"></a>About this document</h2></div></div><p>
+      This is the official MiKTeX FAQ list.
+      Visit the MiKTeX Project page at
+      <a href="http://www.miktex.org" target="_top">www.miktex.org</a> to
+      view the latest version of this document.
+    </p><p>
+      Please feel free to contribute more questions (and answers) by
+      sending an email to <tt>&lt;<a href="mailto:faq@miktex.org">faq@miktex.org</a>&gt;</tt>.
+    </p></div><div id="d40e61" class="chapter"><div class="titlepage"><div><h2 class="title"><a name="d40e61"></a>Chapter 1. General</h2></div></div><div class="qandaset"><dl><dt>1.1 <a href="#d40e66">
+	    What is MiKTeX?
+	  </a></dt><dt>1.2 <a href="#d40e85">
+	    Which Windows version is required for running
+	    MiKTeX?}
+	  </a></dt><dt>1.3 <a href="#d40e115">
+	    Who maintains MiKTeX?
+	  </a></dt><dt>1.4 <a href="#d40e131">
+	    Is MiKTeX Year 2000 compliant?
+	  </a></dt></dl><div class="qandaentry"><div class="question"><p><a name="d40e66"></a><b>1.1 </b>
+	    What is MiKTeX?
+	  </p></div><div class="answer"><p><a name="d40e72"></a><b> </b>
+	    MiKTeX is a software
+	    distribution for Windows, which includes
+	    TeX and
+	    TeX-related applications.
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="d40e85"></a><b>1.2 </b>
+	    Which Windows version is required for running
+	    MiKTeX?}
+	  </p></div><div class="answer"><p><a name="d40e91"></a><b> </b>
+	    MiKTeX requires a 32-bit Windows:
+	    <div class="itemizedlist"><ul><li><p><a name="d40e98"></a>
+		  Windows 95
+		</p></li><li><p><a name="d40e101"></a>
+		  Windows 98
+		</p></li><li><p><a name="d40e104"></a>
+		  Windows ME
+		</p></li><li><p><a name="d40e107"></a>
+		  Windows NT
+		</p></li><li><p><a name="d40e110"></a>
+		  Windows 2000
+		</p></li></ul></div>
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="d40e115"></a><b>1.3 </b>
+	    Who maintains MiKTeX?
+	  </p></div><div class="answer"><p><a name="d40e121"></a><b> </b>
+	    MiKTeX is maintained by
+	    Christian Schenk (<tt>&lt;<a href="mailto:cs@miktex.org">cs@miktex.org</a>&gt;</tt>).
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="d40e131"></a><b>1.4 </b>
+	    Is MiKTeX Year 2000 compliant?
+	  </p></div><div class="answer"><p><a name="d40e137"></a><b> </b>
+	    MiKTeX is Year 2000 compliant to the extent that it has
+	    been designed and tested to be compliant.  But remember
+	    that MiKTeX comes with no warranty, and this applies to
+	    Y2K compliance.
+	  </p></div></div></div></div><div id="d40e146" class="chapter"><div class="titlepage"><div><h2 class="title"><a name="d40e146"></a>Chapter 2. Getting Started</h2></div></div><div class="qandaset"><dl><dt>2.1 <a href="#d40e151">
+	    How do I install MiKTeX?
+	  </a></dt><dt>2.2 <a href="#d40e167">
+	    I have installed MiKTeX.  How
+	    do I use it?How do I use it?
+	  </a></dt><dt>2.3 <a href="#texshells">
+	    Which program should I use to edit TeX documents?
+	  </a></dt></dl><div class="qandaentry"><div class="question"><p><a name="d40e151"></a><b>2.1 </b>
+	    How do I install MiKTeX?
+	  </p></div><div class="answer"><p><a name="d40e157"></a><b> </b>
+	    The MiKTeX distribution includes
+	    a setup wizard (<b>setupwiz.exe</b>).  It should
+	    be sufficient to start the wizard and then clicking the
+	    @samp{Next} button until the installation process concludes.
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="d40e167"></a><b>2.2 </b>
+	    I have installed MiKTeX.  How
+	    do I use it?How do I use it?
+	  </p></div><div class="answer"><p><a name="d40e173"></a><b> </b>
+	    MiKTeX is mostly a collection
+	    of command-line oriented utilities.  You should install a
+	    TeX shell/editor if you are a
+	    TeX novice (see <a href="#texshells" title="">Q: 2.3</a>).
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="texshells"></a><b>2.3 </b>
+	    Which program should I use to edit TeX documents?
+	  </p></div><div class="answer"><p><a name="d40e194"></a><b> </b>
+	    See <a href="http://www.germany.net/teilnehmer/100/122054/texwin.htm" target="_top">http://www.germany.net/teilnehmer/100/122054/texwin.htm</a>
+	    for a list of TeX shells.  The
+	    most popular shell seems to be WinEdt (ShareWare, <a href="http://www.winedt.com" target="_top">http://www.winedt.com</a>).
+	    Emacs users may prefer
+	    AUC-TeX (<a href="http://sunsite.auc.dk/auctex/" target="_top">http://sunsite.auc.dk/auctex/</a>).
+	  </p></div></div></div></div><div id="d40e215" class="chapter"><div class="titlepage"><div><h2 class="title"><a name="d40e215"></a>Chapter 3. Net Resources</h2></div></div><div class="qandaset"><dl><dt>3.1 <a href="#d40e220">
+	    Is there a home page?
+	  </a></dt><dt>3.2 <a href="#d40e230">
+	    Is there a mailing list?
+	  </a></dt><dt>3.3 <a href="#joinml">
+	    How can I join the mailing list?
+	  </a></dt><dt>3.4 <a href="#d40e254">
+	    How can I read old articles?
+	  </a></dt><dt>3.5 <a href="#d40e264">
+	    How can I leave the mailing list?
+	  </a></dt></dl><div class="qandaentry"><div class="question"><p><a name="d40e220"></a><b>3.1 </b>
+	    Is there a home page?
+	  </p></div><div class="answer"><p><a name="d40e223"></a><b> </b>
+	    Yes.  The official project page is <a href="http://www.miktex.org" target="_top">http://www.miktex.org</a>.
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="d40e230"></a><b>3.2 </b>
+	    Is there a mailing list?
+	  </p></div><div class="answer"><p><a name="d40e233"></a><b> </b>
+	    Yes (see <a href="#joinml" title="">Q: 3.3</a>).
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="joinml"></a><b>3.3 </b>
+	    How can I join the mailing list?
+	  </p></div><div class="answer"><p><a name="d40e242"></a><b> </b>
+	    Send an email to <tt>&lt;<a href="mailto:miktex-request@dsts.dk">miktex-request@dsts.dk</a>&gt;</tt>.
+	    The message body must contain one line:
+	  </p><div class="informalexample" id="d40e248"><a name="d40e248"></a><pre class="programlisting">
+subscribe
+	    </pre></div><p>
+	    You will receive instructions (via email) on how to use
+	    the mailing list.
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="d40e254"></a><b>3.4 </b>
+	    How can I read old articles?
+	  </p></div><div class="answer"><p><a name="d40e257"></a><b> </b>
+	    Old articles are accessible via <a href="http://www.egroups.com/group/miktex/" target="_top">http://www.egroups.com/group/miktex/</a>.
+	  </p></div></div><div class="qandaentry"><div class="question"><p><a name="d40e264"></a><b>3.5 </b>
+	    How can I leave the mailing list?
+	  </p></div><div class="answer"><p><a name="d40e267"></a><b> </b>
+	    Send an email to <tt>&lt;<a href="mailto:majordomo@dsts.dk">majordomo@dsts.dk</a>&gt;</tt>.  The
+	    message body must contain one line:
+	  </p><div class="informalexample" id="d40e273"><a name="d40e273"></a><pre class="programlisting">
+unsubscribe miktex
+	    </pre></div></div></div></div></div><div id="d40e276" class="chapter"><div class="titlepage"><div><h2 class="title"><a name="d40e276"></a>Chapter 4. Maintenance</h2></div></div><div class="qandaset"><dl><dt>4.1 <a href="#d40e281">
+	    Which is the best directory to keep
+	    .sty files where
+	    MiKTeX can find them?
+	  </a></dt><dt>4.2 <a href="#d40e362">
+	    How do I add new languages to the LaTeX format file?
+	  </a></dt></dl><div class="qandaentry"><div class="question"><p><a name="d40e281"></a><b>4.1 </b>
+	    Which is the best directory to keep
+	    <tt>.sty</tt> files where
+	    MiKTeX can find them?
+	  </p></div><div class="answer"><p><a name="d40e290"></a><b> </b>
+	    Each new LaTeX
+	    <i><tt>package</tt></i> should be installed in
+	    the folder
+	    <tt>tex\latex\<i><tt>package</tt></i></tt>}
+	    relative to the local TEXMF folder (usually
+	    <tt>C:\localtexmf\</tt>).
+	  </p><p>
+	    Example: suppose you want to install the package
+	    thesis-ex which consists of the
+	    style file <tt>thesis-es.sty</tt>:
+	  </p><div class="procedure"><a name="d40e315"></a><ol><li><a name="d40e316"></a><p> 
+		Create a new folder:
+	      </p><div class="informalexample" id="d40e319"><a name="d40e319"></a><pre class="screen">
+<tt>C:\&gt; </tt><b><tt>mkdir C:\localtexmf\tex\latex\thesis-ex</tt></b>
+<tt>C:\&gt; </tt>
+		</pre></div></li><li><a name="d40e330"></a><p>
+		Copy all files (only one in our case) to the new folder:
+	      </p><div class="informalexample" id="d40e333"><a name="d40e333"></a><pre class="screen">
+<tt>C:\&gt; </tt><b><tt>copy thesis-ex.sty C:\localtexmftex\latex\thesis-ex</tt></b>
+<tt>C:\&gt; </tt>
+		</pre></div></li><li><a name="d40e344"></a><p>
+		Refresh the file name database so that MiKTeX finds the new files:
+	      </p><div class="informalexample" id="d40e350"><a name="d40e350"></a><pre class="screen">
+<tt>C:\&gt; </tt><b><tt>initexmf -u</tt></b>
+<tt>C:\&gt; </tt>
+		</pre></div></li></ol></div></div></div><div class="qandaentry"><div class="question"><p><a name="d40e362"></a><b>4.2 </b>
+	    How do I add new languages to the LaTeX format file?
+	  </p></div><div class="answer"><p><a name="d40e368"></a><b> </b>
+	    You can use MiKTeX Options
+	    to add new languages.
+	  </p></div></div></div></div></div></body></html>

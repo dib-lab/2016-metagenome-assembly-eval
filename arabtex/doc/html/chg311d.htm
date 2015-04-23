@@ -1,0 +1,82 @@
+<html>
+<head>
+<title> ArabTeX Version 3.11d </title>
+</head>
+<body>
+<!-- *************************************************************** -->
+<h2>
+23.10.2003: ArabTeX Version 3.11d
+</h2>
+
+<hr><!-- *************************************************************** -->
+
+	Fixes:
+<ul>
+<li> 
+	 In the Arabic document classes, the formatting of the table
+	  of contents was improved. A strange bug was corrected.
+
+<li> 
+	 A storage leak was found which prevented the formatting of
+	  longer documents, leading to 'save stack overflow'.
+
+<li> 
+	 A bug in the ligatures module was found which used to produce
+	  bogus messages 'missing letter y in font xnsh14' and to 
+	  slightly interfere with correct vowelization.
+
+<li> 
+	 A bug in the output module was found which used to produce
+	  bogus messages 'underfull vbox while \output was active'.
+	  The fix might slightly influence page breaking.
+</ul>
+
+
+	New Features:
+<ul>
+<li> 
+	 There is now limited support for Arabized LyX.
+	  Since there are no 'italic', 'slanted', 'sanserif' etc. fonts
+	  available for ArabTeX, all special font variants are presently
+	  mapped into 'bold face'. This could be changed at the user's 
+	  request; please send any suggestions to the author.
+	  
+<li> 
+	 The messages in the LOG file are less verbose now.
+</ul>
+
+	Installation:
+<ul>
+<li>
+	download <a 
+	href="ftp://ftp.informatik.uni-stuttgart.de/pub/arabtex/apatch.sty">
+	"apatch.sty"</a>.
+</ul>
+
+<!--
+<hr>
+-->
+<!-- *************************************************************** -->
+
+Previous patch version:
+<a href="chg311c.htm">Version 3.11c </a><br>
+
+<hr><!-- *************************************************************** -->
+
+Current minor version:
+<a href="chg311.htm">Version 3.11</a><br>
+
+<a href="changes.htm"> Last changes </a>
+
+<hr><!-- *************************************************************** -->
+<a href="ftp://ftp.informatik.uni-stuttgart.de/pub/arabtex/arabtex.htm">
+	Back to the ArabTeX directory
+</a>
+
+<hr><!-- *************************************************************** -->
+	Copyright (c) 1990 - 2003, 
+<a href="http://www.informatik.uni-stuttgart.de/ifi/bs/people/lagall_e.htm">
+	Klaus Lagally </a>
+</body>
+</html>
+

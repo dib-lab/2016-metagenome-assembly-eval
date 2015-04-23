@@ -1,0 +1,50 @@
+----------------------------------------------------------------------
+                  ArabTeX Version 3.11 is available
+----------------------------------------------------------------------
+As of today, Oct. 23, 2003, a new version 3.11 of ArabTeX is available
+by FTP from "ftp.informatik.uni-stuttgart.de" (129.69.211.2). 
+The package resides in "/pub/arabtex/", see the file "arabtex.htm".
+
+This server always carries the current version; in case of doubt check
+the version number and the date of the file /pub/arabtex/apatch.sty.
+To receive a status report you may also send an empty Email message to 
+"arabtex@informatik.uni-stuttgart.de".
+
+Please observe that we are *not* the same as the (old) "Stuttgart server"!
+
+The identical package is also available from the CTAN server network:
+
+	ftp://ftp.tex.ac.uk/tex-archive/languages/arabtex/ (UK)
+	ftp://ftp.dante.de/tex-archive/languages/arabtex/  (Germany)
+	ftp://ctan.tug.org/tex-archive/languages/arabtex/  (USA)
+
+ArabTeX is a TeX macro package with associated Naskh fonts designed to
+generate the Arabic writing from texts coded in an ASCII transliteration
+as well as in some other popular encodings for Arabic and Hebrew, e.g.
+ASMO 449, ISO 8859-6 (ASMO 708), Arabic Windows encoding, and HED.
+It is compatible with Plain TeX, LaTeX, NFSS, and the EDMAC package.
+It also cooperates well with LaTeX 2e of June 1996 or later.
+There is some support for Persian, Urdu, Pashto, and Sindhi.
+Unicode Arabic and Hebrew support is present but not extensively tested.
+
+The version 3.11 supports vowelized and non-vowelized Hebrew, and 
+bidirectional line-breaking within insertions. The former limitation 
+that an insertion must fit on the current line no more exists.
+
+For information on updates, see the file "changes.txt".
+
+----------------------------------------------------------------------
+    Prof. Klaus Lagally
+    Institut fuer Formale Methoden der Informatik
+    Universitaet Stuttgart
+    Universitaetsstrasse 38
+    D-70569 Stuttgart
+    GERMANY
+
+    lagally@informatik.uni-stuttgart.de
+    FAX: +49 - 711 - 7816 370
+--------------------------------------------------------------------------
+	Copyright (c) 1990 - 2003, Klaus Lagally
+--------------------------------------------------------------------------
+
+

@@ -1,0 +1,378 @@
+CHANGES                                                        25.10.1993
+--------------------------------------------------------------------------
+                             ArabTeX Version 2
+                             =================
+        (for information on newer versions see the file "changes.txt") 
+--------------------------------------------------------------------------
+25.10.93: Version 2.08 (not widely distributed)
+
+	Status:
+
+	- all corrections in version 2.07 have been incorporated; there
+ 	  has been extensive rearrangement of code
+	- all known bugs have been removed
+	- some details in the manual have been rearranged; otherwise 
+	  the manual is slightly out of date
+
+	Additions:
+
+	- \footnote in Arabic text now also works inside a minipage
+	- more commands are valid inside Arabic text; a complete list
+	  appears in the log file
+	- see also versions 2.07a - d below
+
+	How to move from version 2.0x, 0 <= x <= 7d:
+
+	- install all files in the directory TEXINPUT anew
+	- replace "arabdoc.tex", "arabdoc0.tex", "arabdoc.ind" in the
+	  directory REPORT
+	- leave the fonts alone
+
+        How to move from version 1 (or none at all) to version 2.08:
+
+        - Do as above; install the fonts "nash14" and "nash14bf" first
+          according to local TeX conventions.
+        - If the font "nash10" is still there, delete it.
+
+--------------------------------------------------------------------------
+01.07.93: Version 2.07d
+
+	Fixes:
+
+	- "quoting" for <sukun> and <wasla> works now correctly.
+	- <H> for silent <hah> in Persian works as described.
+
+	Additions:
+
+	- <j> instead of <^g> for <gim>, and <x> instead of <_h> for <hhah>
+	  are now legal, but not recommended.
+
+	If required, download the ASCII file "apatch.sty" again.
+
+--------------------------------------------------------------------------
+04.05.93: Version 2.07c
+
+	Fixes:
+
+	- a modification that will usually prevent a known bug in Ml-TeX
+	  from doing too much harm. May be ignored by non-Ml-TeX-users;
+	  otherwise download the new version of "apatch.sty".
+
+--------------------------------------------------------------------------
+26.03.93: Version 2.07b
+
+	New features:
+
+	- The commands \smallskip, \medskip, \bigskip, \input filename
+	  work also inside an arabic environment
+	- <aa> works like <A>: <kaatib> is like <kAtib>.
+	  There always was <iy> for <I>, <uw> for <U>.
+	- Download the "apatch.sty" ASCII file again if you have already
+	  installed the version 2.07.
+
+--------------------------------------------------------------------------
+25.03.93: Version 2.07a
+
+	Fixes:
+
+	- There was a subtle interaction with the \tabular environment
+	  which prevented printing of the user manual. 
+	- Download the "apatch.sty" ASCII file again if you have already
+	  installed the version 2.07.
+	- The compressed versions have been corrected.
+
+--------------------------------------------------------------------------
+22.03.93: Version 2.07
+
+        Policy:
+
+        - ArabTeX is still free for scientific purposes, but we should 
+          appreciate receiving an offprint of any publication produced 
+          by using ArabTeX, for our collection. This does not apply to 
+          any personal correspondence.
+
+        Status:
+
+        - There have been extensive changes to all "*.sty" files.
+        - Many minor errors have been fixed.
+        - There is a new file "aedpatch.sty".
+        - The tentative features of version 2.06 have been incorporated.
+        - The command processing has been completely reworked and is 
+          believed to be more robust.
+        - The font has not changed.
+        - The user manual has not yet been updated; visible changes are 
+          minor.
+
+        New features:
+
+        - ArabTeX is now compatible with the EDMAC package for critical 
+          editions (see TUGboat 11/1, 623-643 (1990)). Just load ArabTeX 
+          *after* loading EDMAC. The necessary extensions will be loaded 
+          automatically via "aedpatch.sty".
+        - All arguments of EDMAC commands are considered "Roman" text but 
+          may contain arabic insertions.
+
+        Changes and extensions:
+
+        - Arabic insertions may now also contain commands.
+        - Most Plain TeX or LaTeX commands that make sense in an arabic 
+          environment are now allowed, as well as in arabic insertions.
+        - Font, mode and size changing commands obey the normal grouping 
+          rules.
+        - The commands \footnote and \marginpar work now both in Plain TeX 
+          and LaTeX mode; observe the different calling conventions!
+        - The \marginpar command inside arabic text works also with Plain 
+          TeX, analogous to the LaTeX \marginpar command; marginal notes 
+          always go to the right margin. If this feature is used, the user 
+          may have to adjust the parameters \marginparwidth, \marginparsep, 
+          and \hsize accordingly.
+        - The new options \accentshigh and \accentslow influence the 
+          positioning of the diacritical marks. \accentslow is the default.
+        - The new options \oldtanwin and \newtanwin influence the position 
+          of <tanwin fa.tha>: on the last consonant or on the final <alif> 
+          if applicable. Defaults are language dependent.
+        - A group of arabic words can be emphasized by overlining; this is 
+          effected by \emphasize {arabic words}.
+        - A group of arabic words, if enclosed in curly braces, is not
+          split across a line boundary.
+        - A final silent <hah> in Persian can be denoted <h>, <H>, or <T>.
+
+        Known problems:
+
+        - None at present.
+
+        How to move from versions 2.05 - 2.06 to version 2.07:
+
+        - Replace all "*.sty" files
+        - The fonts "nash14" and "nash14bf" are unchanged.
+
+        How to move from versions 2.00 - 2.04 to version 2.07:
+
+        - As above; add the manual files "arabdoc*.*" in the directory 
+          "report" and process them to get the User Manual.
+
+        How to move from version 1 (or none at all) to version 2.07:
+
+        - Do as above; install the fonts "nash14" and "nash14bf" first
+          according to local TeX conventions.
+        - If the font "nash10" is still there, delete it.
+
+-----------------------------------------------------------------------
+02.12.92: Version 2.06
+
+        Status:
+
+        - This is an experimental version processing some Persian
+          features differently; otherwise identical to version 2.05.
+        - This version is NOT part of the packages "arabtex.zip" and
+          "arabtex.tar.Z"; instead there are additional ASCII files 
+          "apatch25.sty", "apatch26.sty", and "arab2-06.doc". Thus
+          installing it does not destroy a working version 2.05.
+        - This version has not been extensively tested.
+        - Moving back and forth between versions 2.05 and 2.06 is easy.
+
+        - For details: see the file "arab2-06.doc".
+
+--------------------------------------------------------------------------
+05.11.92: Version 2.05
+
+        Status:
+
+        - There is a new User Manual "arabdoc.tex" in the subdirectory
+          "report". It contains many examples for the use of ArabTeX;
+          some of them also show several small extensions for special
+          cases which are not otherwise documented, but supported.
+        - The new User Manual is in ArabTeX format for local printing,
+          so it serves at the same time as an extensive installation test.
+          A hard-copy version is available on request; write to the author
+          and enclose DM 10 (outside of Europe US$ 10) to cover printing
+          and mailing expenses. For additional DM 5 (US$ 5) you can also
+          get the software on diskette (please indicate computer system,
+          TeX implementation version, and desired diskette format).
+        - The "*.sty" files have been updated so that the system works
+          (apparently) exactly as described in the User Manual; some small
+          bugs that have shown up in the meantime have been fixed.
+
+        Changes and extensions:
+
+        - The vowel marks, if shown, are now positioned at about the same
+          height from the baseline.
+        - Arabic words can be emphasized by overlining.
+        - A group of arabic words, if enclosed in curly braces, is not
+          split across a line boundary.
+        - A final mute "hah" in Persian can be denoted <h>, <H>, or <T>.
+
+        How to move from versions 2.00 - 2.04 to version 2.05:
+
+        - Replace all "*.sty" files
+        - Add the manual files "arabdoc*.*" in the directory "report" and
+          process them to get the new User Manual.
+        - The fonts "nash14" and "nash14bf" are unchanged.
+
+        How to move from version 1 (or none at all) to version 2.05:
+
+        - Do as above; install the fonts "nash14" and "nash14bf" first
+          according to local TeX conventions.
+        - If the font "nash10" is still there, delete it.
+
+        Known problems:
+
+        - The non-arabic language modes have not been extensively tested.
+        - The text file "arabtex.doc" can be used as a first introduction,
+          but does not describe all features. For full details, see the
+          User Manual.
+
+--------------------------------------------------------------------------
+05.08.92: Version 2.04 
+
+        Status and fixes: 
+
+        - see also Version 2.03 below
+        - "awrite.sty" has been extensively restructured to ease
+          further maintenance
+        - the storage utilization is somewhat better, the running time 
+          is about the same as with version 2.02
+
+        Changes: only format and contents of THIS file
+
+        How to move from version 2.02:
+
+        - replace aparse.sty, awrite.sty, aligs.sty
+          or: reinstall all *.sty files if that is easier
+        - the font has NOT changed, leave it alone
+
+        How to move from version 2.00:
+
+        - replace all *.sty files, including "apatch.sty" (new)
+        - the font has NOT changed, leave it alone
+        - there is a new demo for Farsi: "omar.tex"
+
+--------------------------------------------------------------------------
+01.08.92: Version 2.03 (not distributed)
+
+        Status and fixes: 
+
+        - a rare but grave bug has been fixed; it made ArabTeX explode
+          on <sa'AmaTuN> and a few related words.
+        - to fix the bug, the internal interface of "aparse.sty",
+          "awrite.sty", and "aligs.sty" had to be altered drastically.
+
+        Changes: none
+
+--------------------------------------------------------------------------
+03.05.92: Version 2.02
+
+        Status and fixes: 
+
+        - there have been extensive changes to nearly all "*.sty" files
+        - the Nasta'liq font is still missing; sorry, but at the moment 
+          there is no free time to design it. For the meantime, Naskh will 
+          be substituted automatically, and should be readable. 
+        - the problem with ^ and _ has been fixed; they now work correctly 
+          in all modes 
+        - the <~n> problem has been fixed 
+        - the prefix <li-> before <alif> with <hamza> below now works, as 
+          e.g. in <li-'ism> 
+        - short Arabic quotations may be used in moving arguments in 
+          LaTeX, e.g. section names, frameboxes, captions, margin notes 
+          and the like 
+        - Farsi and related languages: <izafet> and <yah-i-wahdat> now 
+          seem to work correctly.
+
+        Changes:
+
+        - in Farsi and related languages, the final <hah> after <a> and 
+          <e> is NO MORE generated automatically; you have to write it 
+          explicitly if you want it. THIS IS NO BUG: the old strategy was 
+          found to be inconsistent. 
+        - the additional option \showtrue will echo the ASCII input
+          verbatim; \showfalse will switch this mode off again. This
+          feature is intended for test purposes; it might not work in all
+          contexts, and could disappear again.
+        - there is a new file "apatch.sty" which is loaded automatically
+          and will contain last minute corrections (none at the moment)    
+
+        Open problems:
+
+        - see "bugs" and "fixes" below
+
+        Hints:
+
+        - with LaTeX, the option "arabtex" should ONLY be followed by its 
+          local sub-options like "nashbf" or "atrans"; put other options 
+          BEFORE it and DON'T define any own commands that use "<"; use 
+          ">" instead. 
+        - with Plain TeX, define your own macros BEFORE "\input arabtex".
+
+        How to move from version 2.00 or 2.01:
+
+        - replace all *.sty files, including "apatch.sty" (new)
+        - the font has NOT changed, leave it alone
+        - there is a new demo for Farsi: "omar.tex"
+
+--------------------------------------------------------------------------
+15.04.92: Version 2.01 (was available on direct request)
+ 
+        Status and fixes:
+
+        - Temporary patch for the ^ and _ problem (thanks, Bernd Raichle!)
+          but still does not work in moving arguments
+
+        More known bugs:
+
+        - \footnote does not work (we never promised it would, but will 
+          think about it) 
+        - \footnotemark may put the mark into unexpected places if used 
+          within an Arabic Environment; however:
+          \footnotetext works outside Arabic Environments even with Arabic
+          text in angle brackets
+        - the prefix <li-> as in <li-'ism> will produce garbage
+        - <~n> will blow up
+
+        How to get the version: DON'T, this version is obsolete
+
+--------------------------------------------------------------------------
+10.04.92: Version 2.0
+
+        Version 2.00 is here at last. See "README".
+
+        Changes from version 1:
+
+        - now compatible with Plain TeX
+        - new (hopefully) better looking font
+        - many ligatures generated automatically
+        - support for Farsi, Urdu, Pashto, Ottoman, Maghribi
+        - some more documentation
+        - the input coding has changed slightly
+
+        Implementation status:
+
+        - all macro files have version number 2.00
+        - only fonts nash14 and nash14bf, no nasta`liq font yet available
+        - ArabTeX was developed on a PC AT with emTeX and is known also to 
+          run on a PC XT and a U*IX work station; therefore it is 
+          supposed to be easily portable
+        - language options other than Arabic have not been extensively 
+          tested
+
+        Known bugs:
+
+        - control sequences inside of curly braces do not work
+        - arabic insertions may still be started with <
+        - < is an active character and may conflict with the user's macros
+        - ^ and _ do not work correctly in math environments
+        - some troubles with <izafet> in Farsi
+
+--------------------------------------------------------------------------
+    Prof. Klaus Lagally
+    Institut fuer Informatik
+    Universitaet Stuttgart
+    Breitwiesenstrasse 20-22
+    D-70565 Stuttgart
+    GERMANY
+
+    lagally@informatik.uni-stuttgart.de
+    FAX: +49 - 711 - 7816 370
+--------------------------------------------------------------------------
+	Copyright (c) 1990 - 1997, Klaus Lagally
+--------------------------------------------------------------------------

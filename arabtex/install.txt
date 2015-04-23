@@ -1,0 +1,176 @@
+INSTALL                                                        17.09.2001
+--------------------------------------------------------------------------
+                             ArabTeX Version 3.10
+			     ====================
+--------------------------------------------------------------------------
+	The ArabTeX package is distributed as one of the following 
+	binary files:
+
+	arabtex.zip     for PC users:
+			The ArabTeX package in compressed ZIP format. 
+			Unpack with (PK)UNZIP as a directory tree.
+
+	arabtex.tar.Z   for UNIX users:
+			The ArabTeX package in compressed tar format. 
+			Unpack as a directory tree.
+
+	In addition, there may be ASCII files "apatch.sty", "hepatch.sty"
+	with last minute corrections. These are not difference files; 
+	just put them on the TEXINPUT path.
+	
+	Depending on the server there may also be the unpacked files.
+
+	The binary package, if complete, should contain at least:
+
+	Main directory: (ASCII files and subdirectories)
+	---------------
+	announce.txt    describing the current version
+	arabtex.htm     general information in HTML format
+	arabtex.gif     the ArabTeX logo
+	changes.txt     release history and known bugs
+	install.txt     THIS file
+	readme.txt      general information
+	lppl.txt	license information
+
+	doc             subdirectory containing documentation
+	texinput        subdirectory containing the TeX macros
+	mfinput         subdirectory containing the METAFONT sources
+	tfm             subdirectory containing the TFM font files
+	laser.pk        subdirectory containing 300 dpi pixel files
+	psfonts         subdirectory containing T1 Postscript fonts
+	examples        subdirectory containing some examples
+
+	Subdirectory "texinput": (ASCII files)
+	----------------------
+	manifest.txt	list of contents
+	    .
+	arabtex.sty     LaTeX 2e package, LaTeX 2.09 style option: driver 
+	arabtex.tex     loader and patches for use with Plain TeX
+	hebtex.tex      Hebrew mode: loader for use with Plain TeX
+	    .
+	about 40 ASCII files containing the ArabTeX macros
+	    .	   
+	miscellaneous utility files (usually not required)
+
+	Subdirectory "report": (ASCII files) (deleted)
+	---------------------
+	The old user manual that used to be here has been superseded by
+	a new PDF version "doc/arabdoc.pdf"
+
+	Subdirectory "mfinput": (ASCII files)
+	---------------------
+	nash14.mf       METAFONT driver file for font nash14
+	nash14bf.mf     METAFONT driver file for font nash14bf
+
+	nash.mf         the following files will be loaded automatically:
+	nashbase.mf
+	nashchar.mf
+	nashdia.mf
+	nashdig.mf
+	nashlig.mf
+	nashspec.mf
+	arabsymb.mf
+
+        hclassic.mf     Hebrew font by Joel Hoffman
+        hcaption.mf     Hebrew font by Joel Hoffman
+        hcbase_p.mf
+
+	xnsh14.mf       driver file for font xnsh14
+	xnsh14bf.mf     driver file for font xnsh14bf
+	several additional files will be loaded on demand
+
+	Subdirectory "tfm": (Binary files)
+	-------------------
+	hclassic.tfm	TeX font metrics
+	hcaption.tfm
+	nash14.tfm      TeX font metrics
+	nash14bf.tfm      
+	xnsh14.tfm      
+	xnsh14bf.tfm      
+	yarborn.tfm
+
+	Subdirectory "laser.pk": (Binary files)
+	-------------------
+	nash14.300pk    bitmaps in PK format at 300 dpi
+	nash14.329pk    \magstephalf
+	nash14.360pk    \magstep 1
+	nash14.432pk    \magstep 2
+	nash14.518pk    \magstep 3
+	nash14.622pk    \magstep 4
+	nash14.746pk    \magstep 5
+	nash14bf.300k   etc.: the same for the font nash14bf
+	analogous files for the other fonts provided
+
+	The font files are customized for a HP Laserjet with 300 dpi 
+	resolution. If that does not suit your needs, recompile the 
+	sources with METAFONT.
+
+        NOTE: On systems using the 8+3 file naming convention you may 
+	have to move the bitmap files to several directories and to 
+	rename them according to local conventions.
+
+	Subdirectory "psfonts": (Binary files)
+	---------------------
+	arabtex.map     font description for DVIPS
+	xnsh14.pfb      T1 font
+	xnsh14bf.pfb    T1 font
+
+	Subdirectory "doc": documentation
+	---------------------
+	arabdoc.pdf	user manual (incomplete, in progress)
+
+		Subdirectory "html": HTML and GIF files
+		---------------------
+		arabtex.htm	documentation in HTML format
+		refer.htm	references
+		changes.htm	current status
+		chg310.htm
+		some auxiliary files
+
+		Subdirectory "txt": ASCII documentation
+		---------------------
+	        hebrew.305      details on the Hebrew extension
+        	readme.305      additional details
+		arabtex.doc     a short introduction (rather old)
+		arabtex.faq     answers to some Frequently Asked Questions
+		arwindos.tex    notes on Windows CP 1256 encoding support
+		malay.tex
+		sindhi.tex      notes on various extensions
+		uighur.tex
+		changes2.txt    older release history 
+		
+		Subdirectory "patches": (ASCII) sub-versions
+		---------------------
+		apatch.sty	current sub-version 
+		hepatch.sty
+		apatch03.10-
+		hepatch3.10-
+		    .		former sub-versions as applicable
+
+	Subdirectory "examples": (ASCII and binary files)
+	---------------------
+	guha.tex        a small LaTeX demo
+	guha.dvi        the demo output in DVI format
+	guha.ps         the demo output in PostScript format
+	omar.tex	a small demo for Farsi
+	ligtable.tex    a LaTeX demo showing many ligatures
+	   .
+	some more example files in PS or DVI format
+
+	NOTE: Depending on the structure of your TeX installation you may 
+	have to move the subdirectories to other places and/or to issue 
+	some command to refresh the TeX system. This is strongly dependent 
+	on the local configuration; possibly ask some local TeX guru.
+
+--------------------------------------------------------------------------
+	    Prof. Klaus Lagally
+	    Institut fuer Informatik
+	    Universitaet Stuttgart
+	    Breitwiesenstrasse 20-22
+	    D-70565 Stuttgart
+	    GERMANY
+
+	    lagally@informatik.uni-stuttgart.de
+--------------------------------------------------------------------------
+	Copyright (c) 1990 - 2001, Klaus Lagally
+--------------------------------------------------------------------------

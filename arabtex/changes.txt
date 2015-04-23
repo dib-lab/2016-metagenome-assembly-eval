@@ -1,0 +1,2438 @@
+CHANGES.TXT                                                     02.07.2006
+--------------------------------------------------------------------------
+                             ArabTeX Version 3
+                             =================
+--------------------------------------------------------------------------
+        NOTE: Version management:
+
+        - We distinguish major versions "m.00", minor versions "m.nn-"
+          with nn > 0, and patch versions "m.nnx" where "x" is a letter.
+
+        - to update from an older major version: reinstall completely.
+
+        - to update from an older minor version: replace the contents of
+          "TEXINPUT" and, if so indicated, "REPORT". Replace the fonts
+	  only if so indicated explicitly.
+
+        - to update to a newer patch version: replace the ASCII file
+          "apatch.sty" and, if you use Hebrew, "hepatch.sty". These files 
+          are distributed as unpacked text files, and will be applied
+	  automatially whenever starting ArabTeX.
+
+        - Patch versions within the same minor version are cumulative, so
+	  a newer patch will encompass all earlier versions. 
+
+	- To back out from a patch version, replace "apatch.sty" by an
+	  earlier version (within the same minor version only!) if still
+	  locally available, or else edit out the current additions from 
+	  "apatch.sty" and, if applicable, "hepatch.sty" (save a copy 
+	  first!). Also please inform the author why you backed out.
+
+	- There is no provision to return gracefully to earlier minor or
+	  even major versions. We can make them available on request, but
+	  you should have good reasons, and there will be no support.
+        
+==========================================================================
+02.07.2006: Version 3.11s
+
+	Fixes:
+     
+	- In mixed paragraphs, the handling of horizontal spacing between 
+	  Arabic insertions and Roman text, and vice versa, is determined
+	  by the spaces (if present) in the input text inside and outside 
+	  of the RL{} commands.
+
+	New features:
+	
+	- The experimental package "saw.sty" provides macros \SAW and \ALS
+	  for producing special glyph combinations for theological and 
+	  religious texts (with the exception of the Holy Qur'an, which we
+	  do not support). These macros work inside and outside of Arabic
+	  mode; presently they are available in \normalsize only.
+
+	Note: 
+
+	- We are informed of a project, within the Muslim world, to extend
+	  ArabTeX by special features for printing the Holy Qur'an. We
+	  know about the difficulties, and we wish them success.
+
+	Installation:
+
+	- download "apatch.sty" and, if required, "saw.sty".
+
+--------------------------------------------------------------------------
+17.04.2006: Version 3.11r
+
+	Fixes:
+     
+	- A glitch in EDMAC mode was fixed.
+
+	- <Roman insertions> within Arabic text work again, also when the
+	  <shorthand> notation for Arabic insertions in Roman text is in
+	  force.
+
+	New features:
+
+	- Processing of bidirectional paragraphs has been reimplemented
+	  completely. Roman paragraphs with Arabic script insertions may
+	  have arbitrary, variable '\parshape's and even nested recursive 
+	  insertions to arbitrary depth. This is rarely needed, but it is
+	  a strong torture test for the new algorithm.
+
+	- With LaTeX, the package 'lineno.sty' for producing line numbers
+	  is now fully supported. The former restrictions no more apply.
+
+	Installation:
+
+	- download "apatch.sty" and also "alocal.sty".
+
+--------------------------------------------------------------------------
+01.03.2006: Version 3.11q
+
+	Fixes:
+     
+	- Some more incompatiblities with Plain TeX have been fixed.
+
+	- Vertical spacing commands in LaTeX work better within Arabic
+	  environments.
+
+	New features:
+
+	- A new file "alocal.sty" was introduced in order to facilitate 
+	  loading local extensions for individual users. Normally it 
+	  does nothing, but must be present.
+
+	- There is some limited support for users of "lineno.sty"; if
+	  that package is present, line numbers will work in the basic
+	  \linenumber mode within Arabic environments, and \linelabel 
+	  can also be used. Other features have not been tested.
+
+	  CAUTION: The command \RL{} is presently not quite compatible 
+	  with the "lineno.sty" package, and might break, both itself 
+	  and the line numbers! In that case, try \< > for insertions.
+
+	Installation:
+
+	- download "apatch.sty" and also "alocal.sty".
+
+--------------------------------------------------------------------------
+08.02.2006: Version 3.11p
+
+	Fixes:
+     
+	- There was an incompatibility between the patching mechanism in
+	  "apatch.sty" and Plain TeX (only!).
+
+	- Final "ha'" in Jawi had the wrong shape.
+
+	New features:
+
+	- There is an improved version of "verses.sty"; for documentation
+	  see the file itself.
+
+	Installation:
+
+	- download "apatch.sty" and, if required, "verses.sty".
+
+--------------------------------------------------------------------------
+01.02.2006: Version 3.11o
+
+	Fixes:
+     
+	- The lines of a bidirectional paragraph were sometimes mixed up
+	  when a page break interfered. This was neither easy to find nor
+	  to fix.
+
+	- An incompatible (!) change in Plain TeX 3.1415926 had broken the 
+	  transcription module. Use of ArabTeX with LaTeX was not affected.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+06.04.2005: Version 3.11n
+
+	Fixes:
+     
+	- In the Arabic document classes the commands 'figure' and 'table' 
+	  were broken. They work again.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+23.01.2005: Version 3.11m
+
+	Fixes:
+     
+	- In the Arabic document classes the list environments were 
+	  broken. Their labels work again.
+
+	- Punctuation marks in the Arabic script have been moved down 
+	  slightly.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+24.06.2004: Version 3.11l
+
+	Fixes:
+     
+	- An incompatibility between Kashmiri mode and Hebrew mode was
+	  taken care of. A small glitch in Uighuric mode was fixed.
+
+	- Arabic and Hebrew (right to left) insertions in a left-to-right 
+	  paragraph now also work correctly within LaTeX table fields
+	  specified with the p{} qualifier.
+
+	New features:
+
+	- The skip values \LRskip {\hskip \z@ plus 0.1em } before a RTL 
+	  insertion, and \RLskip {\hskip \z@ plus 0.1em } after a RTL 
+	  insertion, may be adjusted by the user to tune the appearance
+	  of bidirectional paragraphs. 
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+24.05.2004: Version 3.11k
+
+	Fixes:
+	
+	- Arabic and Hebrew (right to left) insertions in a left-to-right 
+	  paragraph now also work correctly at the very beginning of the
+	  paragraph, and also in the context of nested LaTeX environments.
+	  There used to be spurious spaces and shifted baselines.
+
+	Note:
+
+	- the reading modules 'bhs.sty', 'witbhs.sty', and 'buck.sty'
+	  presently cannot coexist with other input encoding methods for
+	  Arabic and Hebrew, not even with the standard transliteration
+	  encoding. This restriction might go away in further versions.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+17.05.2004: Version 3.11j
+
+	Fixes:
+
+	- The unconditional placement of a 'hamza' mark on a character
+	  by the suffix < " ' > had been disabled for internal reasons.
+	  It is active again.
+
+	- In Hebrew mode, the placement of diacritics within a final kaph
+	  letter was fixed again. This had already been corrected in the
+	  version 3.11d, but that patch did not work.
+
+	New features:
+	
+	- The experimental reading module 'buck.sty' for the 'Buckwalter'
+	  encoding conventions has been upwards compatibly extended to
+	  cover XML compatible extensions, several Persian letters, and
+	  new encodings of diacritic marks as proposed by the Archimedes
+	  project. For details and open issues, enquire.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+26.04.2004: Version 3.11i
+
+	Fixes:
+	
+	- The algorithm for bidirectional line-breaking in mixed Arabic-
+	  Roman paragraphs has been completely re-implemented. It is now
+	  shorter and faster, and hopefully, has fewer bugs.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+15.03.2004: Version 3.11h
+
+	Fixes:
+	
+	- For Pashto and Sindhi modes, and also for special purposes,
+	  a few input encodings have been changed to conform with the
+	  new version of the user manual (still in preparation).
+
+	New features:
+
+	- For YIVO Yiddish, a few additional input encodings have been
+	  provided to write Hebrew words according to the conventions
+	  of the "Yiddishe Shraybmashinke" by Refoyl Finkel.
+
+	- In 'verses.sty' the command \setversedim {length}{gap} to set 
+	  the length of the halfverses and their separation, has been
+	  expanded to the format \setversedim {length1}[length2]{gap} by 
+	  an optional second (!) argument to set the lengths of the 
+	  two hemistichs independently. The old format still works.
+	  The command \halfverses {first}[conn]{second} is equivalent to
+	  \connverses {first}{conn}{second} (mind the brackets!)
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+26.02.2004: Version 3.11g
+
+	Fixes:
+
+	- When the Arabic Windows encoding is used, double quotes <">
+	  are interpreted as directional quotes <``> and <''> according
+	  to the context.
+
+	- When using 'verses.sty' the text will be centered, both in 
+	  Plain TeX mode and in LaTeX mode. Whenever this is not feasible
+	  due to the indicated verse dimensions, hemistichs will be put 
+	  flush right and flush left in alternate lines. Connecting the
+	  hemistichs in that case is not possible; end the last word of 
+	  the first hemistich, and start the first word of the second, 
+	  by a dash <-> to get the connecting forms of the appropriate
+	  letters, if they exist. 
+
+	New features:
+
+	- Within an Arabic word in transliteration encoding, a plus sign
+	  <+> will unconditionally place a 'sukun' or, after an initial 
+	  'alif', a 'wasla', on the preceding letter. As the first 
+	  character, or isolated or after punctuation, the plus sign 
+	  denotes itself.
+
+	- In Sindhi mode, the special ending 'in' as in <min> and <'in>
+	  may also be coded <.mIN> and <'IN>.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+12.02.2004: Version 3.11f
+
+	Fixes:
+
+	- Some character assignments for Judeo-Arabic were corrected.
+
+	- Various minor technical bugs were found and corrected.
+
+	New features:
+
+	- The file 'arabwin.sty' is obsolete and should no more be used; 
+	  for the Arabic Windows encoding use 'cp1256.sty' instead. The
+	  encoding is set by '\setcode{cp1256}' or '\setcode{arabwin}'.
+
+	- In pausal position, the feminine ending <aT> (tah marbuta) is 
+	  now transcribed as 'ah'. The input encoding is unchanged.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+08.12.2003: Version 3.11e
+
+	Fixes:
+
+	- Bidirectional paragraphs are now handled correctly even within
+	  the LaTeX environments 'quote' and 'quotation'.
+
+	- In Hebrew mode, the positioning of 'nikudot' on final 'kaph'
+	  was improved.
+
+	- The handling of final 'Urdu wavy hah' was improved.
+
+	- After switching the font size in LaTeX (also implicitly in
+	  section titles and such), an initial number sometimes was
+	  lost even outside of Arabic or Hebrew mode. This has been
+	  corrected.
+
+	New features:
+
+	- The font 'xnsh14' is the default for Arabic mode. In Hebrew
+	  mode, 'hclassic' is the default.
+
+	- ArabTeX now seems to be compatible with 'inputenc.sty'.
+
+	- In the Unicode mode, additional extended Arabic characters
+	  are now supported, so are ZWJ = ZERO WIDTH JOINER and ZWNJ
+	  = ZERO WIDTH NON-JOINER (see below).
+	
+	- 'dotless bah' and 'Uzbek ae' are supported in Unicode mode.
+
+	- Within an Arabic word in transliteration encoding, a star <*>
+	  will unconditionally place a 'shadda' on the preceding letter.
+	  At the beginning of a word, or isolated or after punctuation,
+	  the star denotes itself.
+
+	Notes:
+
+	- Changes of input encoding are \global for technical reasons.
+
+	- Private reading modules for individual users may be broken
+	  by the new reading strategy introduced for compatibility with
+	  'inputenc.sty'. In case of problems, contact the author. New
+	  versions of 'buck.sty, 'bhs.sty', and 'witbhs.sty' have been
+	  prepared.
+
+	Open issues:
+
+	- The space introduced by ZWNJ = ZERO WIDTH NON-JOINER is still
+	  too wide. No fix is known.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+23.10.2003: Version 3.11d
+
+	Fixes:
+
+	- In the Arabic document classes, the formatting of the table
+	  of contents was improved. A strange bug was corrected.
+
+	- A storage leak was found which prevented the formatting of
+	  longer documents, leading to 'save stack overflow'.
+
+	- A bug in the ligatures module was found which used to produce
+	  bogus messages 'missing letter y in font xnsh14' and to 
+	  slightly interfere with correct vowelization.
+
+	- A bug in the output module was found which used to produce
+	  bogus messages 'underfull vbox while \output was active'.
+	  The fix might slightly influence page breaking.
+
+	New features:
+
+	- There is now limited support for Arabized LyX.
+	  Since there are no 'italic', 'slanted', 'sanserif' etc. fonts
+	  available for ArabTeX, all special font variants are presently
+	  mapped into 'bold face'. This could be changed at the user's 
+	  request; please send any suggestions to the author.
+	  
+	- The messages in the LOG file are less verbose now.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+17.09.2003: Version 3.11c
+
+	Fixes:
+	
+	- in Hebrew mode, a spurious 'shwa' on 'gimel' was fixed.
+
+	New features:
+
+	- Hebrew mode provides a new command \setjudarab to activate
+	  an experimental Judaeo-Arabic mode. Input is supposed to be
+	  Arabic in the standard transliteration encoding (other modes
+	  might work by accident), output is an extended Hebrew writing
+	  in the chosen Hebrew font, and the standard transliteration
+	  when activated. Arabic vowels are presently not provided; the
+	  Hebrew vowels work but are presumably of no use.
+
+	  Caution: The new mode can be expected to contain errors. We 
+	  do not know the exact writing conventions, and have no access
+	  to any relevant literature. Scholars in the field are urged
+	  to contact the author. Comments and suggestions are invited.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+08.09.2003: Version 3.11b
+
+	Fixes:
+
+	- the selection of fonts in Arabic and Hebrew mode has been
+	  drastically changed, and several logical errors have been 
+	  eliminated. Some of the remaining bugs have been fixed.
+
+	- Hebrew Plain mode works again. To use it, download the new
+	  version of 'hebtex.tex'(!), the Hebrew Plain driver. The 
+	  corrections cannot be handled by "apatch.sty" alone.
+
+	New features:
+
+	- ArabTeX now seems to cooperate with LyX in Arabic and Hebrew
+	  mode.
+
+	Installation:
+
+	- download "apatch.sty".
+
+	- in case you are using the Hebrew Plain mode (and only then) 
+	  also download the new version of the driver module "hebtex.tex" 
+	  (not "hebtex.sty"!)
+
+--------------------------------------------------------------------------
+27.08.2003: Version 3.11a
+
+	Fixes:
+
+	- the 'hanging heh' in Urdu mode has been fixed.
+
+	- the selection of fonts in Arabic and Hebrew mode has been
+	  drastically changed, and several logical errors have been 
+	  eliminated. Hopefully there are not too many new bugs.
+
+	- Hebrew Plain mode should work again. If you are not directly
+	  concerned, forget it; tests are going on. The necessary 
+	  corrections cannot be handled by "apatch.sty" alone, see the
+	  remarks below.
+
+	Installation:
+
+	- download "apatch.sty".
+
+        - in case you are using the Hebrew Plain mode (and only then)
+          also download the new version of the driver module "hebtex.tex"
+          (not "hebtex.sty"!)
+
+--------------------------------------------------------------------------
+22.08.2002: Version 3.11
+
+	Status:
+        
+        - This is a new minor version. All existing patches have been 
+          merged into the respective macro files. To install it, load
+	  and replace all macros in the subdirectory "TEXINPUT"; there
+	  are some new files, and some have been extensively rewritten!
+	  The functionality is supposed to be unchanged.
+
+	- Distribution and modification of ArabTeX is now governed by
+	  the Latex Project Public License (see LPPL.TXT).
+
+	- We recommend installing of the fonts "xnash14" and "xnash14bf" 
+	  to obtain better quality of output. These fonts are now the 
+	  default; to revert to the old font versions use the command 
+	  "\oldarabfont".
+
+	New features:
+
+	- In Hebrew mode, all standard fonts available on CTAN are now
+	  supported, including the possibility of generating vowel points
+	  in \vocalize mode.
+
+        Bugs:
+
+	- Hebrew Plain TeX mode is currently broken.
+
+	Installation:
+
+	- Download the contents of "TEXINPUT", and in case of any font
+	  problems also "MFINPUT".
+
+	- In case of problems with old DVI files regenerate them; or else
+	  download "arabsymb.mf" and regenerate the font "nash14".
+
+==========================================================================
+23.04.2003: Version 3.10k
+
+	Fixes:
+
+	- some glitches in Farsi mode were fixed.
+
+	- in Uighuric mode, some transcriptions were missing.
+
+	- in Urdu mode, final 'wavy hah' is generated now.
+
+	New features:
+
+	- in Uighuric mode, <:s> produces 'sin' with three dots below.
+	  <A> produces 'alif' with 'madda', so does <^A>.
+
+	- in Farsi mode and its descendants, 'kasra' on a double letter
+	  will be positioned below the letter instead of below the
+	  'shadda' mark. This feature will later become an option.
+
+	- the internal test mode is less verbose. This need not concern
+	  normal users.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+16.11.2002: Version 3.10j
+
+	Fixes:
+
+	- the handling of 'ayin' in Hebrew mode was improved.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+14.11.2002: Version 3.10i
+
+	Fixes:
+
+	- "matres lectionis" in Hebrew work better.
+
+	- Version 3.10h was broken on some servers!
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+28.08.2002: Version 3.10h
+
+	Fixes:
+
+	- The math command \cap was broken.
+
+	- Line breaking of Roman insertions within Arabic mode seems to
+	  work correctly now.
+
+	New features:
+
+	- There is formally a new language mode \setbalut for Balochy.
+	  Presently it is mapped to \setpashto but will be extended as
+	  soon as the exact writing rules are known.
+
+	- The command \cond #1{#2}{#3}\fi will expand to either #2 or #3
+	  depending on the TeX conditional #1. It is nearly equivalent 
+	  to #1 #2\else #3\fi but may also be used in Arabic mode. The
+	  command is skippable and fully expandable.
+
+	- \endinput may occur in Arabic mode.
+
+	- The input character <G> encodes Pashto 'gAf' with a ring. In 
+	  Farsi and Pashto mode, <g> produces Farsi 'gAf' with a stroke.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+16.06.2002: Version 3.10g
+
+	Fixes:
+
+	- in Pashto mode, <.n> will produce 'noon' with a dot and a ring.
+	  Some further Pashto codes can be found in Table 4.2.
+  
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+11.05.2002: Version 3.10f
+
+	Fixes:
+
+	- in Persian mode, some bugs concerning 'hamze on he' were fixed.
+	
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+14.04.2002: Version 3.10e
+
+	Fixes:
+
+	- in the standard Hebrew transcription, 'shwa' was missing.
+
+	- in Persian mode, 'hamze on he' is produced if required.
+	
+	- in Hebrew mode using the 'hclassic' and 'hcaption' fonts, the
+	  vowel points are generated differently to render better when
+	  using T1 fonts.
+
+	- in CP1256 encoding, explicit 'shadda' works now correctly.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+07.03.2002: Version 3.10d
+
+	Fixes:
+
+	- In many of the non-standard encodings the handling of double
+	  letters (implicit shadda or not) has been corrected.
+
+	- In the Arabic document classes 'arabbook', 'arabrep', 'arabart'
+	  the handling of figure and table \captions has been improved.
+
+	Hints:
+
+	- When using a local addition to ArabTeX together with a patch
+	  version of ArabTeX, read the local addition by \input after
+	  the command \begin{document}, not by an \usepackage command.
+	  Otherwise a race condition occurs that could overwrite your
+	  local additions.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+03.03.2002: Version 3.10c
+
+	Fixes:
+
+	- The default language is Arabic again.
+
+	- The LaTeX commands \footnote, \footnotemark, and \footnotetext 
+	  in normal LTR LaTeX mode were broken in version 3.10b. Sorry!
+
+	- In the Arabic document classes 'arabbook', 'arabrep', 'arabart'
+	  the environment 'tabular' works correctly.	  
+
+	- In the Arabic document classes 'arabbook', 'arabrep', 'arabart'
+	  the command \tableofcontents works correctly.
+
+	- In the Arabic document classes 'arabbook', 'arabrep', 'arabart'
+	  the commands \table and \figure may have a \caption.
+
+	Hints:
+
+	- In the Arabic document classes 'arabbook', 'arabrep', 'arabart'
+	  and *also* in normal LTR mode, within the \tabular environment 
+	  every row but the last must be terminated by \\, also if \hline
+	  follows. The text of the error message has been improved.
+
+	New Features:
+
+	- The Arabic document classes 'arabbook', 'arabrep', 'arabart'
+	  formerly required the use of the ArabTeX standard encoding for
+	  correct functioning of generated section heads and the like.
+	  This restriction was never noticed, and applies no more.
+
+	- Abjad numbers now also work with other input encodings.
+
+	- Within an Arabic environment the command \stdcode{some text}
+	  accepts Arabic text in the ArabTeX standard encoding even if
+	  otherwise some other encoding is in use. This may be useful
+	  for local corrections.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+12.02.2002: Version 3.10b
+
+	Fixes:
+
+	- The LaTeX commands \footnote, \footnotemark, and \footnotetext 
+	  now work correctly within Arabic environments, even if only 
+	  transliteration mode is active. The output mode (transliterate,
+	  Arabic writing, or both) of Arabic inserts in the footnote text 
+	  is inherited from the main document if not explicitly switched
+	  locally within the footnote text.
+
+	Hints:
+
+	- Footnotes containing Arabic inserts might come out too high.
+	  This may be prevented, at the risk of lines overlapping, by
+	  \smash-ing the Arabic insert or even the complete footnote.
+
+	- Within transliteration mode hyphenation is only performed after
+	  long vowels, thus \sloppy mode might be required. If the last
+	  word of a line ends with a long vowel, a spurious hyphen will
+	  appear. This is a bug; presently no fix is known!
+
+	New Features:
+
+	- The LaTeX footnote commands (see above) also work within the
+	  Arabic document classes 'arabart', 'arabrep', and 'arabbook'.
+
+	- By default, or after the command \LRfootnotes, the footnotes
+	  are positioned as in a Roman document, and the footnote text
+	  is assumed to be Roman by default. Arabic inserts are produced
+	  by \RL{ }.
+
+	- After the command \RLfootnotes, footnotes run from right to
+	  left and the default language mode is Arabic. Roman inserts
+	  are produced by \LR{ }.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+06.10.2001: Version 3.10a
+
+	Fixes:
+
+	- A few minor patches from 'v3.09' did not make it into 'v3.10'.
+
+	- The transliteration of '_h' was improved.
+
+	- Plain TeX mode now also uses fonts "xnash14" and "xnash14bf"
+	  as the default.
+
+	- In Hebrew mode, 'cholem male' and vowels in contact now work
+	  correctly.
+
+	- In Hebrew mode, footnotes containing Hebrew inserts now have
+	  uniform baselines again.
+
+	New Features:
+
+	- All patches are now handled by "apatch.sty". 
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+17.09.2001: Version 3.10
+
+	Status:
+        
+        - This is a new minor version. All existing patches have been 
+          merged into the respective macro files. To install it, load
+	  and replace all macros in the subdirectory "TEXINPUT"; there
+	  are some new files, and some have been extensively rewritten!
+	  The functionality is supposed to be unchanged.
+
+	- Distribution and modification of ArabTeX is now governed by
+	  the Latex Project Public License (see LPPL.TXT).
+
+	- We recommend installing of the fonts "xnash14" and "xnash14bf" 
+	  to obtain better quality of output. These fonts are now the 
+	  default; to revert to the old font versions use the command 
+	  "\oldarabfont".
+
+	New features:
+
+	- In Hebrew mode, all standard fonts available on CTAN are now
+	  supported, including the possibility of generating vowel points
+	  in \vocalize mode.
+
+        Bugs:
+
+	- Presently none are known.
+
+	Installation:
+
+	- Download the contents of "TEXINPUT", and in case of any font
+	  problems also "MFINPUT".
+
+	- In case of problems with old DVI files regenerate them; or else
+	  download "arabsymb.mf" and regenerate the font "nash14".
+
+==========================================================================
+13.05.2001: Version 3.09g
+
+	Fixes:
+
+	- Some spurious spaces in the transliteration were fixed.
+
+	- \tabular within \center was broken by \RL{}.
+
+	- Hamza and `Ayn were broken in a \tabbing environment.
+
+	New Features:
+
+	- The file "arabtds.zip" in the distribution, when available,
+	  contains the ArabTeX package repacked according to the TDS
+	  (TeX Directory Structure). To install the complete package,
+	  PC Users of MikTeX and several other TeX distributions that 
+	  presuppose the TDS structure, should  download this file only 
+	  (in binary mode!) and unpack it at the top level of their 
+	  local TEXMF tree. For other installations, moving around some
+	  files or adjusting some access path might be required.
+
+	- Reminder: some TeX installations require a command "texhash"
+	  or "texconfig" to activate a newly installed package.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+27.05.2000: Version 3.09f
+
+	Fixes:
+
+	- The LaTeX command \cdot works again.
+
+	- The LaTeX command \protect may appear in RL mode. It has no
+	  visible effect.
+
+	- The vertical bar | has no function, but does no harm behind an 
+	  Arabic character that does not connect to the left.
+
+	- The behaviour of "wasla" in the transliteration was fixed.
+
+	- The vertical spacing of footnotes is no more influenced by \RL
+	  insertions in the first line.
+
+	New Features:
+
+	- Brackets [ and ] and parentheses ( and ) may be used within an 
+	  Arabic or Hebrew word to indicate optional parts; they do not 
+	  change the connection behaviour of the adjacent characters.
+
+	Installation:
+
+	- download "apatch.sty" and "hepatch.sty".
+
+--------------------------------------------------------------------------
+05.04.2000: Version 3.09e
+
+	Fixes:
+
+	- to switch the transcription font say, e.g., \settransfont{\rm}.
+	  \settransfont{rm} (forgetting the \) now also works, instead of
+	  producing impressive garbage.
+
+	- an \RL{} insertion text may now begin with a space.
+
+	- footnotes containing \RL{} insertions have uniform baselines.
+
+	- the space command \ works within RL mode.
+
+	- \bf and \rm (for returning to normal) work within RL mode.
+
+	New Features:
+
+	- within RL environments, \newcommand, \newenvironment, and \def
+	  and their relatives may be used to define new control sequences
+	  which have to expand to legal ArabTeX input; they will not be
+	  visible outside of the environment (even if \gdef or \xdef is
+	  used.) For a user defined command to be visible both outside
+	  and inside RL mode, define it in LR mode and announce it to the
+	  ArabTeX command processor by \allowarab.
+
+	- the new commands \shadda, \madda, \sukun in Arabic mode and the
+	  commands \raphe, \dagesh, \mappiq in Hebrew mode will place the
+	  corresponding diacritic on the preceding letter. In Hebrew mode
+	  \maqqef will produce a connector, \abbr an abbreviation mark. 
+
+	- A single hyphen will be invisible in the RL writing, but will 
+	  show up in the transcription; the adjacent letters will always 
+	  assume the connecting form, if it exists, even at the beginning
+	  or the end of a word.
+
+	- any paragraph containing \RL{} insertions will now have uniform 
+	  baselines. The users might have to adjust \baselinestretch.
+
+	- RL insertions now also work for encodings like MacOS Arabic and
+	  MacOS Hebrew that provide an RL space.
+
+	Installation:
+
+	- download "apatch.sty" 
+
+--------------------------------------------------------------------------
+18.03.2000: Version 3.09d
+
+	Fixes:
+
+	- the transcription did not work correctly within a LaTeX tabbing
+	  environment since this environment mungles the accent commands. 
+	  (We consider this a mis-feature in LaTeX!)
+
+	Installation:
+
+	- download "apatch.sty" 
+
+--------------------------------------------------------------------------
+19.10.1999: Version 3.09c
+
+	Fixes:
+
+	- "\cap" for capitalisation of the transcription now works also
+	  within section titles and in the table of contents.
+
+	Installation:
+
+	- download "apatch.sty" 
+
+--------------------------------------------------------------------------
+30.07.1999: Version 3.09b
+
+	Note: version 3.09a did not work.
+
+	Fixes:
+
+	- In the Hebrew mode, "maqqef" now works with all fonts.
+
+	Installation:
+
+	- download "hepatch.sty" 
+
+--------------------------------------------------------------------------
+17.07.1999: Version 3.09
+
+	Status:
+        
+        - This is a new minor version. All existing patches have been 
+          merged into the respective macro files. To install it, load
+	  and replace all macros in the subdirectory "TEXINPUT"; there
+	  are some new files, and some have been extensively rewritten!
+	  The functionality is supposed to be unchanged.
+
+	- We recommend installing of the fonts "xnash14" and "xnash14bf" 
+	  to obtain better quality of output. These fonts are now the 
+	  default; to revert to the old font versions use the command 
+	  "\oldarabfont".
+
+	New features:
+
+	- Many ArabTeX commands that used to be fragile in connection 
+	  with LaTeX are now robust.
+
+	- Within the LaTeX document classes "arabart", "arabrep", and 
+	  "arabbook" nearly all LaTeX environments are allowed also 
+	  within Arabic mode.
+
+	Recommendations:
+
+	- When typesetting Roman text with Arabic or Hebrew insertions, a
+	  better result can usually be obtained by typesetting on a grid;
+	  this can be accomplished by resetting the parameters \lineskip 
+	  to 0pt, \lineskiplimit to -30pt, and redefining \baselinestretch
+	  to 1.2 (or \baselineskip to 1.2\baselineskip, with Plain TeX).
+	  You may want to experiment with the factor quoted as "1.2".
+
+        Bugs:
+
+	- Presently none are known.
+
+	Installation:
+
+	- Download the contents of "TEXINPUT", and in case of any font
+	  problems also "MFINPUT".
+
+	- In case of problems with old DVI files regenerate them; or else
+	  download "arabsymb.mf" and regenerate the font "nash14".
+
+==========================================================================
+24.06.99: Version 3.08i
+
+	New Features:
+
+	- there is an "abstract" environment in the Arabic classes.
+	- mathematical displays bracketed by $$ $$ may be nested within an
+	  Arabic environment. Bracketing by $ $ was always there.
+	- The LaTeX commands \( \), \[ \], and also the LaTeX environments 
+	  "math", "displaymath", "equation", "eqnarray", and "eqnarray*" 
+	  are supported within Arabic environments, also with the options 
+	  "leqno" and "fleqn", if LaTeX is used.
+
+	Upcoming Features:
+
+	- a new edition of the User manual is in preparation.
+
+	Installation:
+
+	- download "apatch.sty", if you are interested.
+
+--------------------------------------------------------------------------
+10.06.99: Version 3.08h
+
+	Fixes:
+
+	- there were a few glitches in Pashto and Kashmiri encoding
+	- there were a few glitches in Pashto transliteration
+	- the command \settrans #1 is allowed within Arabic mode
+	- the command \tracingmacros #1 is allowed within Arabic mode
+
+	New Features:
+
+	- the environments "RLtext", "arabtext", and "hebtext" are now 
+	  equivalent 
+	- the braces \< and > are admissible within Arabic mode but have
+	  no effect
+	- the command \addcontentsline also works in the Arabic classes
+	  "arabrep", "arabart", "arabbook"
+	- the title of the table of contents is context dependent in the
+	  Arabic document classes
+
+	Upcoming Features:
+
+	- a new edition of the User manual is in preparation
+	- there is yet no "abstract" environment in the Arabic classes
+
+	Installation:
+
+	- download "apatch.sty" 
+
+--------------------------------------------------------------------------
+16.05.99: Version 3.08g2
+
+	Fixes:
+
+	- In the transcription mode, capitalization (see version 3.08) can 
+	  now also be used within a word, even several times.
+	- In the transcription, the positioning of the marks for Hamza and 
+	  Ayn was slightly improved.
+	- in Urdu mode, Ta' marbuta works again.	
+	- in BHS mode, Shin works again.
+	- in the Arabic document classes, some spurious font switches were 
+	  fixed.
+
+	New Features:
+
+	- There is a new language mode: Kashmiri. See "kashmiri.tex" for a
+	  short description.
+
+	Installation:
+
+	- download "apatch.sty" (and "kashmiri.sty", "kashmiri.tex" and/or
+	  "bhs.sty" if required)
+
+--------------------------------------------------------------------------
+10.05.99: Version 3.08f
+
+	Fixes:
+
+	- In the transcription mode, capitalization (see version 3.08) can 
+	  now also be used in the English (Encyclopedia of Islam) style.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+22.04.99: Version 3.08e
+
+	Fixes:
+
+	- We found some grave errors in the Urdu mode; it seems to work
+	  again now. Observe that there are several forms of "heh":
+	  - the two-eyed form for aspiration: code <h>
+	  - the wavy form for other cases: code <,h>
+	  - the final closed form: code <H>
+	  For the Name of God, use <H> in Urdu mode, or switch to \setarab
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+10.04.99: Version 3.08d
+
+	Fixes:
+
+	- For use with EDMAC, the file "aedpatch.sty" has been updated to
+	  fix some spurious spaces.
+	- For use with Hebrew, the files "hclassic.mf" and "hcaption.mf"
+	  have been slightly adjusted, and "hcbase_pc.mf" was renamed to
+	  "hcbase.mf" to fix an incompatibility in some operating systems
+	  preventing automatic font generation; the fonts themselves are 
+	  unchanged.
+
+	Installation:
+
+	- download the indicated files, if you need them; otherwise you
+	  may safely ignore this version.
+
+	Note: the version number of ArabTeX (in the LOG) is still 3.08c !
+
+--------------------------------------------------------------------------
+25.03.99: Version 3.08c
+
+	Fixes:
+
+	- Most of the LaTeX renumbering commands introduced in the last
+	  version (3.08b) do NOT work and have been blocked off. LaTeX 
+	  does not allow font changes within numbering commands, since
+	  these must be fully expandable within TeX's mouth.
+
+	- "arabrep.cls" has been updated again.
+
+	Old Features:
+
+	- There is only one new numbering command, and it only can be
+	  used in the context of the Arabic document classes, also as a 
+	  \pagenumbering style, and for renaming e.g. \thesection:
+
+		  \abj{ctr}     "abjad" notation for counters.
+
+	- \pagenumbering{abj} may also be written \pagenumbering{abjad}.
+
+	- in the Arabic document classes, put \tableofcontents within 
+	  an Arabic environment.
+
+	Installation:
+
+	- download "apatch.sty", and also "arabrep.cls" when required. 
+	  The latter file is not contained within the packed versions!
+
+--------------------------------------------------------------------------
+21.03.99: Version 3.08b1
+
+	New Features:
+
+	- For LaTeX there are additional numbering commands for counters
+	  (cf. Section C.8.4 "Numbering" in the LaTeX manual:)
+
+	  \arab{ctr}    "Arabic" Arabic numerals
+	  \Arab{ctr}    "Arabic" Arabic numerals, bold
+	  \abj{ctr}     "abjad" notation
+	  \Abj{ctr}     "abjad" notation, bold
+	  \Arabic{ctr}  "European" Arabic numerals, bold (extension!)
+
+	- There are also the corresponding \pagenumbering styles, e.g.:
+	  \pagenumbering{Abj} for bold "abjad" page numbers.
+
+	Fixes:
+
+	- Some of these commands were present in 3.07g but did not work.
+
+	- isiri.sty had become incompatible and has been updated.
+
+	- arabrep.cls had become incompatible and has been updated.
+
+	Hints:
+
+	- if your MFINPUT subdirectory of ArabTeX should contain a file 
+	  "asymbols.mf", delete it. It is obsolete and may be in conflict 
+	  with AMSTeX and/or AMSLaTeX.
+
+	Installation:
+
+	- download "apatch.sty", and "isiri.sty" or "arabrep.cls" when
+ 	  required. The latter two files are not contained within the 
+	  packed versions!
+
+--------------------------------------------------------------------------
+13.02.99: Version 3.08a
+
+	Fixes:
+
+	- The transliteration of "Quran alif" was in error.
+
+	Installation:
+
+	- download "apatch.sty" if required.
+
+--------------------------------------------------------------------------
+01.12.98: Version 3.08
+
+	Status:
+        
+        - This is a new minor version. All existing patches have been 
+          merged into the respective macro files. To install it, load
+	  and replace all macros in the subdirectory "TEXINPUT"; there
+	  are some new files, and some have been extensively rewritten!
+	  The functionality is supposed to be unchanged.
+
+	- We recommend installing of the fonts "xnash14" and "xnash14bf" 
+	  (and activating them) to obtain better quality of output.
+
+	- ArabTeX is believed to be fully compatible with Babel; however,
+	  it does not use its features. Please report incompatibilities.
+
+	- BHS mode is now also compatible with "german.sty".
+
+	New features:
+
+	- There are two new experimental fonts "xnash14" and "xnash14bf" 
+	  which overcome some limitations inherent in the previously
+	  available versions "nash14" and "nash14bf". These fonts can be
+	  activated (if installed) by the new command "\newarabfont" and 
+	  can be deactivated again by "\oldarabfont"; these commands 
+	  change the meaning of the commands "\setnash" and "\setnashbf" 
+	  to switch to the new versions, if required, and back. 
+
+	- In transcription mode, single characters may be capitalized by
+	  prefixing the command \cap in the input; the Arabic writing is
+	  not affected.
+	  - with ' (hamza) and ` (`ayn) the next visible letter will be
+	    capitalized.
+	  - this feature also works within words, after prefixes and after
+	    the article, even if written in the assimilated form.
+
+	- In transcription mode, the representations of "hamza" and "ayin"
+          have been changed slightly; this might influence line breaks.
+
+	Recommendations:
+
+	- When typesetting Roman text with Arabic or Hebrew insertions, a
+	  better result can usually be obtained by typesetting on a grid;
+	  this can be accomplished by resetting the parameters \lineskip 
+	  to 0pt, \lineskiplimit to -30pt, and redefining \baselinestretch
+	  to 1.2 (or \baselineskip to 1.2\baselineskip, with Plain TeX).
+	  You may want to experiment with the factor quoted as "1.2".
+
+        Bugs:
+
+	- Presently none are known.
+
+	Installation:
+
+	- Download the contents of "TEXINPUT".
+
+	- In case of problems with old DVI files regenerate them; or else
+	  download "arabsymb.mf" and regenerate the font "nash14".
+
+==========================================================================
+21.10.98: Version 3.07k
+
+	Fixes:
+
+	- A very obscure internal error has been corrected.
+
+	- In Hebrew mode, the positioning of dagesh and also of some vowel 
+	  points has been improved.
+	- In Hebrew mode, "meteg" (and silluq) now also works with cholem.
+	- In Hebrew mode, there now is a small space before sof pasuq.
+
+	Installation:
+
+	- download "apatch.sty" and "hepatch.sty".
+
+--------------------------------------------------------------------------
+18.10.98: Version 3.07j
+
+	Fixes:
+
+	- In Hebrew mode, patach furtivum after cholem works now.
+	- In Hebrew verbatim encodings (HED and ISO 8859-8), neither two
+	  identical letters nor a medial letter and its final form will be
+	  any more combined (erroneously) to a letter with dagesh.
+
+	Open Problems:
+
+	- On some servers, the font "nash14" seems to be broken. This does 
+	  NOT concern current ArabTeX runs, but displaying older DVI files
+	  might be affected in that some characters, e.g., <^gim>, may be
+	  missing. 
+	- This will be fixed in the next minor version 3.08; for the time
+	  being there are two workarounds:
+	  - Reprocess the ArabTeX input file; the display will be correct.
+	  - If this is not possible or not wanted, download the ASCII file
+	    "arabsymb.mf" and regenerate the font as required.
+	- The font "nash14bf" might have the same problem; the workarounds
+	  apply also.
+	- Neither new ArabTeX runs nor the font "xnsh14" are affected.
+
+	Hints:
+
+	- With Hebrew and LaTeX, the LaTeX2e version should be 1996/12/01
+	  or newer; older versions have been reported to produce obscure
+	  errors. We can no more check this.
+
+	Installation:
+
+	- download "hepatch.sty", and "arabsymb.mf" if required.
+
+--------------------------------------------------------------------------
+30.09.98: Version 3.07i
+
+	Fixes:
+
+	- ArabTeX and CJK are now fully compatible. The loading sequence 
+	  of ArabTeX and CJK is arbitrary.
+	- defective notation of fatha, kasra, damma works again.
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+17.09.98: Version 3.07h
+
+	Fixes:
+
+	- The position of some more diacritic dots has been corrected.
+	- several ligatures have been improved.
+
+	New Features:
+
+	- ArabTeX is now compatible with the package "fnpara.sty" IF this
+	  package is loaded BEFORE "arabtex.sty" so that ArabTeX can find
+	  out about its presence.
+	- ArabTeX is now compatible with the package "CJK.sty" IF this
+	  package is loaded BEFORE "arabtex.sty" so that ArabTeX can find
+	  out about its presence.
+
+	Special Features:
+
+	- for users of "tustep.sty" (if any :-):
+	  ArabTeX is compatible again.
+
+	Known bugs:
+
+	- There is a problem concerning double consonants in Hebrew, only
+	  in the HED encoding.
+		
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+28.08.98: Version 3.07g
+
+	Fixes:
+
+	- The position of some diacritic dots has been corrected.
+
+	New Features:
+
+	- For LaTeX there are additional styles for page numbers:
+	  \pagenumbering{arab}  will produce *real* Arabic page numbers
+	  \pagenumbering{Arab}  will produce bold Arabic page numbers
+	  \pagenumbering{abjad} will produce "abjad" page numbers
+		
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+06.08.98: Version 3.07f
+
+	Fixes:
+
+	- there was a small problem transliterating emphasized words.
+
+	- separating words by || did not work.
+
+	- the character for final "ny" in Malay was wrong.
+	- the character for final "h"  in Malay was wrong.
+
+	New Features:
+
+	- Arabic and Persian words may be separated by \, (small space)
+
+	Installation:
+
+	- download "apatch.sty".
+
+--------------------------------------------------------------------------
+31.07.98: Version 3.07e
+
+	Fixes:
+
+	- there were spurious characters in Hebrew output.
+
+	Installation:
+
+	- download "apatch.sty" and "hepatch.sty".
+
+--------------------------------------------------------------------------
+28.07.98: Version 3.07d
+
+	New Features:
+
+	- there is a new directory "psfonts" that contains the Postscript 
+	  Type 1 versions of the fonts "xnsh14" and "xnsh14bf". The files
+	  are called "xnsh14.pfb", "xnsh14bf.pfb", and "arabtex.map". The
+	  fonts use the original TFM files. They have been tested with
+	  dvips 5.76, ghostscript 5.10, a LaserJet 4+, and Acrobat Reader.
+
+	  These font files have been built and donated by Taco Hoekwater
+	  (taco.hoekwater@wkap.nl). Three cheers on him!
+
+	Old Features:
+
+	- the Arabic commands \lq (opening quotes), \rq (closing quotes), 
+	  and \,(small non-breaking space) have been present for some time; 
+	  we forgot to document this fact.
+
+	Installation:
+
+	- download and install the contents of the directory "psfonts"
+	  wherever appropriate on your system; this is system dependent.
+
+	- "apatch.sty" was changed, but need not be downloaded except on
+	  special advice.
+
+--------------------------------------------------------------------------
+27.07.98: Version 3.07c
+
+	Fixes:
+
+	- in Farsi mode ,a and ,e work again.
+
+	Installation:
+
+	- download "apatch.sty" and "hepatch.sty".
+
+--------------------------------------------------------------------------
+23.07.98: Version 3.07b
+
+	Fixes:
+
+	- The letter SIN in Hebrew mode was broken.
+	- The Sindhi abbreviations look better now.
+
+	Installation:
+
+	- download "apatch.sty" and "hepatch.sty".
+
+--------------------------------------------------------------------------
+20.07.98: Version 3.07a
+
+	Fixes:
+
+	- After installing the version 3.07 on our local server we noticed
+	  an incompatibility with LaTeX2e; also by some new strategies the
+	  patching mechanism had been broken. To fix these effects we had
+	  to modify several source modules; we also found, and repaired,
+	  several minor bugs. This is in fact nearly a new minor version;
+	  on installation see below.
+
+	- To our surprise we found, and repaired, a Y2000 problem.
+
+	Changes:
+
+	- Switch to the new font "xnsh14" by the command "\newarabfont"; 
+	  use "\oldarabfont" for switching back. The previous command 
+	  "\newfont" collides with a command in LaTeX2e.
+
+	Extensions:
+
+	- The font "xnsh14" contains all character fragments necessary to
+	  build the characters in the extended Arabic segment of Unicode.
+	  There is as yet no reading module for Unicode or UTF-8 encoding;
+	  the present version of "utf8.sty" is still inconsistent.
+
+	- There are new commands "\MIN" and "\IN" for two frequently used
+	  abbreviations in Sindhi.
+
+	- The file "atrans.sty" is loaded automatically.
+
+	- The file "etrans.sty" has been deleted. Use "\settrans{english}"
+
+	- The file "nashbf.sty" has been deleted. Use "\setnashbf"
+
+	Installation:
+
+	- If you already have loaded version 3.07, unpack and replace the 
+	  macro files in "tex307a.zip"; otherwise do a complete install as
+	  indicated below for version 3.07 first.
+
+--------------------------------------------------------------------------
+16.07.98: Version 3.07
+
+	Status:
+        
+        - This is a new minor version. All existing patches have been 
+          merged into the respective macro files. To install it, load
+	  and replace all macros in the subdirectory "TEXINPUT"; there
+	  are several new files!
+
+	- We have rewritten substantial parts of the package in order to
+	  increase stability and also to ease maintenance and extensions;
+	  the modularisation is now different, and some of the internal 
+	  interfaces have been modified. This need not concern the user;
+	  the functionality has not been changed, and apparently nothing 
+	  was broken during the transition to the new structure.
+	- The main reason for the changes was, apart from improving the
+	  overall structure, to prepare for the handling of the full 
+	  Arabic segment of Unicode. This goal has not yet been attained,
+	  but it required substantial changes in the internal structures.
+	- The positioning of diacritical marks has on the average been 
+	  much improved. There are a few exceptions; affected users that 
+	  need the maximum quality available could try their luck with 
+	  the new fonts "xnash14" and "xnash14bf" (see below). Otherwise 
+	  the user interface has not changed.
+
+	Additions:
+
+	- There are two new experimental fonts "xnash14" and "xnash14bf" 
+	  which overcome some limitations inherent in the previously
+	  available versions "nash14" and "nash14bf". These fonts can be
+	  activated (if installed) by the new command "\newfont" and can
+	  be deactivated again by "\oldfont"; these commands change the
+	  meaning of the commands "\setnash" and "\setnashbf" to switch 
+	  to the new versions, if required, and back. Normal users not 
+	  requiring the new versions can safely ignore this feature; they 
+	  need not now install these fonts.
+
+        Bugs:
+
+	- Presently none are known.
+
+==========================================================================
+24.03.98: Version 3.06h
+
+	Fixes:
+        
+        - some ligatures had been broken by the Sindhi mode; these have 
+          been fixed.
+        - kashida before alif maqsura works again.
+
+        Problems:
+
+        - verses produced via "verses.sty" will ruin the word spacing if
+          they occur within an Arabic paragraph inside a footnote, and
+          possibly in other circumstances. There is a workaround: put the 
+	  command "\setspace{4.3pt plus 0.001fil}" after the last verse.
+        
+--------------------------------------------------------------------------
+11.03.98: Version 3.06g3
+
+	Fixes:
+        
+        - bi-directional linebreaking has been improved; there were some
+          spurious blank spaces.
+        
+        New features:
+
+        - ArabTeX is now believed to be compatible with the BABEL system.
+          We cannot test this locally; reports are welcome. We acknowledge
+          useful hints by Olaf Kummer and Johannes Braams.
+
+        - there is now less spurious information in the LOG file.
+
+        - there are some preparations for processing the UTF-8 encoding
+          and the extended Arabic character set provided in UNICODE. These
+          features cannot yet be accessed from the user level. 
+
+--------------------------------------------------------------------------
+26.01.98: Version 3.06f
+
+	Fixes:
+        
+        - the special handling of final "mim" has been restricted to the
+          Sindhi mode.
+        - the positioning of diacritics has been improved.
+
+        - Hebrew and EDMAC users: the "\if@lodia effect" has been fixed.
+
+        Note to users of EDMAC:
+
+        - download the new version 3.06a of 22.01.98 of "aedpatch.sty".
+          This fixes the format of footnote paragraphs. (This correction
+          cannot technically be handled by a patch within "apatch.sty").
+
+        Note to users of the Sindhi mode:
+
+        - please download the fonts again to get all characters.
+
+--------------------------------------------------------------------------
+15.12.97: Version 3.06e
+
+	Fixes:
+        
+        - "alif maqsura" and isolated "hamza" take explicit vowel marks
+          and also "tanwin" if required.
+        - final "mim" in the Urdu mode again has the long shape. In the
+          Sindhi mode a short form is simulated by a kashida if needed.
+        - in Urdu the encoding <,d> produces "dal" with a "toi" accent, 
+          and initial <U> becomes "alif+damma" and "waw" as required.
+        - some transcription errors in Urdu mode have been fixed.
+        - some ligatures in Sindhi mode are improved.
+
+        Problems:
+
+        - medial "wavy hah" in Urdu has a mark below it (controversial).
+        
+--------------------------------------------------------------------------
+27.11.97: Version 3.06d
+
+	Fixes:
+
+        - the input letter <A> denotes alif also in initial position and 
+          after a prefix separated by a hyphen. It may take short vowels, 
+          and also sukun (only if quoted). This feature may be useful when 
+          copying corrupted texts.
+        - the "lam" of the article carries "sukun" also if the following
+          word starts with "`ayin", like with the other "moon letters".
+        - the encodings <I> and <iy> are equivalent; also <Iy> and <iyy>,
+          <U> and <uw>, <Uw> and <uww>.
+        - <"> and <""> at the beginning of a word generate alif with wasla
+          even after a prefix.
+        - a prefix before hyphen no more needs a short vowel to work.
+        - the invisible character <|> is legal in the initial or the final 
+          position (but makes no sense there). It never takes a vowel mark.
+
+        New features:
+
+        - the inflection endings <-a>, <-i>, <-u>, <-aN>, <-iN>, <-uN> may 
+          be separated by a hyphen, also if written <-aNA>. Otherwise the
+          character after a hyphen will be considered to start a new word, 
+          but may be joined to the prefix if possible (e.g., in <al-i-ismu>
+          where <-i-> is a connection vowel producing "kasra", and <ismu> 
+          starts with "alif" "wasla" combined with "lam" into "lam-alif"
+          carrying both "wasla" and "kasra".)
+        - if a ligature is separated by <|> or <--> (kashida), any vowel 
+          mark present will migrate to the appropriate character glyph. The
+          same happens with the implicit vowel mark that is produced by the
+          long vowels in the vowelizing modes.
+        - a comma <,> between digits will no more break the digit sequence 
+          but will be recognized as a decimal separator. A hyphen <-> and a
+          solidus </> will also not break a digit sequence. A "number" must
+          still begin with a digit to be recognized.
+
+        Problems:
+
+        - the Urdu mode is still broken.
+        - for the new language modes (see 3.06) there is yet no (correct)
+          transcription.
+
+        Hints:
+
+        - users of the Sindhi mode should regenerate the fonts otherwise
+          the "wide kaf" may be missing.
+
+--------------------------------------------------------------------------
+23.11.97: Version 3.06c
+
+	Fixes:
+
+        - final "alif maqsura" carries no sukun.
+        - in connection with EDMAC, an Arabic lemma bearing a footnote is
+          spread out by the same factor as the rest of the line, (e.g. in 
+          verses) even if it contains spaces.
+        - Arabic footnotes with EDMAC no more produce overfull boxes, and
+          will no more let the page overflow.
+
+        Known bugs:
+
+        - prefixes separated by a hyphen must presently be given in the 
+          fully vowelized input form, otherwise the writing is wrong.
+        - The Urdu mode is broken; also its transcription is wrong.
+
+--------------------------------------------------------------------------
+25.09.97: Version 3.06b
+
+	Fixes:
+
+        - in Kurdish mode, kashida and breaking of ligatures work now
+
+--------------------------------------------------------------------------
+18.09.97: Version 3.06a
+
+	Fixes:
+
+        - there were sometimes spurious newlines if the transliteration 
+          was generated via an Arabic insertion
+        - ligatures can again be broken by inserting a bar |
+        - the ligatures family lam-gim, ta-gim etc. works again
+        - there were spurious spaces in bidirectional text under EDMAC
+
+--------------------------------------------------------------------------
+06.08.97: Version 3.06
+
+	Status:
+        
+        - This is a new minor version. All existing patches have been 
+          merged into the respective macro files.
+        - This doc file has been trimmed down; history information up to
+          version 3.00 has been moved to "changes2.txt".
+        - Several file names of the mini-documentation have been changed 
+          to lower case and carry the suffix ".txt", for the benefit of
+          certain web-browsers. See also the file "arabtex.htm".
+
+	Fixes:
+
+        - some minor bugs have been fixed that had introduced spurious
+          spaces or newlines when switching between Arabic and Hebrew.
+        - "kashida" (--) between a consonant and a (long or short) vowel 
+          will no more split the vowel indicator from the consonant glyph.
+
+	Additions:
+
+        - the new command "\setsindhi" will switch to a language mode for
+          Sindhi in an extended Arabic script. For details, process and
+          read the file "sindhi.tex".
+        - the new command "\setuighur" will switch to a language mode for
+          Uighuric in an extended Arabic script. For details, process and
+          read the file "uighur.tex".
+        - the new command "\setmalay" will switch to a language mode for
+          Old Malay (Jawi) in an extended Arabic script. For details, 
+          process and read the file "malay.tex".
+        - These new language modes are strictly experimental and just a
+          starting point. As the author speaks none of these languages,         
+          feedback and comments by interested users are badly needed.
+
+==========================================================================
+19.06.97: Version 3.05h
+
+	Fixes:
+
+	- some ligatures with "kaf" have been improved.
+        - "quoting" of "wasla" works in all vowel modes.
+        - "kashida" works also before long vowels.
+        - breaking of ligatures works correctly also with long vowels
+          and in combination with "quoting".
+                
+--------------------------------------------------------------------------
+12.06.97: Version 3.05g
+
+	Fixes:
+                
+        - a bug fix for the new Sindhi module has been introduced (this
+          mode is in alpha status and not yet publicly available; if you
+          are interested in testing it: enquire)
+                
+--------------------------------------------------------------------------
+10.06.97: Version 3.05f
+
+	Fixes:
+        
+        - a spurious error message about a "missing character" has been
+          eliminated.
+        - "\settrans{english}" switches again to the transliteration
+          conventions of the Library of Congress.
+        - ArabTeX will no more overwrite a user macro "\x".
+
+	Additions:
+
+        - the new command "\arabfootnotes" makes LaTeX footnotes run from
+          right to left, and their text is considered Arabic by default. 
+          There is as yet no command to switch back to the default mode
+          (left to right, Roman). With Plain TeX the new command is not
+          yet available.
+
+--------------------------------------------------------------------------
+28.05.97: Version 3.05e
+
+	Fixes:
+
+        - <U> in the Urdu mode works again.
+        - some errors in the transliteration have been corrected.
+        - some ligatures have been corrected.
+
+--------------------------------------------------------------------------
+22.05.97: Version 3.05d
+
+	Fixes:
+
+        - \tabular structures within the Arabic document classes are now
+          correctly aligned.
+        - a few ligatures have been improved.
+        - some internal routines have been updated preparing for some
+          planned extensions. No visible effect.
+        - a new test for version clashes has been introduced.
+
+--------------------------------------------------------------------------
+14.05.97: Version 3.05c
+
+	Fixes:  The patching routine seems to work again.
+
+--------------------------------------------------------------------------
+14.05.97: Version 3.05b
+
+        Problems:
+
+        - LaTeX is too clever and interferes with the patching routine.
+          Therefore the existing patches for Hebrew have been moved to
+          the file "hepatch.sty". Arabic mode is presently not affected.
+
+--------------------------------------------------------------------------
+13.05.97: Version 3.05a
+
+	Fixes:
+
+        - in Hebrew mode when using HED encoding, Thet and Maqqef did
+          not work correctly.
+        - in EDMAC mode with Plain TeX the list of modules was missing.
+        - some internal interfaces have been updated. This has no effect
+          on the external operation but helps stability.
+
+--------------------------------------------------------------------------
+07.05.97: Version 3.05
+
+	Status:
+
+	- The internal structure has changed extensively; this need not
+	  trouble the user.
+        - Warning: NEVER MIX old and new files; they may be incompatible!
+
+	Fixes:
+
+	- A number of minor and some major bugs have been fixed.
+
+	Modifications:
+
+	- With EDMAC, the first argument of \text need not fit on the
+          current line. All arguments are assumed to be Roman text; they
+          may contain (or consist of) \<Arabic insertions>.
+
+	Additions:
+
+	- The ISIRI 3342 encoding is supported; load the reading module 
+          by \input isiri.sty or \usepackage {isiri}. Activate it by the
+	  command \setcode {isiri}.
+        - Hebrew support has been expanded; read the file "hebrew.305".
+          ArabTeX will try to use fonts locally available, irrespective
+          of their encoding.
+        - the file "verses.sty" supports typesetting poetry in two blocks. 
+          For a description, see the file itself.
+	- See also the comments on Version 3.04 below.
+
+	Hints:
+
+	- If you want to process the manual "arabdoc.tex" under LaTeX 2e
+          and get error messages, delete the *.aux, *.toc, and *.lot file
+          and try again. These files depend on the LaTeX version used.
+        - see also version 3.04.
+
+	Complaints:
+
+	- There is STILL no Nasta`liq font.
+        - the user manual "arabdoc.tex" is outdated.
+
+	Known bugs:
+
+	- None as yet.
+
+	How to move from earlier minor versions to version 3.05:
+
+        - replace the contents of "TEXINPUT" and "REPORT".
+	- read and/or print "README.305"
+	- if interested, process the user manual "arabdoc.tex"; see the
+	  hints above.
+
+==========================================================================
+05.10.96: Version 3.04e
+
+	Fixes:
+
+	- removed many small bugs in Persian (thanks, Ivan Dershzanski!)
+	- initial <alif> coded <A> in verbatim mode may carry a vowel
+	- <yah> without dots coded <Y> acts like a consonant except at the
+	  end of a word
+	- <aNy> denotes <fathatan> on <alif maqsura> erroneously written
+	  with dots
+
+	Modifications:
+
+	- removed quoted hamza ("') from verbatim mode (was ambiguous!)
+
+--------------------------------------------------------------------------
+18.05.96: Version 3.04d
+10.05.96: Version 3.04c (not distributed)
+
+	Fixes:
+
+	- in "arabart.cls" (twocolumn) the right column is output first 
+	  to get correct numbering of sectional units
+	- corrected the vertical position of "marginpar"
+	- a space is assumed after a new command defined via \allowarab
+
+--------------------------------------------------------------------------
+08.04.96: Version 3.04b
+
+	Fixes:
+
+	- \footnote works again within an Arabic environment
+
+	Known bugs:
+
+	- \footnote is incompatible with "arabart.cls"
+
+--------------------------------------------------------------------------
+21.03.96: Version 3.04a
+
+	Fixes:
+
+	- \baselineskip works correctly with EDMAC
+	- \emphasize puts the overbar at uniform height in \novocalize
+
+	Necessary action:
+
+	If required, download the ASCII file "apatch.sty" again. This
+	is a patch for version 3.04!
+
+	See also version 3.04 below.
+
+--------------------------------------------------------------------------
+19.03.96: Version 3.04
+
+	Status:
+
+	- ArabTeX now cooperates well with LaTeX 2e (June 1995 and later)
+	  and also still with Plain TeX and LaTeX 2.09. The configuration 
+	  is determined automatically. With LaTeX 2e ArabTeX and all its
+	  suboptions are packages.
+	- The internal structure has changed extensively; this need not
+	  trouble the user.
+
+	Fixes:
+
+	- \baselineskup, \parskip, \baselinestretch now work correctly
+	  in the Arabic modes.
+	- The TeX special characters \#, \$, \%, \& can now be used (they
+	  just had been forgotten).
+	- A number of minor bugs have been fixed.
+
+	Modifications:
+
+	- Digits and punctuation have been raised to the writing line.
+	  We feel this looks better.
+	- The handling of numbers (= digit sequences) has been improved.
+	  Within a number, the decimal separator is the comma.
+	- Bidirectional line-breaking has again been much improved. The 
+	  command \goodpar still works but is rarely required.
+	- The option "abidir" is no more necessary.
+	- The option "nashbf" is no more necessary.
+	- The option "abjad"  is no more necessary.
+
+	Additions:
+
+	- User defined macros can be made known to ArabTeX by the
+	  declaration \allowarab {\macro_name} (previous to their use
+	  within an Arabic environment). The replacement text after
+	  substituting the parameters must be legal ArabTeX input and
+	  may contain further macro calls. The macro must be previously 
+	  defined via \newcommand or \def.
+
+	- The Arabic Windows encoding is supported; load the reading
+	  module by \input arabwin.sty, \usepackage {arabwin} or by
+	  adding the LaTeX 2.09 option "arabwin". Activate it by the
+	  command \setcode {arabwin}.
+
+	- There are some additional transliteration modes for Persian
+	  and Urdu; in case of interest: inquire directly.
+
+	- The package "raw.sty" defines the command \setraw to switch 
+	  off all special processing for numbers, special characters
+	  and parentheses. This may be helpful for OCR work. Switch
+	  back by \unsetraw.
+
+	- The (experimental) LaTeX 2e class file "arabart.cls" provides
+	  an Arabic article format. Within Arabic environments a number
+	  of LaTeX commands are enabled: sectioning, list environments,
+	  page headers and footers, table of contents, footnotes, quote,
+	  quotation, verse, center, twocolumn. All text arguments are
+	  considered to be Arabic text in the chosen encoding. Some of
+	  the LaTeX environments are missing, e.g., tabular and tabbing,
+	  minipages, pictures. They can usually be simulated by leaving
+	  the Arabic environment and reverting to the standard LaTeX
+	  commands.
+
+	  We are working on extensions to this format; suggestions and
+	  bug reports are welcome. We do not intend to supply a version 
+	  for LaTeX 2.09.
+
+	- See also the comments on Version 3.03 below.
+	- The notes in README.303 still apply.
+
+	Hints:
+
+	- Uniform baselines may be obtained by setting \lineskiplimit
+	  to -\baselineskip and adjusting \baselinestretch to 1.4 (with
+	  LaTeX) or \baselineskip to 1.4\baselineskip with Plain TeX.
+	  Some experimenting is advised.
+	- If you want to process the manual "arabdoc.tex" under LaTeX 2e
+	  first move the file "arabimax.tex" to the REPORT subdirectory.
+	  You will get some error messages on the first run. Forget them 
+	  and process the file again; LaTeX 2e is to blame. Warning: the 
+	  report is not quite up to date.
+	- Put any local macro definitions into the LaTeX preamble or else 
+	  precede them by \setnone; thus the < sign can be used in the 
+	  normal meaning as a comparison operator. Activate short Arabic
+	  insertions again by \setarab or any other of the commands for
+	  language choice. 
+	- PiCTeX users may use Arabic labels within diagrams if and only 
+	  if these are included in \< and > (NOT < and >).
+	- If you use MlTeX and the output looks broken, note the version
+	  number of MlTeX and inform us.
+
+	Complaints:
+
+	- There is STILL no Nasta`liq font.
+
+	Known bugs:
+
+	- None as yet.
+
+	How to move from earlier minor versions to version 3.04:
+
+	- read and/or print "README.303"
+
+==========================================================================
+04.07.95: Version 3.03e
+
+	Fixes:
+
+	- Final yah before hamza works again
+
+--------------------------------------------------------------------------
+24.05.95: Version 3.03d
+
+	Fixes:
+
+	- After switching to other encodings switching back to the
+	  standard encoding works again.
+	- An empty \RL {} insertion will no more blow the system.
+
+	Problems: 
+
+	- see version 3.03c
+
+--------------------------------------------------------------------------
+02.05.95: Version 3.03c
+
+	Fixes:
+
+	- The METAFONT routines for the fonts "nash14" and "nash14bf" 
+	  used a file "asymbols.mf" that conflicted with the AMS-Fonts.
+	  This file has been renamed to "arabsymb.mf". To use the new
+	  version, download "arabsymb.mf" and "nashbase.mf" from the
+	  subdirectory ARABTEX/MFINPUT and delete "asymbols.mf". This
+	  only concerns users who need to regenerate the fonts locally.
+
+	Problems: 
+
+	- The font "dclassic" used by the Hebrew mode of ArabTeX has on
+	  the archive "noa.huji.ac.il" been replaced by a new version 
+	  that is incompatible to the previous version while keeping the
+	  same name. We are working on a solution to resolve the ensuing
+	  compatibility problems. Users of the previous version are not 
+	  affected.
+
+	Acknowledgment:
+
+	- The routines for building up punctuated Hebrew characters have
+	  profited from macros written by Joel Hoffmann and contained in
+	  his packages "dots.sty" and "hvowel1.sty". We apologize for not
+	  pointing out this fact clearly.
+
+	Necessary action:
+
+	- Normally none, except if indicated above.
+
+--------------------------------------------------------------------------
+24.04.95: Version 3.03b
+
+	Fixes:
+	
+	- The handling of single and double quotes, and of other special
+	  characters, in the ASMO 449 and ISO 8859-6 encodings has been 
+	  improved.
+	- After a punctuation character inside a word (usually an error)
+	  no space will be produced.
+	- <tanwIn> on <'alif maqsUraT> works again.
+	- In \setverb mode, a <harakaT> on <'alif> now works.
+	- In \setverb mode, <A> may be used to produce <'alif>.
+	- The ligature <lm|a> is produced instead of <l|ma>.
+	- <ba'>, <ya'> etc. before <lAm> now have the short form.
+
+	Known bugs in ArabTeX:
+
+	- \begin{arabtext} inside a minipage will produce a spurious
+	  empty line; the reason is unknown.
+
+	Hints:
+
+	- Numbers after quotes will not be recognized as such and thus 
+	  will be reversed; as a workaround, leave a space around the 
+	  digits, e.g., <`` 1234 ''> or use a \nospace command, e.g., 
+	  <`` \nospace 1234 \nospace ''>.
+	  Mind the spaces before the \nospace commands in the example!
+	- With LaTeX2e, load ArabTeX and its suboptions by the command
+	  \usepackage.
+
+--------------------------------------------------------------------------
+28.03.95: Version 3.03a
+
+	Fixes:
+
+	- A workaround for an error in some versions of ML-TeX has
+	  been tentatively introduced. Non-ML-TeX users may safely
+	  ignore this.
+
+--------------------------------------------------------------------------
+10.03.95: Version 3.03
+
+	Fixes:
+
+	- A number of minor bugs have been fixed, nothing dramatic.
+	- The spacing of punctuation has been improved.
+	
+	Modifications:
+
+	- Hebrew vowel points are provided. Hebrew mode now uses the font 
+	  "dclassic". It can be downloaded e.g. from "noa.huji.ac.il". 
+
+	Additions:
+
+	- The Hebrew encoding used in the machine readable version
+	  of BHS is supported. See README.303!
+	- \obeylines and \obeyspaces also work for Arabic text. They
+  	  however must be used in a group that contains the Arabic
+	  text AND this group must be followed by at least one space.
+	- An <Arabic insertion> inside a \verbatim environment will be
+	  typeset in Arabic. Big TeX may be necessary.
+	  An Arabic environment will be typeset verbatim.
+	- \vskip, \hskip, \vspace, \hspace, \newpage, \vfill are legal
+	  in Arabic mode.
+	- A list of the loaded modules is put into the log file.
+
+	Known bugs:
+
+	- None as yet.
+
+	How to move from earlier minor versions to version 3.03:
+
+	- completely replace the contents of the subdirectory TEXINPUT
+	- move the updated files "arabdoc?.tex" from the outermost level 
+	  to the subdirectory "REPORT"
+	- read and/or print "README.303"
+
+==========================================================================
+12.08.94: Version 3.02b
+
+	Fixes:
+	
+	- \fullvocalize mode uses somewhat less TeX main memory than
+	  before but might still overflow; using \newpage explicitly
+	  could help
+	- some ligatures have been improved
+	- spacing has been improved in short insertions when the
+	  transliteration is also generated
+	- in Hebrew mode, HED encoding, double letters work again
+	- explicit spreading works again correctly
+	- <hamza> in rare cases had the wrong carrier
+	- if an Arabic word starts with a vowel, "quoting" toggles 
+	  <wasla> if no vowel is given in the input
+	- bidirectional line-breaking has been much improved. The
+	  command \goodpar is rarely necessary
+
+	Hints:
+
+	- etrans.sty is no more necessary; load atrans.sty 
+	- \settrans{english} switches to the romanization conventions
+	  of the Library of Congress
+
+--------------------------------------------------------------------------
+19.07.94: Version 3.02a
+
+	Fixes:
+
+	- in Arabic, alif maqsura after tanwin works again
+	- in Hebrew, before an apostrophe the medial form is used
+	- in Hebrew, hyphen/maqqef works correctly
+
+	Hints:
+
+	- with Plain TeX (and/or EDMAC) only: load the ASCII file
+	  "apatch.sty" explicitly as the last file!
+
+--------------------------------------------------------------------------
+14.07.94: Version 3.02
+
+	Fixes:
+
+	- some minor bugs have been corrected
+	- the User Manual has been slightly updated, but is otherwise
+	  somewhat out of date.
+
+	Modifications:
+
+	- for storage reasons the transcription module is not loaded
+	  automatically; add the LaTeX option "atrans" if required,
+	  or say "\input atrans.sty".
+
+	Additions:
+
+	- EDMAC 3.00 and EDMAC 3.15 are both supported.
+	- the LaTeX option "abidir" provides the new command \RL {text}
+	  for right-to-left insertions; it is used like <text> which is
+	  still provided, and which should be used wherever possible for 
+	  reasons of efficiency.
+	- the LaTeX option "hebtex" loads the modules for processing text
+	  in Hebrew. Switch to Hebrew by \sethebrew, and back to Arabic
+	  by \setarab. Hebrew text can be coded in the standard ArabTeX
+  	  input notation, or in the encoding used by the editor HED; the
+	  latter coding is activated by \setcode {hed}. The reading module
+	  is supposed to also process texts in "newcode" (not tested!)
+	- For using the Hebrew mode, the font "deadsea" must be available;
+	  it can be downloaded e.g. from "noa.huji.ac.il". Vowels are
+	  presently not provided.
+	- For details see the ASCII file "readme.302".
+
+	Hints:
+
+	- only load the modules really required, or you might have to use 
+	  a Big TeX!
+	
+	Known bugs:
+
+	- None.
+
+	How to move from earlier minor versions to version 3.02:
+
+	- completely replace the contents of the subdirectory TEXINPUT
+	- move the updated files "arabdoc?.tex" from the outermost level 
+	  to the subdirectory "REPORT"
+	- read and/or print "README.302"
+
+==========================================================================
+05.05.94: Version 3.01a
+
+	Fixes:
+
+	- \parskip now has effect also inside Arabic environments.
+
+	Additions:
+
+	- The EDMAC commands \pstart, \pend, \autopar are allowed
+	  inside an Arabic environment, IF properly nested.
+
+--------------------------------------------------------------------------
+28.04.94: Version 3.01
+
+	There has been extensive internal rewriting but the external 
+	effects are minor.
+
+	- \setarab is the language default again. It will no more break
+	  the user's macro definitions IF these are put into the LaTeX
+	  preamble, or before "\input arabtex.sty" when using Plain TeX.
+
+	Fixes:
+
+	- Spaces are normally ignored after allowed control sequences 
+	  inside Arabic text, (if not produced by the command itself.)
+	- The spacing between a final silent <hah> in Persian and the 
+	  next word has been improved.
+
+	- An error in "twoblocks.sty" has been corrected that produced 
+	  a spurious vertical space.
+	- An error in "asmo449.sty" has been corrected that produced 
+	  nonsense from the combination "Gdr" (article with an explicit
+	  <sukUn>) 
+	- In "abjad.sty", the <gIm> for the numeral 3 has no dot.
+
+	Additions:
+
+	- The commands \smallskip, \medskip, \bigskip, \newpage,
+	  \clearpage, \pagebreak, \hskip {glue}, \vskip {glue}, \today
+	  now work inside Arabic text.
+	- there is a new language mode: \setturk for Ottoman.
+	  The input notation has been extended to cover both the standard
+	  and the modern Turkish transliteration.
+	  The documentation remains to be written :-(
+	- there is a new language mode: \setkurdish for Kurdish.
+	  The documentation remains to be written :-(
+	- "" produces an explicit <sukUn> except in \fullvocalize mode
+	  where it deletes a <sukUn> otherwise present. 
+	- The new commands \setarabfont {\nash} or \setarabfont {\nashbf}
+	  supersede \setnash and \setnashbf (which are still supported).
+
+	Known bugs:
+
+	- None.
+
+	Hints:
+
+	- The LaTeX style option "atrans" is redundant.
+	- After changing the input coding, select the language mode and
+	  the vowelization mode anew (this is a feature :-).
+
+	How to move from earlier minor versions to version 3.01:
+
+	- completely replace the contents of the directory TEXINPUT
+	- observe that there is a new file "acmd.sty"
+
+==========================================================================
+07.12.93: Version 3.00b
+
+	Fixes:
+
+	- corrected handling of <tanween fatha> in \setverb mode.
+	- improved error handling for illegal commands.
+	- ligature <geem>-<meem> also in spreading mode.
+
+	Additions:
+
+	- \setspace{rubber_length} changes the default for spaces in 
+	  Arabic text; 3pt plus .5fil is recommended for \spreadbox.
+
+	Known bugs:
+
+	- arguments of boxing commands may not contain insertions.
+	- in ASMO449, the combination Gdr (article with an explicit
+	  sukoon) will produce nonsense.
+
+	Hints:
+	
+	- There is no language default. Do not forget \setarab etc.
+	  or otherwise you might get strange results.
+	- After changing the input coding, select the language and
+	  the vowelization mode anew (this is a feature).
+
+	  These are in the manual but easily overlooked.
+
+--------------------------------------------------------------------------
+26.11.93: Version 3.00a
+
+	Fixes:
+
+	- the <hamza> carrier is now <ya'> the before diphthong <ay>
+
+	Additions:
+
+	- more Qur'anic writing variants provided
+	- \hfil is allowed in Arabic text
+
+--------------------------------------------------------------------------
+20.11.93: Major Version 3.00
+
+	Status:
+
+	- large portions of the code have been rearranged and partly
+	  rewritten
+	- The User Manual has been extensively updated and describes 
+          all (supported) ArabTeX features currently implemented
+	- Version 3.00 seems to be compatible with Version 2 files
+	- NFSS and NFSS2 can be used but are not required
+	- all known bugs have been removed
+	- Version 3.00 still can be run (slowly) on a standard PC XT
+
+	Additions:
+
+	- texts coded in ASMO 449 or ISO 8859-6 can now be processed
+	- several historic writing variants are additionally supported
+	- details of Farsi support are now described in the User Manual
+	- many new commands are valid inside Arabic text; a complete 
+	  list appears in the log file of each ArabTeX run, and also
+	  in the new User Manual
+	- see also versions 2.00 - 2.08 below
+
+==========================================================================
+
+	How to move from version 2.0x, 0 <= x <= 8, to version 3.00:
+
+	- completely replace the contents of the directory TEXINPUT
+	- completely replace the contents of the directory REPORT
+	- process AND READ the new User Manual "arabdoc.tex"
+	- leave the fonts alone
+
+        How to move from version 1 (or none at all) to version 3.00:
+
+        - Do as above; install the fonts "nash14" and "nash14bf" first
+          according to local TeX conventions.
+        - If the font "nash10" is still there, delete it.
+
+==========================================================================
+        For information on older versions see the file "changes2.txt".
+==========================================================================
+    Prof. Klaus Lagally
+    Institut fuer Formale Methoden der Informatik
+    Universitaet Stuttgart
+    Universitaetsstrasse 38
+    D-70569 Stuttgart
+    GERMANY
+
+    lagally@informatik.uni-stuttgart.de
+    FAX: +49 - 711 - 7816 370
+--------------------------------------------------------------------------
+	Copyright (c) 1990 - 2006, Klaus Lagally
+--------------------------------------------------------------------------
+

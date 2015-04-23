@@ -1,0 +1,67 @@
+arabtex.faq                                                    17.11.1993
+                            What ArabTeX is NOT
+                            ===================
+
+From some enquiries following the release of ArabTeX Version 1 we learned 
+there are many possible misconceptions about what ArabTeX can and cannot 
+do. ArabTeX is
+
+- NOT a convenient, simple text system for everyday use. As with TeX and 
+  LaTeX, it needs some practicing to work with it efficiently, and you 
+  have to understand what you are writing. 
+
+- NOT a WYSIWYG system. You need some text editor to produce the ASCII 
+  input file it reads, and you have to format your document off-line in 
+  order to look at its final form. However, the input should be fairly 
+  readable, and you can make a good guess what the output it produces will 
+  look like.
+
+- NOT a preprocessor to produce input for TeX. It will directly extend 
+  your TeX system's capabilities IFF your TeX system can be extended by 
+  loading additional macros and fonts, AND is large enough not to 
+  overflow. 
+
+- NOT a substitute for a calligrapher. A competent human will do a much 
+  better job, as also will a good printing shop. However, we found not all 
+  printing shops are good, and at least outside the arabic world a good 
+  calligrapher is hard to find. 
+
+- NOT an automatic translator between Arabic and any other language. That 
+  possibility is probably still very far off. However, ArabTeX may help 
+  you by observing numerous schematic rules about writing, transliteration 
+  and transcription of Arabic text. 
+
+- NOT using any Artificial Intelligence techniques. The rules it observes 
+  are frozen into its algorithm, and as there are many rules and special 
+  cases, it is complicated (and slow). 
+
+- NOT depending on special hardware and/or a special keyboard. It will run 
+  on any PC or work station in conjunction with a TeX implementation that 
+  is easily extensible and large enough.
+
+- NOT perfect and not free of errors (alas!). We will consider any bug 
+  report and any suggestion for new features and other changes. However, 
+  we cannot promise to fix every bug as our resources (primarily time) are 
+  limited, and we reserve the right to use our own judgment concerning 
+  possible changes. 
+
+- NOT particularly efficient up to now. We concentrated on getting it 
+  running correctly first, and tuning should (and will) come later. There 
+  is ample opportunity for improvements but they could take some time.
+
+- NOT terribly expensive. In fact, it is free for scientific and strictly 
+  private, noncommercial use. For commercial purposes you need a license 
+  agreement; inquire at the author's address.
+
+	     Prof. Klaus Lagally 
+	     Institut fuer Informatik
+	     Universitaet Stuttgart
+	     Breitwiesenstrasse 20-22
+	     D-70565 Stuttgart
+	     GERMANY
+
+	     lagally@informatik.uni-stuttgart.de
+
+--------------------------------------------------------------------------
+	Copyright (c) 1990 - 1993, Klaus Lagally
+--------------------------------------------------------------------------

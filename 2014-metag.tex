@@ -7,7 +7,7 @@
 % latex plos.template
 % latex plos.template
 % dvipdf plos.template
-%
+%!TEX encoding = UTF-8 Unicode
 % % % % % % % % % % % % % % % % % % % % % %
 %
 % -- IMPORTANT NOTE
@@ -20,7 +20,6 @@
 % to minimize problems and delays during our production 
 % process. Please follow the template 
 % whenever possible.
-%
 % % % % % % % % % % % % % % % % % % % % % % % 
 %
 % Once your paper is accepted for publication and enters production, 
@@ -57,7 +56,7 @@
 % IMPORTANT
 % Below are a few tips to help format your equations and other special characters according to our specifications. For more tips to help reduce the possibility of formatting errors during conversion, please see our LaTeX guidelines at http://www.plosone.org/static/latexGuidelines
 %
-% Please be sure to include all portions of an equation in the math environment, and for any superscripts or subscripts also include the base number/text. For example, use $mathrm{mm}^2$ instead of mm$^2$ (do not use \textsuperscript command).
+% Please be sure to include all portions of an equation in the math environment, and for any superscripts or subscripts also include the base number/text. For example, use $mathrm{mm}^2$ instead of mm$^2$ (do not use the\textsuperscript command).
 %
 % DO NOT USE the \rm command to render mathmode characters in roman font, instead use $\mathrm{}$
 % For bolding characters in mathmode, please use $\mathbf{}$ 
@@ -65,10 +64,10 @@
 % Please add line breaks to long equations when possible in order to fit our 2-column layout. 
 %
 % For inline equations, please do not include punctuation within the math environment unless this is part of the equation.
-%
+%!TEX encoding = UTF-8 Unicode
 % For spaces within the math environment please use the \; or \: commands, even within \text{} (do not use smaller spacing as this does not convert well).
 %
-%
+%!TEX encoding = UTF-8 Unicode
 % % % % % % % % % % % % % % % % % % % % % % % %
 
 
@@ -91,6 +90,8 @@
  
  % ligatures disabled
 \usepackage{microtype}
+
+ 
 \DisableLigatures[f]{encoding = *, family = * }
 
 % rotating package for sideways tables
@@ -115,7 +116,7 @@
 % Bold the 'Figure #' in the caption and separate it with a period
 % Captions will be left justified
 \usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
-
+ 
 
  
  % Remove brackets from numbering in List of References
@@ -133,45 +134,63 @@
 
 %% END MACROS SECTION
 
-
+ 
 \begin{document}
 
 
 % Title must be 150 characters or less
 \begin{flushleft}
 {\Large
-\textbf{Metagenomics Assemblers Evaluation [Or Whatever Titus suggests :)] }
+\textbf{Evaluating Metagenome Assembly on a Complex Community}
 }
 % Insert Author names, affiliations and corresponding author email.
 \\
  
-author$^{1}$, 
-Sherine Awad [In whatever order and with whoever should be added] $^{2}$, 
-author$^{3,\ast}$
-\\
-\bf{2} Author1  Dept/Program/Center, Institution Name, City, State, Country
-\\
-\bf{3} Same as Titus Departments/Program/Center, Institution Name, City, State, Country
-\\
-\bf{4} Author3 Dept/Program/Center, Institution Name, City, State, Country
-\\
-$\ast$ E-mail: Corresponding author@institute.edu
+Sherine Awad $^{1}$, 
+Titus Brown $^{1,\ast}$ 
+
+\bf{1} Population Health and Reproduction
+University of California, Davis, Davis, CA, USA 
+ 
+ 
+$\ast$ E-mail:  ctbrown@ucdavis.edu 
 \end{flushleft}
 
 % Please keep the abstract between 250 and 300 words
+% Please keep the abstract between 250 and 300 words
 \section*{Abstract}
+SUPER WEAK SO FAR
 
+
+Motivation: With the emergence of de novo assembly, several work have been to done to assemble metagenomic data from de novo. Several assemblers exist that are based on different assembly techniques. However, we still lack  a study that analyze different assemblers behavior on metagenomic data . 
+
+
+Problem statement: In this paper, we performed analytical study for metagnome assembly using different assemblers and different preprocessing treatments. The aim of the analysis is studying how well metagenome assembly works, and which assembly works best. In addition, the study analyzes the resource requirements of the assembly. 
+
+
+Approach: We used a mock community dataset for the analysis, and used its reference genome for benchmark evaluation. We quality filtered the reads, then we applied 2 other preprocessing steps: digital normalization and partitioning. We used 4 different assembler: Velvet, IDBA-UD, SPAdes, and megahit to assemble the reads using each treatment. We used Quast to analyze assemblies accuracy. 
+
+
+Results: Results show that assembly works well. Velvet is the worst assembler in terms of accuracy and recourses utilizations. The results also showed that assembly counts to most of the reads. 
+ 
+ 
+Conclusions: Except for Velvet, assemblers works well. Further analysis is required to study which assembler is better used with each specific dataset. This step is left for our future work, 
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLOS ONE authors please skip this step. 
 % Author Summary not valid for PLOS ONE submissions.   
 \section*{Author Summary}
 
+WHAT SHOULD BE WRITTEN HERE
 
 
 \section*{Introduction}
 
-Metagenome is the sequencing of DNA in an environmental sample. While whole genome sequencing (WGS) usually targets one genome, metagenome targets several ones. Here rises the metagenome assembly problem, from the genomic diversity and variable abundance within populations. 
-In this paper, we propose a comparative study for four different assemblers; Velvet \cite{velvet}, SPAdes \cite {spades}, IDBA-UD \cite{idba}, and Megahit \cite{megahit}.  We provide a detailed analysis on how each one behave on metagenome data. 
+ 
+Metagenome is the sequencing of DNA in an environmental sample. While whole genome sequencing (WGS) usually targets one genome, metagenome targets several ones which introduces complexity to metagenome analyis due to genomic diversity and variable abundance within populations.  Metagenomic assembly  means the assembly of multiple genomes from mixed sequences of reads of multiple species in a microbial community.  
+Most approaches for analyzing metagenomic data rely on mapping to reference genomes. However, not all microbial diversity of many environments are covered by reference databases. Hence, the need for de novo assembly of complex metagenomic data rises.  
+Several assemblers exist that can be used for de novo assembly. In order to decide which assembly works best, we need to evaluate metagenome assembly generated by each assembler.  In this paper, we provide, an evaluation for metegnome assembly generated by several assemblers and using different preprocessing treatments. We use a reference genome as a benchmark for the evaluation.  The evaluation is based on assembly accuracy, and time and memory requirements. This evaluation shed light on doability of metagenome assembly and the minimum requirements needed for the assembly. In addition, knowing how each assembler works, helps deciding which assembler to use prior to assembly. However, the later point is left for our future work. 
+ 
+The comparative study in this paper is based on four different assemblers; Velvet \cite{velvet}, SPAdes \cite {spades}, IDBA-UD \cite{idba}, and Megahit \cite{megahit}.  
 
 
 Velvet \cite{velvet} is a group de Bruin graph-based sequence assembly methods for very short reads that can both remove errors. It also uses read pair information to resolve a large number of repeats.  The error correction algorithm merges the sequences that belongs together. Then the repeat solver algorithm separates parts that share overlaps. 
@@ -184,8 +203,8 @@ regions that can be aligned to high confident contigs.
 
 
 Megahit \cite{megahit} is a new approach that constructs a succinct de Bruijn graph using multiple k-mers, and uses a novel "mercy k-mer" approach that preserves low-abundance regions of reads. It also uses GPUs to accelerate the graph construction.
-
-In this paper, we evaluate the assemblies resulted from the four different assemblers based on several quality metrics and using several preprocessing treatments. 
+ 
+%In the next sections, we present dataset used, preprocessing treatments,  results and discussion. 
 
 % You may title this section "Methods" or "Models". 
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
@@ -194,255 +213,143 @@ In this paper, we evaluate the assemblies resulted from the four different assem
 
 \subsection*{Datasets}
 
+We used a diverse mock community data set \cite{podar}. Raw reads contains 5536.29 megabases and 54,814,748 sequences for each file. In total, 11072.58  megabases and 109,629,496 sequences. The set also has a reference genome downloaded from XX.  Using a reference genome makes the evaluation process easier and much better in terms of accuracy measures. 
 
-Podar (write correct name) datasets where downloaded from XX. The dataset represent XX brief description for the data. 
+\subsection*{Quality Filtering} 
+We trimmed low-quality bases using trimmomatic-0.30.jar \cite {trim} and using PE and using TruSeq3  adapter.
+We also used Fastq quality filter  from FASTX-Toolkit to filter sequences with low qualities with these parameters -Q33 -q 30 -p 50.
+The fastx utilities that aren’t paired-end aware; they’re removing individual sequences. Because the paired-end files are interleaved, this means that there may now be some orphaned sequences in there. Downstream, we will want to pay special attention to the remaining paired sequences, so we use  "extract-paired-reads.py" script in khmer/scripts to separate out the paired-end and single-end files.
 
-\subsection*{Pre-assembly Treatments  }
+\subsection*{Digital Normalization} 
+First, we normalize everything to a coverage of 20, starting with the (more valuable) paired-ended reads by running "normalize-by-median.py" script in khmer/scripts. We used -p to keep pairs, k=20 for k-mer size , cutoff of coverage C=20, N=4 for number of k-mer counting tables, x =1e9 for lower bound on tablesize  and  with option savetable for further use. Then we used to the same script to normalize the single-ended reads. We then use "filter-abund.py" script in khmer/scripts to trim off any k-mers that are abundance-1 in high-coverage reads. The -V option is used for variable coverage. We ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
+By now, we’ve eliminated many more erroneous k-mers.  We then ditch some more high-coverage data, so we normalize the paired-end reads and single-end reads down to coverage 5 using "normalize-by-median.py" again. 
 
-We assembled the reads using a combination of different preprocessing and assembly approaches.  The preprocessing treatments are:
-\begin{enumerate}
- \item {\bf Quality Filtering:} In this treatment, low quality bases were trimmed and low quality reads were removed using trimmomatic \cite{trimmomatic}. After quality trimming reads were either directly assembled, or first
- preprocessed with digital normalization and then assembled.
-The original datasets contains  5536289548 base pairs  and 54814748 sequences in the  left pair and 5536289548 base pairs  and 54814748 sequences in the right pair. 
+\subsection*{Partitioning} 
+First, eliminate highly repetitive k-mers that could join multiple species using "filter-below-abund.py" script found in khmer/sandbox.  Then we run partitioning using do-partition script found in khmer/scripts. We used k =32 for k-mer size, x=1e9  for lower bound on tablesize to use and threads=4 for number of simultaneous threads to execute. 
+We then extracted partitions to groups using "extract-partitions.py" script in khmer/scripts/ with X=100000 for maximum group size. We finally, ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
 
-After quality filtering, the paired-ended file contains 10547795822  base pairs 104433622 sequences while the single-ended file contains  184437913 base pairs and 1893243 sequences. 
+\subsection*{Metagenomes Assembly and evaluation}
+We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idba}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments;   quality filtering, digital normalization, and partitioning. 
+For  Velvet \cite{velvet}, we used kmers values from 19 to 51 incremented by 2. We also used -fastq.gz for fatsq format,  -shortPaired for the pe files and -short for the se files. Also, we used \-exp\_cov auto \-cov\_cutoff auto.  For Idba \cite{idba},  we also used  --pre\_correction and -r for the pe files. 
 
- \item {\bf Digital Normalization:} Digital normalization works after sequencing data has been generated, progressively
-removing high-coverage reads from shotgun data sets. This normalizes average coverage to a
-specified value, reducing sampling variation while removing reads, and also removing the many errors
-contained within those reads. This data and error reduction results in dramatically decreased computational
-requirements for de novo assembly. Moreover, unlike experimental normalization where abundance
-information is removed prior to sequencing, in digital normalization this information can be recovered
-from the unnormalized reads \cite{Brown2012}
-After digital normalization, the pair ended file contains 1687588894 base pairs and 16853716 sequences  while the single ended file contains 5859253 base pairs and 64638 sequences. 
 
- \item {\bf Partitioning:} In this treatment,  we partitioned the filtered data set based on de Bruijn graph connectivity and assembled each partition independently.  Subsequently, partitioning
-separates reads based on transitive connectivity, resulting in easily assembled subsets of
-reads.
- 
-\end{enumerate}
+We examined the assembly quality of each assembler and treatment using Quast \cite{quast} using quast.py  with these parameters -R for the reference genome and -o for the output. 
 
-\subsection*{Metagenomes Assembly}
-We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idba}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments;   quality filtering, digital normalization, and partitioning. We examined the assembly quality of each assembler and treatment sing Quast \cite{quast}. 
 
 % Results and Discussion can be combined.
+
 \section*{Results}
 
-% We only support three levels of headings, please do not create a heading level below \subsubsection.
-\subsection*{Metagenomes Metrics}   
-Table \ref {table:qualtiy-metrics} shows various quality metrics for the results of the assembly using combinations of four different assemblers and different preprocessing treatments.
-The unaligned length is the total length of all unaligned regions in the assembly.  The unaligned length for assembly using velvet is 8977149, 10909693, and 11317834 using quality filtered reads, digital normalization, and partitioning respectively. For IDBA assembly, the unaligned length is 10709716, 10637811, and 10644357 using quality filtered reads, digital normalization, and partitioning respectively. For Megahit assembly, the unaligned length is 10686421, 10581435, and10564244 using quality filtered reads, digital normalization, and partitioning respectively.   For SPAdes assembly, the unaligned length is 10597529, 10621398, and 10500235 using quality filtered reads, digital normalization, and partitioning respectively. 
-
-The genome fraction \% is the percentage of aligned bases in the reference. A base in the reference is aligned if there is at least one contig with at least one alignment to this base. For Velvet assembly,  the genome fraction percentage is 72.949 \%, 89.043\%, and 88.879\%  using quality filtered reads, digital normalization, and partitioning respectively. The genome fraction percentage of IDBA assembly is 90.969 \%, 91.003\%, and 90.082\% using quality filtered reads, digital normalization, and partitioning respectively.  For SPAdes assembly, the genome fraction percentage is 90.424\%, 90.173\%, and 89.272\% using quality filtered reads, digital normalization, and partitioning respectively. The genome fraction percentage of megahit assembly is 90.358\%, 89.92\%, and 88.769\% using quality filtered reads, digital normalization, and partitioning respectively. 
  
-Misassembled contigs length is the total number of bases in misassembled contigs . For Velvet assembly, misassemble contigs length is 631, 3104, and 3337 using quality filtered reads, digital normalization, and partitioning respectively. For IDBA assembly,  misassemble contigs length is 1032, 916, and 828 using quality filtered reads, digital normalization, and partitioning respectively.
-Misassembled contains length for SPAdes is 752, 881, and 654  using quality filtered reads, digital normalization, and partitioning respectively. For Megahit assembly, misassemble contains length is 648, 780, and 677 using quality filtered reads, digital normalization, and partitioning respectively.
+\subsection*{Quality filtering did not change the number of reads}            
 
-% Table \ref {table:reads-mapping} shows  the percentage of unaligned sequences when mapping the raw reads to the results assembly. 
+After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
+After fastx, we got 10547.80 megabases and 104,433,622 sequences for the pair-end reads and 184.44  megabases and 106,326,865 sequences for the single-end reads. In total, 10732.23 megabases and 106,326,865 sequences. 
+In summary, the quality filtering eliminates 3.01\% of the reads. 
 
-\begin{table}[ht]
-\caption{Assembly Quality Metrics}
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction}& 72.949&89.043&88.879 \\
-\hline
-\textbf{Unaligned Length} &8,977,149&10,909,693&11,317,834\\ [1ex]
-\hline
-\textbf{Misassembled contigs length  }&16566891&25594315&16922852 \\ [1ex]
-\hline
-\textbf{N50} &38028 &18944 &8504 \\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction} &90.969&	91.003&90.082 \\   
-\hline
-\textbf{Unaligned Length}  &10,709,716&10,637,811&10,644,357 \\ [1ex]
-\hline
-\textbf{Misassembled contigs length  }&21777032&27668818&18440791  \\ [1ex]
-\hline
-\textbf{N50}&4,977,3&4,782,8&2,657,5 \\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction} &90.424&90.173&89.272\\
-\hline
-\textbf{Unaligned Length} &10,597,529&10,621,398&10,500,235 \\ [1ex]
-\hline
-\textbf{Misassembled contigs length  }&28238787&23103154&14338099  \\ [1ex]
-\hline
-\textbf{N50}&4,277,3&3,558,0&2,231,9\\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction} &90.358&89.92&88.769 \\
-\hline
-\textbf{Unaligned Length}&10686421&10581435&10564244 \\ [1ex]
-\hline
-\textbf{Misassembled contigs length  }&11927502&17319534&11814070 \\ [1ex]
-\hline
-\textbf{N50} &35254&35427&17492 \\ [1ex]
-\hline
+%After trimming, we got 11024.50 megabases and 109,153,498 sequences for the paired-ended file and 14.86 megabases and 235,966 sequences for the single-ended file. 
+%After quality filtering, the paired-ended file contains 10547.79 megabases and 104,433,622 sequences while the single-ended file contains 184.44 megabases and 1,893,243 sequences. THERE IS A PROBLEM HERE. 
 
-\end{tabular}
-\label{table:qualtiy-metrics}
-\end{table}
+%We trimmed low-quality bases using trimmomatic-0.30.jar \cite {trim} and using PE and using TruSeq3-PE.fa:2:30:10 adapter.
+%After trimming, we got (11024503298)  11024.50 megabases and 10,9153,498 sequences for the paired-ended file and (14857801) 14.86 megabases and 235,966 sequences for the single-ended file. 
+%We also used Fastq quality filter  from FASTX-Toolkit to filter sequences with low qualities with these parameters -Q33 -q 30 -p 50.
+%After quality filtering, the paired-ended file contains (10547795822) 10547.79 megabases and 104,433,622 sequences while the single-ended file contains (184437913)  184.44 megabases and 1,893,243 sequences. 
+
+\subsection *{Digital normalization and partitioning decreased the total number of reads } 
+
+After digital normalization, the pair ended file contains 1687.59 megabases and 16,853,716 sequences  while the single ended file contains 5.86 megabases and 64,638 sequences. 
+After partitioning, we got 28 partitions. The largest partition has 1379.27 megabases. The smallest partition has 7.14 megabases. The total base pairs in all partitions is 1651.53 megabases. 
+Clearly, digital normalizatation and partitioning decrease the total number of reads.  
+
+%After digital normalization, the pair ended file contains 1687588894 base pairs and 16853716 sequences  while the single ended file contains 5859253 base pairs and 64638 sequences. 
+%After partitioning, we got 28 partitions. The largest partition has 1379273180 base pairs. The smallest partition has 7138295 base pairs. The total base pairs in all partitions is 1651532050. 
+
+% We only support three levels of headings, please do not create a heading level below \subsubsection.
+\subsection*{Metagenome assemblers recover the great majority of the known content}   
+Table \ref {table:qualtiy-metrics} shows various quality metrics for the results of the assembly using combinations of four different assemblers and different preprocessing treatments.
+The unaligned length for assembly is 8,977,149 bp, 10,709,716 bp,  10,597,529 bp, and 10,686,421 bp using quality filtered reads for Velvet, IDBA, SPAdes, and Megahit respectively. 
+The genome fraction \% is the percentage of aligned bases in the reference. A base in the reference is aligned if there is at least one contig with at least one alignment to this base. 
+The genome fraction percentage is 72.949 \%, 90.969 \%, 90.424\%, and 90.358\%  using quality filtered reads for Velvet, IDBA, SPAdes, and Megahit respectively. 
+Misassembled contigs length is the total number of bases in misassembled contigs.  Misassembles contigs length is 631, 1032, 752, and 648 using quality filtered reads for Velvet, IDBA, SPAdes, and Megahit respectively. 
+Clearly, SPAdes, IDBA, and Megahit have fairly similar results and they all outperformed Velvet. 
 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-\subsection*{Time and memory utilizations for assemblies using different treatments}
+\subsection*{Digital normalization and partitioning reduced memory and time requirements for assembly}
+In this section, we aim to explore time and memory requirements of  metagenome assembly using each preprocessing treatments.  
 Table \ref {table:time-memory}  shows the  running time and memory utilizations for four assemblers and different reads treatments.
  
 
-For Velvet assemblies, it  took $\sim 60$ hours using quality filtered reads, while it took only  $\sim 6$ hours using digital normalizations and  $\sim 4$ hours using partitioning which is approximately 10\% and less of time utilized using quality filtered reads.  For IDBA assemblies, it took $\sim 33$ hours using quality filtered reads, while it took $\sim 6$ hours using digital normalization and $\sim 8$ hours using partitioning, approximately less than $\sim 7\% $of time utilized using quality filtered reads. SPAdes assemblies utilized $\sim 67$ hours using quality filtered reads  while it took $\sim15$ hours and $\sim 7$ hours using digital normalization and partitioning respectively less than 5\% of time utilized using quality filtered reads.
+For Velvet assemblies, it  took $\sim 60$ hours using quality filtered reads, while it took only  $\sim 6$ hours using digital normalizations and  $\sim 4$ hours using partitioning which is approximately 10\% and less of time utilized using quality filtered reads.  For IDBA assemblies, it took $\sim 33$ hours using quality filtered reads, while it took $\sim 6$ hours using digital normalization and $\sim 8$ hours using partitioning, approximately less than $\sim 7\% $ of time utilized using quality filtered reads. SPAdes assemblies utilized $\sim 67$ hours using quality filtered reads  while it took $\sim15$ hours and $\sim 7$ hours using digital normalization and partitioning respectively less than 5\% of time utilized using quality filtered reads. Finally, for megahit, it  took $\sim 2$ hours, $\sim$ half an hour, and $\sim$ hour and a half using quality-filtered reads, digital normalization, and partitioning respectively. 
+ 
 
-For Velvet assemblies, it used used $\sim 1594851536 $ KB of memory using quality filtered reads, while it used one $\sim 827412304$ KB and $\sim 1156729920 $ KB of memory when applying digital normalization and partitioning respectively. For IDBA assemblies, it used used $\sim 129853424 $ KB of memory using quality filtered reads, while it used one $\sim 104736448$ KB and $\sim 93584624  $ KB of memory when applying digital normalization and partitioning respectively. For SPAdes assemblies, it used used $\sim 129853424 $ KB of memory using quality filtered reads, while it used one $\sim 104736448$ KB and $\sim 93584624  $ KB of memory when applying digital normalization and partitioning respectively. 
-
+For Velvet assemblies, it used used 1594.85 GB of memory using quality filtered reads, while it used one  827.41 GB and 1156.73  GB of memory when applying digital normalization and partitioning respectively. For IDBA assemblies, it used used 129.85 GB of memory using quality filtered reads, while it used one 104.74  GB and 93.58 GB of memory when applying digital normalization and partitioning respectively. For SPAdes assemblies, it used used 400.34 GB of memory using quality filtered reads, while it used one 127.42 GB and 129.71 GB of memory when applying digital normalization and partitioning respectively.  For megahit, it utilizes 35.03 GB,419.80 GB,198.76 GB for quality-filtered reads, digital normalization, and partitioning respectively. 
+ 
+See Table \ref{table:time-memory} for more details. We conclude that Digitial normalization and partitioning treatments reduced time and memory requirements of assembly while they didn't affect assemblies quality as we shown  in previous section. 
 
 %\subsection*{Memory requirements increase with re-inflation with no significant enhancement in assembly quality}
 
 %add detailed explanation for the table
  
-%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-\begin{table}[ht]
-\caption{Running Time and Memory Utilization}
-\centering
-\begin{tabular}{|c|c|c|c| }
-\hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Running Time} &60:42:52 &6:48:46 &4:30:36   \\ 
-\hline
-\textbf{Memory Utilization in KB}&1594851536 &827412304 &1156729920  \\ 
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Running Time} &33:53:46&6:34:24 &8:30:29  \\ 
-\hline`
-\textbf{Memory Utilization in KB}& 129853424 &	104736448 & 93584624    \\ 
-\hline
-\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Running Time} &67:02:16&15:53:10&7:54:26  \\
-\hline
-\textbf{Memory Utilization in KB}&400340512&127423856&129715072  \\ 
-\hline
-\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Running Time}&1:52:55&0:30:23&1:23:28 \\
-\hline
-\textbf{Memory Utilization in KB}&35034096&19805888&198756832 \\ 
-\hline
-
-
-\end{tabular}
-\label{table:time-memory}
-\end{table}
-
-%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
  
- \subsection*{More about misassembles}  
+ \subsection*{Something about misassemblies}  
+As shown in Table \ref {table:qualtiy-metrics}, using quality filtered reads, misassemblies contigs length are 16,566,891, 21,777,032, 28,238,787 and 11,927,502 for Velvet, SPAdes, IDBA, and Megahit respectively.  Clearly, Velvet and Megahit has fewer misassemblies.  
+
+Velvet/quality filtering shows the least mismatches percentage 0.06\%.  IDBA/quality filtering, SPAdes/quality filtering, and Megahit/quality filtering have 0.08\%, 0.09\%, and 0.08\% mismatches percentages respectively. Digital normalization and partitioning slightly increased the mismatches percentages. For Velvet, mismatches increased from 0.06\% using qualitfy filtering to 0.09\% and 0.12\% using digital normalization and partitioning respectively. For IDBA, the percentage increased from 0.08\% using quality filtering, to 0.12\% for both digital normalization and partitioning. For SPAdes, the precentage increased from 0.09\% using quality filtering to 0.12\% for both digital normalization and partitioning. For Megahit, it increased from 0.08\% using quality filtering to 0.10\% for both digital normalization and partitioning.
+Indels percentage is 0.03\% for Velvet, 0.01\% for IDBA, SPAdes, and megahit. 
+ Clearly, the mismatches percentage is very low. Digital normalization and partitioning unsignificantly increased the mismatches. 
  
- \~Still I need an experiment to investigate mis-assemblies more
-  
- \subsection*{Mapping assemblies to quality filtered reads} 
 
-We estimated the percentage of unaligned sequences  by each assembly treatment and using the four assemblers. We mapped the quality filtered reads to each assembly. Then we extracted the unaligned sequences to each assembly. 
-Table ~ref{reads-mapping} shows the percentages of unaligned sequences from quality filtered reads to each assembly treatment using the four assemblers under study.  For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped. 
-Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
-
-\begin{table}[ht]
-\caption{Reads Mapping }
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&8324608&2205698&2697788  \\ 
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences} &495570 &549791&1302356	\\
-\hline
-\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&714474& 842268&1408063	 \\
-\hline
-\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&467660&622684&1487942\\
-\hline
+See Table \ref{table:misassemblies}  for more details about misassemblies contigs, the types of missassembly events, mismatches and indels lengths.
+   
+ \subsection*{Metagenome assemblies account for the majority of reads} 
+In order to find out how many reads  are covered by each assembly, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly treatment using the four assemblers under study. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  We conclude that assemblies account for the majority of reads.  
+For quality-filtered assembly, the number of unaligned reads is 5,553,831, 124,846, 81,775, and 80,002 for Velvet, IDBA, SPAdes, and megahit respectively. This represents 5.22 \%, 0.12\%, 0.08\%, and 0.08\% of the quality filtered sequences. This reflects that assemblies account for the majority of reads. See Table \ref{table:reads-mapping}  for more details. 
 
 
-\end{tabular}
-\label{table:reads-mapping}
-\end{table}
+As mentioned, digital normalization and partitioning decreased the number of total reads. Meanwhile, the genome fraction percentage  and unaligned length didn't significantly change, which shows that digital normalization and partitioning throw unnecessary reads.  For velvet, genome fraction is 89.043\% and 88.879\% using digital normalization and partitioning respectively (versus 72.949\% using quality filtered reads). For IDBA,  genome fraction is 91.003\% and 90.082\% using digital normalization and partitioning respectively (versus 90.969\% using quality filtered reads). For SPAdes, genome fraction is 90.173\% and 89.272\% using digital normalization and partitioning respectively (versus 90.424\% using quality filtered reads). For megahit, genome fraction is 89.92\% and 88.769\% using digital normalization and partitioning respectively (versus 90.358\% using quality filtered reads).  See Table \ref{table:qualtiy-metrics} for more details.
 
- \subsection*{Mapping unaligned reads of all assemblers and treatments to the unaligned reads of IDBA  assembly using quality treatment} 
-In this experiment, we mapped unaligned reads of each assembly with different treatments to the the unaligned reads of idba assembly using quality filtered treatment. 
-The purpose of this experiment is to identify whether the unaligned reads are common. 
 
-\begin{table}[ht]
-\caption{Mapping unaligned reads to Idba quality-filtered assembly }
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction}&80.613&92.034&98.013  \\
-\hline
-\textbf{Unaligned Length}&2475529&3192491&64539560 \\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction}&-&91.53 &94.738 \\   
-\hline
-\textbf{Unaligned Length}&-&498299&37437754 \\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction}&91.922&93.959&94.826 \\
-\hline
-\textbf{Unaligned Length}&2174574&1951911&2398664 \\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Genome Fraction} & & &  \\
-\hline
-\textbf{Unaligned Length}& &  &  \\ [1ex]
+HOW TO COMPUTE PERCENTAGE WE HAVE 104433622 seqs in SRR606249.pe.qc.fq.gz and  1893243 seqs; in SRR606249.se.qc.fq.gz
+
+%The assembly under each treatment is considered the reference genome in this experiment. 
+
+% \subsection*{Something about abundance estimates}
+%To estimate abundance, we mapped the quality filtered reads using bwa mem \cite{bwa-mem} to the reference genome.  We use "slice-reads-by-coverage.py"  script to estimate coverage. Script is found in khmer/sandbox in khmer and available on github. 
+%We also found 95,540,661 reads with coverage  $\geq 20 $ and $ \leq 40 $. See Table \ref{table:cov-dist}  for more details. We found 402,333 reads with coverage $\geq 200$ which represent repeats.  
+%We then, extracted the unaligned sequences. There are 2,521,366 unaligned paired-reads which represents 2.37\% of the quality filtered reads.
+%Looking for chimeric reads where a read spans two different genes, we found 76,392 chimeric pairs. IS DIVIDED BY TWO? AND NO RELATION 
+
+
+%We mapped the quality filtered reads using bwa mem \cite{bwa-mem} to each assembly. For quality filtered assembly, we found 5,553,831, 124,846, 81,775, and 80,002 unaligned reads for Velvet, IDBA, SPAdes,  and megahit assemblers respectively. See Table \ref{table:abundance} for more details. 
+
+\subsection*{Something about unknown and new assembly}
+To examine how close assemblies are, we aligned the unaligned contigs of each assembly with different treatments to the unaligned contigs of IDBA assembly using quality filtered treatment. 
+Using quality filtered reads, the genome fraction equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and Megahit respectively. 
+
+
+\textbf{The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and Megahit respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length which is IDBA unaligned contigs using quality filtered reads.} 
+
+The misassembly contigs length is 360,191,1,962,380, and 775,917 for Velvet, SPAdes, and Megahit respectively using quality filtered reads. See Table \ref{table:unaligned-mapping} for more details.
+The percentages are fairly close except for Velvet, which show that unalignments are common among the four different assemblers and the unalignments are likely to be unknowns, new assembly, or contamination.  
  
-\hline
-
-\end{tabular}
-\label{table:unaligned-mapping}
-\end{table}
-
 \section*{Discussion}
  
  \subsection*{Assembly works pretty well} 
  Except for Velvet assembly using quality filtered reads, the genome fraction percentage is  88\% or higher.  Unaligned length is less than 1\% for all assemblers and using different treatments. 
- Misassembled length is less than 1.3\% for all assemblers and using different treatments.
+ Misassembled length is less than 1.3\% for all assemblers and using different treatments. We conclude that assembly works well although there are some rooms for improvements including enhancing accuracy, and decreasing time and memory requirements. Velvet shows the least performance in terms of accuarcy and time, and memory utlizations. However, the difference between other assemblers are not significant. Hence, more investigations are needed to decide what assembler to use prior assembly. Such analysis is left for our future work. 
  
  \subsection*{Digital normalization and partitioning significantly reduce running time and memory utilizations}
  
- The difference between genome fraction percentage using quality filtered reads vs digital normalizations and partitioning doesn't exceed 1\%. However, the time and memory  resource are reduced a lot using digital normalization and partitioning. 
+The difference between genome fraction percentage using quality filtered reads versus digital normalizations and partitioning doesn't exceed 1\%. However, the time and memory resource are reduced a lot using digital normalization and partitioning. We conclude that digital normalization and partitioning are beneficial steps for assembly to reduce time and memory utilities. 
  
+ \subsection*{Digitial normalization and partitioning do not  affect misassemblies and unalignments}
  
- \subsection*{Unaligned reads are common among different assemblers}
- Mapping the unaligned reads of different assemblies and different treatments to the unaligned reads of  IDBA  assembly using quality filtered , shows genome fraction percentage is 91\% or higher. This means the unaligned reads are common among assemblers and they are likely to be because of contamination. 
+Except for Velvet assemblies, misassemblies are not affected by digital normalization and partitioning. 
+Mapping the unaligned  contigs of different assemblies and different treatments to the unaligned contigs of  IDBA  assembly using quality filtered , shows genome fraction percentage is 91\% or higher. This means the unaligned contigs are common among assemblers with various treatments and they are likely to be unknowns, new assemblies, or contamination. XXX MAP TO UNALIGN INTERPRETATION
+This indicates that digital normalization and partitioning enhance assembly time and memory requirements without affecting assembly accuracy.  
 
 
 
@@ -452,7 +359,6 @@ The purpose of this experiment is to identify whether the unaligned reads are co
 \section*{Acknowledgments}
 
 
-\section*{References}
 
 % Either type in your references using
 %\begin{thebibliography}{}
@@ -471,7 +377,7 @@ The purpose of this experiment is to identify whether the unaligned reads are co
  % Use the PLoS provided BiBTeX style
 \bibliographystyle{plos2009}
 %--------Added by Sherine----------------------------------------------
-\bibliography{references}
+\bibliography{References}
 
  %------------------------------------------------------------------------------
 \section*{Figure Legends}
@@ -485,6 +391,7 @@ The purpose of this experiment is to identify whether the unaligned reads are co
 %\label{Figure_label}
 %\end{figure}
 
+ 
 
 \section*{Tables}
 % 
@@ -503,7 +410,341 @@ The purpose of this experiment is to identify whether the unaligned reads are co
 %\label{tab:label}
 % \end{table}
 
-\section*{Supporting Information Legends}
+
+
+%\begin{table}[t]
+%\caption{Coverage Distribution}
+%\centering
+%\begin{tabular}{|c|c|}
+%\hline
+% \textbf{Covergae Range}& \textbf{No. of Reads}   \\ [0.5ex] % inserts table %heading
+%\hline
+%{ Between 20 and 40} & 95,540,661 \\
+%\hline
+%{ Between 40 and 60} &108,083 \\
+%\hline
+%{ Between 60 and 80} &22,677\\
+%\hline
+%{ Between 80 and 100} &17,148\\
+%\hline
+%{ Between 100 and 200} &80,878\\
+%\hline
+%{Coverage $\geq 200$} & 402,333\\
+%\hline
+%\end{tabular}
+%\label{table:cov-dist} 
+%\end{table}
+
+
+
+\begin{table}[h]
+\caption{Assembly Quality Metrics}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}& 72.949&89.043&88.879 \\
+\hline
+\textbf{Unaligned Length} &8,977,149&10,909,693&11,317,834\\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }&16,566,891&25,594,315&16,922,852 \\ [1ex]
+\hline
+\textbf{N50} &38,028 &18,944 &8,504 \\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction} &90.969&	91.003&90.082 \\   
+\hline
+\textbf{Unaligned Length}  &10,709,716&10,637,811&10,644,357 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }&21,777,032&27,668,818&18,440,791  \\ [1ex]
+\hline
+\textbf{N50}&4,977,3&4,782,8&2,657,5 \\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction} &90.424&90.173&89.272\\
+\hline
+\textbf{Unaligned Length} &10,597,529&10,621,398&10,500,235 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }&28,238,787&23,103,154&14,338,099  \\ [1ex]
+\hline
+\textbf{N50}&4,277,3&3,558,0&2,231,9\\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction} &90.358&89.92&88.769 \\
+\hline
+\textbf{Unaligned Length}&10,686,421&10,581,435&10,564,244 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length  }&11,927,502&17,319,534&11,814,070 \\ [1ex]
+\hline
+\textbf{N50} &35,254&35,427&17,492 \\ [1ex]
+\hline
+
+\end{tabular}
+\label{table:qualtiy-metrics}
+\end{table}
+
+
+\begin{table}[h]
+\caption{Running Time and Memory Utilization}
+\centering
+\begin{tabular}{|c|c|c|c| }
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time} &60:42:52 &6:48:46 &4:30:36   \\ 
+\hline
+\textbf{Memory Utilization in GB}&1594.85 &827.41&1156.73  \\ 
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time} &33:53:46&6:34:24 &8:30:29  \\ 
+\hline`
+\textbf{Memory Utilization in GB}&129.85&104.74& 93.58 \\ 
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time} &67:02:16&15:53:10&7:54:26  \\
+\hline
+\textbf{Memory Utilization in GB}&400.34&127.42&129.71 \\ 
+\hline
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Running Time}&1:52:55&0:30:23&1:23:28 \\
+\hline
+\textbf{Memory Utilization in GB}&35.034&19.80&198.76 \\ 
+\hline
+
+
+\end{tabular}
+\label{table:time-memory}
+\end{table}
+
+
+
+\begin{table}[h]
+\caption{Misassemblies}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Assembly}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Misassemblies}&917&5271&5202 \\
+\hline
+\textbf{Relocations} &592&998&1036 \\ [1ex]
+\hline
+\textbf{Translocations}&309&4262&4153  \\ [1ex]
+\hline
+\textbf{Inversions}&16&11&13  \\ [1ex]
+\hline
+\textbf{Misassembled Contigs} &631&3104 &3337 \\ [1ex]
+\hline
+\textbf{Mismatches} &104,740&174,446&178,348  \\ [1ex]
+\hline 
+\textbf{Percentage of Mismatches}&0.06\%&0.09\%&0.12\% \\[1ex]
+\hline
+\textbf{Indels Length}&50,190&181,453&346,988 \\ [1ex]
+\hline
+\textbf{Indels Percentage}&0.03\%&0.09\%&0.18\% \\ [1ex]
+\hline
+
+ \multicolumn{4}{|c|} {\textbf{(3) IDBA}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Misassemblies}&1223&1094&960  \\
+\hline
+\textbf{Relocations} &613&668&578 \\ [1ex]
+\hline
+\textbf{Translocations}&580&398&350 \\ [1ex]
+\hline
+\textbf{Inversions} &30&28&32 \\ [1ex]
+\hline
+\textbf{Misassembled Contigs}&1032&916&828 \\ [1ex]
+\hline
+\textbf{Mismatches} &162,733 &231,432&230,840 \\ [1ex]
+\hline 
+\textbf{Percentage of Mismatches}&0.08\%&0.12\%&0.12\% \\[1ex]
+\hline
+\textbf{Indels Length} &30,433&43,358&42,523  \\ [1ex]
+\hline
+\textbf{Indels Percentage}&0.01\%&0.02\%&0.02\% \\ [1ex]
+\hline
+
+
+ \multicolumn{4}{|c|} {\textbf{(2) SPAdes}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Misassemblies}&894&997&753 \\
+\hline
+\textbf{Relocations}&608&613&496 \\ [1ex]
+\hline
+\textbf{Translocations}&267&368&239\\ [1ex]
+\hline
+\textbf{Inversions}&19&16&18\\ [1ex]
+\hline
+\textbf{Misassembled Contigs}&752&881& 654\\ [1ex]
+\hline
+\textbf{Mismatches}&184,630&244,849&235,396\\ [1ex]
+\hline 
+\textbf{Percentage of Mismatches}&0.09\%&0.12\%&0.12\% \\[1ex]
+\hline
+\textbf{Indels Length}&27,328&32,783&21,516\\ [1ex]
+\hline
+\textbf{Indels Percentage}&0.01\%&0.02\% &0.01\% \\ [1ex]
+\hline
+
+ \multicolumn{4}{|c|} {\textbf{(4) Megahit}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Misassemblies}&738&880&748 \\
+\hline
+\textbf{Relocations}&448&593&513\\ [1ex]
+\hline
+\textbf{Translocations}&172&274&222\\ [1ex]
+\hline
+\textbf{Inversions}&118&13&13\\ [1ex]
+\hline
+\textbf{Misassembled Contigs}&648&780&677\\ [1ex]
+\hline
+\textbf{Mismatches}&152,964&207,349&203,515\\ [1ex]
+\hline 
+\textbf{Percentage of Mismatches}&0.08\%&0.10\%&0.10\% \\[1 ex]
+\hline
+\textbf{Indels Length }&15,298&18,195&16,517\\ [1ex]
+\hline
+\textbf{Indels Percentage}&0.01\%&0.01\%&0.01\%\\ [1ex]
+\hline
+\end{tabular}
+\label{table:misassemblies}
+\end{table}
+%
+%\begin{table}[h]
+%\caption{Mapping quality-filtered reads to assemblies }
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
+%\hline
+% \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+%\hline
+%\textbf{No. of Unaligned Sequences}&8,324,608&2,205,698&2,697,788  \\ 
+%\hline
+%\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+%\hline
+%\textbf{No. of Unaligned Sequences} &4,95,570 &549,791&1,302,356	\\
+%\hline
+%\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+%\hline
+%\textbf{No. of Unaligned Sequences}&714,474& 842,268&1,408,063	 \\
+%\hline
+%\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+%\hline
+%\textbf{No. of Unaligned Sequences}&467,660&622,684&1487,942\\
+%\hline
+%\end{tabular}
+%\label{table:reads-mapping} 
+%\end{table}
+
+
+\begin{table}[t]
+\caption{Mapping quality-filtered reads to assemblies}
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf {Treatment}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&5,553,831&521,126&667,471 \\ 
+\hline
+\textbf{Percentage}&5.22\%&0.49\%&0.63\% \\
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences} &124,846&115,323&512,264\\
+\hline
+\textbf{Percentage}&0.12\%&0.11\%&0.48\% \\
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&81,775&95,338&423,833 	 \\
+\hline
+\textbf{Percentage}&0.08\%&0.09\%&0.40\%\\
+\hline
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Unaligned Sequences}&80,002&88,616&468,032 \\
+\hline
+\textbf{Percentage}&0.08\%&0.08\% &0.44\% \\
+\hline
+\end{tabular}
+\label{table:reads-mapping} 
+\end{table}
+
+
+
+
+\begin{table}[h]
+\caption{Mapping unaligned  contigs to Idba quality-filtered  unaligned contigs }
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}&80.613&92.034&98.013  \\
+\hline
+\textbf{Unaligned Length}&2,475,529&3,192,491&64,539,560 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length}&360,191&1,202,869&854,604\\ [1ex]
+\hline
+\textbf{Percentage of unaligned}&37.06\%&47.80\%&\textbf{966.31\%} \\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}&-&91.53 &94.738 \\   
+\hline
+\textbf{Unaligned Length}&-&498,299&37,437,754 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length}&-&2,214,766&2,164,075\\ [1ex]
+\hline
+\textbf{Percentage of unaligned}&-&7.46\%&\textbf{560.53\%}\\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction}&91.922&93.959&94.826 \\
+\hline
+\textbf{Unaligned Length}&2,174,574&1,951,911&2,398,664 \\ [1ex]
+\hline
+\textbf{Misassembled contigs length}&1,962,380&1,575,890&1,282,230 \\ [1ex]
+\hline
+\textbf{Percentage of unaligned}&32.56\%&29.22\%&35.91\%\\ [1ex]
+\hline
+\multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Genome Fraction} &92.715 &91.838&92.219 \\
+\hline
+\textbf{Unaligned Length}&916,247&1,569,436&3,832,050\\ [1ex]
+\hline
+\textbf{Misassembled contigs length}&775,917&1,585,005&1,192,449 \\ [1ex]
+\hline
+\textbf{Percentage of unaligned}&13.72\% & 23.50\% & \textbf{57.37\%} \\ [1ex]
+\hline
+\end{tabular}
+\label{table:unaligned-mapping}
+\end{table}
+
+
+
+
+\section *{Supporting Information Legends}
 %
 % Please enter your Supporting Information captions below in the following format:
 %\item{\bf Figure SX. Enter mandatory title here.} Enter optional descriptive information here.
