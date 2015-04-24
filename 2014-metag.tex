@@ -220,6 +220,10 @@ We trimmed low-quality bases using trimmomatic-0.30.jar \cite {trim} and using P
 We also used Fastq quality filter  from FASTX-Toolkit to filter sequences with low qualities with these parameters -Q33 -q 30 -p 50.
 The fastx utilities that aren’t paired-end aware; they’re removing individual sequences. Because the paired-end files are interleaved, this means that there may now be some orphaned sequences in there. Downstream, we will want to pay special attention to the remaining paired sequences, so we use  "extract-paired-reads.py" script in khmer/scripts to separate out the paired-end and single-end files.
 
+\subsection*{XX Proper title : How data looks}
+We mapped quality filtered reads using bwa mem \cite{bwa-mem} to the reference genome. We then, extracted the unaligned sequences. There are 2,521,366 unaligned paired-reads which represents 2.37\% of the quality filtered reads. Looking for chimeric reads where a read spans two different genes, we found 76,392 chimeric pairs. 
+CHECK NUMBERS IF WE NEED TO RERUN MAPPING
+
 \subsection*{Digital Normalization} 
 First, we normalize everything to a coverage of 20, starting with the (more valuable) paired-ended reads by running "normalize-by-median.py" script in khmer/scripts. We used -p to keep pairs, k=20 for k-mer size , cutoff of coverage C=20, N=4 for number of k-mer counting tables, x =1e9 for lower bound on tablesize  and  with option savetable for further use. Then we used to the same script to normalize the single-ended reads. We then use "filter-abund.py" script in khmer/scripts to trim off any k-mers that are abundance-1 in high-coverage reads. The -V option is used for variable coverage. We ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
 By now, we’ve eliminated many more erroneous k-mers.  We then ditch some more high-coverage data, so we normalize the paired-end reads and single-end reads down to coverage 5 using "normalize-by-median.py" again. 
@@ -254,6 +258,7 @@ In summary, the quality filtering eliminates 3.01\% of the reads.
 %After trimming, we got (11024503298)  11024.50 megabases and 10,9153,498 sequences for the paired-ended file and (14857801) 14.86 megabases and 235,966 sequences for the single-ended file. 
 %We also used Fastq quality filter  from FASTX-Toolkit to filter sequences with low qualities with these parameters -Q33 -q 30 -p 50.
 %After quality filtering, the paired-ended file contains (10547795822) 10547.79 megabases and 104,433,622 sequences while the single-ended file contains (184437913)  184.44 megabases and 1,893,243 sequences. 
+
 
 \subsection *{Digital normalization and partitioning decreased the total number of reads } 
 
@@ -305,14 +310,17 @@ Indels percentage is 0.03\% for Velvet, 0.01\% for IDBA, SPAdes, and megahit.
 See Table \ref{table:misassemblies}  for more details about misassemblies contigs, the types of missassembly events, mismatches and indels lengths.
    
  \subsection*{Metagenome assemblies account for the majority of reads} 
-In order to find out how many reads  are covered by each assembly, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly treatment using the four assemblers under study. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  We conclude that assemblies account for the majority of reads.  
+In order to find out how many reads  are covered by each assembly, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  We conclude that assemblies account for the majority of reads.  
 For quality-filtered assembly, the number of unaligned reads is 5,553,831, 124,846, 81,775, and 80,002 for Velvet, IDBA, SPAdes, and megahit respectively. This represents 5.22 \%, 0.12\%, 0.08\%, and 0.08\% of the quality filtered sequences. This reflects that assemblies account for the majority of reads. See Table \ref{table:reads-mapping}  for more details. 
 
 
 As mentioned, digital normalization and partitioning decreased the number of total reads. Meanwhile, the genome fraction percentage  and unaligned length didn't significantly change, which shows that digital normalization and partitioning throw unnecessary reads.  For velvet, genome fraction is 89.043\% and 88.879\% using digital normalization and partitioning respectively (versus 72.949\% using quality filtered reads). For IDBA,  genome fraction is 91.003\% and 90.082\% using digital normalization and partitioning respectively (versus 90.969\% using quality filtered reads). For SPAdes, genome fraction is 90.173\% and 89.272\% using digital normalization and partitioning respectively (versus 90.424\% using quality filtered reads). For megahit, genome fraction is 89.92\% and 88.769\% using digital normalization and partitioning respectively (versus 90.358\% using quality filtered reads).  See Table \ref{table:qualtiy-metrics} for more details.
 
+//RE RUN MAPPING IF THE OLD ONE IS NOT RIGHT AS WE FOUND BY UNALIGNED LOW PERCENTAGES 
 
-HOW TO COMPUTE PERCENTAGE WE HAVE 104433622 seqs in SRR606249.pe.qc.fq.gz and  1893243 seqs; in SRR606249.se.qc.fq.gz
+\subsection*{Assembly Accurracy}
+
+
 
 %The assembly under each treatment is considered the reference genome in this experiment. 
 
@@ -623,6 +631,11 @@ This indicates that digital normalization and partitioning enhance assembly time
 \end{tabular}
 \label{table:misassemblies}
 \end{table}
+
+
+
+
+
 %
 %\begin{table}[h]
 %\caption{Mapping quality-filtered reads to assemblies }
