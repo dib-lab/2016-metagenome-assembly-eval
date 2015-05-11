@@ -159,8 +159,7 @@ $\ast$ E-mail:  ctbrown@ucdavis.edu
 % Please keep the abstract between 250 and 300 words
 % Please keep the abstract between 250 and 300 words
 \section*{Abstract}
-SUPER WEAK SO FAR
-
+NEEDS ENHANCEMENTS
 
 Motivation: With the emergence of de novo assembly, several work have been to done to assemble metagenomic data from de novo. Several assemblers exist that are based on different assembly techniques. However, we still lack  a study that analyze different assemblers behavior on metagenomic data . 
 
@@ -198,8 +197,7 @@ Velvet \cite{velvet} is a group de Bruin graph-based sequence assembly methods f
 
 Spades \cite{spades} is an assembler for both single-cell and standard (multicell) assembly. SPAdes generates single-cell assemblies and provides information about genomes of uncultivatable bacteria that vastly exceeds what may be obtained via traditional metagenomics studies. 
 
-IDBA-UD \cite{idba} is a de Bruijn graph approach for assembling reads from single cell sequencing or metagenomic sequencing technologies with uneven sequencing depths. IDBA-UD uses multiple depth-relative thresholds to remove erroneous k-mers in both low-depth and high-depth regions. It also uses paired-end information  to solve the branch problem of low-depth short repeat regions. It applies and error correction step to correct reads of high-depth
-regions that can be aligned to high confident contigs.
+IDBA-UD \cite{idba} is a de Bruijn graph approach for assembling reads from single cell sequencing or metagenomic sequencing technologies with uneven sequencing depths. IDBA-UD uses multiple depth-relative thresholds to remove erroneous k-mers in both low-depth and high-depth regions. It also uses paired-end information  to solve the branch problem of low-depth short repeat regions. It applies and error correction step to correct reads of high-depth regions that can be aligned to high confident contigs.
 
 
 Megahit \cite{megahit} is a new approach that constructs a succinct de Bruijn graph using multiple k-mers, and uses a novel "mercy k-mer" approach that preserves low-abundance regions of reads. It also uses GPUs to accelerate the graph construction.
@@ -220,57 +218,50 @@ We trimmed low-quality bases using trimmomatic-0.30.jar \cite {trim} and using P
 We also used Fastq quality filter  from FASTX-Toolkit to filter sequences with low qualities with these parameters -Q33 -q 30 -p 50.
 The fastx utilities that aren’t paired-end aware; they’re removing individual sequences. Because the paired-end files are interleaved, this means that there may now be some orphaned sequences in there. Downstream, we will want to pay special attention to the remaining paired sequences, so we use  "extract-paired-reads.py" script in khmer/scripts to separate out the paired-end and single-end files.
 
-\subsection*{What we can't assemble}
-To find out what limits assembling, we mapped quality filtered reads using bwa mem \cite{bwa-mem} to the reference genome. We then, extracted the unaligned sequences. There are 2,521,366 unaligned paired-reads which represents 2.37\% of the quality filtered reads. We also looked for chimeric reads where a read spans two different genes, we found 76,392 chimeric pairs. 
-CHECK NUMBERS IF WE NEED TO RERUN MAPPING
+\subsection*{Mapping}
+
+To find out chimeric reads to evaluate initial reads (see Results Section), we used bwa-mem aligner with the default parameters.  To estimate unaligned reads, we used the default parameters for bwa aln and bwa samse. We aligned paired-end reads and single-end reads separately and we aligned each as single reads using samse. We also used samtools import to convert  sam files to bam files for each paired-end and single-end reads separately. 
+
 
 \subsection*{Digital Normalization} 
 First, we normalize everything to a coverage of 20, starting with the (more valuable) paired-ended reads by running "normalize-by-median.py" script in khmer/scripts. We used -p to keep pairs, k=20 for k-mer size , cutoff of coverage C=20, N=4 for number of k-mer counting tables, x =1e9 for lower bound on tablesize  and  with option savetable for further use. Then we used to the same script to normalize the single-ended reads. We then use "filter-abund.py" script in khmer/scripts to trim off any k-mers that are abundance-1 in high-coverage reads. The -V option is used for variable coverage. We ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
-By now, we’ve eliminated many more erroneous k-mers.  We then ditch some more high-coverage data, so we normalize the paired-end reads and single-end reads down to coverage 5 using "normalize-by-median.py" again. 
 
 \subsection*{Partitioning} 
 First, eliminate highly repetitive k-mers that could join multiple species using "filter-below-abund.py" script found in khmer/sandbox.  Then we run partitioning using do-partition script found in khmer/scripts. We used k =32 for k-mer size, x=1e9  for lower bound on tablesize to use and threads=4 for number of simultaneous threads to execute. 
 We then extracted partitions to groups using "extract-partitions.py" script in khmer/scripts/ with X=100000 for maximum group size. We finally, ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
 
 \subsection*{Metagenomes Assembly and evaluation}
-We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idba}, Spades \cite{spades}, and Megahit \cite{megahit} in combination with different preprocessing treatments;   quality filtering, digital normalization, and partitioning. 
-For  Velvet \cite{velvet}, we used kmers values from 19 to 51 incremented by 2. We also used -fastq.gz for fatsq format,  -shortPaired for the pe files and -short for the se files. Also, we used \-exp\_cov auto \-cov\_cutoff auto.  For Idba \cite{idba},  we also used  --pre\_correction and -r for the pe files. 
+We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idba}, Spades \cite{spades}, and Megahit \cite{megahit}. For  Velvet \cite{velvet}, we used kmers values from 19 to 51 incremented by 2. We also used -fastq.gz for fatsq format,  -shortPaired for the pe files and -short for the se files. Also, we used \-exp\_cov auto \-cov\_cutoff auto.  For Idba \cite{idba},  we also used  --pre\_correction and -r for the pe files. 
 
 
-We examined the assembly quality of each assembler and treatment using Quast \cite{quast} using quast.py  with these parameters -R for the reference genome and -o for the output. 
+We examined the assembly quality of each assembler and treatment using Quast \cite{quast} using quast.py  with these parameters -R for the reference genome and -o for the output and we use the default min contig length equal to 500. 
 
 
 % Results and Discussion can be combined.
 
 \section*{Results}
 
- 
 \subsection*{Quality filtering did not change the number of reads}            
-
-After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
+We performed quality filtering to remove primers and poor-quality sequences. After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
 After fastx, we got 10547.80 megabases and 104,433,622 sequences for the pair-end reads and 184.44  megabases and 106,326,865 sequences for the single-end reads. In total, 10732.23 megabases and 106,326,865 sequences. 
 In summary, the quality filtering eliminates 3.01\% of the reads. 
 
-%After trimming, we got 11024.50 megabases and 109,153,498 sequences for the paired-ended file and 14.86 megabases and 235,966 sequences for the single-ended file. 
-%After quality filtering, the paired-ended file contains 10547.79 megabases and 104,433,622 sequences while the single-ended file contains 184.44 megabases and 1,893,243 sequences. THERE IS A PROBLEM HERE. 
+\subsection*{Initial Reads Evaluation}
+To evaluate initial reads, we mapped quality filtered reads using bwa aln \cite{bwa-mem} [XX CHECK THIS REFERENCE] to the reference genome. We then, extracted the unaligned sequences. There are 3,664,869 unaligned reads which represents 3.45\% of the quality filtered reads. These unaligned reads are either errors and/or new sequences. We also used bwa mem  \cite{bwa-mem} to look for chimeric reads where a read spans two different genes, we found X310,128X chimeric reads. [REMINDER TO ASK TITUS]
 
-%We trimmed low-quality bases using trimmomatic-0.30.jar \cite {trim} and using PE and using TruSeq3-PE.fa:2:30:10 adapter.
-%After trimming, we got (11024503298)  11024.50 megabases and 10,9153,498 sequences for the paired-ended file and (14857801) 14.86 megabases and 235,966 sequences for the single-ended file. 
-%We also used Fastq quality filter  from FASTX-Toolkit to filter sequences with low qualities with these parameters -Q33 -q 30 -p 50.
-%After quality filtering, the paired-ended file contains (10547795822) 10547.79 megabases and 104,433,622 sequences while the single-ended file contains (184437913)  184.44 megabases and 1,893,243 sequences. 
+
 \subsection*{Digital normalization and partitioning resources utilizations}
-Digital normalization utilized 74.93  GB of memory and took  around 3 hours and 53 minutes to run. Partitioning utilized 21.78 GB and around 2 hours  and 57 minutes to run. 
+To examine if digital normalization and partitioning are doable treatments, we evaluated the resource utilization for each of them. Digital normalization utilized 74.93  GB of memory and took  around 3 hours and 53 minutes to run. Partitioning utilized 21.78 GB and around 2 hours  and 57 minutes to run. 
 
 \subsection *{Digital normalization and partitioning decreased the total number of reads } 
+To evaluate how many reads digital normalization and partitioning throws away, we estimated number of reads after running each treatment. 
 After digital normalization, the pair ended file contains 1687.59 megabases and 16,853,716 sequences  while the single ended file contains 5.86 megabases and 64,638 sequences. 
 After partitioning, we got 28 partitions. The largest partition has 1379.27 megabases. The smallest partition has 7.14 megabases. The total base pairs in all partitions is 1651.53 megabases. 
 Clearly, digital normalizatation and partitioning decrease the total number of reads.  
 
-%After digital normalization, the pair ended file contains 1687588894 base pairs and 16853716 sequences  while the single ended file contains 5859253 base pairs and 64638 sequences. 
-%After partitioning, we got 28 partitions. The largest partition has 1379273180 base pairs. The smallest partition has 7138295 base pairs. The total base pairs in all partitions is 1651532050. 
-
 % We only support three levels of headings, please do not create a heading level below \subsubsection.
 \subsection*{Metagenome assemblers recover the great majority of the known content}   
+We  used four assemblies and run each one using each treatment; quality filtering, digital normalization, and partitioning. 
 The unaligned length for assembly is 8,977,149 bp, 10,709,716 bp,  10,597,529 bp, and 10,686,421 bp using quality filtered reads for Velvet, IDBA, SPAdes, and Megahit respectively. 
 The genome fraction \% is the percentage of aligned bases in the reference. A base in the reference is aligned if there is at least one contig with at least one alignment to this base. 
 The genome fraction percentage is 72.949 \%, 90.969 \%, 90.424\%, and 90.358\%  using quality filtered reads for Velvet, IDBA, SPAdes, and Megahit respectively. 
@@ -312,7 +303,7 @@ Clearly, the mismatches percentage is very low. Digital normalization and partit
  
  See Table \ref{table:misassemblies}  for more details about misassemblies contigs, the types of missassembly events, mismatches and indels lengths.
    
-\subsection*{Metagenome assemblies account for the majority of reads} 
+\subsection*{Assemblies contain most of the reference} 
 We aligned the reference genome to each assembly to find out what exists in the reference genome and not found in the assemblies. 
 Aligning the reference genome to IDBA and SPAdes and IDBA quality filtered assemblies, we got zero unaligned contigs, in addition to 29,776,904, 2,062,384, 2,063,510, and 2,063,473 partially unaligned length for Velvet, IDBA, SPAdes, and Megahit respectively which represent 18.11\%, 1.03\%, 1.03\%, and 0.97\% of their corresponding assemblies length respectively. 
 
@@ -322,10 +313,9 @@ Using digital normalization, we got also zero unaligned contigs, with partial un
 
 Using partitioning, we got also zero unaligned contigs, with partial unaligned length 2,053,035, 2,071,046, 2,069,811 and 2,068,118 for Velvet, IDBA, SPAdes, and Megahit respectively which represent 1.02\%, 1.04\%, 1.04\%, and 1.04 \% of their corresponding assemblies length respectively. 
 
-\subsection*{Assembly Accurracy}
+\subsection*{Assembly Statistics}
 Contig or scaffold N50 is a weighted median statistic such that 50\% of the entire assembly is contained in contigs or scaffolds equal to or larger than this value. Using quality filtering, N50 is 38,028, 49,773,  42,773, and 35,136 for Velvet, IDBA, SPAdes, and Megahit respectively. The NG50 statistic is the same as N50 except that it is 50\% of the known reference genome size that must be achieved. Using quality filtered reads,  NG50 is 22,223, 45,748, 38,841, and 32,251 for Velvet, IDBA, SPAdes, and Megahit respectively.  N50 and NG50 decreases with digital normalization and partitioning. For diginorm assemblies, N50 is 18,944 47,828, 35,580, and 35,427 for Velvet, IDBA, SPAdes, and Megahit respectively.  For partitioning, N50 is 8,504, 26,575, 22,319, and 17,492, for Velvet, IDBA, SPAdes, and Megahit respectively.  See Table \ref{table:qualtiy-metrics} for more details. 
 
- 
 %The assembly under each treatment is considered the reference genome in this experiment. 
 
 % \subsection*{Something about abundance estimates}
@@ -335,19 +325,19 @@ Contig or scaffold N50 is a weighted median statistic such that 50\% of the enti
 %Looking for chimeric reads where a read spans two different genes, we found 76,392 chimeric pairs. IS DIVIDED BY TWO? AND NO RELATION 
 
 
-%We mapped the quality filtered reads using bwa mem \cite{bwa-mem} to each assembly. For quality filtered assembly, we found 5,553,831, 124,846, 81,775, and 80,002 unaligned reads for Velvet, IDBA, SPAdes,  and megahit assemblers respectively. See Table \ref{table:abundance} for more details. f
+%We mapped the quality filtered reads using bwa mem \cite{bwa-mem} to each assembly. For quality filtered assembly, we found 5,553,831, 124,846, 81,775, and 80,002 unaligned reads for Velvet, IDBA, SPAdes,  and megahit assemblers respectively. See Table \ref{table:abundance} for more details. 
 
-\subsection*{Something about unknown and new assembly}
-To find out whether new assembly exists, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  We conclude that assemblies account for the majority of reads.  
-For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA, SPAdes, and megahit respectively. This represents 4.26 \%, 0.75\%, 1.06\%, and 0.79\% of the quality filtered sequences. These percentages reflect new assemblies or unknowns. See Table \ref{table:reads-mapping}  for more details. 
+\subsection*{Metagenome assemblies account for the majority of reads}
+To further evaluate assemblies, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  We conclude that assemblies account for the majority of reads.  
+For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA, SPAdes, and megahit respectively. This represents 4.26 \%, 0.75\%, 1.06\%, and 0.79\% of the quality filtered sequences. These percentages reflect errors or low coverage reads. See Table \ref{table:reads-mapping}  for more details. 
+
+We then aligned the unaligned contigs of each assembly with different treatments to the unaligned contigs of IDBA assembly using quality filtered treatment. 
+Using quality filtered reads, the genome fraction equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and Megahit respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and Megahit respectively using quality filtered reads, representing 31.45\%, 26.22\% and 12.74\% of the reference length which is IDBA unaligned contigs using quality filtered reads. See Table \ref{table:unaligned-mapping} for more details. We conclude that unlignments are almost common among assemblers.  [XX Needs better explanation]
+
+Figure \ref{fig:gf} shows genome fraction percentages using different min contig length. 
 
 
-To find out whether these new assemblies and/or unknowns are common among assemblers,  we aligned the unaligned contigs of each assembly with different treatments to the unaligned contigs of IDBA assembly using quality filtered treatment. 
-Using quality filtered reads, the genome fraction equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and Megahit respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and Megahit respectively using quality filtered reads, representing 31.45\%, 26.22\% and 12.74\% of the reference length which is IDBA unaligned contigs using quality filtered reads. See Table \ref{table:unaligned-mapping} for more details. We conclude that unknowns and new assemblies are almost common among assemblers. 
-
-
-
-To further analyze what are these unknows and new assemblies,  ADD STUFF OF FUNGENES HERE. 
+To further analyze what are these unknows,  ADD STUFF OF FUNGENES HERE. 
 \section*{Discussion}
  
  \subsection*{Assembly works pretty well} 
@@ -410,6 +400,13 @@ Mapping the unaligned  contigs of different assemblies and different treatments 
 \end{center}  
 \end{figure}  
  
+
+\begin{figure} [h] 
+\begin{center}  
+\includegraphics[height=3.2in,width=4.5in]{gfmincontig.pdf}  
+\caption{\small \sl Genome Fraction of assemblies in basepairs based on different min contigs length.\label{fig:gf}}  
+\end{center}  
+\end{figure}  
 
 \section*{Tables}
 % 
@@ -740,7 +737,7 @@ Mapping the unaligned  contigs of different assemblies and different treatments 
 \hline
 \textbf{Unaligned Length}&2,475,529& 3192491&3,868,558 \\ [1ex]
 \hline
-\textbf{Percentage of unaligned}&31.45\%&33.92\%&37.99\%\\ [1ex]
+\textbf{Percentage of unaligned}&31.45\%&33.92\%&41.11\%\\ [1ex]
 \hline
 \multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
 \hline
