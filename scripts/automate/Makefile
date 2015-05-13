@@ -157,7 +157,7 @@ protocol-diginorm-filter: ${DIGINORM}/normC20k20.kh
 	cd ${DIGINORM}  && filter-abund.py -V ${DIGINORM}/normC20k20.kh ${DIGINORM}/*.keep 
 
 protocol-diginorm-extract: 
-	cd ${DIGINORM} && extract-paired-reads.py ${DIGINORM}/${PREFIX}.pe.qc.fq.gz.keep.abundfilt; \
+	cd ${DIGINORM} && extract-paired-reads.py ${DIGINORM}/${PREFIX}.*.keep.*;  #change .pe.qc.fq.gz.keep.abundfilt
 
 protocol-diginorm-C5:
 	cd ${DIGINORM} && normalize-by-median.py -C 5 -k 20 -N 4 -x 1e9 --savetable ${DIGINORM}/normC5k20.kh -p ${DIGINORM}/*.pe.qc.fq.gz.keep.abundfilt.pe ;\
