@@ -13,35 +13,23 @@
   \textsc{Annotation:}\ #2\end{quotation}}
 \providecommand{\eprint}[2][]{\url{#2}}
 
-\bibitem{trimmomatic}
-Bolger AM, Lohse M, Usadel B (2014) Trimmomatic: A flexible trimmer for
-  illumina sequence data.
-\newblock Bioinformatics 30: 2114-2120.
-\bibAnnoteFile{trimmomatic}
-
-\bibitem{Brown2012}
-Brown CT, Howe A, Zhang Q, Pyrkosz AB, Brom TH (2012) A reference-free
-  algorithm for computational normalization of shotgun sequencing data.
-\newblock arXiv e-print 12034802 .
-\bibAnnoteFile{Brown2012}
-
 \bibitem{velvet}
 Zerbino DR, Birney E (2008) Velvet: algorithms for de novo short read assembly
   using de bruijn graphs.
 \newblock Genome Research 18: 821-829.
 \bibAnnoteFile{velvet}
 
-\bibitem{idba}
-Peng Y, Leung HC, Yiu S, Chin FY (2012) Idba-ud: a de novo assembler for
-  single-cell and metagenomic sequencing data with highly uneven depth.
-\newblock Bioinformatics 28: 1420-1428.
-\bibAnnoteFile{idba}
-
 \bibitem{spades}
 Bankevich A, Nurk S, Antipov D, Gurevich AA, Dvorkin M, et~al. (2012) Spades: A
   new genome assembly algorithm and its applications to single-cell sequencing.
 \newblock Journal of Computational Biology 19: 455-477.
 \bibAnnoteFile{spades}
+
+\bibitem{idba}
+Peng Y, Leung HC, Yiu S, Chin FY (2012) Idba-ud: a de novo assembler for
+  single-cell and metagenomic sequencing data with highly uneven depth.
+\newblock Bioinformatics 28: 1420-1428.
+\bibAnnoteFile{idba}
 
 \bibitem{megahit}
 Li D, Liu CM, Luo R, Sadakane K, Lam TW (2014) Megahit: An ultra-fast
@@ -50,16 +38,35 @@ Li D, Liu CM, Luo R, Sadakane K, Lam TW (2014) Megahit: An ultra-fast
 \newblock Bioinformatics .
 \bibAnnoteFile{megahit}
 
+\bibitem{podar}
+Migun S, Quince C, Campbell J, Yang Z, Schadt C, et~al. (2013) Comparative
+  metagenomic and rrna microbial diversity characterization using archaeal and
+  bacterial synthetic communities.
+\newblock Enivromental Microbiology 15: 1882-1899.
+\bibAnnoteFile{podar}
+
+\bibitem{trim}
+Anthony B, Marc L, Bjoern U (2014) Trimmomatic: a flexible trimmer for illumina
+  sequence data.
+\newblock Bioinformatics : btu170.
+\bibAnnoteFile{trim}
+
 \bibitem{quast}
-Alexey~Gurevich NV Vladislav~Saveliev, Tesler G (2013) Quast: quality
-  assessment tool for genome assemblies.
+Gurevich A, Saveliev V, Vyahhi N, Tesler G (2013) Quast: quality assessment
+  tool for genome assemblies.
 \newblock Bioinformatics 28: 1072-1075.
 \bibAnnoteFile{quast}
 
+\bibitem{bwa-mem}
+Li H (2013) Aligning sequence reads, clone sequences and assembly contigs with
+  bwa-mem.
+\newblock arXiv preprint arXiv:13033997 .
+\bibAnnoteFile{bwa-mem}
+
 \bibitem{samtools}
-H L, B H, A W, T F, J R, et~al. (2009) The sequence alignment/map format and
-  samtools.
-\newblock Bioinformatics 25.
+Heng L, Handsaker B, Wysoker A, Fennell T, Ruan J, et~al. (2009) The sequence
+  alignment/map format and samtools.
+\newblock Bioinformatics 25: 2078-2079.
 \bibAnnoteFile{samtools}
 
 \end{thebibliography}
