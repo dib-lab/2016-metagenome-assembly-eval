@@ -12,7 +12,7 @@ TRIM=/usr/local/bin
 KAK=kak
 MEGAHIT=/mnt/home/mahmoud4/megahit
 ############
-all: quality \
+all-protocol: quality \
 	diginorm \
 	partition \
 	velvet-quality \
@@ -24,7 +24,6 @@ all: quality \
 	velvet-partition \
 	spades-partition \
 	idba-partition \
-	quast	
 
 #########################################
 quality: ${DATA}/${PREFIX}-1.fastq.gz  ${DATA}/${PREFIX}-2.fastq.gz 
