@@ -354,11 +354,12 @@ Using partitioning, we got also zero unaligned contigs, with partial unaligned l
 
 \subsection*{Metagenome assemblies account for the majority of reads}
 To further evaluate assemblies, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  We conclude that assemblies account for the majority of reads.  
-For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA, SPAdes, and megahit respectively. This represents 4.26 \%, 0.75\%, 1.06\%, and 0.79\% of the quality filtered sequences. These percentages reflect errors or low coverage reads. See Table \ref{table:reads-mapping}  for more details. 
+
+
+For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA, SPAdes, and megahit respectively. This represents 4.26 \%, 0.75\%, 1.06\%, and 0.79\% of  each corresponding assembly length respectively. These percentages reflect errors or low coverage reads. See Table \ref{table:reads-mapping} for more details. 
 
 We then aligned the unaligned contigs of each assembly with different treatments to the unaligned contigs of IDBA assembly using quality filtered treatment. 
-Using quality filtered reads, the genome fraction equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and Megahit respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and Megahit respectively using quality filtered reads, representing 31.45\%, 26.22\% and 12.74\% of the reference length which is IDBA unaligned contigs using quality filtered reads. See Table \ref{table:unaligned-mapping} for more details. We conclude that unlignments are almost common among assemblers.  
-
+Using quality filtered reads, the genome fraction equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and Megahit respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and Megahit respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length which is IDBA unaligned contigs using quality filtered reads. See Table \ref{table:unaligned-mapping} for more details.  Velvet unalignments show the highest percentages of IDBA QC unalignments. IDBA diginorm unalignments shows the less percentage of IDBA QC unalignments. 
 
 To further explore the unalignment, we downloaded fusa seeds from Fungenes. We used blast to map the unaligned reads to fusa seeds, we found few hits. Mapping the unaligned reads to the quality filtered reads, we found some hits  [how to summarize] with e-value $\leq 1e-6$. Mapping the unaligned reads to the reference genomes, we found  some hits [how to summarize?] . This means that the reference genome contains these reads and they are missed by the assemblers. 
 
@@ -767,15 +768,17 @@ So what are the content recovered by assembly and not in the reference?
 \hline
 \textbf{Unaligned Length}&2,475,529& 3192491&3,868,558 \\ [1ex]
 \hline
-\textbf{Percentage of unaligned}&31.45\%&33.92\%&41.11\%\\ [1ex]
+\textbf{Percentage of unaligned}&37.06\%&47.8\%&57.92\%\\ [1ex]
 \hline
 \multicolumn{4}{|c|}{ \textbf{(2) Idba}}    \\ [0.5ex] % inserts table %heading
 \hline
 \textbf{Genome Fraction}&-&91.53\%&94.72\%\\   
+
+
 \hline
 \textbf{Unaligned Length}&-&498,299&1,320,036\\ [1ex]
 \hline
-\textbf{Percentage of unaligned}&-&7.47\%&17.21\% \\ [1ex]
+\textbf{Percentage of unaligned}&-&7.46\%&19.76\% \\ [1ex]
 \hline
 \multicolumn{4}{|c|}{ \textbf{(3) Spades} }   \\ [0.5ex] % inserts table %heading
 \hline
@@ -783,7 +786,7 @@ So what are the content recovered by assembly and not in the reference?
 \hline
 \textbf{Unaligned Length}&2,174,574&1,951,911&2,398,664\\ [1ex]
 \hline
-\textbf{Percentage of unaligned}&26.22\%&23.64\%&27.46\%\\ [1ex]
+\textbf{Percentage of unaligned}&32.56\%&29.22\%&35.91\%\\ [1ex]
 \hline
 \multicolumn{4}{|c|}{ \textbf{(4) Megahit} }    \\ [0.5ex] % inserts table %heading
 \hline
@@ -791,7 +794,7 @@ So what are the content recovered by assembly and not in the reference?
 \hline
 \textbf{Unaligned Length}&916,247&1,569,436&3,832,050 \\ [1ex]
 \hline
-\textbf{Percentage of unaligned}&12.74\%&20.33\%&38.28\%\\ [1ex]
+\textbf{Percentage of unaligned}&13.72\%&23.5\%&57.37\%\\ [1ex]
 \hline
 \end{tabular}
 \label{table:unaligned-mapping}
