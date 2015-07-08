@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 JUL 2015 19:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  8 JUL 2015 13:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -442,17 +442,17 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
  [3] [4]
-[5] [6] (./2014-metag.bbl) <mincontigs.png, id=110, 578.16pt x 433.62pt>
+[5] [6] (./2014-metag.bbl [7]) <mincontigs.png, id=120, 578.16pt x 433.62pt>
 File: mincontigs.png Graphic file (type png)
 
 <use mincontigs.png>
-Package pdftex.def Info: mincontigs.png used on input line 428.
+Package pdftex.def Info: mincontigs.png used on input line 434.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
- [7] <gfmincontig.png, id=121, 578.16pt x 433.62pt>
+ <gfmincontig.png, id=122, 578.16pt x 433.62pt>
 File: gfmincontig.png Graphic file (type png)
 
 <use gfmincontig.png>
-Package pdftex.def Info: gfmincontig.png used on input line 437.
+Package pdftex.def Info: gfmincontig.png used on input line 443.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
@@ -465,7 +465,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Float too large for page by 81.83307pt on input line 679.
+LaTeX Warning: Float too large for page by 81.83307pt on input line 685.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -476,21 +476,21 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 922.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 928.
 [8 <./mincontigs.png>] [9 <./gfmincontig.png>] [10] [11] [12] [13] [14]
 [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 922.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 928.
  (./2014-metag.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 922.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 922.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 928.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 928.
 Package rerunfilecheck Info: File `2014-metag.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 922.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 928.
  ) 
 Here is how much of TeX's memory you used:
  9017 strings out of 493089
  137942 string characters out of 6134842
- 299613 words of memory out of 5000000
+ 301613 words of memory out of 5000000
  12243 multiletter control sequences out of 15000+600000
  10313 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -504,10 +504,10 @@ sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
 cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl9.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on 2014-metag.pdf (15 pages, 245725 bytes).
+Output written on 2014-metag.pdf (15 pages, 246294 bytes).
 PDF statistics:
- 209 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
+ 210 PDF objects out of 1000 (max. 8388607)
+ 178 compressed objects within 2 object streams
  65 named destinations out of 1000 (max. 500000)
  13323 words of extra memory for PDF output out of 14400 (max. 10000000)
 

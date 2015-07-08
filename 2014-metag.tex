@@ -244,11 +244,12 @@ We examined the assembly quality of each assembler and treatment using Quast \ci
 \subsection*{Quality filtering did not change the number of reads}            
 We performed quality filtering to remove primers and poor-quality sequences. After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
 After fastx, we got 10547.80 megabases and 104,433,622 sequences for the pair-end reads and 184.44  megabases and 106,326,865 sequences for the single-end reads. In total, 10732.23 megabases and 106,326,865 sequences. 
-In summary, the quality filtering eliminates 3.01\% of the reads. 
+In summary, the quality filtering eliminates just 3.01\% of the reads. 
 
 \subsection*{Initial Evaluation of the Reads}
-To evaluate initial reads, we mapped quality filtered reads using bwa aln \cite{bwa-mem} [XX CHECK THIS REFERENCE] to the reference genome. We then, extracted the unaligned sequences. There are 3,664,869 unaligned reads which represents 3.45\% of the quality filtered reads. These unaligned reads are either errors and/or new sequences.  We also used ”sam-calc-refcov-cmp.py” script, the reference genome and the mapping  sam file to find out the reference coverage. Quality filtered reads  represent 203,030,147  of the reference genome (205,603,715) which represent 98.75\%  of the reference.
-Using MAPQ field in sam files, we estimated the quality of mapping. There are 91,964,968 reads with MAPQ $\leq 30$. This shows that the data has a high quality. 
+To evaluate initial reads, we mapped quality filtered reads using bwa aln \cite{bwa-mem} [XX CHECK THIS REFERENCE] to the reference genome. We then, extracted the unaligned sequences. There are 3,664,869 unaligned reads which represents 3.45\% of the quality filtered reads. These unaligned reads are either errors and/or new sequences.  We also used ”sam-calc-refcov-cmp.py” script, the reference genome and the mapping  sam file to find out the reference coverage. Quality filtered reads  represent 203,030,147  of the reference genome (205,603,715) which represent 98.75\%  of the reference. Having almost all reads aligned to the reference, this shows that the data has a high quality. 
+
+Using MAPQ field in sam files, we estimated the quality of mapping. There are 91,964,968 reads with MAPQ $\leq 30$. 
 We also used bwa mem  \cite{bwa-mem} to look for chimeric reads where a read spans two different genes, used sam tools to convert the mapping sam file to a bam file. Then we search for ’SA’ in bam file, we have 310,131 chimeric reads using quality filtered reads. 
 [REMINDER TO ASK TITUS]
  
@@ -258,7 +259,7 @@ We also used bwa mem  \cite{bwa-mem} to look for chimeric reads where a read spa
 To evaluate how many reads digital normalization and partitioning throws away, we estimated number of reads after running each treatment. 
 After digital normalization, the pair ended file contains 1687.59 megabases and 16,853,716 sequences  while the single ended file contains 5.86 megabases and 64,638 sequences. 
 After partitioning, we got 28 partitions. The largest partition has 1379.27 megabases. The smallest partition has 7.14 megabases. The total base pairs in all partitions is 1651.53 megabases. 
-Clearly, digital normalizatation and partitioning decrease the total number of reads.  (See above for quality filtered reads size). 
+Knowing that quality filtered reads has 10547.80 megabases for paired-end file and 184.44  megabases for single-end file (see above for more details), clearly, digital normalizatation and partitioning decrease the total number of reads.  
 
 
 We used bwa aln \cite{bwa-mem} to map digital normalized reads and partitioned reads to the reference genome generating a sam file from each. Then we used  "sam-calc-refcov-cmp.py" script, the reference genome and the generated sam files to find out the reference coverage. Digital normalized reads and partitioned reads represent  202,201,168 and 201,193,779 of the reference genome (205,603,715)  which represent 98.34\%, and 97.86\%  of the reference.   
@@ -277,9 +278,14 @@ We  used four assemblies and run each one using each treatment; quality filterin
 The unaligned length for assembly is 8,977,149 bp, 10,709,716 bp,  10,597,529 bp, and 10,686,421 bp using quality filtered reads for Velvet, IDBA, SPAdes, and Megahit respectively. 
 The genome fraction \% is the percentage of aligned bases in the reference. A base in the reference is aligned if there is at least one contig with at least one alignment to this base. 
 The genome fraction percentage is 72.949 \%, 90.969 \%, 90.424\%, and 90.358\%  using quality filtered reads for Velvet, IDBA, SPAdes, and Megahit respectively. 
+Using digital normalization, the genome fraction is 89.043\%, 91.003\%, 90.173\%, and 89.92\% for Velvet, IDBA, SPAdes, and Megahit respectively. 
+Using partitioning, the genome fraction is 88.879\%, 90.082\%, 89.272\%, and 88.769\% for Velvet, IDBA, SPAdes, and Megahit respectively.  Clearly, digital normalization and partitioning did not effect assembly results. See table \ref{table:qualtiy-metrics} for more details.
+
 Figure \ref{fig:mincontig} shows total length of different assemblies using different min contig length. Increasing the min contig length slightly decreased the total assembly length. 
 Figure \ref{fig:gf} shows genome fraction percentages using different min contig length. 
 
+
+This shows that assemblers work pretty well, however Velvet shows the least performance. 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \subsection*{Digital normalization and partitioning reduced memory and time requirements for assembly}
 In this section, we aim to explore time and memory requirements of  metagenome assembly using each preprocessing treatments.  
@@ -291,7 +297,7 @@ For Velvet assemblies, it  took $\sim 60$ hours using quality filtered reads, wh
  
 
 For Velvet assemblies, it used used 98.40 GB of memory using quality filtered reads, while it used one 52.67 GB and  35.23 GB of memory when applying digital normalization and partitioning respectively. For IDBA assemblies, it used used 123.84 GB of memory using quality filtered reads, while it used one 99.88 GB and 76.53 GB of memory when applying digital normalization and partitioning respectively. For SPAdes assemblies, it used used 381.79 GB of memory using quality filtered reads, while it used one 121.52 GB and 94.70 GB of memory when applying digital normalization and partitioning respectively.  For megahit, it utilizes 33.41 GB, 18.89 GB,  13.17 GB for quality-filtered reads, digital normalization, and partitioning respectively. See Table \ref{table:time-memory} for more details. 
-Clearly, Megahit is the best assembler in terms of memory and time utilization. We also conclude that Digitial normalization and partitioning treatments reduced time and memory requirements of assembly while they didn't affect assemblies quality. This means that digital normalization throws unnecessary reads. 
+Clearly, Megahit is the best assembler in terms of memory and time utilization. We also conclude that Digitial normalization and partitioning treatments reduced time and memory requirements of assembly while they didn't affect assemblies quality (see above). This means that digital normalization throws unnecessary reads. 
 
 %\subsection*{Memory requirements increase with re-inflation with no significant enhancement in assembly quality}
 
