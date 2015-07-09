@@ -308,7 +308,7 @@ Clearly, Megahit is the best assembler in terms of memory and time utilization. 
 
 \subsection*{Assembly Statistics}
 Contig or scaffold N50 is a weighted median statistic such that 50\% of the entire assembly is contained in contigs or scaffolds equal to or larger than this value. Using quality filtering, N50 is 38,028, 49,773,  42,773, and 35,136 for Velvet, IDBA, SPAdes, and Megahit respectively. The NG50 statistic is the same as N50 except that it is 50\% of the known reference genome size that must be achieved. Using quality filtered reads,  NG50 is 22,223, 45,748, 38,841, and 32,251 for Velvet, IDBA, SPAdes, and Megahit respectively.  N50 and NG50 decreases with digital normalization and partitioning. For diginorm assemblies, N50 is 18,944 47,828, 35,580, and 35,427 for Velvet, IDBA, SPAdes, and Megahit respectively.  For partitioning, N50 is 8,504, 26,575, 22,319, and 17,492, for Velvet, IDBA, SPAdes, and Megahit respectively.  See Table \ref{table:qualtiy-metrics} for more details. 
-IDBA has the highest NG50 although it has a high misassemblies contigs length (see below). For all assemblers and treatments, N50 is higher than NG50. This shows that using N50 may give false vision about assembly quality. 
+IDBA has the highest NG50 although it has a high misassemblies contigs length, mismatches percentages and indels percentages (see below). For all assemblers and treatments, N50 is higher than NG50. This shows that using N50 may give false vision about assembly quality. 
 
 
 %The assembly under each treatment is considered the reference genome in this experiment. 
@@ -329,7 +329,9 @@ IDBA has the highest NG50 although it has a high misassemblies contigs length (s
 % \subsection*{Something about misassemblies}  
 Misassembled contigs length is the total number of bases in misassembled contigs.  As shown in Table \ref {table:qualtiy-metrics}, using quality filtered reads, misassemblies contigs length are 16,566,891, 21,777,032, 28,238,787 and 11,927,502 for Velvet, SPAdes, IDBA, and Megahit respectively. 
 Using digital normalization,  misassemblies contigs length are 25,594,315, 27,668,818, 23,103,154, and 17,319,534 for Velvet, SPAdes, IDBA, and Megahit respectively.  Using partitioning,  misassemblies contigs length are 16,922,852, 18,440,791, 14,338,099, and 11,814,070 for Velvet, SPAdes, IDBA, and Megahit respectively. 
-Although IDBA has the highest NG50 (see above), IDBA shows the highest misassemblies contigs length using digital normalization and partitioning. It also shows a high misassemblies contigs length using quality filtering but not the highest.  See Table \ref{table:misassemblies}  for more details about misassemblies contigs, the types of missassembly events, mismatches and indels lengths.
+Although IDBA has the highest NG50 (see above), IDBA shows the highest misassemblies contigs length using digital normalization and partitioning. It also shows a high misassemblies contigs length using quality filtering but not the highest.
+Using quality filtering, mismatches percentages are 0.066\%, 0.082\%, 0.093\%, and 0.078\% for Velvet, IDBA, SPAdes, and Megahit respectively. Indels percentages are 0.031\%, 0.015\%, 0.014\%, and 0.008\% using Velvet, IDBA, SPAdes, and Megahit respectively. Percentages are computed with respect to their corresponding assembly total length. See Table \ref{table:misassemblies}  for more details about misassemblies contigs, the types of missassembly events, mismatches and indels lengths.
+
 
 
 To find out if there is a portion of the reference genome that is misassembled by most of the assemblers, we used quast \cite{quast} to align the reference genome to each assembly. Then we extracted the misassemblied contigs of the reference to each assembly. Analyzing this misassembled contigs, we find that there is a given portion of the reference that is misassembled by each assembler/treatment. HOW TO SHOW DATA OR ANALYSIS?  
@@ -653,7 +655,7 @@ So what are the content recovered by assembly and not in the reference?
 \hline
 \textbf{Mismatches}&184,630&244,849&235,396\\ [1ex]
 \hline 
-\textbf{Mismatches}&152,964&207,349&203,515\\ [1ex]
+\textbf{Percentage of Mismatches}&0.093\%&0.124\%&0.120\%\\ [1ex]
 \hline
 \textbf{Indels Length}&27,328&32,783&21,516\\ [1ex]
 \hline
