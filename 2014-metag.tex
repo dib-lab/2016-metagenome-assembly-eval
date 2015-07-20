@@ -216,7 +216,7 @@ We used a diverse mock community data set \cite{podar}. Raw reads contains 5536.
 \subsection*{Quality Filtering} 
 We trimmed low-quality bases using trimmomatic-0.30.jar \cite {trim} and using PE and using TruSeq3  adapter.
 We also used Fastq quality filter  from FASTX-Toolkit to filter sequences with low qualities with these parameters -Q33 -q 30 -p 50.
-The fastx utilities that aren’t paired-end aware; they’re removing individual sequences. Because the paired-end files are interleaved, this means that there may now be some orphaned sequences in there. Downstream, we will want to pay special attention to the remaining paired sequences, so we use  "extract-paired-reads.py" script in khmer/scripts to separate out the paired-end and single-end files.
+The fastx utilities that aren’t paired-end aware; individual sequences are removed. Because the paired-end files are interleaved, this means that there may be some orphaned sequence. We used  "extract-paired-reads.py" script in khmer/scripts to separate out the paired-end and single-end files.
 
 \subsection*{Mapping}
 
@@ -224,11 +224,11 @@ To find out chimeric reads to evaluate initial reads (see Results Section), we u
 
 
 \subsection*{Digital Normalization} 
-First, we normalize everything to a coverage of 20, starting with the (more valuable) paired-ended reads by running "normalize-by-median.py" script in khmer/scripts. We used -p to keep pairs, k=20 for k-mer size , cutoff of coverage C=20, N=4 for number of k-mer counting tables, x =1e9 for lower bound on tablesize  and  with option savetable for further use. Then we used to the same script to normalize the single-ended reads. We then use "filter-abund.py" script in khmer/scripts to trim off any k-mers that are abundance-1 in high-coverage reads. The -V option is used for variable coverage. We ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
+First, we normalize everything to a coverage of 20, starting with the (more valuable) paired-ended reads by running "normalize-by-median.py" script in khmer/scripts. We used -p to keep pairs, k=20 for k-mer size , cutoff of coverage C=20, N=4 for number of k-mer counting tables, x =1e9 for lower bound on tablesize  and  with option savetable for further use. Then we used to the same script to normalize the single-ended reads. We then use "filter-abund.py" script in khmer/scripts to trim off any k-mers that are abundand in high-coverage reads. The -V option is used for variable coverage. We ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
 
 \subsection*{Partitioning} 
 First, eliminate highly repetitive k-mers that could join multiple species using "filter-below-abund.py" script found in khmer/sandbox.  Then we run partitioning using do-partition script found in khmer/scripts. We used k =32 for k-mer size, x=1e9  for lower bound on tablesize to use and threads=4 for number of simultaneous threads to execute. 
-We then extracted partitions to groups using "extract-partitions.py" script in khmer/scripts/ with X=100000 for maximum group size. We finally, ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
+We then extracted partitions to groups using "extract-partitions.py" script in khmer/scripts/ with X=100,000 for maximum group size. We finally, ran "extract-paired-reads.py" in khmer/scripts to seperate paired-ended and single-ended reads. 
 
 \subsection*{Metagenomes Assembly and evaluation}
 We assembled the reads using four different assemblers; Velvet \cite{velvet}, Idba \cite{idba}, Spades \cite{spades}, and Megahit \cite{megahit}. For  Velvet \cite{velvet}, we used kmers values from 19 to 51 incremented by 2. We also used -fastq.gz for fatsq format,  -shortPaired for the pe files and -short for the se files. Also, we used \-exp\_cov auto \-cov\_cutoff auto.  For Idba \cite{idba},  we also used  --pre\_correction and -r for the pe files. 
