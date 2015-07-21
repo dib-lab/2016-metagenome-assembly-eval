@@ -241,18 +241,16 @@ We examined the assembly quality of each assembler and treatment using Quast \ci
 
 \section*{Results}
 
-\subsection*{Quality filtering did not change the number of reads}            
-We performed quality filtering to remove primers and poor-quality sequences. After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
-After fastx, we got 10547.80 megabases and 104,433,622 sequences for the pair-end reads and 184.44  megabases and 106,326,865 sequences for the single-end reads. In total, 10732.23 megabases and 106,326,865 sequences. 
-In summary, the quality filtering eliminates 3.01\% of the reads. 
-
 \subsection*{Initial Evaluation of the Reads}
 To evaluate initial reads, we mapped quality filtered reads using bwa aln \cite{bwa-mem} [XX CHECK THIS REFERENCE] to the reference genome. We then, extracted the unaligned sequences. There are 3,664,869 unaligned reads which represents 3.45\% of the quality filtered reads. These unaligned reads are either errors and/or new sequences.  We also used ”sam-calc-refcov-cmp.py” script, the reference genome and the mapping  sam file to find out the reference coverage. Quality filtered reads  represent 203,030,147  of the reference genome (205,603,715) which represent 98.75\%  of the reference.
 Using MAPQ field in sam files, we estimated the quality of mapping. There are 91,964,968 reads with MAPQ $\leq 30$. This shows that the data has a high quality. 
 We also used bwa mem  \cite{bwa-mem} to look for chimeric reads where a read spans two different genes, used sam tools to convert the mapping sam file to a bam file. Then we search for ’SA’ in bam file, we have 310,131 chimeric reads using quality filtered reads. 
 [REMINDER TO ASK TITUS]
- 
 
+\subsection*{Quality filtering did not change the number of reads}            
+We performed quality filtering to remove primers and poor-quality sequences. After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
+After fastx, we got 10547.80 megabases and 104,433,622 sequences for the pair-end reads and 184.44  megabases and 106,326,865 sequences for the single-end reads. In total, 10732.23 megabases and 106,326,865 sequences. 
+In summary, the quality filtering eliminates 3.01\% of the reads. 
 
 \subsection *{Effect of Digital normalization and partitioning} 
 To evaluate how many reads digital normalization and partitioning throws away, we estimated number of reads after running each treatment. 
@@ -423,11 +421,8 @@ So what are the content recovered by assembly and not in the reference?
 %\end{figure}
 \begin{figure} [h] 
 \begin{center}  
-<<<<<<< HEAD
-\includegraphics[height=3.2in,width=4.5in]{mincontig.pdf}  
-=======
+
 \includegraphics[height=3.2in,width=4.5in]{mincontigs.png}  
->>>>>>> 954f5fe4897f057f014de07308af8ae330400d59
 \caption{\small \sl Total Length of assemblies in basepairs based on different min contigs length.\label{fig:mincontig}}  
 \end{center}  
 \end{figure}  
@@ -435,11 +430,7 @@ So what are the content recovered by assembly and not in the reference?
 
 \begin{figure} [h] 
 \begin{center}  
-<<<<<<< HEAD
-\includegraphics[height=3.2in,width=4.5in]{gfmincontig.pdf}  
-=======
 \includegraphics[height=3.2in,width=4.5in]{gfmincontig.png}  
->>>>>>> 954f5fe4897f057f014de07308af8ae330400d59
 \caption{\small \sl Genome Fraction of assemblies in basepairs based on different min contigs length.\label{fig:gf}}  
 \end{center}  
 \end{figure}  
