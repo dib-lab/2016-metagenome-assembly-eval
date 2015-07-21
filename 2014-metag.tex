@@ -261,6 +261,8 @@ We also used bwa mem  \cite{bwa-mem} to look for chimeric reads where a read spa
 \subsection*{Quality filtering did not change the number of reads}            
 We performed quality filtering to remove primers and poor-quality sequences. After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
 After fastx, we got 10719.6 megabases and 106,134,639 sequences for the pair-end reads and 12.63  megabases and 192,226 sequences for the single-end reads. In total, 10732.23 megabases and 106,326,865 sequences. 
+
+Since fastx utilities used in quality trimming are not paire-end aware; individual sequences will be removed. Because the paired-end files are interleaved, this means that there may be some orphand sequences. We extracted pair-end reads, resulting in 10547.79 mega bp and 104,433,622 sequences in paired-end files. The single-end file has now 184.44 mega bp and 1,893,243 sequences. In total, 10732.23 mega bp and 106,326,865 sequences. 
 In summary, the quality filtering eliminates 3.01\% of the reads. 
 
 \subsection *{Effect of Digital normalization and partitioning} 
