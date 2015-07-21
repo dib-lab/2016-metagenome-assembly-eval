@@ -263,14 +263,15 @@ In summary, the quality filtering eliminates just 3.01\% of the reads.
 \subsection *{Effect of Digital normalization and partitioning} 
 To evaluate how many reads digital normalization and partitioning throws away, we estimated number of reads after running each treatment. 
 After digital normalization, the pair ended file contains 1687.59 megabases and 16,853,716 sequences  while the single ended file contains 5.86 megabases and 64,638 sequences. 
-After partitioning, we got 28 partitions. The largest partition has 1379.27 megabases. The smallest partition has 7.14 megabases. The total base pairs in all partitions is 1651.53 megabases. 
-Knowing that quality filtered reads has 10547.80 megabases for paired-end file and 184.44  megabases for single-end file (see above for more details), clearly, digital normalizatation and partitioning decrease the total number of reads.  
+After partitioning, we got 29 partitions. The largest partition in paired-end files has 1379.27 megabases while the smallest partition has 7.14 megabases. The total base pairs in all pair-end files  partitions is 1651.53 megabases. 
+For single-end files, the largest partition has 13.90 megabases while the smallest partition has 2.52 megabases and in total 24.6  megabases. 
+Knowing that quality filtered reads has 10547.79 megabases for paired-end file and 184.44  megabases for single-end file (see above for more details), clearly, digital normalizatation and partitioning decrease the total number of reads.  
 
 
-We used bwa aln \cite{bwa-mem} to map digital normalized reads and partitioned reads to the reference genome generating a sam file from each. Then we used  "sam-calc-refcov-cmp.py" script, the reference genome and the generated sam files to find out the reference coverage. Digital normalized reads and partitioned reads represent  202,201,168 and 201,193,779 of the reference genome (205,603,715)  which represent 98.34\%, and 97.85\%  of the reference.   
+We used bwa aln \cite{bwa-mem} to map digital normalized reads and partitioned reads to the reference genome generating a sam file from each. Then we used  "sam-calc-refcov-cmp.py" script, the reference genome and the generated sam files to find out the reference coverage. Digital normalized reads and partitioned reads represent  202,201,168 and 201,193,779 of the reference genome (205,603,715)  which represent 98.34\%, and 97.85\%  of the reference respectively.
 
 
-We estimated quality of mapping using MAPQ field in sam files, we have 15,248,657 and 15,164,099 with quality $\geq 30$,  using  digital normalized reads, and partitioned reads respectively. 
+We estimated quality of mapping using MAPQ field in sam files, we have 15,248,657 and 15,164,099 with MAPQ $\geq 30$,  using  digital normalized reads, and partitioned reads respectively. 
 
 We used bwa mem to search for chimeric reads by mapping digital normalized reads, and partitioned reads to the reference genome. Then we search for 'SA' in bam files, we have 28,969 and  26,960 chimeric reads using digital normalized reads and partitioned reads respectively. Digital normalization and partitioning decreased chimeric reads. (See above for quality filtered reads no. of chimeric reads). 
 
