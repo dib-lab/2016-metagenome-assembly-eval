@@ -242,6 +242,12 @@ We examined the assembly quality of each assembler and treatment using Quast \ci
 \section*{Results}
 
 
+\subsection*{Initial Evaluation of the Reads}
+To evaluate initial reads, we mapped quality filtered reads using bwa aln \cite{bwa-mem} [XX CHECK THIS REFERENCE] to the reference genome. We then, extracted the unaligned sequences. There are 3,664,869 unaligned reads which represents 3.45\% of the quality filtered reads. These unaligned reads are either errors and/or new sequences.  We also used ”sam-calc-refcov-cmp.py” script, the reference genome and the mapping  sam file to find out the reference coverage. Quality filtered reads  represent 203,030,147  of the reference genome (205,603,715) which represent 98.75\%  of the reference. Having almost all reads aligned to the reference, shows that the data has a high quality. 
+
+Using MAPQ field in sam files, we estimated the quality of mapping. There are 91,964,968 reads with MAPQ $\geq 30$. 
+We also used bwa mem  \cite{bwa-mem} to look for chimeric reads where a read spans two different genes. We used sam tools to convert the mapped sam file to a bam file. Then we search for ’SA’ in the bam file, we have 310,131 chimeric reads using quality filtered reads. 
+[REMINDER TO ASK TITUS]
 \subsection*{Quality filtering did not change the number of reads}            
 We performed quality filtering to remove primers and poor-quality sequences. After trimming, we got 11024.50 mega bp and 109,153,498 sequences for the pair-end reads and 14.86 mega bp and 235,966 sequences for the single-end reads. In total,  11039.36 mega bp and 109,389,464 sequences. 
 
@@ -251,19 +257,8 @@ After fastx, we got 10719.6 mega bp and  106,134,639 sequences for the pair-end 
 Since fastx utilities used in quality trimming  are not paired-end aware;  individual sequences will be removed. Because the paired-end files are interleaved, this means that there may now be some orphaned sequences. We extracted pair-end reads, resulting in 10547.79 mega bp and 104,433,622 sequences in paired-end files. The single-end file has now 184.44 mega bp and 1,893,243 sequences. In total, 10732.23 mega bp and 106,326,865 sequences.
 In summary, the quality filtering eliminates just 3.01\% of the reads. 
 
-\subsection*{Initial Evaluation of the Reads}
-To evaluate initial reads, we mapped quality filtered reads using bwa aln \cite{bwa-mem} [XX CHECK THIS REFERENCE] to the reference genome. We then, extracted the unaligned sequences. There are 3,664,869 unaligned reads which represents 3.45\% of the quality filtered reads. These unaligned reads are either errors and/or new sequences.  We also used ”sam-calc-refcov-cmp.py” script, the reference genome and the mapping  sam file to find out the reference coverage. Quality filtered reads  represent 203,030,147  of the reference genome (205,603,715) which represent 98.75\%  of the reference. Having almost all reads aligned to the reference, shows that the data has a high quality. 
 
-Using MAPQ field in sam files, we estimated the quality of mapping. There are 91,964,968 reads with MAPQ $\geq 30$. 
-We also used bwa mem  \cite{bwa-mem} to look for chimeric reads where a read spans two different genes. We used sam tools to convert the mapped sam file to a bam file. Then we search for ’SA’ in the bam file, we have 310,131 chimeric reads using quality filtered reads. 
-[REMINDER TO ASK TITUS]
 
-\subsection*{Quality filtering did not change the number of reads}            
-We performed quality filtering to remove primers and poor-quality sequences. After trimming, we got 11024.50 megabases and 109,153,498 sequences for the pair-end reads and 14.86 megabases and 235,966 sequences for the single-end reads. In total,  11039.36 megabases and 109,389,464 sequences. 
-After fastx, we got 10719.6 megabases and 106,134,639 sequences for the pair-end reads and 12.63  megabases and 192,226 sequences for the single-end reads. In total, 10732.23 megabases and 106,326,865 sequences. 
-
-Since fastx utilities used in quality trimming are not paire-end aware; individual sequences will be removed. Because the paired-end files are interleaved, this means that there may be some orphand sequences. We extracted pair-end reads, resulting in 10547.79 mega bp and 104,433,622 sequences in paired-end files. The single-end file has now 184.44 mega bp and 1,893,243 sequences. In total, 10732.23 mega bp and 106,326,865 sequences. 
-In summary, the quality filtering eliminates 3.01\% of the reads. 
 
 \subsection *{Effect of Digital normalization and partitioning} 
 To evaluate how many reads digital normalization and partitioning throws away, we estimated number of reads after running each treatment. 
