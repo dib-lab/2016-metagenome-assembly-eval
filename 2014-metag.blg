@@ -1,47 +1,50 @@
-This is BibTeX, Version 0.99d (TeX Live 2014)
+This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: 2014-metag.aux
 The style file: plos2009.bst
 Database file #1: References.bib
+Warning--entry type for "FXtoolkit" isn't style-file defined
+--line 119 of file References.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 9 entries,
+You've used 14 entries,
             2441 wiz_defined-function locations,
-            588 strings with 6259 characters,
-and the built_in function-call counts, 7645 in all, are:
-= -- 692
-> -- 148
+            618 strings with 7331 characters,
+and the built_in function-call counts, 12466 in all, are:
+= -- 1135
+> -- 240
 < -- 0
-+ -- 74
-- -- 37
-* -- 658
-:= -- 932
-add.period$ -- 18
-call.type$ -- 9
-change.case$ -- 9
++ -- 120
+- -- 60
+* -- 1080
+:= -- 1506
+add.period$ -- 29
+call.type$ -- 14
+change.case$ -- 14
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 746
-empty$ -- 780
-format.name$ -- 45
-if$ -- 1675
+cite$ -- 28
+duplicate$ -- 1229
+empty$ -- 1281
+format.name$ -- 72
+if$ -- 2740
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 95
-newline$ -- 60
-num.names$ -- 9
-pop$ -- 107
+int.to.str$ -- 14
+missing$ -- 148
+newline$ -- 86
+num.names$ -- 14
+pop$ -- 177
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 67
+skip$ -- 115
 stack$ -- 0
-substring$ -- 1088
-swap$ -- 186
+substring$ -- 1802
+swap$ -- 286
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 62
-width$ -- 10
-write$ -- 110
+while$ -- 96
+width$ -- 16
+write$ -- 163
+(There was 1 warning)
