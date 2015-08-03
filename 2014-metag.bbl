@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -51,17 +51,48 @@ Anthony B, Marc L, Bjoern U (2014) Trimmomatic: a flexible trimmer for illumina
 \newblock Bioinformatics : btu170.
 \bibAnnoteFile{trim}
 
-\bibitem{quast}
-Gurevich A, Saveliev V, Vyahhi N, Tesler G (2013) Quast: quality assessment
-  tool for genome assemblies.
-\newblock Bioinformatics 28: 1072-1075.
-\bibAnnoteFile{quast}
+\bibitem{FXtoolkit}
+Lab H.
+\newblock Fastx toolkit.
+\newblock \urlprefix\url{http://hannonlab.cshl.edu/fastx_toolkit/index.html}.
+\bibAnnoteFile{FXtoolkit}
 
 \bibitem{bwa-mem}
 Li H (2013) Aligning sequence reads, clone sequences and assembly contigs with
   bwa-mem.
 \newblock arXiv preprint arXiv:13033997 .
 \bibAnnoteFile{bwa-mem}
+
+\bibitem{brown2012}
+Brown CT, Howe A, Zhang Q, Pyrkosz AB, Brom TH (2012) A reference-free
+  algorithm for computational normalization of shotgun sequencing data.
+\newblock arXiv preprint arXiv:12034802 .
+\bibAnnoteFile{brown2012}
+
+\bibitem{qingpeng2014}
+Zhang Q, Pell J, Canino-Koning R, Howe AC, Brown CT (2014) These are not the
+  k-mers you are looking for: Efficient online k-mer counting using a
+  probabilistic data structure.
+\newblock PLoS One 9.
+\bibAnnoteFile{qingpeng2014}
+
+\bibitem{jpell2012}
+Pell J, Hintze A, Canino-Koning R, Howe A, Tiedje JM, et~al. (2012) Scaling
+  metagenome sequence assembly with probabilistic de bruijn graphs.
+\newblock Proceedings of the National Academy of Sciences 109: 13272--13277.
+\bibAnnoteFile{jpell2012}
+
+\bibitem{ahowe2014}
+Howe AC, Jansson JK, Malfatti SA, Tringe SG, Tiedje JM, et~al. (2014) Tackling
+  soil diversity with the assembly of large, complex metagenomes.
+\newblock Proceedings of the National Academy of Sciences 111: 4904--4909.
+\bibAnnoteFile{ahowe2014}
+
+\bibitem{quast}
+Gurevich A, Saveliev V, Vyahhi N, Tesler G (2013) Quast: quality assessment
+  tool for genome assemblies.
+\newblock Bioinformatics 28: 1072-1075.
+\bibAnnoteFile{quast}
 
 \bibitem{samtools}
 Heng L, Handsaker B, Wysoker A, Fennell T, Ruan J, et~al. (2009) The sequence
