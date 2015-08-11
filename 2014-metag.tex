@@ -166,7 +166,7 @@ Problem statement: In this paper, we performed analytical study for metagnome as
 
 
 Approach: We used a mock community dataset for the analysis, and used its reference genome for benchmark evaluation. We quality filtered the reads, then we applied 2 other preprocessing steps: digital normalization and partitioning. We used 4 different assembler: Velvet, IDBA-UD, SPAdes, and MEGAHIT to assemble the reads using each treatment. We used QUAST to analyze assemblies accuracy. 
-@SAM let me show you something about IDBA-UD pls
+%@SAM let me show you something about IDBA-UD pls
 
 Results: Results show that assembly works well. Velvet is the worst assembler in terms of accuracy and recourses utilizations. The results also showed that assembly counts to most of the reads. 
  
@@ -212,34 +212,34 @@ We used a diverse mock community data set containing 64 known species,
 sequenced with Illumina HiSeq, yielding 109,629,496 paired-end sequences with
 an untrimmed length of 11.07 Gbp and an estimated insert size of XX
 \cite{podar}.  The two unfiltered read files each contained 5.5 Gbp of
-sequence data.
+sequence data. %@SAM still did not finish computing insert size
 
 % (@CTB is this data set size, or number of bases?)
 % (@SAM that's the number of bases using readstats) 
 
 In total, the data set contained 11.1 Gbp of DNA sequence in 109,629,496
 reads.  We received the reference genomes from the original authors
-(posted on FigShare at doi@@) and the original reads are available through
+(posted on FigShare at doi@@10.6084/m9.figshare.1506873) and the original reads are available through
 the NCBI Sequence Read Archive at Accession SRX200676.
 
 \subsection*{Quality Filtering} 
 
 We removed adapters with Trimmomatic v0.30 in paired-end mode with the
 TruSeq3 adapters \cite{trim}.
-The command line options used was TruSeq3-PE.fa:2:30:10??: Cite note for Mircea Reply
+%The command line options used was TruSeq3-PE.fa:2:30:10??: Cite note for Mircea Reply
  %@CTB - please find out what adapters we should use for trimming. It's
-probably not TruSeq3.
-@SAM what we used TruSeq3-PE.fa:2:30:10?? 
+%probably not TruSeq3.
+%@SAM what we used TruSeq3-PE.fa:2:30:10?? 
 We next used the fastq\_quality\_filter %(@CTB what program exactly?)
 from the FASTX-Toolkit v0.0.13.2 \cite{FXtoolkit} to remove sequences with %(@CTB describe what those parameters do)
-using the parameters -Q33 -q 30 -p 50  where -q  is the minimum quality score to keep  and -p is the minimum percent of bases that must have [-q] quality and Q33 to set the right offset for Sanger quality scores. @SAM check Q33 explanation? 
+using the parameters -Q33 -q 30 -p 50  where -q  is the minimum quality score to keep  and -p is the minimum percent of bases that must have [-q] quality and Q33 to set the right offset for Sanger quality scores.  
 
  %(cite fastx, give version). 
 
 \subsection*{Mapping}
 
 We aligned all quality-filtered reads to the reference metagenome with bwa
-aln (v0.7.7.r441) (@SAM people cite bwa or bwa mem can't find citation for bwa aln??)  %(XXX give version and any command line options thataren't default).
+aln (v0.7.7.r441) \cite{bwa}  % (@SAM people cite bwa or bwa mem can't find citation for bwa aln??)  %(XXX give version and any command line options thataren't default).
   We aligned paired-end and orphaned reads separately,
 and we aligned each as single reads using bwa samse.  We then used
 samtools (v0.1.19 ) \cite{sam-stools} to convert SAM files to BAM files for both
@@ -247,37 +247,36 @@ paired-end and orphaned reads. To find the unaligned reads, we find the reads wi
 
 We found chimeric alignments with the bwa mem aligner with the default
 parameters (v0.7.7.r441).  To find the chimeric alignments, we find the reads with 'SA' flag in the sam file \cite{sam-stools}.  
-@SAM chimeric alignments cut reads in two (or more). There will be a primary alignment and a secondary alignment tagged SA; other canonical alignments in a chimeric alignment, formatted as a semicolon-delimited list: (rname,pos,strand,CIGAR,mapQ,NM;)+. Each element in the list represents a part of the chimeric alignment. Conventionally, at a supplementary line, the first element points to the primary line.  %(XXX give bwa version).
+Chimeric alignments cut reads in two (or more). There will be a primary alignment and a secondary alignment tagged SA; other canonical alignments in a chimeric alignment, formatted as a semicolon-delimited list: (rname,pos,strand,CIGAR,mapQ,NM;)+. Each element in the list represents a part of the chimeric alignment. Conventionally, at a supplementary line, the first element points to the primary line.  %(XXX give bwa version).
 
 \subsection*{Reference Coverage} 
-We used bwa aln (v0.7.7.r441) \cite{bwa-mem} to map quality filtered reads, digital normalized reads and
+We used bwa aln (v0.7.7.r441) \cite{bwa} to map quality filtered reads, digital normalized reads and
 partitioned reads to the reference genome generating a sam file from
-each. Then we used "sam-calc-refcov-cmp.py" script, the reference
+each. Then we used {\tt"sam-calc-refcov-cmp.py"} script, the reference
 genome and the generated sam files to find out the reference
-coverage.
+coverage. This script counts whether the reference base exists in the read or not. It doesn't take into account coverage depth. 
 
 
 \subsection*{Digital Normalization} 
 
 We applied the {\tt normalize-by-median.py} script from khmer v1.1 to
-execute abundance normalization (``digital normalization'',  @cite
-Brown 2012) \cite{brown2012} on the data, retaining paired reads with -p and using a
+execute abundance normalization (``digital normalization'', \cite{brown2012})  on the data, retaining paired reads with -p and using a
 k-mer size of 20 (-p -k 20).  We executed digital normalization with 4
 hash tables, each 1 GB in size (-N 4 -x 1e9).  After read
 normalization, we used the filter-abund.py script to trim
 high-abundance reads (estimated k-mer coverage $\geq$ 20) at low-abundance
 k-mers (k-mer abundance $\leq$ 2)   %@CTB check these parameters) 
-to remove erroneous k-mers  \cite{qingpeng2014} 
+to remove erroneous k-mers  \cite{qingpeng2014} \cite{streaming} 
 %(@cite Zhang et al., 2014 PLoS One; Zhang et al.,2015 (peerJ)).
-@SAM what is zhang et al. peerJ 2015? 
+%@SAM what is zhang et al. peerJ 2015? 
 
 %@CTB was a second round of digital normalization run here?
-@SAM yes, this is the second round
+%@SAM yes, this is the second round
 
 \subsection*{Partitioning} 
 
 We next applied partitioning to the data \cite{jpell2012, ahowe2014}  %(cite Pell et al. 2012, Howe et al., 2014).
-We first eliminated high-abundance k-mers that join multiple
+We first eliminated high-abundance k-mers that could join multiple
 species bins using {\tt filter-below-abund.py} script from khmer v1.1.
 We next ran {\tt do-partition.py} with a k-mer size of 32 and 4 Bloom
 filters each of size 1 GB for partitioning (-k 32 -N 4 -x 1e9).  After
@@ -287,15 +286,15 @@ partitioning, partitions were extracted to groups using the {\tt extract-partiti
 
 We assembled the reads using four different assemblers; Velvet \cite{velvet}, IDBA-UD \cite{idba}, SPAdes \cite{spades}, and MEGAHIT \cite{megahit}.
 %(@CTB please check and use appropriate capitalization - look at the original papers to see what they use. I think it's IDBA-UD, MEGAHIT, SPAdes.)
-@SAM I can see IDBA-UD cited as it is instead of the version number, from QUAST paper, etc
+%@SAM I can see IDBA-UD cited as it is instead of the version number, from QUAST paper, etc
 
 For Velvet \cite{ velvet}, we used kmers values from 19 to 51
 incremented by 2. We also used -fastq.gz for fastq format,
 -shortPaired for the pe files and -short for the se files. Also, we
-used \-exp\_cov auto \-cov\_cutoff auto for expected coverage and coverage cutoff respectively. 
+used \-exp\_cov auto \-cov\_cutoff auto for expected coverage and coverage cutoff respectively.  We used '{\tt calc-best-assembly.py} script to find the winner assembly. The winner assembly is the assembly that has the largest number of sequences  with length  $\geq$  500. 
 
 For IDBA-UD \cite{idba},  we also used  --pre\_correction and -r for the pe files.
-For SPAdes \cite{spades}, we used --sc --pe1-12   where --sc is required for MDA (single-cell) data  and --pe1-12 @SAM this is what we used? 
+For SPAdes \cite{spades}, we used --sc --pe1-12   where --sc is required for MDA (single-cell) data  and --pe1-12 %@SAM this is what we used? 
 For MEGAHIT \cite{megahit}, we used -l 101 -m 3e9 --cpu-only where -l is for maximum read length , -m is for max memory in byte to be used, and --cpu-only to use CPU not GPU.
 
 %Spades? YYYY
@@ -323,19 +322,19 @@ mapping was high, with 92.0m reads having a MAPQ $\geq 30$.
 the data has a high quality'' in discussion.)
 
 We then evaluated the fraction of the reference genome covered by at
-least one read.
+least one read. See "Reference Coverage in Methods". 
 Quality filtered reads cover 203,030,147 bases of the reference genome
 (205,603,715), or 98.75\% of the reference.
 
-We also used bwa mem \cite{bwa-mem} to look for chimeric alignments where a read is cut into two or more. @SAM explained in mapping?  
+%We also used bwa mem \cite{bwa-mem} to look for chimeric alignments where a read is cut into two or more. @SAM explained in mapping?  
 
-\subsection*{Quality filtering did not change the number of reads}            
+\subsection*{Quality filtering change the number of reads}            
 
 We performed quality filtering to remove primers and poor-quality
 sequences. After primer trimming, we retained 11.00 Gbp in 109,153,498
 paired-end sequences, and 14.9 Mbp in 235,966 orphaned reads.  After
 quality filtering, 107 Gbp of sequence remained in 106,134,639
-paired-end sequences, with 12.6 Mbp in 192,226 orpan sequences.  In
+paired-end sequences, with 12.6 Mbp in 2,226 orpan sequences.  In
 total, only 3.01\% of the reads were removed (3302631 reads, 340345361 bp),
 indicating that the original reads are high quality (see also Zhang et
 al., 2015, PeerJ preprint, where an independent analysis of error rates
@@ -350,11 +349,7 @@ After digital normalization, we retained
 got 29 partitions.  For paired-end sequences, in the largest partition we retained %1379.27  Mbp,
 1.38 Gbp, in the smallest partition we retained 7.14 Mbp, and in total,  we retained 1651.53
 Mbp.  For orphaned sequences, in the largest partition we retained 13.90
-Mbp, in the smallest partition we retained 2.52 Mbp, and in total we retained 24.6 Mbp.  Knowing that quality filtered reads retained 10547.79
-Mbp in paired-end sequences and 184.44 Mbp in orphaned sequences
-(see above for more details), clearly, digital normalization and
-partitioning decrease the total number of reads.
-
+Mbp, in the smallest partition we retained 2.52 Mbp, and in total we retained 24.6 Mbp.  
 Digital normalized reads and partitioned reads covered 
 202,201,168 and 201,193,779  bases of the reference genome (205,603,715), or 98.34\%, and 97.85\% of the reference respectively.
 
@@ -365,11 +360,11 @@ We have 28,969 and 26,960 chimeric
 reads using digital normalized reads and partitioned reads
 respectively. Digital normalization and partitioning decreased
 chimeric alignments. (See above for quality filtered reads no. of chimeric
-reads). @SAM do you mean this is mentioned so many times or the decrease is more than expected. Replaced chimeric reads with chimeric alignments? 
+reads). %@SAM do you mean this is mentioned so many times or the decrease is more than expected. %@SAMReplaced chimeric reads with chimeric alignments? 
 
 %\subsection*{Digital normalization and partitioning reduced memory and time requirements for assembly}
 \subsection*{Compute Cost of Assembly} 
- please spell check.
+ %please spell check.
 To evaluate whether digital normalization and partitioning are doable treatments, we estimated time and memory requirements for each of them. We also estimated the running time and memory utilization for each assembler under both treatments and compared to assemblers time and memory requirements using quality filtered reads.  
 
 Digital normalization utilized 74.93 GB of memory and took around 3
@@ -482,7 +477,7 @@ Table \ref{table:qualtiy-metrics} for more details.
 To further evaluate assemblies, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
 
 
-For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. This represents 4.26 \%, 0.75\%, 1.06\%, and 0.79\% of  each corresponding assembly length respectively. These percentages reflect errors or low coverage reads. See Table \ref{table:reads-mapping} for more details. 
+For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. This represents 6.4\%, 1.40\%, 1.97\%, and 1.47\% of the total number of reads respectively. These percentages reflect errors or low coverage reads. See Table \ref{table:reads-mapping} for more details. 
 
 \subsection*{Assembly Errors} 
 
@@ -514,7 +509,7 @@ Using partitioning, we got also zero unaligned contigs, with partial unaligned l
 We aligned the unaligned contigs of each assembly with different treatments to the unaligned contigs of IDBA-UD assembly using quality filtered treatment. 
 Using quality filtered reads, the genome fraction equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and MEGAHIT respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and MEGAHIT respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length which is IDBA-UD unaligned contigs using quality filtered reads. See Table \ref{table:unaligned-mapping} for more details.  Velvet unalignments show the highest percentages of IDBA-UD QC unalignments. IDBA-UD diginorm unalignments shows the less percentage of IDBA-UD QC unalignments. 
 
-@SAM Won't be added, just reporting the new corrected results
+%@SAM Won't be added, just reporting the new corrected results
 To further explore the unalignment, we downloaded fusa seeds from Fungenes. We used blast to map the unaligned reads to fusa seeds,  using IDBA-UD/digital normalized  assemblies, and no hits found. 
 
 
@@ -848,25 +843,25 @@ So what are the content recovered by assembly and not in the reference?
 \hline
 \textbf{No. of Unaligned Sequences}&6,801,329&3,375,222&3,890,205  \\ 
 \hline
-\textbf{Percentage}&4.26\%&1.73\%&1.99 \% \\
+\textbf{Percentage}&6.4\%&3.17\%&3.66\% \\
 \hline
 \multicolumn{4}{|c|}{ \textbf{(2) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
 \hline
 \textbf{No. of Unaligned Sequences}&1,490,609&1,738,371&2,297,377 \\
 \hline
-\textbf{Percentage}&0.75\%&0.87\%&1.17\% \\
+\textbf{Percentage}&1.40\%&1.63\%&2.16\% \\
 \hline
 \multicolumn{4}{|c|}{ \textbf{(3) SPAdes} }   \\ [0.5ex] % inserts table %heading
 \hline
 \textbf{No. of Unaligned Sequences}&2,100,555&2,439,158&2,804,006\\
 \hline
-\textbf{Percentage}&1.06\%&1.24\%&1.44\%\\
+\textbf{Percentage}&1.97\%&2.29\%&2.64\%\\
 \hline
 \multicolumn{4}{|c|}{ \textbf{(4) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
 \hline
 \textbf{No. of Unaligned Sequences}&1,559,300&2,082,881&2,747,427 \\
 \hline
-\textbf{Percentage}&0.79\%&1.06\% &1.42\% \\
+\textbf{Percentage}&1.47\%&1.96\% &2.58\% \\
 \hline
 \end{tabular}
 \label{table:reads-mapping} 
@@ -1028,8 +1023,7 @@ So what are the content recovered by assembly and not in the reference?
 
 
 
-
-\section *{Supporting Information Legends} 
+ \section *{Supporting Information Legends} 
 %
 % Please enter your Supporting Information captions below in the following format:
 %\item{\bf Figure SX. Enter mandatory title here.} Enter optional descriptive information here.

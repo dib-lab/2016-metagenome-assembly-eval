@@ -57,11 +57,17 @@ Lab H.
 \newblock \urlprefix\url{http://hannonlab.cshl.edu/fastx_toolkit/index.html}.
 \bibAnnoteFile{FXtoolkit}
 
-\bibitem{bwa-mem}
-Li H (2013) Aligning sequence reads, clone sequences and assembly contigs with
-  bwa-mem.
-\newblock arXiv preprint arXiv:13033997 .
-\bibAnnoteFile{bwa-mem}
+\bibitem{bwa}
+Li H, Durbin R (2009) Fast and accurate short read alignment with
+  burrows--wheeler transform.
+\newblock Bioinformatics 25: 1754--1760.
+\bibAnnoteFile{bwa}
+
+\bibitem{sam-stools}
+Li H, Handsaker B, Wysoker A, Fennell T, Ruan J, et~al. (2009) The sequence
+  alignment/map format and samtools.
+\newblock Bioinformatics 25: 2078--2079.
+\bibAnnoteFile{sam-stools}
 
 \bibitem{brown2012}
 Brown CT, Howe A, Zhang Q, Pyrkosz AB, Brom TH (2012) A reference-free
@@ -75,6 +81,12 @@ Zhang Q, Pell J, Canino-Koning R, Howe AC, Brown CT (2014) These are not the
   probabilistic data structure.
 \newblock PLoS One 9.
 \bibAnnoteFile{qingpeng2014}
+
+\bibitem{streaming}
+Zhang~Qingpeng AS, Titus B (2015) Crossing the streams: a framework for
+  streaming analysis of short dna sequencing reads.
+\newblock PeerJ PrePrints 3:e1100 https://dxdoiorg/107287/peerjpreprints890v1 .
+\bibAnnoteFile{streaming}
 
 \bibitem{jpell2012}
 Pell J, Hintze A, Canino-Koning R, Howe A, Tiedje JM, et~al. (2012) Scaling
@@ -93,6 +105,12 @@ Gurevich A, Saveliev V, Vyahhi N, Tesler G (2013) Quast: quality assessment
   tool for genome assemblies.
 \newblock Bioinformatics 28: 1072-1075.
 \bibAnnoteFile{quast}
+
+\bibitem{bwa-mem}
+Li H (2013) Aligning sequence reads, clone sequences and assembly contigs with
+  bwa-mem.
+\newblock arXiv preprint arXiv:13033997 .
+\bibAnnoteFile{bwa-mem}
 
 \bibitem{samtools}
 Heng L, Handsaker B, Wysoker A, Fennell T, Ruan J, et~al. (2009) The sequence
