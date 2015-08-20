@@ -34,7 +34,7 @@ for x in dic.keys():
 	        i = 0
 		while i < l-2:
 			if len(cont[x]) > 1:	
-				print "inversion: %s, %s, %s" %(x, dic[x][i], dic[x][i+1])
+				print "Translocation: %s, %s, %s" %(x, dic[x][i], dic[x][i+1])
 			#d = abs( int(dic[x][i+2]) - int(dic[x][i+1]) ) #ignore abs to ignore negative gap
  			d = int(dic[x][i+2]) - int(dic[x][i+1]) 
 			if d > cutoff: 
