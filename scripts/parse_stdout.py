@@ -11,8 +11,8 @@ genome =defaultdict(list)
 for line in open(mis): 
 	x = line.split(' ')
 	if x[2] != 'Extensive':
-		genome[x[14]].append(x[3]) 
-		genome[x[14]].append(x[4])
+		genome[x[14]].append(float(x[3])) 
+		genome[x[14]].append(float(x[4]))
 
 
 for g in genome.keys():
