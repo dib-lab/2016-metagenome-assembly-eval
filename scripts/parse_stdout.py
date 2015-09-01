@@ -18,11 +18,12 @@ for line in open(mis):
 for g in genome.keys():
 	 l = len(genome[g])
 	 i =0 
-	 print g, min(genome[g]), max(genome[g])
-	 """ #uncomment if you need to print out each misassembly position in details 
+	 #print g,',', min(genome[g]),',', max(genome[g])
+	 #uncomment if you need to print out each misassembly position in details 
+	 sys.stdout.write(g)
+	 sys.stdout.write(',')
 	 while i <l:
-		sys.stdout.write(genome[g][i])
+		sys.stdout.write(str(genome[g][i]))
 		sys.stdout.write(',')
 		i +=1
 	 sys.stdout.write('\n')
-	 """
