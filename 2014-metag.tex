@@ -321,7 +321,7 @@ mapping was high, with 92.0m reads having a MAPQ $\geq 30$.
 
 
 We then evaluated the fraction of the reference genome covered by at
-least one read. See 'Reference Coverage in Methods'. @ctb do u mean just single quotes
+least one read. See 'Reference Coverage in Methods'. %@ctb do u mean just single quotes
 Quality filtered reads cover 203,030,147 bases of the reference genome
 (205,603,715), or 98.75\% .
 
@@ -357,12 +357,12 @@ normalized reads, and partitioned reads respectively.
 We have 28,969 and 26,960 chimeric
 reads using digital normalized reads and partitioned reads
 respectively. Digital normalization and partitioning decreased
-chimeric alignments which is less than the chimeric reads found using quality filtered reads (310,131) %@SAM do you mean this is mentioned so many times or the decrease is more than expected. %@SAMReplaced chimeric reads with chimeric alignments? 
+chimeric alignments which is less than the chimeric reads found using quality filtered reads (310,131). %@SAM do you mean this is mentioned so many times or the decrease is more than expected. %@SAMReplaced chimeric reads with chimeric alignments? 
 
 %\subsection*{Digital normalization and partitioning reduced memory and time requirements for assembly}
 \subsection*{Compute Cost of Assembly} 
  %please spell check.
-To evaluate whether digital normalization and partitioning are doable treatments, we estimated time and memory requirements for each of them. We also estimated the running time and memory utilization for each assembler under both treatments and compared to assemblers time and memory requirements using quality filtered reads.  
+We estimated time and memory requirements for each of them. We also estimated the running time and memory utilization for each assembler under both treatments and compared to assemblers time and memory requirements using quality filtered reads.  
 
 Digital normalization utilized 74.93 GB of memory and took around 3
 hours and 53 minutes to run. Partitioning utilized 21.78 GB and around
@@ -414,7 +414,7 @@ affect assemblies quality (see above).
 
 
 Contig or scaffold N50 is a weighted median statistic such that 50\% of the entire assembly is contained in contigs or scaffolds equal to or larger than this value. Using quality filtering, N50 is 38,028, 49,773,  42,773, and 35,136 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. The NG50 statistic is the same as N50 except that it uses 50\% of the known reference genome size. Using quality filtered reads,  NG50 is 22,223, 45,748, 38,841, and 32,251 for Velvet, IDBA-UD, SPAdes, and Megahit respectively.  N50 and NG50 decreases with digital normalization and partitioning. For diginorm assemblies, N50 is 18,944 47,828, 35,580, and 35,427 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  For partitioning, N50 is 8,504, 26,575, 22,319, and 17,492, for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  See Table \ref{table:qualtiy-metrics} for more details. 
-IDBA-UD has the highest NG50 although it has a high mis-assemblies contigs length, mismatches percentages and indels percentages (see below). For all assemblers and treatments, N50 is higher than NG50. This shows that using N50 may give false vision about assembly quality.  @ctb N50 is calculated with respect to the "draft" assembly size. NG50 is computed with respect to the known reference genome size. the assembly draft will not exceed the genome length, that's the reason n50 is higher than ng50
+IDBA-UD has the highest NG50 although it has a high mis-assemblies contigs length, mismatches percentages and indels percentages (see below). For all assemblers and treatments, N50 is higher than NG50. This shows that using N50 may give false vision about assembly quality.  %@ctb N50 is calculated with respect to the "draft" assembly size. NG50 is computed with respect to the known reference genome size. the assembly draft will not exceed the genome length, that's the reason n50 is higher than ng50
 @ctb yes decrease, just compare n50 values to n50  values not to ng50 
 
 
@@ -493,6 +493,7 @@ Using quality filtering, mismatches percentages are 0.066\%, 0.082\%, 0.093\%, a
 \subsection*{Assemblies contain most of the reference} 
 We aligned the reference genome to each assembly to find out what exists in the reference genome and not found in the assemblies. 
 Aligning the reference genome to Velvet, IDBA-UD, SPAdes and MEGAHIT quality filtered assemblies, we got zero unaligned contigs, in addition to 29,776,904, 2,062,384, 2,063,510, and 2,063,473 partially unaligned length for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively which represent 18.11\%, 1.03\%, 1.03\%, and 0.97\% of their corresponding assemblies length respectively. 
+@ctb 4 no. one for each assembler respectively
 
 
 Using digital normalization, we got also zero unaligned contigs, with partial unaligned length 2,046,452, 2,067,700, 2,063,803, and 2,063,457 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively which represent 1.02\%, 1.03\%, 1.03\%, and 1.03\% of their corresponding assemblies length respectively.
