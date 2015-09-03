@@ -288,13 +288,13 @@ We assembled the reads using four different assemblers: Velvet \cite{velvet}, ID
 %(@CTB please check and use appropriate capitalization - look at the original papers to see what they use. I think it's IDBA-UD, MEGAHIT, SPAdes.)
 %@SAM I can see IDBA-UD cited as it is instead of the version number, from QUAST paper, etc
 
-For Velvet \cite{ velvet}, we used kmers values from 19 to 51
+For Velvet  v1.2.07  \cite{ velvet}, we used kmers values from 19 to 51
 incremented by 2. We also used -fastq.gz for fastq format,
 -shortPaired for the pe files and -short for the se files. Also, we
 used \-exp\_cov auto \-cov\_cutoff auto for expected coverage and coverage cutoff respectively.  We used '{\tt calc-best-assembly.py} script to find the winning assembly. The winning assembly is the assembly that has the largest number of sequences  with bp length  $\geq$  500. @ctb 'you write a note automatically chosen then what?' 
 
-For IDBA-UD \cite{idba},  we used  --pre\_correction and -r for the pe files.
-For SPAdes \cite{spades}, we used --sc --pe1-12   where --sc is required for MDA (single-cell) data  and --pe1-12 %@SAM this is what we used? 
+For IDBA-UD v1.1.1 \cite{idba},  we used  --pre\_correction and -r for the pe files.
+For SPAdes v3.1.1 \cite{spades}, we used --sc --pe1-12   where --sc is required for MDA (single-cell) data  and --pe1-12 %@SAM this is what we used? 
 For MEGAHIT \cite{megahit}, we used -l 101 -m 3e9 --cpu-only where -l is for maximum read length , -m is for max memory in byte to be used, and --cpu-only to use CPU not GPU.
 
 %Spades? YYYY
