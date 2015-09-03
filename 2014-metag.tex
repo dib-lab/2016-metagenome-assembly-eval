@@ -219,7 +219,7 @@ sequence data. %@SAM still did not finish computing insert size
 
 In total, the data set contained 11.1 Gbp of DNA sequence in 109,629,496
 reads.  We received the reference genomes from the original authors
-(posted on FigShare at doi@@10.6084/m9.figshare.1506873) and the original reads are available through
+(posted on FigShare at 10.6084/m9.figshare.1506873) and the original reads are available through
 the NCBI Sequence Read Archive at Accession SRX200676.
 
 \subsection*{Quality Filtering} 
@@ -231,42 +231,42 @@ TruSeq3 adapters \cite{trim}.
 %probably not TruSeq3.
 %@SAM what we used TruSeq3-PE.fa:2:30:10?? 
 We next used the fastq\_quality\_filter %(@CTB what program exactly?)
-from the FASTX-Toolkit v0.0.13.2 \cite{FXtoolkit} to remove sequences with %(@CTB describe what those parameters do)
-using the parameters -Q33 -q 30 -p 50  where -q  is the minimum quality score to keep  and -p is the minimum percent of bases that must have [-q] quality and Q33 to set the right offset for Sanger quality scores.  
+from the FASTX-Toolkit v0.0.13.2 \cite{FXtoolkit} to remove sequences  %(@CTB describe what those parameters do)
+using the parameters -Q33 -q 30 -p 50  which keeps all sequences with 50\% or more bases with quality score equal to 30. %where -q  is the minimum quality score to keep  and -p is the minimum percent of bases that must have [-q] quality and Q33 to set the right offset for Sanger quality scores.  
 
  %(cite fastx, give version). 
 
 \subsection*{Mapping}
 
 We aligned all quality-filtered reads to the reference metagenome with bwa
-aln (v0.7.7.r441) \cite{bwa}  % (@SAM people cite bwa or bwa mem can't find citation for bwa aln??)  %(XXX give version and any command line options thataren't default).
+aln (v0.7.7.r441) \cite{bwa}. % (@SAM people cite bwa or bwa mem can't find citation for bwa aln??)  %(XXX give version and any command line options thataren't default).
   We aligned paired-end and orphaned reads separately,
 and we aligned each as single reads using bwa samse.  We then used
 samtools (v0.1.19 ) \cite{sam-stools} to convert SAM files to BAM files for both
 paired-end and orphaned reads. To find the unaligned reads, we find the reads with "4" flag in the sam files \cite{sam-stools}. 
 
-We found chimeric alignments with the bwa mem aligner with the default
+We found chimeric alignments with the bwa mem aligner using the default
 parameters (v0.7.7.r441).  To find the chimeric alignments, we find the reads with 'SA' flag in the sam file \cite{sam-stools}.  
 Chimeric alignments cut reads in two (or more). There will be a primary alignment and a secondary alignment tagged SA; other canonical alignments in a chimeric alignment, formatted as a semicolon-delimited list: (rname,pos,strand,CIGAR,mapQ,NM;)+. Each element in the list represents a part of the chimeric alignment. Conventionally, at a supplementary line, the first element points to the primary line.  %(XXX give bwa version).
 
 \subsection*{Reference Coverage} 
-We used bwa aln (v0.7.7.r441) \cite{bwa} to map quality filtered reads, digital normalized reads and
+We again used bwa aln to map quality filtered reads, digital normalized reads and
 partitioned reads to the reference genome generating a sam file from
 each. Then we used {\tt"sam-calc-refcov-cmp.py"} script, the reference
 genome and the generated sam files to find out the reference
-coverage. This script counts whether the reference base exists in the read or not. It doesn't take into account coverage depth. 
+coverage. This script determines how many reference bases are contained in at least one mapped read. It does not take into account coverage depth. 
 
 
 \subsection*{Digital Normalization} 
 
 We applied the {\tt normalize-by-median.py} script from khmer v1.1 to
-execute abundance normalization (``digital normalization'', \cite{brown2012})  on the data, retaining paired reads with -p and using a
+execute abundance normalization (``digital normalization'', \cite{brown2012})  on the data, retaining paired reads and using a
 k-mer size of 20 (-p -k 20).  We executed digital normalization with 4
 hash tables, each 1 GB in size (-N 4 -x 1e9).  After read
 normalization, we used the filter-abund.py script to trim
 high-abundance reads (estimated k-mer coverage $\geq$ 20) at low-abundance
 k-mers (k-mer abundance $\leq$ 2)   %@CTB check these parameters) 
-to remove erroneous k-mers  \cite{qingpeng2014} \cite{streaming} 
+to remove erroneous k-mers  \cite{qingpeng2014} \cite{streaming}. 
 %(@cite Zhang et al., 2014 PLoS One; Zhang et al.,2015 (peerJ)).
 %@SAM what is zhang et al. peerJ 2015? 
 
@@ -275,25 +275,25 @@ to remove erroneous k-mers  \cite{qingpeng2014} \cite{streaming}
 
 \subsection*{Partitioning} 
 
-We next applied partitioning to the data \cite{jpell2012, ahowe2014}  %(cite Pell et al. 2012, Howe et al., 2014).
+We next applied partitioning to the data \cite{jpell2012, ahowe2014}. %(cite Pell et al. 2012, Howe et al., 2014).
 We first eliminated high-abundance k-mers that could join multiple
-species bins using {\tt filter-below-abund.py} script from khmer v1.1.
+species bins using the {\tt filter-below-abund.py} script from khmer v1.1 using cutoff =50. 
 We next ran {\tt do-partition.py} with a k-mer size of 32 and 4 Bloom
 filters each of size 1 GB for partitioning (-k 32 -N 4 -x 1e9).  After
 partitioning, partitions were extracted to groups using the {\tt extract-partitions.py} script with a maximum group size of 100,000 {\tt -X 100000}.
 
 \subsection*{Metagenomes Assembly and evaluation}
 
-We assembled the reads using four different assemblers; Velvet \cite{velvet}, IDBA-UD \cite{idba}, SPAdes \cite{spades}, and MEGAHIT \cite{megahit}.
+We assembled the reads using four different assemblers: Velvet \cite{velvet}, IDBA-UD \cite{idba}, SPAdes \cite{spades}, and MEGAHIT \cite{megahit}.
 %(@CTB please check and use appropriate capitalization - look at the original papers to see what they use. I think it's IDBA-UD, MEGAHIT, SPAdes.)
 %@SAM I can see IDBA-UD cited as it is instead of the version number, from QUAST paper, etc
 
 For Velvet \cite{ velvet}, we used kmers values from 19 to 51
 incremented by 2. We also used -fastq.gz for fastq format,
 -shortPaired for the pe files and -short for the se files. Also, we
-used \-exp\_cov auto \-cov\_cutoff auto for expected coverage and coverage cutoff respectively.  We used '{\tt calc-best-assembly.py} script to find the winner assembly. The winner assembly is the assembly that has the largest number of sequences  with length  $\geq$  500. 
+used \-exp\_cov auto \-cov\_cutoff auto for expected coverage and coverage cutoff respectively.  We used '{\tt calc-best-assembly.py} script to find the winning assembly. The winning assembly is the assembly that has the largest number of sequences  with bp length  $\geq$  500. @ctb 'you write a note automatically chosen then what?' 
 
-For IDBA-UD \cite{idba},  we also used  --pre\_correction and -r for the pe files.
+For IDBA-UD \cite{idba},  we used  --pre\_correction and -r for the pe files.
 For SPAdes \cite{spades}, we used --sc --pe1-12   where --sc is required for MDA (single-cell) data  and --pe1-12 %@SAM this is what we used? 
 For MEGAHIT \cite{megahit}, we used -l 101 -m 3e9 --cpu-only where -l is for maximum read length , -m is for max memory in byte to be used, and --cpu-only to use CPU not GPU.
 
@@ -301,8 +301,7 @@ For MEGAHIT \cite{megahit}, we used -l 101 -m 3e9 --cpu-only where -l is for max
 %Megahit? YYYY
 
 We examined the assembly quality of each assembler and treatment using
-QUAST v2.3 \cite{quast} using quast.py with these parameters -R for the
-reference metagenome and -o for the output and we use the default min
+QUAST v2.3 \cite{quast} using quast.py and we use the default minimum
 contig length equal to 500.
 
 % Results and Discussion can be combined.
@@ -313,31 +312,30 @@ contig length equal to 500.
 
 %(@CTB how? put in Methods; then remove this whole sentence).
 We mapped quality filtered reads to the metagenome reference. 
-We found 3,664,869 unaligned reads which represents 3.45\% of the
-quality filtered reads.  These unaligned reads represent either highly
+We found 3,664,869 unaligned reads which represent 3.45\% of the
+quality filtered reads.  These unaligned reads are either highly
 erroneous reads that cannot be mapped, or are from sequences not
 present in the reference genomes.  For mapped reads, the quality of
 mapping was high, with 92.0m reads having a MAPQ $\geq 30$.
 %(@CTB put this ``Having almost all reads aligned to the reference, shows that
-the data has a high quality'' in discussion.)
+
 
 We then evaluated the fraction of the reference genome covered by at
-least one read. See "Reference Coverage in Methods". 
+least one read. See 'Reference Coverage in Methods'. @ctb do u mean just single quotes
 Quality filtered reads cover 203,030,147 bases of the reference genome
-(205,603,715), or 98.75\% of the reference.
+(205,603,715), or 98.75\% .
 
 %We also used bwa mem \cite{bwa-mem} to look for chimeric alignments where a read is cut into two or more. @SAM explained in mapping?  
 
 \subsection*{Quality filtering change the number of reads}            
 
-We performed quality filtering to remove primers and poor-quality
-sequences. After primer trimming, we retained 11.00 Gbp in 109,153,498
+We removed primers and poor-quality
+sequences.  We retained 11.00 Gbp in 109,153,498
 paired-end sequences, and 14.9 Mbp in 235,966 orphaned reads.  After
 quality filtering, 107 Gbp of sequence remained in 106,134,639
-paired-end sequences, with 12.6 Mbp in 2,226 orpan sequences.  In
+paired-end sequences, with 12.6 Mbp in 2,226 orphan sequences.  In
 total, only 3.01\% of the reads were removed (3302631 reads, 340345361 bp),
-indicating that the original reads are high quality (see also Zhang et
-al., 2015, PeerJ preprint, where an independent analysis of error rates
+indicating that the original reads are high quality (see also  \cite{streaming}, where an independent analysis of error rates
 in this data set using k-mer abundances found a very low error rate).
 
 \subsection *{Effect of Digital normalization and partitioning} 
@@ -359,8 +357,7 @@ normalized reads, and partitioned reads respectively.
 We have 28,969 and 26,960 chimeric
 reads using digital normalized reads and partitioned reads
 respectively. Digital normalization and partitioning decreased
-chimeric alignments. (See above for quality filtered reads no. of chimeric
-reads). %@SAM do you mean this is mentioned so many times or the decrease is more than expected. %@SAMReplaced chimeric reads with chimeric alignments? 
+chimeric alignments which is less than the chimeric reads found using quality filtered reads (310,131) %@SAM do you mean this is mentioned so many times or the decrease is more than expected. %@SAMReplaced chimeric reads with chimeric alignments? 
 
 %\subsection*{Digital normalization and partitioning reduced memory and time requirements for assembly}
 \subsection*{Compute Cost of Assembly} 
@@ -369,7 +366,7 @@ To evaluate whether digital normalization and partitioning are doable treatments
 
 Digital normalization utilized 74.93 GB of memory and took around 3
 hours and 53 minutes to run. Partitioning utilized 21.78 GB and around
-2 hours and a half to run.
+2 hours and a half to run. @ctb Luiz said he doesn't see anything wrong in the script
 
 For Velvet assemblies, table \ref{table:time-memory} row 3, it took $\sim 60$ hours using quality filtered reads, while it took only $\sim 6$ hours using digital normalizations
 and $\sim 4$ hours using partitioning.  For IDBA-UD assemblies, table \ref{table:time-memory} row 6, it took $\sim 33$ hours using quality filtered reads, while it took $\sim 6$
@@ -416,8 +413,9 @@ affect assemblies quality (see above).
 % while leaving the other sections alone.
 
 
-Contig or scaffold N50 is a weighted median statistic such that 50\% of the entire assembly is contained in contigs or scaffolds equal to or larger than this value. Using quality filtering, N50 is 38,028, 49,773,  42,773, and 35,136 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. The NG50 statistic is the same as N50 except that it is 50\% of the known reference genome size that must be achieved. Using quality filtered reads,  NG50 is 22,223, 45,748, 38,841, and 32,251 for Velvet, IDBA-UD, SPAdes, and Megahit respectively.  N50 and NG50 decreases with digital normalization and partitioning. For diginorm assemblies, N50 is 18,944 47,828, 35,580, and 35,427 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  For partitioning, N50 is 8,504, 26,575, 22,319, and 17,492, for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  See Table \ref{table:qualtiy-metrics} for more details. 
-IDBA-UD has the highest NG50 although it has a high mis-assemblies contigs length, mismatches percentages and indels percentages (see below). For all assemblers and treatments, N50 is higher than NG50. This shows that using N50 may give false vision about assembly quality. 
+Contig or scaffold N50 is a weighted median statistic such that 50\% of the entire assembly is contained in contigs or scaffolds equal to or larger than this value. Using quality filtering, N50 is 38,028, 49,773,  42,773, and 35,136 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. The NG50 statistic is the same as N50 except that it uses 50\% of the known reference genome size. Using quality filtered reads,  NG50 is 22,223, 45,748, 38,841, and 32,251 for Velvet, IDBA-UD, SPAdes, and Megahit respectively.  N50 and NG50 decreases with digital normalization and partitioning. For diginorm assemblies, N50 is 18,944 47,828, 35,580, and 35,427 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  For partitioning, N50 is 8,504, 26,575, 22,319, and 17,492, for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  See Table \ref{table:qualtiy-metrics} for more details. 
+IDBA-UD has the highest NG50 although it has a high mis-assemblies contigs length, mismatches percentages and indels percentages (see below). For all assemblers and treatments, N50 is higher than NG50. This shows that using N50 may give false vision about assembly quality.  @ctb N50 is calculated with respect to the "draft" assembly size. NG50 is computed with respect to the known reference genome size. the assembly draft will not exceed the genome length, that's the reason n50 is higher than ng50
+@ctb yes decrease, just compare n50 values to n50  values not to ng50 
 
 
 %The assembly under each treatment is considered the reference genome in this experiment. 
@@ -434,7 +432,7 @@ IDBA-UD has the highest NG50 although it has a high mis-assemblies contigs lengt
 \subsection*{Evaluation against Reference Genome}   
 %WAS [Metagenome assemblers recover the great majority of the known content]
 
-We used four assemblies and run each one using each treatment; quality
+We used four assemblers and run each one using each treatment; quality
 filtering, digital normalization, and partitioning.  The unaligned
 length for assembly is 8,977,149 bp, 10,709,716 bp, 10,597,529 bp, and
 10,686,421 bp using quality filtered reads for Velvet, IDBA-UD, SPAdes,
