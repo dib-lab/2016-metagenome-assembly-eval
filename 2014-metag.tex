@@ -402,21 +402,30 @@ affect assemblies quality (see above).
 
 % We only support three levels of headings, please do not create a heading level below \subsubsection.
 
-\subsection*{Assembly Output Statistics}
+\subsection*{Assembly Comparisons}
 
-%@CTB
-%I think we should order things like so:
-%1. Effect of digital normalization on reads.
-% 2. Compute Cost of assembly.
-% 3. Assembly output statistics.
-% 4. Evaluation against reference genome.
-% while leaving the other sections alone.
+All of the assembler/treatment comparisons (with the exception of
+Velvet/QC, which will not be considered further) recovered
+approximately 90\% of the reference genome.  IDBA/QC yielded the best
+assembled length (as measured by N50), but also had the largest number
+of bases in misassembled contigs; however, MEGAHIT (when compared
+treatment-to-treatment) had the fewest number of bases in misassembled
+contigs, while still retaining a high N50.
 
+IDBA/QC again performed best in both assembly length and genome
+recovery when looking at small contigs: Figure 1 and Figure 2 show
+that IDBA/QC has more data in long contigs than do any of the other
+assembler/treatment pairs.
 
-Contig or scaffold N50 is a weighted median statistic such that 50\% of the entire assembly is contained in contigs or scaffolds equal to or larger than this value. Using quality filtering, N50 is 38,028, 49,773,  42,773, and 35,136 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. The NG50 statistic is the same as N50 except that it uses 50\% of the known reference genome size. Using quality filtered reads,  NG50 is 22,223, 45,748, 38,841, and 32,251 for Velvet, IDBA-UD, SPAdes, and Megahit respectively.  N50 and NG50 decreases with digital normalization and partitioning. For diginorm assemblies, N50 is 18,944 47,828, 35,580, and 35,427 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  For partitioning, N50 is 8,504, 26,575, 22,319, and 17,492, for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  See Table \ref{table:qualtiy-metrics} for more details. 
-IDBA-UD has the highest NG50 although it has a high mis-assemblies contigs length, mismatches percentages and indels percentages (see below). For all assemblers and treatments, N50 is higher than NG50. This shows that using N50 may give false vision about assembly quality.  %@ctb N50 is calculated with respect to the "draft" assembly size. NG50 is computed with respect to the known reference genome size. the assembly draft will not exceed the genome length, that's the reason n50 is higher than ng50
-@ctb yes decrease, just compare n50 values to n50  values not to ng50 
+Digital normalization increased the number of bases in misassembled
+contigs, in general, while the partitioning treatment always had the
+fewest number of bases in misassembled contigs.  Digital normalization
+always decreased the N50, and partitioning after digital normalization
+also always decreased the N50.
 
+All assemblers and treatments have approximately the same number of
+unaligned bases, suggesting that data missing from the reference is
+being assembled.  We will examine this below.
 
 %The assembly under each treatment is considered the reference genome in this experiment. 
 
