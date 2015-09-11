@@ -232,7 +232,7 @@ TruSeq3 adapters \cite{trim}.
 %@SAM what we used TruSeq3-PE.fa:2:30:10?? 
 We next used the fastq\_quality\_filter %(@CTB what program exactly?)
 from the FASTX-Toolkit v0.0.13.2 \cite{FXtoolkit} to remove sequences  %(@CTB describe what those parameters do)
-using the parameters -Q33 -q 30 -p 50  which keeps all sequences with 50\% or more bases with quality score equal to 30. %where -q  is the minimum quality score to keep  and -p is the minimum percent of bases that must have [-q] quality and Q33 to set the right offset for Sanger quality scores.  
+using the parameters -Q33 -q 30 -p 50, which keeps all sequences with 50\% or more bases with quality score greater than or equal to 30. %where -q  is the minimum quality score to keep  and -p is the minimum percent of bases that must have [-q] quality and Q33 to set the right offset for Sanger quality scores.
 
  %(cite fastx, give version). 
 
@@ -243,19 +243,23 @@ aln (v0.7.7.r441) \cite{bwa}. % (@SAM people cite bwa or bwa mem can't find cita
   We aligned paired-end and orphaned reads separately,
 and we aligned each as single reads using bwa samse.  We then used
 samtools (v0.1.19 ) \cite{sam-stools} to convert SAM files to BAM files for both
-paired-end and orphaned reads. To find the unaligned reads, we find the reads with "4" flag in the sam files \cite{sam-stools}. 
+paired-end and orphaned reads. To find the unaligned reads, we count the records with the ``4'' flag in the SAM files \cite{sam-stools}. 
 
-We found chimeric alignments with the bwa mem aligner using the default
-parameters (v0.7.7.r441).  To find the chimeric alignments, we find the reads with 'SA' flag in the sam file \cite{sam-stools}.  
-Chimeric alignments cut reads in two (or more). There will be a primary alignment and a secondary alignment tagged SA; other canonical alignments in a chimeric alignment, formatted as a semicolon-delimited list: (rname,pos,strand,CIGAR,mapQ,NM;)+. Each element in the list represents a part of the chimeric alignment. Conventionally, at a supplementary line, the first element points to the primary line.  %(XXX give bwa version).
+We found chimeric alignments with the bwa mem aligner using the
+default parameters (v0.7.7.r441).  Chimeric alignments cut reads in
+two (or more).  For each chimeric alignment, in the SAM file, there
+will be a primary alignment and at least one secondary alignment
+tagged SA.  To count the chimeric alignments, we count the records
+with the ``SA'' flag in the SAM file \cite{sam-stools}.
 
 \subsection*{Reference Coverage} 
-We again used bwa aln to map quality filtered reads, digital normalized reads and
-partitioned reads to the reference genome generating a sam file from
-each. Then we used {\tt"sam-calc-refcov-cmp.py"} script, the reference
-genome and the generated sam files to find out the reference
-coverage. This script determines how many reference bases are contained in at least one mapped read. It does not take into account coverage depth. 
 
+To evaluate how much of the reference genome was contained in the read
+data, we used bwa aln to map quality filtered reads, digitally
+normalized reads and partitioned reads to the reference genome,
+generating a SAM file from each.  We then calculated how many
+reference bases are contained in at least one mapped read (script {\tt
+sam-calc-refcov-cmp.py}).
 
 \subsection*{Digital Normalization} 
 
@@ -275,26 +279,31 @@ to remove erroneous k-mers  \cite{qingpeng2014} \cite{streaming}.
 
 \subsection*{Partitioning} 
 
-We next applied partitioning to the data \cite{jpell2012, ahowe2014}. %(cite Pell et al. 2012, Howe et al., 2014).
+We next applied partitioning to the data \cite{jpell2012, ahowe2014}.
 We first eliminated high-abundance k-mers that could join multiple
-species bins using the {\tt filter-below-abund.py} script from khmer v1.1 using cutoff =50. 
-We next ran {\tt do-partition.py} with a k-mer size of 32 and 4 Bloom
+species bins using the {\tt filter-below-abund.py} script from khmer v1.1 using an abundance cutoff of 50 or higher.
+We then ran {\tt do-partition.py} with a k-mer size of 32 and 4 Bloom
 filters each of size 1 GB for partitioning (-k 32 -N 4 -x 1e9).  After
-partitioning, partitions were extracted to groups using the {\tt extract-partitions.py} script with a maximum group size of 100,000 {\tt -X 100000}.
+partitioning, partitions were extracted to groups using the {\tt extract-partitions.py} script with a maximum group size of 100,000 ({\tt -X 100000}).
 
 \subsection*{Metagenomes Assembly and evaluation}
 
 We assembled the reads using four different assemblers: Velvet \cite{velvet}, IDBA-UD \cite{idba}, SPAdes \cite{spades}, and MEGAHIT \cite{megahit}.
-%(@CTB please check and use appropriate capitalization - look at the original papers to see what they use. I think it's IDBA-UD, MEGAHIT, SPAdes.)
-%@SAM I can see IDBA-UD cited as it is instead of the version number, from QUAST paper, etc
 
-For Velvet  v1.2.07  \cite{ velvet}, we used kmers values from 19 to 51
+For Velvet v1.2.07  \cite{ velvet}, we used k-mer values from 19 to 51
 incremented by 2. We also used -fastq.gz for fastq format,
 -shortPaired for the pe files and -short for the se files. Also, we
-used \-exp\_cov auto \-cov\_cutoff auto for expected coverage and coverage cutoff respectively.  We used '{\tt calc-best-assembly.py} script to find the winning assembly. The winning assembly is the assembly that has the largest number of sequences  with bp length  $\geq$  500. @ctb 'you write a note automatically chosen then what?' 
+asked Velvet to automatically calculate expected coverage and coverage
+cutoff ({\tt -exp\_cov auto -cov\_cutoff auto}).
+From among the many assemblies, one for each k-mer size,
+we then chose the assembly that had the most bases in contigs longer than
+500 bp (script {\tt calc-best-assembly.py}).
 
-For IDBA-UD v1.1.1 \cite{idba},  we used  --pre\_correction and -r for the pe files.
-For SPAdes v3.1.1 \cite{spades}, we used --sc --pe1-12   where --sc is required for MDA (single-cell) data  and --pe1-12 %@SAM this is what we used? 
+For IDBA-UD v1.1.1 \cite{idba},  we used  --pre\_correction and -r for the pe files. XXX why?
+
+For SPAdes v3.1.1 \cite{spades}, we used --sc --pe1-12   where --sc is required for MDA (single-cell) data  and --pe1-12 XXX
+%@SAM this is what we used? 
+
 For MEGAHIT \cite{megahit}, we used -l 101 -m 3e9 --cpu-only where -l is for maximum read length , -m is for max memory in byte to be used, and --cpu-only to use CPU not GPU.
 
 %Spades? YYYY
@@ -310,33 +319,30 @@ contig length equal to 500.
 
 \subsection*{Initial Evaluation of the Reads}
 
-%(@CTB how? put in Methods; then remove this whole sentence).
+We removed primers and poor-quality sequences as described in Methods.
+We retained 11.00 Gbp in 109,153,498 paired-end sequences, and 14.9
+Mbp in 235,966 orphaned reads.  After quality filtering, 10.7 Gbp of
+sequence remained in 106,134,639 paired-end sequences, with 12.6 Mbp
+in 2,226 orphan sequences.  In total, only 3.01\% of the reads were
+removed (3302631 reads, 340345361 bp), indicating that the original
+reads are high quality (see also \cite{streaming}, where an
+independent analysis of error rates in this data set using k-mer
+abundances found a very low error rate).
+
 We mapped quality filtered reads to the metagenome reference. 
 We found 3,664,869 unaligned reads which represent 3.45\% of the
-quality filtered reads.  These unaligned reads are either highly
+total quality filtered reads.  These unaligned reads are either highly
 erroneous reads that cannot be mapped, or are from sequences not
 present in the reference genomes.  For mapped reads, the quality of
-mapping was high, with 92.0m reads having a MAPQ $\geq 30$.
+mapping was high, with 92.0m reads (XX\%) having a MAPQ $\geq 30$.
 %(@CTB put this ``Having almost all reads aligned to the reference, shows that
 
-
 We then evaluated the fraction of the reference genome covered by at
-least one read. See 'Reference Coverage in Methods'. %@ctb do u mean just single quotes
-Quality filtered reads cover 203,030,147 bases of the reference genome
-(205,603,715), or 98.75\% .
+least one read (see Methods for details). Quality filtered
+reads cover 203,030,147 (98.75\%) bases of the reference genome
+(205,603,715 bp total)
 
 %We also used bwa mem \cite{bwa-mem} to look for chimeric alignments where a read is cut into two or more. @SAM explained in mapping?  
-
-\subsection*{Quality filtering change the number of reads}            
-
-We removed primers and poor-quality
-sequences.  We retained 11.00 Gbp in 109,153,498
-paired-end sequences, and 14.9 Mbp in 235,966 orphaned reads.  After
-quality filtering, 107 Gbp of sequence remained in 106,134,639
-paired-end sequences, with 12.6 Mbp in 2,226 orphan sequences.  In
-total, only 3.01\% of the reads were removed (3302631 reads, 340345361 bp),
-indicating that the original reads are high quality (see also  \cite{streaming}, where an independent analysis of error rates
-in this data set using k-mer abundances found a very low error rate).
 
 \subsection *{Effect of Digital normalization and partitioning} 
 
