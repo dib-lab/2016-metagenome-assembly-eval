@@ -1,10 +1,10 @@
-all: 2014-metag.pdf
+all: 2015-metag.pdf
 
-2014-metag.pdf: 2014-metag.tex references.bib
-	pdflatex 2014-metag.tex
-	bibtex 2014-metag
-	pdflatex 2014-metag.tex
-	pdflatex 2014-metag.tex
+2015-metag.pdf: 2015-metag.tex references.bib
+	pdflatex 2015-metag.tex
+	bibtex 2015-metag
+	pdflatex 2015-metag.tex
+	pdflatex 2015-metag.tex
 
 
 clean:
