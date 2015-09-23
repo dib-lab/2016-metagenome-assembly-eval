@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: 2015-metag.aux
+The style file: plos2009.bst
+Database file #1: References.bib
+Warning--entry type for "FXtoolkit" isn't style-file defined
+--line 134 of file References.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 17 entries,
+            2441 wiz_defined-function locations,
+            632 strings with 7888 characters,
+and the built_in function-call counts, 15195 in all, are:
+= -- 1396
+> -- 280
+< -- 0
++ -- 140
+- -- 70
+* -- 1319
+:= -- 1834
+add.period$ -- 35
+call.type$ -- 17
+change.case$ -- 17
+chr.to.int$ -- 0
+cite$ -- 34
+duplicate$ -- 1501
+empty$ -- 1565
+format.name$ -- 85
+if$ -- 3345
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 177
+newline$ -- 101
+num.names$ -- 17
+pop$ -- 213
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 135
+stack$ -- 0
+substring$ -- 2226
+swap$ -- 342
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 114
+width$ -- 19
+write$ -- 195
+(There was 1 warning)
