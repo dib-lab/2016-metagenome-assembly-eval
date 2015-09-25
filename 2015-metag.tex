@@ -428,7 +428,7 @@ fewest number of bases in misassembled contigs.  Digital normalization
 always decreased the N50, and partitioning after digital normalization
 also always decreased the N50.
 
-All assemblers and treatments have approximately the same number of
+All assemblies have approximately the same number of
 unaligned bases, suggesting that data missing from the reference is
 being assembled.  We will examine this below.
 
@@ -479,10 +479,17 @@ Figure \ref{fig:sampling} shows genome fraction percentages for different assemb
 \subsection*{Assembly Errors} 
 
  % \subsection*{Something about mis-assemblies}  
-Misassembled contigs length is the total number of bases in misassembled contigs.  As shown in Table \ref {table:qualtiy-metrics}, using quality filtered reads, mis-assemblies contigs length are 16,566,891, 21,777,032, 28,238,787 and 11,927,502 for Velvet, SPAdes, IDBA-UD, and MEGAHIT respectively. 
-Using digital normalization,  mis-assemblies contigs length are 25,594,315, 27,668,818, 23,103,154, and 17,319,534 for Velvet, SPAdes, IDBA-UD, and MEGAHIT respectively.  Using partitioning,  mis-assemblies contigs length are 16,922,852, 18,440,791, 14,338,099, and 11,814,070 for Velvet, SPAdes, IDBA-UD, and MEGAHIT respectively. 
+Misassembled contigs length is the total number of bases in misassembled contigs.  As shown in Table \ref {table:qualtiy-metrics}, using quality filtered reads, mis-assemblies contigs length are 16,566,891, 21,777,032, 28,238,787 and 11,927,502 for Velvet, SPAdes, IDBA-UD, and MEGAHIT respectively which represents 8.057\%,10.59\%, 13.73\% and 5.801\% of the reference genome respectively.  
+
+
+Using digital normalization,  mis-assemblies contigs length are 25,594,315, 27,668,818, 23,103,154, and 17,319,534 for Velvet, SPAdes, IDBA-UD, and MEGAHIT respectively which represents 12.45\%, 13.46\%, 11.24\% and 8.42\% of the reference genome respectively.  
+
+Using partitioning,  mis-assemblies contigs length are 16,922,852, 18,440,791, 14,338,099, and 11,814,070 for Velvet, SPAdes, IDBA-UD, and MEGAHIT respectively which represents 8.23\%, 8.97\%, 6.97\% and 5.75\% of the reference genome respectively.  
+ 
 Although IDBA-UD has the highest NG50 (see above), IDBA-UD shows the highest mis-assemblies contigs length using digital normalization and partitioning. It also shows a high mis-assemblies contigs length using quality filtering but not the highest.
-Using quality filtering, mismatches percentages are 0.066\%, 0.082\%, 0.093\%, and 0.078\% for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. Indels percentages are 0.031\%, 0.015\%, 0.014\%, and 0.008\% using Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. Percentages are computed with respect to their corresponding assembly total length. See Table \ref{table:mis-assemblies}  for more details about mis-assemblies contigs, the types of misassembly events, mismatches and indels lengths.
+
+
+Using quality filtering, mismatches percentages are 0.05\%, 0.08\%, 0.09\%, and 0.07\% for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. Indels percentages are 0.02\%, 0.014\%, 0.013\%, and 0.007\% using Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. Percentages are computed with respect to the reference genome. See Table \ref{table:mis-assemblies}  for more details about mis-assemblies contigs, the types of misassembly events, mismatches and indels lengths.
 
 
 
@@ -504,7 +511,7 @@ Using partitioning, we got also zero unaligned contigs, with partial unaligned l
 \subsection*{The de novo assemblies recover unexpected genomic sequence from the mock community}
 
 We aligned the unaligned contigs of each assembly to the unaligned contigs of IDBA-UD quality filtered assembly. 
-Using quality filtered reads, the genome fraction equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and MEGAHIT respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and MEGAHIT respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length which is IDBA-UD unaligned contigs using quality filtered reads. See Table \ref{table:unaligned-mapping} for more details.  Velvet unalignments show the highest percentages of IDBA-UD QC unalignments. IDBA-UD diginorm unalignments shows the less percentage of IDBA-UD QC unalignments. 
+Using quality filtered reads, the refernce fraction  (which is the unaligned contigs of IDBA-UD quality filtered assembly) equals 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and MEGAHIT respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and MEGAHIT respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length. See Table \ref{table:unaligned-mapping} for more details.  Velvet unalignments show the highest percentages of IDBA-UD QC unalignments. IDBA-UD diginorm unalignments shows the less percentage of IDBA-UD QC unalignments. 
 
 %@SAM Won't be added, just reporting the new corrected results
 **To further explore the unalignment, we downloaded fusa seeds from Fungenes. We used blast to map the unaligned reads to fusa seeds,  using IDBA-UD/digital normalized  assemblies, and no hits found. 
