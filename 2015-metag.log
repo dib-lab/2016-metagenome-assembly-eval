@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 SEP 2015 20:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 SEP 2015 14:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -428,30 +428,30 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
  [2] [3] [4]
 [5] [6] (./2015-metag.bbl [7])
-<total-length-contigs.pdf, id=150, 578.16pt x 433.62pt>
+<total-length-contigs.pdf, id=151, 578.16pt x 433.62pt>
 File: total-length-contigs.pdf Graphic file (type pdf)
 
 <use total-length-contigs.pdf>
-Package pdftex.def Info: total-length-contigs.pdf used on input line 588.
+Package pdftex.def Info: total-length-contigs.pdf used on input line 585.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<genome-fraction-contigs.pdf, id=151, 578.16pt x 433.62pt>
+<genome-fraction-contigs.pdf, id=152, 578.16pt x 433.62pt>
 File: genome-fraction-contigs.pdf Graphic file (type pdf)
 
 <use genome-fraction-contigs.pdf>
-Package pdftex.def Info: genome-fraction-contigs.pdf used on input line 597.
+Package pdftex.def Info: genome-fraction-contigs.pdf used on input line 594.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<sampling.pdf, id=152, 578.16pt x 433.62pt>
+<sampling.pdf, id=153, 578.16pt x 433.62pt>
 File: sampling.pdf Graphic file (type pdf)
  <use sampling.pdf>
-Package pdftex.def Info: sampling.pdf used on input line 606.
+Package pdftex.def Info: sampling.pdf used on input line 603.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
@@ -464,7 +464,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Float too large for page by 81.83307pt on input line 848.
+LaTeX Warning: Float too large for page by 81.83307pt on input line 845.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -475,27 +475,27 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1051.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1048.
 [8] [9 <./total-length-contigs.pdf> <./genome-fraction-contigs.pdf
 
 pdfTeX warning: /usr/texbin/pdflatex (file ./genome-fraction-contigs.pdf): PDF 
 inclusion: multiple pdfs with page group included in a single page
 >] [10 <./sampling.pdf>] [11] [12] [13] [14] [15] [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1051.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1048.
  (./2015-metag.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1051.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1051.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1048.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1048.
 
 Package rerunfilecheck Info: File `2015-metag.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1051.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1048.
  ) 
 Here is how much of TeX's memory you used:
- 9058 strings out of 493089
- 138503 string characters out of 6134842
+ 9056 strings out of 493089
+ 138487 string characters out of 6134842
  305827 words of memory out of 5000000
  12257 multiletter control sequences out of 15000+600000
- 10583 words of font info for 77 fonts, out of 8000000 for 9000
+ 10532 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,9n,43p,1123b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -507,10 +507,10 @@ ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl9.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on 2015-metag.pdf (16 pages, 201511 bytes).
+Output written on 2015-metag.pdf (16 pages, 201769 bytes).
 PDF statistics:
- 392 PDF objects out of 1000 (max. 8388607)
- 229 compressed objects within 3 object streams
+ 393 PDF objects out of 1000 (max. 8388607)
+ 230 compressed objects within 3 object streams
  78 named destinations out of 1000 (max. 500000)
  13840 words of extra memory for PDF output out of 14400 (max. 10000000)
 

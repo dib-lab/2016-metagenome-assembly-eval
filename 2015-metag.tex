@@ -225,7 +225,7 @@ the NCBI Sequence Read Archive at Accession SRX200676.
 \subsection*{Quality Filtering} 
 
 We removed adapters with Trimmomatic v0.30 in paired-end mode with the
-XXXX \cite{trim}.
+Truseq \cite{trim}.
 %The command line options used was TruSeq3-PE.fa:2:30:10??: Cite note for Mircea Reply
  %@CTB - please find out what adapters we should use for trimming. It's
 %probably not TruSeq3.
@@ -446,13 +446,12 @@ being assembled.  We will examine this below.
 \subsection*{Evaluation against Reference Genome}   
 %WAS [Metagenome assemblers recover the great majority of the known content]
 
-We used four assemblers and run each one using each treatment; quality
-filtering, digital normalization, and partitioning.  The unaligned
-length for assembly is 8,977,149 bp, 10,709,716 bp, 10,597,529 bp, and
-10,686,421 bp using quality filtered reads for Velvet, IDBA-UD, SPAdes,
-and MEGAHIT respectively.  The genome fraction \% is the percentage of
+We aligned each assembly to the reference genome using Quast \cite{quast}.  To evaluate the quality of the seembly, we used different quality metrics, including the unaligned length and genome fraction percentage.   The genome fraction \% is the percentage of
 aligned bases in the reference. A base in the reference is aligned if
-there is at least one contig with at least one alignment to this base.
+there is at least one contig with at least one alignment to this base. The unaligned
+length is 8,977,149 bp, 10,709,716 bp, 10,597,529 bp, and
+10,686,421 bp using quality filtered reads for Velvet, IDBA-UD, SPAdes,
+and MEGAHIT respectively.
 The genome fraction percentage is 72.949 \%, 90.969 \%, 90.424\%, and
 90.358\% using quality filtered reads for Velvet, IDBA-UD, SPAdes, and
 Megahit respectively.  Using digital normalization, the genome
@@ -460,12 +459,12 @@ fraction is 89.043\%, 91.003\%, 90.173\%, and 89.92\% for Velvet,
 IDBA-UD, SPAdes, and Megahit respectively.  Using partitioning, the
 genome fraction is 88.879\%, 90.082\%, 89.272\%, and 88.769\% for
 Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  Except for Velvet assemblies, digital
-normalization and partitioning did not effect assembly results. For Velvet assemblies, digital normalization and partitioning enhanced the assembly results. See
+normalization and partitioning did not effect genome fraction percenatge. However, for Velvet assemblies, digital normalization and partitioning increased the genome fraction percentage. See
 Table \ref{table:qualtiy-metrics} for more details.
 
 
 \subsection*{Metagenome assemblies account for the majority of reads}
-To further evaluate assemblies, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all treatments assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
+To further evaluate assemblies, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
 
 
 For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. This represents 6.40\%, 1.40\%, 1.97\%, and 1.47\% of the total number of reads respectively. These percentages reflect errors or low coverage reads. See Table \ref{table:reads-mapping} for more details. 
@@ -771,11 +770,11 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 \hline
 \textbf{Mismatches} &104,740&174,446&178,348  \\ [1ex]
 \hline 
-\textbf{Percentage of Mismatches}&0.066\%&0.089\%&0.0911\%  \\[1ex]
+\textbf{Percentage of Mismatches}&0.05\%&0.08\%&0.09\%  \\[1ex]
 \hline
 \textbf{Indels Length}&50,190&181,453&346,988 \\ [1ex]
 \hline
-\textbf{Indels Percentage}&0.031\%&0.093\%&0.178\%\\ [1ex]
+\textbf{Indels Percentage}&0.02\%&0.09\%&0.17\%\\ [1ex]
 \hline
 
  \multicolumn{4}{|c|} {\textbf{(3) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
@@ -792,11 +791,11 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 \hline
 \textbf{Mismatches} &162,733 &231,432&230,840 \\ [1ex]
 \hline 
-\textbf{Percentage of Mismatches}&0.082\%&0.116\%&0.117\% \\[1ex]
+\textbf{Percentage of Mismatches}&0.08\%&0.11\%&0.11\% \\[1ex]
 \hline
 \textbf{Indels Length} &30,433&43,358&42,523  \\ [1ex]
 \hline
-\textbf{Indels Percentage}&0.015\%&0.022\%&0.022\%  \\ [1ex]
+\textbf{Indels Percentage}&0.01\%&0.02\%&0.02\%  \\ [1ex]
 \hline
 
 
@@ -814,11 +813,11 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 \hline
 \textbf{Mismatches}&184,630&244,849&235,396\\ [1ex]
 \hline 
-\textbf{Percentage of Mismatches}&0.093\%&0.124\%&0.120\%\\ [1ex]
+\textbf{Percentage of Mismatches}&0.09\%&0.12\%&0.11\%\\ [1ex]
 \hline
 \textbf{Indels Length}&27,328&32,783&21,516\\ [1ex]
 \hline
-\textbf{Indels Percentage}&0.014\% &0.017\%&0.011\%\\ [1ex]
+\textbf{Indels Percentage}&0.01\% &0.02\%&0.01\%\\ [1ex]
 \hline
 
  \multicolumn{4}{|c|} {\textbf{(4) MEGAHIT}}    \\ [0.5ex] % inserts table %heading
@@ -835,11 +834,11 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 \hline
 \textbf{Mismatches}&152,964&207,349&203,515\\ [1ex]
 \hline 
-\textbf{Percentage of Mismatches}&0.078\%&0.11\%&0.10\%\\[1 ex]
+\textbf{Percentage of Mismatches}&0.07\%&0.10\%&0.10\%\\[1 ex]
 \hline
 \textbf{Indels Length }&15,298&18,195&16,517\\ [1ex]
 \hline
-\textbf{Indels Percentage}&0.008\%&0.009\%&0.008\% \\ [1ex]
+\textbf{Indels Percentage}&0.01\%&0.01\%&0.01\% \\ [1ex]
 \hline
 \end{tabular}
 \label{table:mis-assemblies}
@@ -868,7 +867,7 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 \hline
 \textbf{No. of Unaligned Sequences}&2,100,555&2,439,158&2,804,006\\
 \hline
-\textbf{Percentage}&1.97\%&2.29\%&2.64\%\\
+\textbf{Percentage}&1.98\%&2.29\%&2.64\%\\
 \hline
 \multicolumn{4}{|c|}{ \textbf{(4) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
 \hline
