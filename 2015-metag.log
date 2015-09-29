@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 SEP 2015 18:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  29 SEP 2015 09:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -433,7 +433,7 @@ Overfull \hbox (32.58798pt too wide) in paragraph at lines 496--497
 esul-fovib-rio[]vulgaris[]DP4, Sul-fu-ri-hy-dro-genibium[]yellowstonense[]SS-
  []
 
-[6] (./2015-metag.bbl [7] [8])
+[6] [7] (./2015-metag.bbl [8])
 <total-length-contigs.pdf, id=156, 578.16pt x 433.62pt>
 File: total-length-contigs.pdf Graphic file (type pdf)
 
@@ -511,7 +511,7 @@ ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl9.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on 2015-metag.pdf (16 pages, 203562 bytes).
+Output written on 2015-metag.pdf (16 pages, 203699 bytes).
 PDF statistics:
  395 PDF objects out of 1000 (max. 8388607)
  232 compressed objects within 3 object streams
