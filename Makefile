@@ -8,4 +8,4 @@ all: 2015-metag.pdf
 
 
 clean:
-	rm *.aux *.bbl *.blg *.log *.pdf
+	rm *.aux *.bbl *.blg *.log 2015-metag.pdf
