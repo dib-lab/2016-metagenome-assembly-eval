@@ -221,7 +221,8 @@ sequence data. %@SAM still did not finish computing insert size
 In total, the data set contained 11.1 Gbp of DNA sequence in 109,629,496
 reads.  We received the reference genomes from the original authors
 (posted on FigShare at 10.6084/m9.figshare.1506873) and the original reads are available through
-the NCBI Sequence Read Archive at Accession SRX200676.
+the NCBI Sequence Read Archive at Accession SRX200676. Figure \ref{fig:coverage-profile} shows the coverage profile of the reference genome, and the percentage of read with that coverage.  
+%@CTB The figure drawn is using quality filtered reads, will add another one for the raw reads. 
 
 \subsection*{Quality Filtering} 
 
@@ -243,7 +244,7 @@ We aligned all quality-filtered reads to the reference metagenome with bwa
 aln (v0.7.7.r441) \cite{bwa}. % (@SAM people cite bwa or bwa mem can't find citation for bwa aln??)  %(XXX give version and any command line options thataren't default).
   We aligned paired-end and orphaned reads separately,
 and we aligned each as single reads using bwa samse.  We then used
-samtools (v0.1.19 ) \cite{sam-stools} to convert SAM files to BAM files for both
+ samtools (v0.1.19 ) \cite{sam-stools} to convert SAM files to BAM files for both
 paired-end and orphaned reads. To find the unaligned reads, we count the records with the ``4" flag in the SAM files \cite{sam-stools}. 
 
 We found chimeric alignments with the bwa mem aligner using the
@@ -251,16 +252,20 @@ default parameters (v0.7.7.r441).  Chimeric alignments cut reads in
 two (or more).  For each chimeric alignment, in the SAM file, there
 will be a primary alignment and at least one secondary alignment
 tagged SA.  To count the chimeric alignments, we count the records
-with the ``SA" flag in the SAM file \cite{sam-stools}.
+with the ``SA" flag in the SAM file \cite{sam-stools}. 
 
-\subsection*{Reference Coverage} 
+To extract the reads that contribute to unaligned contigs, we mapped the quality filtered reads to the unaligned contigs using bwa aln (v0.7.7.r441) \cite{bwa}. 
+Then we used samtools \cite{sam-stools} to get the reads that are mapped to the unaligned contigs. 
+
+\subsection*{Reference Coverage and Coverage Profile} 
 
 To evaluate how much of the reference genome was contained in the read
 data, we used bwa aln to map quality filtered reads, digitally
 normalized reads and partitioned reads to the reference genome,
 generating a SAM file from each.  We then calculated how many
 reference bases are contained in at least one mapped read (script {\tt
-sam-calc-refcov-cmp.py}).
+sam-calc-refcov-cmp.py}). To draw a coverage profile for the reference, we calculated how many times a reference base is contained in mapped reads using (script {\tt
+cov.py}). 
 
 \subsection*{Digital Normalization} 
 
@@ -498,21 +503,23 @@ We looked for the genomes that has 10 regions or more that are misassemled by al
 
 %To find out if there is a portion of the reference genome that is misassembled by most of the assemblers, we used QUAST \cite{quast} to align the reference genome to each assembly. Then we looked into the misassembled contigs of the reference to each assembly. They all are portions of the reference genome because of the direction of mapping (align reference to assemblies). Using quality filtered reads, Velvet has 56 misassembled contigs (the lowest number), while SPAdes and MEGAHIT  has the highest misassembled contigs(63). IDBA-UD has 62 misassembled contigs.  We also found that 55 contigs are common among assemblers. Note that we compared only contigs names because we look for which contigs are commonly misassembled not which bases are commonly misassembled (CTB?). Comparing the mis-assemblies length among assemblers, it varies even with assemblers which shares the same misassembled contigs. This means that assemblers differ on how much portions of a given contig is misassembled. We conclude that most of the misassembled contigs are common among assemblers using quality filtered reads. 
 %Using diginorm and partitioning, each assembler has 63 misassembled sequences and we have 63 common misassembled sequences. This means all assemblers fail to assemble the same sequences in the reference genome. 
-   
-\subsection*{Assemblies contain most of the reference} 
-To find what exists in the reference genome and is missed by the assemblies, we aligned the reference genome to each assembly. 
-Using quality filtering, we got zero unaligned contigs, in addition to 29,776,904, 2,062,384, 2,063,510, and 2,063,473 partially unaligned length for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively which represent 14.48\%, 1.003\%, 1.003\%, and 1.003\% of the reference genome. 
- 
 
+\subsection*{More about uncovered regions}
+%\subsection*{Assemblies contain most of the reference} 
+%@CTB So far uncovered regions are not common among all assemblers. Question we wanna ask is common or how much is uncovered? 
+To find the uncovered regions in the reference genome, we find the regions that don't contain any alignment positions when mapping the assembly to the reference.  @CTB So far uncovered regions are not common among all assemblers?? 
+
+To more investigate the uncovered regions in the reference, we aligned the reference genome to each assembly. Using quality filtering, we got zero unaligned contigs, in addition to 29,776,904, 2,062,384, 2,063,510, and 2,063,473 partially unaligned length for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively which represent 14.48\%, 1.003\%, 1.003\%, and 1.003\% of the reference genome. 
 Using digital normalization, we got also zero unaligned contigs, with partial unaligned length 2,046,452, 2,067,700, 2,063,803, and 2,063,457 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively which represent 1.0\%, 1.005\%, 1.003\%, and 1.003\% of the reference genome. 
-
-
 Using partitioning, we got also zero unaligned contigs, with partial unaligned length 2,053,035, 2,071,046, 2,069,811 and 2,068,118 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively which represent 1.0\%, 1.007\%, 1.006\%, and 1.005\% of the reference genome. 
 
-In conclusion, $\sim$ 1.01\% of the reference genome is missed by the assemblies, except for Velvet/QC, which missed 14.48\%. of the reference. 
+In conclusion, $\sim$ 1.01\% of the reference genome is not covered by the assemblies, except for Velvet/QC, which has 14.48\% of the reference uncovered. 
 
+\subsection*{More about unalignments}
+%\subsection*{The de novo assemblies recover unexpected genomic sequence from the mock community}
 
-\subsection*{The de novo assemblies recover unexpected genomic sequence from the mock community}
+We extracted the reads that contributed to unaligned contigs of each assembler (see Methods:Mapping). We mapped those reads to the reference genome. We find that most of the reads contributing to the unaligned contigs don't exist in the reference genome.  Figure \ref{fig:unaliged-hist} shows a histogram for the percentage of reads contributed to unaligned contigs (orange columns) and the portion of those reads that are aligned to the reference genome (green columns). 
+
 
 We aligned the unaligned contigs of each assembly to the unaligned contigs of IDBA-UD quality filtered assembly. 
 Using quality filtered reads, the reference fraction (the reference here is the unaligned contigs of IDBA-UD quality filtered assembly) equals to 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and MEGAHIT respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and MEGAHIT respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length. See Table \ref{table:unaligned-mapping} for more details.  Velvet unalignments show the highest percentages of IDBA-UD QC unalignments. IDBA-UD diginorm unalignments shows the less percentage of IDBA-UD QC unalignments. 
@@ -602,7 +609,7 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 \end{figure}  
 
 
- \begin{figure} [h] 
+\begin{figure} [h] 
 \begin{center}  
  
 \includegraphics[height=3.2in,width=4.5in]{sampling.pdf}  
@@ -610,6 +617,23 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 \end{center}  
 \end{figure}  
  
+
+\begin{figure} [h] 
+\begin{center}  
+ 
+\includegraphics[height=3.2in,width=4.5in]{profilecoveragereads.pdf}  
+\caption{\small \sl Reference genome coverage.\label{fig:coverage-profile}}  
+\end{center}  
+\end{figure} 
+
+
+\begin{figure} [h] 
+\begin{center}  
+ 
+\includegraphics[height=3.2in,width=4.5in]{unaliged-hist.pdf}  
+\caption{\small \sl Histogram for unaligned reads.\label{fig:unaliged-hist}}  
+\end{center}  
+\end{figure} 
 
 \section*{Tables}
 % 
@@ -635,7 +659,7 @@ Mapping the unaligned  contigs of different assemblies to the unaligned contigs 
 %\centering
 %\begin{tabular}{|c|c|}
 %\hline
-% \textbf{Covergae Range}& \textbf{No. of Reads}   \\ [0.5ex] % inserts table %heading
+% \textbf{Coverage Range}& \textbf{No. of Reads}   \\ [0.5ex] % inserts table %heading
 %\hline
 %{ Between 20 and 40} & 95,540,661 \\
 %\hline
