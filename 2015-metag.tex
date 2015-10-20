@@ -264,7 +264,7 @@ data, we used bwa aln to map quality filtered reads, digitally
 normalized reads and partitioned reads to the reference genome,
 generating a SAM file from each.  We then calculated how many
 reference bases are contained in at least one mapped read (script {\tt
-sam-calc-refcov-cmp.py}). To draw a coverage profile for the reference, we calculated how many times a reference base is contained in mapped reads using (script {\tt
+sam-calc-refcov-cmp.py}). To draw a coverage profile for the reference, we calculated how many times a reference base is contained in mapped reads (script {\tt
 cov.py}). 
 
 \subsection*{Digital Normalization} 
@@ -479,7 +479,8 @@ For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490
 
 We extracted random samples of size 25\%, 50\%, and 75\% of the raw reads . We quality filtered each sample, then applied digital normalization and partitioning.  For quality filtered reads, Velvet assembly genome fraction decreased from 72.95\% using all reads to 71.31\%, 70.09\%, and 63.53\% using 75\%, 50\%, and 25\% of reads respectively. IDBA assembly genome fraction decreased from 90.97\% using all reads to 86.90\%, 84.66\%, and 76.98\% using 75\%, 50\%, and 25\% of reads respectively. SPAdes assembly genome fraction decreased from 90.42\% using all reads to 87.54\%, 86.00\%, and 80.05\% using 75\%, 50\%, and 25\% of reads respectively. Megahit  assembly genome fraction decreased from 90.36\% using all reads to 86.00\%, 83.87\%, and 76.19\% using 75\%, 50\%, and 25\% of reads respectively. Figure \ref{fig:sampling} shows genome fraction percentages for different assemblies using different coverage. We conclude that decreasing coverage did not highly affect assemblies qualities. 
 
-%@SAM Should we add a full table that shows difference in misassemblies, mismatches, ..etc? 
+%CTB SPADES curve will be redrawn after running using -p in diginorm and new khmer 
+%@SAM Should we add a full table that shows difference in misassemblies, mismatches, ..etc?  
 
 
 \subsection*{Assembly Errors} 
@@ -518,10 +519,10 @@ In conclusion, $\sim$ 1.01\% of the reference genome is not covered by the assem
 \subsection*{More about unalignments}
 %\subsection*{The de novo assemblies recover unexpected genomic sequence from the mock community}
 
-We extracted the reads that contributed to unaligned contigs of each assembler (see Methods:Mapping). We mapped those reads to the reference genome. We find that most of the reads contributing to the unaligned contigs don't exist in the reference genome.  Figure \ref{fig:unaliged-hist} shows a histogram for the percentage of reads contributed to unaligned contigs (orange columns) and the portion of those reads that are aligned to the reference genome (green columns). 
+We extracted the reads that contributed to unaligned contigs of each assembler (see Methods:Mapping). We mapped those reads to the reference genome. We find that most of the reads contributing to the unaligned contigs don't exist in the reference genome.  Figure \ref{fig:unaliged-hist} shows a histogram for the percentage of reads contributed to unaligned contigs (orange columns) and the portion of those reads that mapped to the reference genome (green columns). 
 
 
-We aligned the unaligned contigs of each assembly to the unaligned contigs of IDBA-UD quality filtered assembly. 
+Furthermore, we aligned the unaligned contigs of each assembly to the unaligned contigs of IDBA-UD quality filtered assembly. 
 Using quality filtered reads, the reference fraction (the reference here is the unaligned contigs of IDBA-UD quality filtered assembly) equals to 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and MEGAHIT respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and MEGAHIT respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length. See Table \ref{table:unaligned-mapping} for more details.  Velvet unalignments show the highest percentages of IDBA-UD QC unalignments. IDBA-UD diginorm unalignments shows the less percentage of IDBA-UD QC unalignments. 
 
 %@SAM Won't be added, just reporting the new corrected results
