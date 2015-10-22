@@ -106,16 +106,4 @@ Gurevich A, Saveliev V, Vyahhi N, Tesler G (2013) Quast: quality assessment
 \newblock Bioinformatics 28: 1072-1075.
 \bibAnnoteFile{quast}
 
-\bibitem{bwa-mem}
-Li H (2013) Aligning sequence reads, clone sequences and assembly contigs with
-  bwa-mem.
-\newblock arXiv preprint arXiv:13033997 .
-\bibAnnoteFile{bwa-mem}
-
-\bibitem{samtools}
-Heng L, Handsaker B, Wysoker A, Fennell T, Ruan J, et~al. (2009) The sequence
-  alignment/map format and samtools.
-\newblock Bioinformatics 25: 2078-2079.
-\bibAnnoteFile{samtools}
-
 \end{thebibliography}

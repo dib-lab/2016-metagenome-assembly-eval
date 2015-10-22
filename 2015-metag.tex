@@ -212,14 +212,10 @@ MEGAHIT \cite{megahit} is a new approach that constructs a succinct de Bruijn gr
 We used a diverse mock community data set containing 64 known species,
 sequenced with Illumina HiSeq, yielding 109,629,496 paired-end sequences with
 an untrimmed length of 11.07 Gbp and an estimated insert size of $\sim$ 380
-\cite{podar}.  The two unfiltered read files each contained 5.5 Gbp of
-sequence data. %@SAM still did not finish computing insert size
+\cite{podar}.
+% @CTB please move insert size estimate to results somewhere.
 
-% (@CTB is this data set size, or number of bases?)
-% (@SAM that's the number of bases using readstats) 
-
-In total, the data set contained 11.1 Gbp of DNA sequence in 109,629,496
-reads.  We received the reference genomes from the original authors
+We received the reference genomes from the original authors
 (posted on FigShare at 10.6084/m9.figshare.1506873) and the original reads are available through
 the NCBI Sequence Read Archive at Accession SRX200676. Figure \ref{fig:coverage-profile} shows the coverage profile of the reference genome, and the percentage of read with that coverage.  
 %@CTB The figure drawn is using quality filtered reads, will add another one for the raw reads. 
@@ -227,7 +223,7 @@ the NCBI Sequence Read Archive at Accession SRX200676. Figure \ref{fig:coverage-
 \subsection*{Quality Filtering} 
 
 We removed adapters with Trimmomatic v0.30 in paired-end mode with the
-Truseq \cite{trim}.
+Truseq adapters \cite{trim}.
 %The command line options used was TruSeq3-PE.fa:2:30:10??: Cite note for Mircea Reply
  %@CTB - please find out what adapters we should use for trimming. It's
 %probably not TruSeq3.
@@ -242,10 +238,10 @@ using the parameters -Q33 -q 30 -p 50, which keeps all sequences with 50\% or mo
 
 We aligned all quality-filtered reads to the reference metagenome with bwa
 aln (v0.7.7.r441) \cite{bwa}. % (@SAM people cite bwa or bwa mem can't find citation for bwa aln??)  %(XXX give version and any command line options thataren't default).
-  We aligned paired-end and orphaned reads separately,
-and we aligned each as single reads using bwa samse.  We then used
+  We aligned paired-end and orphaned reads separately using bwa aln samse.
+We then used
  samtools (v0.1.19 ) \cite{sam-stools} to convert SAM files to BAM files for both
-paired-end and orphaned reads. To find the unaligned reads, we count the records with the ``4" flag in the SAM files \cite{sam-stools}. 
+paired-end and orphaned reads. To count the unaligned reads, we find the records with the ``4" flag in the SAM files \cite{sam-stools}. 
 
 We found chimeric alignments with the bwa mem aligner using the
 default parameters (v0.7.7.r441).  Chimeric alignments cut reads in
@@ -255,14 +251,13 @@ tagged SA.  To count the chimeric alignments, we count the records
 with the ``SA" flag in the SAM file \cite{sam-stools}. 
 
 To extract the reads that contribute to unaligned contigs, we mapped the quality filtered reads to the unaligned contigs using bwa aln (v0.7.7.r441) \cite{bwa}. 
-Then we used samtools \cite{sam-stools} to get the reads that are mapped to the unaligned contigs. 
+Then we used samtools \cite{sam-stools} to retrieve the reads that are mapped to the unaligned contigs. 
 
 \subsection*{Reference Coverage and Coverage Profile} 
 
 To evaluate how much of the reference genome was contained in the read
-data, we used bwa aln to map quality filtered reads, digitally
-normalized reads and partitioned reads to the reference genome,
-generating a SAM file from each.  We then calculated how many
+data, we used bwa aln to map reads to the reference genome.
+We then calculated how many
 reference bases are contained in at least one mapped read (script {\tt
 sam-calc-refcov-cmp.py}). To draw a coverage profile for the reference, we calculated how many times a reference base is contained in mapped reads (script {\tt
 cov.py}). 
@@ -273,7 +268,7 @@ We applied the {\tt normalize-by-median.py} script from khmer v1.1 to
 execute abundance normalization (``digital normalization'', \cite{brown2012})  on the data, retaining paired reads and using a
 k-mer size of 20 (-p -k 20).  We executed digital normalization with 4
 hash tables, each 1 GB in size (-N 4 -x 1e9).  After read
-normalization, we used the filter-abund.py script to trim
+normalization, we used the {\tt filter-abund.py} script to trim
 high-abundance reads (estimated k-mer coverage $\geq$ 20) at low-abundance
 k-mers (k-mer abundance $\leq$ 2)   %@CTB check these parameters) 
 to remove erroneous k-mers  \cite{qingpeng2014} \cite{streaming}. 
@@ -289,7 +284,7 @@ We next applied partitioning to the data \cite{jpell2012, ahowe2014}.
 We first eliminated high-abundance k-mers that could join multiple
 species bins using the {\tt filter-below-abund.py} script from khmer v1.1 using an abundance cutoff of 50 or higher.
 We then ran {\tt do-partition.py} with a k-mer size of 32 and 4 Bloom
-filters each of size 1 GB for partitioning (-k 32 -N 4 -x 1e9).  After
+filters each of size 1 gigabit for partitioning (-k 32 -N 4 -x 1e9).  After
 partitioning, partitions were extracted to groups using the {\tt extract-partitions.py} script with a maximum group size of 100,000 ({\tt -X 100000}).
 
 \subsection*{Metagenomes Assembly and evaluation}
@@ -344,23 +339,22 @@ mapping was high, with 92.0m reads (86.49\% of the quality filtered reads) havin
 We then evaluated the fraction of the reference genome covered by at
 least one read (see Methods for details). Quality filtered
 reads cover 203,030,147 (98.75\%) bases of the reference genome
-(205,603,715 bp total)
+(205,603,715 bp total).
 
 %We also used bwa mem \cite{bwa-mem} to look for chimeric alignments where a read is cut into two or more. @SAM explained in mapping?  
 
 \subsection *{Effect of Digital normalization and partitioning} 
 
-%@CTB please format and shorten this subsection as above, and spell check :).
 After digital normalization, we retained 
 1687.59 Mbp in 6,853,716 paired-end sequences, and 5.86 Mbp in 64,638 orphaned reads. 
  After partitioning, we
 got 29 partitions.  For paired-end sequences,  the largest partition has  %1379.27  Mbp,
 1.38 Gbp, and the smallest partition has 7.14 Mbp, in total, 1651.53
 Mbp.  For orphaned sequences, the largest partition has 13.90
-
 Mbp, the smallest partition has 2.52 Mbp, in total  24.6 Mbp.  
 Digital normalized reads and partitioned reads covered 
 202,201,168 and 201,193,779  bases of the reference genome (205,603,715), or 98.34\%, and 97.85\% of the reference respectively.
+% @CTB please put in percentage of total reads this is, after diginorm/partitioning.
 
 For mapped reads, the quality of mapping was high, with 15.25m reads  and 15.16m reads having MAPQ $\geq 30$, using digital
 normalized reads, and partitioned reads respectively.
@@ -368,7 +362,7 @@ normalized reads, and partitioned reads respectively.
 We have 28,969 and 26,960 chimeric
 reads using digital normalized reads and partitioned reads
 respectively. Digital normalization and partitioning decreased
-chimeric alignments which is less than the chimeric reads found using quality filtered reads (310,131). %@SAM do you mean this is mentioned so many times or the decrease is more than expected. %@SAMReplaced chimeric reads with chimeric alignments? 
+chimeric alignments which is less than the chimeric reads found using quality filtered reads (310,131). %@SAM do you mean this is mentioned so many times or the decrease is more than expected. %@SAMReplaced chimeric reads with chimeric alignments? @CTB is this decrease greater than expected by discarding reads with diginorm, or is it what we would expect?
 
 %\subsection*{Digital normalization and partitioning reduced memory and time requirements for assembly}
 \subsection*{Compute Cost of Assembly} 
@@ -436,7 +430,7 @@ also always decreased the N50.
 
 All assemblies have approximately the same number of
 unaligned bases, suggesting that data missing from the reference is
-being assembled.  We will examine this below.
+being assembled.  We examine this further below.
 
 %The assembly under each treatment is considered the reference genome in this experiment. 
 
@@ -465,13 +459,12 @@ fraction is 89.043\%, 91.003\%, 90.173\%, and 89.92\% for Velvet,
 IDBA-UD, SPAdes, and Megahit respectively.  Using partitioning, the
 genome fraction is 88.879\%, 90.082\%, 89.272\%, and 88.769\% for
 Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively.  Except for Velvet assemblies, digital
-normalization and partitioning did not effect genome fraction percenatge. However, for Velvet assemblies, digital normalization and partitioning increased the genome fraction percentage. See
+normalization and partitioning did not effect genome fraction percenatge. However, for Velvet assemblies, digital normalization and partitioning substantially increased the genome fraction percentage. See
 Table \ref{table:qualtiy-metrics} for more details.
 
 
 \subsection*{Metagenome assemblies account for the majority of reads}
-To further evaluate assemblies, we mapped the quality filtered reads to each assembly using bwa \cite{bwa-mem}.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all assemblies, the full set of trimmed reads were used for mapping. Default parameters were used, and both paired ends and singletons were mapped.  Samtools  \cite{samtools} was used for format conversion from SAM to BAM format, and also to calculate the percentage of mapped reads.  
-
+To further evaluate assemblies, we mapped the quality filtered reads to each assembly.  Then we extracted the unaligned sequences. Table \ref{table:reads-mapping} shows the number and percentages of unaligned sequences from mapping quality filtered reads to each assembly. For all assemblies, the full set of trimmed reads were used for mapping.
 
 For quality-filtered assembly, the number of unaligned reads is 6,801,329, 1,490,609 and 2,100,555, and 1,559,300 for Velvet, IDBA-UD, SPAdes, and MEGAHIT respectively. This represents 6.40\%, 1.40\%, 1.97\%, and 1.47\% of the total number of reads respectively. These percentages reflect errors or low coverage reads. See Table \ref{table:reads-mapping} for more details. 
 
