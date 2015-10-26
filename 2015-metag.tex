@@ -259,8 +259,7 @@ To evaluate how much of the reference genome was contained in the read
 data, we used bwa aln to map reads to the reference genome.
 We then calculated how many
 reference bases are contained in at least one mapped read (script {\tt
-sam-calc-refcov-cmp.py}). To draw a coverage profile for the reference, we calculated how many times a reference base is contained in mapped reads (script {\tt
-cov.py}). 
+sam-calc-refcov-cmp.py}). 
 
 \subsection*{Digital Normalization} 
 
@@ -340,6 +339,10 @@ We then evaluated the fraction of the reference genome covered by at
 least one read (see Methods for details). Quality filtered
 reads cover 203,030,147 (98.75\%) bases of the reference genome
 (205,603,715 bp total).
+
+To draw a coverage profile for the reference, we calculated how many times a reference base is contained in mapped reads (script {\tt
+cov.py}).  See Figure \ref{fig:coverage-profile}.
+
 
 %We also used bwa mem \cite{bwa-mem} to look for chimeric alignments where a read is cut into two or more. @SAM explained in mapping?  
 
