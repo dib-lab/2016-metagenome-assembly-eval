@@ -179,12 +179,12 @@ def main():
     im_qc_union_cov = iqc_total_bp - sum(union_im_qc.calc_uncov().values())
     im_qc_intersect_cov = iqc_total_bp - sum(intersect_im_qc.calc_uncov().values()) 
     print 'intersect and union cov for iqc and mqc:', im_qc_intersect_cov, im_qc_union_cov
-    print "Jaccard Similarity between IDBA QC and MEGAHIT QC UnCovered Bases is: ", float(im_qc_intersect_cov)/float(im_qc_union_cov)
+    print "Jaccard Similarity between IDBA QC and MEGAHIT QC: ", float(im_qc_intersect_cov)/float(im_qc_union_cov)
 
     is_qc_union_cov = iqc_total_bp - sum(union_is_qc.calc_uncov().values())
     is_qc_intersect_cov = iqc_total_bp - sum(intersect_is_qc.calc_uncov().values()) 
     print 'intersect and union cov for iqc and sqc', is_qc_intersect_cov, is_qc_union_cov
-    print "Jaccard Similarity between IDBA QC and SPAdes QC UnCovered Bases is: ", float(is_qc_intersect_cov)/float(is_qc_union_cov)
+    print "Jaccard Similarity between IDBA QC and SPAdes QC: ", float(is_qc_intersect_cov)/float(is_qc_union_cov)
 
     
     
