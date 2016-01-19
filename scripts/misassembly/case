@@ -174,4 +174,12 @@ Thermus_thermophilus_HB27 , Interval(616486, 621781, set(['sqc', 'vqc', 'mqc', '
 Thermus_thermophilus_HB27 , Interval(280591, 309409, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
 Thermus_thermophilus_HB27 , Interval(563728, 579969, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
 Thermus_thermophilus_HB27 , Interval(1389600, 1395046, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
-Thermus_thermophilus_HB27 , Interval(408234, 408405, set(['
+Thermus_thermophilus_HB27 , Interval(408234, 408405, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(933371, 941489, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(358188, 379633, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(1656680, 1662620, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(1651088, 1655411, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(1615996, 1620793, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(583392, 583795, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(1793312, 1850391, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,
+Thermus_thermophilus_HB27 , Interval(1137754, 1141938, set(['sqc', 'vqc', 'mqc', 'iqc'])) ,

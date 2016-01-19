@@ -158,33 +158,43 @@ class GenomeIntervalsContainer(object):
         index1 =0 
         index2 =0
      	for k in self.trees:
+           i=0
+           window =win
 	   while i < len(self.trees[k]):
 		for j in xrange(i,window):
- 			if self.trees[k][j] ==1.0:
+ 			if self.trees[k][j] ==1:
 				sum1+=1 
-                        if other.trees[k][j] ==1.0:
+                        if other.trees[k][j] ==1:
                                 sum2+=1
 		i+=window
                 window +=win
+                #print 'Values are currently :', i,j, window, index1, index2, sum1, sum2
 		if sum1 >= cutoff: 
-			total_regions1[index1]=1.0
+			total_regions1[index1]=1
                         index1+=1
 			sum1 =0
                 if sum2 >=cutoff: 
-			total_regions2[index2]=1.0
+			total_regions2[index2]=1
 			index2+=1 
 			sum2 =0
-        commons =0
-	diff =0
-	for i in xrange (0,len(total_regions1)):
-		print total_regions1[i], total_regions2[i]
-		if total_regions1[i]+total_regions2[i] ==2: 
-			commons+=1
-		elif total_regions1[i]+total_regions2[i] ==1:  
-			 diff+=1
+        f11 =0 
+	f10 =0 
+        f01 =0 
+        f00 =0 
 
-	return commons, diff
+	for i in xrange (0,len(total_regions1)):
+	      if total_regions1[i] + total_regions2[i] ==2: 
+			f11 +=1
+	      elif total_regions1[i] + total_regions2[i] ==0:
+			f00 +=1
+	      elif (total_regions1[i] ==1) and (total_regions2[i] ==0): 
+			f10 +=1
+	      elif (total_regions2[i] ==1) and (total_regions1[i] ==0): 
+			f01 +=1
 		
+	return f11, f00, f10, f01  
+		
+	
 def main():
     print 'loading refsizes'
     refsizes = load_refsizes('mircea.fa')
@@ -249,9 +259,14 @@ def main():
     #compare('mqc.coords', 'mdigi.coords', 'megahit-qc-digi')
     #compare('mqc.coords', 'mpart.coords', 'megahit-digi-part') 
     
-    commons,diff= gic_iqc.window_slide(gic_mqc, 100, 90,len(reference) ) 
-    print "Jaccard Similarity =",commons, diff,  float(diff+0.01)/float(commons+0.01)
-
-   
+    f11, f00, f10, f01 = gic_iqc.window_slide(gic_mqc, 1000, 800, len(reference)) 
+    f1plus =  float(f11 + f10)
+    fplus1 =  float (f11 + f01) 
+    N = f11 +f10 + f01 +f00 
+    print f11, f10, f01, f00, N
+    print "Jaccard Similarity =", float(f11) /float (f1plus + fplus1 -f11)  
+    print "Interest =" , float(N*f11) / float(f1plus*fplus1)
+    print "Odd Ratio =" , float(f11*f00)+0.1 /float( (0.1)+(f10*f01)) #la place smoothing to avoid division by zero
+    print 'j sim', float(f11) / float(f10+f01+f11)
 if __name__ == '__main__':
     main()
