@@ -137,15 +137,17 @@ class GenomeIntervalsContainer(object):
         fout.close()
 
     def write_contigs(self, outfile, assembly, code): 
-	fout = open(outfile, 'a+') 
+	fout = open(outfile, 'a') 
 	for k in self.aligned:
-            if sum(self.aligned[k]) >= 1.0: 
-		 print >>fout, ">"+k
+                 line ="" 
                  for j in xrange(0, len(self.aligned[k])):
                      if self.aligned[k][j] == code:
-                        fout.write(assembly[k][j]) 
-	         fout.write('\n')
-       
+                        #fout.write(assembly[k][j])
+                        line +=assembly[k][j] 
+                 if line!="":
+                      print >> fout, ">"+k
+                      print >> fout, line
+  
     def write_coords(self, outfile, reference, code): 
         fout = open(outfile, 'a+')
         for k in self.covered:
@@ -199,9 +201,6 @@ class GenomeIntervalsContainer(object):
         return diff_uncov
    
               
-
-
-	
 def main():
     print 'loading refsizes'
     refsizes, reference = load_reference('mircea.fa')
@@ -229,7 +228,6 @@ def main():
     #Open output file 
     fout = open('assemblies.stats', 'a+')
     #-------------------------------------
- 
     """
     #-----------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of unalignments 
@@ -253,7 +251,6 @@ def main():
     print >>fout, 'SPAdes \t', sqc_total_aligned, '\t', sqc_total_unaligned
     print >>fout, 'MEGAHIT \t', mqc_total_aligned, '\t', mqc_total_unaligned
     
-    """ 
     #---------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of uncovered regions
     #------------------------------ 
@@ -294,9 +291,9 @@ def main():
     print >>fout, "Common uncovered bases among IDBA, SPAdes, and Megahit using QC is: ",total_common_uncov
     print >>fout, "Bases that are uncovered by IDBA QC only: ", unique_uncov_iq
     print >>fout, "Bases that are uncovered by SPAdes QC only: ", unique_uncov_sq
-    print >>fout, "Bases that are uncovered by Megahit QC only: ", unique_uncov_mq  
+    print >>fout, "Bases that are uncovered by Megahit QC only: ", unique_uncov_mq
+    """  
     
-    """
 
     #---------------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of unaligned contigs 
@@ -317,7 +314,6 @@ def main():
     #gic_iqc.write_coords('iqc.uncov', reference, 0.0)
     #gic_sqc.write_coords('sqc.uncov', reference, 0.0)
     #gic_mqc.write_coords('mqc.uncov', reference, 0.0)
-    """ 
   
  
 
