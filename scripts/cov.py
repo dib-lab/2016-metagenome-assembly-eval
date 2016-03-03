@@ -53,8 +53,8 @@ def main():
         for i in range(refpos - 1, refpos + len(seq) - 1):
 	     if i < len(ref):
                 ref[i] += 1
-		#sys.stdout.write(str(ref[i]))
-		#sys.stdout.write(",")
+		sys.stdout.write(str(ref[i]))
+		sys.stdout.write(",")
    # import pdb; pdb.set_trace() 
     for name in genome_dict1: 
        ref = genome_dict1[name]
