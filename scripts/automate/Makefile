@@ -1,7 +1,8 @@
 DATA = /mnt/home/mahmoud4/data
 WORKDIR = /mnt/research/ged/sherine/testing-automation
-MYSCRIPTS = /mnt/home/mahmoud4/scripts
-NUCMER = contigs_reports/nucmer_output
+MYSCRIPTS = /mnt/research/ged/sherine/2015-metagenome-assembly/scripts
+#NUCMER = contigs_reports/nucmer_output
+NUCMER = /mnt/home/mahmoud4/software/MUMmer3.23
 PREFIX = SRR606249
 N-READS-PER-FILE = 5536289548 
 mc= 0 250 500 750 1000 2000
@@ -504,7 +505,7 @@ reads-to-unaligned-vqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se
 	samtools faidx ${WORKDIR}/vqc.unaligned 
 	samtools import ${WORKDIR}/vqc.unaligned.fai ${WORKDIR}/vqc.unaligned.pe.sam ${WORKDIR}/vqc.unaligned.pe.bam 
 	samtools import ${WORKDIR}/vqc.unaligned.fai ${WORKDIR}/vqc.unaligned.se.sam ${WORKDIR}/vqc.unaligned.se.bam
-	samtools view -h -F 4 ${WORKDIR}/vqc.unaligned.pe.bam > ${WORKDIR}/vqc.unaligned.mapped.pe.bam
+	samtools view -h -F 4 ${WORKDIR}/vqc.unaligned.pe.bam > ${WORKDIR}/vqc.unaligned.mapped.pe.bam 
 	samtools view -h -F 4 ${WORKDIR}/vqc.unaligned.se.bam > ${WORKDIR}/vqc.unaligned.mapped.se.bam
 	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/vqc.unaligned.mapped.pe.bam > ${WORKDIR}/vqc.unaligned.reads.fa
 	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/vqc.unaligned.mapped.se.bam >> ${WORKDIR}/vqc.unaligned.reads.fa
@@ -513,7 +514,8 @@ reads-to-unaligned-vqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se
 	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/vqc.unaligned.sai ${WORKDIR}/vqc.unaligned.reads.fa > ${WORKDIR}/vqc.unaligned.sam
 	samtools faidx ${WORKDIR}/mircea.fa 
 	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/vqc.unaligned.sam ${WORKDIR}/vqc.unaligned.bam 
-	samtools view -c -F 4 ${WORKDIR}/vqc.unaligned.bam > ${WORKDIR}/vqc.mapped.reads
+	samtools view -c -F 4 ${WORKDIR}/vqc.unaligned.bam > ${WORKDIR}/vqc.unaligned.mapped.reads
+
 
 reads-to-unaligned-iqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/idba-quality-unaligned.fa
 	bwa index ${WORKDIR}/iqc.unaligned 
@@ -536,44 +538,47 @@ reads-to-unaligned-iqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se
 	samtools view -c -F 4 ${WORKDIR}/iqc.unaligned.bam > ${WORKDIR}/iqc.unaligned.mapped.reads
 
 reads-to-unaligned-sqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/spades-quality-unaligned.fa
-	bwa index ${WORKDIR}/spades-quality-unaligned.fa 
-	bwa aln ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/usq.pe.sai 
-	bwa aln ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/usq.se.sai 
-	bwa samse ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/usq.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/usq.pe.sam 
-	bwa samse ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/usq.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/usq.se.sam
-	samtools faidx ${WORKDIR}/spades-quality-unaligned.fa 
-	samtools import ${WORKDIR}/spades-quality-unaligned.fa.fai ${WORKDIR}/usq.pe.sam ${WORKDIR}/usq.pe.bam 
-	samtools import ${WORKDIR}/spades-quality-unaligned.fa.fai ${WORKDIR}/usq.se.sam ${WORKDIR}/usq.se.bam
-	samtools view -h -F 4 ${WORKDIR}/usq.pe.bam > ${WORKDIR}/usqc-mapped.pe.bam 
-	samtools view -h -F 4 ${WORKDIR}/usq.se.bam > ${WORKDIR}/usqc-mapped.se.bam
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/usqc-mapped.pe.bam > ${WORKDIR}/usqc-reads.fa
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/usqc-mapped.se.bam >> ${WORKDIR}/usqc-reads.fa
+	bwa index ${WORKDIR}/sqc.unaligned 
+	bwa aln ${WORKDIR}/sqc.unaligned ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/sqc.unaligned.pe.sai 
+	bwa aln ${WORKDIR}/sqc.unaligned ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/sqc.unaligned.se.sai 
+	bwa samse ${WORKDIR}/sqc.unaligned ${WORKDIR}/sqc.unaligned.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/sqc.unaligned.pe.sam 
+	bwa samse ${WORKDIR}/sqc.unaligned ${WORKDIR}/sqc.unaligned.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/sqc.unaligned.se.sam
+	samtools faidx ${WORKDIR}/sqc.unaligned 
+	samtools import ${WORKDIR}/sqc.unaligned.fai ${WORKDIR}/sqc.unaligned.pe.sam ${WORKDIR}/sqc.unaligned.pe.bam 
+	samtools import ${WORKDIR}/sqc.unaligned.fai ${WORKDIR}/sqc.unaligned.se.sam ${WORKDIR}/sqc.unaligned.se.bam
+	samtools view -h -F 4 ${WORKDIR}/sqc.unaligned.pe.bam > ${WORKDIR}/sqc.unaligned.mapped.pe.bam 
+	samtools view -h -F 4 ${WORKDIR}/sqc.unaligned.se.bam > ${WORKDIR}/sqc.unaligned.mapped.se.bam
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/sqc.unaligned.mapped.pe.bam > ${WORKDIR}/sqc.unaligned.reads.fa
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/sqc.unaligned.mapped.se.bam >> ${WORKDIR}/sqc.unaligned.reads.fa
 	bwa index ${WORKDIR}/mircea.fa 
-	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/usqc-reads.fa  >${WORKDIR}/usqc.sai
-	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/usqc.sai ${WORKDIR}/usqc-reads.fa > ${WORKDIR}/usqc.sam
+	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/sqc.unaligned.reads.fa  >${WORKDIR}/sqc.unaligned.sam
+	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/sqc.unaligned.sai ${WORKDIR}/sqc.unaligned.reads.fa > ${WORKDIR}/sqc.unaligned.sam
 	samtools faidx ${WORKDIR}/mircea.fa 
-	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/usqc.sam ${WORKDIR}/usqc.bam 
-	samtools view -c -F 4 ${WORKDIR}/usqc.bam > ${WORKDIR}/usqc-mapped-reads
+	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/sqc.unaligned.sam ${WORKDIR}/sqc.unaligned.bam 
+	samtools view -c -F 4 ${WORKDIR}/sqc.unaligned.bam > ${WORKDIR}/sqc.unaligned.mapped.reads
+
+
 
 reads-to-unaligned-mqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/megahit-quality-unaligned.fa
-	bwa index ${WORKDIR}/megahit-quality-unaligned.fa 
-	bwa aln ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/umq.pe.sai 
-	bwa aln ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/umq.se.sai 
-	bwa samse ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/umq.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/umq.pe.sam 
-	bwa samse ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/umq.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/umq.se.sam
-	samtools faidx ${WORKDIR}/megahit-quality-unaligned.fa 
-	samtools import ${WORKDIR}/megahit-quality-unaligned.fa.fai ${WORKDIR}/umq.pe.sam ${WORKDIR}/umq.pe.bam 
-	samtools import ${WORKDIR}/megahit-quality-unaligned.fa.fai ${WORKDIR}/umq.se.sam ${WORKDIR}/umq.se.bam
-	samtools view -c -h -F 4 ${WORKDIR}/umq.pe.bam > ${WORKDIR}/umqc-mapped.pe 
-	samtools view -c -h -F 4 ${WORKDIR}/umq.se.bam > ${WORKDIR}/umqc-mapped.se
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/umqc-mapped.pe.bam > ${WORKDIR}/umqc-reads.fa
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/umqc-mapped.se.bam >> ${WORKDIR}/umqc-reads.fa
+	bwa index ${WORKDIR}/mqc.unaligned 
+	bwa aln ${WORKDIR}/mqc.unaligned ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/mqc.unaligned.pe.sai 
+	bwa aln ${WORKDIR}/mqc.unaligned ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/mqc.unaligned.se.sai 
+	bwa samse ${WORKDIR}/mqc.unaligned ${WORKDIR}/mqc.unaligned.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/mqc.unaligned.pe.sam 
+	bwa samse ${WORKDIR}/mqc.unaligned ${WORKDIR}/mqc.unaligned.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/mqc.unaligned.se.sam
+	samtools faidx ${WORKDIR}/mqc.unaligned 
+	samtools import ${WORKDIR}/mqc.unaligned.fai ${WORKDIR}/mqc.unaligned.pe.sam ${WORKDIR}/mqc.unaligned.pe.bam 
+	samtools import ${WORKDIR}/mqc.unaligned.fai ${WORKDIR}/mqc.unaligned.se.sam ${WORKDIR}/mqc.unaligned.se.bam
+	samtools view -h -F 4 ${WORKDIR}/mqc.unaligned.pe.bam > ${WORKDIR}/mqc.unaligned.mapped.pe.bam 
+	samtools view -h -F 4 ${WORKDIR}/mqc.unaligned.se.bam > ${WORKDIR}/mqc.unaligned.mapped.se.bam
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/mqc.unaligned.mapped.pe.bam > ${WORKDIR}/mqc.unaligned.reads.fa
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/mqc.unaligned.mapped.se.bam >> ${WORKDIR}/mqc.unaligned.reads.fa
 	bwa index ${WORKDIR}/mircea.fa 
-	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/umqc-reads.fa  >${WORKDIR}/umqc.sai
-	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/umqc.sai ${WORKDIR}/umqc-reads.fa > ${WORKDIR}/umqc.sam
+	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/mqc.unaligned.reads.fa  >${WORKDIR}/mqc.unaligned.sai
+	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/mqc.unaligned.sai ${WORKDIR}/mqc.unaligned.reads.fa > ${WORKDIR}/mqc.unaligned.sam
 	samtools faidx ${WORKDIR}/mircea.fa 
-	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/umqc.sam ${WORKDIR}/umqc.bam 
-	samtools view -c -F 4 ${WORKDIR}/umqc.bam > ${WORKDIR}/umqc-mapped-reads
+	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/mqc.unaligned.sam ${WORKDIR}/mqc.unaligned.bam 
+	samtools view -c -F 4 ${WORKDIR}/mqc.unaligned.bam > ${WORKDIR}/mqc.unaligned.mapped.reads
+        
 
 reads-to-all-unaligned:  ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/*-unaligned.fa 
 	cat ${WORKDIR}/*-unaligned.fa > ${WORKDIR}/all-unaligned.fa
@@ -646,11 +651,11 @@ run-nucmer: ${WORKDIR}/iqc250.fa ${WORKDIR}/iqc500.fa ${WORKDIR}/iqc750.fa ${WOR
 
 get-stats: ${WORKDIR}/iqc250.coords ${WORKDIR}/iqc500.coords ${WORKDIR}/iqc750.coords ${WORKDIR}/iqc1000.coords ${WORKDIR}/iqc2000.coords ${WORKDIR}/iqc3000.coords 
 	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc250.fa ${DATA}/mircea.fa ${WORKDIR}/iqc250.coords > ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc500.fa ${DATA}/mircea.fa ${WORKDIR}/iqc500.coords > ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc750.fa ${DATA}/mircea.fa ${WORKDIR}/iqc750.coords > ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc1000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc1000.coords > ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc2000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc2000.coords > ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc3000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc3000.coords > ${WORKDIR}/fractions.mincontigs
+	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc500.fa ${DATA}/mircea.fa ${WORKDIR}/iqc500.coords >> ${WORKDIR}/fractions.mincontigs
+	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc750.fa ${DATA}/mircea.fa ${WORKDIR}/iqc750.coords >> ${WORKDIR}/fractions.mincontigs
+	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc1000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc1000.coords >> ${WORKDIR}/fractions.mincontigs
+	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc2000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc2000.coords >> ${WORKDIR}/fractions.mincontigs
+	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc3000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc3000.coords >> ${WORKDIR}/fractions.mincontigs
 
  
 

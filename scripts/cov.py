@@ -51,23 +51,30 @@ def main():
 
 
         for i in range(refpos - 1, refpos + len(seq) - 1):
-	     if i < len(ref):
+             if i < len(ref):
                 ref[i] += 1
-		sys.stdout.write(str(ref[i]))
-		sys.stdout.write(",")
-   # import pdb; pdb.set_trace() 
+                #sys.stdout.write(str(ref[i]))
+		#sys.stdout.write(",")
+
+             #sys.stdout.write('\n')
+   # import pdb; pdb.set_trace()
+    fout = open('bases.coverage', 'w+') 
+
     for name in genome_dict1: 
        ref = genome_dict1[name]
+       print >>fout, ">"+name 
        for j in range (len(genome_dict1[name])):
-             arr[ref[j]]+=1  
+             arr[ref[j]]+=1 
+             fout.write(str(ref[j])) 
+             fout.write(',') 
  	     #print arr[ref[j]], ref[j]             	
     #import pdb; pdb.set_trace()
     for i in range(len(arr)): 
 	print i, arr[i]
 
-    if n_skipped / float(n) > .01:
-        raise Exception, "Error: too many reads ignored! %d of %d" % \
-              (n_skipped, n)
+    #if n_skipped / float(n) > .01:
+        #raise Exception, "Error: too many reads ignored! %d of %d" % \
+              #(n_skipped, n)
 
     total = 0.
     cov1 = 0.
