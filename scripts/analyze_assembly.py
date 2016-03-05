@@ -31,23 +31,24 @@ def load_assembly(assembly):
     d = {}
     s = {} 
     for record in screed.open(assembly): 
-	d[record.name.split()[0]] = len(record.sequence)
-        s[record.name.split()[0]] = record.sequence
+	d[record.name.split()[0] ] = len(record.sequence)
+        s[record.name.split()[0] ] = record.sequence
     return d, s 
   
 class GenomeIntervalsContainer(object):
-    def __init__(self, refsizes, assembly):
+    def __init__(self, refsizes, assemblysize, assembly):
         self.names = refsizes.keys()
         self.refsizes = refsizes
-        self.contigs = assembly.keys()
-        self.assemsizes =assembly
+        self.contigs = assemblysize.keys()
+        self.assemsizes =assemblysize
+        self.sequences = assembly
         covered = {}
         aligned = {}
         for k in self.names:
             covered[k] = numpy.zeros(refsizes[k])
         self.covered = covered
-        for k in self.contigs: 
-            aligned[k] = numpy.zeros(assembly[k])
+        for k in self.contigs:
+            aligned[k] = numpy.zeros(assemblysize[k])
         self.aligned = aligned
 
     def load_coords(self, filename, min_length=100, min_ident=99.0):
@@ -60,7 +61,7 @@ class GenomeIntervalsContainer(object):
                 if e1 - s1 + 1 >= min_length and ident >= min_ident:
                     cov[s1 - 1:e1] = numpy.ones(e1 - s1 + 1)
                     align[s2 - 1:e2] = numpy.ones(e2 - s2 + 1)
-
+    
     def calc_uncov(self):
         uncov_d = {}
         for name in self.refsizes:
@@ -71,11 +72,19 @@ class GenomeIntervalsContainer(object):
             uncov_d[name] = uncov
         return uncov_d
 
-    def calc_unalignments(self): 
+    def calc_unalignments(self, out1, out2): 
+       ftotal = open(out1, 'w+') 
+       fpartial =open(out2, 'w+') 
        unaligned = {}
        for name in self.assemsizes:
             length = self.assemsizes[name]
             align = sum(self.aligned[name])
+            if align == length:
+                print >>ftotal, ">"+name
+	 	print >>ftotal, self.sequences[name] 
+            else: 
+		print >>fpartial, ">"+name 
+		print >>fpartial, self.sequences[name] 		
             unalign = length - align
             unaligned[name] = unalign
        return unaligned
@@ -149,7 +158,7 @@ class GenomeIntervalsContainer(object):
                       print >> fout, line
   
     def write_coords(self, outfile, reference, code): 
-        fout = open(outfile, 'a+')
+        fout = open(outfile, 'w+')
         for k in self.covered:
              n =">"+k
              print >>fout , n
@@ -163,7 +172,7 @@ class GenomeIntervalsContainer(object):
         fout.close()
     
     def common_uncov(self,sqc, mqc, outfile): 
-	fout = open(outfile, 'a+') 
+	fout = open(outfile, 'w+') 
         for k in self.covered: 
 	   n =">"+k
            print >>fout , n 
@@ -174,7 +183,7 @@ class GenomeIntervalsContainer(object):
            fout.write('\n')
             
     def count_common_uncov(self, other1, other2, outfile):
-        fout = open(outfile, 'a+')
+        fout = open(outfile, 'w+')
         total_uncov =0
         for k in self.covered:
            n =">"+k
@@ -188,7 +197,7 @@ class GenomeIntervalsContainer(object):
 
      
     def count_diff_uncov(self, other1, other2, outfile): 
-	fout =open(outfile, 'a+')  
+	fout =open(outfile, 'w+')  
         diff_uncov =0
         for k in self.covered:
            n =">"+k
@@ -215,42 +224,42 @@ def main():
     #Building Containers 
     #---------------------
  
-    gic_iqc = GenomeIntervalsContainer(refsizes, iqc)
+    gic_iqc = GenomeIntervalsContainer(refsizes, iqc, iqseq)
     gic_iqc.load_coords('iqc.coords')
  
-    gic_sqc = GenomeIntervalsContainer(refsizes, sqc)
+    gic_sqc = GenomeIntervalsContainer(refsizes, sqc, sqseq)
     gic_sqc.load_coords('sqc.coords') 
 
-    gic_mqc = GenomeIntervalsContainer(refsizes, mqc)
+    gic_mqc = GenomeIntervalsContainer(refsizes, mqc, mqseq)
     gic_mqc.load_coords('mqc.coords')
      
     #------------------------------------
     #Open output file 
-    fout = open('assemblies.stats', 'a+')
+    fout = open('assemblies.stats', 'w+')
     #-------------------------------------
-    """
     #-----------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of unalignments 
     #-----------------------------
     print >>fout,  "Analysis of unalignments" 
     print >>fout,  "========================="
-    iqc_unaligned = gic_iqc.calc_unalignments()
+    iqc_unaligned = gic_iqc.calc_unalignments('iqc.total.aligned', 'iqc.partial.aligned')
     iqc_total_aligned = sum(gic_iqc.assemsizes.values())
     iqc_total_unaligned = sum(iqc_unaligned.values())
 
-    sqc_unaligned = gic_sqc.calc_unalignments()
+    sqc_unaligned = gic_sqc.calc_unalignments('sqc.total.aligned', 'sqc.partial.aligned')
     sqc_total_aligned = sum(gic_sqc.assemsizes.values())
     sqc_total_unaligned = sum(sqc_unaligned.values())
 
     
-    mqc_unaligned = gic_mqc.calc_unalignments()
+    mqc_unaligned = gic_mqc.calc_unalignments('mqc.total.aligned', 'mqc.partial.aligned')
     mqc_total_aligned = sum(gic_mqc.assemsizes.values())
     mqc_total_unaligned = sum(mqc_unaligned.values()) 
     print >>fout, 'QC \t  total aligned \t total unaligned'
     print >>fout, 'IDBA \t', iqc_total_aligned, '\t', iqc_total_unaligned
     print >>fout, 'SPAdes \t', sqc_total_aligned, '\t', sqc_total_unaligned
     print >>fout, 'MEGAHIT \t', mqc_total_aligned, '\t', mqc_total_unaligned
-    
+   
+    """
     #---------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of uncovered regions
     #------------------------------ 
@@ -292,7 +301,6 @@ def main():
     print >>fout, "Bases that are uncovered by IDBA QC only: ", unique_uncov_iq
     print >>fout, "Bases that are uncovered by SPAdes QC only: ", unique_uncov_sq
     print >>fout, "Bases that are uncovered by Megahit QC only: ", unique_uncov_mq
-    """  
     
 
     #---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -310,11 +318,7 @@ def main():
     #for name in mqc_unaligned:
         #print name, mqc_unaligned[name]    
 
-    #Printing coordinates of Covered/Uncovered regions based on code =1.0 or 0.0  
-    #gic_iqc.write_coords('iqc.uncov', reference, 0.0)
-    #gic_sqc.write_coords('sqc.uncov', reference, 0.0)
-    #gic_mqc.write_coords('mqc.uncov', reference, 0.0)
-  
+    """ 
  
 
 
