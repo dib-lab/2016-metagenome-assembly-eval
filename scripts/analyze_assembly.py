@@ -156,14 +156,13 @@ class GenomeIntervalsContainer(object):
                  if line!="":
                       print >> fout, ">"+k
                       print >> fout, line
-  
-    def write_coords(self, outfile, reference, code): 
+ 
+    def write_coords(self, other1, other2, outfile, reference, code): 
         fout = open(outfile, 'w+')
         for k in self.covered:
-             n =">"+k
-             print >>fout , n
+             print >>fout , ">"+k
              for j in xrange(0, len(self.covered[k])):
-                  if self.covered[k][j] ==code:
+                  if (self.covered[k][j] == code) and (other1.covered[k][j] == code) and (other2.covered[k][j] == code):
                          fout.write(str(j))
                          fout.write(',')
              fout.write('\n')
@@ -320,7 +319,7 @@ def main():
 
     """ 
  
-
+    gic_iqc.write_coords(gic_sqc, gic_mqc, 'qcbases.uncovered.common', reference, 0)
 
 if __name__ == '__main__':
     main()
