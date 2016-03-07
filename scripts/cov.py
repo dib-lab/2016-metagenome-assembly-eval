@@ -14,18 +14,34 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('genome')
     parser.add_argument('samfile1')
+    parser.add_argument('align') 
 
     args = parser.parse_args()
     #from collections import defaultdict
     #dist = defaultdict(int)
     dist = {}
     genome_dict1 = {}
+    genome_align = {}
     arr = []
     n_rec =0 
     for record in screed.open(args.genome):
         genome_dict1[record.name] = [0] * len(record.sequence)
+	n_rec+=len(record.sequence)
+        genome_align[record.name] = [-1] * 2*  len(record.sequence) 
 
-	n_rec+=len(record.sequence) 
+    for line in open(args.align):
+       if line.startswith('>'): 
+             name =line
+             continue
+       else: 
+	     bases =line.strip().split(",")
+             for i in bases: 
+		if i =='': 
+ 			break 
+                else:
+                        #print i, bases
+       			genome_align[record.name][int(i)]=bases
+   
     arr =[0]*n_rec    
     n = 0
     n_skipped = 0
@@ -57,20 +73,31 @@ def main():
 		#sys.stdout.write(",")
 
              #sys.stdout.write('\n')
-   # import pdb; pdb.set_trace()
-    fout = open('bases.coverage', 'w+') 
 
     for name in genome_dict1: 
        ref = genome_dict1[name]
-       print >>fout, ">"+name 
-       for j in range (len(genome_dict1[name])):
+       for j in range ( len(genome_dict1[name])):
              arr[ref[j]]+=1 
-             fout.write(str(ref[j])) 
-             fout.write(',') 
- 	     #print arr[ref[j]], ref[j]             	
-    #import pdb; pdb.set_trace()
-    for i in range(len(arr)): 
-	print i, arr[i]
+    
+    #for i in range(len(arr)): 
+	#print i, arr[i]
+   
+    fout = open('bases.coverage', 'w+')
+    for name in genome_dict1:
+        for i in range (len(genome_dict1[name])):
+              x = genome_align[name][i] 
+	      y = genome_dict1[name][i]
+              if (x > -1) : #and  ( y > 0) :
+                    if i ==0: 
+                          fout.write(name) 
+                          fout.write(',')  
+		    #fout.write( str(y) )
+                    #fout.write(',') 
+                    fout.write(str(x) )
+		    fout.write(',')
+
+        
+
 
     #if n_skipped / float(n) > .01:
         #raise Exception, "Error: too many reads ignored! %d of %d" % \
