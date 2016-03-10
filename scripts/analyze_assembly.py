@@ -157,18 +157,17 @@ class GenomeIntervalsContainer(object):
                       print >> fout, ">"+k
                       print >> fout, line
  
-    def write_coords(self, other1, other2, outfile, reference, code): 
-        fout = open(outfile, 'w+')
+    def write_coords(self, other1, other2, outfile, reference): 
+        fout = open(outfile, 'w+') 
         for k in self.covered:
-             print >>fout , ">"+k
              for j in xrange(0, len(self.covered[k])):
-                  if (self.covered[k][j] == code) and (other1.covered[k][j] == code) and (other2.covered[k][j] == code):
+                  if j ==0: 
+			 print >>fout , ">"+k
+                  if (self.covered[k][j] == 0) and (other1.covered[k][j] ==1) and (other2.covered[k][j] ==1):
                          fout.write(str(j))
                          fout.write(',')
              fout.write('\n')
-
-
-        fout.close()
+	fout.close()
     
     def common_uncov(self,sqc, mqc, outfile): 
 	fout = open(outfile, 'w+') 
@@ -318,8 +317,10 @@ def main():
         #print name, mqc_unaligned[name]    
 
     """ 
+    gic_iqc.write_coords(gic_sqc, gic_mqc, 'iqc.uncovered.bases', 'mircea.fa') 
+    gic_sqc.write_coords(gic_iqc, gic_mqc, 'sqc.uncovered.bases', 'mircea.fa') 
+    gic_mqc.write_coords(gic_iqc, gic_sqc, 'mqc.uncovered.bases', 'mircea.fa') 
  
-    gic_iqc.write_coords(gic_sqc, gic_mqc, 'qcbases.uncovered.common', reference, 0)
 
 if __name__ == '__main__':
     main()

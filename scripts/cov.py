@@ -14,22 +14,26 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('genome')
     parser.add_argument('samfile1')
-    parser.add_argument('align') 
-
+    parser.add_argument('uncovered')
+    parser.add_argument('bases') 
+    parser.add_argument('coverage') 
+ 
     args = parser.parse_args()
-    #from collections import defaultdict
-    #dist = defaultdict(int)
-    dist = {}
+    
+    fout1 = open(args.bases, 'w+') 
+    fout2 = open(args.coverage, 'w+')    
+
+
     genome_dict1 = {}
-    genome_align = {}
+    genome_covered = {}
     arr = []
     n_rec =0 
     for record in screed.open(args.genome):
         genome_dict1[record.name] = [0] * len(record.sequence)
 	n_rec+=len(record.sequence)
-        genome_align[record.name] = [-1] * 2*  len(record.sequence) 
+        genome_covered[record.name] = [-1] * len(record.sequence) *4 #4 asseblers commons 
 
-    for line in open(args.align):
+    for line in open(args.uncovered):
        if line.startswith('>'): 
              name =line
              continue
@@ -39,8 +43,7 @@ def main():
 		if i =='': 
  			break 
                 else:
-                        #print i, bases
-       			genome_align[record.name][int(i)]=bases
+       			genome_covered[record.name][int(i)]=bases
    
     arr =[0]*n_rec    
     n = 0
@@ -69,35 +72,41 @@ def main():
         for i in range(refpos - 1, refpos + len(seq) - 1):
              if i < len(ref):
                 ref[i] += 1
-                #sys.stdout.write(str(ref[i]))
-		#sys.stdout.write(",")
-
-             #sys.stdout.write('\n')
-
+    #covx = 0 
     for name in genome_dict1: 
        ref = genome_dict1[name]
        for j in range ( len(genome_dict1[name])):
              arr[ref[j]]+=1 
-    
-    #for i in range(len(arr)): 
-	#print i, arr[i]
+       #print sum(genome_dict1[name])
+       #x =  sum(genome_dict1[name])
+       #covx += float(x)
+
+
+    #print covx
+
    
-    fout = open('bases.coverage', 'w+')
+    print >>fout2, 'Bases Coverage Distribution'   
+    for i in range(len(arr)): 
+	print >>fout2,  i, arr[i]
+    
+    arr1 = []
+    arr1 =[0]*n_rec  
     for name in genome_dict1:
+        ref1 = genome_dict1[name]
         for i in range (len(genome_dict1[name])):
-              x = genome_align[name][i] 
+              x = genome_covered[name][i] 
 	      y = genome_dict1[name][i]
-              if (x > -1) : #and  ( y > 0) :
-                    if i ==0: 
-                          fout.write(name) 
-                          fout.write(',')  
-		    #fout.write( str(y) )
-                    #fout.write(',') 
-                    fout.write(str(x) )
-		    fout.write(',')
+              if (x > -1) : 
+		  ref1[i] = x
+ 
 
-        
-
+    for j in range ( len(genome_dict1[name])):
+            arr1[ref1[j]]+=1
+     
+    print >>fout1, 'Uncovered bases Coverage Distribution'  
+    for i in range(len(arr1)):
+        if arr1[i] >0:
+            print >>fout1, i, arr1[i]
 
     #if n_skipped / float(n) > .01:
         #raise Exception, "Error: too many reads ignored! %d of %d" % \
@@ -105,15 +114,12 @@ def main():
 
     total = 0.
     cov1 = 0.
-    cov2 = 0.
 
     for name in genome_dict1:
         total += len(genome_dict1[name])
-        cov1 += sum(genome_dict1[name])
-
-    print args.samfile1, float(cov1) / float(total), cov1, total
-    #print 'lost: %f' % (1.0 - float(cov2) / float(cov1),)
-#    print 'lost: %d of %d' % (cov1 - cov2, total)
+        x =  sum(genome_dict1[name]) 
+        cov1 += float(x)  
+    print >> fout1, args.samfile1, float(cov1) / float(total), cov1, total
 
 if __name__ == '__main__':
     main()
