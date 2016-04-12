@@ -50,92 +50,37 @@ class GenomeIntervalsContainer(object):
         covered = {}
         aligned = {} 
         
-        overlaps_s1 = {} 
-        overlaps_e1 = {} 
-        overlaps_s2 = {} 
-        overlaps_e2 = {} 
-        overlaps_identity = {} 
-        contigs_overlaps = {}
-        overlaps_genome = {} 
- 
         for k in self.names:
             covered[k] = numpy.zeros(refsizes[k])
             
         self.covered = covered
         for k in self.contigs:
             aligned[k] = numpy.zeros(assemblysize[k])
-            overlaps_s1[k] = 0 
-            overlaps_s2[k] = 0 
-            overlaps_e1[k] = 0
-            overlaps_e2[k] = 0 
-            overlaps_identity[k] = 0       
-            contigs_overlaps[k] = 0
-            overlaps_genome[k] = "null"
-        self.overlaps_s1 = overlaps_s1
-        self.overlaps_s2 = overlaps_s2 
-        self.overlaps_e1 = overlaps_e1
-        self.overlaps_e2 = overlaps_e2 
-        self.overlaps_identity = overlaps_identity
-        self.contigs_overlaps = contigs_overlaps 
-        self.overlaps_genome = overlaps_genome  
- 
  
         self.aligned = aligned
       
            
    
-    def load_coords(self, filename,  min_ident, overlap_cutoff, min_length=100):
+    def load_coords(self, filename,  min_ident, min_length=100):
         covered = self.covered
         aligned = self.aligned 
         
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
-                       
-           if name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] ==0 :
-                     self.overlaps_s1[name2] = s1
-                     self.overlaps_e1[name2] = e1
-                     self.overlaps_s2[name2] = s2
-                     self.overlaps_e2[name2] = e2
-                     self.overlaps_genome[name2] = name1
-                     self.overlaps_identity[name2] = ident
-                     self.contigs_overlaps[name2] +=1
- 
-		       
-           elif name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] > 0:
-                if self.overlaps_identity[name2] < ident: 
-		     self.overlaps_s1[name2] = s1 
-                     self.overlaps_e1[name2] = e1 
-		     self.overlaps_s2[name2] = s2
-		     self.overlaps_e2[name2] = e2
-                     self.overlaps_genome[name2] = name1  
-		     self.overlaps_identity[name2] = ident
-	             self.contigs_overlaps[name2] +=1
-        suma = 0
-        sumr = 0
-        for name2 in self.overlaps_s1  :
-           name1 = self.overlaps_genome[name2]
-            
-           if (name1 in covered) and (name2 in aligned) and (name1 != "null") and (self.contigs_overlaps[name2]) == overlap_cutoff:
-                 cov = covered[name1]
-                 align = aligned[name2]
-                 s1 = self.overlaps_s1[name2] 
-                 e1 = self.overlaps_e1[name2] 
-                 s2 = self.overlaps_s2[name2]
-                 e2 = self.overlaps_e2[name2] 
-                 ident = self.overlaps_identity[name2]
-                 if e1 - s1 + 1 >= min_length and ident >= min_ident:
+            if name1 in covered and name2 in aligned:
+                cov = covered[name1]
+                align = aligned[name2]
+               
+                if e1 - s1 + 1 >= min_length and ident >= min_ident:
                     for i in range(s1 -1, e1): 
 			cov[i] += 1
-                        sumr +=1 
                     for j in range(s2-1, e2):
-			align[j] +=1
-                        suma +=1 
-        print suma , sumr  
+			align[j] +=1 
                     
-        #cov[s1 - 1:e1] = numpy.ones(e1 - s1 + 1)
-        #align[s2 - 1:e2] = numpy.ones(e2 - s2 + 1)
-    
-
-                
+                    
+                    #cov[s1 - 1:e1] = numpy.ones(e1 - s1 + 1)
+                    #align[s2 - 1:e2] = numpy.ones(e2 - s2 + 1)
+                               
+                    
     def calc_uncov(self):
         uncov_d = {}
         for name in self.refsizes:
@@ -324,8 +269,7 @@ def main():
     parser.add_argument('coords2')
     parser.add_argument('coords3')
     parser.add_argument('treatment')
-    parser.add_argument('minident')
-    parser.add_argument('overlap_cutoff')  
+    parser.add_argument('minident')  
     args = parser.parse_args()
     print 'loading refsizes'
     refsizes, reference = load_reference(args.reference)
@@ -345,14 +289,14 @@ def main():
     #---------------------
  
     gic_a = GenomeIntervalsContainer(refsizes, a, aseq)
-    gic_a.load_coords(args.coords1, float(args.minident) ,int(args.overlap_cutoff) )
+    gic_a.load_coords(args.coords1, float(args.minident) )
  
     gic_b = GenomeIntervalsContainer(refsizes, b, bseq)
-    gic_b.load_coords(args.coords2, float(args.minident) ,int(args.overlap_cutoff) ) 
+    gic_b.load_coords(args.coords2, float(args.minident) ) 
 
     gic_c = GenomeIntervalsContainer(refsizes, c, cseq)
-    gic_c.load_coords(args.coords3, float(args.minident), int(args.overlap_cutoff) )
-    
+    gic_c.load_coords(args.coords3, float(args.minident) )
+     
     ref_total_length = sum(refsizes.values()) 
     a_total_bases = sum(gic_a.assemsizes.values())
     b_total_bases = sum(gic_b.assemsizes.values())
@@ -376,6 +320,7 @@ def main():
     gic_b.distribution_coverage(ref_total_length, b_dist_cov)
     gic_c.distribution_coverage(ref_total_length, c_dist_cov)
 
+
     #------------------------------------
     #Open output file 
     fout = open('assemblies.stats.'+args.treatment, 'w+')
@@ -386,7 +331,6 @@ def main():
     print >>fout, "Total bases in", prefix1, str(args.treatment) , "is" , a_total_bases, "with", len(a) ,"contigs"
     print >>fout, "Total bases in", prefix2, str(args.treatment) , "is" , b_total_bases, "with", len(b) ,"contigs" 
     print >>fout, "Total bases in", prefix3, str(args.treatment) , "is" , c_total_bases, "with", len(c) ,"contigs" 
-    
     
     #----------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of unalignments 
@@ -422,6 +366,7 @@ def main():
     print >>fout, prefix2, args.treatment, "has",  b_totally_aligned_contigs, "totally aligned contigs ~", float(b_totally_aligned_contigs)/len(b) * 100
     print >>fout, prefix3, args.treatment, "has",  c_totally_aligned_contigs, "totally aligned contigs ~", float(c_totally_aligned_contigs)/len(c) * 100
     
+
     #---------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of uncovered regions
     #------------------------------ 
@@ -483,7 +428,7 @@ def main():
     print >>fout, "Bases that are uncovered by", prefix2, args.treatment, "only: ", unique_uncov_b, "~", float(unique_uncov_b)/ref_total_length *100, "%"
     print >>fout, "Bases that are uncovered by", prefix3, args.treatment, "only: ", unique_uncov_c, "~", float(unique_uncov_c)/ref_total_length *100, "%"
 
-    """     
+    """         
     #---------------------------------------------------------------------------------------------------------------------------------------------------------
     #Printing uncovered bases to a file
     #------------------------------------
