@@ -1,8 +1,7 @@
 DATA = /mnt/home/mahmoud4/data
 WORKDIR = /mnt/research/ged/sherine/testing-automation
-MYSCRIPTS = /mnt/research/ged/sherine/2015-metagenome-assembly/scripts
-#NUCMER = contigs_reports/nucmer_output
-NUCMER = /mnt/home/mahmoud4/software/MUMmer3.23
+MYSCRIPTS = /mnt/home/mahmoud4/scripts
+NUCMER = contigs_reports/nucmer_output
 PREFIX = SRR606249
 N-READS-PER-FILE = 5536289548 
 mc= 0 250 500 750 1000 2000
@@ -305,6 +304,35 @@ megahit-part-2:
 finalize-megahit-partition:
 	python ${SANDBOX}/sandbox/multi-rename.py assembly ${WORKDIR}/megahit-partition-best*.fa > ${WORKDIR}/megahit-partition-assembly.fa
 
+#-------------------------------------------------------------------QUAST------------------------------------------------------------------------------------
+quasting-2-ref: ${WORKDIR}/*-assembly.fa   ${DATA}/mircea.fa.gz 
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/velvet-quality-quast/ ${WORKDIR}/velvet-quality-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/idba-quality-quast/ ${WORKDIR}/idba-quality-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/spades-quality-quast/ ${WORKDIR}/spades-quality-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/megahit-quality-quast/ ${WORKDIR}/megahit-quality-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/velvet-diginorm-quast/ ${WORKDIR}/velvet-diginorm-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/idba-diginorm-quast/ ${WORKDIR}/idba-diginorm-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/spades-diginorm-quast/ ${WORKDIR}/spades-diginorm-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/megahit-diginorm-quast/ ${WORKDIR}/megahit-diginorm-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/velvet-partition-quast/ ${WORKDIR}/velvet-partition-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.ga -o ${WORKDIR}/velvet-partition-quast/ ${WORKDIR}/velvet-partition-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/spades-partition-quast/ ${WORKDIR}/spades-partition-assembly.fa
+	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${WORKDIR}/megahit-partition-quast/ ${WORKDIR}/megahit-partition-assembly.fa 
+
+quasting-2-assembly: ${WORKDIR}/*-assembly.fa ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/velvet-quality-assembly.fa -o ref-velvet-quality-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/idba-quality-assembly.fa -o ref-idba-quality-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/spades-quality-assembly.fa -o ref-spades-quality-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/megahit-quality-assembly.fa -o ref-megahit-quality-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/velvet-diginorm-assembly.fa -o ref-velvet-diginorm-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/idba-diginorm-assembly.fa -o ref-idba-diginorm-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/spades-diginorm-assembly.fa -o ref-spades-diginorm-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/megahit-diginorm-assembly.fa -o ref-megahit-diginorm-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/velvet-partition-assembly.fa -o ref-velvet-partition-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/idba-partition-assembly.fa -o ref-idba-partition-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/spades-partition-assembly.fa -o ref-spades-partition-quast/ ${DATA}/mircea.fa.gz
+	python ${QUAST}/quast.py -R ${WORKDIR}/megahit-partition-assembly.fa -o ref-megahit-partition-quast/ ${DATA}/mircea.fa.gz
+
 #-------------------------------------------------Read Incorporation Experiment-------------------------------------------------------------------------------
 #----------------------------------------------------------------Mapping-------------------------------------------------------------------------------------
 reads-to-vqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/velvet-quality-assembly.fa
@@ -497,88 +525,84 @@ extract-unaligned:
 	python ${MYSCRIPTS}/extract-unaligned-contigs.py ${WORKDIR}/megahit-partition-assembly.unaligned ${WORKDIR}/megahit-partition-assembly.fa ${WORKDIR}/megahit-partition-unaligned.fa
 #--------------------------------------------------Mapping reads to unaligned contigs--------------------------------------------------------
 reads-to-unaligned-vqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/velvet-quality-unaligned.fa
-	bwa index ${WORKDIR}/vqc.unaligned 
-	bwa aln ${WORKDIR}/vqc.unaligned ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/vqc.unaligned.pe.sai 
-	bwa aln ${WORKDIR}/vqc.unaligned ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/vqc.unaligned.se.sai 
-	bwa samse ${WORKDIR}/vqc.unaligned ${WORKDIR}/vqc.unaligned.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/vqc.unaligned.pe.sam 
-	bwa samse ${WORKDIR}/vqc.unaligned ${WORKDIR}/vqc.unaligned.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/vqc.unaligned.se.sam
-	samtools faidx ${WORKDIR}/vqc.unaligned 
-	samtools import ${WORKDIR}/vqc.unaligned.fai ${WORKDIR}/vqc.unaligned.pe.sam ${WORKDIR}/vqc.unaligned.pe.bam 
-	samtools import ${WORKDIR}/vqc.unaligned.fai ${WORKDIR}/vqc.unaligned.se.sam ${WORKDIR}/vqc.unaligned.se.bam
-	samtools view -h -F 4 ${WORKDIR}/vqc.unaligned.pe.bam > ${WORKDIR}/vqc.unaligned.mapped.pe.bam 
-	samtools view -h -F 4 ${WORKDIR}/vqc.unaligned.se.bam > ${WORKDIR}/vqc.unaligned.mapped.se.bam
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/vqc.unaligned.mapped.pe.bam > ${WORKDIR}/vqc.unaligned.reads.fa
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/vqc.unaligned.mapped.se.bam >> ${WORKDIR}/vqc.unaligned.reads.fa
+	bwa index ${WORKDIR}/velvet-quality-unaligned.fa 
+	bwa aln ${WORKDIR}/velvet-quality-unaligned.fa ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/uvq.pe.sai 
+	bwa aln ${WORKDIR}/velvet-quality-unaligned.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/uvq.se.sai 
+	bwa samse ${WORKDIR}/velvet-quality-unaligned.fa ${WORKDIR}/uvq.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/uvq.pe.sam 
+	bwa samse ${WORKDIR}/velvet-quality-unaligned.fa ${WORKDIR}/uvq.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/uvq.se.sam
+	samtools faidx ${WORKDIR}/velvet-quality-unaligned.fa 
+	samtools import ${WORKDIR}/velvet-quality-unaligned.fa.fai ${WORKDIR}/uvq.pe.sam ${WORKDIR}/uvq.pe.bam 
+	samtools import ${WORKDIR}/velvet-quality-unaligned.fa.fai ${WORKDIR}/uvq.se.sam ${WORKDIR}/uvq.se.bam
+	samtools view -h -F 4 ${WORKDIR}/uvq.pe.bam > ${WORKDIR}/uvqc-mapped.pe.bam
+	samtools view -h -F 4 ${WORKDIR}/uvq.se.bam > ${WORKDIR}/uvqc-mapped.se.bam
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/uvqc-mapped.pe.bam > ${WORKDIR}/uvqc-reads.fa
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/uvqc-mapped.se.bam >> ${WORKDIR}/uvqc-reads.fa
 	bwa index ${WORKDIR}/mircea.fa 
-	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/vqc.unaligned.reads.fa  >${WORKDIR}/vqc.unaligned.sai
-	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/vqc.unaligned.sai ${WORKDIR}/vqc.unaligned.reads.fa > ${WORKDIR}/vqc.unaligned.sam
+	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/uvqc-reads.fa  >${WORKDIR}/uvqc.sai
+	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/uvqc.sai ${WORKDIR}/uvqc-reads.fa > ${WORKDIR}/uvqc.sam
 	samtools faidx ${WORKDIR}/mircea.fa 
-	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/vqc.unaligned.sam ${WORKDIR}/vqc.unaligned.bam 
-	samtools view -c -F 4 ${WORKDIR}/vqc.unaligned.bam > ${WORKDIR}/vqc.unaligned.mapped.reads
-
+	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/uvqc.sam ${WORKDIR}/uvqc.bam 
+	samtools view -c -F 4 ${WORKDIR}/uvqc.bam > ${WORKDIR}/uvqc-mapped-reads
 
 reads-to-unaligned-iqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/idba-quality-unaligned.fa
-	bwa index ${WORKDIR}/iqc.unaligned 
-	bwa aln ${WORKDIR}/iqc.unaligned ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/iqc.unaligned.pe.sai 
-	bwa aln ${WORKDIR}/iqc.unaligned ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/iqc.unaligned.se.sai 
-	bwa samse ${WORKDIR}/iqc.unaligned ${WORKDIR}/iqc.unaligned.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/iqc.unaligned.pe.sam 
-	bwa samse ${WORKDIR}/iqc.unaligned ${WORKDIR}/iqc.unaligned.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/iqc.unaligned.se.sam
-	samtools faidx ${WORKDIR}/iqc.unaligned 
-	samtools import ${WORKDIR}/iqc.unaligned.fai ${WORKDIR}/iqc.unaligned.pe.sam ${WORKDIR}/iqc.unaligned.pe.bam 
-	samtools import ${WORKDIR}/iqc.unaligned.fai ${WORKDIR}/iqc.unaligned.se.sam ${WORKDIR}/iqc.unaligned.se.bam
-	samtools view -h -F 4 ${WORKDIR}/iqc.unaligned.pe.bam > ${WORKDIR}/iqc.unaligned.mapped.pe.bam 
-	samtools view -h -F 4 ${WORKDIR}/iqc.unaligned.se.bam > ${WORKDIR}/iqc.unaligned.mapped.se.bam
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/iqc.unaligned.mapped.pe.bam > ${WORKDIR}/iqc.unaligned.reads.fa
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/iqc.unaligned.mapped.se.bam >> ${WORKDIR}/iqc.unaligned.reads.fa
+	bwa index ${WORKDIR}/idba-quality-unaligned.fa 
+	bwa aln ${WORKDIR}/idba-quality-unaligned.fa ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/uiq.pe.sai 
+	bwa aln ${WORKDIR}/idba-quality-unaligned.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/uiq.se.sai 
+	bwa samse ${WORKDIR}/idba-quality-unaligned.fa ${WORKDIR}/uiq.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/uiq.pe.sam 
+	bwa samse ${WORKDIR}/idba-quality-unaligned.fa ${WORKDIR}/uiq.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/uiq.se.sam
+	samtools faidx ${WORKDIR}/idba-quality-unaligned.fa 
+	samtools import ${WORKDIR}/idba-quality-unaligned.fa.fai ${WORKDIR}/uiq.pe.sam ${WORKDIR}/uiq.pe.bam 
+	samtools import ${WORKDIR}/idba-quality-unaligned.fa.fai ${WORKDIR}/uiq.se.sam ${WORKDIR}/uiq.se.bam
+	samtools view -h -F 4 ${WORKDIR}/uiq.pe.bam > ${WORKDIR}/uiqc-mapped.pe.bam 
+	samtools view -h -F 4 ${WORKDIR}/uiq.se.bam > ${WORKDIR}/uiqc-mapped.se.bam
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/uiqc-mapped.pe.bam > ${WORKDIR}/uiqc-reads.fa
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/uiqc-mapped.se.bam >> ${WORKDIR}/uiqc-reads.fa
 	bwa index ${WORKDIR}/mircea.fa 
-	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/iqc.unaligned.reads.fa  >${WORKDIR}/iqc.unaligned.sai
-	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/iqc.unaligned.sai ${WORKDIR}/iqc.unaligned.reads.fa > ${WORKDIR}/iqc.unaligned.sam
+	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/uiqc-reads.fa  >${WORKDIR}/uiqc.sai
+	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/uiqc.sai ${WORKDIR}/uiqc-reads.fa > ${WORKDIR}/uiqc.sam
 	samtools faidx ${WORKDIR}/mircea.fa 
-	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/iqc.unaligned.sam ${WORKDIR}/iqc.unaligned.bam 
-	samtools view -c -F 4 ${WORKDIR}/iqc.unaligned.bam > ${WORKDIR}/iqc.unaligned.mapped.reads
+	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/uiqc.sam ${WORKDIR}/uiqc.bam 
+	samtools view -c -F 4 ${WORKDIR}/uiqc.bam > ${WORKDIR}/uiqc-mapped-reads
 
 reads-to-unaligned-sqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/spades-quality-unaligned.fa
-	bwa index ${WORKDIR}/sqc.unaligned 
-	bwa aln ${WORKDIR}/sqc.unaligned ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/sqc.unaligned.pe.sai 
-	bwa aln ${WORKDIR}/sqc.unaligned ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/sqc.unaligned.se.sai 
-	bwa samse ${WORKDIR}/sqc.unaligned ${WORKDIR}/sqc.unaligned.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/sqc.unaligned.pe.sam 
-	bwa samse ${WORKDIR}/sqc.unaligned ${WORKDIR}/sqc.unaligned.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/sqc.unaligned.se.sam
-	samtools faidx ${WORKDIR}/sqc.unaligned 
-	samtools import ${WORKDIR}/sqc.unaligned.fai ${WORKDIR}/sqc.unaligned.pe.sam ${WORKDIR}/sqc.unaligned.pe.bam 
-	samtools import ${WORKDIR}/sqc.unaligned.fai ${WORKDIR}/sqc.unaligned.se.sam ${WORKDIR}/sqc.unaligned.se.bam
-	samtools view -h -F 4 ${WORKDIR}/sqc.unaligned.pe.bam > ${WORKDIR}/sqc.unaligned.mapped.pe.bam 
-	samtools view -h -F 4 ${WORKDIR}/sqc.unaligned.se.bam > ${WORKDIR}/sqc.unaligned.mapped.se.bam
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/sqc.unaligned.mapped.pe.bam > ${WORKDIR}/sqc.unaligned.reads.fa
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/sqc.unaligned.mapped.se.bam >> ${WORKDIR}/sqc.unaligned.reads.fa
+	bwa index ${WORKDIR}/spades-quality-unaligned.fa 
+	bwa aln ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/usq.pe.sai 
+	bwa aln ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/usq.se.sai 
+	bwa samse ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/usq.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/usq.pe.sam 
+	bwa samse ${WORKDIR}/spades-quality-unaligned.fa ${WORKDIR}/usq.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/usq.se.sam
+	samtools faidx ${WORKDIR}/spades-quality-unaligned.fa 
+	samtools import ${WORKDIR}/spades-quality-unaligned.fa.fai ${WORKDIR}/usq.pe.sam ${WORKDIR}/usq.pe.bam 
+	samtools import ${WORKDIR}/spades-quality-unaligned.fa.fai ${WORKDIR}/usq.se.sam ${WORKDIR}/usq.se.bam
+	samtools view -h -F 4 ${WORKDIR}/usq.pe.bam > ${WORKDIR}/usqc-mapped.pe.bam 
+	samtools view -h -F 4 ${WORKDIR}/usq.se.bam > ${WORKDIR}/usqc-mapped.se.bam
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/usqc-mapped.pe.bam > ${WORKDIR}/usqc-reads.fa
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/usqc-mapped.se.bam >> ${WORKDIR}/usqc-reads.fa
 	bwa index ${WORKDIR}/mircea.fa 
-	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/sqc.unaligned.reads.fa  >${WORKDIR}/sqc.unaligned.sam
-	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/sqc.unaligned.sai ${WORKDIR}/sqc.unaligned.reads.fa > ${WORKDIR}/sqc.unaligned.sam
+	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/usqc-reads.fa  >${WORKDIR}/usqc.sai
+	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/usqc.sai ${WORKDIR}/usqc-reads.fa > ${WORKDIR}/usqc.sam
 	samtools faidx ${WORKDIR}/mircea.fa 
-	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/sqc.unaligned.sam ${WORKDIR}/sqc.unaligned.bam 
-	samtools view -c -F 4 ${WORKDIR}/sqc.unaligned.bam > ${WORKDIR}/sqc.unaligned.mapped.reads
-
-
+	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/usqc.sam ${WORKDIR}/usqc.bam 
+	samtools view -c -F 4 ${WORKDIR}/usqc.bam > ${WORKDIR}/usqc-mapped-reads
 
 reads-to-unaligned-mqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/megahit-quality-unaligned.fa
-	bwa index ${WORKDIR}/mqc.unaligned 
-	bwa aln ${WORKDIR}/mqc.unaligned ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/mqc.unaligned.pe.sai 
-	bwa aln ${WORKDIR}/mqc.unaligned ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/mqc.unaligned.se.sai 
-	bwa samse ${WORKDIR}/mqc.unaligned ${WORKDIR}/mqc.unaligned.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/mqc.unaligned.pe.sam 
-	bwa samse ${WORKDIR}/mqc.unaligned ${WORKDIR}/mqc.unaligned.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/mqc.unaligned.se.sam
-	samtools faidx ${WORKDIR}/mqc.unaligned 
-	samtools import ${WORKDIR}/mqc.unaligned.fai ${WORKDIR}/mqc.unaligned.pe.sam ${WORKDIR}/mqc.unaligned.pe.bam 
-	samtools import ${WORKDIR}/mqc.unaligned.fai ${WORKDIR}/mqc.unaligned.se.sam ${WORKDIR}/mqc.unaligned.se.bam
-	samtools view -h -F 4 ${WORKDIR}/mqc.unaligned.pe.bam > ${WORKDIR}/mqc.unaligned.mapped.pe.bam 
-	samtools view -h -F 4 ${WORKDIR}/mqc.unaligned.se.bam > ${WORKDIR}/mqc.unaligned.mapped.se.bam
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/mqc.unaligned.mapped.pe.bam > ${WORKDIR}/mqc.unaligned.reads.fa
-	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/mqc.unaligned.mapped.se.bam >> ${WORKDIR}/mqc.unaligned.reads.fa
+	bwa index ${WORKDIR}/megahit-quality-unaligned.fa 
+	bwa aln ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/${PREFIX}.pe.qc.fq.gz   > ${WORKDIR}/umq.pe.sai 
+	bwa aln ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/umq.se.sai 
+	bwa samse ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/umq.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/umq.pe.sam 
+	bwa samse ${WORKDIR}/megahit-quality-unaligned.fa ${WORKDIR}/umq.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/umq.se.sam
+	samtools faidx ${WORKDIR}/megahit-quality-unaligned.fa 
+	samtools import ${WORKDIR}/megahit-quality-unaligned.fa.fai ${WORKDIR}/umq.pe.sam ${WORKDIR}/umq.pe.bam 
+	samtools import ${WORKDIR}/megahit-quality-unaligned.fa.fai ${WORKDIR}/umq.se.sam ${WORKDIR}/umq.se.bam
+	samtools view -c -h -F 4 ${WORKDIR}/umq.pe.bam > ${WORKDIR}/umqc-mapped.pe 
+	samtools view -c -h -F 4 ${WORKDIR}/umq.se.bam > ${WORKDIR}/umqc-mapped.se
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/umqc-mapped.pe.bam > ${WORKDIR}/umqc-reads.fa
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/umqc-mapped.se.bam >> ${WORKDIR}/umqc-reads.fa
 	bwa index ${WORKDIR}/mircea.fa 
-	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/mqc.unaligned.reads.fa  >${WORKDIR}/mqc.unaligned.sai
-	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/mqc.unaligned.sai ${WORKDIR}/mqc.unaligned.reads.fa > ${WORKDIR}/mqc.unaligned.sam
+	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/umqc-reads.fa  >${WORKDIR}/umqc.sai
+	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/umqc.sai ${WORKDIR}/umqc-reads.fa > ${WORKDIR}/umqc.sam
 	samtools faidx ${WORKDIR}/mircea.fa 
-	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/mqc.unaligned.sam ${WORKDIR}/mqc.unaligned.bam 
-	samtools view -c -F 4 ${WORKDIR}/mqc.unaligned.bam > ${WORKDIR}/mqc.unaligned.mapped.reads
-        
+	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/umqc.sam ${WORKDIR}/umqc.bam 
+	samtools view -c -F 4 ${WORKDIR}/umqc.bam > ${WORKDIR}/umqc-mapped-reads
 
 reads-to-all-unaligned:  ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/*-unaligned.fa 
 	cat ${WORKDIR}/*-unaligned.fa > ${WORKDIR}/all-unaligned.fa
@@ -632,34 +656,24 @@ unaligned-idba-unaligned:
 	python ${QUAST}/quast.py -R idba-quality-unaligned.fa -o ${WORKDIR}/megahit-diginorm-unaligned/ ${WORKDIR}/megahit-diginorm-unaligned.fa 
 	python ${QUAST}/quast.py -R idba-quality-unaligned.fa -o ${WORKDIR}/megahit-partition-unaligned/ ${WORKDIR}/megahit-partition-unaligned.fa
 
-#----------------------------------------------------Different min-contig in Stats--------------------------------------------------------
-filter-below-abund: ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/megahit-quality-assembly.fa  
-	python ${MYSCRIPTS}/filter_below_mincontig.py ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/iqc250.fa 250
-	python ${MYSCRIPTS}/filter_below_mincontig.py ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/iqc500.fa 500
-	python ${MYSCRIPTS}/filter_below_mincontig.py ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/iqc750.fa 750 
-	python ${MYSCRIPTS}/filter_below_mincontig.py ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/iqc1000.fa 1000 
-	python ${MYSCRIPTS}/filter_below_mincontig.py ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/iqc2000.fa 2000
-	python ${MYSCRIPTS}/filter_below_mincontig.py ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/iqc3000.fa 3000
+#----------------------------------------------------Different min-contig in QUAST parameters --------------------------------------------------------
+qc-min-contig:
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o vqc-conting-$(i)/ ${WORKDIR}/velvet-quality-assembly.fa --min-contig=$(i); ) 
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o iqc-conting-$(i)/ ${WORKDIR}/idba-quality-assembly.fa --min-contig=$(i); )  
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o sqc-conting-$(i)/ ${WORKDIR}/spades-quality-assembly.fa --min-contig=$(i); ) 
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o mqc-conting-$(i)/ ${WORKDIR}/megahit-quality-assembly.fa --min-contig=$(i); )
 
-run-nucmer: ${WORKDIR}/iqc250.fa ${WORKDIR}/iqc500.fa ${WORKDIR}/iqc750.fa ${WORKDIR}/iqc1000.fa ${WORKDIR}/iqc2000.fa ${WORKDIR}/iqc3000.fa 
-	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc250  ${DATA}/mircea.fa ${WORKDIR}/iqc250.fa 
-	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc500  ${DATA}/mircea.fa ${WORKDIR}/iqc500.fa
-	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc750  ${DATA}/mircea.fa ${WORKDIR}/iqc750.fa
-	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc1000 ${DATA}/mircea.fa ${WORKDIR}/iqc1000.fa
-	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc2000 ${DATA}/mircea.fa ${WORKDIR}/iqc2000.fa
-	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc3000 ${DATA}/mircea.fa ${WORKDIR}/iqc3000.fa
+digi-min-contig:
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o vdigi-conting-$(i)/ ${WORKDIR}/velvet-diginorm-assembly.fa --min-contig=$(i); ) 
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o idigi-conting-$(i)/ ${WORKDIR}/idba-diginorm-assembly.fa --min-contig=$(i); )  
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o sdigi-conting-$(i)/ ${WORKDIR}/spades-diginrom-assembly.fa --min-contig=$(i); ) 
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o mdigi-conting-$(i)/ ${WORKDIR}/megahit-diginorm-assembly.fa --min-contig=$(i); )
 
-get-stats: ${WORKDIR}/iqc250.coords ${WORKDIR}/iqc500.coords ${WORKDIR}/iqc750.coords ${WORKDIR}/iqc1000.coords ${WORKDIR}/iqc2000.coords ${WORKDIR}/iqc3000.coords 
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc250.fa ${DATA}/mircea.fa ${WORKDIR}/iqc250.coords > ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc500.fa ${DATA}/mircea.fa ${WORKDIR}/iqc500.coords >> ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc750.fa ${DATA}/mircea.fa ${WORKDIR}/iqc750.coords >> ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc1000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc1000.coords >> ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc2000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc2000.coords >> ${WORKDIR}/fractions.mincontigs
-	python ${MYSCRIPTS}/genome_fraction.py ${WORKDIR}/iqc3000.fa ${DATA}/mircea.fa ${WORKDIR}/iqc3000.coords >> ${WORKDIR}/fractions.mincontigs
-
- 
-
-
+part-min-contig: 
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o vpart-conting-$(i)/ ${WORKDIR}/velvet-partition-assembly.fa --min-contig=$(i);) 
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ipart-conting-$(i)/ ${WORKDIR}/idba-partition-assembly.fa --min-contig=$(i);)  
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o spart-conting-$(i)/ ${WORKDIR}/spades-partition-assembly.fa --min-contig=$(i);) 
+	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o mpart-conting-$(i)/ ${WORKDIR}/megahit-partition-assembly.fa --min-contig=$(i);)
 #------------------------------------------------------------Finding Chimeric Reads--------------------------------------------------------------------------
 chimeric:  ${DATA}/mircea.fa ${PREFIX}.se.qc.fq.gz ${PREFIX}.pe.qc.fq.gz
 	bwa index ${DATA}/mircea.fa 
@@ -720,8 +734,84 @@ sampleonem: ${DATA}/${PREFIX}-half1.fastq  ${DATA}/${PREFIX}-half2.fastq
 	python ${MYSCRIPTS}/sampling.py ${DATA}/${PREFIX}-half2.fastq.gz  500000 >> ${DATA}/sampleonem.fastq
 	python ${MYSCRIPTS}/split.py ${DATA}/sampleone-m.fastq ${DATA}/sampleonem-1.fastq ${DATA}/sampleonem-2.fastq 
 	gzip -c ${DATA}/sampleonem-1.fastq > ${DATA}/sampleonem-1.fastq.gz 
-	gzip -c ${DATA}/sampleonem-2.fastq > ${DATA}/sampleonem-2.fastq.gz 	
- 	
+	gzip -c ${DATA}/sampleonem-2.fastq > ${DATA}/sampleonem-2.fastq.gz
+
+
+#--------------------------------------------------------------Analayzing Assembly-----------------------------------------------------------------------
+quality-nucmer: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa  ${WORKDIR}/megahit-quality-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/mqc  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa	
+
+diginorm-nucmer: ${DATA}/mircea.fa ${WORKDIR}/idba-diginorm-assembly.fa ${WORKDIR}/spades-diginorm-assembly.fa ${WORKDIR}/megahit-diginorm-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/idigi  ${DATA}/mircea.fa ${WORKDIR}/idba-diginorm-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sdigi  ${DATA}/mircea.fa ${WORKDIR}/spades-diginorm-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/mdigi  ${DATA}/mircea.fa ${WORKDIR}/megahit-diginorm-assembly.fa
+
+partition-nucmer: ${DATA}/mircea.fa ${WORKDIR}/idba-partition-assembly.fa ${WORKDIR}/spades-partition-assembly.fa ${WORKDIR}/megahit-partition-assembly.fa
+	 ${NUCMER}/nucmer --coords -p ${WORKDIR}/ipart  ${DATA}/mircea.fa ${WORKDIR}/idba-partition-assembly.fa
+	 ${NUCMER}/nucmer --coords -p ${WORKDIR}/spart  ${DATA}/mircea.fa ${WORKDIR}/spades-partition-assembly.fa
+	 ${NUCMER}/nucmer --coords -p ${WORKDIR}/mpart  ${DATA}/mircea.fa ${WORKDIR}/megahit-partition-assembly.fa
+
+quality-analysis: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa  ${WORKDIR}/megahit-quality-assembly.fa   
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/iqc.coords ${WORKDIR}/sqc.coords ${WORKDIR}/mqc.coords ${WORKDIR}/quality-analysis-ambiguity99 99
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/iqc.coords ${WORKDIR}/sqc.coords ${workdir}/mqc.coords ${WORKDIR}/quality-besthit99 99 -a False	
+
+
+#--------------------------------------------------------------Minimum Contig Experiment------------------------------------------------------------------
+idba-quality-mincontig: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa  
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 250 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 500 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 1000 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 2000
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 3000
+
+
+spades-quality-mincontig: ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa 250 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa 500 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa 1000 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa 2000
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa 3000
+
+megahit-quality-mincontig: ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa 250 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa 500 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa 1000 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa 2000
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa 3000
+
+run-nucmer-mincontig: ${WORKDIR}/idba-quality-assembly250.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/idba-quality-assembly1000.fa \
+	${WORKDIR}/idba-quality-assembly2000.fa ${WORKDIR}/idba-quality-assembly3000.fa ${WORKDIR}/spades-quality-assembly250.fa  \
+	${WORKDIR}/spades-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly1000.fa ${WORKDIR}/spades-quality-assembly3000.fa \
+	${WORKDIR}/megahit-quality-assembly250.fa ${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/megahit-quality-assembly1000.fa \
+	${WORKDIR}/megahit-quality-assembly2000.fa ${WORKDIR}/megahit-quality-assembly3000.fa
+
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc250  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly250.fa 
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc500  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa 
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc1000  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly1000.fa
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc2000 ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly2000.fa
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc3000 ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly3000.fa 
+
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc250  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly250.fa      
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc500  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly500.fa
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc1000  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly1000.fa
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc2000 ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly2000.fa
+        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc3000 ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly3000.fa
+		
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc250  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly250.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc500  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly500.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc1000  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly1000.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc2000 ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly2000.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc3000 ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly3000.fa
+	
+
+run-analysis-mincontig: ${WORKDIR}/iqc250 ${WORKDIR}/iqc500 ${WORKDIR}/iqc1000 ${WORKDIR}/iqc2000 ${WORKDIR}/iqc3000 \
+	${WORKDIR}/sqc250 ${WORKDIR}/sqc500 ${WORKDIR}/sqc1000 ${WORKDIR}/sqc2000 ${WORKDIR}/sqc300 \
+	${WORKDIR}/mqc250 ${WORKDIR}/mqc500 ${WORKDIR}/mqc1000 ${WORKDIR}/mqc2000 ${WORKDIR}/mqc300
+        #add analayze-assembly.py here without options for coverage analysis or unaloignment
+	        
+	
 #---------------------------------------------------------------Cleaning ------------------------------------------------------------------------------------	
 clean: *.list *.list.unique
 	rm *.list 
