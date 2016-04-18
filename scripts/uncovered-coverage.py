@@ -31,7 +31,7 @@ def main():
     for record in screed.open(args.genome):
         genome_dict1[record.name] = [0] * len(record.sequence)
 	n_rec+=len(record.sequence)
-        genome_covered[record.name] = [-1] * len(record.sequence) *4 #4 asseblers commons 
+        genome_covered[record.name] = [-1] * len(record.sequence) *4 #4 assemblers commons 
 
     for line in open(args.uncovered):
        if line.startswith('>'): 
@@ -97,7 +97,7 @@ def main():
               x = genome_covered[name][i] 
 	      y = genome_dict1[name][i]
               if (x > -1) : 
-		  ref1[i] = x
+		  ref1[i] = y
  
 
     for j in range ( len(genome_dict1[name])):
@@ -114,12 +114,13 @@ def main():
 
     total = 0.
     cov1 = 0.
-
+    """ 
     for name in genome_dict1:
         total += len(genome_dict1[name])
-        x =  sum(genome_dict1[name]) 
+        x =  sum(genome_dict1[name])  
         cov1 += float(x)  
     print >> fout1, args.samfile1, float(cov1) / float(total), cov1, total
+    """
 
 if __name__ == '__main__':
     main()
