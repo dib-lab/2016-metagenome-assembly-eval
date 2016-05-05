@@ -1,6 +1,7 @@
 import numpy
 import screed
 import sys
+import argparse
 
 def _load_coords(filename, only=None):
     lines = [ x.strip() for x in (open(filename)) ]
@@ -192,30 +193,45 @@ class GenomeIntervalsContainer(object):
 
 		
 def main():
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('reference')
+    parser.add_argument('assem1')
+    parser.add_argument('assem2')
+    parser.add_argument('assem3')
+
+    args = parser.parse_args()
+
 	
     print 'loading refsizes'
-    refsizes = load_refsizes('mircea.fa')
-    reference =load_sequence('mircea.fa') 
+    refsizes = load_refsizes(args.reference)
+    reference =load_sequence(args.reference) 
 
     gic_iqc =GenomeIntervalsContainer(refsizes)
     gic_mqc =GenomeIntervalsContainer(refsizes) 
     gic_sqc =GenomeIntervalsContainer(refsizes) 
 
+    prefix1 = args.assem1.split('.')[0]
+    prefix2 = args.assem2.split('.')[0]
+    prefix3 = args.assem3.split('.')[0] 
     
-    gic_iqc.analyze('iqc.coords', 'iqc.analysis', refsizes)
-    gic_mqc.analyze('mqc.coords', 'mqc.analysis', refsizes)
-    gic_sqc.analyze('sqc.coords', 'sqc.analysis', refsizes)
+    outfile1 = prefix1 + '.analysis'
+    outfile2 = prefix2 + '.analysis' 
+    outfile3 = prefix3 + '.analysis' 
 
+    gic_iqc.analyze(args.assem1, outfile1, refsizes)
+    gic_mqc.analyze(args.assem2, outfile2, refsizes)
+    gic_sqc.analyze(args.assem3, outfile3, refsizes)
 
-
-
-    #gic_iqc.compare(gic_mqc, 'im-qc', refsizes) 
-    #gic_iqc.compare(gic_sqc, 'is-qc', refsizes) 
-    #gic_mqc.compare(gic_sqc, 'sm-qc', refsizes)
+    outfile4 = prefix1 + '.' + prefix2 
+    outfile5 = prefix1 + '.' + prefix3 
+    outfile6 = prefix2 + '.' + prefix3  
+    
+    gic_iqc.compare(gic_sqc, outfile4, refsizes) 
+    gic_iqc.compare(gic_mqc, outfile5, refsizes) 
+    gic_mqc.compare(gic_sqc, outfile6, refsizes)
  
-    #gic_iqc.compare(gic_iqc, 'iq-iq', refsizes) 
-
-   
+    """
     js, interest, odd  = gic_iqc.window_slide(gic_mqc, 1000, 800, len(reference)) 
     print "Comparing IQC and MQC we have Jaccard Similarity = " , js 
 	
@@ -224,11 +240,7 @@ def main():
 
     js, interest, odd = gic_sqc.window_slide(gic_mqc, 1000, 800, len(reference)) 
     print "Comparing SQC and MQC we have Jaccard Similarity = " , js  
-
-        
-	
-   
-
+    """
 
 if __name__ == '__main__':
     main()
