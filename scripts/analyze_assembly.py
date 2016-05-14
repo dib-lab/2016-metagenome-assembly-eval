@@ -301,7 +301,11 @@ class GenomeIntervalsContainer(object):
            for j in xrange(0, len(self.covered[k])):
                 if (self.covered[k][j] >0) and (other1.covered[k][j] ==0 ) and (other2.covered[k][j] ==0) :
                     count+=1
+<<<<<<< HEAD
            print >>fout, n, count, self.refsizes[k] 
+=======
+           print >>fout, n, count
+>>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
            diff_cov+=count
         return diff_cov
 
@@ -377,7 +381,11 @@ def main():
     parser.add_argument('treatment')
     parser.add_argument('minident')
     parser.add_argument('-a', '--ambiguity', dest='ambiguity_flag', default=True) 
+<<<<<<< HEAD
     parser.add_argument('-b', '--best-hit', dest='besthit', default=False)
+=======
+    parser.add_argument('-b', '--best-hit', dest='besthit', default=True)
+>>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
     args = parser.parse_args()
     print 'loading refsizes'
     refsizes, reference = load_reference(args.reference)
@@ -400,15 +408,22 @@ def main():
     gic_b = GenomeIntervalsContainer(refsizes, b, bseq)
     gic_c = GenomeIntervalsContainer(refsizes, c, cseq) 
 
+<<<<<<< HEAD
     print args.ambiguity_flag, args.besthit
     if args.ambiguity_flag ==True:
                 print '......Running ambigious analysis' 	
+=======
+    if args.ambiguity_flag ==True: 	
+>>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
     		gic_a.load_coords(args.coords1, float(args.minident))
     		gic_b.load_coords(args.coords2, float(args.minident)) 
     		gic_c.load_coords(args.coords3, float(args.minident))
 
     elif args.besthit ==True: 
+<<<<<<< HEAD
                print '.....Runnin best hit analysis'
+=======
+>>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
                gic_a.load_overlaps(args.coords1, float(args.minident))
                gic_b.load_overlaps(args.coords2, float(args.minident))
                gic_c.load_overlaps(args.coords3, float(args.minident))
