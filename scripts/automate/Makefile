@@ -333,8 +333,8 @@ quasting-2-assembly: ${WORKDIR}/*-assembly.fa ${DATA}/mircea.fa.gz
 	python ${QUAST}/quast.py -R ${WORKDIR}/spades-partition-assembly.fa -o ref-spades-partition-quast/ ${DATA}/mircea.fa.gz
 	python ${QUAST}/quast.py -R ${WORKDIR}/megahit-partition-assembly.fa -o ref-megahit-partition-quast/ ${DATA}/mircea.fa.gz
 
-#-------------------------------------------------Read Incorporation Experiment-------------------------------------------------------------------------------
-#----------------------------------------------------------------Mapping-------------------------------------------------------------------------------------
+#------------------------NEW----------------------Read Incorporation Experiment-------------------------------------------------------------------------------
+#------------------------NEW----------------------------------Mapping-------------------------------------------------------------------------------------
 reads-to-vqc: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz ${WORKDIR}/velvet-quality-assembly.fa
 	bwa index ${WORKDIR}/velvet-quality-assembly.fa 
 	bwa aln ${WORKDIR}/velvet-quality-assembly.fa ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/vq.pe.sai 
@@ -737,7 +737,8 @@ sampleonem: ${DATA}/${PREFIX}-half1.fastq  ${DATA}/${PREFIX}-half2.fastq
 	gzip -c ${DATA}/sampleonem-2.fastq > ${DATA}/sampleonem-2.fastq.gz
 
 
-#--------------------------------------------------------------Analayzing Assembly-----------------------------------------------------------------------
+
+#----------------------New----------------------------------------Analayzing Assembly-----------------------------------------------------------------------
 quality-nucmer: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa  ${WORKDIR}/megahit-quality-assembly.fa
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa
@@ -758,7 +759,7 @@ quality-analysis: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDI
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/iqc.coords ${WORKDIR}/sqc.coords ${workdir}/mqc.coords ${WORKDIR}/quality-besthit99 99 -a False	
 
 
-#--------------------------------------------------------------Minimum Contig Experiment------------------------------------------------------------------
+#----------------------New----------------------------------------Minimum Contig Experiment------------------------------------------------------------------
 idba-quality-mincontig: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa  
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 250 
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 500 
