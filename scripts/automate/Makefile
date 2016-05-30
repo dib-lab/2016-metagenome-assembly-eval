@@ -1,5 +1,5 @@
 DATA = /mnt/home/mahmoud4/data
-WORKDIR = /mnt/research/ged/sherine/testing-automation
+WORKDIR = /mnt/research/ged/sherine/run
 MYSCRIPTS = /mnt/home/mahmoud4/scripts
 NUCMER = contigs_reports/nucmer_output
 PREFIX = SRR606249
@@ -7,6 +7,7 @@ N-READS-PER-FILE = 5536289548
 mc= 0 250 500 750 1000 2000
 KSIZE = 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49 51
 KAK=kak
+partial.cutoff =50 
 MEGAHIT=/mnt/home/mahmoud4/megahit
 TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin/
@@ -372,7 +373,7 @@ reads-to-vpart: ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.g
 	bwa aln ${WORKDIR}/velvet-partition-assembly.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/vp.se.sai 
 	bwa samse ${WORKDIR}/velvet-partition-assembly.fa ${WORKDIR}/vp.pe.sai ${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/vp.pe.sam 
 	bwa samse ${WORKDIR}/velvet-partition-assembly.fa ${WORKDIR}/vp.se.sai ${PREFIX}.se.qc.fq.gz > ${WORKDIR}/vp.se.sam 
-	samtools ${WORKDIR}/faidx velvet-partition-assembly.fa 
+	samtools faidx ${WORKDIR}/velvet-partition-assembly.fa 
 	samtools import ${WORKDIR}/velvet-partition-assembly.fa.fai ${WORKDIR}/vp.pe.sam ${WORKDIR}/vp.pe.bam 
 	samtools import ${WORKDIR}/velvet-partition-assembly.fa.fai ${WORKDIR}/vp.se.sam ${WORKDIR}/vp.se.bam 
 	#cat ${WORKDIR}/vp.pe.sam ${WORKDIR}/vp.se.sam >${WORKDIR}/vp.sam 
@@ -432,7 +433,7 @@ reads-to-sqc:  ${WORKDIR}/${PREFIX}.pe.qc.fq.gz ${WORKDIR}/${PREFIX}.se.qc.fq.gz
 	bwa aln ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/${PREFIX}.se.qc.fq.gz   > ${WORKDIR}/sq.se.sai 
 	bwa samse ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/sq.pe.sai ${WORKDIR}/${PREFIX}.pe.qc.fq.gz > ${WORKDIR}/sq.pe.sam 
 	bwa samse ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/sq.se.sai ${WORKDIR}/${PREFIX}.se.qc.fq.gz > ${WORKDIR}/sq.se.sam 
-	samtools ${WORKDIR}/faidx spades-quality-assembly.fa 
+	samtools faidx ${WORKDIR}/spades-quality-assembly.fa 
 	samtools import ${WORKDIR}/spades-quality-assembly.fa.fai ${WORKDIR}/sq.pe.sam ${WORKDIR}/sq.pe.bam 
 	samtools import ${WORKDIR}/spades-quality-assembly.fa.fai ${WORKDIR}/sq.se.sam ${WORKDIR}/sq.se.bam 
 	#cat ${WORKDIR}/sq.pe.sam ${WORKDIR}/sq.se.sam > ${WORKDIR}/sq.sam 
@@ -738,6 +739,24 @@ sampleonem: ${DATA}/${PREFIX}-half1.fastq  ${DATA}/${PREFIX}-half2.fastq
 
 
 
+#We need to analyze the sampling usig our script; so we need to run nucmer and our script; here it is for sampline quality 25 
+sampling-nucmer-25: ${WORKDIR}/idba-quality-s25-assembly.fa ${WORKDIR}/spades-quality-s25-assembly.fa ${WORKDIR}/megahit-quality-s25-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc-s25  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-s25-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc-s25  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-s25-assembly.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/mqc-s25  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-s25-assembly.fa   
+
+s25-quality-analysis: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-s25-assembly.fa ${WORKDIR}/spades-quality-s25-assembly.fa \
+	${WORKDIR}/megahit-quality-s25-assembly.fa
+
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-s25-assembly.fa ${WORKDIR}/spades-quality-s25-assembly.fa \
+	${WORKDIR}/megahit-quality-s25-assembly.fa ${WORKDIR}/iqc-s25.coords ${WORKDIR}/sqc-s25.coords ${WORKDIR}/mqc-s25.coords \
+	${WORKDIR}/S25.QC.AMBIGIOUS99 -a True 99
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-s25-assembly.fa ${WORKDIR}/spades-quality-s25-assembly.fa \ 
+	${WORKDIR}/megahit-qualityi-s25-assembly.fa ${WORKDIR}/iqc-s25.coords ${WORKDIR}/sqc-s25.coords ${workdir}/mqc-s25.coords \
+	${WORKDIR}/S25.QC.BESTHIT99 99 -b True      
+
+	
+
 #----------------------New----------------------------------------Analayzing Assembly-----------------------------------------------------------------------
 quality-nucmer: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa  ${WORKDIR}/megahit-quality-assembly.fa
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa
@@ -755,8 +774,65 @@ partition-nucmer: ${DATA}/mircea.fa ${WORKDIR}/idba-partition-assembly.fa ${WORK
 	 ${NUCMER}/nucmer --coords -p ${WORKDIR}/mpart  ${DATA}/mircea.fa ${WORKDIR}/megahit-partition-assembly.fa
 
 quality-analysis: ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa  ${WORKDIR}/megahit-quality-assembly.fa   
-	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/iqc.coords ${WORKDIR}/sqc.coords ${WORKDIR}/mqc.coords ${WORKDIR}/quality-analysis-ambiguity99 99
-	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa ${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/iqc.coords ${WORKDIR}/sqc.coords ${workdir}/mqc.coords ${WORKDIR}/quality-besthit99 99 -a False	
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa \
+	${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/iqc.coords ${WORKDIR}/sqc.coords ${WORKDIR}/mqc.coords \
+        ${WORKDIR}/QC.AMBIGIOUS99 -a True 99
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa \ 
+	${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/iqc.coords ${WORKDIR}/sqc.coords ${workdir}/mqc.coords \
+	${WORKDIR}/QC.BESTHIT99 99 -b True	
+ 
+
+partial-analysis:
+	awk '$$3 < ${partial.cutoff}' ${WORKDIR}/iqc.QC.BESTHIT99.aligned.partial |wc -l > ${WORKDIR}/iqc.QC.BESTHIT99.aligned.partial.filtered
+	awk '$$3 < ${partial.cutoff}' ${WORKDIR}/sqc.QC.BESTHIT99.aligned.partial |wc -l > ${WORKDIR}/iqc.QC.BESTHIT99.aligned.partial.filtered
+	awk '$$3 < ${partial.cutoff}' ${WORKDIR}/mqc.QC.BESTHIT99.aligned.partial |wc -l > ${WORKDIR}/iqc.QC.BESTHIT99.aligned.partial.filtered
+	awk '$$3 < ${partial.cutoff}'${WORKDIR}/iqc.QC.AMBIGIOUS99.aligned.partial |wc -l > ${WORKDIR}/iqc.QC.AMBIGIOUS99.aligned.partial.filtered
+	awk '$$3 < ${partial.cutoff} '${WORKDIR}/sqc.QC.AMBIGIOUS99.aligned.partial |wc -l > ${WORKDIR}/sqc.QC.AMBIGIOUS99.aligned.partial.filtered
+	awk '$$3 < ${partial.cutoff} '${WORKDIR}/mqc.QC.AMBIGIOUS99.aligned.partial |wc -l > ${WORKDIR}/mqc.QC.AMBIGIOUS99.aligned.partial.filtered
+
+
+coverage-analysis: 
+	sort -rn -k 3 ${WORKDIR}/iqc.QC.BESTHIT99.count.covered > ${WORKDIR}/iqc.QC.BESTHIT99.count.covered.sorted 
+	sort -rn -k 3 ${WORKDIR}/sqc.QC.BESTHIT99.count.covered > ${WORKDIR}/sqc.QC.BESTHIT99.count.covered.sorted 	
+	sort -rn -k 3 ${WORKDIR}/mqc.QC.BESTHIT99.count.covered > ${WORKDIR}/mqc.QC.BESTHIT99.count.covered.sorted 
+	sort -rn -k 3 ${WORKDIR}/iqc.QC.AMBIGIOUS99.count.covered > ${WORKDIR}/iqc.QC.AMBIGIOUS99.count.covered.sorted 
+	sort -rn -k 3 ${WORKDIR}/sqc.QC.AMBIGIOUS99.count.covered > ${WORKDIR}/sqc.QC.AMBIGIOUS99.count.covered.sorted 
+	sort -rn -k 3 ${WORKDIR}/mqc.QC.AMBIGIOUS99.count.covered > ${WORKDIR}/mqc.QC.AMBIGIOUS99.count.covered.sorted 
+
+
+#Unalignment Analysis: We used the unaligned contigs(from our script) and align reads to them. 
+#We extract the reads that are aligned (those reads contribute to unalignment) and map them to reference genome
+#to see whether they exist in the reference or not 
+
+
+unaligned-analysis: 
+
+	cat ${WORKDIR}/*BESTHIT99.unaligned > ${WORKDIR}/QC.BH99.fa
+	bwa index ${WORKDIR}/QC.BH99.fa
+	bwa aln ${WORKDIR}/QC.BH99.fa ${WORKDIR}/${PREFIX}-1.fastq.gz   > ${WORKDIR}/QC.BH99.pe.sai 
+	bwa aln ${WORKDIR}/QC.BH99.fa ${WORKDIR}/${PREFIX}-2.fastq.gz   > ${WORKDIR}/QC.BH99.se.sai  
+	bwa samse ${WORKDIR}/QC.BH99.fa ${WORKDIR}/QC.BH99.pe.sai ${WORKDIR}/${PREFIX}-1.fastq.gz > ${WORKDIR}/QC.BH99.pe.sam 
+	bwa samse ${WORKDIR}/QC.BH99.fa ${WORKDIR}/QC.BH99.se.sai ${WORKDIR}/${PREFIX}-2.fastq.gz > ${WORKDIR}/QC.BH99.se.sam
+	samtools faidx ${WORKDIR}/QC.BH99.fa 
+	samtools import ${WORKDIR}/QC.BH99.fa.fai ${WORKDIR}/QC.BH99.pe.sam ${WORKDIR}/QC.BH99.pe.bam 
+	samtools import ${WORKDIR}/QC.BH99.fa.fai ${WORKDIR}/QC.BH99.se.sam ${WORKDIR}/QC.BH99.se.bam
+	#samtools view -h -F 4 ${WORKDIR}/QC.BH99.pe.bam > ${WORKDIR}/QC.BH99.mapped.pe.bam 
+	#samtools view -h -F 4 ${WORKDIR}/QC.BH99.se.bam > ${WORKDIR}/QC.BH99.mapped.se.bam
+	samtools view -c -h  -F 4 ${WORKDIR}/QC.BH99.pe.bam > ${WORKDIR}/QC.BH99.aligned.reads      
+	samtools view -c -h -F 4 ${WORKDIR}/QC.BH99.se.bam >> ${WORKDIR}/QC.BH99.aligned.reads     
+        
+
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/QC.BH99.mapped.pe.bam > ${WORKDIR}/QC.BH99.reads.fa
+	bash ${MYSCRIPTS}/get-mapped.sh ${WORKDIR}/QC.BH99.mapped.se.bam >> ${WORKDIR}/QC.BH99.reads.fa
+	bwa index ${WORKDIR}/mircea.fa 
+	bwa aln ${WORKDIR}/mircea.fa ${WORKDIR}/QC.BH99.reads.fa  >${WORKDIR}/QC.BH99.sai
+	bwa samse ${WORKDIR}/mircea.fa ${WORKDIR}/QC.BH99.sai ${WORKDIR}/QC.BH99.reads.fa > ${WORKDIR}/QC.BH99.sam
+	samtools faidx ${WORKDIR}/mircea.fa 
+	samtools import ${WORKDIR}/mircea.fa.fai ${WORKDIR}/QC.BH99.sam ${WORKDIR}/QC.BH99.bam 
+	samtools view -c -F 4 ${WORKDIR}/QC.BH99.bam > ${WORKDIR}/QC.BH99.mapped.reads
+
+
+
 
 
 #----------------------New----------------------------------------Minimum Contig Experiment------------------------------------------------------------------
@@ -788,17 +864,17 @@ run-nucmer-mincontig: ${WORKDIR}/idba-quality-assembly250.fa ${WORKDIR}/idba-qua
 	${WORKDIR}/megahit-quality-assembly250.fa ${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/megahit-quality-assembly1000.fa \
 	${WORKDIR}/megahit-quality-assembly2000.fa ${WORKDIR}/megahit-quality-assembly3000.fa
 
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc250  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly250.fa 
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc500  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa 
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc1000  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly1000.fa
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc2000 ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly2000.fa
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc3000 ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly3000.fa 
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc250  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly250.fa 
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc500  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa 	
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc1000  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly1000.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc2000 ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly2000.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/iqc3000 ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly3000.fa 
 
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc250  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly250.fa      
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc500  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly500.fa
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc1000  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly1000.fa
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc2000 ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly2000.fa
-        ${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc3000 ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly3000.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc500  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly500.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc1000  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly1000.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc2000 ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly2000.fa
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc3000 ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly3000.fa
 		
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc250  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly250.fa
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc500  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly500.fa

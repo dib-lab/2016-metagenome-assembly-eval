@@ -301,11 +301,7 @@ class GenomeIntervalsContainer(object):
            for j in xrange(0, len(self.covered[k])):
                 if (self.covered[k][j] >0) and (other1.covered[k][j] ==0 ) and (other2.covered[k][j] ==0) :
                     count+=1
-<<<<<<< HEAD
            print >>fout, n, count, self.refsizes[k] 
-=======
-           print >>fout, n, count
->>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
            diff_cov+=count
         return diff_cov
 
@@ -380,12 +376,9 @@ def main():
     parser.add_argument('coords3')
     parser.add_argument('treatment')
     parser.add_argument('minident')
-    parser.add_argument('-a', '--ambiguity', dest='ambiguity_flag', default=True) 
-<<<<<<< HEAD
-    parser.add_argument('-b', '--best-hit', dest='besthit', default=False)
-=======
-    parser.add_argument('-b', '--best-hit', dest='besthit', default=True)
->>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
+    parser.add_argument('-a', '--ambiguity', dest='ambiguity', type=bool, default=False) 
+    parser.add_argument('-b', '--best-hit', dest='besthit', type=bool, default=False)
+    parser.add_argument('-c', '--nooverlap', dest='nooverlap', type=bool, default= False) 
     args = parser.parse_args()
     print 'loading refsizes'
     refsizes, reference = load_reference(args.reference)
@@ -408,26 +401,20 @@ def main():
     gic_b = GenomeIntervalsContainer(refsizes, b, bseq)
     gic_c = GenomeIntervalsContainer(refsizes, c, cseq) 
 
-<<<<<<< HEAD
-    print args.ambiguity_flag, args.besthit
-    if args.ambiguity_flag ==True:
+    print args.ambiguity, args.besthit
+    if (args.ambiguity is True):
                 print '......Running ambigious analysis' 	
-=======
-    if args.ambiguity_flag ==True: 	
->>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
     		gic_a.load_coords(args.coords1, float(args.minident))
-    		gic_b.load_coords(args.coords2, float(args.minident)) 
+    	        gic_b.load_coords(args.coords2, float(args.minident)) 
     		gic_c.load_coords(args.coords3, float(args.minident))
 
-    elif args.besthit ==True: 
-<<<<<<< HEAD
-               print '.....Runnin best hit analysis'
-=======
->>>>>>> 38ed4ed4ddfbef5ff9ff91732922fad4a63cee34
+    elif (args.besthit is True): 
+               print '.....Running best hit analysis'
                gic_a.load_overlaps(args.coords1, float(args.minident))
                gic_b.load_overlaps(args.coords2, float(args.minident))
                gic_c.load_overlaps(args.coords3, float(args.minident))
-    else: 
+    elif (args.nooverlap is True):
+	      print '.... Running no overlaps analysis'  
 	      gic_a.load_overlaps(args.coords1, float(args.minident), no_overlaps)
               gic_b.load_overlaps(args.coords2, float(args.minident), no_overlaps)
               gic_c.load_overlaps(args.coords3, float(args.minident), no_overlaps)
@@ -437,7 +424,6 @@ def main():
     #gic_b.analyze_regions(prefix2+".regions.all", prefix2+".regions.max")
     #gic_c.analyze_regions(prefix3+".regions.all", prefix3+".regions.max") 
     
-    #""" 
  
     ref_total_length = sum(refsizes.values()) 
     a_total_bases = sum(gic_a.assemsizes.values())
@@ -451,8 +437,7 @@ def main():
     a_dist_cov = prefix1 +'.cov.dist' + args.minident 
     b_dist_cov = prefix2 +'.cov.dist' + args.minident   
     c_dist_cov = prefix3 +'.cov.dist' + args.minident   
-
-
+    
     gic_a.distribution_alignment(a_total_bases, a_dist_align)
     gic_b.distribution_alignment(b_total_bases, b_dist_align) 
     gic_c.distribution_alignment(c_total_bases, c_dist_align)
@@ -472,7 +457,7 @@ def main():
     print >>fout, "Total bases in", prefix1, str(args.treatment) , "is" , a_total_bases, "with", len(a) ,"contigs"
     print >>fout, "Total bases in", prefix2, str(args.treatment) , "is" , b_total_bases, "with", len(b) ,"contigs" 
     print >>fout, "Total bases in", prefix3, str(args.treatment) , "is" , c_total_bases, "with", len(c) ,"contigs" 
-    
+ 
     
     #----------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of unalignments 
@@ -520,7 +505,6 @@ def main():
     print >>fout, prefix2, args.treatment, "has",  b_unaligned, "unaligned contigs ~", float(b_unaligned)/len(b) * 100
     print >>fout, prefix3, args.treatment, "has",  c_unaligned, "unaligned contigs ~", float(c_unaligned)/len(c) * 100
     
-    
     #---------------------------------------------------------------------------------------------------------------------------------------------------
     #Analysis of uncovered regions
     #------------------------------ 
@@ -532,7 +516,10 @@ def main():
     a_total_uncov = sum(a_uncov_d.values())
     b_total_uncov = sum(b_uncov_d.values())
     c_total_uncov = sum(c_uncov_d.values())
- 
+
+    print a_total_uncov, b_total_uncov , c_total_uncov
+    print a_uncov_d
+
     a_uncov_per = float(a_total_uncov)/ref_total_length*100
     b_uncov_per = float(b_total_uncov)/ref_total_length*100
     c_uncov_per = float(c_total_uncov)/ref_total_length*100
@@ -561,10 +548,6 @@ def main():
     print >>fout, prefix3, args.treatment, ref_total_length, '\t', c_cov_per, '\t', c_uncov_per   
 
    
-   
-
-
- 
     #--------------------------------------------------------------------------------------------------------------------------------------------------- 
     #More analysis of Uncovered regions 
     #------------------------------------
@@ -598,7 +581,6 @@ def main():
     print >>fout, "Bases that are uncovered by", prefix2, args.treatment, "only: ", unique_uncov_b, "~", float(unique_uncov_b)/ref_total_length *100, "%"
     print >>fout, "Bases that are uncovered by", prefix3, args.treatment, "only: ", unique_uncov_c, "~", float(unique_uncov_c)/ref_total_length *100, "%"
  
-    #""" 
 
 if __name__ == '__main__':
     main()
