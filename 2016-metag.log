@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  29 MAY 2016 17:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  2 JUN 2016 18:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -57,6 +57,9 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \everycr=\toks15
 \minrowclearance=\skip45
 )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen105
+)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip46
@@ -68,11 +71,11 @@ Package: amstext 2000/06/29 v2.01
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks16
-\ex@=\dimen105
+\ex@=\dimen106
 ))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen106
+\pmbraise@=\dimen107
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
@@ -89,7 +92,7 @@ LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
-\big@size=\dimen107
+\big@size=\dimen108
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \macc@depth=\count93
@@ -102,12 +105,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \column@=\count98
 \maxfields@=\count99
 \andhelp@=\toks18
-\eqnshift@=\dimen108
-\alignsep@=\dimen109
-\tagshift@=\dimen110
-\tagwidth@=\dimen111
-\totwidth@=\dimen112
-\lineht@=\dimen113
+\eqnshift@=\dimen109
+\alignsep@=\dimen110
+\tagshift@=\dimen111
+\tagwidth@=\dimen112
+\totwidth@=\dimen113
+\lineht@=\dimen114
 \@envbody=\toks19
 \multlinegap=\skip47
 \multlinetaggap=\skip48
@@ -191,7 +194,7 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen114
+\@linkdim=\dimen115
 \Hy@linkcounter=\count100
 \Hy@pagecounter=\count101
 
@@ -217,10 +220,10 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen115
+\XeTeXLinkMargin=\dimen116
 \Fld@menulength=\count104
-\Field@Width=\dimen116
-\Fld@charsize=\dimen117
+\Field@Width=\dimen117
+\Fld@charsize=\dimen118
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -254,16 +257,16 @@ Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count110
 \output=\toks22
 \linenoprevgraf=\count111
-\linenumbersep=\dimen118
-\linenumberwidth=\dimen119
+\linenumbersep=\dimen119
+\linenumberwidth=\dimen120
 \c@linenumber=\count112
 \c@pagewiselinenumber=\count113
 \c@LN@truepage=\count114
 \c@internallinenumber=\count115
 \c@internallinenumbers=\count116
-\quotelinenumbersep=\dimen120
-\bframerule=\dimen121
-\bframesep=\dimen122
+\quotelinenumbersep=\dimen121
+\bframerule=\dimen122
+\bframesep=\dimen123
 \bframebox=\box28
 LaTeX Info: Redefining \\ on input line 3056.
 )
@@ -272,7 +275,7 @@ Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
 \MT@toks=\toks23
 \MT@count=\count117
 LaTeX Info: Redefining \textls on input line 766.
-\MT@outer@kern=\dimen123
+\MT@outer@kern=\dimen124
 LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
 \MT@listname@count=\count118
 
@@ -302,8 +305,8 @@ File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 94.
 )
-\Gin@req@height=\dimen124
-\Gin@req@width=\dimen125
+\Gin@req@height=\dimen125
+\Gin@req@width=\dimen126
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
@@ -311,18 +314,22 @@ Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen126
-\captionmargin@=\dimen127
-\captionwidth=\dimen128
-\caption@tempdima=\dimen129
-\caption@indent=\dimen130
-\caption@parindent=\dimen131
-\caption@hangindent=\dimen132
+\captionmargin=\dimen127
+\captionmargin@=\dimen128
+\captionwidth=\dimen129
+\caption@tempdima=\dimen130
+\caption@indent=\dimen131
+\caption@parindent=\dimen132
+\caption@hangindent=\dimen133
 )
 \c@ContinuedFloat=\count119
 Package caption Info: hyperref package is loaded.
 )
-(./2016-metag.aux)
+(./2016-metag.aux
+
+LaTeX Warning: Label `table:coverage-analysis' multiply defined.
+
+)
 \openout1 = `2016-metag.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
@@ -339,17 +346,16 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 136.
 LaTeX Font Info:    ... okay on input line 136.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 136.
 LaTeX Font Info:    ... okay on input line 136.
-
-(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count120
-\scratchdimen=\dimen133
+\scratchdimen=\dimen134
 \scratchbox=\box29
 \nofMPsegments=\count121
 \nofMParguments=\count122
 \everyMPshowfont=\toks24
 \MPscratchCnt=\count123
-\MPscratchDim=\dimen134
+\MPscratchDim=\dimen135
 \MPnumerator=\count124
 \makeMPintoPDFobject=\count125
 \everyMPtoPDFconversion=\toks25
@@ -451,10 +457,6 @@ LaTeX Warning: Citation `megahit' on page 2 undefined on input line 201.
 LaTeX Warning: Citation `podar' on page 2 undefined on input line 215.
 
 
-LaTeX Warning: Reference `fig:coverage-profile' on page 2 undefined on input li
-ne 220.
-
-
 LaTeX Warning: Citation `trim' on page 2 undefined on input line 226.
 
 
@@ -525,112 +527,60 @@ LaTeX Warning: Citation `megahit' on page 3 undefined on input line 305.
 
 LaTeX Warning: Citation `quast' on page 3 undefined on input line 311.
 
-
-LaTeX Warning: Reference `table:time-memory' on page 3 undefined on input line 
-325.
-
-
-LaTeX Warning: Reference `table:time-memory' on page 3 undefined on input line 
-326.
-
-
-LaTeX Warning: Reference `table:time-memory' on page 3 undefined on input line 
-330.
-
-
-LaTeX Warning: Reference `table:time-memory' on page 3 undefined on input line 
-333.
-
-[3]
-
-LaTeX Warning: Reference `table:time-memory' on page 4 undefined on input line 
-335.
-
-
-LaTeX Warning: Reference `table:time-memory' on page 4 undefined on input line 
-338.
-
-
-LaTeX Warning: Reference `table:time-memory' on page 4 undefined on input line 
-341.
-
-
-LaTeX Warning: Reference `table:time-memory' on page 4 undefined on input line 
-343.
-
-
-LaTeX Warning: Reference `table:time-memory' on page 4 undefined on input line 
-346.
-
-
-LaTeX Warning: Reference `fig:unaliged-hist' on page 4 undefined on input line 
-373.
-
-[4]
-
-LaTeX Warning: Reference `table:unaligned-mapping' on page 5 undefined on input
- line 395.
-
+[3] [4]
 No file 2016-metag.bbl.
-<total-length-contigs.pdf, id=48, 578.16pt x 433.62pt>
+<total-length-contigs.pdf, id=63, 578.16pt x 433.62pt>
 File: total-length-contigs.pdf Graphic file (type pdf)
 
 <use total-length-contigs.pdf>
-Package pdftex.def Info: total-length-contigs.pdf used on input line 450.
+Package pdftex.def Info: total-length-contigs.pdf used on input line 458.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<genome-fraction-contigs.pdf, id=49, 578.16pt x 433.62pt>
+<genome-fraction-contigs.pdf, id=64, 578.16pt x 433.62pt>
 File: genome-fraction-contigs.pdf Graphic file (type pdf)
 
 <use genome-fraction-contigs.pdf>
-Package pdftex.def Info: genome-fraction-contigs.pdf used on input line 459.
+Package pdftex.def Info: genome-fraction-contigs.pdf used on input line 467.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<sampling.pdf, id=50, 578.16pt x 433.62pt>
+<sampling.pdf, id=65, 578.16pt x 433.62pt>
 File: sampling.pdf Graphic file (type pdf)
  <use sampling.pdf>
-Package pdftex.def Info: sampling.pdf used on input line 468.
+Package pdftex.def Info: sampling.pdf used on input line 476.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<profilecoveragereads.pdf, id=51, 578.16pt x 433.62pt>
+<profilecoveragereads.pdf, id=66, 578.16pt x 433.62pt>
 File: profilecoveragereads.pdf Graphic file (type pdf)
 
 <use profilecoveragereads.pdf>
-Package pdftex.def Info: profilecoveragereads.pdf used on input line 477.
+Package pdftex.def Info: profilecoveragereads.pdf used on input line 485.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<unaliged-hist.pdf, id=52, 578.16pt x 433.62pt>
+<unaliged-hist.pdf, id=67, 578.16pt x 433.62pt>
 File: unaliged-hist.pdf Graphic file (type pdf)
  <use unaliged-hist.pdf>
-Package pdftex.def Info: unaliged-hist.pdf used on input line 486.
+Package pdftex.def Info: unaliged-hist.pdf used on input line 494.
 (pdftex.def)             Requested size: 325.2142pt x 231.26651pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: Float too large for page by 81.83307pt on input line 727.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+Overfull \hbox (66.78537pt too wide) in paragraph at lines 551--609
+ [][] 
+ []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -638,7 +588,13 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 930.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 827.
 [5] [6 <./total-length-contigs.pdf> <./genome-fraction-contigs.pdf
 
 pdfTeX warning: /usr/texbin/pdflatex (file ./genome-fraction-contigs.pdf): PDF 
@@ -647,11 +603,11 @@ inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /usr/texbin/pdflatex (file ./profilecoveragereads.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
->] [8 <./unaliged-hist.pdf>] [9] [10] [11] [12] [13] [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 930.
+>] [8 <./unaliged-hist.pdf>] [9] [10] [11] [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 827.
  (./2016-metag.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 930.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 930.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 827.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 827.
 Package rerunfilecheck Info: File `2016-metag.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -659,18 +615,18 @@ Package rerunfilecheck Info: File `2016-metag.out' has not changed.
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 930.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 827.
  ) 
 Here is how much of TeX's memory you used:
- 9009 strings out of 493089
- 138229 string characters out of 6134842
- 303494 words of memory out of 5000000
- 12259 multiletter control sequences out of 15000+600000
+ 9015 strings out of 493089
+ 138430 string characters out of 6134842
+ 294438 words of memory out of 5000000
+ 12264 multiletter control sequences out of 15000+600000
  10328 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,43p,756b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,43p,756b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
@@ -680,10 +636,10 @@ ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl9.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on 2016-metag.pdf (14 pages, 208819 bytes).
+Output written on 2016-metag.pdf (12 pages, 204932 bytes).
 PDF statistics:
- 378 PDF objects out of 1000 (max. 8388607)
- 156 compressed objects within 2 object streams
- 54 named destinations out of 1000 (max. 500000)
+ 379 PDF objects out of 1000 (max. 8388607)
+ 159 compressed objects within 2 object streams
+ 51 named destinations out of 1000 (max. 500000)
  13850 words of extra memory for PDF output out of 14400 (max. 10000000)
 

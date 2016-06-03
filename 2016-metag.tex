@@ -74,7 +74,7 @@
 
 \documentclass[10pt]{article}
 \usepackage{colortbl}
-
+\usepackage{multirow}
 % amsmath package, useful for mathematical formulas
 \usepackage{amsmath}
 % amssymb package, useful for mathematical symbols
@@ -313,6 +313,13 @@ contig length equal to 500.
 
 % Results and Discussion can be combined.
 
+
+\subsection*{Treating Ambiguous Mapping} 
+
+We define ambiguous mapping as any base that maps to more than one position in the reference genome.  We used two approaches to dealing with ambiguous mapping: 
+Best-hit and ambiguous approaches. In the best-hit approach, we  consider only the mapping that has high confidence and discard the other mapping completely, so every base in the reference genome is hit once or zero times.  In the ambiguous approach, we use all mapping, and whenever a base in the reference genome is hit more than one time, we count it's coverage once. 
+
+
 \section*{Results}
 
 \subsection*{Cost of Assembly} 
@@ -388,14 +395,15 @@ Approximately   $\sim$10.60\% of reference bases are uniquely uncovered by IDBA 
 
  
 \subsection*{Subsambling}
-%RE-RUN QUAST ANALYSIS USING OUR SCRIPT AND UPDATE HERE 
+%RE-RUN ANALYSIS USING OUR SCRIPT AND UPDATE HERE 
 
+%ADD HERE HOW DID WE SAMPLE OR MOVE TO METHODS 
 
-Furthermore, we aligned the unaligned contigs of each assembly to the unaligned contigs of IDBA-UD quality filtered assembly. 
-Using quality filtered reads, the reference fraction (the reference here is the unaligned contigs of IDBA-UD quality filtered assembly) equals to 80.613\%, 91.922\%, and 92.715\% for Velvet, SPAdes, and MEGAHIT respectively.  The unaligned length is 2,475,529, 2,174,574, and  916,247  for Velvet, SPAdes, and MEGAHIT respectively using quality filtered reads, representing 37.06\%, 32.56\% and 13.72\% of the reference length. See Table \ref{table:unaligned-mapping} for more details.  Velvet unalignments show the highest percentages of IDBA-UD QC unalignments. IDBA-UD diginorm unalignments shows the less percentage of IDBA-UD QC unalignments. This shows that not all reads are common among unaligned contigs.
-%@SAM Won't be added, just reporting the new corrected results
-%To further explore the unalignment, we downloaded fusa seeds from Fungenes. We used blast to map the unaligned reads to fusa seeds,  using IDBA-UD/digital normalized  assemblies, and no hits found. 
+Using quality filtering treatment and 25\% coverage, we counted the genome coverage using both best-hit and ambiguous approaches. 
+Using ambiguous approach, genome coverage is 77.38\%, 82.53\%, and 81.30\% and with duplication ratio 1.38\%, 1.24\%, and 1.26\% for IDBA, SPAdes, and Megahit respectively.
+Using best-hit approach, genome coverage is  63.10\%, 70.6\%, and 71.75\%  and with duplication ratio 0.27\%, 0.40\%, and 0.34 \% for IDBA, SPAdes, and Megahit respectively.
 
+%We need to repeat the same section for coverage 50, 75 % : prepare jobs for running 
 
 \section*{Discussion}
  
@@ -507,6 +515,11 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 
 
 
+
+
+
+
+
 %\begin{table}[t]
 %\caption{Coverage Distribution}
 %\centering
@@ -533,64 +546,201 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 
 
 \begin{table}[h]
-\caption{Assembly Quality Metrics}
+\caption{Reference Genome Coverage and Duplication Ratio}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf {Minimum IDY}&\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} &\\ [0.5ex] % inserts table %heading
+\hline 
+ \multicolumn{5}{|c|} {\textbf{(1) BEST HIT APPROACH}}    \\ [0.5ex] % inserts table %heading
+\hline
+\multicolumn{5}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
+\hline
+\multirow{2}{*}{99.0}&\textbf{Genome  Coverage\%} &57.81\%&&    \\   
+&\textbf{Duplication Ratio} &0.49&  &   \\   
+\hline
+\multirow{2}{*}{95.0}&\textbf{Genome  Coverage\%} & 59.11\%&&    \\   
+&\textbf{Duplication Ratio}&0.78&  &   \\   
+\hline
+\multicolumn{5}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
+\hline
+\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%} &68.52\%& && \\
+&\textbf{Duplication Ratio} &0.38 && & \\   
+\hline
+\multirow{2}{*}{95.0}&\textbf{Genome Coverage\%} &70.00 \%& && \\
+&\textbf{Duplication Ratio} & 0.52&	 & & \\   
+\hline
+\multicolumn{5}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
+\hline
+\multirow{2}{*}{99.0}&\textbf{Genome  Coverage\%}&69.50\% & && \\
+&\textbf{Duplication Ratio} &4.25&	 & & \\   
+\hline
+\multirow{2}{*}{95.0}&\textbf{Genome  Coverage\%}&70.99\% & && \\
+&\textbf{Duplication Ratio} &4.70&	 & & \\   
+\hline
+ \multicolumn{5}{|c|} {\textbf{(2) AMBIGUOUS APPROACH}}    \\ [0.5ex] % inserts table %heading
+\hline
+\multicolumn{5}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
+\hline
+\multirow{2}{*}{99.0}&\textbf{Genome  Coverage\%} &89.56\%&	 &&  \\   
+&\textbf{Duplication Ratio} &1.05&	& &  \\   
+\hline
+\multirow{2}{*}{95.0}&\textbf{Genome  Coverage\%} &95.47\%&	 &&  \\   
+&\textbf{Duplication Ratio} &2.30&	& &  \\   
+\hline
+\multicolumn{5}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
+\hline
+\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%}&89.49\% & & &\\
+&\textbf{Duplication Ratio} &0.99&	 & & \\   
+\hline
+\multirow{2}{*}{95.0}&\textbf{Genome Coverage\%}& 96.11\% & & &\\
+&\textbf{Duplication Ratio} &1.58&	 & & \\   
+\hline
+\multicolumn{5}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
+\hline
+\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%} &90.60\% & &  &\\
+&\textbf{Duplication Ratio} &5.04&	 &&  \\   
+\hline
+\multirow{2}{*}{95.0}&\textbf{Genome Coverage\%} &95.85\% & &  &\\
+&\textbf{Duplication Ratio} &6.73&	 &&  \\   
+\hline
+\end{tabular}
+\label{table:coverage-analysis}
+\end{table}
+
+
+\begin{table}[h]
+\caption{Contigs Analysis}
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline 
+ \multicolumn{4}{|c|} {\textbf{(1) BEST HIT APPROACH}}    \\ [0.5ex] % inserts table %heading
+ \hline
+\multicolumn{4}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
 \hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
+\textbf{No. of Contigs} &27,444&&    \\   
 \hline
-\textbf{Genome Fraction}& 72.949&89.043&88.879 \\
+\textbf{Totally Aligned Contigs \%} &71.36\% &  &   \\   
 \hline
-\textbf{Unaligned Length} &8,977,149&10,909,693&11,317,834\\ [1ex]
+\textbf{Partial Aligned Contigs \%} &11.99\% &  &   \\   
 \hline
-\textbf{Misassembled contigs length  }&16,566,891&25,594,315&16,922,852 \\ [1ex]
+\textbf{Unaligned Contigs \%} &16.65\% &  &   \\   
 \hline
-\textbf{N50} &38,028 &18,944 &8,504 \\ [1ex]
+\multicolumn{4}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{NG50 }&22223&17212&7905  \\ [1ex]
+\textbf{No. of Contigs}&33,704&&    \\   
 \hline
-\multicolumn{4}{|c|}{ \textbf{(2) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
+\textbf{Totally Aligned Contigs\%} &72.22\% &  &   \\   
 \hline
-\textbf{Genome Fraction} &90.969&	91.003&90.082 \\   
+\textbf{Partial Aligned Contigs\%} &10.82\%&  &   \\   
 \hline
-\textbf{Unaligned Length}  &10,709,716&10,637,811&10,644,357 \\ [1ex]
+\textbf{Unaligned Contigs\%}&16.96\% &  &   \\   
 \hline
-\textbf{Misassembled contigs length  }&21,777,032&27,668,818&18,440,791  \\ [1ex]
+\multicolumn{4}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{N50} &49773&47828&26575 \\ [1ex]
+\textbf{No. of Contigs} &75,497&&    \\   
 \hline
-\textbf{NG50}&45748&44351&24326\\ [1ex]
+\textbf{Totally Aligned Contigs \%} &74.97\%&  &   \\   
 \hline
-\multicolumn{4}{|c|}{ \textbf{(3) SPAdes} }   \\ [0.5ex] % inserts table %heading
+\textbf{Partial Aligned Contigs\%} &10.45\%&  &   \\   
 \hline
-\textbf{Genome Fraction} &90.424&90.173&89.272\\
+\textbf{Unaligned Contigs\%}&14.58\%&  &   \\   
 \hline
-\textbf{Unaligned Length} &10,597,529&10,621,398&10,500,235 \\ [1ex]
+\multicolumn{4}{|c|} {\textbf{(2) AMBIGUOUS  APPROACH}}    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{Misassembled contigs length  }&28,238,787&23,103,154&14,338,099  \\ [1ex]
+\multicolumn{4}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{N50} &42773&35580&22319\\ [1ex]
+\textbf{No. of Contigs} &27,444&&    \\   
 \hline
-\textbf{NG50} &38841&32598&19909\\ [1ex]
+\textbf{Totally Aligned Contigs\%}&77.56\%&  &   \\   
 \hline
-\multicolumn{4}{|c|}{ \textbf{(4) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
+\textbf{Partial Aligned Contigs\%}&10.15\%&  &   \\   
 \hline
-\textbf{Genome Fraction} &90.358&89.92&88.769 \\
+\textbf{Unaligned Contigs \%}&12.28\%&  &   \\   
 \hline
-\textbf{Unaligned Length}&10,686,421&10,581,435&10,564,244 \\ [1ex]
+\multicolumn{4}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{Misassembled contigs length  }&11,927,502&17,319,534&11,814,070 \\ [1ex]
+\textbf{No. of Contigs} &33,704&&    \\   
 \hline
-\textbf{N50} &35,136&27,302&17,492 \\ [1ex]
+\textbf{Totally Aligned Contigs} &75.65\%&  &   \\   
 \hline
-\textbf{NG50} &32251&25248&15393 \\ [1ex]
+\textbf{Partial Aligned Contigs\%}&8.12\%&  &   \\   
 \hline
-
+\textbf{Unaligned Contigs\%}&16.23\%&  &   \\   
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{No. of Contigs}&75,497&&    \\   
+\hline
+\textbf{Totally Aligned Contigs\%} &78.20\%&  &   \\   
+\hline
+\textbf{Partial Aligned Contigs\%}&9.22\%&  &   \\   
+\hline
+\textbf{Unaligned Contigs\%}&12.58\% &  &   \\   
+\hline
 \end{tabular}
-\label{table:qualtiy-metrics}
+\label{table:contigs-analysis}
 \end{table}
+
+
+\begin{table}[h]
+\caption{More Coverage Analysis}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline 
+ \multicolumn{4}{|c|} {\textbf{(1) BEST HIT APPROACH}}    \\ [0.5ex] % inserts table %heading
+\hline
+\multicolumn{4}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Uniquely Covered\%}&2.02\%&&    \\   
+\hline
+\textbf{Uniquely Uncovered}&10.60\%&  &   \\   
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Uniquely Covered\%}&9.75\%& & \\
+\hline
+\textbf{Uniquely Uncovered\%}&7.62\%&	 &  \\   
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Uniquely Covered\%}&6.54\%& & \\
+\hline
+\textbf{Uniquely Uncovered\%}& 3.44\%&	 &  \\   
+\hline
+ \multicolumn{4}{|c|} {\textbf{(2) AMBIGUOUS APPROACH}}    \\ [0.5ex] % inserts table %heading
+\hline
+\multicolumn{4}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Uniquely Covered\%}&0.88\%& & \\
+\hline
+\textbf{Uniquely Uncovered\%}&1.62\%&	 &  \\   
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Uniquely Covered\%}&0.99\%& & \\
+\hline
+\textbf{Uniquely Uncovered\%}&1.81\%&	 &  \\   
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Uniquely Covered\%}&1.52\%& & \\
+\hline
+\textbf{Uniquely Uncovered\%}&1.22\%&	 &  \\   
+\hline
+\end{tabular}
+\label{table:coverage-analysis}
+\end{table}
+
+
+
+ 
+
+
 
 \begin{table}[h]
 \caption{Running Time and Memory Utilization}
@@ -631,266 +781,13 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 
 
 
-\begin{table}[h]
-\caption{mis-assemblies}
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf {Assembly}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{mis-assemblies}&917&5271&5202 \\
-\hline
-\textbf{Relocations} &592&998&1036 \\ [1ex]
-\hline
-\textbf{Translocations}&309&4262&4153  \\ [1ex]
-\hline
-\textbf{Inversions}&16&11&13  \\ [1ex]
-\hline
-\textbf{Misassembled Contigs Length}&16,566,891&25,594,315&16,922,852 \\ [1ex]
-\hline
-\textbf{Mismatches} &104,740&174,446&178,348  \\ [1ex]
-\hline 
-\textbf{Percentage of Mismatches}&0.05\%&0.08\%&0.09\%  \\[1ex]
-\hline
-\textbf{Indels Length}&50,190&181,453&346,988 \\ [1ex]
-\hline
-\textbf{Indels Percentage}&0.02\%&0.09\%&0.17\%\\ [1ex]
-\hline
-
- \multicolumn{4}{|c|} {\textbf{(3) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{mis-assemblies}&1223&1094&960  \\
-\hline
-\textbf{Relocations} &613&668&578 \\ [1ex]
-\hline
-\textbf{Translocations}&580&398&350 \\ [1ex]
-\hline
-\textbf{Inversions} &30&28&32 \\ [1ex]
-\hline
-\textbf{Misassembled Contigs Length}&21,777,032&27,668,818&18,440,791 \\ [1ex]
-\hline
-\textbf{Mismatches} &162,733 &231,432&230,840 \\ [1ex]
-\hline 
-\textbf{Percentage of Mismatches}&0.08\%&0.11\%&0.11\% \\[1ex]
-\hline
-\textbf{Indels Length} &30,433&43,358&42,523  \\ [1ex]
-\hline
-\textbf{Indels Percentage}&0.01\%&0.02\%&0.02\%  \\ [1ex]
-\hline
-
-
- \multicolumn{4}{|c|} {\textbf{(2) SPAdes}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{mis-assemblies}&894&997&753 \\
-\hline
-\textbf{Relocations}&608&613&496 \\ [1ex]
-\hline
-\textbf{Translocations}&267&368&239\\ [1ex]
-\hline
-\textbf{Inversions}&19&16&18\\ [1ex]
-\hline
-\textbf{Misassembled Contigs Length}&28,238,787&23,103,154&14,338,099\\ [1ex]
-\hline
-\textbf{Mismatches}&184,630&244,849&235,396\\ [1ex]
-\hline 
-\textbf{Percentage of Mismatches}&0.09\%&0.12\%&0.11\%\\ [1ex]
-\hline
-\textbf{Indels Length}&27,328&32,783&21,516\\ [1ex]
-\hline
-\textbf{Indels Percentage}&0.01\% &0.02\%&0.01\%\\ [1ex]
-\hline
-
- \multicolumn{4}{|c|} {\textbf{(4) MEGAHIT}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{mis-assemblies}&738&880&748 \\
-\hline
-\textbf{Relocations}&448&593&513\\ [1ex]
-\hline
-\textbf{Translocations}&172&274&222\\ [1ex]
-\hline
-\textbf{Inversions}&118&13&13\\ [1ex]
-\hline
-\textbf{Misassembled Contigs Length}&11,927,502&17,319,534&11,814,070  \\ [1ex]
-\hline
-\textbf{Mismatches}&152,964&207,349&203,515\\ [1ex]
-\hline 
-\textbf{Percentage of Mismatches}&0.07\%&0.10\%&0.10\%\\[1 ex]
-\hline
-\textbf{Indels Length }&15,298&18,195&16,517\\ [1ex]
-\hline
-\textbf{Indels Percentage}&0.01\%&0.01\%&0.01\% \\ [1ex]
-\hline
-\end{tabular}
-\label{table:mis-assemblies}
-\end{table}
-
-\begin{table}[t]
-\caption{Mapping quality-filtered reads to assemblies}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf {Treatment}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&6,801,329&3,375,222&3,890,205  \\ 
-\hline
-\textbf{Percentage}&6.40\%&3.17\%&3.66\% \\
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&1,490,609&1,738,371&2,297,377 \\
-\hline
-\textbf{Percentage}&1.40\%&1.63\%&2.16\% \\
-\hline
-\multicolumn{4}{|c|}{ \textbf{(3) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&2,100,555&2,439,158&2,804,006\\
-\hline
-\textbf{Percentage}&1.98\%&2.29\%&2.64\%\\
-\hline
-\multicolumn{4}{|c|}{ \textbf{(4) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Unaligned Sequences}&1,559,300&2,082,881&2,747,427 \\
-\hline
-\textbf{Percentage}&1.47\%&1.96\% &2.58\% \\
-\hline
-\end{tabular}
-\label{table:reads-mapping} 
-\end{table}
-
-
-\begin{table}[h]
-\caption{Mapping unaligned  contigs to Idba quality-filtered  unaligned contigs }
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Unaligned IDBA Fraction}&80.613 \%&92.03\%&92.982\%   \\
-\hline
-\textbf{Unaligned Length}&2,475,529& 3192491&3,868,558 \\ [1ex]
-\hline
-\textbf{Percentage of unaligned}&37.06\%&47.8\%&57.92\%\\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Unaligned IDBA Fraction }&-&91.53\%&94.72\%\\   
-
-
-\hline
-\textbf{Unaligned Length}&-&498,299&1,320,036\\ [1ex]
-\hline
-\textbf{Percentage of unaligned}&-&7.46\%&19.76\% \\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(3) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Unaligned IDBA Fraction}&91.92\%&93.959\%&94.826\%\\
-\hline
-\textbf{Unaligned Length}&2,174,574&1,951,911&2,398,664\\ [1ex]
-\hline
-\textbf{Percentage of unaligned}&32.56\%&29.22\%&35.91\%\\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(4) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Unaligned IDBA Fraction}&92.715\%&91.838\%&92.219\% \\
-\hline
-\textbf{Unaligned Length}&916,247&1,569,436&3,832,050 \\ [1ex]
-\hline
-\textbf{Percentage of unaligned}&13.72\%&23.5\%&57.37\%\\ [1ex]
-\hline
-\end{tabular}
-\label{table:unaligned-mapping}
-\end{table}
-
-
-%%%%%SUPLEMENTARY TABLES 
-\begin{table}[h]
-\caption{Supplementary Table: More Assembly Quality Metrics}
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
-\hline
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{N75}&13301&6084&3771\\ [1ex]
-\hline
-\textbf{NG75}&1186&4805&3214\\ [1ex]
-\hline
-\textbf{L50} &1013&2455&6037 \\ [1ex]
-\hline
-\textbf{LG50} &1806&2740&6641\\ [1ex]
-\hline
-\textbf{L75} &2777&7026&14734\\ [1ex]
-\hline
-\textbf{LG75} &11087&8460&16867\\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{N75}&11693&12154&7834  \\ [1ex]
-\hline
-\textbf{NG75} &9617	&10221&6461 \\ [1ex]
-\hline
-\textbf{L50}&828&896&1536\\ [1ex]
-\hline
-\textbf{LG50}&899&970&1712 \\ [1ex]
-\hline
-\textbf{L75}&2986&3025&5062 \\ [1ex]
-\hline
-\textbf{LG75}&3467&3484	&6002\\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(2) SPAdes}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{N75} &11263&10554&6900\\ [1ex]
-\hline
-\textbf{NG75} &9005	&8379&5401\\ [1ex]
-\hline
-\textbf{L50} &974&1192&1846\\ [1ex]
-\hline
-\textbf{LG50} &1078&1325&2108\\ [1ex]
-\hline
-\textbf{L75} &3276&3768&5840\\ [1ex]
-\hline
-\textbf{LG75} &3908&4495&7198\\ [1ex]
-\hline
-\multicolumn{4}{|c|}{ \textbf{(4) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{N75} &8166&7230&5271 \\ [1ex]
-\hline
-\textbf{NG75} &6601	&5632&4030 \\ [1ex]
-\hline
-\textbf{L50} &1199	&1582&2490 \\ [1ex]
-\hline
-\textbf{LG50} &1306	&1757&2848 \\ [1ex]
-\hline
-\textbf{L75} &4164	&5063&7670 \\ [1ex]
-\hline
-\textbf{LG75} &4907&6147&9581 \\ [1ex]
-\hline
-
-\end{tabular}
-\label{table:sub-qc}
-\end{table}
-
-
+ 
 \begin{table}[t]
 \caption{Comparision between N50 and NG50}
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf {Treatment}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition}  \\ [0.5ex] % inserts table %heading
-\hline
-
- \multicolumn{4}{|c|} {\textbf{(1) Velvet}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{N50}&38,028&18,944&8,504 \\ 
-\hline
-\textbf{NG50}&22,223&17,212&7,905\\
 \hline
  \multicolumn{4}{|c|} {\textbf{(2) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
 \hline
