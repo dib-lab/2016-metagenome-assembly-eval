@@ -550,7 +550,7 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 \centering
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf {Minimum IDY}&\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} &\\ [0.5ex] % inserts table %heading
+\textbf {Minimum IDY}&\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Minimum Contig =1000} & \textbf{ Minimum Contig =2000} &\\ [0.5ex] % inserts table %heading
 \hline 
  \multicolumn{5}{|c|} {\textbf{(1) BEST HIT APPROACH}}    \\ [0.5ex] % inserts table %heading
 \hline
@@ -564,7 +564,7 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 \hline
 \multicolumn{5}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
 \hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%} &68.52\%& && \\
+\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%} &68.52\%&&& \\
 &\textbf{Duplication Ratio} &0.38 && & \\   
 \hline
 \multirow{2}{*}{95.0}&\textbf{Genome Coverage\%} &70.00 \%& && \\
@@ -572,7 +572,7 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 \hline
 \multicolumn{5}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
 \hline
-\multirow{2}{*}{99.0}&\textbf{Genome  Coverage\%}&69.50\% & && \\
+\multirow{2}{*}{99.0}&\textbf{Genome  Coverage\%}&69.50\% &&& \\
 &\textbf{Duplication Ratio} &4.25&	 & & \\   
 \hline
 \multirow{2}{*}{95.0}&\textbf{Genome  Coverage\%}&70.99\% & && \\
@@ -582,7 +582,7 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 \hline
 \multicolumn{5}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
 \hline
-\multirow{2}{*}{99.0}&\textbf{Genome  Coverage\%} &89.56\%&	 &&  \\   
+\multirow{2}{*}{99.0}&\textbf{Genome  Coverage\%} &89.56\%&87.18\%&&  \\   
 &\textbf{Duplication Ratio} &1.05&	& &  \\   
 \hline
 \multirow{2}{*}{95.0}&\textbf{Genome  Coverage\%} &95.47\%&	 &&  \\   
@@ -590,7 +590,7 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 \hline
 \multicolumn{5}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
 \hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%}&89.49\% & & &\\
+\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%}&89.49\% &86.44\%& &\\
 &\textbf{Duplication Ratio} &0.99&	 & & \\   
 \hline
 \multirow{2}{*}{95.0}&\textbf{Genome Coverage\%}& 96.11\% & & &\\
@@ -598,7 +598,7 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 \hline
 \multicolumn{5}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
 \hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%} &90.60\% & &  &\\
+\multirow{2}{*}{99.0}&\textbf{Genome Coverage\%} &90.60\% &86.35\%&  &\\
 &\textbf{Duplication Ratio} &5.04&	 &&  \\   
 \hline
 \multirow{2}{*}{95.0}&\textbf{Genome Coverage\%} &95.85\% & &  &\\

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 JUN 2016 17:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 JUN 2016 23:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -578,7 +578,7 @@ Package pdftex.def Info: unaliged-hist.pdf used on input line 494.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (66.78537pt too wide) in paragraph at lines 551--609
+Overfull \hbox (159.8405pt too wide) in paragraph at lines 551--609
  [][] 
  []
 
@@ -642,7 +642,7 @@ ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl9.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on 2016-metag.pdf (12 pages, 206841 bytes).
+Output written on 2016-metag.pdf (12 pages, 206965 bytes).
 PDF statistics:
  381 PDF objects out of 1000 (max. 8388607)
  161 compressed objects within 2 object streams
