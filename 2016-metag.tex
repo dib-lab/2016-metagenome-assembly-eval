@@ -685,6 +685,9 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 \end{table}
 
 
+
+
+
 \begin{table}[h]
 \caption{More Coverage Analysis}
 \centering
@@ -738,7 +741,68 @@ The assembly represents the majority of the reads (90\%?) and the majority of th
 
 
 
- 
+\begin{table}[h]
+\caption{Mapping assembly to Reads: Unmapped Reads}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline
+\multicolumn{4}{|c|}{ \textbf{(1) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Paired ends} &1,375,436&1,650,015&2,481,486    \\   
+\hline
+\textbf{Orphan Reads }&273,943&279,632&313,468   \\   
+\hline
+\textbf{Total \%}&0.016\%&0.018\%&0.026\%   \\   
+\hline
+\multicolumn{4}{|c|}{ \textbf{(2) SPAdes} }   \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Paired ends} &2,006,905&2,397,503&2,972,792    \\   
+\hline
+\textbf{Orphan Reads }&284,370&290,669&320,037   \\   
+\hline
+\textbf{Total \%}&0.022\%&0.025\%&0.031\%   \\   
+\hline
+\multicolumn{4}{|c|}{ \textbf{(3) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Paired ends} &1,435,006&1,991,470&2,936,122    \\   
+\hline
+\textbf{Orphan Reads }&263,879&285,330&320,941   \\   
+\hline
+\textbf{Total \%}&0.016\%&0.021\%&0.030\%   \\   
+\hline
+\end{tabular}
+\label{table:reads-mapping}
+\end{table}
+
+
+\begin{table}[h]
+\caption{Mapping Unaligned Contigs To Quality Filtered Reads: Unmapped Reads}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf {Treatment/Quality Metric}& \textbf{Quality Filtering} & \textbf{Digital Normalization} & \textbf{Partition} \\ [0.5ex] % inserts table %heading
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) BEST HIT APPROACH}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Paired ends} &32,267,775& &     \\   
+\hline
+\textbf{Orphan Reads }&32,371,583& &    \\   
+\hline
+\textbf{Total \%}& \%& \%& \%   \\   
+\hline
+ \multicolumn{4}{|c|} {\textbf{(1) AMBIGUOUS  APPROACH}}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{Paired ends} &89,623,212& &     \\   
+\hline
+\textbf{Orphan Reads }&1,610,872& &    \\   
+\hline
+\textbf{Total \%}& \%& \%& \%   \\   
+\hline
+\end{tabular}
+\label{table:runalignedcontigs-mapping}
+\end{table}
 
 
 
