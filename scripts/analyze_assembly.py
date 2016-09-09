@@ -95,7 +95,7 @@ class GenomeIntervalsContainer(object):
     def load_overlaps(self, filename,  min_ident,  comparison =best_hit, min_length=100):
         covered = self.covered
         aligned = self.aligned 
-        
+	#print 'Comparison result is', comparison(1,1)   
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
                        
            if name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] ==0 :
@@ -116,7 +116,7 @@ class GenomeIntervalsContainer(object):
 		     self.overlaps_e2[name2] = e2
                      self.overlaps_genome[name2] = name1  
 		     self.overlaps_identity[name2] = ident
-        
+       		     self.contigs_overlaps[name2] +=1  
 
         for name2 in self.overlaps_s1  :
            name1 = self.overlaps_genome[name2]
@@ -172,6 +172,9 @@ class GenomeIntervalsContainer(object):
        partially_aligned_contigs = 0
        unaligned_contigs = 0
        partiall_aligned_contigs = 0
+       totally_aligned_length = 0
+       partiall_aligned_length = 0
+       unaligned_length = 0 
        for name in self.assemsizes:
             align = 0
             length = self.assemsizes[name]
@@ -180,20 +183,24 @@ class GenomeIntervalsContainer(object):
 		   align += 1 
             if align == length:
                 totally_aligned_contigs +=1
-                print >>ftotal, ">"+name
+	        totally_aligned_length += length 
+                print >>ftotal, ">"+name #, length 
 	 	print >>ftotal, self.sequences[name] 
             elif align == 0:
-                unaligned_contigs +=1  
-		print >>funaligned, ">"+name
-                print >>funaligned, self.sequences[name] 
+                unaligned_contigs +=1
+	        unaligned_length +=length  
+		print >>funaligned, ">"+name #, length 
+                print >>funaligned, self.sequences[name]
             else:
                 l = float (length - align) 
-                partiall_aligned_contigs +=1  
-		#print >>fpartial, ">"+name  #one possible way of printing 
-		#print >>fpartial, self.sequences[name], str(l) #one possible way of printing 
+                partiall_aligned_contigs +=1 
+                partiall_aligned_length +=align  
                 print >>fpartial, length, align, str(l) 		
                 unalign = length - align
                 unaligned[name] = unalign
+       print >>ftotal,  totally_aligned_length 
+       print >>fpartial, partiall_aligned_length
+       print >>funaligned, unaligned_length 
        return unaligned,  totally_aligned_contigs, partiall_aligned_contigs, unaligned_contigs 
 
     def calc_duplication_ratio(self): 
@@ -305,6 +312,19 @@ class GenomeIntervalsContainer(object):
            diff_cov+=count
         return diff_cov
 
+    def count_common_cov(self, other1, other2): 
+	#fout =open(outfile, 'w+')
+	common_cov =0 
+	for k in self.covered:  
+             n =">"+k 
+	     count = 0
+	     for j in xrange(0, len(self.covered[k])): 
+		if (self.covered[k][j] > 0 ) and (other1.covered[k][j] > 0) and (other2.covered[k][j] > 0) :
+		       count +=1 
+	        #print >>fout, n , count ,self.refsize[k] 
+	     common_cov +=count 
+	return common_cov 
+
 
     def distribution_alignment(self, s,  outfile): 
         dist = {}
@@ -401,7 +421,7 @@ def main():
     gic_b = GenomeIntervalsContainer(refsizes, b, bseq)
     gic_c = GenomeIntervalsContainer(refsizes, c, cseq) 
 
-    print args.ambiguity, args.besthit
+    print args.ambiguity, args.besthit, args.nooverlap
     if (args.ambiguity is True):
                 print '......Running ambigious analysis' 	
     		gic_a.load_coords(args.coords1, float(args.minident))
@@ -418,7 +438,8 @@ def main():
 	      gic_a.load_overlaps(args.coords1, float(args.minident), no_overlaps)
               gic_b.load_overlaps(args.coords2, float(args.minident), no_overlaps)
               gic_c.load_overlaps(args.coords3, float(args.minident), no_overlaps)
-
+   
+    
   
     #gic_a.analyze_regions(prefix1+".regions.all", prefix1+".regions.max")
     #gic_b.analyze_regions(prefix2+".regions.all", prefix2+".regions.max")
@@ -430,13 +451,13 @@ def main():
     b_total_bases = sum(gic_b.assemsizes.values())
     c_total_bases = sum(gic_c.assemsizes.values())
 
-    a_dist_align = prefix1 +'.align.dist' + args.minident  
-    b_dist_align = prefix2 +'.align.dist' + args.minident 
-    c_dist_align = prefix3 +'.align.dist' + args.minident
+    a_dist_align = prefix1 +'.align.dist' +args.treatment + args.minident  
+    b_dist_align = prefix2 +'.align.dist' +args.treatment + args.minident 
+    c_dist_align = prefix3 +'.align.dist' +args.treatment + args.minident
    
-    a_dist_cov = prefix1 +'.cov.dist' + args.minident 
-    b_dist_cov = prefix2 +'.cov.dist' + args.minident   
-    c_dist_cov = prefix3 +'.cov.dist' + args.minident   
+    a_dist_cov = prefix1 +'.cov.dist' +args.treatment + args.minident 
+    b_dist_cov = prefix2 +'.cov.dist' +args.treatment + args.minident   
+    c_dist_cov = prefix3 +'.cov.dist' +args.treatment + args.minident   
     
     gic_a.distribution_alignment(a_total_bases, a_dist_align)
     gic_b.distribution_alignment(b_total_bases, b_dist_align) 
@@ -553,18 +574,17 @@ def main():
     #------------------------------------
     common_uncovered_bases = args.treatment + '.' +'uncovered.bases' 
     common_uncovered_count = args.treatment + '.' + 'uncovered'
-    uncovoutfile1 = prefix1 + '.' + args.treatment + '.count.uncovered' 
-    uncovoutfile2 = prefix2 + '.' + args.treatment + '.count.uncovered'
     uncovoutfile3 = prefix3 + '.' + args.treatment + '.count.uncovered'
 
     covoutfile1 = prefix1 + '.' + args.treatment + '.count.covered'
     covoutfile2 = prefix2 + '.' + args.treatment + '.count.covered'
     covoutfile3 = prefix3 + '.' + args.treatment + '.count.covered'
-
+	
     unique_cov_a = gic_a.count_diff_cov(gic_b, gic_c, covoutfile1)
     unique_cov_b = gic_b.count_diff_cov(gic_a, gic_c, covoutfile2)
     unique_cov_c = gic_c.count_diff_cov(gic_b, gic_a, covoutfile3)
-
+    
+    common_covered = gic_a.count_common_cov(gic_b, gic_c)  
 
     print >>fout, "Bases that are covered by", prefix1, args.treatment, "only: ", unique_cov_a, "~", float(unique_cov_a)/ref_total_length *100, "%"
     print >>fout, "Bases that are covered by", prefix2, args.treatment, "only: ", unique_cov_b, "~", float(unique_cov_b)/ref_total_length *100, "%"
@@ -580,7 +600,9 @@ def main():
     print >>fout, "Bases that are uncovered by", prefix1, args.treatment, "only: ", unique_uncov_a, "~", float(unique_uncov_a)/ref_total_length *100, "%"
     print >>fout, "Bases that are uncovered by", prefix2, args.treatment, "only: ", unique_uncov_b, "~", float(unique_uncov_b)/ref_total_length *100, "%"
     print >>fout, "Bases that are uncovered by", prefix3, args.treatment, "only: ", unique_uncov_c, "~", float(unique_uncov_c)/ref_total_length *100, "%"
- 
 
+    print >>fout, "Common covered bases among",  prefix1, prefix2, prefix3 , "using", args.treatment, "is: ", common_covered  
+    
+ 
 if __name__ == '__main__':
     main()
