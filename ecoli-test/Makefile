@@ -1,5 +1,5 @@
-DATA = /mnt/research/ged/sherine/ecoli-test/
-CURRENT = /mnt/research/ged/sherine/ecoli-test/
+DATA = /mnt/research/ged/sherine/ecoli-test
+WORKDIR = /mnt/research/ged/sherine/ecoli-test
 NUCMER = contigs_reports/nucmer_output
 PREFIX = ecoli
 mc= 0 250 500 750 1000 2000
@@ -297,6 +297,27 @@ megahit-part-2:
         touch megahit-part-2
 finalize-megahit-partition:
 	python ${SANDBOX}/sandbox/multi-rename.py assembly megahit-partition-best*.fa > megahit-partition-assembly.fa
+
+#--------------------------------------------------------Run Nucmer----------------------------------------------------------------------
+run-nucmer:
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/ecoli-iqc  ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa 
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/ecoli-sqc  ${DATA}/mircea.fa ${WORKDIR}/spades-quality-assembly.fa        
+	${NUCMER}/nucmer --coords -p ${WORKDIR}/ecoli-mqc  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly.fa
+
+#--------------------------------------------------------Run Analysis--------------------------------------------------------------------
+run-analysis:  
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa \
+	${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/ecoli-iqc.coords ${WORKDIR}/ecoli-sqc.coords ${WORKDIR}/ecoli-mqc.coords \
+	QC.AMBIGIOUS.99 -a True 99
+        
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa \
+	${WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/ecoli-iqc.coords ${WORKDIR}/ecoli-sqc.coords ${WORKDIR}/ecoli-mqc.coords \
+	QC.BESTHIT.99 -b True 99 
+        
+	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly.fa ${WORKDIR}/spades-quality-assembly.fa \
+	$/{WORKDIR}/megahit-quality-assembly.fa ${WORKDIR}/ecoli-iqc.coords ${WORKDIR}/ecoli-sqc.coords ${WORKDIR}/ecoli-mqc.coords \
+	QC.NOOVERLAPS.99 -c True 99
+
 #-------------------------------------------------------------------QUAST------------------------------------------------------------------------------------
 quasting-2-ref: *-assembly.fa   ${DATA}/mircea.fa.gz 
 	python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o ${CURRENT}/velvet-quality-quast/ velvet-quality-assembly.fa
@@ -529,12 +550,6 @@ unaligned-idba-unaligned:
 	python ${QUAST}/quast.py -R idba-quality-unaligned.fa -o megahit-diginorm-unaligned/ megahit-diginorm-unaligned.fa 
 	python ${QUAST}/quast.py -R idba-quality-unaligned.fa -o megahit-partition-unaligned/ megahit-partition-unaligned.fa
 
-#----------------------------------------------------Trying Different min-contig in QUAST parameters --------------------------------------------------------
-change-min-contig:
-	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o vqc-conting-$(i)/ velvet-quality-assembly.fa --min-contig=$(i); ) 
-	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o iqc-conting-$(i)/ idba-quality-assembly.fa --min-contig=$(i); )  
-	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o sqc-conting-$(i)/ spades-quality-assembly.fa --min-contig=$(i); ) 
-	$(foreach i,$(mc),python ${QUAST}/quast.py -R ${DATA}/mircea.fa.gz -o mqc-conting-$(i)/ megahit-quality-assembly.fa --min-contig=$(i); )
  
 #------------------------------------------------------------Finding Chimeric Reads--------------------------------------------------------------------------
 chimeric:  ${DATA}/mircea.fa ${PREFIX}.se.qc.fq.gz ${PREFIX}.pe.qc.fq.gz
