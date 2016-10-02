@@ -32,6 +32,24 @@ def load_reference(filename):
     return d, s 
 
 
+def load_prokka(filename):
+    e = {} 	 
+    s = {}
+    genomes = {} 
+    tracks = {}
+    i = 0  
+    for line in open(filename): 
+	line =line.split(' ') 
+	genome = line[0]  
+	start = line[1] 
+	end = line[2] 
+        genomes[i] = genome 
+ 	s[i] = start 
+	e[i] = end 
+	tracks[genome+start+end] = 0 
+        i +=1 
+    return genomes, s, e , tracks  
+
 def load_assembly(assembly): 
     d = {}
     s = {}
@@ -95,7 +113,8 @@ class GenomeIntervalsContainer(object):
     def load_overlaps(self, filename,  min_ident,  comparison =best_hit, min_length=100):
         covered = self.covered
         aligned = self.aligned 
-        
+        counts = 0 
+	points = load_prokka('indeces.out')  
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
                        
            if name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] ==0 :
@@ -116,8 +135,8 @@ class GenomeIntervalsContainer(object):
 		     self.overlaps_e2[name2] = e2
                      self.overlaps_genome[name2] = name1  
 		     self.overlaps_identity[name2] = ident
-        
-
+        	     self.contigs_overlaps[name2] +=1 	
+		 
         for name2 in self.overlaps_s1  :
            name1 = self.overlaps_genome[name2]
             
@@ -134,12 +153,25 @@ class GenomeIntervalsContainer(object):
 			cov[i] += 1
                     for j in range(s2-1, e2):
 			align[j] +=1
+		 for i in range(0, len(points) ):
+			print name1, i 
+                        if name1 == i:
+                            s = int(points[i].split('.')[0])
+                            e = int(points[i].split('.')[1])
+                            print i , s, e
+                            if  s >=s1 and e <= e1:
+                                counts +=1
+                                break
 
+  
+        print 'Counts of genes found i cs: ', counts 
+    
     def load_coords(self, filename,  min_ident, min_length=100):
         covered = self.covered
         aligned = self.aligned
-
-        for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
+        counts = 0 
+	genomes, starts, ends, tracks   = load_prokka('indeces.out') 
+	for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
             if name1 in covered and name2 in aligned:
                 cov = covered[name1]
                 align = aligned[name2]
@@ -149,8 +181,25 @@ class GenomeIntervalsContainer(object):
                         cov[i] += 1
                     for j in range(s2-1, e2):
                         align[j] +=1
-
-                
+		for i in range(0, len(genomes)) :
+			if genomes[i] == name1: 
+			   #print genomes[i], starts[i], ends[i]  			   
+			   s = int(starts[i])
+			   e = int(ends[i]) 	    
+			   if  s >=s1 and e <= e1:
+                                counts +=1
+				tracks[genomes[i] + starts[i] +ends[i] ]+=1  
+			#	break 
+			   elif s1 >=s and e1 <= e: 
+				counts +=1 
+			        tracks[genomes[i] + starts[i] +ends[i] ] +=1 
+			#	break
+	c = 0 
+	for i in tracks: 
+		if tracks[i] >0: 
+			c +=1    
+        print 'Counts of genes found is:' , counts , c
+  
     def calc_uncov(self):
         uncov_d = {}
         for name in self.refsizes:
@@ -393,10 +442,11 @@ def main():
     b, bseq = load_assembly(args.assem2) 
     c, cseq = load_assembly(args.assem3) 
     
+
     #------------------------------------------------------------------------------------------------------------------------------
     #Building Containers 
     #---------------------
- 
+      
     gic_a = GenomeIntervalsContainer(refsizes, a, aseq)
     gic_b = GenomeIntervalsContainer(refsizes, b, bseq)
     gic_c = GenomeIntervalsContainer(refsizes, c, cseq) 
@@ -407,7 +457,7 @@ def main():
     		gic_a.load_coords(args.coords1, float(args.minident))
     	        gic_b.load_coords(args.coords2, float(args.minident)) 
     		gic_c.load_coords(args.coords3, float(args.minident))
-
+    """ 
     elif (args.besthit is True): 
                print '.....Running best hit analysis'
                gic_a.load_overlaps(args.coords1, float(args.minident))
@@ -581,6 +631,6 @@ def main():
     print >>fout, "Bases that are uncovered by", prefix2, args.treatment, "only: ", unique_uncov_b, "~", float(unique_uncov_b)/ref_total_length *100, "%"
     print >>fout, "Bases that are uncovered by", prefix3, args.treatment, "only: ", unique_uncov_c, "~", float(unique_uncov_c)/ref_total_length *100, "%"
  
-
+    """ 
 if __name__ == '__main__':
     main()
