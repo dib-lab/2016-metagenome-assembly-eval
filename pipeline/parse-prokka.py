@@ -31,7 +31,7 @@ def load_tbl(filename, outfile):
 
 def main():
 
-   load_tbl('testasm.tbl','test.out') 
+   load_tbl('testasm.tbl','indeces.out') 
 
 
 
