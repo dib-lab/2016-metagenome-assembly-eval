@@ -113,8 +113,8 @@ class GenomeIntervalsContainer(object):
     def load_overlaps(self, filename,  min_ident,  comparison =best_hit, min_length=100):
         covered = self.covered
         aligned = self.aligned 
-        counts = 0 
-	points = load_prokka('indeces.out')  
+        counts = 0
+	genomes, starts, ends, tracks   = load_prokka('indeces.out')
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
                        
            if name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] ==0 :
@@ -153,18 +153,24 @@ class GenomeIntervalsContainer(object):
 			cov[i] += 1
                     for j in range(s2-1, e2):
 			align[j] +=1
-		 for i in range(0, len(points) ):
-			print name1, i 
-                        if name1 == i:
-                            s = int(points[i].split('.')[0])
-                            e = int(points[i].split('.')[1])
-                            print i , s, e
-                            if  s >=s1 and e <= e1:
+ 		    for i in range(0, len(genomes)) :
+                        if genomes[i] == name1:
+                           #print genomes[i], starts[i], ends[i]                           
+                           s = int(starts[i])
+                           e = int(ends[i])
+                           if  s >=s1 and e <= e1:
                                 counts +=1
-                                break
-
-  
-        print 'Counts of genes found i cs: ', counts 
+                                tracks[genomes[i] + starts[i] +ends[i] ]+=1
+                        #       break 
+                           elif s1 >=s and e1 <= e:
+                                counts +=1
+                                tracks[genomes[i] + starts[i] +ends[i] ] +=1
+                        #       break
+        c = 0
+        for i in tracks:
+                if tracks[i] >0:
+                        c +=1
+        print 'Counts of genes found is:' , counts , c 
     
     def load_coords(self, filename,  min_ident, min_length=100):
         covered = self.covered
@@ -457,12 +463,13 @@ def main():
     		gic_a.load_coords(args.coords1, float(args.minident))
     	        gic_b.load_coords(args.coords2, float(args.minident)) 
     		gic_c.load_coords(args.coords3, float(args.minident))
-    """ 
+     
     elif (args.besthit is True): 
                print '.....Running best hit analysis'
                gic_a.load_overlaps(args.coords1, float(args.minident))
                gic_b.load_overlaps(args.coords2, float(args.minident))
                gic_c.load_overlaps(args.coords3, float(args.minident))
+     
     elif (args.nooverlap is True):
 	      print '.... Running no overlaps analysis'  
 	      gic_a.load_overlaps(args.coords1, float(args.minident), no_overlaps)
@@ -631,6 +638,6 @@ def main():
     print >>fout, "Bases that are uncovered by", prefix2, args.treatment, "only: ", unique_uncov_b, "~", float(unique_uncov_b)/ref_total_length *100, "%"
     print >>fout, "Bases that are uncovered by", prefix3, args.treatment, "only: ", unique_uncov_c, "~", float(unique_uncov_c)/ref_total_length *100, "%"
  
-    """ 
+     
 if __name__ == '__main__':
     main()
