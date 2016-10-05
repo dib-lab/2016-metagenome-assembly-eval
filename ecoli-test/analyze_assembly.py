@@ -116,7 +116,7 @@ class GenomeIntervalsContainer(object):
 		     self.overlaps_e2[name2] = e2
                      self.overlaps_genome[name2] = name1  
 		     self.overlaps_identity[name2] = ident
-        
+       		     self.contigs_overlaps[name2] += 1 
 
         for name2 in self.overlaps_s1  :
            name1 = self.overlaps_genome[name2]
