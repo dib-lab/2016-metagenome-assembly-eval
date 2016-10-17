@@ -110,11 +110,11 @@ class GenomeIntervalsContainer(object):
       
            
    
-    def load_overlaps(self, filename,  min_ident,  comparison =best_hit, min_length=100):
+    def load_overlaps(self, filename,  min_ident, prokkafile, comparison =best_hit, min_length=100):
         covered = self.covered
         aligned = self.aligned 
         counts = 0
-	genomes, starts, ends, tracks   = load_prokka('indeces.out')
+	genomes, starts, ends, tracks   = load_prokka(prokkafile)
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
                        
            if name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] ==0 :
@@ -155,17 +155,14 @@ class GenomeIntervalsContainer(object):
 			align[j] +=1
  		    for i in range(0, len(genomes)) :
                         if genomes[i] == name1:
-                           #print genomes[i], starts[i], ends[i]                           
                            s = int(starts[i])
                            e = int(ends[i])
                            if  s >=s1 and e <= e1:
                                 counts +=1
                                 tracks[genomes[i] + starts[i] +ends[i] ]+=1
-                        #       break 
                            elif s1 >=s and e1 <= e:
                                 counts +=1
                                 tracks[genomes[i] + starts[i] +ends[i] ] +=1
-                        #       break
         c = 0
         for i in tracks:
                 if tracks[i] >0:
@@ -176,7 +173,7 @@ class GenomeIntervalsContainer(object):
         covered = self.covered
         aligned = self.aligned
         counts = 0 
-	genomes, starts, ends, tracks   = load_prokka('indeces.out') 
+	genomes, starts, ends, tracks   = load_prokka(prokkafile) 
 	for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
             if name1 in covered and name2 in aligned:
                 cov = covered[name1]
@@ -189,17 +186,14 @@ class GenomeIntervalsContainer(object):
                         align[j] +=1
 		for i in range(0, len(genomes)) :
 			if genomes[i] == name1: 
-			   #print genomes[i], starts[i], ends[i]  			   
 			   s = int(starts[i])
 			   e = int(ends[i]) 	    
 			   if  s >=s1 and e <= e1:
                                 counts +=1
 				tracks[genomes[i] + starts[i] +ends[i] ]+=1  
-			#	break 
 			   elif s1 >=s and e1 <= e: 
 				counts +=1 
 			        tracks[genomes[i] + starts[i] +ends[i] ] +=1 
-			#	break
 	c = 0 
 	for i in tracks: 
 		if tracks[i] >0: 
@@ -415,8 +409,6 @@ class GenomeIntervalsContainer(object):
 				x += 1
                      if self.covered[i][j] > 0:     
                                 y += 1
-                #print len(self.regions[i]), len(self.covered[i]), x, y, max, id
-                  
                 print >>fmax, i, id, max  
         fall.close() 
 
@@ -431,6 +423,7 @@ def main():
     parser.add_argument('coords3')
     parser.add_argument('treatment')
     parser.add_argument('minident')
+    parser.add_argument('prokkafile')
     parser.add_argument('-a', '--ambiguity', dest='ambiguity', type=bool, default=False) 
     parser.add_argument('-b', '--best-hit', dest='besthit', type=bool, default=False)
     parser.add_argument('-c', '--nooverlap', dest='nooverlap', type=bool, default= False) 
@@ -460,15 +453,15 @@ def main():
     print args.ambiguity, args.besthit
     if (args.ambiguity is True):
                 print '......Running ambigious analysis' 	
-    		gic_a.load_coords(args.coords1, float(args.minident))
-    	        gic_b.load_coords(args.coords2, float(args.minident)) 
-    		gic_c.load_coords(args.coords3, float(args.minident))
+    		gic_a.load_coords(args.coords1, float(args.minident), prokkafile)
+    	        gic_b.load_coords(args.coords2, float(args.minident), prokkafile) 
+    		gic_c.load_coords(args.coords3, float(args.minident), prokkafile)
      
     elif (args.besthit is True): 
                print '.....Running best hit analysis'
-               gic_a.load_overlaps(args.coords1, float(args.minident))
-               gic_b.load_overlaps(args.coords2, float(args.minident))
-               gic_c.load_overlaps(args.coords3, float(args.minident))
+               gic_a.load_overlaps(args.coords1, float(args.minident),prokkafile)
+               gic_b.load_overlaps(args.coords2, float(args.minident),prokkafile)
+               gic_c.load_overlaps(args.coords3, float(args.minident),prokkafile)
      
     elif (args.nooverlap is True):
 	      print '.... Running no overlaps analysis'  
