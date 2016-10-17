@@ -423,7 +423,7 @@ run-nucmer:
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc3000 ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly3000.fa
 
 
-run--prokka: 
+run-prokka: 
 	${PROKKA}/prokka ${DATA}/mircea.fa --outdir metag --prefix testasm --metagenome 
 	python ${MYSCRIPTS}/parse-prokka.py ${WORKDIR}/testasm.tbl ${WORKDIR}/indeces.out 
 

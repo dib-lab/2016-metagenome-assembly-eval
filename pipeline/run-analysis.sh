@@ -8,7 +8,7 @@
 cd /mnt/research/ged/sherine/run
 
 
-
+make run-prokka 
 make run-analysis 
 
 
