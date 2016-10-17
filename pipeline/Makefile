@@ -420,32 +420,34 @@ run-nucmer:
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc1000  ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly1000.fa
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc2000 ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly2000.fa
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc3000 ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly3000.fa
+
+
 	
 
 run-analysis:
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly500.fa \
 	${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/iqc500.coords ${WORKDIR}/sqc500.coords ${WORKDIR}/mqc500.coords \
-	QC.AMBIGIOUS500.99 -a True 99
+	QC.AMBIGIOUS500.99 -a True 99 ${WORKDIR}/indeces.out 
 	
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly500.fa \
 	${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/iqc500.coords ${WORKDIR}/sqc500.coords ${WORKDIR}/mqc500.coords \
-	QC.BESTHIT500.99 -b True 99 
+	QC.BESTHIT500.99 -b True 99 ${WORKDIR}/indeces.out  
 	
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly500.fa \
         ${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/iqc500.coords ${WORKDIR}/sqc500.coords ${WORKDIR}/mqc500.coords \
-        QC.NOOVERLAPS500.99 -c True 99
+        QC.NOOVERLAPS500.99 -c True 99 ${WORKDIR}/indeces.out 
 	
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly500.fa \
 	${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/iqc500.coords ${WORKDIR}/sqc500.coords ${WORKDIR}/mqc500.coords \
-	QC.AMBIGIOUS500.95 -a True 95
+	QC.AMBIGIOUS500.95 -a True 95 ${WORKDIR}/indeces.out 
 	
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly500.fa \
 	${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/iqc500.coords ${WORKDIR}/sqc500.coords ${WORKDIR}/mqc500.coords \
-	QC.BESTHIT500.95 -b True 95
+	QC.BESTHIT500.95 -b True 95 ${WORKDIR}/indeces.out 
 	
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly500.fa \
 	${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/iqc500.coords ${WORKDIR}/sqc500.coords ${WORKDIR}/mqc500.coords \
-	QC.NOOVERLAPS500.95 -c True 95
+	QC.NOOVERLAPS500.95 -c True 95 ${WORKDIR}/indeces.out 
     	
 #---------------------------------------------------------------Cleaning ------------------------------------------------------------------------------------	
 clean: *.list *.list.unique

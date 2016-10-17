@@ -30,8 +30,11 @@ def load_tbl(filename, outfile):
 			        print>>fp, name, start, end
 
 def main():
-
-   load_tbl('testasm.tbl','indeces.out') 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('testasm')
+    parser.add_argument('outfile')
+    args = parser.parse_args() 
+    load_tbl(args.testasm ,args.outfile) 
 
 
 
