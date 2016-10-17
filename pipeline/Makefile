@@ -3,6 +3,7 @@ WORKDIR = /mnt/research/ged/sherine/run
 MYSCRIPTS = /mnt/home/mahmoud4/scripts
 NUCMER = contigs_reports/nucmer_output
 PREFIX = SRR606249
+PROKKA = /mnt/prokka-1.7/bin
 MEGAHIT=/mnt/home/mahmoud4/megahit
 TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin/
@@ -422,9 +423,11 @@ run-nucmer:
 	${NUCMER}/nucmer --coords -p ${WORKDIR}/sqc3000 ${DATA}/mircea.fa ${WORKDIR}/megahit-quality-assembly3000.fa
 
 
-	
+run--prokka: 
+	${PROKKA}/prokka ${DATA}/mircea.fa --outdir metag --prefix testasm --metagenome 
+	python ${MYSCRIPTS}/parse-prokka.py ${WORKDIR}/testasm.tbl ${WORKDIR}/indeces.out 
 
-run-analysis:
+run-analysis: ${WORKDIR}/indeces.out 
 	python ${MYSCRIPTS}/analyze_assembly.py ${DATA}/mircea.fa ${WORKDIR}/idba-quality-assembly500.fa ${WORKDIR}/spades-quality-assembly500.fa \
 	${WORKDIR}/megahit-quality-assembly500.fa ${WORKDIR}/iqc500.coords ${WORKDIR}/sqc500.coords ${WORKDIR}/mqc500.coords \
 	QC.AMBIGIOUS500.99 -a True 99 ${WORKDIR}/indeces.out 
