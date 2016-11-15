@@ -32,6 +32,24 @@ def load_reference(filename):
     return d, s 
 
 
+def load_prokka(filename):
+    e = {} 	 
+    s = {}
+    genomes = {} 
+    tracks = {}
+    i = 0  
+    for line in open(filename): 
+	line =line.split(' ') 
+	genome = line[0]  
+	start = line[1] 
+	end = line[2] 
+        genomes[i] = genome 
+ 	s[i] = start 
+	e[i] = end 
+	tracks[genome+start+end] = 0 
+        i +=1 
+    return genomes, s, e , tracks  
+
 def load_assembly(assembly): 
     d = {}
     s = {}
@@ -92,10 +110,11 @@ class GenomeIntervalsContainer(object):
       
            
    
-    def load_overlaps(self, filename,  min_ident,  comparison =best_hit, min_length=100):
+    def load_overlaps(self, filename,  min_ident, prokkafile, comparison =best_hit, min_length=100):
         covered = self.covered
         aligned = self.aligned 
-        
+        counts = 0
+	genomes, starts, ends, tracks   = load_prokka(prokkafile)
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
                        
            if name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] ==0 :
@@ -116,8 +135,8 @@ class GenomeIntervalsContainer(object):
 		     self.overlaps_e2[name2] = e2
                      self.overlaps_genome[name2] = name1  
 		     self.overlaps_identity[name2] = ident
-       		     self.contigs_overlaps[name2] +=1  
-
+        	     self.contigs_overlaps[name2] +=1 	
+		 
         for name2 in self.overlaps_s1  :
            name1 = self.overlaps_genome[name2]
             
@@ -134,12 +153,28 @@ class GenomeIntervalsContainer(object):
 			cov[i] += 1
                     for j in range(s2-1, e2):
 			align[j] +=1
-
+ 		    for i in range(0, len(genomes)) :
+                        if genomes[i] == name1:
+                           s = int(starts[i])
+                           e = int(ends[i])
+                           if  s >=s1 and e <= e1:
+                                counts +=1
+                                tracks[genomes[i] + starts[i] +ends[i] ]+=1
+                           elif s1 >=s and e1 <= e:
+                                counts +=1
+                                tracks[genomes[i] + starts[i] +ends[i] ] +=1
+        c = 0
+        for i in tracks:
+                if tracks[i] >0:
+                        c +=1
+        print 'Counts of genes found is:' , counts , c 
+    
     def load_coords(self, filename,  min_ident, min_length=100):
         covered = self.covered
         aligned = self.aligned
-
-        for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
+        counts = 0 
+	genomes, starts, ends, tracks   = load_prokka(prokkafile) 
+	for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
             if name1 in covered and name2 in aligned:
                 cov = covered[name1]
                 align = aligned[name2]
@@ -149,8 +184,22 @@ class GenomeIntervalsContainer(object):
                         cov[i] += 1
                     for j in range(s2-1, e2):
                         align[j] +=1
-
-                
+		for i in range(0, len(genomes)) :
+			if genomes[i] == name1: 
+			   s = int(starts[i])
+			   e = int(ends[i]) 	    
+			   if  s >=s1 and e <= e1:
+                                counts +=1
+				tracks[genomes[i] + starts[i] +ends[i] ]+=1  
+			   elif s1 >=s and e1 <= e: 
+				counts +=1 
+			        tracks[genomes[i] + starts[i] +ends[i] ] +=1 
+	c = 0 
+	for i in tracks: 
+		if tracks[i] >0: 
+			c +=1    
+        print 'Counts of genes found is:' , counts , c
+  
     def calc_uncov(self):
         uncov_d = {}
         for name in self.refsizes:
@@ -172,9 +221,6 @@ class GenomeIntervalsContainer(object):
        partially_aligned_contigs = 0
        unaligned_contigs = 0
        partiall_aligned_contigs = 0
-       align_total_bases = 0 
-       palign_total_bases = 0
-       unalign_total_bases = 0 
        for name in self.assemsizes:
             align = 0
             length = self.assemsizes[name]
@@ -182,27 +228,21 @@ class GenomeIntervalsContainer(object):
 		if i > 0: 
 		   align += 1 
             if align == length:
-		align_total_bases +=length 
                 totally_aligned_contigs +=1
                 print >>ftotal, ">"+name
-	 	print >>ftotal, self.sequences[name]
+	 	print >>ftotal, self.sequences[name] 
             elif align == 0:
-		unalign_total_bases +=length 
                 unaligned_contigs +=1  
 		print >>funaligned, ">"+name
                 print >>funaligned, self.sequences[name] 
-	    else:
+            else:
                 l = float (length - align) 
-                partiall_aligned_contigs +=1
-		palign_total_bases += align  
+                partiall_aligned_contigs +=1  
 		#print >>fpartial, ">"+name  #one possible way of printing 
 		#print >>fpartial, self.sequences[name], str(l) #one possible way of printing 
                 print >>fpartial, length, align, str(l) 		
                 unalign = length - align
                 unaligned[name] = unalign
-       print >>ftotal, align_total_bases 
-       print >>fpartial, palign_total_bases 
-       print >>funaligned, unalign_total_bases 
        return unaligned,  totally_aligned_contigs, partiall_aligned_contigs, unaligned_contigs 
 
     def calc_duplication_ratio(self): 
@@ -369,8 +409,6 @@ class GenomeIntervalsContainer(object):
 				x += 1
                      if self.covered[i][j] > 0:     
                                 y += 1
-                #print len(self.regions[i]), len(self.covered[i]), x, y, max, id
-                  
                 print >>fmax, i, id, max  
         fall.close() 
 
@@ -385,6 +423,7 @@ def main():
     parser.add_argument('coords3')
     parser.add_argument('treatment')
     parser.add_argument('minident')
+    parser.add_argument('prokkafile')
     parser.add_argument('-a', '--ambiguity', dest='ambiguity', type=bool, default=False) 
     parser.add_argument('-b', '--best-hit', dest='besthit', type=bool, default=False)
     parser.add_argument('-c', '--nooverlap', dest='nooverlap', type=bool, default= False) 
@@ -402,10 +441,11 @@ def main():
     b, bseq = load_assembly(args.assem2) 
     c, cseq = load_assembly(args.assem3) 
     
+
     #------------------------------------------------------------------------------------------------------------------------------
     #Building Containers 
     #---------------------
- 
+      
     gic_a = GenomeIntervalsContainer(refsizes, a, aseq)
     gic_b = GenomeIntervalsContainer(refsizes, b, bseq)
     gic_c = GenomeIntervalsContainer(refsizes, c, cseq) 
@@ -413,15 +453,16 @@ def main():
     print args.ambiguity, args.besthit
     if (args.ambiguity is True):
                 print '......Running ambigious analysis' 	
-    		gic_a.load_coords(args.coords1, float(args.minident))
-    	        gic_b.load_coords(args.coords2, float(args.minident)) 
-    		gic_c.load_coords(args.coords3, float(args.minident))
-
+    		gic_a.load_coords(args.coords1, float(args.minident), prokkafile)
+    	        gic_b.load_coords(args.coords2, float(args.minident), prokkafile) 
+    		gic_c.load_coords(args.coords3, float(args.minident), prokkafile)
+     
     elif (args.besthit is True): 
                print '.....Running best hit analysis'
-               gic_a.load_overlaps(args.coords1, float(args.minident))
-               gic_b.load_overlaps(args.coords2, float(args.minident))
-               gic_c.load_overlaps(args.coords3, float(args.minident))
+               gic_a.load_overlaps(args.coords1, float(args.minident),prokkafile)
+               gic_b.load_overlaps(args.coords2, float(args.minident),prokkafile)
+               gic_c.load_overlaps(args.coords3, float(args.minident),prokkafile)
+     
     elif (args.nooverlap is True):
 	      print '.... Running no overlaps analysis'  
 	      gic_a.load_overlaps(args.coords1, float(args.minident), no_overlaps)
@@ -590,6 +631,6 @@ def main():
     print >>fout, "Bases that are uncovered by", prefix2, args.treatment, "only: ", unique_uncov_b, "~", float(unique_uncov_b)/ref_total_length *100, "%"
     print >>fout, "Bases that are uncovered by", prefix3, args.treatment, "only: ", unique_uncov_c, "~", float(unique_uncov_c)/ref_total_length *100, "%"
  
-
+     
 if __name__ == '__main__':
     main()
