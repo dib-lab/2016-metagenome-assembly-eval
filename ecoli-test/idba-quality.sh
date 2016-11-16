@@ -12,8 +12,8 @@ module load khmer
 module swap GNU GNU/4.4.5
 module load IDBAUD
 
-#make idba-quality-1 
-#make idba-quality-2 
+make idba-quality-1 
+make idba-quality-2 
 make finalize-idba-quality
 
 
