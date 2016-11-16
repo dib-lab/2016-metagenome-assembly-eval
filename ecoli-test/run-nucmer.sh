@@ -8,9 +8,9 @@
 cd /mnt/research/ged/sherine/run
 
 
-make idba-quality-mincontig
-make spades-quality-mincontig
-make megahit-quality-mincontig
+#make idba-quality-mincontig
+#make spades-quality-mincontig
+#make megahit-quality-mincontig
 make run-nucmer 
 
 
