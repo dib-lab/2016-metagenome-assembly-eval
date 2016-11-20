@@ -5,15 +5,13 @@
 #PBS -N megahitQC5
 
 
-cd /mnt/research/ged/sherine/sampling/five/
+cd /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/
 
 module swap GNU GNU/4.8.2
 module load khmer
 
-make megahit-qc-1
 
-make finalize-megahit-quality
-
+make megahit-quality
 
 
 

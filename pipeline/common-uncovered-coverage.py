@@ -74,8 +74,9 @@ def main():
 		else:
 		       count5plus +=1 
    	else: 
-	     print >>fp, name  
-    print >>fp, count5, count5plus
+	     print >>fp, name 
+    print >>fp, "coverage less than 5, coverage greater than/equal 5:" 
+    print >>fp,  count5, count5plus
  
     #for itr in range(0,50): 
     	#print 'Total bases with coverage less than ',itr, 'is',  count[itr], 'out of', c  
