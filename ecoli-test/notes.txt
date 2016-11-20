@@ -1,0 +1,26 @@
+
+1. pipeline folder is run on a sample 5 percent of podar data, as small as ecoli
+
+2. multi-rename.py in new khmer seems endless, I ran it from old khmer 
+
+3. In IDBA on ecoli, it doesn't for scaffolds, I ran it on contig.fa instead of scaffold.fa, along with an error in the end. The result is in similar size of spades and megahit. The same problem we had with old khmer, noted in one of the ecoli pipeline email.
+
+4. The problem in point 2 doesn't happen with podar sample5per. So I ran podar
+and IDBA on the scaffold not contig. 
+
+5. When idba fails to load, many other things fail on HPC at the same time.
+So, I don't think its an IDBA problem. The same reason I did not tell you
+before. 
+
+6. Please notice module change in pre-idba-quality.sh and idba-quality.sh, idba and khmer don't load with same GNU
+
+7. Please compare idba-quality.log in ecoli-test and in pipeline. You can see
+how the idba behave different on both.   
+
+8. Please take a look into the different in out of *.dist between ecoli and
+sample podar. Also please compare ecoli.qc.coverage to sample5per.qc.coverage
+where they are the result of the same python script. 
+
+
+
+

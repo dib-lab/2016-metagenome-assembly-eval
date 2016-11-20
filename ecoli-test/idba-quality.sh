@@ -4,17 +4,17 @@
 #PBS -l mem=75GB
 #PBS -N idbaQC5
 
-cd /mnt/research/ged/sherine/ecoli-test/
 
-#module swap GNU GNU/4.8.2
-module load khmer
+cd /mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/
+
 
 module swap GNU GNU/4.4.5
 module load IDBAUD
 
-make idba-quality-1 
-make idba-quality-2 
-make finalize-idba-quality
+make ecoli.idba.d.qc/contig.fa 
+
+
+make idba-quality-assembly.fa 
 
 
 
