@@ -4,7 +4,7 @@
 #PBS -l mem=100GB
 #PBS -N analysis
 
-cd /mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/ 
+cd /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/ 
 
 module load bwa
 module load samtools
@@ -19,7 +19,4 @@ make countunmapped
 make unalignedcoverage
 make common-uncovered-coverage.out
 make mqc500.dist
-
-
-
 
