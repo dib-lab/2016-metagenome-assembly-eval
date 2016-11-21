@@ -133,3 +133,20 @@ Counting graph from qc.counts.kh
 K: 20
 outputting to sqc500.dist
 preparing hist...
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist 
+
+|| This is the script abundance-dist.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Counting graph from qc.counts.kh
+K: 20
+outputting to mqc500.dist
+preparing hist...

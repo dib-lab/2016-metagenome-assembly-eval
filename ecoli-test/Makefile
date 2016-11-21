@@ -419,7 +419,7 @@ mqc500.dist: ecoli.pe.qc.fq.gz megahit-quality-assembly500.fa
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist 
-
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist 
 #------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
 #This is an ignored part 
 chimeric:  ${REFERENCE} ecoli.pe.qc.fq.gz
