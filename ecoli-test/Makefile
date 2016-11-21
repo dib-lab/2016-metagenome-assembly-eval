@@ -90,13 +90,15 @@ idba-quality-assembly.fa: ecoli.idba.d.qc/contig.fa
 	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.idba.d.qc/contig.fa -o idba-quality-best.fa 
 	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-quality-best.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
-megahit.qc.pe/final.contigs.fa: ecoli.pe.qc.fq.gz.pe  
+megahit.qc.pe/final.contigs.fa: ecoli.pe.qc.fq.gz  
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.pe.qc.fq.gz -o megahit.qc.pe 
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.se.qc.fq.gz -o megahit.qc.se
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
-	cat megahit.qc.pe/final.contigs.fa megahit.qc.se/final.contigs.fa > megahit-quality-assembly.fa
+	#cat megahit.qc.pe/final.contigs.fa megahit.qc.se/final.contigs.fa > megahit-quality-assembly.fa
+	python ${SANDBOX}/sandbox/calc-best-assembly.py megahit.qc.*e/final.contigs.fa -o megahit-quality-best.fa
+	python ${OLDKHMER}/sandbox/multi-rename.py assembly megahit-quality-best.fa > megahit-quality-assembly.fa	 
 #----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
-ecoli.ignore.long: ecoli.pe.qc.fq.gz.pe
+ecoli.ignore.long: ecoli.pe.qc.fq.gz
 	extract-long-sequences.py -l 20 ecoli.pe.qc.fq.gz -o ecoli.ignore.long
 
 ecoli.ignore.long.pe: 
@@ -104,7 +106,7 @@ ecoli.ignore.long.pe:
 	mv ecoli.pe.qc.fq.gz ecoli.old
 	gzip -c ecoli.ignore.long.pe > ecoli.pe.qc.fq.gz
 
-normC20k20.kh:ecoli.pe.qc.fq.gz.pe
+normC20k20.kh:ecoli.pe.qc.fq.gz
 	normalize-by-median.py -p -k 20 -C 20 -N 4 -x 1e9 --savegraph normC20k20.kh ecoli.pe.qc.fq.gz
 	normalize-by-median.py -C 20 --loadgraph normC20k20.kh --savegraph normC20k20.kh ecoli.se.qc.fq.gz
 
@@ -234,7 +236,7 @@ assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
 	
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
-qc-ref.sam: ${REFERENCE} ecoli.pe.qc.fq.gz.pe
+qc-ref.sam: ${REFERENCE} ecoli.pe.qc.fq.gz
 	bwa index  ${REFERENCE} 
 	bwa aln  ${REFERENCE}  ecoli.pe.qc.fq.gz   >  qc-ref.pe.sai 
 	bwa aln  ${REFERENCE}  ecoli.se.qc.fq.gz   >  qc-ref.se.sai
@@ -256,7 +258,7 @@ ecoli.qc.coverage: qc-ref.sam
 	python ${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  ecoli.qc.coverage 
 
 #-------------------------------------------------------------READ INCORPORATION---------------------------------------------
-iq-unmapped.count:  ecoli.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
+iq-unmapped.count:  ecoli.pe.qc.fq.gz  megahit-quality-assembly500.fa
 	bwa index  idba-quality-assembly500.fa 
 	bwa aln  idba-quality-assembly500.fa  ecoli.pe.qc.fq.gz   >  iq.pe.sai 
 	bwa aln  idba-quality-assembly500.fa  ecoli.se.qc.fq.gz   >  iq.se.sai 
@@ -271,7 +273,7 @@ iq-unmapped.count:  ecoli.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
 	samtools view -c -f 4  iq.pe.bam >  iq-unmapped.count
 	samtools view -c -f 4  iq.se.bam >>  iq-unmapped.count 
 
-sq-unmapped.count: ecoli.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
+sq-unmapped.count: ecoli.pe.qc.fq.gz  megahit-quality-assembly500.fa
 	bwa index  spades-quality-assembly500.fa 
 	bwa aln  spades-quality-assembly500.fa  ecoli.pe.qc.fq.gz   >  sq.pe.sai 
 	bwa aln  spades-quality-assembly500.fa  ecoli.se.qc.fq.gz   >  sq.se.sai 
@@ -283,7 +285,7 @@ sq-unmapped.count: ecoli.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
 	samtools view -c -f 4  sq.pe.bam >  sq-unmapped.count
 	samtools view -c -f 4  sq.se.bam >>  sq-unmapped.count
 
-mq-unmapped.count: ecoli.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
+mq-unmapped.count: ecoli.pe.qc.fq.gz megahit-quality-assembly500.fa
 	bwa index  megahit-quality-assembly500.fa 
 	bwa aln  megahit-quality-assembly500.fa  ecoli.pe.qc.fq.gz   >  mq.pe.sai 	
 	bwa aln  megahit-quality-assembly500.fa  ecoli.se.qc.fq.gz   >  mq.se.sai 
@@ -402,11 +404,11 @@ mqc.unmapped.out: mqc.AM99.unmapped.sam
 #awk '{sum += $2} END {print sum}' backup/all.unmapped.coverage 
 
 #-----------------------------------------------------Common Uncovered Coverage-----------------------------------------------------------------------------
-common-uncovered-coverage.out: qc-ref.sam  assemblies.stats.QC.AMBIGUOUS.99 qc-ref.sam
+common-uncovered-coverage.out: qc-ref.sam  assemblies.stats.QC.AMBIGUOUS.99
 	python ${MYSCRIPTS}/common-uncovered-coverage.py ${REFERENCE} qc-ref.sam QC.AMBIGUOUS.99.uncovered.bases common-uncovered-coverage.out 
 
 #------------------------------------------------------------Kmer Abundance---------------------------------------------------------------------------------
-mqc500.dist: ecoli.pe.qc.fq.gz.pe megahit-quality-assembly500.fa
+mqc500.dist: ecoli.pe.qc.fq.gz megahit-quality-assembly500.fa
 	gunzip -c ecoli.pe.qc.fq.gz > ecoli.pe.qc.fastq 
 	gunzip -c ecoli.se.qc.fq.gz > ecoli.se.qc.fastq  
 	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh ecoli.pe.qc.fastq ecoli.se.qc.fastq 
@@ -420,7 +422,7 @@ mqc500.dist: ecoli.pe.qc.fq.gz.pe megahit-quality-assembly500.fa
 
 #------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
 #This is an ignored part 
-chimeric:  ${REFERENCE} ecoli.pe.qc.fq.gz.pe
+chimeric:  ${REFERENCE} ecoli.pe.qc.fq.gz
 	bwa index ${REFERENCE} 
 	bwa mem -M -t 16 ${REFERENCE} ecoli.se.qc.fq.gz  > ecoli-se.sam
 	bwa mem -M -t 16 ${REFERENCE} ecoli.pe.qc.fq.gz  > ecoli-pe.sam

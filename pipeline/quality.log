@@ -1,0 +1,123 @@
+
+Due to MODULEPATH changes the following have been reloaded:
+  1) TBB/4.1.0
+
+The following have been reloaded with a version change:
+  1) Boost/1.47.0 => Boost/1.55.0     3) OpenMPI/1.4.3 => OpenMPI/1.6.5
+  2) GNU/4.4.5 => GNU/4.8.2           4) R/2.15.1 => R/3.1.0
+
+
+To run Trimmomatic use 'java -jar $TRIM/trimmomatic'.
+===================================
+When using Trimmomatic with -threads, please request one additional ppn (e.g. -threads 4 requests ppn=5)
+
+java -jar /opt/software/Trimmomatic/0.32/trimmomatic-0.32.jar PE  sample5per-1.fastq.gz   sample5per-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:30:12 
+TrimmomaticPE: Started with arguments: sample5per-1.fastq.gz sample5per-2.fastq.gz s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:30:12
+Multiple cores found: Using 16 threads
+Using PrefixPair: 'AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'CAAGCAGAAGACGGCATACGAGATCGGTCTCGGCATTCCTGCTGAACCGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TTTTTTTTTTAATGATACGGCGACCACCGAGATCTACAC'
+Using Long Clipping Sequence: 'TTTTTTTTTTCAAGCAGAAGACGGCATACGA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGGTTCAGCAGGAATGCCGAGACCGATCTCGTATGCCGTCTTCTGCTTG'
+Using Long Clipping Sequence: 'CAAGCAGAAGACGGCATACGAGATCGGTCTCGGCATTCCTGCTGAACCGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 6 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Quality encoding detected as phred33
+Input Read Pairs: 2740738 Both Surviving: 2734441 (99.77%) Forward Only Surviving: 5478 (0.20%) Reverse Only Surviving: 438 (0.02%) Dropped: 381 (0.01%)
+TrimmomaticPE: Completed successfully
+/opt/software/khmer/2.0--GCC-4.8.2/scripts/interleave-reads.py s1_pe s2_pe | gzip -9c > sample5per.pe.fq.gz 
+
+|| This is the script interleave-reads.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Interleaving:
+	s1_pe
+	s2_pe
+... 0 pairs
+... 100000 pairs
+... 200000 pairs
+... 300000 pairs
+... 400000 pairs
+... 500000 pairs
+... 600000 pairs
+... 700000 pairs
+... 800000 pairs
+... 900000 pairs
+... 1000000 pairs
+... 1100000 pairs
+... 1200000 pairs
+... 1300000 pairs
+... 1400000 pairs
+... 1500000 pairs
+... 1600000 pairs
+... 1700000 pairs
+... 1800000 pairs
+... 1900000 pairs
+... 2000000 pairs
+... 2100000 pairs
+... 2200000 pairs
+... 2300000 pairs
+... 2400000 pairs
+... 2500000 pairs
+... 2600000 pairs
+... 2700000 pairs
+final: interleaved 2734441 pairs
+output written to block device
+cat s1_se s2_se | gzip -9c > sample5per.se.fq.gz
+gunzip -c sample5per.pe.fq.gz | /opt/software/FASTX/0.0.14--GCC-4.4.5/bin/fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > sample5per.pe.qc.fq.gz 
+gunzip -c sample5per.se.fq.gz | /opt/software/FASTX/0.0.14--GCC-4.4.5/bin/fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > sample5per.se.qc.fq.gz
+extract-paired-reads.py sample5per.pe.qc.fq.gz 
+
+|| This is the script extract-paired-reads.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+reading file "sample5per.pe.qc.fq.gz"
+outputting interleaved pairs to "sample5per.pe.qc.fq.gz.pe"
+outputting orphans to "sample5per.pe.qc.fq.gz.se"
+... 200000
+... 700000
+... 1000000
+... 1200000
+... 1300000
+... 1500000
+... 1600000
+... 1700000
+... 2100000
+... 2400000
+... 2500000
+... 2600000
+... 2900000
+... 3000000
+... 3200000
+... 3400000
+... 3500000
+... 3700000
+... 3800000
+... 4100000
+... 4200000
+... 4300000
+... 4400000
+... 4500000
+... 5100000
+DONE; read 5332248 sequences, 2625049 pairs and 82150 singletons
+wrote to: sample5per.pe.qc.fq.gz.pe and sample5per.pe.qc.fq.gz.se
+./qc-rename-1.sh && touch protocol-quality-rename-1
+working on PE file sample5per.pe.qc.fq.gz.pe
+./qc-rename-2.sh && touch protocol-quality-rename-2
+working on SE file sample5per.pe.qc.fq.gz.se
+cat quality.sh >quality 
+chmod a+x quality
