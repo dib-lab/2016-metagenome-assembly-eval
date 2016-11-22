@@ -1,0 +1,11 @@
+
+Due to MODULEPATH changes the following have been reloaded:
+  1) TBB/4.1.0
+
+The following have been reloaded with a version change:
+  1) Boost/1.47.0 => Boost/1.55.0     3) OpenMPI/1.4.3 => OpenMPI/1.6.5
+  2) GNU/4.4.5 => GNU/4.8.2           4) R/2.15.1 => R/3.1.0
+
+assembly sample5per.spades.d/scaffolds.fasta has 64641817 bp > 500
+----
+assembly sample5per.spades.d/scaffolds.fasta wins: 64641817 total bp > 500

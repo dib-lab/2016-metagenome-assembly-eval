@@ -1,0 +1,37 @@
+Min ident used is: 99
+Total bases in Reference is:  205603715
+Total bases in iqc500 QC.BESTHIT5.99 is 57598719 with 45196 contigs
+Total bases in sqc500 QC.BESTHIT5.99 is 64641817 with 51745 contigs
+Total bases in mqc500 QC.BESTHIT5.99 is 52577037 with 45421 contigs
+Analysis of unalignments
+=========================
+QC 	  Total Bases 	 Total Aligned 	 Percentage to Assembly 	 Total Unaligned 	 Percentage to Assembly
+iqc500 QC.BESTHIT5.99 57598719 	57593963 	99.9917428719 	4756 	0.00825712807953
+sqc500 QC.BESTHIT5.99 64641817 	64636951 	99.9924723651 	4866 	0.00752763493638
+mqc500 QC.BESTHIT5.99 52577037 	52573225 	99.9927496865 	3812 	0.00725031347811
+iqc500 QC.BESTHIT5.99 has 35251 totally aligned contigs ~ 77.9958403399
+sqc500 QC.BESTHIT5.99 has 44436 totally aligned contigs ~ 85.8749637646
+mqc500 QC.BESTHIT5.99 has 40204 totally aligned contigs ~ 88.5141234231
+iqc500 QC.BESTHIT5.99 has 5189 partially aligned contigs ~ 11.4811045225
+sqc500 QC.BESTHIT5.99 has 2443 partially aligned contigs ~ 4.72122910426
+mqc500 QC.BESTHIT5.99 has 1405 partially aligned contigs ~ 3.09328284274
+iqc500 QC.BESTHIT5.99 has 4756 unaligned contigs ~ 10.5230551376
+sqc500 QC.BESTHIT5.99 has 4866 unaligned contigs ~ 9.40380713112
+mqc500 QC.BESTHIT5.99 has 3812 unaligned contigs ~ 8.39259373418
+Assembler 	  In Reference 	In Alignments 	 Percentages 
+iqc500 duplication ratio: 59225 0 0.121607190193 0.0
+sqc500 duplication ratio: 121366 0 0.209634353821 0.0
+mqc500 duplication ratio: 62788 0 0.130210714981 0.0
+Uncovered regions analysis
+==========================
+QC 	  Total base pairs 	 Percentage of Covered  	 Percentage of uncovered
+iqc500 QC.BESTHIT5.99 205603715 	23.687261682 	76.312738318
+sqc500 QC.BESTHIT5.99 205603715 	28.1581181546 	71.8418818454
+mqc500 QC.BESTHIT5.99 205603715 	23.4530305058 	76.5469694942
+Bases that are covered by iqc500 QC.BESTHIT5.99 only:  2120208 ~ 1.03121093897 %
+Bases that are covered by sqc500 QC.BESTHIT5.99 only:  8793732 ~ 4.27702972196 %
+Bases that are covered by mqc500 QC.BESTHIT5.99 only:  1650580 ~ 0.802796778259 %
+Common uncovered bases among iqc500 sqc500 mqc500 using QC.BESTHIT5.99 is:  142291853
+Bases that are uncovered by iqc500 QC.BESTHIT5.99 only:  4165660 ~ 2.02606261273 %
+Bases that are uncovered by sqc500 QC.BESTHIT5.99 only:  1646937 ~ 0.801024923115 %
+Bases that are uncovered by mqc500 QC.BESTHIT5.99 only:  4177620 ~ 2.03187962825 %

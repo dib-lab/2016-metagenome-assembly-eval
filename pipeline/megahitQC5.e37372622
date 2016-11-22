@@ -1,0 +1,132 @@
+
+Due to MODULEPATH changes the following have been reloaded:
+  1) TBB/4.1.0
+
+The following have been reloaded with a version change:
+  1) Boost/1.47.0 => Boost/1.55.0     3) OpenMPI/1.4.3 => OpenMPI/1.6.5
+  2) GNU/4.4.5 => GNU/4.8.2           4) R/2.15.1 => R/3.1.0
+
+
+|| This is the script extract-paired-reads.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+reading file "sample5per.pe.qc.fq.gz"
+outputting interleaved pairs to "sample5per.pe.qc.fq.gz.pe"
+outputting orphans to "sample5per.pe.qc.fq.gz.se"
+... 100000
+... 200000
+... 300000
+... 400000
+... 500000
+... 600000
+... 700000
+... 800000
+... 900000
+... 1000000
+... 1100000
+... 1200000
+... 1300000
+... 1400000
+... 1500000
+... 1600000
+... 1700000
+... 1800000
+... 1900000
+... 2000000
+... 2100000
+... 2200000
+... 2300000
+... 2400000
+... 2500000
+... 2600000
+... 2700000
+... 2800000
+... 2900000
+... 3000000
+... 3100000
+... 3200000
+... 3300000
+... 3400000
+... 3500000
+... 3600000
+... 3700000
+... 3800000
+... 3900000
+... 4000000
+... 4100000
+... 4200000
+... 4300000
+... 4400000
+... 4500000
+... 4600000
+... 4700000
+... 4800000
+... 4900000
+... 5000000
+... 5100000
+... 5200000
+DONE; read 5250098 sequences, 2625049 pairs and 0 singletons
+wrote to: sample5per.pe.qc.fq.gz.pe and sample5per.pe.qc.fq.gz.se
+MEGAHIT v1.0.6-hotfix1
+--- [Mon Nov 21 15:10:39 2016] Start assembly. Number of CPU threads 20 ---
+--- [Mon Nov 21 15:10:39 2016] Available memory: 270819328000, used: 10000000000
+--- [Mon Nov 21 15:10:39 2016] k list: 21,41,61,81,99 ---
+--- [Mon Nov 21 15:10:39 2016] Converting reads to binaries ---
+    [read_lib_functions-inl.h  : 209]     Lib 0 (sample5per.pe.qc.fq.gz): se, 5250098 reads, 101 max length
+    [utils.h                   : 126]     Real: 9.9534	user: 3.7404	sys: 0.3609	maxrss: 154144
+--- [Mon Nov 21 15:10:51 2016] Extracting solid (k+1)-mers for k = 21 ---
+--- [Mon Nov 21 15:11:13 2016] Building graph for k = 21 ---
+--- [Mon Nov 21 15:11:40 2016] Assembling contigs from SdBG for k = 21 ---
+--- [Mon Nov 21 15:12:22 2016] Local assembling k = 21 ---
+--- [Mon Nov 21 15:12:32 2016] Extracting iterative edges from k = 21 to 41 ---
+--- [Mon Nov 21 15:12:41 2016] Building graph for k = 41 ---
+--- [Mon Nov 21 15:13:00 2016] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Nov 21 15:13:37 2016] Local assembling k = 41 ---
+--- [Mon Nov 21 15:13:47 2016] Extracting iterative edges from k = 41 to 61 ---
+--- [Mon Nov 21 15:13:53 2016] Building graph for k = 61 ---
+--- [Mon Nov 21 15:14:08 2016] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Nov 21 15:14:40 2016] Local assembling k = 61 ---
+--- [Mon Nov 21 15:14:50 2016] Extracting iterative edges from k = 61 to 81 ---
+--- [Mon Nov 21 15:14:55 2016] Building graph for k = 81 ---
+--- [Mon Nov 21 15:15:04 2016] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Nov 21 15:15:38 2016] Local assembling k = 81 ---
+--- [Mon Nov 21 15:15:47 2016] Extracting iterative edges from k = 81 to 99 ---
+--- [Mon Nov 21 15:15:50 2016] Building graph for k = 99 ---
+--- [Mon Nov 21 15:15:59 2016] Assembling contigs from SdBG for k = 99 ---
+--- [Mon Nov 21 15:16:28 2016] Merging to output final contigs ---
+--- [STAT] 92471 contigs, total 70385340 bp, min 201 bp, max 25972 bp, avg 761 bp, N50 898 bp
+--- [Mon Nov 21 15:16:29 2016] ALL DONE. Time elapsed: 350.112919 seconds ---
+MEGAHIT v1.0.6-hotfix1
+--- [Mon Nov 21 15:16:29 2016] Start assembly. Number of CPU threads 20 ---
+--- [Mon Nov 21 15:16:29 2016] Available memory: 270819328000, used: 10000000000
+--- [Mon Nov 21 15:16:29 2016] k list: 21,41,61,81,99 ---
+--- [Mon Nov 21 15:16:29 2016] Converting reads to binaries ---
+    [read_lib_functions-inl.h  : 209]     Lib 0 (sample5per.se.qc.fq.gz): se, 86407 reads, 101 max length
+    [utils.h                   : 126]     Real: 0.1980	user: 0.0670	sys: 0.0060	maxrss: 6300
+--- [Mon Nov 21 15:16:29 2016] Extracting solid (k+1)-mers for k = 21 ---
+--- [Mon Nov 21 15:16:30 2016] Building graph for k = 21 ---
+--- [Mon Nov 21 15:16:30 2016] Assembling contigs from SdBG for k = 21 ---
+--- [Mon Nov 21 15:16:31 2016] Local assembling k = 21 ---
+--- [Mon Nov 21 15:16:31 2016] Extracting iterative edges from k = 21 to 41 ---
+--- [Mon Nov 21 15:16:31 2016] Building graph for k = 41 ---
+--- [Mon Nov 21 15:16:31 2016] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Nov 21 15:16:32 2016] Local assembling k = 41 ---
+--- [Mon Nov 21 15:16:32 2016] Extracting iterative edges from k = 41 to 61 ---
+--- [Mon Nov 21 15:16:32 2016] Building graph for k = 61 ---
+--- [Mon Nov 21 15:16:32 2016] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Nov 21 15:16:33 2016] Local assembling k = 61 ---
+--- [Mon Nov 21 15:16:33 2016] Extracting iterative edges from k = 61 to 81 ---
+--- [Mon Nov 21 15:16:33 2016] Building graph for k = 81 ---
+--- [Mon Nov 21 15:16:33 2016] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Nov 21 15:16:33 2016] Local assembling k = 81 ---
+--- [Mon Nov 21 15:16:34 2016] Extracting iterative edges from k = 81 to 99 ---
+--- [Mon Nov 21 15:16:34 2016] Merging to output final contigs ---
+--- [STAT] 19 contigs, total 5618 bp, min 207 bp, max 547 bp, avg 296 bp, N50 281 bp
+--- [Mon Nov 21 15:16:34 2016] ALL DONE. Time elapsed: 4.754825 seconds ---

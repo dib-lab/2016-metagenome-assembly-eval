@@ -1,4 +1,4 @@
-REFERENCE = sample5perMG1655.fa
+REFERENCE = mircea.fa
 MYSCRIPTS = /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
@@ -402,7 +402,7 @@ mqc.unmapped.out: mqc.AM99.unmapped.sam
 #awk '{sum += $2} END {print sum}' backup/all.unmapped.coverage 
 
 #-----------------------------------------------------Common Uncovered Coverage-----------------------------------------------------------------------------
-common-uncovered-coverage.out: qc-ref.sam  assemblies.stats.QC.AMBIGUOUS.99 qc-ref.sam
+common-uncovered-coverage.out: qc-ref.sam  assemblies.stats.QC.AMBIGUOUS.99 
 	python ${MYSCRIPTS}/common-uncovered-coverage.py ${REFERENCE} qc-ref.sam QC.AMBIGUOUS.99.uncovered.bases common-uncovered-coverage.out 
 
 #------------------------------------------------------------Kmer Abundance---------------------------------------------------------------------------------
@@ -417,6 +417,7 @@ mqc500.dist: sample5per.pe.qc.fq.gz.pe megahit-quality-assembly500.fa
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist 
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist 
 
 #------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
 #This is an ignored part 

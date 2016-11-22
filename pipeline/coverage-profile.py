@@ -26,8 +26,8 @@ def main():
     n_rec =0 
     for record in screed.open(args.genome):
         genome_dict1[record.name] = [0] * len(record.sequence)
-
 	n_rec+=len(record.sequence) 
+
     arr =[0]*n_rec    
     n = 0
     n_skipped = 0
@@ -44,7 +44,6 @@ def main():
             continue
         
         refpos = int(refpos)
-        #try:
         if refname in genome_dict1:
                ref = genome_dict1[refname]
         #except KeyError:
