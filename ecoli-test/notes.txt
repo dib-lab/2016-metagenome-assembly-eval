@@ -7,6 +7,9 @@
 
 = My own run of ecoli pipleine is tracked in *log files and pipeline of sample5per podar is
 tracked in *.ejobids and *.ojobids 
+run-analysis-1.sh can be tracked by *.ejobids and *.ojobids and
+run-analysis-1.restofoutput.log, i had to fix it in the middle without
+rerunning from scratch. 
 
 = multi-rename.py in new khmer seems endless, I ran it from old khmer 
 
