@@ -6,6 +6,11 @@ Prepare the data:
 
     split-paired-reads.py ecoli_ref-5m.fastq.gz -1 ecoli-1.fastq.gz -2 ecoli-2.fastq.gz --gzip
 
+Download the reference:
+
+    curl -O https://s3.amazonaws.com/public.ged.msu.edu/ecoliMG1655.fa.gz
+    gunzip ecoliMG1655.fa.gz
+
 To run the ecoli pipeline do the following after splinting the ecoli set: 
 =========================================================================
 

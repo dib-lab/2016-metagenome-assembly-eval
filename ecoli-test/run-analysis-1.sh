@@ -7,7 +7,7 @@
 cd /mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/ 
 
 module load bwa
-module load samtools
+module load SAMTools/1.2
 
 make analysis
 make readcoverage
