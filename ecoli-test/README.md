@@ -1,6 +1,13 @@
+To get the data:
+
+    curl -O https://s3.amazonaws.com/public.ged.msu.edu/ecoli_ref-5m.fastq.gz
+
+Prepare the data:
+
+    split-paired-reads.py ecoli_ref-5m.fastq.gz -1 ecoli-1.fastq.gz -2 ecoli-2.fastq.gz --gzip
 
 To run the ecoli pipeline do the following after splinting the ecoli set: 
-==========================================================================
+=========================================================================
 
 bash quality.sh 2>&1 | tee quality.log 
 
