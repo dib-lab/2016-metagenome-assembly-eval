@@ -21,7 +21,7 @@ spades-quality: ecoli.pe.qc.fq.gz \
 #-------------------------------------------------IDBA Quality----------------------------------------------------------------------------------------
 idba-quality: ecoli.pe.qc.fq.gz \
 	ecoli.pe.fa \
-	ecoli.idba.d.qc/contig.fa \
+	ecoli.idba.d.qc/scaffold.fa \
 	idba-quality-assembly.fa 
 #------------------------------------------------Megahit Quality-------------------------------------------------------------------------------------------- 
 megahit-quality: ecoli.pe.qc.fq.gz \
@@ -81,11 +81,11 @@ spades-quality-assembly.fa: ecoli.spades.d/scaffolds.fasta
 #-----------------------------------------------------------------IDBA QUALITY-------------------------------------------------------------------------------
 ecoli.pe.fa: ecoli.pe.qc.fq.gz 
 	fastq-to-fasta.py -n ecoli.pe.qc.fq.gz >ecoli.pe.fa 
-ecoli.idba.d.qc/contig.fa: ecoli.pe.fa
+ecoli.idba.d.qc/scaffold.fa: ecoli.pe.fa
 	/usr/bin/time -a -o iqc.txt idba_ud --pre_correction -r ecoli.pe.fa -o ecoli.idba.d.qc 
 
-idba-quality-assembly.fa: ecoli.idba.d.qc/contig.fa
-	python ${MYSCRIPTS}/multi-rename.py assembly ecoli.idba.d.qc/contig.fa > idba-quality-assembly.fa
+idba-quality-assembly.fa: ecoli.idba.d.qc/scaffold.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly ecoli.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 megahit.qc.pe/final.contigs.fa: ecoli.pe.qc.fq.gz  
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --12 ecoli.pe.qc.fq.gz -r ecoli.se.qc.fq.gz -o megahit.qc.pe 
