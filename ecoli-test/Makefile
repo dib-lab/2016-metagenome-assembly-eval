@@ -1,5 +1,5 @@
 REFERENCE = ecoliMG1655.fa
-MYSCRIPTS = /mnt/home/ctb/2015-metagenome-assembly/pipeline
+MYSCRIPTS = ../pipeline
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
 MEGAHIT=/mnt/home/mahmoud4/megahit
@@ -7,7 +7,6 @@ TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
-OLDKHMER = /opt/software/khmer/khmer-1.4
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: ecoli-1.fastq.gz   ecoli-2.fastq.gz \
 	ecoli.se.fq.gz \
@@ -74,29 +73,24 @@ protocol-quality-rename-2: ecoli.pe.qc.fq.gz.pe
 	./qc-rename-2.sh && touch protocol-quality-rename-2
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
-ecoli.spades.d/scaffolds.fasta: ecoli.pe.qc.fq.gz 
-	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 ecoli.pe.qc.fq.gz -o ecoli.spades.d    
+ecoli.spades.d/scaffolds.fasta: ecoli.pe.qc.fq.gz ecoli.se.qc.fq.gz
+	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 ecoli.pe.qc.fq.gz --pe1-s ecoli.se.qc.fq.gz -o ecoli.spades.d    
 
 spades-quality-assembly.fa: ecoli.spades.d/scaffolds.fasta  
-	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.spades.d/scaffolds.fasta -o spades-quality-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-quality-best.fa > spades-quality-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly ecoli.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
 #-----------------------------------------------------------------IDBA QUALITY-------------------------------------------------------------------------------
 ecoli.pe.fa: ecoli.pe.qc.fq.gz 
-	fastq-to-fasta.py ecoli.pe.qc.fq.gz >ecoli.pe.fa 
+	fastq-to-fasta.py -n ecoli.pe.qc.fq.gz >ecoli.pe.fa 
 ecoli.idba.d.qc/contig.fa: ecoli.pe.fa
 	/usr/bin/time -a -o iqc.txt idba_ud --pre_correction -r ecoli.pe.fa -o ecoli.idba.d.qc 
 
 idba-quality-assembly.fa: ecoli.idba.d.qc/contig.fa
-	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.idba.d.qc/contig.fa -o idba-quality-best.fa 
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-quality-best.fa > idba-quality-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly ecoli.idba.d.qc/contig.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 megahit.qc.pe/final.contigs.fa: ecoli.pe.qc.fq.gz  
-	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.pe.qc.fq.gz -o megahit.qc.pe 
-	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.se.qc.fq.gz -o megahit.qc.se
+	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --12 ecoli.pe.qc.fq.gz -r ecoli.se.qc.fq.gz -o megahit.qc.pe 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
-	#cat megahit.qc.pe/final.contigs.fa megahit.qc.se/final.contigs.fa > megahit-quality-assembly.fa
-	python ${SANDBOX}/sandbox/calc-best-assembly.py megahit.qc.*e/final.contigs.fa -o megahit-quality-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly megahit-quality-best.fa > megahit-quality-assembly.fa	 
+	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa	 
 #----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
 ecoli.ignore.long: ecoli.pe.qc.fq.gz
 	extract-long-sequences.py -l 20 ecoli.pe.qc.fq.gz -o ecoli.ignore.long
@@ -135,7 +129,7 @@ spades-diginorm-2: ecoli.pe.kak.qc.fq.gz ecoli.se.kak.qc.fq.gz
 
 finalize-spades-diginorm:  ecoli.spades.d/contigs.fasta 
 	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.*e.kak.qc.spades.d/contigs.fasta -o spades-diginorm-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
 #------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
 idba-diginorm-1: *.pe.kak.qc.fq.gz  
 	.idba-dig.sh \
@@ -147,7 +141,7 @@ idba-diginorm-2: ecoli.pe.kak.fa
 
 finalize-idba-diginorm: ecoli.idba.d.digi/scaffold.fa	
 	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.idba.d.digi/scaffold.fa -o idba-diginorm-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
 #-------------------------------------------------------------Megahit DIGINORM------------------------------------------------------------------------------
 megahit-digi-1:
 	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.pe.kak.qc.fq.gz -o megahit.digi.pe
@@ -190,7 +184,7 @@ spades-partition-3: kak.group*.pe.fq.gz
 	touch spades-partition-3
 
 finalize-spades-partition: 
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
 #-----------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
 idba-partition-1: kak*.pe.fq.gz
 	.idba-part.sh \
@@ -205,7 +199,7 @@ idba-partition-3: kak.group*.pe.fq.gz
 	touch idba-partition-3
 
 finalize-idba-partition:
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
 #-------------------------------------------------------------------Megahit PARTITION------------------------------------------------------------------------
 megahit-part-1: 
 	.megahit-part.sh \
