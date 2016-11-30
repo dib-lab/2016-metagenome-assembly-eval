@@ -1,5 +1,5 @@
 REFERENCE = ecoliMG1655.fa
-MYSCRIPTS = /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline
+MYSCRIPTS = /mnt/home/ctb/2015-metagenome-assembly/pipeline
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
 MEGAHIT=/mnt/home/mahmoud4/megahit
@@ -132,7 +132,7 @@ spades-diginorm-1:*.pe.kak.qc.fq.gz
 spades-diginorm-2: ecoli.pe.kak.qc.fq.gz ecoli.se.kak.qc.fq.gz
 	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 ecoli.pe.kak.qc.fq.gz -o ecoli.pe.kak.qc.spades.d
 	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 ecoli.se.kak.qc.fq.gz -o ecoli.se.kak.qc.spades.d
-	
+
 finalize-spades-diginorm:  ecoli.spades.d/contigs.fasta 
 	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.*e.kak.qc.spades.d/contigs.fasta -o spades-diginorm-best.fa
 	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
@@ -228,13 +228,13 @@ mqc500.coords: megahit-quality-assembly500.fa
 assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 
-	
+
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT5.99 -b True 99
-	
+
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
-	
+
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
 qc-ref.sam: ${REFERENCE} ecoli.pe.qc.fq.gz
 	bwa index  ${REFERENCE} 
@@ -412,14 +412,14 @@ mqc500.dist: ecoli.pe.qc.fq.gz megahit-quality-assembly500.fa
 	gunzip -c ecoli.pe.qc.fq.gz > ecoli.pe.qc.fastq 
 	gunzip -c ecoli.se.qc.fq.gz > ecoli.se.qc.fastq  
 	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh ecoli.pe.qc.fastq ecoli.se.qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} ecoli.qc.dist
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} ecoli.qc.dist -s
 	cat ecoli.pe.qc.fastq ecoli.se.qc.fastq  > ecoli-qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py qc.counts.kh ecoli-qc.fastq qc.dist 
+	python ${SCRIPTS}/abundance-dist.py qc.counts.kh ecoli-qc.fastq qc.dist -s
 	cat idba-quality-assembly500.fa spades-quality-assembly500.fa megahit-quality-assembly500.fa > qc-assembly500.fa 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist 
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
 #------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
 #This is an ignored part 
 chimeric:  ${REFERENCE} ecoli.pe.qc.fq.gz
