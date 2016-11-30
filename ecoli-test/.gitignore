@@ -236,3 +236,5 @@ sqc500.coords
 sqc500.cov.dist99
 sqc500.delta
 unmapped-qc-to-ref
+mqc500.dist
+qc500.dist
