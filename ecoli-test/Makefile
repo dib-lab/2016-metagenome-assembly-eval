@@ -281,8 +281,7 @@ assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords
 
 	
 annotate-prokka: ${REFERENCE} megahit-quality-assembly500.fa
-	python /opt/software/khmer/khmer-0.6.1/sandbox/remove-N.py ${REFERENCE} metagenome.fa
-	prokka metagenome.fa --outdir mprokka --prefix testasm --metagenome
+	prokka ${REFERENCE} --outdir mprokka --prefix testasm --metagenome
 
 parse-prokka: mprokka/testasm.tbl
 	${MYSCRIPTS}/parse-prokka.py mprokka/testasm.tbl prokka.out

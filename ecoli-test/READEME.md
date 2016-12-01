@@ -18,4 +18,4 @@ bash run-analysis-2.sh 2>&1 | tee run-analysis-2.log
 
 bash run-analysis-3.sh 2>&1 | tee run-analysis-3.log 
 
-bash annotate-prokka.sh 2>&1 | tee annotate-prokka.log 
+bash annotate-prokka.sh 2>&1 | tee prokka.annotation.log 
