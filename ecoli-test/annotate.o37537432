@@ -1,0 +1,9 @@
+python /opt/software/khmer/khmer-0.6.1/sandbox/remove-N.py ecoliMG1655.fa metagenome.fa
+prokka metagenome.fa --outdir mprokka --prefix testasm --metagenome
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/parse-prokka.py mprokka/testasm.tbl prokka.out
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly_prokka.py  ecoliMG1655.fa  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 prokka.out  	
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
