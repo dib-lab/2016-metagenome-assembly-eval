@@ -11,7 +11,6 @@ OLDKHMER = /opt/software/khmer/khmer-1.4
 mc = 1000 2000 3000
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: ecoli-1.fastq.gz   ecoli-2.fastq.gz \
-	ecoli.se.fq.gz \
 	ecoli.se.qc.fq.gz \
 	ecoli.pe.qc.fq.gz.pe \
 	protocol-quality-rename-2 
@@ -65,14 +64,12 @@ mincontig-analysis: megahit-quality-assembly.fa \
  
 #run-analysis.sh includes in addition to the above: common-uncovered-coverage.out and mqc500.dist	 
 #-----------------------------------------------------------QUALITY STARTS-------------------------------------------------------------------------------
-ecoli.se.fq.gz:   ecoli-1.fastq.gz   ecoli-2.fastq.gz
-	java -jar ${TRIM}/trimmomatic-0.32.jar PE  ecoli-1.fastq.gz   ecoli-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:${TRIM}/adapters/TruSeq2-PE.fa:2:30:12 
-	${SCRIPTS}/interleave-reads.py s1_pe s2_pe | gzip -9c > ecoli.pe.fq.gz 
-	cat s1_se s2_se | gzip -9c > ecoli.se.fq.gz
+ecoli.se.qc.fq.gz:   ecoli-1.fastq.gz   ecoli-2.fastq.gz
+	java -jar ${TRIM}/trimmomatic-0.32.jar PE  ecoli-1.fastq.gz   ecoli-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:${TRIM}/adapters/TruSeq2-PE.fa:2:40:15 \
+	LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25  
 
-ecoli.se.qc.fq.gz: ecoli.se.fq.gz 
-	gunzip -c ecoli.pe.fq.gz | ${TOOLKIT}/fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ecoli.pe.qc.fq.gz 
-	gunzip -c ecoli.se.fq.gz | ${TOOLKIT}/fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ecoli.se.qc.fq.gz
+	${SCRIPTS}/interleave-reads.py s1_pe s2_pe | gzip -9c > ecoli.pe.qc.fq.gz 
+	cat s1_se s2_se | gzip -9c > ecoli.se.qc.fq.gz
 
 ecoli.pe.qc.fq.gz.pe: ecoli.se.qc.fq.gz 
 	extract-paired-reads.py ecoli.pe.qc.fq.gz 

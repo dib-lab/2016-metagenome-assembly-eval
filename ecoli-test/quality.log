@@ -1,18 +1,11 @@
 
-Due to MODULEPATH changes the following have been reloaded:
-  1) TBB/4.1.0
-
-The following have been reloaded with a version change:
-  1) Boost/1.47.0 => Boost/1.55.0     3) OpenMPI/1.4.3 => OpenMPI/1.6.5
-  2) GNU/4.4.5 => GNU/4.8.2           4) R/2.15.1 => R/3.1.0
-
-
 To run Trimmomatic use 'java -jar $TRIM/trimmomatic'.
 ===================================
 When using Trimmomatic with -threads, please request one additional ppn (e.g. -threads 4 requests ppn=5)
 
-java -jar /opt/software/Trimmomatic/0.32/trimmomatic-0.32.jar PE  ecoli-1.fastq.gz   ecoli-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:30:12 
-TrimmomaticPE: Started with arguments: ecoli-1.fastq.gz ecoli-2.fastq.gz s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:30:12
+java -jar /opt/software/Trimmomatic/0.32/trimmomatic-0.32.jar PE  ecoli-1.fastq.gz   ecoli-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:40:15 \
+	LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25  
+TrimmomaticPE: Started with arguments: ecoli-1.fastq.gz ecoli-2.fastq.gz s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:40:15 LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25
 Multiple cores found: Using 16 threads
 Using PrefixPair: 'AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'CAAGCAGAAGACGGCATACGAGATCGGTCTCGGCATTCCTGCTGAACCGCTCTTCCGATCT'
 Using Long Clipping Sequence: 'TTTTTTTTTTAATGATACGGCGACCACCGAGATCTACAC'
@@ -23,9 +16,9 @@ Using Long Clipping Sequence: 'CAAGCAGAAGACGGCATACGAGATCGGTCTCGGCATTCCTGCTGAACCG
 Using Long Clipping Sequence: 'AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT'
 ILLUMINACLIP: Using 1 prefix pairs, 6 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
 Quality encoding detected as phred33
-Input Read Pairs: 2500000 Both Surviving: 2499307 (99.97%) Forward Only Surviving: 673 (0.03%) Reverse Only Surviving: 15 (0.00%) Dropped: 5 (0.00%)
+Input Read Pairs: 2500000 Both Surviving: 2495601 (99.82%) Forward Only Surviving: 3902 (0.16%) Reverse Only Surviving: 463 (0.02%) Dropped: 34 (0.00%)
 TrimmomaticPE: Completed successfully
-/opt/software/khmer/2.0--GCC-4.8.2/scripts/interleave-reads.py s1_pe s2_pe | gzip -9c > ecoli.pe.fq.gz 
+/opt/software/khmer/2.0--GCC-4.8.2/scripts/interleave-reads.py s1_pe s2_pe | gzip -9c > ecoli.pe.qc.fq.gz 
 
 || This is the script interleave-reads.py in khmer.
 || You are running khmer version 2.0
@@ -65,11 +58,9 @@ Interleaving:
 ... 2200000 pairs
 ... 2300000 pairs
 ... 2400000 pairs
-final: interleaved 2499307 pairs
+final: interleaved 2495601 pairs
 output written to block device
-cat s1_se s2_se | gzip -9c > ecoli.se.fq.gz
-gunzip -c ecoli.pe.fq.gz | /opt/software/FASTX/0.0.14--GCC-4.4.5/bin/fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ecoli.pe.qc.fq.gz 
-gunzip -c ecoli.se.fq.gz | /opt/software/FASTX/0.0.14--GCC-4.4.5/bin/fastq_quality_filter -Q33 -q 30 -p 50 | gzip -9c > ecoli.se.qc.fq.gz
+cat s1_se s2_se | gzip -9c > ecoli.se.qc.fq.gz
 extract-paired-reads.py ecoli.pe.qc.fq.gz 
 
 || This is the script extract-paired-reads.py in khmer.
@@ -85,23 +76,56 @@ extract-paired-reads.py ecoli.pe.qc.fq.gz
 reading file "ecoli.pe.qc.fq.gz"
 outputting interleaved pairs to "ecoli.pe.qc.fq.gz.pe"
 outputting orphans to "ecoli.pe.qc.fq.gz.se"
+... 100000
+... 200000
+... 300000
+... 400000
+... 500000
+... 600000
+... 700000
 ... 800000
+... 900000
+... 1000000
 ... 1100000
+... 1200000
+... 1300000
+... 1400000
+... 1500000
+... 1600000
+... 1700000
 ... 1800000
+... 1900000
 ... 2000000
+... 2100000
 ... 2200000
 ... 2300000
 ... 2400000
+... 2500000
+... 2600000
+... 2700000
+... 2800000
+... 2900000
 ... 3000000
+... 3100000
 ... 3200000
+... 3300000
 ... 3400000
+... 3500000
+... 3600000
 ... 3700000
+... 3800000
 ... 3900000
 ... 4000000
+... 4100000
 ... 4200000
 ... 4300000
+... 4400000
 ... 4500000
-DONE; read 4542620 sequences, 2117570 pairs and 307480 singletons
+... 4600000
+... 4700000
+... 4800000
+... 4900000
+DONE; read 4991202 sequences, 2495601 pairs and 0 singletons
 wrote to: ecoli.pe.qc.fq.gz.pe and ecoli.pe.qc.fq.gz.se
 ./qc-rename-1.sh && touch protocol-quality-rename-1
 working on PE file ecoli.pe.qc.fq.gz.pe
