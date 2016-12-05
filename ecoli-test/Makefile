@@ -8,6 +8,7 @@ TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
 OLDKHMER = /opt/software/khmer/khmer-1.4
+mc = 1000 2000 3000
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: ecoli-1.fastq.gz   ecoli-2.fastq.gz \
 	ecoli.se.fq.gz \
@@ -32,7 +33,10 @@ megahit-quality: ecoli.pe.qc.fq.gz \
 analysis: idba-quality-assembly.fa spades-quality-assembly.fa megahit-quality-assembly.fa \
 	megahit-quality-assembly500.fa \
 	mqc500.coords \
-	assemblies.stats.QC.AMBIGUOUS.99
+	assemblies.stats.QC.AMBIGUOUS.99 \
+	assemblies.stats.QC.AMBIGUOUS.95 \
+	stats 
+
 #calculate reads coverage 
 readcoverage: ecoli.pe.qc.fq.gz \
 	qc-ref.sam \
@@ -54,7 +58,11 @@ unalignedcoverage: ecoli.pe.qc.fq.gz assemblies.stats.QC.AMBIGUOUS.99 \
 	mqc.AM99-mapped-reads \
 	mqc.AM99.unmapped.sam \
 	mqc.unmapped.out 
-
+mincontig-analysis: megahit-quality-assembly.fa \
+	megahit-quality-assembly3000.fa \
+	mqc3000.coords \
+	assemblies.stats.QC.AMBIGUOUS3000.99
+ 
 #run-analysis.sh includes in addition to the above: common-uncovered-coverage.out and mqc500.dist	 
 #-----------------------------------------------------------QUALITY STARTS-------------------------------------------------------------------------------
 ecoli.se.fq.gz:   ecoli-1.fastq.gz   ecoli-2.fastq.gz
@@ -91,11 +99,8 @@ idba-quality-assembly.fa: ecoli.idba.d.qc/contig.fa
 	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-quality-best.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 megahit.qc.pe/final.contigs.fa: ecoli.pe.qc.fq.gz  
-	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.pe.qc.fq.gz -o megahit.qc.pe 
-	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.se.qc.fq.gz -o megahit.qc.se
+	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 ecoli.pe.qc.fq.gz -r ecoli.se.qc.fq.gz -o megahit.qc.pe 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
-	#cat megahit.qc.pe/final.contigs.fa megahit.qc.se/final.contigs.fa > megahit-quality-assembly.fa
-	python ${SANDBOX}/sandbox/calc-best-assembly.py megahit.qc.*e/final.contigs.fa -o megahit-quality-best.fa
 	python ${OLDKHMER}/sandbox/multi-rename.py assembly megahit-quality-best.fa > megahit-quality-assembly.fa	 
 #----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
 ecoli.ignore.long: ecoli.pe.qc.fq.gz
@@ -230,11 +235,61 @@ assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 
 	
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-         megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT5.99 -b True 99
+         megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.99 -b True 99
 	
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
+
+assemblies.stats.QC.AMBIGUOUS.95: mqc500.coords
+	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.95 -a True 95 
+	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.95 -b True 95
+	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.95 -c True 95
+
+stats: megahit-quality-assembly500.fa 
+	python ${MYSCRIPTS}/compute_stats.py idba-quality-assembly500.fa ${REFERENCE} > idba.stats 
+	python ${MYSCRIPTS}/compute_stats.py spades-quality-assembly500.fa ${REFERENCE} > spades.stats
+	python ${MYSCRIPTS}/compute_stats.py megahit-quality-assembly500.fa ${REFERENCE} > megahit.stats
 	
+megahit-quality-assembly3000.fa:  megahit-quality-assembly.fa
+	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} idba-quality-assembly.fa $(i); ) 
+	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} spades-quality-assembly.fa $(i); ) 
+	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} megahit-quality-assembly.fa $(i); ) 
+
+mqc3000.coords: megahit-quality-assembly3000.fa
+	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p iqc$(i) ${REFERENCE}  idba-quality-assembly$(i).fa ; ) 
+	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p sqc$(i) ${REFERENCE}  spades-quality-assembly$(i).fa ;) 
+	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p mqc$(i) ${REFERENCE}  megahit-quality-assembly$(i).fa ; ) 
+	
+assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords 
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).99 -a True 99;)
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+        megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.BESTHIT$(i).99 -b True 99 ;) 
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+        megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).99 -c True 99 ;)
+
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).95 -a True 95;)
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.BESTHIT$(i).95 -b True 95 ;) 
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).95 -c True 95 ;)
+
+
+	
+annotate-prokka: ${REFERENCE} megahit-quality-assembly500.fa
+	prokka ${REFERENCE} --outdir mprokka --prefix testasm --metagenome
+
+parse-prokka: mprokka/testasm.tbl
+	${MYSCRIPTS}/parse-prokka.py mprokka/testasm.tbl prokka.out
+	${MYSCRIPTS}/analyze_assembly_prokka.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 prokka.out  	
+ 
+
+
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
 qc-ref.sam: ${REFERENCE} ecoli.pe.qc.fq.gz
 	bwa index  ${REFERENCE} 
