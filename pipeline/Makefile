@@ -7,6 +7,7 @@ TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
+mc = 1000 2000 3000
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: sample5per-1.fastq.gz   sample5per-2.fastq.gz \
 	sample5per.se.fq.gz \
@@ -31,7 +32,10 @@ megahit-quality: sample5per.pe.qc.fq.gz \
 analysis: idba-quality-assembly.fa spades-quality-assembly.fa megahit-quality-assembly.fa \
 	megahit-quality-assembly500.fa \
 	mqc500.coords \
-	assemblies.stats.QC.AMBIGUOUS.99
+	assemblies.stats.QC.AMBIGUOUS.99 \
+	assemblies.stats.QC.AMBIGUOUS.95 \
+	stats 
+
 #calculate reads coverage 
 readcoverage: sample5per.pe.qc.fq.gz \
 	qc-ref.sam \
@@ -53,7 +57,11 @@ unalignedcoverage: sample5per.pe.qc.fq.gz assemblies.stats.QC.AMBIGUOUS.99 \
 	mqc.AM99-mapped-reads \
 	mqc.AM99.unmapped.sam \
 	mqc.unmapped.out 
-
+mincontig-analysis: megahit-quality-assembly.fa \
+	megahit-quality-assembly3000.fa \
+	mqc3000.coords \
+	assemblies.stats.QC.AMBIGUOUS3000.99
+ 
 #run-analysis.sh includes in addition to the above: common-uncovered-coverage.out and mqc500.dist	 
 #-----------------------------------------------------------QUALITY STARTS-------------------------------------------------------------------------------
 sample5per.se.fq.gz:   sample5per-1.fastq.gz   sample5per-2.fastq.gz
@@ -73,8 +81,8 @@ protocol-quality-rename-2: sample5per.pe.qc.fq.gz.pe
 	./qc-rename-2.sh && touch protocol-quality-rename-2
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
-sample5per.spades.d/scaffolds.fasta: sample5per.pe.qc.fq.gz 
-	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 sample5per.pe.qc.fq.gz --pe1-s sample5per.se.qc.fq.gz -o sample5per.spades.d        
+sample5per.spades.d/scaffolds.fasta: sample5per.pe.qc.fq.gz ecoli.se.qc.fq.gz 
+	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 sample5per.pe.qc.fq.gz --pe1-s sample5per.se.qc.fq.gz -o sample5per.spades.d
 
 spades-quality-assembly.fa: sample5per.spades.d/scaffolds.fasta  
 	python ${MYSCRIPTS}/multi-rename.py assembly sample5per.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
@@ -88,12 +96,13 @@ sample5per.idba.d.qc/scaffold.fa: sample5per.pe.fa
 idba-quality-assembly.fa: sample5per.idba.d.qc/scaffold.fa
 	python ${MYSCRIPTS}/multi-rename.py assembly sample5per.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
-megahit.qc.pe/final.contigs.fa: sample5per.pe.qc.fq.gz.pe  
+megahit.qc.pe/final.contigs.fa: sample5per.pe.qc.fq.gz  
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 sample5per.pe.qc.fq.gz -r sample5per.se.qc.fq.gz -o megahit.qc.pe 
+
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
-	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa	 
 #----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
-sample5per.ignore.long: sample5per.pe.qc.fq.gz.pe
+sample5per.ignore.long: sample5per.pe.qc.fq.gz
 	extract-long-sequences.py -l 20 sample5per.pe.qc.fq.gz -o sample5per.ignore.long
 
 sample5per.ignore.long.pe: 
@@ -101,7 +110,7 @@ sample5per.ignore.long.pe:
 	mv sample5per.pe.qc.fq.gz sample5per.old
 	gzip -c sample5per.ignore.long.pe > sample5per.pe.qc.fq.gz
 
-normC20k20.kh:sample5per.pe.qc.fq.gz.pe
+normC20k20.kh:sample5per.pe.qc.fq.gz
 	normalize-by-median.py -p -k 20 -C 20 -N 4 -x 1e9 --savegraph normC20k20.kh sample5per.pe.qc.fq.gz
 	normalize-by-median.py -C 20 --loadgraph normC20k20.kh --savegraph normC20k20.kh sample5per.se.qc.fq.gz
 
@@ -225,13 +234,63 @@ assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 
 	
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-         megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT5.99 -b True 99
+         megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.99 -b True 99
 	
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
+
+assemblies.stats.QC.AMBIGUOUS.95: mqc500.coords
+	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.95 -a True 95 
+	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.95 -b True 95
+	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.95 -c True 95
+
+stats: megahit-quality-assembly500.fa 
+	python ${MYSCRIPTS}/compute_stats.py idba-quality-assembly500.fa ${REFERENCE} > idba.stats 
+	python ${MYSCRIPTS}/compute_stats.py spades-quality-assembly500.fa ${REFERENCE} > spades.stats
+	python ${MYSCRIPTS}/compute_stats.py megahit-quality-assembly500.fa ${REFERENCE} > megahit.stats
 	
+megahit-quality-assembly3000.fa:  megahit-quality-assembly.fa
+	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} idba-quality-assembly.fa $(i); ) 
+	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} spades-quality-assembly.fa $(i); ) 
+	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} megahit-quality-assembly.fa $(i); ) 
+
+mqc3000.coords: megahit-quality-assembly3000.fa
+	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p iqc$(i) ${REFERENCE}  idba-quality-assembly$(i).fa ; ) 
+	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p sqc$(i) ${REFERENCE}  spades-quality-assembly$(i).fa ;) 
+	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p mqc$(i) ${REFERENCE}  megahit-quality-assembly$(i).fa ; ) 
+	
+assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords 
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).99 -a True 99;)
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+        megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.BESTHIT$(i).99 -b True 99 ;) 
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+        megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).99 -c True 99 ;)
+
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).95 -a True 95;)
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.BESTHIT$(i).95 -b True 95 ;) 
+	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
+	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).95 -c True 95 ;)
+
+
+	
+annotate-prokka: ${REFERENCE} megahit-quality-assembly500.fa
+	prokka ${REFERENCE} --outdir mprokka --prefix testasm --metagenome
+
+parse-prokka: mprokka/testasm.tbl
+	${MYSCRIPTS}/parse-prokka.py mprokka/testasm.tbl prokka.out
+	${MYSCRIPTS}/analyze_assembly_prokka.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 prokka.out  	
+ 
+
+
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
-qc-ref.sam: ${REFERENCE} sample5per.pe.qc.fq.gz.pe
+qc-ref.sam: ${REFERENCE} sample5per.pe.qc.fq.gz
 	bwa index  ${REFERENCE} 
 	bwa aln  ${REFERENCE}  sample5per.pe.qc.fq.gz   >  qc-ref.pe.sai 
 	bwa aln  ${REFERENCE}  sample5per.se.qc.fq.gz   >  qc-ref.se.sai
@@ -253,7 +312,7 @@ sample5per.qc.coverage: qc-ref.sam
 	python ${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  sample5per.qc.coverage 
 
 #-------------------------------------------------------------READ INCORPORATION---------------------------------------------
-iq-unmapped.count:  sample5per.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
+iq-unmapped.count:  sample5per.pe.qc.fq.gz  megahit-quality-assembly500.fa
 	bwa index  idba-quality-assembly500.fa 
 	bwa aln  idba-quality-assembly500.fa  sample5per.pe.qc.fq.gz   >  iq.pe.sai 
 	bwa aln  idba-quality-assembly500.fa  sample5per.se.qc.fq.gz   >  iq.se.sai 
@@ -268,7 +327,7 @@ iq-unmapped.count:  sample5per.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
 	samtools view -c -f 4  iq.pe.bam >  iq-unmapped.count
 	samtools view -c -f 4  iq.se.bam >>  iq-unmapped.count 
 
-sq-unmapped.count: sample5per.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
+sq-unmapped.count: sample5per.pe.qc.fq.gz  megahit-quality-assembly500.fa
 	bwa index  spades-quality-assembly500.fa 
 	bwa aln  spades-quality-assembly500.fa  sample5per.pe.qc.fq.gz   >  sq.pe.sai 
 	bwa aln  spades-quality-assembly500.fa  sample5per.se.qc.fq.gz   >  sq.se.sai 
@@ -280,7 +339,7 @@ sq-unmapped.count: sample5per.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
 	samtools view -c -f 4  sq.pe.bam >  sq-unmapped.count
 	samtools view -c -f 4  sq.se.bam >>  sq-unmapped.count
 
-mq-unmapped.count: sample5per.pe.qc.fq.gz.pe  megahit-quality-assembly500.fa
+mq-unmapped.count: sample5per.pe.qc.fq.gz megahit-quality-assembly500.fa
 	bwa index  megahit-quality-assembly500.fa 
 	bwa aln  megahit-quality-assembly500.fa  sample5per.pe.qc.fq.gz   >  mq.pe.sai 	
 	bwa aln  megahit-quality-assembly500.fa  sample5per.se.qc.fq.gz   >  mq.se.sai 
@@ -399,25 +458,26 @@ mqc.unmapped.out: mqc.AM99.unmapped.sam
 #awk '{sum += $2} END {print sum}' backup/all.unmapped.coverage 
 
 #-----------------------------------------------------Common Uncovered Coverage-----------------------------------------------------------------------------
-common-uncovered-coverage.out: qc-ref.sam  assemblies.stats.QC.AMBIGUOUS.99 
+common-uncovered-coverage.out: qc-ref.sam  assemblies.stats.QC.AMBIGUOUS.99
 	python ${MYSCRIPTS}/common-uncovered-coverage.py ${REFERENCE} qc-ref.sam QC.AMBIGUOUS.99.uncovered.bases common-uncovered-coverage.out 
 
 #------------------------------------------------------------Kmer Abundance---------------------------------------------------------------------------------
-mqc500.dist: sample5per.pe.qc.fq.gz.pe megahit-quality-assembly500.fa
-	gunzip -c sample5per.pe.qc.fq.gz > sample5per.pe.qc.fastq 
-	gunzip -c sample5per.se.qc.fq.gz > sample5per.se.qc.fastq  
-	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh sample5per.pe.qc.fastq sample5per.se.qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} sample5per.qc.dist -s
-	cat sample5per.pe.qc.fastq sample5per.se.qc.fastq  > sample5per-qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py qc.counts.kh sample5per-qc.fastq qc.dist -s
+mqc500.dist: sample5per.pe.qc.fq.gz megahit-quality-assembly500.fa
+	gunzip -c ecoli.pe.qc.fq.gz > ecoli.pe.qc.fastq 
+	gunzip -c ecoli.se.qc.fq.gz > ecoli.se.qc.fastq  
+	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh ecoli.pe.qc.fastq ecoli.se.qc.fastq 
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} ecoli.qc.dist -s
+	cat ecoli.pe.qc.fastq ecoli.se.qc.fastq  > ecoli-qc.fastq 
+	python ${SCRIPTS}/abundance-dist.py qc.counts.kh ecoli-qc.fastq qc.dist -s
 	cat idba-quality-assembly500.fa spades-quality-assembly500.fa megahit-quality-assembly500.fa > qc-assembly500.fa 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s	
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
+
 #------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
 #This is an ignored part 
-chimeric:  ${REFERENCE} sample5per.pe.qc.fq.gz.pe
+chimeric:  ${REFERENCE} sample5per.pe.qc.fq.gz
 	bwa index ${REFERENCE} 
 	bwa mem -M -t 16 ${REFERENCE} sample5per.se.qc.fq.gz  > sample5per-se.sam
 	bwa mem -M -t 16 ${REFERENCE} sample5per.pe.qc.fq.gz  > sample5per-pe.sam
