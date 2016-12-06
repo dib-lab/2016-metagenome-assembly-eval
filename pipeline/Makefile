@@ -7,7 +7,6 @@ TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
-OLDKHMER = /opt/software/khmer/khmer-1.4
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: sample5per-1.fastq.gz   sample5per-2.fastq.gz \
 	sample5per.se.fq.gz \
@@ -75,26 +74,24 @@ protocol-quality-rename-2: sample5per.pe.qc.fq.gz.pe
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
 sample5per.spades.d/scaffolds.fasta: sample5per.pe.qc.fq.gz 
-	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 sample5per.pe.qc.fq.gz -o sample5per.spades.d    
+	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 sample5per.pe.qc.fq.gz --pe1-s sample5per.se.qc.fq.gz -o sample5per.spades.d        
 
 spades-quality-assembly.fa: sample5per.spades.d/scaffolds.fasta  
-	python ${SANDBOX}/sandbox/calc-best-assembly.py sample5per.spades.d/scaffolds.fasta -o spades-quality-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-quality-best.fa > spades-quality-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly sample5per.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
+
 #-----------------------------------------------------------------IDBA QUALITY-------------------------------------------------------------------------------
 sample5per.pe.fa: sample5per.pe.qc.fq.gz 
-	fastq-to-fasta.py sample5per.pe.qc.fq.gz >sample5per.pe.fa 
+	fastq-to-fasta.py -n sample5per.pe.qc.fq.gz >sample5per.pe.fa 
 sample5per.idba.d.qc/scaffold.fa: sample5per.pe.fa
 	/usr/bin/time -a -o iqc.txt idba_ud --pre_correction -r sample5per.pe.fa -o sample5per.idba.d.qc 
 
 idba-quality-assembly.fa: sample5per.idba.d.qc/scaffold.fa
-	python ${SANDBOX}/sandbox/calc-best-assembly.py sample5per.idba.d.qc/scaffold.fa -o idba-quality-best.fa 
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-quality-best.fa > idba-quality-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly sample5per.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 megahit.qc.pe/final.contigs.fa: sample5per.pe.qc.fq.gz.pe  
-	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r sample5per.pe.qc.fq.gz -o megahit.qc.pe 
-	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r sample5per.se.qc.fq.gz -o megahit.qc.se
+	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 sample5per.pe.qc.fq.gz -r sample5per.se.qc.fq.gz -o megahit.qc.pe 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
-	cat megahit.qc.pe/final.contigs.fa megahit.qc.se/final.contigs.fa > megahit-quality-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa
 #----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
 sample5per.ignore.long: sample5per.pe.qc.fq.gz.pe
 	extract-long-sequences.py -l 20 sample5per.pe.qc.fq.gz -o sample5per.ignore.long
@@ -133,7 +130,7 @@ spades-diginorm-2: sample5per.pe.kak.qc.fq.gz sample5per.se.kak.qc.fq.gz
 	
 finalize-spades-diginorm:  sample5per.spades.d/contigs.fasta 
 	python ${SANDBOX}/sandbox/calc-best-assembly.py sample5per.*e.kak.qc.spades.d/contigs.fasta -o spades-diginorm-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
+	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
 #------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
 idba-diginorm-1: *.pe.kak.qc.fq.gz  
 	.idba-dig.sh \
@@ -145,7 +142,7 @@ idba-diginorm-2: sample5per.pe.kak.fa
 
 finalize-idba-diginorm: sample5per.idba.d.digi/scaffold.fa	
 	python ${SANDBOX}/sandbox/calc-best-assembly.py sample5per.idba.d.digi/scaffold.fa -o idba-diginorm-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
+	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
 #-------------------------------------------------------------Megahit DIGINORM------------------------------------------------------------------------------
 megahit-digi-1:
 	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r sample5per.pe.kak.qc.fq.gz -o megahit.digi.pe
@@ -188,7 +185,7 @@ spades-partition-3: kak.group*.pe.fq.gz
 	touch spades-partition-3
 
 finalize-spades-partition: 
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
+	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
 #-----------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
 idba-partition-1: kak*.pe.fq.gz
 	.idba-part.sh \
@@ -203,7 +200,7 @@ idba-partition-3: kak.group*.pe.fq.gz
 	touch idba-partition-3
 
 finalize-idba-partition:
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
+	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
 #-------------------------------------------------------------------Megahit PARTITION------------------------------------------------------------------------
 megahit-part-1: 
 	.megahit-part.sh \
@@ -410,15 +407,14 @@ mqc500.dist: sample5per.pe.qc.fq.gz.pe megahit-quality-assembly500.fa
 	gunzip -c sample5per.pe.qc.fq.gz > sample5per.pe.qc.fastq 
 	gunzip -c sample5per.se.qc.fq.gz > sample5per.se.qc.fastq  
 	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh sample5per.pe.qc.fastq sample5per.se.qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} sample5per.qc.dist
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} sample5per.qc.dist -s
 	cat sample5per.pe.qc.fastq sample5per.se.qc.fastq  > sample5per-qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py qc.counts.kh sample5per-qc.fastq qc.dist 
+	python ${SCRIPTS}/abundance-dist.py qc.counts.kh sample5per-qc.fastq qc.dist -s
 	cat idba-quality-assembly500.fa spades-quality-assembly500.fa megahit-quality-assembly500.fa > qc-assembly500.fa 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist 
-
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s	
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
 #------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
 #This is an ignored part 
 chimeric:  ${REFERENCE} sample5per.pe.qc.fq.gz.pe
