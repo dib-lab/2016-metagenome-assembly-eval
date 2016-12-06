@@ -81,7 +81,7 @@ protocol-quality-rename-2: sample5per.pe.qc.fq.gz.pe
 	./qc-rename-2.sh && touch protocol-quality-rename-2
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
-sample5per.spades.d/scaffolds.fasta: sample5per.pe.qc.fq.gz ecoli.se.qc.fq.gz 
+sample5per.spades.d/scaffolds.fasta: sample5per.pe.qc.fq.gz sample5per.se.qc.fq.gz 
 	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 sample5per.pe.qc.fq.gz --pe1-s sample5per.se.qc.fq.gz -o sample5per.spades.d
 
 spades-quality-assembly.fa: sample5per.spades.d/scaffolds.fasta  
@@ -463,12 +463,12 @@ common-uncovered-coverage.out: qc-ref.sam  assemblies.stats.QC.AMBIGUOUS.99
 
 #------------------------------------------------------------Kmer Abundance---------------------------------------------------------------------------------
 mqc500.dist: sample5per.pe.qc.fq.gz megahit-quality-assembly500.fa
-	gunzip -c ecoli.pe.qc.fq.gz > ecoli.pe.qc.fastq 
-	gunzip -c ecoli.se.qc.fq.gz > ecoli.se.qc.fastq  
-	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh ecoli.pe.qc.fastq ecoli.se.qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} ecoli.qc.dist -s
-	cat ecoli.pe.qc.fastq ecoli.se.qc.fastq  > ecoli-qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py qc.counts.kh ecoli-qc.fastq qc.dist -s
+	gunzip -c sample5per.pe.qc.fq.gz > sample5per.pe.qc.fastq 
+	gunzip -c sample5per.se.qc.fq.gz > sample5per.se.qc.fastq  
+	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh sample5per.pe.qc.fastq sample5per.se.qc.fastq 
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} sample5per.qc.dist -s
+	cat sample5per.pe.qc.fastq sample5per.se.qc.fastq  > sample5per-qc.fastq 
+	python ${SCRIPTS}/abundance-dist.py qc.counts.kh sample5per-qc.fastq qc.dist -s
 	cat idba-quality-assembly500.fa spades-quality-assembly500.fa megahit-quality-assembly500.fa > qc-assembly500.fa 
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
