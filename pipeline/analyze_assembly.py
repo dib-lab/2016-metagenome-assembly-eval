@@ -321,6 +321,7 @@ class GenomeIntervalsContainer(object):
         fout = open(outfile, 'w+')  
 	for name in self.aligned: 
 	    for i in self.aligned[name]:
+                i = int(i)      # avoid warning about float index
 		dist[i] +=1 
         for i in range(0, len(dist)) :
             if dist[i] == 0:
@@ -334,6 +335,7 @@ class GenomeIntervalsContainer(object):
         fout = open(outfile, 'w+')
         for name in self.covered:
             for i in self.covered[name]:
+                i = int(i)      # avoid warning about float index
                 dist[i] +=1
         for i in range(0, len(dist)) :
             if dist[i] == 0:

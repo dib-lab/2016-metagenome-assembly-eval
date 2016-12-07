@@ -1,5 +1,5 @@
 REFERENCE = ecoliMG1655.fa
-MYSCRIPTS = /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline
+MYSCRIPTS = ../pipeline
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
 MEGAHIT=/mnt/home/mahmoud4/megahit
@@ -7,7 +7,6 @@ TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
-OLDKHMER = /opt/software/khmer/khmer-1.4
 mc = 1000 2000 3000
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: ecoli-1.fastq.gz   ecoli-2.fastq.gz \
@@ -22,7 +21,7 @@ spades-quality: ecoli.pe.qc.fq.gz \
 #-------------------------------------------------IDBA Quality----------------------------------------------------------------------------------------
 idba-quality: ecoli.pe.qc.fq.gz \
 	ecoli.pe.fa \
-	ecoli.idba.d.qc/contig.fa \
+	ecoli.idba.d.qc/scaffold.fa \
 	idba-quality-assembly.fa 
 #------------------------------------------------Megahit Quality-------------------------------------------------------------------------------------------- 
 megahit-quality: ecoli.pe.qc.fq.gz \
@@ -79,26 +78,24 @@ protocol-quality-rename-2: ecoli.pe.qc.fq.gz.pe
 	./qc-rename-2.sh && touch protocol-quality-rename-2
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
-ecoli.spades.d/scaffolds.fasta: ecoli.pe.qc.fq.gz 
-	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 ecoli.pe.qc.fq.gz -o ecoli.spades.d    
+ecoli.spades.d/scaffolds.fasta: ecoli.pe.qc.fq.gz ecoli.se.qc.fq.gz
+	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 ecoli.pe.qc.fq.gz --pe1-s ecoli.se.qc.fq.gz -o ecoli.spades.d    
 
 spades-quality-assembly.fa: ecoli.spades.d/scaffolds.fasta  
-	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.spades.d/scaffolds.fasta -o spades-quality-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-quality-best.fa > spades-quality-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly ecoli.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
 #-----------------------------------------------------------------IDBA QUALITY-------------------------------------------------------------------------------
 ecoli.pe.fa: ecoli.pe.qc.fq.gz 
-	fastq-to-fasta.py ecoli.pe.qc.fq.gz >ecoli.pe.fa 
-ecoli.idba.d.qc/contig.fa: ecoli.pe.fa
+	fastq-to-fasta.py -n ecoli.pe.qc.fq.gz >ecoli.pe.fa 
+ecoli.idba.d.qc/scaffold.fa: ecoli.pe.fa
 	/usr/bin/time -a -o iqc.txt idba_ud --pre_correction -r ecoli.pe.fa -o ecoli.idba.d.qc 
 
-idba-quality-assembly.fa: ecoli.idba.d.qc/contig.fa
-	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.idba.d.qc/contig.fa -o idba-quality-best.fa 
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-quality-best.fa > idba-quality-assembly.fa
+idba-quality-assembly.fa: ecoli.idba.d.qc/scaffold.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly ecoli.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 megahit.qc.pe/final.contigs.fa: ecoli.pe.qc.fq.gz  
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 ecoli.pe.qc.fq.gz -r ecoli.se.qc.fq.gz -o megahit.qc.pe 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly megahit-quality-best.fa > megahit-quality-assembly.fa	 
+	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa	 
 #----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
 ecoli.ignore.long: ecoli.pe.qc.fq.gz
 	extract-long-sequences.py -l 20 ecoli.pe.qc.fq.gz -o ecoli.ignore.long
@@ -134,10 +131,10 @@ spades-diginorm-1:*.pe.kak.qc.fq.gz
 spades-diginorm-2: ecoli.pe.kak.qc.fq.gz ecoli.se.kak.qc.fq.gz
 	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 ecoli.pe.kak.qc.fq.gz -o ecoli.pe.kak.qc.spades.d
 	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 ecoli.se.kak.qc.fq.gz -o ecoli.se.kak.qc.spades.d
-	
+
 finalize-spades-diginorm:  ecoli.spades.d/contigs.fasta 
 	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.*e.kak.qc.spades.d/contigs.fasta -o spades-diginorm-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
 #------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
 idba-diginorm-1: *.pe.kak.qc.fq.gz  
 	.idba-dig.sh \
@@ -149,7 +146,7 @@ idba-diginorm-2: ecoli.pe.kak.fa
 
 finalize-idba-diginorm: ecoli.idba.d.digi/scaffold.fa	
 	python ${SANDBOX}/sandbox/calc-best-assembly.py ecoli.idba.d.digi/scaffold.fa -o idba-diginorm-best.fa
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
 #-------------------------------------------------------------Megahit DIGINORM------------------------------------------------------------------------------
 megahit-digi-1:
 	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.pe.kak.qc.fq.gz -o megahit.digi.pe
@@ -192,7 +189,7 @@ spades-partition-3: kak.group*.pe.fq.gz
 	touch spades-partition-3
 
 finalize-spades-partition: 
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
 #-----------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
 idba-partition-1: kak*.pe.fq.gz
 	.idba-part.sh \
@@ -207,7 +204,7 @@ idba-partition-3: kak.group*.pe.fq.gz
 	touch idba-partition-3
 
 finalize-idba-partition:
-	python ${OLDKHMER}/sandbox/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
 #-------------------------------------------------------------------Megahit PARTITION------------------------------------------------------------------------
 megahit-part-1: 
 	.megahit-part.sh \
@@ -230,10 +227,10 @@ mqc500.coords: megahit-quality-assembly500.fa
 assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 
-	
+
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.99 -b True 99
-	
+
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
 
@@ -249,7 +246,7 @@ stats: megahit-quality-assembly500.fa
 	python ${MYSCRIPTS}/compute_stats.py idba-quality-assembly500.fa ${REFERENCE} > idba.stats 
 	python ${MYSCRIPTS}/compute_stats.py spades-quality-assembly500.fa ${REFERENCE} > spades.stats
 	python ${MYSCRIPTS}/compute_stats.py megahit-quality-assembly500.fa ${REFERENCE} > megahit.stats
-	
+
 megahit-quality-assembly3000.fa:  megahit-quality-assembly.fa
 	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} idba-quality-assembly.fa $(i); ) 
 	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} spades-quality-assembly.fa $(i); ) 
@@ -259,7 +256,7 @@ mqc3000.coords: megahit-quality-assembly3000.fa
 	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p iqc$(i) ${REFERENCE}  idba-quality-assembly$(i).fa ; ) 
 	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p sqc$(i) ${REFERENCE}  spades-quality-assembly$(i).fa ;) 
 	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p mqc$(i) ${REFERENCE}  megahit-quality-assembly$(i).fa ; ) 
-	
+
 assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords 
 	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
 	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).99 -a True 99;)
@@ -276,7 +273,7 @@ assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords
 	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).95 -c True 95 ;)
 
 
-	
+
 annotate-prokka: ${REFERENCE} megahit-quality-assembly500.fa
 	prokka ${REFERENCE} --outdir mprokka --prefix testasm --metagenome
 
@@ -284,7 +281,7 @@ parse-prokka: mprokka/testasm.tbl
 	${MYSCRIPTS}/parse-prokka.py mprokka/testasm.tbl prokka.out
 	${MYSCRIPTS}/analyze_assembly_prokka.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 prokka.out  	
- 
+
 
 
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
@@ -464,14 +461,14 @@ mqc500.dist: ecoli.pe.qc.fq.gz megahit-quality-assembly500.fa
 	gunzip -c ecoli.pe.qc.fq.gz > ecoli.pe.qc.fastq 
 	gunzip -c ecoli.se.qc.fq.gz > ecoli.se.qc.fastq  
 	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh ecoli.pe.qc.fastq ecoli.se.qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} ecoli.qc.dist
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} ecoli.qc.dist -s
 	cat ecoli.pe.qc.fastq ecoli.se.qc.fastq  > ecoli-qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py qc.counts.kh ecoli-qc.fastq qc.dist 
+	python ${SCRIPTS}/abundance-dist.py qc.counts.kh ecoli-qc.fastq qc.dist -s
 	cat idba-quality-assembly500.fa spades-quality-assembly500.fa megahit-quality-assembly500.fa > qc-assembly500.fa 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist 
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
+	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
 #------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
 #This is an ignored part 
 chimeric:  ${REFERENCE} ecoli.pe.qc.fq.gz
