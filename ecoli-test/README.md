@@ -11,7 +11,7 @@ Download the reference:
     curl -O https://s3.amazonaws.com/public.ged.msu.edu/ecoliMG1655.fa.gz
     gunzip ecoliMG1655.fa.gz
 
-To run the ecoli pipeline do the following after splinting the ecoli set: 
+To run the ecoli pipeline do the following after splitting the ecoli set: 
 =========================================================================
 
 bash quality.sh 2>&1 | tee quality.log 
