@@ -11,9 +11,7 @@ OLDKHMER = /opt/software/khmer/khmer-1.4
 mc = 1000 2000 3000
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: ecoli-1.fastq.gz   ecoli-2.fastq.gz \
-	ecoli.se.qc.fq.gz \
-	ecoli.pe.qc.fq.gz.pe \
-	protocol-quality-rename-2 
+	ecoli.se.qc.fq.gz 
 #-------------------------------------------------SPAdes Quality----------------------------------------------------------------------------------------
 spades-quality: ecoli.pe.qc.fq.gz \
 	ecoli.spades.d/scaffolds.fasta \
@@ -70,13 +68,6 @@ ecoli.se.qc.fq.gz:   ecoli-1.fastq.gz   ecoli-2.fastq.gz
 
 	${SCRIPTS}/interleave-reads.py s1_pe s2_pe | gzip -9c > ecoli.pe.qc.fq.gz 
 	cat s1_se s2_se | gzip -9c > ecoli.se.qc.fq.gz
-
-ecoli.pe.qc.fq.gz.pe: ecoli.se.qc.fq.gz 
-	extract-paired-reads.py ecoli.pe.qc.fq.gz 
-
-protocol-quality-rename-2: ecoli.pe.qc.fq.gz.pe
-	./qc-rename-1.sh && touch protocol-quality-rename-1
-	./qc-rename-2.sh && touch protocol-quality-rename-2
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
 ecoli.spades.d/scaffolds.fasta: ecoli.pe.qc.fq.gz 
