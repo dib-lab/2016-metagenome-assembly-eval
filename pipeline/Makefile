@@ -125,7 +125,7 @@ spades-diginorm-2: sample5per.pe.kak.qc.fq.gz sample5per.se.kak.qc.fq.gz
 	
 finalize-spades-diginorm:  sample5per.spades.d/contigs.fasta 
 	python ${SANDBOX}/sandbox/calc-best-assembly.py sample5per.*e.kak.qc.spades.d/contigs.fasta -o spades-diginorm-best.fa
-	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
 #------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
 idba-diginorm-1: *.pe.kak.qc.fq.gz  
 	.idba-dig.sh \
@@ -137,7 +137,7 @@ idba-diginorm-2: sample5per.pe.kak.fa
 
 finalize-idba-diginorm: sample5per.idba.d.digi/scaffold.fa	
 	python ${SANDBOX}/sandbox/calc-best-assembly.py sample5per.idba.d.digi/scaffold.fa -o idba-diginorm-best.fa
-	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
 #-------------------------------------------------------------Megahit DIGINORM------------------------------------------------------------------------------
 megahit-digi-1:
 	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r sample5per.pe.kak.qc.fq.gz -o megahit.digi.pe
@@ -180,7 +180,7 @@ spades-partition-3: kak.group*.pe.fq.gz
 	touch spades-partition-3
 
 finalize-spades-partition: 
-	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
 #-----------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
 idba-partition-1: kak*.pe.fq.gz
 	.idba-part.sh \
@@ -195,7 +195,7 @@ idba-partition-3: kak.group*.pe.fq.gz
 	touch idba-partition-3
 
 finalize-idba-partition:
-	python ${MYSCRIPTS}/sandbox/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
+	python ${MYSCRIPTS}/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
 #-------------------------------------------------------------------Megahit PARTITION------------------------------------------------------------------------
 megahit-part-1: 
 	.megahit-part.sh \
