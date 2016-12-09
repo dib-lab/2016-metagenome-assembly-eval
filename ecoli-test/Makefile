@@ -84,7 +84,7 @@ idba-quality-assembly.fa: ecoli.idba.d.qc/scaffold.fa
 	python ${MYSCRIPTS}/multi-rename.py assembly ecoli.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 megahit.qc.pe/final.contigs.fa: ecoli.pe.qc.fq.gz
-	rm -r megahit-qc-pe
+	rm -r megahit.qc.pe
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 ecoli.pe.qc.fq.gz -r ecoli.se.qc.fq.gz -o megahit.qc.pe 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
 	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa	 
