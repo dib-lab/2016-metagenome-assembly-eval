@@ -11,7 +11,7 @@ cd /mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/
 module swap GNU GNU/4.4.5
 module load IDBAUD
 
-make ecoli.idba.d.qc/contig.fa 
+make ecoli.idba.d.qc/scaffold.fa 
 
 
 make idba-quality-assembly.fa 
