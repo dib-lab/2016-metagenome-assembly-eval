@@ -710,3 +710,6 @@ sqc3000.QC.NOOVERLAP3000.99.count.uncovered
 sqc3000.QC.NOOVERLAP3000.99.unaligned
 sqc3000.align.dist95
 sqc3000.cov.dist95
+ecoli.qc.dist
+iqc500.dist
+sqc500.dist
