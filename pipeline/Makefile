@@ -84,7 +84,7 @@ idba-quality-assembly.fa: SRR606249.idba.d.qc/scaffold.fa
 	python ${MYSCRIPTS}/multi-rename.py assembly SRR606249.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 megahit.qc.pe/final.contigs.fa: SRR606249.pe.qc.fq.gz  
-	rm -r megahit.qc.pe
+	#rm -r megahit.qc.pe
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 SRR606249.pe.qc.fq.gz -r SRR606249.se.qc.fq.gz -o megahit.qc.pe 
 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
@@ -145,7 +145,7 @@ megahit-digi-1:
 	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r SRR606249.pe.kak.qc.fq.gz -o megahit.digi.pe
 	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r SRR606249.se.kak.qc.fq.gz -o megahit.digi.se
 
-#------------------------------------------------------------------PARTITION STARTS--------------------------------------------------------------------------
+
 protocol-partition-below: normC5k20.kh *.kak.*.fq.gz
 	python ${SANDBOX}/sandbox/filter-below-abund.py normC5k20.kh *.kak.*.fq.gz 
 

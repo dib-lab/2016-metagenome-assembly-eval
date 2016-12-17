@@ -1,6 +1,6 @@
 #PBS -A ged
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=48:00:00
+#PBS -l walltime=24:00:00
 #PBS -l mem=100GB
 #PBS -N analysis-3
 
@@ -12,8 +12,8 @@ module load Trimmomatic
 module load prokka 
 
 
-make mincontig-analysis 
-make stats
+#make mincontig-analysis 
+#make stats
 make annotate-prokka
 make parse-prokka 
   

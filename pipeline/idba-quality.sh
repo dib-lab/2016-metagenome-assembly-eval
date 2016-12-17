@@ -1,8 +1,8 @@
 #PBS -A ged
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=4:00:00
-#PBS -l mem=75GB
-#PBS -N idbaQC5
+#PBS -l walltime=96:00:00
+#PBS -l mem=100GB
+#PBS -N IDBAQCPodar
 
 
 cd /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/
@@ -10,7 +10,7 @@ cd /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/
 module swap GNU GNU/4.4.5
 module load IDBAUD
 
-make sample5per.idba.d.qc/scaffold.fa 
+make SRR606249.idba.d.qc/scaffold.fa 
 make idba-quality-assembly.fa 
 
 
