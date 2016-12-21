@@ -67,7 +67,7 @@ def main():
 	     if ref[j] >0:
 		 cov +=1 
 	   
-    for i in range(200): 
+    for i in range( len(arr) ): 
 	print >>fp, i, arr[i]
 
     print >>fp, args.samfile1, float(cov) / float(total), cov, total
