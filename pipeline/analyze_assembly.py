@@ -151,6 +151,8 @@ class GenomeIntervalsContainer(object):
 			align[j] +=1
 
     # @CTB ok, how does this differ from previous function?
+    # @CTB I see, this is used for ambiguous, load coords used for
+    # no overlaps/best hit computing.
     def load_coords(self, filename, min_ident, min_length=100):
         covered = self.covered
         aligned = self.aligned
