@@ -111,7 +111,7 @@ class GenomeIntervalsContainer(object):
            
    
     def load_overlaps(self, filename,  min_ident,prokka_file, comparison =best_hit, min_length=100):
-      	fp = open('prokka-analysis.out', 'w') 
+      	fp = open('prokka-analysis.out', 'a+') 
 	covered = self.covered
         aligned = self.aligned 
         counts = 0
@@ -171,7 +171,7 @@ class GenomeIntervalsContainer(object):
         print >>fp, 'Counts of genes found is:' , c, 'out of', counts 
     
     def load_coords(self, filename,  min_ident, prokka_file, min_length=100):
-       	fp = open('prokka-analysis.out', 'w') 
+       	fp = open('prokka-analysis.out', 'a+') 
 	covered = self.covered
         aligned = self.aligned
         counts = 0 

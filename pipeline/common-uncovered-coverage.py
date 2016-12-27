@@ -61,25 +61,21 @@ def main():
     
    
     count5 = 0 
-    count5plus = 0 
+    count5plus = 0
+    count =[0]* 1000 
     for name in genome_uncov: 
 	if name in genome_dict1: 
 	    for i in range(0, len(genome_uncov[name]) ): 
 		index = genome_uncov[name][i] 
-		#for itr in range(0, 50): 
-	 		#if  genome_dict1[name][index]  <itr  : 
-				#count[itr]  +=1
-		if genome_dict1[name][index]  <5: 
-			count5 +=1 
-		else:
-		       count5plus +=1 
+		for itr in range(0, 200): 
+	 		if  genome_dict1[name][index]  <itr  : 
+				count[itr]  +=1
    	else: 
 	     print >>fp, name 
-    print >>fp, "coverage less than 5, coverage greater than/equal 5:" 
-    print >>fp,  count5, count5plus
  
-    #for itr in range(0,50): 
-    	#print 'Total bases with coverage less than ',itr, 'is',  count[itr], 'out of', c  
-    #fp.close() 
+    for itr in range(0,200): 
+    	print >>fp, itr, count[itr]
+    #fp.close()
+ 
 if __name__ == '__main__':
     main()

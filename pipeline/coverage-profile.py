@@ -77,8 +77,8 @@ def main():
     if cov == 0:
         assert 0, "summed coverage is 0 - this seems like a problem :)"
 
-    for i in range(50):         # why '50' @CTB?
-	print >>fp, i, arr[i]
+    for i in range(len(arr)): 
+        print >>fp, i, arr[i]
 
     # @CTB this seems like a problem -- it outputs this as the last line
     # of the coverage file. what awk command is being used to count?
