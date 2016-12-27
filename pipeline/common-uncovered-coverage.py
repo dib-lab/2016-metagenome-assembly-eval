@@ -60,15 +60,13 @@ def main():
                           ref[i] += 1
     
    
-    count5 = 0 
-    count5plus = 0
-    count =[0]* 1000 
+    count =[0]* 13000000 
     for name in genome_uncov: 
 	if name in genome_dict1: 
 	    for i in range(0, len(genome_uncov[name]) ): 
 		index = genome_uncov[name][i] 
 		for itr in range(0, 200): 
-	 		if  genome_dict1[name][index]  <itr  : 
+	 		if  genome_dict1[name][index] == itr  : 
 				count[itr]  +=1
    	else: 
 	     print >>fp, name 
