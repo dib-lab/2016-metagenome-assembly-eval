@@ -28,16 +28,17 @@ def main():
     
     c = 0
     for line in open(args.uncov):
+        line = line.strip()
 	if line.startswith('>'): 
              line.split('>') 
-             name = line[:-1]
 	     name = name[1:] 
 	else:
              indeces = line.split(',')
-             indeces = indeces[:-1] # @CTB should do a line.strip() instead?
-             indeces = [int(i) for i in indeces]
+             indeces = [int(i) for i in indeces if i]
              genome_uncov[name] = indeces 
 	     c += len(indeces) 
+
+    print 'done reading %s - %d uncov total.' % (args.uncov, c)
 
 
     for samline in ignore_at(open(args.samfile1)):
@@ -72,10 +73,9 @@ def main():
    	else: 
 	     print >>fp, name 
 
-    so_far = 0
     for itr in range(0,200): 
         so_far += count[itr]
-    	print >>fp, itr, so_far
+    	print >>fp, itr, count[itr]
     #fp.close()
  
 if __name__ == '__main__':
