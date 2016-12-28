@@ -18,12 +18,13 @@ def main():
     parser.add_argument('outfile')
 
     args = parser.parse_args()
-    fp =open(args.outfile, 'a+') 
+    fp =open(args.outfile, 'w') # @CTB changed from an 'at'
 
     genome_dict1 = {}
     genome_uncov = {}
     for record in screed.open(args.genome):
-        genome_dict1[record.name] = [0] * len(record.sequence)  
+        name = record.name.split(' ')[0]
+        genome_dict1[name] = [0] * len(record.sequence)  
     
     c = 0
     for line in open(args.uncov):
@@ -33,7 +34,7 @@ def main():
 	     name = name[1:] 
 	else:
              indeces = line.split(',')
-             indeces = indeces[:-1]
+             indeces = indeces[:-1] # @CTB should do a line.strip() instead?
              indeces = [int(i) for i in indeces]
              genome_uncov[name] = indeces 
 	     c += len(indeces) 
@@ -53,11 +54,13 @@ def main():
         if refname in genome_dict1:
                  ref = genome_dict1[refname]
     	else : 
+                assert refname == '*', refname # make sure not real alignment
 		continue
      
-        for i in range(refpos - 1, refpos + len(seq) - 1):
-	       if i < len(ref): 
-                          ref[i] += 1
+        for i in range(refpos - 1, min(refpos + len(seq) - 1, len(ref))):
+                ref[i] += 1
+
+    print>>sys.stderr, "done reading SAM file"
     
    
     count5 = 0 
@@ -65,16 +68,15 @@ def main():
     count =[0]* 1000 
     for name in genome_uncov: 
 	if name in genome_dict1: 
-	    for i in range(0, len(genome_uncov[name]) ): 
-		index = genome_uncov[name][i] 
-		for itr in range(0, 200): 
-	 		if  genome_dict1[name][index]  <itr  : 
-				count[itr]  +=1
+	    for val in genome_uncov[name]:
+                count[itr] += 1
    	else: 
 	     print >>fp, name 
- 
+
+    so_far = 0
     for itr in range(0,200): 
-    	print >>fp, itr, count[itr]
+        so_far += count[itr]
+    	print >>fp, itr, so_far
     #fp.close()
  
 if __name__ == '__main__':
