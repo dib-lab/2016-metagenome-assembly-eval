@@ -30,8 +30,7 @@ def main():
     for line in open(args.uncov):
         line = line.strip()
 	if line.startswith('>'): 
-             line.split('>') 
-	     name = name[1:] 
+	     name = line[1:] 
 	else:
              indeces = line.split(',')
              indeces = [int(i) for i in indeces if i]
@@ -64,17 +63,18 @@ def main():
     print>>sys.stderr, "done reading SAM file"
     
    
-    count =[0]* 13000000 
+    count =[0]*200
     for name in genome_uncov: 
 	if name in genome_dict1: 
-	    for val in genome_uncov[name]:
-                if val < 200:
-                        count[val] += 1
+            coverages = genome_dict1[name]
+	    for position in genome_uncov[name]:
+                cov = coverages[position]
+                if cov < 200:
+                        count[cov] += 1
    	else: 
 	     print >>fp, name 
 
     for itr in range(0,200): 
-        so_far += count[itr]
     	print >>fp, itr, count[itr]
     #fp.close()
  
