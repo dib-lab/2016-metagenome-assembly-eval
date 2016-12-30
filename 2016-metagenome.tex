@@ -810,12 +810,11 @@ A number of the genomes in the reference metagenome had many missing
 bases in the assemblies (Table ~\ref{table:genomes_uncovered}). In
 three extreme cases, Shewanella baltica\_OS223, Fusobacterium
 nucleatum, and Desulvovibrio contribute, 18.25\%, 16.95\%, and 12.85\%
-of the common uncovered bases respectively. %these numbers are after
-sorting file QC.AMBIGUOUS.99.uncovered using
+of the common uncovered bases respectively.
+%these numbers are after sorting file QC.AMBIGUOUS.99.uncovered using
 %[sort -n -k2 -r  QC.AMBIGUOUS.99.uncovered>QC.AMBIGUOUS.99.uncovered.sorted ] and the percentage is computed w.r.t no. of common uncovered bases
 
 \subsection*{Many assembled contigs do not align to the reference metagenome}
-%Numbers in this section are up to date 22 december 2016
 Depending on assembler, between 8.04\% and 10.87\% of the assembled
 contigs do not align anywhere in the reference metagenome.
 
@@ -825,10 +824,12 @@ of those reads mapped to the reference. (2.14\% of all the reads).
 28.97\% of those reads mapped to the reference. (1.80\% of all the
 reads).  5.87\% of reads mapped to the unaligned contigs of
 Megahit. Only 24.80\% of those reads mapped to the reference. (1.45\%
-of all the reads).%The above numbers are coming from
-iqc.AM99.aligned.reads and iqc.AM99-mapped-reads for IDBA,
-sqc.AM99.aligned.reads and sqc.AM99-mapped-reads for SPADES, and
-mqc.AM99.aligned.reads and mqc.AM99-mapped-reads for megahit.  For
+of all the reads)
+%The above numbers are coming from
+%iqc.AM99.aligned.reads and iqc.AM99-mapped-reads for IDBA,
+%sqc.AM99.aligned.reads and sqc.AM99-mapped-reads for SPADES, and
+%mqc.AM99.aligned.reads and mqc.AM99-mapped-reads for megahit.
+For
 each assembly, approximately 5m quality-filtered reads map only to the
 unaligned contigs (and nowhere in the reference).
 %Numbers from subtracting numbers in those files:
@@ -924,6 +925,7 @@ we have only 29.2% with coverage <5 in the common uncovered.
 \subsection*{Assembly produces content not in the reference metagenome}
 %@CTB: I don't know what XX in this section refering to. 
 % XX was >5 is comming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out where ~75% of the reads mapped to the aligned contigs and not to the reference has coverage of one at least in the contigs, but the text refers to ccontigs coverage? so something here doesn't add up;
+
 In addition to recovering most of the content of the reference
 metagenome, all three assemblers generate many contigs (approximately
 10\% of the total) that do not map to anything in the reference.
@@ -954,7 +956,7 @@ is recovered in common, with 0.64 to 1.92\% specific to each assembler
 (and a total of XX\% being recovered by one or two, but not all three,
 of the assemblers). None of the assemblers include all of the sequence
 produced by the others. %, and the extra sensitivity offered by
-MEGAHIT comes with a higher level of duplication.
+%MEGAHIT comes with a higher level of duplication.
 %I commented the previous sentence as Megahit is not the lowest in duplication 
 
 In practice, then, we do not see a significant advantage to one
