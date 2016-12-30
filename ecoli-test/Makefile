@@ -475,3 +475,12 @@ chimeric:  ${REFERENCE} ecoli.pe.qc.fq.gz
 	bash ${MYSCRIPTS}/count-chimeric.sh 
 
 #---------------------------------------------------------------Cleaning ------------------------------------------------------------------------------------	
+# CTB
+foo:
+	python test_basic.py
+	${NUCMER}/nucmer --coords -p  test_basic/test_basic  test_basic/genome.fa test_basic/contigs.fa
+	python ${MYSCRIPTS}/analyze_assembly.py test_basic/genome.fa test_basic/contigs.fa test_basic/contigs.fa test_basic/contigs.fa test_basic/test_basic.coords test_basic/test_basic.coords test_basic/test_basic.coords ZZZ -a True 99
+
+	${NUCMER}/nucmer --coords -p  test_basic2/test_basic2  test_basic2/genome.fa test_basic2/contigs.fa
+	python ${MYSCRIPTS}/analyze_assembly.py test_basic2/genome.fa test_basic2/contigs.fa test_basic2/contigs.fa test_basic2/contigs.fa test_basic2/test_basic2.coords test_basic2/test_basic2.coords test_basic2/test_basic2.coords ZZZ2 -a True 99
+

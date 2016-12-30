@@ -6,11 +6,12 @@ import screed
 import sys
 from collections import defaultdict
 
+# load a .coords file output by nucmer
 def _load_coords(filename, only=None):
     lines = [ x.strip() for x in (open(filename)) ]
     assert lines[1].startswith('NUCMER'), lines[0]
     
-    
+    # process each line into (s1, e1, _, s2, e2, ..., % ident, _, name1, name2)
     coords = []
     for line_no in range(5, len(lines)):
         line = lines[line_no].split()
@@ -23,6 +24,7 @@ def _load_coords(filename, only=None):
 
         yield (s1, e1, s2, e2, ident, name1, name2)
 
+# load reference sequences into two dicts, one (name: len), other (name: seq)
 def load_reference(filename):
     d = {}
     s = {}
@@ -31,7 +33,7 @@ def load_reference(filename):
         s[record.name.split()[0]] = record.sequence
     return d, s 
 
-
+# load the assembly in - @CTB this is identical to load_reference, right?
 def load_assembly(assembly): 
     d = {}
     s = {}
@@ -79,6 +81,7 @@ class GenomeIntervalsContainer(object):
             overlaps_identity[k] = 0       
             contigs_overlaps[k] = 0
             overlaps_genome[k] = "null"
+
         self.overlaps_s1 = overlaps_s1
         self.overlaps_s2 = overlaps_s2 
         self.overlaps_e1 = overlaps_e1
@@ -89,26 +92,31 @@ class GenomeIntervalsContainer(object):
         self.regions = regions  
  
         self.aligned = aligned
-      
-           
-   
-    def load_overlaps(self, filename,  min_ident,  comparison =best_hit, min_length=100):
+
+    def load_overlaps(self, filename, min_ident, comparison=best_hit,
+                      min_length=100):
         covered = self.covered
         aligned = self.aligned 
         
+        # here, name2 is the name of the assembly contig
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
-                       
-           if name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] ==0 :
-                     self.overlaps_s1[name2] = s1
-                     self.overlaps_e1[name2] = e1
-                     self.overlaps_s2[name2] = s2
-                     self.overlaps_e2[name2] = e2
-                     self.overlaps_genome[name2] = name1
-                     self.overlaps_identity[name2] = ident
-                     self.contigs_overlaps[name2] +=1
+
+            # first time seeing this overlap?
+            if name1 in covered and name2 in aligned \
+                   and self.contigs_overlaps[name2] == 0:
+                self.overlaps_s1[name2] = s1
+                self.overlaps_e1[name2] = e1
+                self.overlaps_s2[name2] = s2
+                self.overlaps_e2[name2] = e2
+                self.overlaps_genome[name2] = name1
+                self.overlaps_identity[name2] = ident
+                self.contigs_overlaps[name2] += 1
  
-		       
-           elif name1 in covered and name2 in aligned  and self.contigs_overlaps[name2] > 0:
+            # no, seen an overlap before --
+            elif name1 in covered and name2 in aligned and \
+                   self.contigs_overlaps[name2] > 0:
+
+                # -- is this one better?
                 if self.overlaps_identity[name2] < ident: 
 		     self.overlaps_s1[name2] = s1 
                      self.overlaps_e1[name2] = e1 
@@ -118,10 +126,15 @@ class GenomeIntervalsContainer(object):
 		     self.overlaps_identity[name2] = ident
        		     self.contigs_overlaps[name2] +=1  
 
-        for name2 in self.overlaps_s1  :
-           name1 = self.overlaps_genome[name2]
+        # iterate over all the overlaps,
+        for name2 in self.overlaps_s1:
+
+            # get the best (highest identity) overlap
+            name1 = self.overlaps_genome[name2]
             
-           if (name1 in covered) and (name2 in aligned) and (name1 != "null") and comparison( self.contigs_overlaps[name2],1) :
+            # @CTB when would name1/name2 not be in covered/aligned?
+            # @CTB note, I don't understand how comparison is used here
+            if (name1 in covered) and (name2 in aligned) and (name1 != "null") and comparison( self.contigs_overlaps[name2],1) :
                  cov = covered[name1]
                  align = aligned[name2]
                  s1 = self.overlaps_s1[name2] 
@@ -129,13 +142,18 @@ class GenomeIntervalsContainer(object):
                  s2 = self.overlaps_s2[name2]
                  e2 = self.overlaps_e2[name2] 
                  ident = self.overlaps_identity[name2]
+
+                 # ok, add coverage/# of alignments if alignment passes.
                  if e1 - s1 + 1 >= min_length and ident >= min_ident:
-                    for i in range(s1 -1, e1): 
+                    for i in range(s1 - 1, e1): 
 			cov[i] += 1
-                    for j in range(s2-1, e2):
+                    for j in range(s2 - 1, e2):
 			align[j] +=1
 
-    def load_coords(self, filename,  min_ident, min_length=100):
+    # @CTB ok, how does this differ from previous function?
+    # @CTB I see, this is used for ambiguous, load coords used for
+    # no overlaps/best hit computing.
+    def load_coords(self, filename, min_ident, min_length=100):
         covered = self.covered
         aligned = self.aligned
 
@@ -150,7 +168,6 @@ class GenomeIntervalsContainer(object):
                     for j in range(s2-1, e2):
                         align[j] +=1
 
-                
     def calc_uncov(self):
         uncov_d = {}
         for name in self.refsizes:
@@ -158,7 +175,7 @@ class GenomeIntervalsContainer(object):
             length = self.refsizes[name]
             for i in self.covered[name]: 
 		if i > 0: 
-		    cov +=1  
+		    cov += 1
             uncov = length - cov
             uncov_d[name] = uncov
         return uncov_d
@@ -414,7 +431,7 @@ def main():
 
     print args.ambiguity, args.besthit
     if (args.ambiguity is True):
-                print '......Running ambigious analysis' 	
+                print '......Running ambiguous analysis' 	
     		gic_a.load_coords(args.coords1, float(args.minident))
     	        gic_b.load_coords(args.coords2, float(args.minident)) 
     		gic_c.load_coords(args.coords3, float(args.minident))

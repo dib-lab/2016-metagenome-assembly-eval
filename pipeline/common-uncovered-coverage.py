@@ -18,25 +18,26 @@ def main():
     parser.add_argument('outfile')
 
     args = parser.parse_args()
-    fp =open(args.outfile, 'a+') 
+    fp =open(args.outfile, 'w') # @CTB changed from an 'at'
 
     genome_dict1 = {}
     genome_uncov = {}
     for record in screed.open(args.genome):
-        genome_dict1[record.name] = [0] * len(record.sequence)  
+        name = record.name.split(' ')[0]
+        genome_dict1[name] = [0] * len(record.sequence)  
     
     c = 0
     for line in open(args.uncov):
+        line = line.strip()
 	if line.startswith('>'): 
-             line.split('>') 
-             name = line[:-1]
-	     name = name[1:] 
+	     name = line[1:] 
 	else:
              indeces = line.split(',')
-             indeces = indeces[:-1]
-             indeces = [int(i) for i in indeces]
+             indeces = [int(i) for i in indeces if i]
              genome_uncov[name] = indeces 
 	     c += len(indeces) 
+
+    print 'done reading %s - %d uncov total.' % (args.uncov, c)
 
 
     for samline in ignore_at(open(args.samfile1)):
@@ -53,33 +54,29 @@ def main():
         if refname in genome_dict1:
                  ref = genome_dict1[refname]
     	else : 
+                assert refname == '*', refname # make sure not real alignment
 		continue
      
-        for i in range(refpos - 1, refpos + len(seq) - 1):
-	       if i < len(ref): 
-                          ref[i] += 1
+        for i in range(refpos - 1, min(refpos + len(seq) - 1, len(ref))):
+                ref[i] += 1
+
+    print>>sys.stderr, "done reading SAM file"
     
    
-    count5 = 0 
-    count5plus = 0 
+    count =[0]*200
     for name in genome_uncov: 
 	if name in genome_dict1: 
-	    for i in range(0, len(genome_uncov[name]) ): 
-		index = genome_uncov[name][i] 
-		#for itr in range(0, 50): 
-	 		#if  genome_dict1[name][index]  <itr  : 
-				#count[itr]  +=1
-		if genome_dict1[name][index]  <5: 
-			count5 +=1 
-		else:
-		       count5plus +=1 
+            coverages = genome_dict1[name]
+	    for position in genome_uncov[name]:
+                cov = coverages[position]
+                if cov < 200:
+                        count[cov] += 1
    	else: 
 	     print >>fp, name 
-    print >>fp, "coverage less than 5, coverage greater than/equal 5:" 
-    print >>fp,  count5, count5plus
+
+    for itr in range(0,200): 
+    	print >>fp, itr, count[itr]
+    #fp.close()
  
-    #for itr in range(0,50): 
-    	#print 'Total bases with coverage less than ',itr, 'is',  count[itr], 'out of', c  
-    #fp.close() 
 if __name__ == '__main__':
     main()
