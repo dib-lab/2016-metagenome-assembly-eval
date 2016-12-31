@@ -567,7 +567,7 @@ for the first paired-end library, and {\tt{--pe1-s}} is for single
 reads.
 %@SAM this is what we used?  
 For MEGAHIT \cite{megahit}, we used -l 101 {\tt{-m 3e9
-    --cpu-only}}where {\tt -l} is for maximum read length, {\tt -m} is
+    --cpu-only}} where {\tt -l} is for maximum read length, {\tt -m} is
 for max memory in bytes to be used in constructing the graph, and {\tt
   {--cpu-only}} to use only the CPU and not the GPU. We also used {\tt
   {--presets meta-large}} for large and complex metagenomes, and {\tt
@@ -582,7 +582,7 @@ from each assembly prior to further analysis.
 
 We used the Nucmer tool from MUMmer3.23 \cite{mummer3.0} to align
 assemblies to the reference genome with options {\tt \--coords} {\tt
-  -p}. Then we parsed the generated ``\.coords'' file using a custom
+  -p}. Then we parsed the generated ``.coords'' file using a custom
 script {\tt{analyze\_assembly.py}} to calculate several analysis
 metrics at two alignment identities, 95\% and 99\%.
 
@@ -617,7 +617,7 @@ pre-made k-mer counting table using {\tt{abundance-dist.py}}. We
 followed the same approach to examine k-mer presence in assemblies.
 
 \subsection*{Gene annotations using Prokka}
-We used porkka \cite{prokka} to annotate the reference genome using
+We used prokka \cite{prokka} to annotate the reference genome using
 {\tt{--outdir mprokka --prefix testasm --metagenome}}. Then we parsed
 the testasm.tbl output file to get the coordinates of CDS genes. We
 searched the alignments for how many genes is contained in those
@@ -685,9 +685,9 @@ reads.
 This quality trimmed ("QC") data set was used as the basis for all
 further analyses.
 
-\subsection*{Mapping Quality and Error Profiles}
+%\subsection*{Mapping Quality and Error Profiles}
 
-%%Might need to be merged with previous section 
+%%Might need to be merged with previous section  @CTB
 %We used SAMStat \cite{samstat} to analyze the mapping quality and error profiles of quality filtered reads mapped to the reference genome. Figure \ref{fig:mapquality} shows number of alignments in various mapping quality (MAPQ) intervals and number of unmapped sequences. The percentage and number of alignments in each category is given in brackets. 
 %Figure \ref{fig:basequality} shows mean base quality of reads with low and high mapping quality. %Figure \ref{fig:errorprofile30} shows the error profile for MAPQ $\geq 30$ and Figure \ref{fig:nucleotidecomposition.png} shows the nucleotide compositions. We also found 309,414 chimeric reads. 
 
@@ -777,19 +777,12 @@ prokka-analysis.out.
 \subsection*{The assemblies contain most of the raw data}
 %Numbers in this section are up to date 22 december 2016
 
-In order to evaluate reconstructability with De Bruijn graph
-assemblers, we next examined k-mer presence for a k-mer size of 20. Of
-the 174m 20-mers in the reference data set, 98.7\% were present in the
-data set and 95.5\% of them occurred with abundance 5 or greater in
-the read data set. %the 95.5 is from SRR606249.qc.dist (1-0.045)*100 ,
-the 98.7 is from the same file but (1-0.013) *100
-
 The assemblies also represent the majority of the reads (99.7\%) and
 the majority of the abundance-5 20-mers (93.7\% of the 198m
 high-abundance 20-mers in the reads), suggesting that the assemblies
-represent the underlying content of the reads very well. %the 93.7 is
-from qc500.dist (1-0.027)*100.
-%the 99.7% is from  (1-0.003)*100
+represent the underlying content of the reads very well.
+% %the 93.7 is from qc500.dist (1-0.027)*100.
+% the 99.7% is from  (1-0.003)*100
 
 \subsection*{The portions of the reference metagenome that are not reconstructed are not present in the read data set}
 %Numbers in this section are up to date 27 December 2016
