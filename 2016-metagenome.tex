@@ -435,23 +435,23 @@ Thermus\_thermophilus\_HB27&734,102(5.73\%)\\ \hline
 \end{table}
 %---------------------------------N50-NG50 table 
 
-\begin{table}[!ht]
-\caption{Comparison between N50 and NG50}
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
+%\begin{table}[!ht]
+%\caption{Comparison between N50 and NG50}
+%\centering
+%\begin{tabular}{|c|c|c|}
+%\hline
 
-\textbf{Assembler}& \textbf{N50} &  \textbf{NG50}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{IDBA-UD}&55,225 &52,031\\
-\hline
-\textbf{SPAdes}&68,189&63,721 \\
-\hline
-\textbf{Megahit}&41,427&39,206 \\
-\hline
-\end{tabular}
-\label{table:n50-ng50} 
-\end{table}
+%\textbf{Assembler}& \textbf{N50} &  \textbf{NG50}    \\ [0.5ex] % inserts table %heading
+%\hline
+%\textbf{IDBA-UD}&55,225 &52,031\\
+%\hline
+%\textbf{SPAdes}&68,189&63,721 \\
+%\hline
+%\textbf{Megahit}&41,427&39,206 \\
+%\hline
+%\end{tabular}
+%\label{table:n50-ng50} 
+%\end{table}
 
 %-----------------------------Misassembles table 
 
@@ -483,23 +483,23 @@ Thermus\_thermophilus\_HB27&734,102(5.73\%)\\ \hline
 \caption{\label{fig:coverage-profile} Cumulative coverage profile for the reference metagenome, based on read mapping. }
 \end{figure}
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.45\textwidth]{UnalignmentHistogram.pdf} %to be chamged to qc.coverage-profile
-\caption{Mapping unaligned reads to reference genome using identity 99\%, and Ambiguous Approach}
-\label{fig:unaligned-reads}
-\end{figure}
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.45\textwidth]{UnalignmentHistogram.pdf} %to be chamged to qc.coverage-profile
+%\caption{Mapping unaligned reads to reference genome using identity 99\%, and Ambiguous Approach CTB This can't be right :)}
+%\label{fig:unaligned-reads}
+%\end{figure}
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=9.5cm,height=9.5cm]{min-contig-analysis.pdf}  
-\caption{\label{fig:min-contig-analysis} Genome Fraction, duplication ratio, Contigs overlap ratio, and number of contigs using different minimum contig length,  identity 99\%, and Ambiguous Approach}
+\caption{\label{fig:min-contig-analysis} Genome fraction, duplication ratio, Contigs overlap ratio, and number of contigs using different minimum contig length,  identity 99\%, and Ambiguous Approach}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.4\textwidth]{CommonUncoveredCoverageProfile.pdf} 
-\caption{Base Coverage for Common Uncovered Bases}
+\caption{Cumulative read coverage for bases in the reference metagenome missing from all three assemblies.}
 \label{fig:CommonUncovered}
 \end{figure}
 
@@ -769,17 +769,12 @@ assemblies; we discuss this in more detail below.
 
 When counting only the best alignment per contig at a 99\%
 identity threshold, more than 72\% of contigs align to the reference
-completely, i.e. across the whole length of the contig.  If we allow
+completely, i.e. across the whole length of the contig (Table~\ref{table:contigs-analysis}, ``Best hit'', Totally Aligned Contigs \%).  If we allow
 multiple alignments per contig, then more than 80\% of contigs align
-completely (although not contiguously) to the reference.
-Approximately 4 - 9\% of the contigs align partially, and the
+completely (although not contiguously) to the reference (Table~\ref{table:contigs-analysis}, ``Ambiguous'', Totally Aligned Contigs \%).
+Approximately 4-9\% of the contigs align only partially, and the
 remaining 8 - 10\% of contigs do not align at all to the reference
 (discussed in detail below).
-
-% @CTB: are these numbers in table 3?
-% are these the numbers in table 3? which section - best hit approach? and is this true for all assemblers etc.?
-
-
 
 \subsection*{The assemblies contain most of the raw data}
 %Numbers in this section are up to date 22 december 2016
