@@ -689,7 +689,6 @@ location in the reference.
 
 \subsection*{The raw data is high quality}
 
-%@CTB Do we need this section now.
 We trimmed sequences as described in Methods. We retained 7.1 Gbp in
 108,422,358 paired-end sequences, and 36 Mbp in 520,403 orphaned
 reads.  This quality trimmed ("QC") data set was used as the basis for
@@ -762,7 +761,8 @@ At 99\% identity with the ambiguous approach, approximately 6.23\% of
 the reference is covered by no contig from any of the three
 assemblies; we discuss this in more detail below.
 %common uncovered / no.of bases in the reference *100
-% @CTB maybe this should be moved? Also, is this in the methods? CTB To check.
+% @CTB we need to extend methods to contain mention of common uncovered.
+% Probably belongs in the ``Analyzing Assembly'' section.
 
 \subsection*{The generated contigs are broadly accurate} 
 %Numbers in this section are up to date 22 december 2016
@@ -830,9 +830,7 @@ of the common uncovered bases respectively.
 %these numbers are after sorting file QC.AMBIGUOUS.99.uncovered using
 %[sort -n -k2 -r  QC.AMBIGUOUS.99.uncovered>QC.AMBIGUOUS.99.uncovered.sorted ] and the percentage is computed w.r.t no. of common uncovered bases
 
-% @CTB question: those percentages are percentages of the genome, or
-% percentages of the common uncovered? The text makes it sound like the
-% latter but we also want the former somewhere.
+% @CTB: we need to add in percentages of the genome, I think, as well.
 
 \subsection*{Many assembled contigs do not align to the reference metagenome}
 Depending on assembler, between 8.04\% and 10.87\% of the assembled
