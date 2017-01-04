@@ -604,7 +604,7 @@ We used the Nucmer tool from MUMmer3.23 \cite{mummer3.0} to align
 assemblies to the reference genome with options {\tt \--coords} {\tt
   -p}. Then we parsed the generated ``.coords'' file using a custom
 script {\tt{analyze\_assembly.py}} to calculate several analysis
-metrics at two alignment identities, 95\% and 99\%.
+metrics across all the assemblies at two alignment identities, 95\% and 99\%.
 
 \subsection*{Mapping}
 
@@ -630,9 +630,9 @@ that mapped to the unaligned contigs.
 %We used SamStats \cite{samstats} to analyze the quality of mapping and errors. 
 
 \subsection*{k-mer Presence}
-In order to examine k-mer presence for a k-mer size of 20, we build a
+In order to examine k-mer presence for a k-mer size of 20, we built a
 k-mer counting table from the given quality filtered reads using
-{\tt{load-into-counting.py} } from khmer (@cite khmer). Then we
+{\tt{load-into-counting.py}} from khmer (@cite khmer). Then we
 calculate abundance distribution of the k-mers in the quality filtered
 reads using the pre-made k-mer counting table using
 {\tt{abundance-dist.py}}. We followed the same approach to examine
