@@ -119,10 +119,9 @@ to evaluate the fidelity of metagenome process methods. The study used
 simulated metagenomic data sets constructed at different complexity
 levels.
 %The low complexity set is dominated by a single near-clonal organism. The medium complexity set includes moderate communities with more than one dominant organism. The high complexity set lacks dominant population.  
-The datasets were assembled using Phrap v3.57, `Arachne v.2
+The datasets were assembled using Phrap v3.57, Arachne v.2
 \cite{arachne} and JAZZ. \cite{jazz}
-
-The study evaluates assembly, gene prediction, and binning
+This study evaluates assembly, gene prediction, and binning
 methods. However, the study did not evaluate the assembly quality
 against a reference genome.
 
@@ -138,20 +137,21 @@ degree of chimericity.  However, the study evaluated the assembly
 based on one assembler, and did not evaluate assembly against several
 assemblers.  Also, both previous studies used simulated data, which
 may lack confounders of assembly such as sequencing artifacts and GC bias.
- 
-Lindgreeb et al in \cite{metaclass} presented a benchmark study for
-metagenome analysis tools. The authors compared between several
-metagenome classification tools in terms of run time, ease of use,
-information provided, reads and shuffled reads mapped, non existing
-phyla, divergence of real distribution, and correlation with known
-community composition. However, the paper did not consider metagenome
-assembly tools in the study.
 
-% @CTB mention shakya paper in metagome analysis.
- 
-In this paper, we evaluate metagenome assembly on the data set from
+Shakya et al. (2013) constructed a complex synthetic community of
+organisms by mixing DNA isolated from individual cultures of 64
+bacteria and archaea.  In addition to performing 16s amplicon analysis
+and doing 454 sequencing, the authors shotgun sequenced the mixture
+with Illumina (@cite).  While the authors concluded that this metagenomic
+sequencing generally outperformed amplicon sequencing, they conducted
+a mapping based analysis rather than an assembly based analysis.
+
+% @CTB pignatelli & moya 2011
+
+In this paper, we evaluate metagenome assembly on the Illumina data set from
 Shakya et al. (2013) using three assemblers; IDBA-UD \cite{idba},
-SPAdes \cite {spades}, and MEGAHIT \cite{megahit}.
+SPAdes \cite {spades}, and MEGAHIT \cite{megahit}.  These three assemblers
+were chosen because they are actively used and highly cited.
 
 SPAdes \cite{spades} is an assembler for both single-cell and standard
 (multicell) assembly. (More description here @CTB.)
@@ -171,11 +171,16 @@ de Bruijn graph using multiple k-mer sizes, and uses a novel ``mercy
 k-mer'' approach that preserves low-abundance regions of reads. It also
 can use GPUs to accelerate the graph construction.
 
-We evaluate the performance of the three assemblers using real mock
-community data. The performance of each assembler is compared in terms
-of resources utilization, covered genome fraction, duplication ratio,
-misassemblies, and contig length. This helps decide which assembler to
-use when we lack a reference.
+Below, we evaluate the performance of these three assemblers using the
+synthetic (``mock'') community data from the Shakya et al. study.
+The performance of each assembler is compared in terms
+of resource utilization, covered genome fraction, duplication ratio, gene
+recovery, contig misassembly, and contig length.
+
+In contrast to some other evaluations (assemblathon 2), we work with a
+synthetic community with a known answer, do not tune the default
+parameters, and investigate memory and runtime as a key part of the
+process.  This mimics default user experience. (Expand.)
 
 % \subsection*{Sections}
 
