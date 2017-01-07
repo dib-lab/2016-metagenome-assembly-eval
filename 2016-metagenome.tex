@@ -560,7 +560,12 @@ https://dx.doi.org/10.6084/m9.figshare.1506873.v2
 
 \section*{Methods}
 The analysis code and run scripts for this paper are available at:
-https://github.com/dib-lab/2015-metagenome-assembly/.
+https://github.com/dib-lab/2015-metagenome-assembly/. The scripts and
+overall pipeline were examined by the first and senior authors for
+correctness.  In addition, the bespoke reference-based analysis
+scripts were tested by running them on a single-colony E. coli MG1655
+data set which had a high quality reference genome (cite Chitsaz,
+2011).
 
 \subsection*{Quality Filtering} 
 
@@ -1039,6 +1044,15 @@ IDBA. @CTB verify this.)
 Assembly works well. There is no big difference between assemblers'
 performance in terms of assembly quality. In terms of cost, Megahit is
 much faster and utilizes less memory.
+
+\begin{itemize}
+\item If you have short-read sequencing only, use MEGAHIT.
+\item MEGAHIT can be useful for exploratory analysis of content as well.
+\item Metagenome assembly is good at recovering content of well covered
+  regions.  It is less good at long-range contiguity. It is better than
+  reference based analysis at recovering content.
+\item Resequence mock community genomes, as in evolutionary studies.
+\end{itemize}
 
 % @CTB mention long reads, microdiversity (banfield study).
 % consequences for genome binning etc.
