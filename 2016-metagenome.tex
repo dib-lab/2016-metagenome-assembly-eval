@@ -651,7 +651,7 @@ assemblies to the reference genome with options {\tt \--coords} {\tt
 script {\tt{analyze\_assembly.py}} to calculate several analysis
 metrics across all the assemblies at two alignment identities, 95\% and 99\%.
 
-\subsection*{Ambiguous, Best-Hit, and No-misassemblies Approaches to reference-based analysis}
+\subsection*{Reference-based analysis of the assemblies}
 We processed the alignments in three different ways: ambiguous,
 best-hit, and no-misassemblies.
 
@@ -729,9 +729,9 @@ set.
 
 In order to evaluate reconstructability with De Bruijn graph
 assemblers, we next examined k-mer presence for a k-mer size of 20. Of
-the 174m 20-mers in the reference data set, 98.7\% were present in the
-data set and 95.5\% of them occurred with abundance 5 or greater in
-the quality filtered read data set.
+the 174m 20-mers in the reference metagenome, 98.7\% were present in the
+QC reads and 95.5\% of them occurred with abundance 5 or greater in
+the QC reads.
 
 %Data source note: the 95.5 is from
 % SRR606249.qc.dist (1-0.045)*100 , the 98.7 is from the same file but
@@ -747,6 +747,20 @@ SPAdes and IDBA-UD considerably, producing an assembly in one hour --
 approximately 17 times faster than IDBA and 42 times faster than
 SPAdes.  MEGAHIT used only 34.4 GB of RAM -- 1/5 to 1/11th
 the memory used by IDBA and SPAdes, respectively.
+
+\subsection*{The assemblies contain most of the raw data}
+%Numbers in this section are up to date 22 december 2016
+
+The assemblies represent the majority of the k-mers in the reads (99.7\% of
+the unique k-mers in the reads are present in the assembly) and
+the majority of the high abundance 20-mers (93.7\% of the abundance
+\textgreater 5 20-mers in the reads), suggesting that the assemblies
+represent the underlying content of the reads very well.
+
+% %the 93.7 is from qc500.dist (1-0.027)*100.
+% the 99.7% is from  (1-0.003)*100
+
+% @CTB fixme section
 
 \subsection*{Much of the reference is covered by the assemblies}
 %Numbers in this section are up to date 22 december 2016
@@ -789,17 +803,6 @@ completely (although not contiguously) to the reference (Table~\ref{table:contig
 Approximately 4 - 9\% of the contigs align only partially, and the
 remaining 8 - 10\% of contigs do not align at all to the reference
 (discussed in detail below).
-
-\subsection*{The assemblies contain most of the raw data}
-%Numbers in this section are up to date 22 december 2016
-
-The assemblies also represent the majority of the reads (99.7\%) and
-the majority of the high abundance 20-mers (93.7\% of the abundance
-\textgreater 5 20-mers in the reads), suggesting that the assemblies
-represent the underlying content of the reads very well.
-
-% %the 93.7 is from qc500.dist (1-0.027)*100.
-% the 99.7% is from  (1-0.003)*100
 
 \subsection*{All three assemblers perform equally well in reference base recovery}
 %Updated on 27 December  
@@ -909,9 +912,14 @@ unaligned contigs (and nowhere in the reference).
 
 %The above numbers are coming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out
 
-We used sourmash (cite) to search the unaligned contigs against each
-...
- 
+We used sourmash (cite) to search the unalignable contigs against all
+52,000 microbial genomes currently available from NCBI and found nine
+genomes with significant estimated overlap with the unalignable contigs
+(10\% or more estimated overlap - @CTB put in Methods).  We then
+aligned the unalignable contigs against these nine genomes, and found
+that between 16\% and 28\% of the previously unaligned contigs matched
+to the new genomes at 99\% identity.
+
 % \subsection*{Pending text: To add or not}
 % Figure \ref{fig:min-contig-analysis} shows the number of contigs using
 % different minimum contigs cutoff.  The figure shows that Megahit
@@ -971,7 +979,7 @@ read mapping, but the remainder has read coverage greater than 5.
 @CTB here mention gene recovery/prokka etc is good.
 
 
-\subsection*{Assembly produces content not in the reference metagenome}
+\subsection*{Assembly produces contiguous sequence not in the reference metagenome}
 %@CTB: I don't know what XX in this section refering to. 
 % XX was >5 is comming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out where ~75% of the reads mapped to the aligned contigs and not to the reference has coverage of one at least in the contigs, but the text refers to ccontigs coverage? so something here doesn't add up;
 
