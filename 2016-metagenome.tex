@@ -498,18 +498,19 @@ Thermus thermophilus HB27 & 0.7 Mbp (5.73\%) \\ \hline
 %\label{fig:unaligned-reads}
 %\end{figure}
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=9.5cm,height=9.5cm]{min-contig-analysis.pdf}  
-\caption{\label{fig:min-contig-analysis} Genome fraction, duplication ratio, Contigs overlap ratio, and number of contigs using different minimum contig length,  identity 99\%, and Ambiguous Approach}
-\end{figure}
+% \begin{figure}[!ht]
+% \centering
+% \includegraphics[width=9.5cm,height=9.5cm]{min-contig-analysis.pdf}  
+% \caption{\label{fig:min-contig-analysis} Genome fraction, duplication ratio, Contigs overlap ratio, and number of contigs using different minimum contig length,  identity 99\%, and Ambiguous Approach}
+% \end{figure}
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.4\textwidth]{CommonUncoveredCoverageProfile.pdf} 
-\caption{Cumulative read coverage for bases in the reference metagenome missing from all three assemblies.}
-\label{fig:CommonUncovered}
-\end{figure}
+% @CTB maybe we should put this back in?
+% \begin{figure}[!h]
+% \centering
+% \includegraphics[width=0.4\textwidth]{CommonUncoveredCoverageProfile.pdf} 
+% \caption{Cumulative read coverage for bases in the reference metagenome missing from all three assemblies.}
+% \label{fig:CommonUncovered}
+% \end{figure}
 
 
 
@@ -560,7 +561,12 @@ https://dx.doi.org/10.6084/m9.figshare.1506873.v2
 
 \section*{Methods}
 The analysis code and run scripts for this paper are available at:
-https://github.com/dib-lab/2015-metagenome-assembly/.
+https://github.com/dib-lab/2015-metagenome-assembly/. The scripts and
+overall pipeline were examined by the first and senior authors for
+correctness.  In addition, the bespoke reference-based analysis
+scripts were tested by running them on a single-colony E. coli MG1655
+data set which had a high quality reference genome (cite Chitsaz,
+2011).
 
 \subsection*{Quality Filtering} 
 
@@ -606,14 +612,6 @@ we recorded RAM and CPU time of each assembly job using the {\tt
 Unless otherwise mentioned, we eliminated all contigs less than 500 bp
 from each assembly prior to further analysis.
 
-\subsection*{Assembly analysis using Nucmer}
-
-We used the Nucmer tool from MUMmer3.23 \cite{mummer3.0} to align
-assemblies to the reference genome with options {\tt \--coords} {\tt
-  -p}. Then we parsed the generated ``.coords'' file using a custom
-script {\tt{analyze\_assembly.py}} to calculate several analysis
-metrics across all the assemblies at two alignment identities, 95\% and 99\%.
-
 \subsection*{Mapping}
 
 We aligned all quality-filtered reads to the reference metagenome with
@@ -646,15 +644,15 @@ reads using the pre-made k-mer counting table using
 {\tt{abundance-dist.py}}. We followed the same approach to examine
 k-mer presence in assemblies.
 
-\subsection*{Gene annotations using Prokka}
-We used prokka \cite{prokka} to annotate the reference genome using
-{\tt{--outdir mprokka --prefix testasm --metagenome}}. Then we parsed
-the testasm.tbl output file to get the coordinates of CDS genes. We then
-searched the alignments for how many genes were contained in those
-alignments.
-% @CTB what script?
+\subsection*{Assembly analysis using Nucmer}
 
-\subsection*{Analyzing Assembly: Ambiguous, Best-Hit, and No misassemblies Approaches}
+We used the Nucmer tool from MUMmer3.23 \cite{mummer3.0} to align
+assemblies to the reference genome with options {\tt \--coords} {\tt
+  -p}. Then we parsed the generated ``.coords'' file using a custom
+script {\tt{analyze\_assembly.py}} to calculate several analysis
+metrics across all the assemblies at two alignment identities, 95\% and 99\%.
+
+\subsection*{Reference-based analysis of the assemblies}
 We processed the alignments in three different ways: ambiguous,
 best-hit, and no-misassemblies.
 
@@ -693,6 +691,15 @@ All approaches have a non-zero duplication ratio within the reference
 because we do not explicitly discard contigs that map to the same
 location in the reference.
 
+
+\subsection*{Gene annotations using Prokka}
+We used prokka \cite{prokka} to annotate the reference genome using
+{\tt{--outdir mprokka --prefix testasm --metagenome}}. Then we parsed
+the testasm.tbl output file to get the coordinates of CDS genes. We then
+searched the alignments for how many genes were contained in those
+alignments.
+% @CTB what script?
+
 \section*{Results}
 
 \subsection*{The raw data is high quality}
@@ -723,13 +730,17 @@ set.
 
 In order to evaluate reconstructability with De Bruijn graph
 assemblers, we next examined k-mer presence for a k-mer size of 20. Of
-the 174m 20-mers in the reference data set, 98.7\% were present in the
-data set and 95.5\% of them occurred with abundance 5 or greater in
-the quality filtered read data set.
+the 174m 20-mers in the reference metagenome, 98.7\% were present in the
+QC reads and 95.5\% of them occurred with abundance 5 or greater in
+the QC reads.
 
 %Data source note: the 95.5 is from
 % SRR606249.qc.dist (1-0.045)*100 , the 98.7 is from the same file but
 % (1-0.013) *100
+
+7.6 million reads (XX\%) from the QC data set did not map anywhere in
+the reference.
+% number taken from unmapped-qc-to-ref.
 
 \subsection*{MEGAHIT is the fastest and lowest-memory assembler evaluated}
 %Numbers in this section are up to date 22 december 2016
@@ -741,6 +752,21 @@ SPAdes and IDBA-UD considerably, producing an assembly in one hour --
 approximately 17 times faster than IDBA and 42 times faster than
 SPAdes.  MEGAHIT used only 34.4 GB of RAM -- 1/5 to 1/11th
 the memory used by IDBA and SPAdes, respectively.
+
+\subsection*{The assemblies contain most of the raw data}
+%Numbers in this section are up to date 22 december 2016
+
+We assessed read inclusion in assemblies by mapping the QC reads to
+the assemblies and counting the remaining unmapped reads. Depending on
+the assembly, between 3.3 million and 5.8 million reads (3-6\% XX)
+did not map to the assembly. (@CTB Put in table.)
+
+% @CTB make sure we describe #s of qc reads!
+% @CTB these numbers from iq-unmapped etc.)
+% @CTB how many didn't map to the reference?
+% @CTB include numbers from  unmapped-qc-to-ref somewhere.
+
+% @CTB fixme section
 
 \subsection*{Much of the reference is covered by the assemblies}
 %Numbers in this section are up to date 22 december 2016
@@ -780,36 +806,29 @@ identity threshold, more than 72\% of contigs align to the reference
 completely, i.e. across the whole length of the contig (Table~\ref{table:contigs-analysis}, ``Best hit'', Totally Aligned Contigs \%).  If we allow
 multiple alignments per contig, then more than 80\% of contigs align
 completely (although not contiguously) to the reference (Table~\ref{table:contigs-analysis}, ``Ambiguous'', Totally Aligned Contigs \%).
-Approximately 4-9\% of the contigs align only partially, and the
+Approximately 4 - 9\% of the contigs align only partially, and the
 remaining 8 - 10\% of contigs do not align at all to the reference
 (discussed in detail below).
 
-\subsection*{The assemblies contain most of the raw data}
-%Numbers in this section are up to date 22 december 2016
-
-The assemblies also represent the majority of the reads (99.7\%) and
-the majority of the abundance-5 20-mers (93.7\% of the 198m
-high-abundance 20-mers in the reads), suggesting that the assemblies
-represent the underlying content of the reads very well.
-% %the 93.7 is from qc500.dist (1-0.027)*100.
-% the 99.7% is from  (1-0.003)*100
-
-\subsection*{All three assemblers recover most of the reference}
+\subsection*{All three assemblers perform equally well in reference base recovery}
 %Updated on 27 December  
 
 %we have 6.23% of the reference is commonly uncovered. We have 0.64% of bases covered by IDBA only, 0.74% of bases covered by SPAdes only, and 1.92% of bases covered by Megahit only.  Each uniquely fail to recover about 1\% (1.22-1.79\%) of the reference. XX is roughly.
 
-XX\% of the reference metagenome is recovered by all three assemblers
-(“common covered”) with relatively little duplication. (99\% identity,
-ambiguous alignments allowed).
- 
-\subsection*{Some of the reference is not reconstructed by any assembler}
-%Numbers in this section are up to date 27 December 2016
- 
-We identified XX bases in the reference that had no match (at 99\%
-identity with the ambiguous mapping approach) in any of the
-assemblies, and evaluated their base coverage. XX (19.7\%) had no coverage
-in the reads, and a total of XX (29.2\%) had coverage less than 5.
+90.47\% of the reference metagenome is recovered in at least one
+contig by all three assemblers (``common covered'') with relatively
+little duplication, under 99\% identity/ambiguous matching: 6.23\% of
+the reference is missed by all three assemblers, 0.64\% is recovered
+by IDBA alone, 0.74\% is recovered by SPAdes only, and 1.92\% is
+recovered by MEGAHIT only.
+
+% @CTB sherine, does this make sense? I just summed the numbers...
+% I can't think straight about it.
+
+Of the uncovered bases in common between the assemblers, 19.66\% have
+zero mapping coverage, while 29.20\% have mapping coverage \textless
+5.
+%(@CTB what can we say about the rest?!)
 
 % @CTB update with number of bases; check numbers in source files.
 % @CTB what can we say about the rest? anything?
@@ -818,11 +837,8 @@ in the reads, and a total of XX (29.2\%) had coverage less than 5.
 %  uncovered bases from analyze_assembly.py output *100
 % @CTB make sure to discuss this!
 
-All three assemblers fail to recover 6.23\% of the reference.
-
-(2,518,234) of the common uncovered bases has zero coverage (19.66\%),
-while (3,739,532) of the common uncovered bases has coverage \textless
-5 (29.2\%).
+IDBA, SPAdes, and MEGAHIT each uniquely fail to recover about
+1\% of the reference.
 
 \subsection*{Large portions of several reference genomes are not assembled by any assembler}
 %Numbers in this section are up to date 21 december 2016
@@ -837,11 +853,6 @@ of the total common uncovered bases respectively.
 %[sort -n -k2 -r  QC.AMBIGUOUS.99.uncovered>QC.AMBIGUOUS.99.uncovered.sorted ] and the percentage is computed w.r.t no. of common uncovered bases
 
 % @CTB: we need to add in percentages of the genome, I think, as well.
-
-\subsection*{At the margins, the three assemblers differ at about 1\% in recovery}
-IDBA, SPAdes, and MEGAHIT each uniquely recover about 1\% (0.64
--1.92\%) of the reference metagenome, and each uniquely fail to
-recover about 1\% (1.22-1.79\%) of the reference.
 
 \subsection*{Most genes within the reference metagenome are contained within contigs}
 %Numbers in this section are up to date 21 december 2016
@@ -861,16 +872,26 @@ MEGAHIT contained 80,256 (94.59\%) of the reference genes.
 % output by prokka and see if they match in the assembly?
 
 \subsection*{Many assembled contigs do not align to the reference metagenome}
-Depending on assembler, between 8.04\% and 10.87\% of the assembled
-contigs do not align anywhere in the reference metagenome.
 
-6.49\% of reads mapped to the unaligned contigs of IDBA. Only 33.01\%
-of those reads mapped to the reference. (2.14\% of all the reads).
-6.23\% of reads mapped to the unaligned contigs of SPAdes. Only
-28.97\% of those reads mapped to the reference. (1.80\% of all the
-reads).  5.87\% of reads mapped to the unaligned contigs of
-Megahit. Only 24.80\% of those reads mapped to the reference. (1.45\%
-of all the reads)
+Depending on assembler, between 8.04\% and 10.87\% of the assembled
+contigs (XX-YY bases total) do not align anywhere in the reference
+metagenome.  We extracted these contigs and analyzed their content and
+read mapping separately.
+
+Between 5.9 and 6.5\% of the QC reads mapped to the unalignable
+contigs, depending on assembler (@CTB put in table).  In each case,
+between 67\% and 75\% the reads that mapped to these unalignable
+contigs did not map anywhere in the reference (@CTB put in table); about 5m
+QC reads total map only to the unaligned contigs and nowhere in the
+reference.
+
+%6.49\% of reads mapped to the unaligned contigs of IDBA. Only 33.01\%
+%of those reads mapped to the reference. (2.14\% of all the reads).
+%6.23\% of reads mapped to the unaligned contigs of SPAdes. Only
+%28.97\% of those reads mapped to the reference. (1.80\% of all the
+%reads).  5.87\% of reads mapped to the unaligned contigs of
+%Megahit. Only 24.80\% of those reads mapped to the reference. (1.45\%
+%of all the reads)
 %The above numbers are coming from
 %iqc.AM99.aligned.reads and iqc.AM99-mapped-reads for IDBA,
 %sqc.AM99.aligned.reads and sqc.AM99-mapped-reads for SPADES, and
@@ -881,33 +902,37 @@ unaligned contigs (and nowhere in the reference).
 %Numbers from subtracting numbers in those files:
 %(iqc.AM99.aligned.reads - iqc.AM99-mapped-reads) for IDBA
 %(sqc.AM99.aligned.reads - sqc.AM99-mapped-reads) for SPAdes 
-%(mqc.AM99.aligned.reads - mqc.AM99-mapped-reads) for megahit 
+%(mqc.AM99.aligned.reads - mqc.AM99-mapped-reads) for megahit
 
- 
+% For IDBA QC, the reads that aligned to the unaligned contigs but not
+% to the reference has coverage bases 27.21\% \textless 5 in the
+%unaligned contigs. 75.72\% has coverage \textgreater 0.
 
-For IDBA QC, the reads that aligned to the unaligned contigs but not
-to the reference has coverage bases 27.21\% \textless 5 in the
-unaligned contigs. 75.72\% has coverage \textgreater 0.
+% For SPAdes QC, the reads that aligned to the unaligned contigs but not
+% to the reference has coverage bases (3,109,539) 24.04\% \textless 5 in
+% the unaligned contigs. 79.10\% has coverage \textgreater 0.
 
-For SPAdes QC, the reads that aligned to the unaligned contigs but not
-to the reference has coverage bases (3,109,539) 24.04\% \textless 5 in
-the unaligned contigs. 79.10\% has coverage \textgreater 0.
+% For Megahit QC, the reads that aligned to the unaligned contigs but
+% not to the reference has coverage bases (2,578,896) 20.18\% \textless
+% 5 in the unaligned contigs. 83.08\% has coverage \textgreater 0.
 
-For Megahit QC, the reads that aligned to the unaligned contigs but
-not to the reference has coverage bases (2,578,896) 20.18\% \textless
-5 in the unaligned contigs. 83.08\% has coverage \textgreater 0.
+%The above numbers are coming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out
 
-%The above numbers are comming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out
- 
-%(What are these? CTB to evaluate with MetaPalette.) @CTB I couldnot do it yet
+We used sourmash (cite) to search the unalignable contigs against all
+52,000 microbial genomes currently available from NCBI and found nine
+genomes with significant estimated overlap with the unalignable contigs
+(10\% or more estimated overlap - @CTB put in Methods).  We then
+aligned the unalignable contigs against these nine genomes, and found
+that between 16\% and 28\% of the previously unaligned contigs matched
+to the new genomes at 99\% identity.
 
-\subsection*{Pending text: To add or not}
-Figure \ref{fig:min-contig-analysis} shows the number of contigs using
-different minimum contigs cutoff.  The figure shows that Megahit
-\cite{megahit} has more fragmented contigs in the assembly. The small
-contigs size leads to best alignment; Megahit has the highest number
-of uniquely covered bases, highest genome coverage, and lowest
-unalignment.
+% \subsection*{Pending text: To add or not}
+% Figure \ref{fig:min-contig-analysis} shows the number of contigs using
+% different minimum contigs cutoff.  The figure shows that Megahit
+% \cite{megahit} has more fragmented contigs in the assembly. The small
+% contigs size leads to best alignment; Megahit has the highest number
+% of uniquely covered bases, highest genome coverage, and lowest
+% unalignment.
 
 \section*{Discussion}
 \subsection*{Assembly recovers basic content well}
@@ -960,7 +985,7 @@ read mapping, but the remainder has read coverage greater than 5.
 @CTB here mention gene recovery/prokka etc is good.
 
 
-\subsection*{Assembly produces content not in the reference metagenome}
+\subsection*{Assembly produces contiguous sequence not in the reference metagenome}
 %@CTB: I don't know what XX in this section refering to. 
 % XX was >5 is comming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out where ~75% of the reads mapped to the aligned contigs and not to the reference has coverage of one at least in the contigs, but the text refers to ccontigs coverage? so something here doesn't add up;
 
@@ -1039,6 +1064,15 @@ IDBA. @CTB verify this.)
 Assembly works well. There is no big difference between assemblers'
 performance in terms of assembly quality. In terms of cost, Megahit is
 much faster and utilizes less memory.
+
+\begin{itemize}
+\item If you have short-read sequencing only, use MEGAHIT.
+\item MEGAHIT can be useful for exploratory analysis of content as well.
+\item Metagenome assembly is good at recovering content of well covered
+  regions.  It is less good at long-range contiguity. It is better than
+  reference based analysis at recovering content.
+\item Resequence mock community genomes, as in evolutionary studies.
+\end{itemize}
 
 % @CTB mention long reads, microdiversity (banfield study).
 % consequences for genome binning etc.
