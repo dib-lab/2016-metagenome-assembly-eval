@@ -504,6 +504,7 @@ Thermus thermophilus HB27 & 0.7 Mbp (5.73\%) \\ \hline
 % \caption{\label{fig:min-contig-analysis} Genome fraction, duplication ratio, Contigs overlap ratio, and number of contigs using different minimum contig length,  identity 99\%, and Ambiguous Approach}
 % \end{figure}
 
+% @CTB maybe we should put this back in?
 % \begin{figure}[!h]
 % \centering
 % \includegraphics[width=0.4\textwidth]{CommonUncoveredCoverageProfile.pdf} 
@@ -737,6 +738,10 @@ the QC reads.
 % SRR606249.qc.dist (1-0.045)*100 , the 98.7 is from the same file but
 % (1-0.013) *100
 
+7.6 million reads (XX\%) from the QC data set did not map anywhere in
+the reference.
+% number taken from unmapped-qc-to-ref.
+
 \subsection*{MEGAHIT is the fastest and lowest-memory assembler evaluated}
 %Numbers in this section are up to date 22 december 2016
 
@@ -751,14 +756,15 @@ the memory used by IDBA and SPAdes, respectively.
 \subsection*{The assemblies contain most of the raw data}
 %Numbers in this section are up to date 22 december 2016
 
-The assemblies represent the majority of the k-mers in the reads (99.7\% of
-the unique k-mers in the reads are present in the assembly) and
-the majority of the high abundance 20-mers (93.7\% of the abundance
-\textgreater 5 20-mers in the reads), suggesting that the assemblies
-represent the underlying content of the reads very well.
+We assessed read inclusion in assemblies by mapping the QC reads to
+the assemblies and counting the remaining unmapped reads. Depending on
+the assembly, between 3.3 million and 5.8 million reads (3-6\% XX)
+did not map to the assembly. (@CTB Put in table.)
 
-% %the 93.7 is from qc500.dist (1-0.027)*100.
-% the 99.7% is from  (1-0.003)*100
+% @CTB make sure we describe #s of qc reads!
+% @CTB these numbers from iq-unmapped etc.)
+% @CTB how many didn't map to the reference?
+% @CTB include numbers from  unmapped-qc-to-ref somewhere.
 
 % @CTB fixme section
 
@@ -872,10 +878,10 @@ contigs (XX-YY bases total) do not align anywhere in the reference
 metagenome.  We extracted these contigs and analyzed their content and
 read mapping separately.
 
-Between 5.9and 6.5\% of the QC reads mapped to the unalignable
+Between 5.9 and 6.5\% of the QC reads mapped to the unalignable
 contigs, depending on assembler (@CTB put in table).  In each case,
 between 67\% and 75\% the reads that mapped to these unalignable
-contigs did not map anywhere in the reference (put in table); about 5m
+contigs did not map anywhere in the reference (@CTB put in table); about 5m
 QC reads total map only to the unaligned contigs and nowhere in the
 reference.
 
