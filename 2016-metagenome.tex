@@ -427,12 +427,30 @@ process.  This mimics default user experience. (Expand.)
 \end{table}
 
 
-%------------------------ List of Genomes of mostly uncovered bases-----------------
+ %------------------------------------------Read Mapping Analysis -------------------------------------------------------------------------------
+\begin{table}[!ht]
+\caption{Read Mapping Analysis}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+
+\textbf{Assembler}& \textbf{Read that map} &  \textbf{Read that map uniquely}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{IDBA-UD}&7,067,517 &2,332,735 \\
+\hline
+\textbf{SPAdes}&6,786,747&1,966,038  \\
+\hline
+\textbf{Megahit}&6,392,926&1,585,363  \\
+\hline
+\end{tabular}
+\label{table:read-mapping} 
+\end{table}
+%------------------------ List of Genomes of mostly uncovered bases-----------------------------------------------------------------
 \begin{table}[!h]
  \centering
  \caption{Genomes with the most common uncovered bases between the three assemblies.}
  \begin{tabular}{|p{4.50cm}|p{2.75cm}|} \hline
- \textbf{Genome} & \textbf{Uncovered bases (\%~of~total)} \\ \hline 
+\textbf{Genome} & \textbf{Uncovered bases (\%~of~total)} \\ \hline 
 Shewanella baltica OS223 & 2.3 Mbp (18.25\%) \\ \hline
 Fusobacterium nucleatum & 2.2 Mbp (16.95\%) \\ \hline
 Desulfovibrio vulgaris DP4 & 1.6 Mbp (12.85\%) \\ \hline
@@ -441,6 +459,25 @@ Thermus thermophilus HB27 & 0.7 Mbp (5.73\%) \\ \hline
 \end{tabular}
 \label{table:genomes_uncovered}
 \end{table}
+
+%------------------------More analysis about table 4 -------
+
+\begin{table}[!h]
+\centering
+\caption{Analysis of top Common Uncovered Genomes}
+\begin{tabular}{|p{4cm}|p{1.75cm}|p{1.5cm}|}\hline
+\textbf{Genome} & \textbf{Fraction Assembled} & \textbf {Uncovered by Reads} \\ \hline 
+%And I mean by uncovered by reads : has coverage =0 
+Shewanella baltica OS223 & &0.05\% \\ \hline
+Fusobacterium nucleatum  & &52.70\% \\ \hline
+Desulfovibrio vulgaris DP4  & &8.02\% \\ \hline
+Enterococcus faecalis V583  & &21.85\% \\ \hline
+Thermus thermophilus HB27  & &8.93\% \\ \hline
+\end{tabular}
+\label{table:genomes_uncovered-analysis}
+\end{table}
+
+
 %---------------------------------N50-NG50 table 
 
 %\begin{table}[!ht]
