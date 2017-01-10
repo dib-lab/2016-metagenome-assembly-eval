@@ -465,18 +465,34 @@ Thermus thermophilus HB27 & 0.7 Mbp (5.73\%) \\ \hline
 \begin{table}[!h]
 \centering
 \caption{Analysis of top Common Uncovered Genomes}
-\begin{tabular}{|p{4cm}|p{1.75cm}|p{1.5cm}|}\hline
+\begin{tabular}{|p{3cm}|p{2.75cm}|p{1.5cm}|}\hline
 \textbf{Genome} & \textbf{Fraction Assembled} & \textbf {Uncovered by Reads} \\ \hline 
 %And I mean by uncovered by reads : has coverage =0 
-Shewanella baltica OS223 & &0.05\% \\ \hline
-Fusobacterium nucleatum  & &52.70\% \\ \hline
-Desulfovibrio vulgaris DP4  & &8.02\% \\ \hline
-Enterococcus faecalis V583  & &21.85\% \\ \hline
-Thermus thermophilus HB27  & &8.93\% \\ \hline
+Shewanella baltica OS223 &( iqc 23.35\%), (sqc 21.80\%), (mqc 47.41\%) &0.05\% \\ \hline
+Fusobacterium nucleatum  &(iqc 0\%), (sqc 0\%), (mqc 0.18\%)&52.70\% \\ \hline
+Desulfovibrio vulgaris DP4  &(iqc 49.38\%) (sqc 48.83\%) (mqc 50.01\%) &8.02\% \\ \hline
+Enterococcus faecalis V583  &(iqc 67.07\%) (sqc 66.53\%) (mqc 68.50\%)&21.85\% \\ \hline
+Thermus thermophilus HB27  &(iqc 59.85\%) (sqc 58.74\%) (mqc 58.44\%)&8.93\% \\ \hline
 \end{tabular}
 \label{table:genomes_uncovered-analysis}
 \end{table}
 
+
+
+%--------------------------Mapped reads and kmer abundance 
+
+
+\begin{table}[!h]
+\centering
+\caption{Analysis of reads and kmer abundance}
+\begin{tabular}{|p{1.5cm}|p{1.5cm}|p{2.5cm}|}\hline
+\textbf{Assembler} & \textbf{Unmapped Reads} & \textbf {High abundance k-mers not in assemblies} \\ \hline 
+IDBA-UD &3,328,674 &   \\ \hline
+SPAdes &3,879,573 &   \\ \hline
+Megahit &5,848,494 &   \\ \hline
+\end{tabular}
+\label{table:reads-kmers}
+\end{table}
 
 %---------------------------------N50-NG50 table 
 
@@ -741,10 +757,14 @@ alignments.
 
 \subsection*{The raw data is high quality}
 
-We trimmed sequences as described in Methods. We retained 7.1 Gbp in
-108,422,358 paired-end sequences, and 36 Mbp in 520,403 orphaned
-reads.  This quality trimmed ("QC") data set was used as the basis for
+
+The reads contains 5,536,289,548 bp in  54,814,748 paired reads with 101.0 average length in total 11,072,579,096 bp  in 109,629,496 reads with101.0 average length.
+
+After trimming, we got 108,422,358 paired reads with 10,938,648,751 bps  and 100.9 average length. We also got 520,403 singleton reads  with 46,563,015 bp with 89.5 average length. In total,  108,942,761 reads 1,098,5211,766 bp  with 100.8 average length. 
+Trimming removed 686,735 reads (0.63 \%) of the data, which means the data set is of high quality. This quality trimmed ("QC") data set was used as the basis for
 all further analyses.
+
+%These numbers are calculated using readstats from khmer
 
 %\subsection*{Mapping Quality and Error Profiles}
 
@@ -754,7 +774,7 @@ all further analyses.
 
 \subsection*{98\% or more of the reference is present in the read data set}
 
-We next evaluated the fraction of the reference genome covered by at least
+We next evaluated the of the reference genome covered by at least
 one read (see Methods for details). Quality filtered reads cover
 203,058,414.0 (98.76\%) bases of the reference metagenome (205,603,715
 bp total size).  Figure \ref{fig:coverage-profile} shows the
