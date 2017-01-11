@@ -427,12 +427,31 @@ process.  This mimics default user experience. (Expand.)
 \end{table}
 
 
-%------------------------ List of Genomes of mostly uncovered bases-----------------
+ %------------------------------------------Read Mapping Analysis -------------------------------------------------------------------------------
+\begin{table}[!ht]
+\caption{Reads mapping to assembled contigs not in reference.}
+\centering
+%\begin{tabular}{|c|c|c|}
+\begin{tabular}{|p{2cm}|p{2.5cm}|p{2.5cm}|} 
+\hline
+
+\textbf{Assembly}& \textbf{Reads that map} &  \textbf{Reads that map uniquely}    \\ [0.5ex] % inserts table %heading
+\hline
+\textbf{IDBA-UD}&7,067,517 (6.49\%) &2,332,735 (2.14\%)\\
+\hline
+\textbf{SPAdes}&6,786,747 (6.23\%)&1,966,038 (1.80\%)  \\
+\hline
+\textbf{Megahit}&6,392,926 (5.87\%)&1,585,363 (1.45\%)  \\
+\hline
+\end{tabular}
+\label{table:read-mapping} 
+\end{table}
+%------------------------ List of Genomes of mostly uncovered bases-----------------------------------------------------------------
 \begin{table}[!h]
  \centering
  \caption{Genomes with the most common uncovered bases between the three assemblies.}
  \begin{tabular}{|p{4.50cm}|p{2.75cm}|} \hline
- \textbf{Genome} & \textbf{Uncovered bases (\%~of~total)} \\ \hline 
+\textbf{Genome} & \textbf{Uncovered bases (\%~of~total)} \\ \hline 
 Shewanella baltica OS223 & 2.3 Mbp (18.25\%) \\ \hline
 Fusobacterium nucleatum & 2.2 Mbp (16.95\%) \\ \hline
 Desulfovibrio vulgaris DP4 & 1.6 Mbp (12.85\%) \\ \hline
@@ -441,6 +460,51 @@ Thermus thermophilus HB27 & 0.7 Mbp (5.73\%) \\ \hline
 \end{tabular}
 \label{table:genomes_uncovered}
 \end{table}
+
+%------------------------More analysis about table 4 -------
+
+\begin{table}[!h]
+\centering
+\caption{Analysis of top uncovered genomes}
+\begin{tabular}{|p{4cm}|p{2.5cm}|p{1.11cm}|}\hline
+\textbf{Genome} & \textbf{Fraction Assembled} & \textbf {Covered by Reads} \\ \hline 
+%And I mean by uncovered by reads : has coverage =0 
+\multirow{3}{*}{Shewanella baltica OS223 }&\textbf{IDBA} 23.35\%   &\multirow{3}{*}{99.95\%}\\  
+&\textbf{SPAdes } 21.80\% & \\  
+&\textbf{Megahit} 47.41\% & \\ \hline
+\multirow{3}{*}{Fusobacterium nucleatum}  &\textbf{IDBA} 0\%&\multirow{3}{*}{47.3\%} \\ 
+&\textbf{SPAdes} 0\%& \\
+&\textbf{Megahit} 0.18\%& \\ \hline
+\multirow{3}{*}{Desulfovibrio vulgaris DP4}  &\textbf{IDBA} 49.38\%  &\multirow{3}{*}{91.98\%}\\  
+&\textbf{SPAdes} 48.83\% & \\ 
+&\textbf{Megahit} 50.01\% & \\ \hline 
+\multirow{3}{*}{Enterococcus faecalis V583}  &\textbf{IDBA}67.07\%&\multirow{3}{*}{78.14\%} \\  
+&\textbf{SPAdes} 66.53\% & \\
+&\textbf{Megahit} 68.50\% & \\ \hline
+\multirow{3}{*}{Thermus thermophilus HB27}  &\textbf{IDBA} 59.85\% &\multirow{3}{*}{91.06\%}\\  
+&\textbf{SPAdes} 58.74\% & \\ 
+&\textbf{Megahit} 58.44\%& \\ \hline
+\end{tabular}
+\label{table:genomes_uncovered-analysis}
+\end{table}
+
+
+
+%--------------------------Mapped reads and kmer abundance 
+
+
+\begin{table}[!h]
+\centering
+\caption{Analysis of reads and kmer abundance}
+\begin{tabular}{|p{1.5cm}|p{1.5cm}|p{2.5cm}|}\hline
+\textbf{Assembler} & \textbf{Unmapped Reads} & \textbf {High abundance k-mers not in assemblies} \\ \hline 
+IDBA &3,328,674 (3.05\%)&   \\ \hline
+SPAdes &3,879,573 (3.56\%) &   \\ \hline
+Megahit &5,848,494 (5.37\%) &   \\ \hline
+\end{tabular}
+\label{table:reads-kmers}
+\end{table}
+
 %---------------------------------N50-NG50 table 
 
 %\begin{table}[!ht]
@@ -704,10 +768,18 @@ alignments.
 
 \subsection*{The raw data is high quality}
 
-We trimmed sequences as described in Methods. We retained 7.1 Gbp in
-108,422,358 paired-end sequences, and 36 Mbp in 520,403 orphaned
-reads.  This quality trimmed ("QC") data set was used as the basis for
-all further analyses.
+
+The reads contains 5,536,289,548 bp (5.536 Gbp) in  54,814,748 paired reads with 101.0 average length in total 11,072,579,096 bp (11.07 Gbp) in 109,629,496 reads with 101.0 average length.
+
+Trimming removed 686,735 reads (0.63 \%) of the data.
+After trimming, we retained 108,422,358 paired reads containing 10.94
+Gbp and an average length of 100.9 bases. We retained 46.56 Mbp in
+520,403 orphan reads with an average length of 89.5 bases. In total,
+the quality trimmed data contained 10.98 Gbp in 108,942,761 reads.
+This quality
+trimmed ("QC") data set was used as the basis for all further
+analyses.
+% These numbers are calculated using readstats from khmer
 
 %\subsection*{Mapping Quality and Error Profiles}
 
@@ -746,8 +818,8 @@ the reference.
 %Numbers in this section are up to date 22 december 2016
 
 We ran three commonly used metagenome assemblers on the QC data set:
-IDBA-UD, SPAdes, and Megahit. We recorded the time and memory usage of
-each (Table \ref{table:time-memory}).  MEGAHIT outperformed both
+IDBA-UD, SPAdes, and MEGAHIT. We recorded the time and memory usage of
+each (Table \ref{table:time-memory}).  In computational requirements, MEGAHIT outperformed both
 SPAdes and IDBA-UD considerably, producing an assembly in one hour --
 approximately 17 times faster than IDBA and 42 times faster than
 SPAdes.  MEGAHIT used only 34.4 GB of RAM -- 1/5 to 1/11th
@@ -759,14 +831,7 @@ the memory used by IDBA and SPAdes, respectively.
 We assessed read inclusion in assemblies by mapping the QC reads to
 the assemblies and counting the remaining unmapped reads. Depending on
 the assembly, between 3.3 million and 5.8 million reads (3-6\% XX)
-did not map to the assembly. (@CTB Put in table.)
-
-% @CTB make sure we describe #s of qc reads!
-% @CTB these numbers from iq-unmapped etc.)
-% @CTB how many didn't map to the reference?
-% @CTB include numbers from  unmapped-qc-to-ref somewhere.
-
-% @CTB fixme section
+did not map to the assembly (Table~\ref{table:reads-kmers}).
 
 \subsection*{Much of the reference is covered by the assemblies}
 %Numbers in this section are up to date 22 december 2016
@@ -815,7 +880,7 @@ remaining 8 - 10\% of contigs do not align at all to the reference
 
 %we have 6.23% of the reference is commonly uncovered. We have 0.64% of bases covered by IDBA only, 0.74% of bases covered by SPAdes only, and 1.92% of bases covered by Megahit only.  Each uniquely fail to recover about 1\% (1.22-1.79\%) of the reference. XX is roughly.
 
-90.47\% of the reference metagenome is recovered in at least one
+86.13\% of the reference metagenome is recovered in at least one
 contig by all three assemblers (``common covered'') with relatively
 little duplication, under 99\% identity/ambiguous matching: 6.23\% of
 the reference is missed by all three assemblers, 0.64\% is recovered
@@ -844,15 +909,16 @@ IDBA, SPAdes, and MEGAHIT each uniquely fail to recover about
 %Numbers in this section are up to date 21 december 2016
 
 A number of the genomes in the reference metagenome had many missing
-bases in the assemblies (Table ~\ref{table:genomes_uncovered}). In
+bases in the assemblies (Table~\ref{table:genomes_uncovered-analysis}). In
 three extreme cases, {\em Shewanella baltica OS223}, {\em Fusobacterium
 nucleatum}, and {\em Desulfovibrio vulgaris} contribute 18.25\%, 16.95\%, and 12.85\%
-of the total common uncovered bases respectively.
+of the total common uncovered bases respectively (Table~\ref{table:genomes_uncovered}).  Interestingly, several genomes with poor recovery had very high read mapping rates (e.g. {\em Shewanella baltica}, with 99.95\% read coverage but only ~23-45\% recovery with assembly, and {\em Fusobacterium nucleatum}, with 52.70\% read coverage but 0\% recovery).
 
 %these numbers are after sorting file QC.AMBIGUOUS.99.uncovered using
 %[sort -n -k2 -r  QC.AMBIGUOUS.99.uncovered>QC.AMBIGUOUS.99.uncovered.sorted ] and the percentage is computed w.r.t no. of common uncovered bases
 
-% @CTB: we need to add in percentages of the genome, I think, as well.
+
+% 
 
 \subsection*{Most genes within the reference metagenome are contained within contigs}
 %Numbers in this section are up to date 21 december 2016
@@ -879,11 +945,11 @@ metagenome.  We extracted these contigs and analyzed their content and
 read mapping separately.
 
 Between 5.9 and 6.5\% of the QC reads mapped to the unalignable
-contigs, depending on assembler (@CTB put in table).  In each case,
-between 67\% and 75\% the reads that mapped to these unalignable
-contigs did not map anywhere in the reference (@CTB put in table); about 5m
-QC reads total map only to the unaligned contigs and nowhere in the
-reference.
+contigs, depending on assembler (Table~\ref{table:read-mapping}).  In each case,
+between 67\% and 75\% of the reads that mapped to these unalignable
+contigs did not map anywhere in the reference
+(Table~\ref{table:read-mapping}); several million reads total map only to
+the unaligned contigs and nowhere in the reference.
 
 %6.49\% of reads mapped to the unaligned contigs of IDBA. Only 33.01\%
 %of those reads mapped to the reference. (2.14\% of all the reads).
@@ -986,8 +1052,6 @@ read mapping, but the remainder has read coverage greater than 5.
 
 
 \subsection*{Assembly produces contiguous sequence not in the reference metagenome}
-%@CTB: I don't know what XX in this section refering to. 
-% XX was >5 is comming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out where ~75% of the reads mapped to the aligned contigs and not to the reference has coverage of one at least in the contigs, but the text refers to ccontigs coverage? so something here doesn't add up;
 
 In addition to recovering most of the content of the reference
 metagenome, all three assemblers generate many contigs (approximately
@@ -997,10 +1061,6 @@ contigs do not map anywhere in the reference, while many of the
 contigs have coverage >XX, suggesting that they are present within the
 source DNA at an abundance that is similar to many of the genomes in
 the mock community.
-
-(@CTB identify etc.)
-
-%This part I left as it is.
 
 Whatever their true identity, these contigs are not present in the
 reference metagenome. Because this is a mock metagenome for which
