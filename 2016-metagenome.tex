@@ -431,16 +431,17 @@ process.  This mimics default user experience. (Expand.)
 \begin{table}[!ht]
 \caption{Reads mapping to assembled contigs not in reference.}
 \centering
-\begin{tabular}{|c|c|c|}
+%\begin{tabular}{|c|c|c|}
+\begin{tabular}{|p{2cm}|p{2.5cm}|p{2.5cm}|} 
 \hline
 
 \textbf{Assembly}& \textbf{Reads that map} &  \textbf{Reads that map uniquely}    \\ [0.5ex] % inserts table %heading
 \hline
-\textbf{IDBA-UD}&7,067,517 &2,332,735 \\
+\textbf{IDBA-UD}&7,067,517 (6.49\%) &2,332,735 (2.14\%)\\
 \hline
-\textbf{SPAdes}&6,786,747&1,966,038  \\
+\textbf{SPAdes}&6,786,747 (6.23\%)&1,966,038 (1.80\%)  \\
 \hline
-\textbf{Megahit}&6,392,926&1,585,363  \\
+\textbf{Megahit}&6,392,926 (5.87\%)&1,585,363 (1.45\%)  \\
 \hline
 \end{tabular}
 \label{table:read-mapping} 
@@ -465,14 +466,24 @@ Thermus thermophilus HB27 & 0.7 Mbp (5.73\%) \\ \hline
 \begin{table}[!h]
 \centering
 \caption{Analysis of top uncovered genomes}
-\begin{tabular}{|p{3cm}|p{2.75cm}|p{1.5cm}|}\hline
-\textbf{Genome} & \textbf{Fraction Assembled} & \textbf {Uncovered by Reads} \\ \hline 
+\begin{tabular}{|p{4cm}|p{2.5cm}|p{1.11cm}|}\hline
+\textbf{Genome} & \textbf{Fraction Assembled} & \textbf {Covered by Reads} \\ \hline 
 %And I mean by uncovered by reads : has coverage =0 
-Shewanella baltica OS223 &( iqc 23.35\%), (sqc 21.80\%), (mqc 47.41\%) &0.05\% \\ \hline
-Fusobacterium nucleatum  &(iqc 0\%), (sqc 0\%), (mqc 0.18\%)&52.70\% \\ \hline
-Desulfovibrio vulgaris DP4  &(iqc 49.38\%) (sqc 48.83\%) (mqc 50.01\%) &8.02\% \\ \hline
-Enterococcus faecalis V583  &(iqc 67.07\%) (sqc 66.53\%) (mqc 68.50\%)&21.85\% \\ \hline
-Thermus thermophilus HB27  &(iqc 59.85\%) (sqc 58.74\%) (mqc 58.44\%)&8.93\% \\ \hline
+\multirow{3}{*}{Shewanella baltica OS223 }&\textbf{IDBA} 23.35\%   &\multirow{3}{*}{99.95\%}\\  
+&\textbf{SPAdes } 21.80\% & \\  
+&\textbf{Megahit} 47.41\% & \\ \hline
+\multirow{3}{*}{Fusobacterium nucleatum}  &\textbf{IDBA} 0\%&\multirow{3}{*}{47.3\%} \\ 
+&\textbf{SPAdes} 0\%& \\
+&\textbf{Megahit} 0.18\%& \\ \hline
+\multirow{3}{*}{Desulfovibrio vulgaris DP4}  &\textbf{IDBA} 49.38\%  &\multirow{3}{*}{91.98\%}\\  
+&\textbf{SPAdes} 48.83\% & \\ 
+&\textbf{Megahit} 50.01\% & \\ \hline 
+\multirow{3}{*}{Enterococcus faecalis V583}  &\textbf{IDBA}67.07\%&\multirow{3}{*}{78.14\%} \\  
+&\textbf{SPAdes} 66.53\% & \\
+&\textbf{Megahit} 68.50\% & \\ \hline
+\multirow{3}{*}{Thermus thermophilus HB27}  &\textbf{IDBA} 59.85\% &\multirow{3}{*}{91.06\%}\\  
+&\textbf{SPAdes} 58.74\% & \\ 
+&\textbf{Megahit} 58.44\%& \\ \hline
 \end{tabular}
 \label{table:genomes_uncovered-analysis}
 \end{table}
@@ -488,9 +499,9 @@ Thermus thermophilus HB27  &(iqc 59.85\%) (sqc 58.74\%) (mqc 58.44\%)&8.93\% \\ 
 \caption{Analysis of reads and kmer abundance}
 \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{2.5cm}|}\hline
 \textbf{Assembler} & \textbf{Unmapped Reads} & \textbf {High abundance k-mers not in assemblies} \\ \hline 
-IDBA-UD &3,328,674 &   \\ \hline
-SPAdes &3,879,573 &   \\ \hline
-Megahit &5,848,494 &   \\ \hline
+IDBA &3,328,674 (3.05\%)&   \\ \hline
+SPAdes &3,879,573 (3.56\%) &   \\ \hline
+Megahit &5,848,494 (5.37\%) &   \\ \hline
 \end{tabular}
 \label{table:reads-kmers}
 \end{table}
