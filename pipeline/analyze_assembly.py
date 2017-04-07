@@ -116,15 +116,15 @@ class GenomeIntervalsContainer(object):
             elif name1 in covered and name2 in aligned and \
                    self.contigs_overlaps[name2] > 0:
 
-                # -- is this one better?
-                if self.overlaps_identity[name2] < ident: 
-		     self.overlaps_s1[name2] = s1 
-                     self.overlaps_e1[name2] = e1 
-		     self.overlaps_s2[name2] = s2
-		     self.overlaps_e2[name2] = e2
-                     self.overlaps_genome[name2] = name1  
-		     self.overlaps_identity[name2] = ident
-       		     self.contigs_overlaps[name2] +=1  
+                # -- is this one better? replace if so.
+                if self.overlaps_identity[name2] < ident:
+                    self.overlaps_s1[name2] = s1
+                    self.overlaps_e1[name2] = e1
+                    self.overlaps_s2[name2] = s2
+                    self.overlaps_e2[name2] = e2
+                    self.overlaps_genome[name2] = name1  
+                    self.overlaps_identity[name2] = ident
+                    self.contigs_overlaps[name2] +=1  
 
         # iterate over all the overlaps,
         for name2 in self.overlaps_s1:
@@ -151,7 +151,7 @@ class GenomeIntervalsContainer(object):
 			align[j] +=1
 
     # @CTB ok, how does this differ from previous function?
-    # @CTB I see, this is used for ambiguous, load coords used for
+    # @CTB I see, this is used for ambiguous, load_overlaps used for
     # no overlaps/best hit computing.
     def load_coords(self, filename, min_ident, min_length=100):
         covered = self.covered
