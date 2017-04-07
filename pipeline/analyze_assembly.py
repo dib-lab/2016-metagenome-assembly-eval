@@ -121,6 +121,7 @@ class GenomeIntervalsContainer(object):
                 if self.overlaps_identity[name2] < ident:
                     oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
                     assert e1 - s1 >= oldlen
+                    print e1 - s1, oldlen, ident, self.overlaps_identity[name2]
                     self.overlaps_s1[name2] = s1
                     self.overlaps_e1[name2] = e1
                     self.overlaps_s2[name2] = s2
