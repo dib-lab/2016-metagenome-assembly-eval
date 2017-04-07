@@ -119,16 +119,14 @@ class GenomeIntervalsContainer(object):
             elif name1 in covered and name2 in aligned and \
                    self.contigs_overlaps[name2] > 0:
 
-                # -- is this one better? replace if so.
-                if self.overlaps_identity[name2] == ident:
-                    oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
+                if self.overlaps_identity[name2] > ident:
+                    continue
+
+                oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
+                newlen = e1 - s1
+
+                if oldlen < newlen: # replace with longer!
                     print e1 - s1, oldlen, ident, self.overlaps_identity[name2]
-                    assert e1 - s1 <= oldlen
-                if self.overlaps_identity[name2] < ident:
-                    oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
-                    if self.overlaps_identity[name2] == ident:
-                        print e1 - s1, oldlen, ident, self.overlaps_identity[name2]
-                        assert e1 - s1 >= oldlen
                     self.overlaps_s1[name2] = s1
                     self.overlaps_e1[name2] = e1
                     self.overlaps_s2[name2] = s2
