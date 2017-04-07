@@ -93,10 +93,11 @@ class GenomeIntervalsContainer(object):
  
         self.aligned = aligned
 
+    # used for 'besthit' calculation.
     def load_overlaps(self, filename, min_ident, comparison=best_hit,
                       min_length=100):
         covered = self.covered
-        aligned = self.aligned 
+        aligned = self.aligned
         
         # here, name2 is the name of the assembly contig
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
@@ -118,6 +119,8 @@ class GenomeIntervalsContainer(object):
 
                 # -- is this one better? replace if so.
                 if self.overlaps_identity[name2] < ident:
+                    oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
+                    assert e1 - s1 >= oldlen
                     self.overlaps_s1[name2] = s1
                     self.overlaps_e1[name2] = e1
                     self.overlaps_s2[name2] = s2
@@ -150,9 +153,7 @@ class GenomeIntervalsContainer(object):
                     for j in range(s2 - 1, e2):
 			align[j] +=1
 
-    # @CTB ok, how does this differ from previous function?
-    # @CTB I see, this is used for ambiguous, load_overlaps used for
-    # no overlaps/best hit computing.
+    # load_coords: used for 'ambiguous' calculation.
     def load_coords(self, filename, min_ident, min_length=100):
         covered = self.covered
         aligned = self.aligned
