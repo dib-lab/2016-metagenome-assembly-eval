@@ -430,23 +430,31 @@ def main():
     gic_c = GenomeIntervalsContainer(refsizes, c, cseq) 
 
     print args.ambiguity, args.besthit
-    if (args.ambiguity is True):
-                print '......Running ambiguous analysis' 	
-    		gic_a.load_coords(args.coords1, float(args.minident))
-    	        gic_b.load_coords(args.coords2, float(args.minident)) 
-    		gic_c.load_coords(args.coords3, float(args.minident))
+    if args.ambiguity:
+        assert not args.besthit
+        assert not args.nooverlap
 
-    elif (args.besthit is True): 
-               print '.....Running best hit analysis'
-               gic_a.load_overlaps(args.coords1, float(args.minident))
-               gic_b.load_overlaps(args.coords2, float(args.minident))
-               gic_c.load_overlaps(args.coords3, float(args.minident))
-    elif (args.nooverlap is True):
-	      print '.... Running no overlaps analysis'  
-	      gic_a.load_overlaps(args.coords1, float(args.minident), no_overlaps)
-              gic_b.load_overlaps(args.coords2, float(args.minident), no_overlaps)
-              gic_c.load_overlaps(args.coords3, float(args.minident), no_overlaps)
+        print '......Running ambiguous analysis'
+        gic_a.load_coords(args.coords1, float(args.minident))
+        gic_b.load_coords(args.coords2, float(args.minident))
+        gic_c.load_coords(args.coords3, float(args.minident))
 
+    elif args.besthit:
+        assert not args.ambiguity
+        assert not args.nooverlap
+
+        print '.....Running best hit analysis'
+        gic_a.load_overlaps(args.coords1, float(args.minident))
+        gic_b.load_overlaps(args.coords2, float(args.minident))
+        gic_c.load_overlaps(args.coords3, float(args.minident))
+    elif args.nooverlap:
+        assert not args.ambiguity
+        assert not args.besthit
+
+        print '.... Running no overlaps analysis'
+        gic_a.load_overlaps(args.coords1, float(args.minident), no_overlaps)
+        gic_b.load_overlaps(args.coords2, float(args.minident), no_overlaps)
+        gic_c.load_overlaps(args.coords3, float(args.minident), no_overlaps)
   
     #gic_a.analyze_regions(prefix1+".regions.all", prefix1+".regions.max")
     #gic_b.analyze_regions(prefix2+".regions.all", prefix2+".regions.max")
