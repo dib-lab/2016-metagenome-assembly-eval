@@ -101,6 +101,8 @@ class GenomeIntervalsContainer(object):
         
         # here, name2 is the name of the assembly contig
         for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
+            if ident < min_ident:
+                continue
 
             # first time seeing this overlap?
             if name1 in covered and name2 in aligned \
@@ -118,10 +120,11 @@ class GenomeIntervalsContainer(object):
                    self.contigs_overlaps[name2] > 0:
 
                 # -- is this one better? replace if so.
-                if self.overlaps_identity[name2] <= ident:
+                if self.overlaps_identity[name2] < ident:
                     oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
-                    assert e1 - s1 >= oldlen
-                    print e1 - s1, oldlen, ident, self.overlaps_identity[name2]
+                    if self.overlaps_identity[name2] == ident:
+                        print e1 - s1, oldlen, ident, self.overlaps_identity[name2]
+                        assert e1 - s1 >= oldlen
                     self.overlaps_s1[name2] = s1
                     self.overlaps_e1[name2] = e1
                     self.overlaps_s2[name2] = s2
