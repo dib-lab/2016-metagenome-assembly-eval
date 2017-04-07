@@ -27,6 +27,8 @@ def main():
  
     gic_a = analyze_assembly.GenomeIntervalsContainer(refsizes, a, aseq)
 
+    gic_a.load_overlaps(args.coords, 99.0)
+
 
 if __name__ == '__main__':
     main()
