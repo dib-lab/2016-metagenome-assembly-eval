@@ -203,7 +203,7 @@ class GenomeIntervalsContainer(object):
             # dumb and expensive but simple
             this_contig_cov = {}
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
-                this_contig_cov[cname] = numpy.zeros(assemblysize[cname])
+                this_contig_cov[cname] = numpy.zeros(self.assemsizes[cname])
 
             keep = []
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
