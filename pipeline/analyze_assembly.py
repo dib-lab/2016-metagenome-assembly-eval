@@ -195,7 +195,10 @@ class GenomeIntervalsContainer(object):
         def sort_matches_by_length(a, b):
             l1 = a[1] - a[0] + 1
             l2 = b[1] - b[0] + 1
-            return -cmp(l1, l2)
+            if l1 == l2:
+                return -cmp(a[4], b[4]) # secondary sort on identity
+            else:
+                return -cmp(l1, l2)
         
         for k in contig_ival_list:
             contig_ival_list[k].sort(sort_matches_by_length)
