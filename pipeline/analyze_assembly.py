@@ -119,8 +119,7 @@ class GenomeIntervalsContainer(object):
             elif name1 in covered and name2 in aligned and \
                    self.contigs_overlaps[name2] > 0:
 
-                # we already know the identity is >= min_ident, but check
-                # anyway
+                # we already know the identity is >= min_ident, but be safe!
                 assert ident >= min_ident
 
                 oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
@@ -139,11 +138,12 @@ class GenomeIntervalsContainer(object):
         # iterate over all the overlaps,
         for name2 in self.overlaps_s1:
 
-            # get the best (highest identity) overlap
+            # get the best (longest that is over min_identity) overlap
             name1 = self.overlaps_genome[name2]
             
             # @CTB when would name1/name2 not be in covered/aligned?
-            # @CTB note, I don't understand how comparison is used here
+            # here 'comparison' is configurable to require either
+            # exactly 1 (no-misassemblies) or >= 1 (besthit) matches.
             if (name1 in covered) and (name2 in aligned) and \
                 (name1 != "null") and \
                 comparison(self.contigs_overlaps[name2], 1):
