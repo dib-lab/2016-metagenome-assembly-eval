@@ -199,7 +199,9 @@ class GenomeIntervalsContainer(object):
         
         for k in contig_ival_list:
             contig_ival_list[k].sort(sort_matches_by_length)
-            print contig_ival_list[k][:5]
+            print '----', k
+            for x in contig_ival_list[k]:
+                print x[1] - x[0]
 
 
     def calc_uncov(self):
