@@ -199,7 +199,9 @@ class GenomeIntervalsContainer(object):
                 return -cmp(a[4], b[4]) # secondary sort on identity
             else:
                 return -cmp(l1, l2)
-        
+
+        # go through and eliminate matches where the same part of one
+        # contig matches to multiple genomic regions.
         for k in contig_ival_list:
             contig_ival_list[k].sort(sort_matches_by_length)
 
@@ -212,8 +214,6 @@ class GenomeIntervalsContainer(object):
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
                 ccov = this_contig_cov[cname]
                 if sum(ccov[s2 - 1:e2]): # any overlap? skip this alignment.
-                    print 'skipping:', s1, e1, s2, e2, ident, gname, cname
-                    print 'context:', contig_ival_list[k]
                     continue
 
                 # record that we're keeping this alignment
