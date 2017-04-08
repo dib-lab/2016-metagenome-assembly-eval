@@ -191,7 +191,7 @@ class GenomeIntervalsContainer(object):
                     x = contig_ival_list[name2]
                     x.append([s1, e1, s2, e2, ident, name1, name2])
 
-        # now, for each contig name, sort the list by length.
+        # now, for each contig name, sort the list by length (top down)
         def sort_matches_by_length(a, b):
             l1 = a[1] - a[0] + 1
             l2 = b[1] - b[0] + 1
@@ -199,9 +199,26 @@ class GenomeIntervalsContainer(object):
         
         for k in contig_ival_list:
             contig_ival_list[k].sort(sort_matches_by_length)
-            print '----', k
-            for x in contig_ival_list[k]:
-                print x[1] - x[0]
+
+            # dumb and expensive but simple
+            this_contig_cov = {}
+            for (s1, e1, s2, e2, ident, gname, cname):
+                this_contig_cov[cname] = numpy.zeros(assemblysize[cname])
+
+            keep = []
+            for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
+                ccov = this_contig_cov[cname]
+                if sum(ccov[s1 - 1:e1)): # any overlap? skip this alignment.
+                    print 'skipping:', s1, e1, s2, e2, ident, gname, cname
+                    continue
+
+                # record that we're keeping this alignment
+                for i in range(s1 - 1, e1):
+                    ccov[i] = 1
+
+                keep.append((s1, e2, s2, e2, ident, gname, cname))
+
+            contig_ival_list[k] = keep
 
 
     def calc_uncov(self):
