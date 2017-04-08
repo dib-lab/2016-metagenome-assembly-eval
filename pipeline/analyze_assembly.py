@@ -208,12 +208,12 @@ class GenomeIntervalsContainer(object):
             keep = []
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
                 ccov = this_contig_cov[cname]
-                if sum(ccov[s1 - 1:e1]): # any overlap? skip this alignment.
+                if sum(ccov[s2 - 1:e2]): # any overlap? skip this alignment.
                     print 'skipping:', s1, e1, s2, e2, ident, gname, cname
                     continue
 
                 # record that we're keeping this alignment
-                for i in range(s1 - 1, e1):
+                for i in range(s2 - 1, e2):
                     ccov[i] = 1
 
                 keep.append((s1, e2, s2, e2, ident, gname, cname))
