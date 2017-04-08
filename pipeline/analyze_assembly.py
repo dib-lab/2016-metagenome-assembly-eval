@@ -189,7 +189,7 @@ class GenomeIntervalsContainer(object):
             if name1 in covered and name2 in aligned:
                 if e1 - s1 + 1 >= min_length and ident >= min_ident:
                     x = contig_ival_list[name2]
-                    x.append(s1, e1, s2, e2, ident, name1, name2)
+                    x.append([s1, e1, s2, e2, ident, name1, name2])
 
         # now, for each contig name, sort the list by length.
         def sort_matches_by_length(a, b):
@@ -200,7 +200,6 @@ class GenomeIntervalsContainer(object):
         for k in contig_ival_list:
             contig_ival_list[k].sort(sort_matches_by_length)
             print contig_ival_list[k][:5]
-            break
 
 
     def calc_uncov(self):
