@@ -119,8 +119,9 @@ class GenomeIntervalsContainer(object):
             elif name1 in covered and name2 in aligned and \
                    self.contigs_overlaps[name2] > 0:
 
-                if self.overlaps_identity[name2] > ident:
-                    continue
+                # we already know the identity is >= min_ident, but check
+                # anyway
+                assert ident >= min_ident
 
                 oldlen = self.overlaps_e1[name2] - self.overlaps_s1[name2]
                 newlen = e1 - s1
@@ -143,21 +144,23 @@ class GenomeIntervalsContainer(object):
             
             # @CTB when would name1/name2 not be in covered/aligned?
             # @CTB note, I don't understand how comparison is used here
-            if (name1 in covered) and (name2 in aligned) and (name1 != "null") and comparison( self.contigs_overlaps[name2],1) :
+            if (name1 in covered) and (name2 in aligned) and \
+                (name1 != "null") and \
+                comparison(self.contigs_overlaps[name2], 1):
                  cov = covered[name1]
                  align = aligned[name2]
-                 s1 = self.overlaps_s1[name2] 
-                 e1 = self.overlaps_e1[name2] 
+                 s1 = self.overlaps_s1[name2]
+                 e1 = self.overlaps_e1[name2]
                  s2 = self.overlaps_s2[name2]
-                 e2 = self.overlaps_e2[name2] 
+                 e2 = self.overlaps_e2[name2]
                  ident = self.overlaps_identity[name2]
 
                  # ok, add coverage/# of alignments if alignment passes.
                  if e1 - s1 + 1 >= min_length and ident >= min_ident:
-                    for i in range(s1 - 1, e1): 
-			cov[i] += 1
+                    for i in range(s1 - 1, e1):
+                        cov[i] += 1
                     for j in range(s2 - 1, e2):
-			align[j] +=1
+                        align[j] +=1
 
     # load_coords: used for 'ambiguous' calculation.
     def load_coords(self, filename, min_ident, min_length=100):
