@@ -178,6 +178,31 @@ class GenomeIntervalsContainer(object):
                     for j in range(s2-1, e2):
                         align[j] +=1
 
+    # load_contigs_foo:
+    def load_contigs_foo(self, filename, min_ident, min_length=100):
+        covered = self.covered
+        aligned = self.aligned
+
+        # store contigs by name
+        contig_ival_list = defaultdict(list)
+        for s1, e1, s2, e2, ident, name1, name2 in _load_coords(filename):
+            if name1 in covered and name2 in aligned:
+                if e1 - s1 + 1 >= min_length and ident >= min_ident:
+                    x = contig_ival_list[name2]
+                    x.append(s1, e1, s2, e2, ident, name1, name2)
+
+        # now, for each contig name, sort the list by length.
+        def sort_matches_by_length(a, b):
+            l1 = a[1] - a[0] + 1
+            l2 = b[1] - b[0] + 1
+            return -cmp(l1, l2)
+        
+        for k in contig_ival_list:
+            contig_ival_list[k].sort(sort_matches_by_length)
+            print contig_ival_list[k][:5]
+            break
+
+
     def calc_uncov(self):
         uncov_d = {}
         for name in self.refsizes:
