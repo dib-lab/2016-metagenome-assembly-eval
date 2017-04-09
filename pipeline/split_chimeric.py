@@ -27,7 +27,7 @@ def main():
 
     # 'keep' now contains non-chimeric contigs
 
-    outfilename = os.path.basename(args.assemb) + '.no-chimera.fa'
+    outfilename = os.path.basename(args.assem) + '.no-chimera.fa'
     print 'saving non-chimeric contigs to', outfilename
     
     with open(outfilename, 'wt') as fp:
