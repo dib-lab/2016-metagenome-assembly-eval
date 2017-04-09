@@ -38,8 +38,8 @@ def load_assembly(assembly):
     d = {}
     s = {}
     for record in screed.open(assembly):
- 	       d[record.name.split()[0] ] = len(record.sequence)
-               s[record.name.split()[0] ] = record.sequence
+        d[record.name.split()[0] ] = len(record.sequence)
+        s[record.name.split()[0] ] = record.sequence
     return d, s 
 
 
@@ -202,6 +202,7 @@ class GenomeIntervalsContainer(object):
 
         # go through and eliminate matches where the same part of one
         # contig matches to multiple genomic regions.
+        keep = []
         for k in contig_ival_list:
             contig_ival_list[k].sort(sort_matches_by_length)
 
@@ -210,7 +211,6 @@ class GenomeIntervalsContainer(object):
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
                 this_contig_cov[cname] = numpy.zeros(self.assemsizes[cname])
 
-            keep = []
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
                 ccov = this_contig_cov[cname]
                 if sum(ccov[s2 - 1:e2]): # any overlap? skip this alignment.
@@ -222,7 +222,7 @@ class GenomeIntervalsContainer(object):
 
                 keep.append((s1, e2, s2, e2, ident, gname, cname))
 
-            contig_ival_list[k] = keep
+        return keep
 
 
     def calc_uncov(self):
