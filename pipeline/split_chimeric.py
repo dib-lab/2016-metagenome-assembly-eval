@@ -25,12 +25,11 @@ def main():
     keep = gic_a.load_contigs_foo(args.coords, 99.0)
 
     # keep now contains non-chimeric contigs
-    for cname, v in keep.iteritems():
+    for (s1, e1, s2, e2, ident, name1, name2) in keep:
         contig = aseq[cname]
-        for (s1, e1, s2, e2, ident, name1, name2) in v:
-            assert name2 == cname
+        assert name2 == cname
 
-            x = contig[s2-1:e2]
+        x = contig[s2-1:e2]
 
 
 if __name__ == '__main__':
