@@ -2,6 +2,7 @@
 import sys
 import argparse
 from collections import defaultdict
+import os.path
 
 # re-use some functions
 import analyze_assembly
