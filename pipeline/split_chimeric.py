@@ -36,7 +36,7 @@ def main():
             contig = aseq[name2]
 
             subseq = contig[s2-1:e2]
-            fp.write('>nochimera{}\n{}\n'.format(n, subseq)
+            fp.write('>nochimera{}\n{}\n'.format(n, subseq))
 
     print 'wrote', n, 'contigs'
 
