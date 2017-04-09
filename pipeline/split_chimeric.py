@@ -24,11 +24,21 @@ def main():
     gic_a = analyze_assembly.GenomeIntervalsContainer(refsizes, a, aseq)
     keep = gic_a.load_contigs_foo(args.coords, 99.0)
 
-    # keep now contains non-chimeric contigs
-    for (s1, e1, s2, e2, ident, name1, name2) in keep:
-        contig = aseq[name2]
+    # 'keep' now contains non-chimeric contigs
 
-        x = contig[s2-1:e2]
+    outfilename = os.path.basename(args.assemb) + '.no-chimera.fa'
+    print 'saving non-chimeric contigs to', outfilename
+    
+    with open(outfilename, 'wt') as fp:
+        n = 0
+        for (s1, e1, s2, e2, ident, name1, name2) in keep:
+            n += 1
+            contig = aseq[name2]
+
+            subseq = contig[s2-1:e2]
+            fp.write('>nochimera{}\n{}\n'.format(n, subseq)
+
+    print 'wrote', n, 'contigs'
 
 
 if __name__ == '__main__':
