@@ -26,8 +26,7 @@ def main():
 
     # keep now contains non-chimeric contigs
     for (s1, e1, s2, e2, ident, name1, name2) in keep:
-        contig = aseq[cname]
-        assert name2 == cname
+        contig = aseq[name2]
 
         x = contig[s2-1:e2]
 
