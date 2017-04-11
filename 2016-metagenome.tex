@@ -16,6 +16,8 @@
 %% Default: numerical citations
 \usepackage[numbers]{natbib}
 
+\setlength{\parskip}{0.2em}
+
 %% Uncomment this lines for superscript citations instead
 % \usepackage[super]{natbib}
 
@@ -710,31 +712,24 @@ k-mer presence in assemblies.
 
 \subsection*{Assembly analysis using Nucmer}
 
-We used the Nucmer tool from MUMmer3.23 \cite{mummer3.0} to align
+We used the NUCmer tool from MUMmer3.23 \cite{mummer3.0} to align
 assemblies to the reference genome with options {\tt \--coords} {\tt
   -p}. Then we parsed the generated ``.coords'' file using a custom
 script {\tt{analyze\_assembly.py}}, and calculated several analysis
-metrics across all the assemblies at two alignment identities, 95\% and 99\%.
+metrics across all three assemblies at two alignment identities, 95\% and 99\%.
 
 \subsection*{Reference-based analysis of the assemblies}
-We processed the alignments in three different ways: ambiguous,
-best-hit, and no-misassemblies.
 
-% In the ambiguous approach, we keep all alignments, including alignments where multiple contigs align to the same region in the reference, and multiple parts of the same contig align to the same reference region. Alignments to different parts of the reference are kept too. 
-
-% In the best-hit approach, when different parts of one contig align to the reference, we only take into account the highest-scoring alignment and discard the other alignments from that contig.
-
-% In the no-misassemblies approach, we count only contigs that align uniquely and completely to the reference. If the contig aligns partially, or different parts of the contig align to different regions in the reference, we discard all of the alignments.
-
-
-In the ambiguous approach, we took into account all the alignments of
-a contig to the reference.
-
+We analyzed metrics for three different sets of contigs, based on the
+NUCmer alignments.  We used the unfiltered NUCmer alignments for the
+analyses termed ``ambiguous.''  We also subjected the alignments to
+two different filtering criteria, ``best-hit'' and
+``no-misassemblies.''
 In the best-hit approach, among all alignments of a contig, we took
-into consideration only the alignment with the best score.
-
+into consideration the longest alignment with an identity above a specified
+identity threshold (either 95\% or 99\%).
 In the no-misassemblies approach, we only counted contigs that have
-precisely one alignment to the reference.
+precisely one alignment within the reference.
 
 In all approaches, we flag a base in the reference genome as
 ``covered'' if it is contained in a kept alignment.  We define the
@@ -758,8 +753,8 @@ location in the reference.
 
 \subsection*{Gene annotations using Prokka}
 We used prokka \cite{prokka} to annotate the reference genome using
-{\tt{--outdir mprokka --prefix testasm --metagenome}}. Then we parsed
-the testasm.tbl output file to get the coordinates of CDS genes. We then
+{\tt{--metagenome}}. Then we parsed
+the testasm.tbl output file to get the coordinates of CDS genes and
 searched the alignments for how many genes were contained in those
 alignments.
 % @CTB what script?
@@ -886,7 +881,7 @@ remaining 8 - 10\% of contigs do not align at all to the reference
 
 86.13\% of the reference metagenome is recovered in at least one
 contig by all three assemblers (``common covered'') with relatively
-little duplication, under 99\% identity/ambiguous matching: 6.23\% of
+little duplication, under 99\% identity/ambiguous matching; 6.23\% of
 the reference is missed by all three assemblers, 0.64\% is recovered
 by IDBA alone, 0.74\% is recovered by SPAdes only, and 1.92\% is
 recovered by MEGAHIT only.  The remaining 4.34\% of the reference
@@ -915,7 +910,7 @@ A number of the genomes in the reference metagenome had many missing
 bases in the assemblies (Table~\ref{table:genomes_uncovered-analysis}). In
 three extreme cases, {\em S. baltica} OS223, {\em F.
 nucleatum}, and {\em D. vulgaris} DP4 contribute 18.25\%, 16.95\%, and 12.85\%
-of the total common uncovered bases respectively (Table~\ref{table:genomes_uncovered}).  Interestingly, several genomes with poor recovery had very high read mapping rates (e.g. {\em S. baltica}, with 99.95\% read coverage but only ~23-45\% recovery with assembly, and {\em F. nucleatum}, with 52.70\% read coverage but 0\% recovery) - see Table~\ref{table:genomes_uncovered-analysis}.
+of the total common uncovered bases respectively (Table~\ref{table:genomes_uncovered}).  Interestingly, several genomes with poor recovery had very high read mapping rates - see {\em S. baltica}, with 99.95\% read coverage but only ~23-45\% recovery with assembly, and {\em F. nucleatum}, with 52.70\% read coverage but 0\% recovery (Table~\ref{table:genomes_uncovered-analysis}).
 
 %these numbers are after sorting file QC.AMBIGUOUS.99.uncovered using
 %[sort -n -k2 -r  QC.AMBIGUOUS.99.uncovered>QC.AMBIGUOUS.99.uncovered.sorted ] and the percentage is computed w.r.t no. of common uncovered bases
@@ -1063,7 +1058,7 @@ read mapping, but the remainder has read coverage greater than 5.
 In addition to recovering most of the content of the reference
 metagenome, all three assemblers generate many contigs (approximately
 10\% of the total) that do not map to anything in the reference.  A
-search of these contigs against all 52,000 RefSeq microbial genomes found
+search of these contigs against all of the RefSeq microbial genomes found
 that about 20\% of the unalignable contigs match to known strain
 variants of microbes included in the mock metagenome
 community.  Interestingly, in a number of these cases, the included
@@ -1108,7 +1103,7 @@ on this data set.
 \item fosmid type approaches maybe? moleculo etc.
 \end{itemize}
 
-\subsection*{Recommendation: try MEGAHIT first}
+\subsection*{Our recommendation: try MEGAHIT first}
 
 We do not see a significant advantage to one assembler over another in
 terms of recovering the known reference, and we speculate that there
