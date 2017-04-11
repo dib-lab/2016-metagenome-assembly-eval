@@ -437,7 +437,7 @@ process.  This mimics default user experience. (Expand.)
 \begin{tabular}{|p{2cm}|p{2.5cm}|p{2.5cm}|} 
 \hline
 
-\textbf{Assembly}& \textbf{Reads that map} &  \textbf{Reads that map uniquely}    \\ [0.5ex] % inserts table %heading
+\textbf{Assembly}& \textbf{Reads that map} &  \textbf{Reads that do not map to reference}    \\ [0.5ex] % inserts table %heading
 \hline
 \textbf{IDBA-UD}&7,067,517 (6.49\%) &2,332,735 (2.14\%)\\
 \hline
@@ -467,14 +467,14 @@ process.  This mimics default user experience. (Expand.)
 
 \begin{table}[!h]
 \centering
-\caption{Read inclusion and assembly of top uncovered genomes}
+\caption{Read inclusion and assembly of top uncovered genomes.}
 \begin{tabular}{|p{3cm}|p{2.5cm}|p{1.11cm}|}\hline
 \textbf{Genome} & \textbf{Fraction Assembled} & \textbf {Covered by Reads} \\ \hline 
 %And I mean by uncovered by reads : has coverage =0 
 \multirow{3}{*}{{\em S. baltica} OS223 }&\textbf{IDBA} 23.35\%   &\multirow{3}{*}{99.95\%}\\  
 &\textbf{SPAdes } 21.80\% & \\  
 &\textbf{Megahit} 47.41\% & \\ \hline
-\multirow{3}{*}{{\em F. nucleatum}}  &\textbf{IDBA} 0\%&\multirow{3}{*}{47.3\%} \\ 
+\multirow{3}{*}{{\em F. nucleatum}}  &\textbf{IDBA} 0\%&\multirow{3}{*}{47.30\%} \\ 
 &\textbf{SPAdes} 0\%& \\
 &\textbf{Megahit} 0.18\%& \\ \hline
 \multirow{3}{*}{{\em D. vulgaris} DP4}  &\textbf{IDBA} 49.38\%  &\multirow{3}{*}{91.98\%}\\  
@@ -937,33 +937,23 @@ MEGAHIT contained 80,256 (94.59\%) of the reference genes.
 \subsection*{Many assembled contigs do not align to the reference metagenome}
 
 Depending on assembler, between 8.04\% and 10.87\% of the assembled
-contigs (XX-YY bases total) do not align anywhere in the reference
-metagenome.  We extracted these contigs and analyzed their content and
-read mapping separately.
-
-% @CTB XX-YY?
+contigs (12.8 Mbp for MEGAHIT to 13.4 Mbp for IDBA-UD) do not align
+anywhere in the reference metagenome.  We extracted these contigs and
+analyzed their content and read mapping separately.
 
 Between 5.9\% and 6.5\% of the QC reads mapped to the unalignable
-contigs, depending on assembler (Table~\ref{table:read-mapping}).  In each case,
-between 67\% and 75\% of the reads that mapped to these unalignable
-contigs did not map anywhere in the reference
-(Table~\ref{table:read-mapping}); several million reads total map only to
-the unaligned contigs and nowhere in the reference. (@CTB these numbers now appear to be wrong? Based on text below; cross-check against table 4!?)
+contigs, depending on assembler (Table~\ref{table:read-mapping}).  In
+each case, several million reads total map only to the unaligned
+contigs and nowhere in the reference.
 
-%6.49\% of reads mapped to the unaligned contigs of IDBA. Only 33.01\%
-%of those reads mapped to the reference. (2.14\% of all the reads).
-%6.23\% of reads mapped to the unaligned contigs of SPAdes. Only
-%28.97\% of those reads mapped to the reference. (1.80\% of all the
-%reads).  5.87\% of reads mapped to the unaligned contigs of
-%Megahit. Only 24.80\% of those reads mapped to the reference. (1.45\%
-%of all the reads)
 %The above numbers are coming from
 %iqc.AM99.aligned.reads and iqc.AM99-mapped-reads for IDBA,
 %sqc.AM99.aligned.reads and sqc.AM99-mapped-reads for SPADES, and
 %mqc.AM99.aligned.reads and mqc.AM99-mapped-reads for megahit.
-For
-each assembly, approximately 2m quality-filtered reads map only to the
-unaligned contigs (and nowhere in the reference) - Table~\ref{table:read-mapping}.
+
+%For
+%each assembly, approximately 2m quality-filtered reads map only to the
+%unaligned contigs (and nowhere in the reference) - Table~\ref{table:read-mapping}.
 %Numbers from subtracting numbers in those files:
 %(iqc.AM99.aligned.reads - iqc.AM99-mapped-reads) for IDBA
 %(sqc.AM99.aligned.reads - sqc.AM99-mapped-reads) for SPAdes 
