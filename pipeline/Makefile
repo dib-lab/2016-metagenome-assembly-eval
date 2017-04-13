@@ -1,4 +1,5 @@
-REFERENCE = mircea.fa
+FULL_REFERENCE=mircea.fa
+REFERENCE = mircea.rm17.fa
 MYSCRIPTS = /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
@@ -8,6 +9,12 @@ TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
 mc = 1000 2000 3000
+
+# remove 17 genomes for crimes of strain variation
+
+${REFERENCE}: ${FULL_REFERENCE}
+	python ./subtract-names.py genome-remove-list.txt ${FULL_REFERENCE} > ${REFERENCE}
+
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: SRR606249-1.fastq.gz   SRR606249-2.fastq.gz \
 	SRR606249.se.qc.fq.gz 
@@ -63,7 +70,7 @@ mincontig-analysis: megahit-quality-assembly.fa \
 #-----------------------------------------------------------QUALITY STARTS-------------------------------------------------------------------------------
 SRR606249.se.qc.fq.gz:   SRR606249-1.fastq.gz   SRR606249-2.fastq.gz
 	java -jar ${TRIM}/trimmomatic-0.32.jar PE  SRR606249-1.fastq.gz   SRR606249-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:${TRIM}/adapters/TruSeq2-PE.fa:2:40:15 \
- 	LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25 
+	LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25 
 	${SCRIPTS}/interleave-reads.py s1_pe s2_pe | gzip -9c > SRR606249.pe.qc.fq.gz 
 	cat s1_se s2_se | gzip -9c > SRR606249.se.qc.fq.gz
 
@@ -124,7 +131,7 @@ spades-diginorm-1:*.pe.kak.qc.fq.gz
 spades-diginorm-2: SRR606249.pe.kak.qc.fq.gz SRR606249.se.kak.qc.fq.gz
 	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 SRR606249.pe.kak.qc.fq.gz -o SRR606249.pe.kak.qc.spades.d
 	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 SRR606249.se.kak.qc.fq.gz -o SRR606249.se.kak.qc.spades.d
-	
+
 finalize-spades-diginorm:  SRR606249.spades.d/contigs.fasta 
 	python ${SANDBOX}/sandbox/calc-best-assembly.py SRR606249.*e.kak.qc.spades.d/contigs.fasta -o spades-diginorm-best.fa
 	python ${MYSCRIPTS}/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
@@ -220,10 +227,10 @@ mqc500.coords: megahit-quality-assembly500.fa
 assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 
-	
+
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.99 -b True 99
-	
+
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
 
@@ -239,7 +246,7 @@ stats: megahit-quality-assembly500.fa
 	python ${MYSCRIPTS}/compute_stats.py idba-quality-assembly500.fa ${REFERENCE} > idba.stats 
 	python ${MYSCRIPTS}/compute_stats.py spades-quality-assembly500.fa ${REFERENCE} > spades.stats
 	python ${MYSCRIPTS}/compute_stats.py megahit-quality-assembly500.fa ${REFERENCE} > megahit.stats
-	
+
 megahit-quality-assembly3000.fa:  megahit-quality-assembly.fa
 	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} idba-quality-assembly.fa $(i); ) 
 	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} spades-quality-assembly.fa $(i); ) 
@@ -249,7 +256,7 @@ mqc3000.coords: megahit-quality-assembly3000.fa
 	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p iqc$(i) ${REFERENCE}  idba-quality-assembly$(i).fa ; ) 
 	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p sqc$(i) ${REFERENCE}  spades-quality-assembly$(i).fa ;) 
 	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p mqc$(i) ${REFERENCE}  megahit-quality-assembly$(i).fa ; ) 
-	
+
 assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords 
 	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
 	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).99 -a True 99;)
@@ -266,7 +273,6 @@ assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords
 	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).95 -c True 95 ;)
 
 
-	
 annotate-prokka: ${REFERENCE} megahit-quality-assembly500.fa
 	prokka ${REFERENCE} --outdir mprokka --prefix testasm --metagenome
 
@@ -274,7 +280,7 @@ parse-prokka: mprokka/testasm.tbl
 	${MYSCRIPTS}/parse-prokka.py mprokka/testasm.tbl prokka.out
 	${MYSCRIPTS}/analyze_assembly_prokka.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 prokka.out  	
- 
+
 
 
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
