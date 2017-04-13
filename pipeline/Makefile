@@ -219,7 +219,7 @@ megahit-quality-assembly500.fa:  idba-quality-assembly.fa  spades-quality-assemb
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  spades-quality-assembly.fa 500 
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  megahit-quality-assembly.fa 500 
 
-mqc500.coords: megahit-quality-assembly500.fa 
+mqc500.coords: #megahit-quality-assembly500.fa 
 	${NUCMER}/nucmer --coords -p  iqc500  ${REFERENCE}  idba-quality-assembly500.fa
 	${NUCMER}/nucmer --coords -p  sqc500  ${REFERENCE}  spades-quality-assembly500.fa
 	${NUCMER}/nucmer --coords -p  mqc500  ${REFERENCE}  megahit-quality-assembly500.fa
