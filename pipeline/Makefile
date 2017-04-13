@@ -1,6 +1,6 @@
 FULL_REFERENCE=mircea.fa
 REFERENCE = mircea.rm17.fa
-MYSCRIPTS = /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline
+MYSCRIPTS = ./
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
 MEGAHIT=/mnt/home/mahmoud4/megahit
