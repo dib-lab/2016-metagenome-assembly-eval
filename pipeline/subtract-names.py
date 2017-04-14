@@ -10,4 +10,5 @@ for record in screed.open(sys.argv[2]):
         continue
     print('>%s\n%s' % (record.name, record.sequence))
 
-print("didn't find:", names)
+if names:
+    print("didn't find:", names, file=sys.stderr)
