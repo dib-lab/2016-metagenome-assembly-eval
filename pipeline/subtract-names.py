@@ -12,3 +12,4 @@ for record in screed.open(sys.argv[2]):
 
 if names:
     print("didn't find:", names, file=sys.stderr)
+    sys.exit(-1)
