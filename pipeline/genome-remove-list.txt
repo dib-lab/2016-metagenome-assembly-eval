@@ -15,3 +15,4 @@ Bordetella_bronchiseptica_strain_RB50
 Shewanella_baltica_OS185
 Ruegeria_pomeroyi_DSS-3
 Thermotoga_neapolitana_DSM_4359
+Zymomonas_mobilis_subsp._mobilis_ZM4

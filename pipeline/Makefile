@@ -1,5 +1,5 @@
 FULL_REFERENCE=mircea.fa
-REFERENCE = mircea.rm17.fa
+REFERENCE = mircea.rm18.fa
 MYSCRIPTS = ./
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
@@ -10,7 +10,7 @@ SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
 mc = 1000 2000 3000
 
-# remove 17 genomes for crimes of strain variation
+# remove 18 genomes for crimes of strain variation
 
 ${REFERENCE}: ${FULL_REFERENCE}
 	python ./subtract-names.py genome-remove-list.txt ${FULL_REFERENCE} > ${REFERENCE}
@@ -273,7 +273,7 @@ assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords
 	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).95 -c True 95 ;)
 
 
-annotate-prokka: ${REFERENCE} megahit-quality-assembly500.fa
+annotate-prokka: ${REFERENCE} # megahit-quality-assembly500.fa
 	prokka ${REFERENCE} --outdir mprokka --prefix testasm --metagenome
 
 parse-prokka: mprokka/testasm.tbl
