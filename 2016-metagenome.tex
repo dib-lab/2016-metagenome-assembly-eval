@@ -1,3 +1,5 @@
+% @CTB read CAMI
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Welcome to Overleaf --- just edit your article on the left,
@@ -203,412 +205,8 @@ process.  This mimics default user experience. (Expand.)
 % \end{tabledata}
 % \end{table}
  
- %------------------------------------Cost of Assembly ---------------
- \begin{table}[h]
-\caption{Running Time and Memory Utilization}
-\centering
-\begin{tabular}{|c|c|}
-\hline
-\multicolumn{2}{|c|}{ \textbf{(A) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Running Time}& 17h 12m \\ 
-\hline
-\textbf{Memory Utilization (GB)}&149.12\\ 
-\hline
-\multicolumn{2}{|c|}{ \textbf{(B) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Running Time} & 42h 14m    \\
-\hline
-\textbf{Memory Utilization (GB)}& 391.45   \\ 
-\hline
-\multicolumn{2}{|c|}{ \textbf{(C) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{Running Time}& {\bf 0h 56m} \\
-\hline
-\textbf{Memory Utilization (GB)}& {\bf 34.40} \\ 
-\hline
-
-\end{tabular}
-\label{table:time-memory}
-\end{table}
-
- %------------------------------Coverage Table-----------------------------
-\begin{table}[h!]
-\caption{Reference Genome Coverage and Duplication Ratio}
-\centering
-\begin{tabular}{|c|c|c|}
- \hline 
- \multicolumn{3}{|c|} {\textbf{(1) Best hit Approach}}    \\ [0.5ex] % inserts table 
- \hline
-\multicolumn{3}{|c|}{ \textbf{(A) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome  Coverage} & 56.89 \%     \\   
-&\textbf{Duplication Ratio} & 0.38 \%   \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome  Coverage}& 58.00\%     \\   
-&\textbf{Duplication Ratio}& 0.59 \%    \\   
-\hline
-\multicolumn{3}{|c|}{ \textbf{(B) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage}&  63.79 \%  \\
-&\textbf{Duplication Ratio} & 0.15 \% \\   
-\hline 
-\multirow{2}{*}{95.0}&\textbf{Genome Coverage}&64.68 \%  \\
-&\textbf{Duplication Ratio}& 0.26\%  \\   
-\hline
-\multicolumn{3}{|c|}{ \textbf{(C) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome  Coverage}&68.47  \% \\
-&\textbf{Duplication Ratio}&0.37 \% \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome  Coverage}& 68.96 \%  \\
-&\textbf{Duplication Ratio}& 0.45\%  \\   
-\hline
- \multicolumn{3}{|c|} {\textbf{(2) Ambiguous Approach}}    \\ [0.5ex] % inserts table %heading
-\hline
-\multicolumn{3}{|c|}{ \textbf{(A) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage} &89.79 \%   \\   
-&\textbf{Duplication Ratio} &0.94\%  \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome  Coverage} &95.46  \%  \\   
-&\textbf{Duplication Ratio} &1.90 \%    \\   
-\hline
-\multicolumn{3}{|c|}{ \textbf{(B) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage}&89.42 \% \\
-&\textbf{Duplication Ratio}&1.00 \%  \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome Coverage}&95.12 \%  \\
-&\textbf{Duplication Ratio}&1.98 \%  \\   
-\hline
-\multicolumn{3}{|c|}{ \textbf{(C) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage}&91.16 \%  \\
-&\textbf{Duplication Ratio}&0.55 \%  \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome Coverage} &94.22 \%  \\
-&\textbf{Duplication Ratio}&1.48 \%   \\   
-\hline
-\multicolumn{3}{|c|} {\textbf{(3) No Misassemblies Approach}}    \\ [0.5ex] % inserts table %heading
-\hline
-\multicolumn{3}{|c|}{ \textbf{(A) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome  Coverage} &34.60 \%   \\   
-&\textbf{Duplication Ratio} & 0.37\%  \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome  Coverage} & 35.22 \%  \\   
-&\textbf{Duplication Ratio} & 0.56  \%    \\   
-\hline
-\multicolumn{3}{|c|}{ \textbf{(B) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage}& 35.92\% \\
-&\textbf{Duplication Ratio}&0.16 \%  \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome Coverage}& 36.42 \%  \\
-&\textbf{Duplication Ratio}& 0.21 \%  \\   
-\hline
-\multicolumn{3}{|c|}{ \textbf{(C) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\multirow{2}{*}{99.0}&\textbf{Genome Coverage}&45.81 \%  \\
-&\textbf{Duplication Ratio}& 0.39\%  \\   
-\hline
-\multirow{2}{*}{95.0}&\textbf{Genome Coverage} & 46.03 \%  \\
-&\textbf{Duplication Ratio}& 0.48 \%   \\   
-\hline
-\end{tabular}
-\label{table:coverage-analysis}
-\end{table}
-
- %------------------------------Contigs Length table-----------------------------
-
-\begin{table}[h!]
-\caption{Contigs Analysis}
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
- \multicolumn{2}{|c|} {\textbf{(1) Best hit Approach}}    \\ [0.5ex] % inserts table %heading
- \hline
-\multicolumn{2}{|c|}{ \textbf{(A) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs} & 19,988 \\   
-\hline
-\textbf{Totally Aligned Contigs \%} &72.96\%  (97,138,779)  \\   
-\hline
-\textbf{Partial Aligned Contigs \%} &10.97\%  (20,261,669)   \\   
-\hline
-\textbf{Unaligned Contigs \%} &  16.07\% (61,421,243)  \\   
-\hline
-\multicolumn{2}{|c|}{ \textbf{(B) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs}&15,254 \\   
-\hline
-\textbf{Totally Aligned Contigs\%}&76.52\% (109,342,809)     \\   
-\hline
-\textbf{Partial Aligned Contigs\%}&12.08\% (22,008,234)  \\   
-\hline
-\textbf{Unaligned Contigs\%}&11.40\% (34,176,209)     \\   
-\hline
-\multicolumn{2}{|c|}{ \textbf{(C) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs}&27,657\\   
-\hline
-\textbf{Totally Aligned Contigs \%}&83.07\%  (128,987,917)   \\   
-\hline
-\textbf{Partial Aligned Contigs\%}&4.67\%  (12,325,804) \\   
-\hline
-\textbf{Unaligned Contigs\%}&12.26\% (50,093,476) \\   
-\hline
-\multicolumn{2}{|c|} {\textbf{(2) Ambiguous  Approach}}    \\ [0.5ex] % inserts table %heading
-\hline
-\multicolumn{2}{|c|}{ \textbf{(A) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs}& 19,988     \\   
-\hline
-\textbf{Totally Aligned Contigs\%}&80.59\% (161,075,933)   \\   
-\hline
-\textbf{Partial Aligned Contigs\%}& 8.54 \%   (22,638,415 )  \\   
-\hline
-\textbf{Unaligned Contigs \%}& 10.87\%  (13,378,572)    \\   
-\hline
-\multicolumn{2}{|c|}{ \textbf{(B) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs} & 15,254  \\   
-\hline
-\textbf{Totally Aligned Contigs} & 81.03 \% (154,920,366)  \\   
-\hline
-\textbf{Partial Aligned Contigs\%}&9.34\%  (28,028,529) \\   
-\hline
-\textbf{Unaligned Contigs\%}&9.62\% (12,931,934)  \\   
-\hline
-\multicolumn{2}{|c|}{ \textbf{(C) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs}&27,657\%  \\   
-\hline
-\textbf{Totally Aligned Contigs\%}&87.59 \% (169,789,173) \\   
-\hline
-\textbf{Partial Aligned Contigs\%}&4.36\% (15,658,616)  \\   
-\hline
-\textbf{Unaligned Contigs\%}&8.04\% (12,777,886)    \\   
-\hline
-
-\multicolumn{2}{|c|} {\textbf{(3) No Misassemblies  Approach}}    \\ [0.5ex] % inserts table %heading
-\hline
-\multicolumn{2}{|c|}{ \textbf{(A) IDBA-UD}}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs} &19,988 \\   
-\hline
-\textbf{Totally Aligned Contigs\%}&57.41\% (61,874,288)   \\   
-\hline
-\textbf{Partial Aligned Contigs\%}&6.81\%(9,530,232)  \\   
-\hline
-\textbf{Unaligned Contigs \%}&35.78\%  (122,899,406)    \\   
-\hline
-\multicolumn{2}{|c|}{ \textbf{(B) SPAdes} }   \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs} &15,254 \\   
-\hline
-\textbf{Totally Aligned Contigs} &62.93\% (64,656,150)  \\   
-\hline
-\textbf{Partial Aligned Contigs\%}&6.84\% (9,323,121) \\   
-\hline
-\textbf{Unaligned Contigs\%}&30.23\% (114,292,858)  \\   
-\hline
-\multicolumn{2}{|c|}{ \textbf{(C) MEGAHIT} }    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{No. of Contigs}&27,657 \\   
-\hline
-\textbf{Totally Aligned Contigs\%}&67.62\%  (87,488,973) \\   
-\hline
-\textbf{Partial Aligned Contigs\%}&2.73\% (7,069,258)  \\   
-\hline
-\textbf{Unaligned Contigs\%}&29.65\% (102,672,613)    \\   
-\hline
-\end{tabular}
-\label{table:contigs-analysis}
-\end{table}
-
-
- %------------------------------------------Read Mapping Analysis -------------------------------------------------------------------------------
-\begin{table}[!ht]
-\caption{Reads mapping to assembled contigs not in reference.}
-\centering
-%\begin{tabular}{|c|c|c|}
-\begin{tabular}{|p{2cm}|p{2.5cm}|p{2.5cm}|} 
-\hline
-
-\textbf{Assembly}& \textbf{Reads that map} &  \textbf{Reads that do not map to reference}    \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{IDBA-UD}&7,067,517 (6.49\%) &2,332,735 (2.14\%)\\
-\hline
-\textbf{SPAdes}&6,786,747 (6.23\%)&1,966,038 (1.80\%)  \\
-\hline
-\textbf{Megahit}&6,392,926 (5.87\%)&1,585,363 (1.45\%)  \\
-\hline
-\end{tabular}
-\label{table:read-mapping} 
-\end{table}
-%------------------------ List of Genomes of mostly uncovered bases-----------------------------------------------------------------
-\begin{table}[!h]
- \centering
- \caption{Genomes with the most common uncovered bases between the three assemblies.}
- \begin{tabular}{|p{4.50cm}|p{2.75cm}|} \hline
-\textbf{Genome} & \textbf{Uncovered bases (\%~of~total)} \\ \hline 
-{\em S. baltica} OS223 & 2.3 Mbp (18.25\%) \\ \hline
-{\em F. nucleatum} & 2.2 Mbp (16.95\%) \\ \hline
-{\em D. vulgaris} DP4 & 1.6 Mbp (12.85\%) \\ \hline
-{\em E. faecalis} V583 & 1.0 Mbp (7.83\%) \\ \hline
-{\em T. thermophilus} HB27 & 0.7 Mbp (5.73\%) \\ \hline
-\end{tabular}
-\label{table:genomes_uncovered}
-\end{table}
-
-%------------------------More analysis about table 4 -------
-
-\begin{table}[!h]
-\centering
-\caption{Read inclusion and assembly of top uncovered genomes.}
-\begin{tabular}{|p{3cm}|p{2.5cm}|p{1.11cm}|}\hline
-\textbf{Genome} & \textbf{Fraction Assembled} & \textbf {Covered by Reads} \\ \hline 
-%And I mean by uncovered by reads : has coverage =0 
-\multirow{3}{*}{{\em S. baltica} OS223 }&\textbf{IDBA} 23.35\%   &\multirow{3}{*}{99.95\%}\\  
-&\textbf{SPAdes } 21.80\% & \\  
-&\textbf{Megahit} 47.41\% & \\ \hline
-\multirow{3}{*}{{\em F. nucleatum}}  &\textbf{IDBA} 0\%&\multirow{3}{*}{47.30\%} \\ 
-&\textbf{SPAdes} 0\%& \\
-&\textbf{Megahit} 0.18\%& \\ \hline
-\multirow{3}{*}{{\em D. vulgaris} DP4}  &\textbf{IDBA} 49.38\%  &\multirow{3}{*}{91.98\%}\\  
-&\textbf{SPAdes} 48.83\% & \\ 
-&\textbf{Megahit} 50.01\% & \\ \hline 
-\multirow{3}{*}{{\em E. faecalis} V583}  &\textbf{IDBA} 67.07\%&\multirow{3}{*}{78.14\%} \\  
-&\textbf{SPAdes} 66.53\% & \\
-&\textbf{Megahit} 68.50\% & \\ \hline
-\multirow{3}{*}{{\em T. thermophilus} HB27}  &\textbf{IDBA} 59.85\% &\multirow{3}{*}{91.06\%}\\  
-&\textbf{SPAdes} 58.74\% & \\ 
-&\textbf{Megahit} 58.44\%& \\ \hline
-\end{tabular}
-\label{table:genomes_uncovered-analysis}
-\end{table}
-
-% @CTB verify mqc 47.41 against Shewanella baltica.
-
-
-%--------------------------Mapped reads and kmer abundance 
-
-
-\begin{table}[!h]
-\centering
-\caption{Read and k-mer inclusion in assemblies}
-\begin{tabular}{|p{1.5cm}|p{1.5cm}|p{2.5cm}|}\hline
-\textbf{Assembler} & \textbf{Unmapped Reads} & \textbf {High abundance k-mers not in assemblies} \\ \hline 
-IDBA &3,328,674 (3.05\%)&  @CTB \\ \hline
-SPAdes &3,879,573 (3.56\%) &  @CTB \\ \hline
-Megahit &5,848,494 (5.37\%) &   @CTB \\ \hline
-\end{tabular}
-\label{table:reads-kmers}
-\end{table}
-
-%---------------------------------N50-NG50 table 
-
-%\begin{table}[!ht]
-%\caption{Comparison between N50 and NG50}
-%\centering
-%\begin{tabular}{|c|c|c|}
-%\hline
-
-%\textbf{Assembler}& \textbf{N50} &  \textbf{NG50}    \\ [0.5ex] % inserts table %heading
-%\hline
-%\textbf{IDBA-UD}&55,225 &52,031\\
-%\hline
-%\textbf{SPAdes}&68,189&63,721 \\
-%\hline
-%\textbf{Megahit}&41,427&39,206 \\
-%\hline
-%\end{tabular}
-%\label{table:n50-ng50} 
-%\end{table}
-
-\begin{table}[t]
-\caption{RefSeq strains detected in unalignable contigs}
-\centering
-\begin{tabular}{|l|c|}
-\hline
-
-\textbf{Match}& \textbf{Fraction} \\ [0.5ex] % inserts table %heading
-\hline
-
-{\small NZ\_LN831027.1 F. nucleatum } & 0.13 \\
-{\small NZ\_AXNV01000001.1 F. nucleatum CTI-6} & \\
-{\small NZ\_KI965381.1 F. nucleatum 13\_3C} & \\
-{\small NZ\_JANA01000001.1 F. sp. OBRC1} & \\
-\hline
-
-{\small NC\_013968.1 H. volcanii DS2 plasmid } & 	0.08 \\
-\hline
-
-{\small NC\_006461.1 T. thermophilus HB8} &				0.03 \\
-\hline
-
-{\small NC\_008751.1 D. vulgaris DP4	}			& 0.06 \\
-{\small NC\_002937.3 D. vulgaris str. Hildenborough } & \\
-\hline
-
-{\small NC\_003911.12 Ruegeria pomeroyi DSS-3 } &				0.05 \\
-\hline
-{\small NC\_003272.1 Nostoc sp. PCC 7120} &				0.07 \\
-\hline
-
-{\small {\bf NC\_009665.1 Shewanella baltica OS185**}} &				 0.07 \\
-{\small {\bf NC\_011663.1 Shewanella baltica OS223**}} & \\
-\hline
-
-{\small NZ\_CH959317.1 Sulfitobacter sp. NAS-14.1} & 0.04 \\
-{\small NZ\_CH959311.1 Sulfitobacter sp. EE-36} \\
-\hline
-
-{\small\bf NZ\_JNKC01000001.1 P. ruminis DSM 24773*} & 0.02 \\
-\hline
-
-{\small NC\_010483.1 Thermotoga sp. RQ2} & 0.01 \\
-\hline
-
-{\small NZ\_AFHH01000001.1 E. faecalis OG1X} & 0.01 \\
-\hline
-{\small NZ\_JMLF01000001.1 D. radiodurans} & 0.01 \\
-
-\hline
-(Total) & 0.60 \\
-\hline
-
-\end{tabular}
-\label{table:gather}
-\end{table}
-
-
-
 %-----------------------------Misassembles table 
 
-\begin{table}[t]
-\caption{IGNORE ME: Misassembled Contigs using Identity 99\%}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-
-\textbf{Assembler}& \textbf{No. of Contigs} &\textbf{No.of Bases} \\ [0.5ex] % inserts table %heading
-\hline
-\textbf{IDBA-UD}& 4,980 (24.91\%) &112,309,828\\
-\hline
-\textbf{SPAdes} & 3,143 (20.60\%) &108,969,624 \\
-\hline
-\textbf{Megahit}& 5,977 (21.61\%) &90,889,558  \\
-\hline
-\end{tabular}
-\label{table:misassembled} 
-\end{table}
-
-%---------------------------------------------------------------------------------------------------
-
-%%%Remove this line for now \subsection*{Figures}
  
 \begin{figure}[!h]
 \centering
@@ -821,7 +419,6 @@ alignments.
 
 \subsection*{The raw data is high quality}
 
-
 The reads contains 11,072,579,096 bp (11.07 Gbp) in 109,629,496 reads
 with 101.0 average length (2x101bp Illumina HiSeq).
 
@@ -839,7 +436,7 @@ data set was used as the basis for all further analyses.
 %We used SAMStat \cite{samstat} to analyze the mapping quality and error profiles of quality filtered reads mapped to the reference genome. Figure \ref{fig:mapquality} shows number of alignments in various mapping quality (MAPQ) intervals and number of unmapped sequences. The percentage and number of alignments in each category is given in brackets. 
 %Figure \ref{fig:basequality} shows mean base quality of reads with low and high mapping quality. %Figure \ref{fig:errorprofile30} shows the error profile for MAPQ $\geq 30$ and Figure \ref{fig:nucleotidecomposition.png} shows the nucleotide compositions. We also found 309,414 chimeric reads. 
 
-\subsection*{98\% or more of the reference is present in the read data set}
+\subsection*{The reference metagenome is mostly present in the reads}
 
 We next evaluated the fraction of the reference genome covered by at least
 one read (see Methods for details). Quality filtered reads cover
@@ -852,28 +449,120 @@ reference metagenome had mapping coverage \textless 5, and 1.24\% of
 the bases in the reference were not covered by any reads in the QC data
 set.
 
-In order to evaluate reconstructability with De Bruijn graph
-assemblers, we next examined k-mer presence for a k-mer size of 20. Of
-the 174m 20-mers in the reference metagenome, 98.7\% were present in the
-QC reads and 95.5\% of them occurred with abundance 5 or greater in
-the QC reads.
+\begin{table}[t]
+\caption{Jaccard containment of the reference in the reads}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{k-mer size} & {\textbf \% reference in reads } \\ [0.5ex]
+\hline
+21 & 96.8\% \\
+\hline
+31 & 95.9\% \\
+\hline
+41 & 94.9\% \\
+\hline
+51 & 94.1\% \\
+\hline
+\end{tabular}
+\label{table:ref_in_reads}
+\end{table}
 
+In order to evaluate reconstructability with De Bruijn graph
+assemblers, we next examined k-mer containment of the reference in the
+reads for $k$ of 21, 31, 41, and 51 (Table \ref{table:ref_in_reads}).
+The k-mer overlap decreases from 96.8\% to 94.1\% as the k-mer size
+increases. This could be caused by low coverage of some portions
+of the reference.
+
+
+%Of
+%the 174m 20-mers in the reference metagenome, 98.7\% were present in the
+%QC reads and 95.5\% of them occurred with abundance 5 or greater in
+%the QC reads.
 %Data source note: the 95.5 is from
 % SRR606249.qc.dist (1-0.045)*100 , the 98.7 is from the same file but
 % (1-0.013) *100
 
-7.6 million reads (7.00\%) from the QC data set did not map anywhere in
-the reference.
-% number taken from unmapped-qc-to-ref.
-% >>> float(7494946 + 117005) / 108942761
-% 0.06987110414798464
-% >>> float(7494946 + 117005)
-% 7611951.0
+\subsection*{Some individual reference genomes are poorly represented in the reads.}
+
+\begin{table}[!h]
+\centering
+\caption{Top uncovered genomes}
+\begin{tabular}{|l|c|c|}\hline
+\textbf{Genome} & \textbf {Read coverage} & \textbf{21-mer presence} \\ \hline 
+%And I mean by uncovered by reads : has coverage =0 
+{{\em B. xenovorans}} & XX.XX\% & 91.6\% \\
+\hline
+{{\em D. vulgaris} DP4}  & 91.98\% & 79.1\% \\
+\hline
+{{\em T. thermophilus} HB27}  & 91.06\% & 79.7\% \\
+\hline    
+{{\em E. faecalis} V583}  & 78.14\% & 68.0\% \\
+\hline
+{{\em F. nucleatum}}  & 47.30\% & 17.8\% \\
+\hline
+\end{tabular}
+\label{table:genomes_uncovered-analysis}
+\end{table}
+
+% @CTB verify mqc 47.41 against Shewanella baltica.
+
+% @ find/calculate read coverage for Burkholderia
+% @ compare with estimates from shakya paper
+
+To see if specific reference genomes exhibited low coverage, we
+analyzed read mapping coverage and 21-mer containment for individual
+genomes.  Of the 64 reference genomes used in the metagenome,
+59 had a per-base mapping coverage above 95\% and a 21-mer containment in
+the QC reads above 95\%.  The remaining five varied significantly
+in both metrics (Table~\ref{table:time-memory}), with {\em F. nucleatum}
+the lowest -- only 47.30\% of the bases in the reference genome are
+covered by one or more mapped reads, and only 17.8\% of the 21-mers
+in the reference genome are present in the reads at any abundance.
+
+% @CTB: point out in discussion that read mapping correlates well with
+% k-mer presence.
+
+We next did a 51-mer containment analysis of each reference genome in
+the reads.  99\% or more of the constituent 51-mers for 46 of the 64
+reference genomes were present in the reads, suggesting that the
+entire genome had been sequenced to at least minimal coverage.
+
+We excluded the remaining 18 genomes from any comparative
+analysis of assembly quality, because interpreting coverage and
+misassembly analysis for these genomes would be unproductive.  See
+``Strain variation analysis'', below, for further analysis of these
+genomes.
+
+% new reference size: 141,394,815
+
+% @CTB: point out in discussion that whether low coverage or strain variation,
+% not fair to analyze misassemblies when k-mers entirely absent.
 
 \subsection*{MEGAHIT is the fastest and lowest-memory assembler evaluated}
 %Numbers in this section are up to date 22 december 2016
 
-We ran three commonly used metagenome assemblers on the QC data set:
+ %------------------------------------Cost of Assembly ---------------
+ \begin{table}[h]
+\caption{Running Time and Memory Utilization}
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Assembler} & \textbf{Runtime} & \textbf{RAM} \\ [0.5ex]
+\hline
+MEGAHIT & 0hr 56m & 34.4 GB \\
+\hline
+IDBA-UD & 17h 12m & 149.1 GB \\
+\hline
+SPAdes & 41h 14m & 391.5 GB \\
+\hline
+
+\end{tabular}
+\label{table:time-memory}
+\end{table}
+
+ We ran three commonly used metagenome assemblers on the QC data set:
 IDBA-UD, SPAdes, and MEGAHIT. We recorded the time and memory usage of
 each (Table \ref{table:time-memory}).  In computational requirements, MEGAHIT outperformed both
 SPAdes and IDBA-UD considerably, producing an assembly in one hour --
@@ -884,298 +573,373 @@ the memory used by IDBA and SPAdes, respectively.
 \subsection*{The assemblies contain most of the raw data}
 %Numbers in this section are up to date 22 december 2016
 
+%--------------------------Mapped reads and kmer abundance 
+
+
+\begin{table}[!h]
+\centering
+\caption{Read and k-mer exclusion from assemblies}
+\begin{tabular}{|p{1.5cm}|p{1.5cm}|p{2.5cm}|}\hline
+  \textbf{Assembly} & \textbf{Unmapped Reads} & \textbf {51-mers omitted}
+  \\ \hline
+IDBA &3,328,674 (3.05\%)&  3.4\% \\ \hline
+SPAdes &3,879,573 (3.56\%) &  4.2\% \\ \hline
+MEGAHIT &5,848,494 (5.37\%) &   3.7\% \\ \hline
+\end{tabular}
+\label{table:reads-kmers}
+\end{table}
+
 We assessed read inclusion in assemblies by mapping the QC reads to
-the assemblies and counting the remaining unmapped reads. Depending on
-the assembly, between 3.3 million and 5.9 million reads (3-6\%)
-did not map to the assemblies (Table~\ref{table:reads-kmers}).
-% @CTB discuss the poor megahit mapping!
+the length-filtered assemblies and counting the remaining unmapped
+reads. Depending on the assembly, between 3.3 million and 5.9 million
+reads (3-6\%) did not map to the assemblies
+(Table~\ref{table:reads-kmers}). Here, the MEGAHIT assembly was distinguished by representing 2 million fewer reads than the IDBA and SPAdes assemblies.
+
+k-mer inclusion, however, was more closely matched by the assemblies,
+with all three assemblies containing between 95.8\% and 96.6\% of the
+51-mers in the k-mer trimmed reads.
+% (say more here?)
+
+% @CTB discuss the poor megahit mapping? maybe dropped a lot of short ocntigs?
+
 
 \subsection*{Much of the reference is covered by the assemblies}
 %Numbers in this section are up to date 22 december 2016
 
+%QC Total base pairs             Percentage of Covered  Percentage of uncovered
+%assemblies.stats.QC.AMBIGUOUS.99
+%iqc500 QC.AMBIGUOUS.99 141394815        95.6485080447   4.35149195535
+%sqc500 QC.AMBIGUOUS.99 141394815        95.8248518519   4.17514814811
+%mqc500 QC.AMBIGUOUS.99 141394815        96.1636577692   3.8363422308
+
+%Assembler         In Reference  In Alignments    Percentages
+%iqc500 duplication ratio: 1437913 1760072 1.063214586 0.878259930074
+%sqc500 duplication ratio: 1604871 1982514 1.18448206429 0.994623621928
+%mqc500 duplication ratio: 748745 1433658 0.550667540013 0.715800963078
+
+
+\begin{table}[!h]
+\centering
+\caption{Contig coverage of reference with ``loose'' alignment conditions.}
+\begin{tabular}{|l|c|c|}\hline
+\textbf{Assembly} & \textbf{\% covered} & \textbf{\% Duplication}
+  \\ \hline
+MEGAHIT & 96.2\% & 0.72\% \\ \hline
+SPAdes  & 95.8\% & 0.99\% \\ \hline
+IDBA    & 95.6\% & 0.88\% \\ \hline
+\end{tabular}
+\label{table:contig-coverage}
+\end{table}
+
+(Update this section to include k-mer overlap.)
+% sourmash search -k 51 mircea.rm18.fa.sig *-quality*.sig
+% idba-quality-assembly500.fa     0.983   idba-quality-assembly500.fa.sig
+% spades-quality-assembly500.fa   0.979   spades-quality-assembly500.fa.sig
+% megahit-quality-assembly500.fa          0.975   megahit-quality-assembly500.fa.sig
+
+
 We next evaluated the extent to which the assembled contigs recovered the
 ``known/true'' metagenome sequence by aligning each assembly to the
-reference (Table ~\ref{table:coverage-analysis}).  All three
-assemblers generate contigs that cover more than 89\% of the reference
+adjusted reference (Table ~\ref{table:contig-coverage}).  Each of the three
+assemblers generates contigs that cover more than 95.6\% of the reference
 metagenome at high identity (99\%) with little duplication
-(0.55-1.0\%) (see "Ambiguous approach" in
-Table~\ref{table:coverage-analysis}).  If we relax the identity
-threshold to 95\%, then the assembled contigs cover more than 94\% of
-the reference metagenome.
+(0.72-0.99\%).
 
 % @CTB note for discussion: so here the assemblies approximate the
 % best possible, as measured by high-coverage bases/k-mers.
 
-When we use only the highest-scoring alignment at 99\% identity, we
-find that the reference coverage drops to 57-68\%, depending on the
-assembler ("Best hit approach",
-Table~\ref{table:coverage-analysis}). The reference coverage from
-highest-scoring alignments does not substantially increase when the
-identity threshold is relaxed to 95\%.
+% 2596164 / 141394815 = 0.01836
+%>>> 614749 / 141394815
+%0.004347747829367011
+%>>> 857507 / 141394815
+%0.0060646283245959194
+%>>> 1276542 / 141394815
+% 0.009028209414892617
 
-At 99\% identity with the ambiguous approach, approximately 6.23\% of
-the reference is covered by no contig from any of the three
-assemblies; we discuss this in more detail below.
+At 99\% identity with the loose mapping approach, approximately 1.8\%
+of the reference is missed by all three assemblers, while 0.9\% is
+uniquely covered by MEGAHIT, 0.6\% is uniquely covered by SPAdes, and
+0.4\% is uniquely covered by IDBA.
+
+% @CTB check: do these numbers add up?
+% check: 1.8 + 0.9 + 0.6 + 0.4 + 
+
+% Bases that are covered by iqc500 QC.AMBIGUOUS.99 only:  614749 ~ 0.434774782937\
+%
+% Bases that are covered by sqc500 QC.AMBIGUOUS.99 only:  857507 ~ 0.60646283246 \
+%
+% Bases that are covered by mqc500 QC.AMBIGUOUS.99 only:  1276542 ~ 0.902820941489 %
+% @CTB 
+
+
+% (update)
 %common uncovered / no.of bases in the reference *100
-% @CTB we need to extend methods to contain mention of common uncovered.
-% Probably belongs in the ``Analyzing Assembly'' section.
 
 \subsection*{The generated contigs are broadly accurate} 
 %Numbers in this section are up to date 22 december 2016
 
-When counting only the best alignment per contig at a 99\%
-identity threshold, more than 72\% of contigs align to the reference
-completely, i.e. across the whole length of the contig (Table~\ref{table:contigs-analysis}, ``Best hit'', Totally Aligned Contigs \%).  If we allow
-multiple alignments per contig, then more than 80\% of contigs align
-completely (although not contiguously) to the reference (Table~\ref{table:contigs-analysis}, ``Ambiguous'', Totally Aligned Contigs \%).
-Approximately 4 - 9\% of the contigs align only partially, and the
-remaining 8 - 10\% of contigs do not align at all to the reference
-(discussed in detail below).
+%QC Total base pairs             Percentage of Covered  Percentage of uncovered
+%assemblies.stats.QC.BESTHIT.99
 
-\subsection*{All three assemblers perform equally well in reference base recovery}
-%Updated on 27 December  
+%iqc500 QC.BESTHIT.99 141394815  89.5078924924   10.4921075076
+%sqc500 QC.BESTHIT.99 141394815  87.3164302383   12.6835697617
+%mqc500 QC.BESTHIT.99 141394815  93.8139520887   6.1860479113
+%iqc500 duplication ratio: 328518 0 0.259575891719 0.0
+%sqc500 duplication ratio: 102689 0 0.0831753177251 0.0
+%mqc500 duplication ratio: 367466 0 0.277023266619 0.0
 
-%we have 6.23% of the reference is commonly uncovered. We have 0.64% of bases covered by IDBA only, 0.74% of bases covered by SPAdes only, and 1.92% of bases covered by Megahit only.  Each uniquely fail to recover about 1\% (1.22-1.79\%) of the reference. XX is roughly.
+\begin{table}[!h]
+\centering
+\caption{Contig accuracy measured by reference coverage with strict alignment.}
+\begin{tabular}{|l|c|c|}\hline
+\textbf{Assembly} & \textbf {\% covered}
+  \\ \hline
+MEGAHIT & 93.8\% \\ \hline
+IDBA & 89.5\% \\ \hline
+SPAdes &  87.3\% \\ \hline
+\end{tabular}
+\label{table:contig-accuracy}
+% @CTB do we want duplication mentioned in this table? It's low... 0.0 :)
+\end{table}
 
-86.13\% of the reference metagenome is recovered in at least one
-contig by all three assemblers (``common covered'') with relatively
-little duplication, under 99\% identity/ambiguous matching; 6.23\% of
-the reference is missed by all three assemblers, 0.64\% is recovered
-by IDBA alone, 0.74\% is recovered by SPAdes only, and 1.92\% is
-recovered by MEGAHIT only.  The remaining 4.34\% of the reference
-metagenome was recovered by two but not all three assemblers.
-IDBA, SPAdes, and MEGAHIT each uniquely fail to recover about
-1\% of the reference.
+When counting only the best (longest) alignment per contig at a 99\%
+identity threshold, each of the three assemblies recovers more than 87.3\% of the
+reference, with MEGAHIT recovering the most -- 93.8\% of the reference
+(Table~\ref{table:contig-accuracy}).
 
-% @CTB I'm guessing megahit was the odd one out for this 4.34\%. how to check?
+% @CTB compute the N50 of just these contigs?
 
-Of the uncovered bases in common between the assemblers, 19.66\% have
-zero mapping coverage, while 29.20\% have mapping coverage \textless
-5.
-% @CTB discuss!
+\subsection*{Some statistics.}
 
-% @CTB update with number of bases; check numbers in source files.
-% @CTB what can we say about the rest? anything?
-%(Using awk '$1 <5 {sum +=
-%$2} END {print sum}' common-uncovered-coverage.out)/no. common
-%  uncovered bases from analyze_assembly.py output *100
-% @CTB make sure to discuss this!
+\begin{table}[!h]
+\centering
+\caption{NG50 and NG90 for reference genomes}
+\begin{tabular}{|c|c|l|}\hline
+{\bf NG50} & {\bf NG90} & {\bf Species} \\
+\hline
 
-\subsection*{Large portions of several reference genomes are not assembled by any assembler}
-%Numbers in this section are up to date 21 december 2016
+0.9kb & 0.0kb & {\tiny Sulfitobacter sp. EE-36 } \\ \hline
+1.0kb & 0.0kb & {\tiny Sulfitobacter NAS-14.1 } \\ \hline
+1.8kb & 1.1kb & {\tiny SulfuriYO3AOP1 } \\ \hline
+4.4kb & 2.0kb & {\tiny Thermotoga sp. RQ2 } \\ \hline
+9.2kb & 4.8kb & {\tiny Salinispora tropica CNB-440 } \\ \hline
+15.5kb & 9.0kb & {\tiny Methanococcus maripaludis S2 } \\ \hline
+16.0kb & 8.4kb & {\tiny Methanococcus maripaludis C5 } \\ \hline
+19.9kb & 2.1kb & {\tiny Caldisaccharolyticus DSM 8903 } \\ \hline
+20.6kb & 5.1kb & {\tiny Porphyromonas gingivalis } \\ \hline
+20.9kb & 3.7kb & {\tiny Methanosarcina acetivorans } \\ \hline
+21.9kb & 2.0kb & {\tiny Caldibescii DSM 6725 } \\ \hline
+34.0kb & 2.2kb & {\tiny Chlorobiumphaeobacteroides DSM 266 } \\ \hline
+39.7kb & 6.7kb & {\tiny Thermoanaerobacter pseudethanolicus } \\ \hline
+40.3kb & 11.0kb & {\tiny Pyrococcus furiosus DSM 3638 } \\ \hline
+40.7kb & 10.9kb & {\tiny Chloroflexus aurantiacus J-10-fl } \\ \hline
+41.7kb & 8.4kb & {\tiny Nitrosomonas europaea ATCC 19718 } \\ \hline
+42.2kb & 11.0kb & {\tiny Pyrobaculum aerophilum str. IM2 } \\ \hline
+42.9kb & 8.3kb & {\tiny Sulfolobus tokodaii } \\ \hline
+45.7kb & 11.0kb & {\tiny Desulfovibrio piger ATCC 29098 } \\ \hline
+48.5kb & 17.5kb & {\tiny Aciduliprofundum boonei T469 } \\ \hline
+52.0kb & 13.9kb & {\tiny Methanocaldococcus jannaschii DSM 2661 } \\ \hline
+52.2kb & 7.8kb & {\tiny Clostridium thermocellum ATCC 27405 } \\ \hline
+66.0kb & 20.2kb & {\tiny Nostoc sp. PCC 7120 } \\ \hline
+70.4kb & 13.9kb & {\tiny Treponema denticola ATCC 35405 } \\ \hline
+73.5kb & 7.1kb & {\tiny Chlorobiumlimicola DSM 245 } \\ \hline
+73.7kb & 9.8kb & {\tiny Bacteroides vulgatus ATCC 8482 } \\ \hline
+73.8kb & 16.7kb & {\tiny Pyrobaculum arsenaticum DSM 13514 } \\ \hline
+75.3kb & 7.2kb & {\tiny Pelodictyon phaeoclathratiforme BU-1 } \\ \hline
+77.3kb & 26.8kb & {\tiny Archaeoglobus fulgidus DSM 4304 } \\ \hline
+78.3kb & 27.0kb & {\tiny Ignicoccus hospitalis KIN4/I } \\ \hline
+84.7kb & 27.7kb & {\tiny Chlorobiumtepidum TLS } \\ \hline
+93.2kb & 20.6kb & {\tiny Hydrogenobaculum sp. Y04AAS1 } \\ \hline
+94.9kb & 19.1kb & {\tiny Pyrococcus horikoshii OT3 DNA } \\ \hline
+95.0kb & 34.0kb & {\tiny Pyrobaculum calidifontis JCM 11548 } \\ \hline
+100.2kb & 22.1kb & {\tiny Herpetosiphon aurantiacus ATCC 23779 } \\ \hline
+100.7kb & 25.3kb & {\tiny Wolinella succinogenes DSM 1740 } \\ \hline
+101.6kb & 28.0kb & {\tiny Akkermansia muciniphila ATCC BAA-835 } \\ \hline
+104.4kb & 25.3kb & {\tiny Bacteroides thetaiotaomicron VPI-5482 } \\ \hline
+106.1kb & 24.2kb & {\tiny Rhodopirellula baltica SH 1 } \\ \hline
+111.7kb & 45.3kb & {\tiny Dictyoglomus turgidum DSM 6724 } \\ \hline
+115.0kb & 31.4kb & {\tiny Geobacter sulfurreducens PCA } \\ \hline
+124.8kb & 30.7kb & {\tiny Acidobacterium capsulatum ATCC 51196 } \\ \hline
+134.8kb & 32.1kb & {\tiny Chlorobiumphaeovibrioides DSM 265 } \\ \hline
+162.5kb & 35.3kb & {\tiny Methanopyrus kandleri AV19 } \\ \hline
+233.9kb & 121.2kb & {\tiny Gemmatimonas aurantiaca T-27 DNA } \\ \hline
+417.9kb & 55.5kb & {\tiny Nanoarchaeum equitans Kin4-M } \\ \hline
+551.1kb & 92.0kb & {\tiny Persephonella marina EX-H1 } \\ \hline
 
-A number of the genomes in the reference metagenome had many missing
-bases in the assemblies (Table~\ref{table:genomes_uncovered-analysis}). In
-three extreme cases, {\em S. baltica} OS223, {\em F.
-nucleatum}, and {\em D. vulgaris} DP4 contribute 18.25\%, 16.95\%, and 12.85\%
-of the total common uncovered bases respectively (Table~\ref{table:genomes_uncovered}).  Interestingly, several genomes with poor recovery had very high read mapping rates - see {\em S. baltica}, with 99.95\% read coverage but only ~23-45\% recovery with assembly, and {\em F. nucleatum}, with 52.70\% read coverage but 0\% recovery (Table~\ref{table:genomes_uncovered-analysis}).
+%47 43 38
 
-%these numbers are after sorting file QC.AMBIGUOUS.99.uncovered using
-%[sort -n -k2 -r  QC.AMBIGUOUS.99.uncovered>QC.AMBIGUOUS.99.uncovered.sorted ] and the percentage is computed w.r.t no. of common uncovered bases
+\end{tabular}
+\label{table:ng50}
+\end{table}
 
-% @CTB discuss
+The NG50 and NG90 statistics for individual genomes vary widely
+(Table~\ref{table:ng50}).
 
-\subsection*{Most genes within the reference metagenome are contained within contigs}
-%Numbers in this section are up to date 21 december 2016
+\subsection*{Longer contigs are less likely to be chimeric.}
 
-The reference genome has 188,880 CDS with 91,806 annotated as genes,
-based on a Prokka annotation (see Methods).
-Using the ``ambiguous'' alignment approach and 99\% identity, the
-IDBA-UD assembly contained 82,791 (95.20\%) of the reference genes,
-while SPAdes contained 83,475 (94.44\%), and
-MEGAHIT contained 80,256 (94.59\%) of the reference genes.
+\begin{table}[!h]
+\centering
+\caption{Chimeric contigs by contig length.}
+\begin{tabular}{|l|c|c|c|}\hline
+\textbf{Assembly} & \textbf {$>$ 50kb} & \textbf {$>$ 5kb} & \textbf{$>$ 500 bp}
+\\ \hline
 
-%These numbers are from prokka-analysis.out.
-%also see prokka.out and mprokka/testasm.tbl
-% @CTB are these in a table anywhere?
+MEGAHIT      & 0\% & 3.9\% & 15.5\% \\ 
+IDBA   & 0\% & 6.3\% & 22.2\% \\
+SPAdes    & 0\% & 8.8\% & 18.4\% \\
+\hline
 
-% second tier todo - @CTB what about taking the nucleotide sequences
-% output by prokka and see if they match in the assembly?
+\end{tabular}
+\label{table:contig-chimera}
 
-\subsection*{Many assembled contigs do not align to the reference metagenome}
+\end{table}
 
-Depending on assembler, between 8.04\% and 10.87\% of the assembled
-contigs (12.8 Mbp for MEGAHIT to 13.4 Mbp for IDBA-UD) do not align
-anywhere in the reference metagenome.  We extracted these contigs and
-analyzed their content and read mapping separately.
+Chimerism between the genomes of different organisms is a significant
+concern in metagenome assembly.  We evaluated the rate of chimerism
+between genomes at three different contig length cutoffs: 500bp, 5kb,
+and 50kb (Table~\ref{table:contig-chimera}).  We found that the
+percentage of contigs formed chimerically dropped as the
+minimum contig size increased, to the point where contigs longer than 50kb
+had no chimeric contigs in any assembly.
 
-Between 5.9\% and 6.5\% of the QC reads mapped to the unalignable
-contigs, depending on assembler (Table~\ref{table:read-mapping}).  In
-each case, several million reads total map only to the unaligned
-contigs and nowhere in the reference.
+Upon further analysis, 99\% of the chimeric contigs greater than 5kb
+were formed between genomes from pairs of closely related species.
+Similarly, 80\% of the chimeric contigs at the lowest cutoff (500 bp)
+were between pairs or groups of closely related species.
 
-%The above numbers are coming from
-%iqc.AM99.aligned.reads and iqc.AM99-mapped-reads for IDBA,
-%sqc.AM99.aligned.reads and sqc.AM99-mapped-reads for SPADES, and
-%mqc.AM99.aligned.reads and mqc.AM99-mapped-reads for megahit.
+% @CTB update with proper assembly foo
 
-%For
-%each assembly, approximately 2m quality-filtered reads map only to the
-%unaligned contigs (and nowhere in the reference) - Table~\ref{table:read-mapping}.
-%Numbers from subtracting numbers in those files:
-%(iqc.AM99.aligned.reads - iqc.AM99-mapped-reads) for IDBA
-%(sqc.AM99.aligned.reads - sqc.AM99-mapped-reads) for SPAdes 
-%(mqc.AM99.aligned.reads - mqc.AM99-mapped-reads) for megahit
+% @CTB definitely need ``# contigs greater than...` table to match.
+% @CTB probably need general overall assembly stats somewhere.
 
-% For IDBA QC, the reads that aligned to the unaligned contigs but not
-% to the reference has coverage bases 27.21\% \textless 5 in the
-%unaligned contigs. 75.72\% has coverage \textgreater 0.
+\subsection*{There are many reads not represented in the reference}
 
-% For SPAdes QC, the reads that aligned to the unaligned contigs but not
-% to the reference has coverage bases (3,109,539) 24.04\% \textless 5 in
-% the unaligned contigs. 79.10\% has coverage \textgreater 0.
+7.6 million reads (7.00\%) from the QC data set did not map anywhere in
+the reference.
+% number taken from unmapped-qc-to-ref.
+% >>> float(7494946 + 117005) / 108942761
+% 0.06987110414798464
+% >>> float(7494946 + 117005)
+% 7611951.0
 
-% For Megahit QC, the reads that aligned to the unaligned contigs but
-% not to the reference has coverage bases (2,578,896) 20.18\% \textless
-% 5 in the unaligned contigs. 83.08\% has coverage \textgreater 0.
+CTB: do k-mer/gather analysis of these reads; 454 analysis.
 
-%The above numbers are coming from iqc.unmapped.out, sqc.unmapped.out, and mqc.unmapped.out
+\begin{table}[t]
+\caption{RefSeq strains detected in unalignable contigs}
+\centering
+\begin{tabular}{|l|c|}
+\hline
 
-We used sourmash \cite{sourmash} to search the unalignable contigs against all
-52,000 microbial genomes currently available from NCBI and found nine
-genomes with significant estimated overlap with the unalignable contigs
-(10\% or more estimated overlap - @CTB put in Methods).  We then
-aligned the unalignable contigs against these nine genomes, and found
-that between 16\% and 28\% of the previously unaligned contigs matched
-to the new genomes at 99\% identity.
+\textbf{Match}& \textbf{Fraction} \\ [0.5ex] % inserts table %heading
+\hline
 
-@CTB add table w/genomes, etc. Can we do readmapping etc as per table 6
-(but maybe just for megahit)?
+{\small NZ\_LN831027.1 F. nucleatum } & 0.13 \\
+{\small NZ\_AXNV01000001.1 F. nucleatum CTI-6} & \\
+{\small NZ\_KI965381.1 F. nucleatum 13\_3C} & \\
+{\small NZ\_JANA01000001.1 F. sp. OBRC1} & \\
+\hline
 
-% \subsection*{Pending text: To add or not}
-% Figure \ref{fig:min-contig-analysis} shows the number of contigs using
-% different minimum contigs cutoff.  The figure shows that Megahit
-% \cite{megahit} has more fragmented contigs in the assembly. The small
-% contigs size leads to best alignment; Megahit has the highest number
-% of uniquely covered bases, highest genome coverage, and lowest
-% unalignment.
+{\small NC\_013968.1 H. volcanii DS2 plasmid } & 	0.08 \\
+\hline
+
+{\small NC\_006461.1 T. thermophilus HB8} &				0.03 \\
+\hline
+
+{\small NC\_008751.1 D. vulgaris DP4	}			& 0.06 \\
+{\small NC\_002937.3 D. vulgaris str. Hildenborough } & \\
+\hline
+
+{\small NC\_003911.12 Ruegeria pomeroyi DSS-3 } &				0.05 \\
+\hline
+{\small NC\_003272.1 Nostoc sp. PCC 7120} &				0.07 \\
+\hline
+
+{\small {\bf NC\_009665.1 Shewanella baltica OS185**}} &				 0.07 \\
+{\small {\bf NC\_011663.1 Shewanella baltica OS223**}} & \\
+\hline
+
+{\small NZ\_CH959317.1 Sulfitobacter sp. NAS-14.1} & 0.04 \\
+{\small NZ\_CH959311.1 Sulfitobacter sp. EE-36} \\
+\hline
+
+{\small\bf NZ\_JNKC01000001.1 P. ruminis DSM 24773*} & 0.02 \\
+\hline
+
+{\small NC\_010483.1 Thermotoga sp. RQ2} & 0.01 \\
+\hline
+
+{\small NZ\_AFHH01000001.1 E. faecalis OG1X} & 0.01 \\
+\hline
+{\small NZ\_JMLF01000001.1 D. radiodurans} & 0.01 \\
+
+\hline
+(Total) & 0.60 \\
+\hline
+
+\end{tabular}
+\label{table:gather}
+\end{table}
+
 
 \section*{Discussion}
-\subsection*{Assembly recovers basic content well}
 
-%Updated on 26-28 December 
-The majority of the reference metagenome is recovered by all three
-assemblers: 89\% or more of the reference metagenome is contained
-within each assembler’s output at 99\% identity, and 94\% can be
-recovered if we relax the identity threshold to 95\%.  This is close
-to the measured maximum reconstructability based on read mapping and
-k-mer presence: 98.76\% of the reference is covered by at least one
-read, and 98.7\% of the reference is present in k-mers of size 20.
-%98.76
-%and 98.7 are from SRR606249.qc.coverage and SRR606249.qc.dist
-%respectively
+\subsection*{Assembly recovers basic content sensitively and accurately.}
 
-The contigs generated align well to the reference metagenome: with all assemblers, 80\% (or
-more) of contigs align to the reference metagenome across the whole
-length of the contig, and another 4\% (or more) of the contigs are
-entirely contained within the reference metagenome, although they do
-not align to only one location in the reference.
+All three assemblers performed well, assembling contigs from the
+content that was present in reads and k-mers.  After length filtering,
+all three assemblies contained more than 95\% of the reference
+(Table~\ref{table:contig-coverage}); even with removal of secondary
+alignments, more than 87\% was recovered by each assembler
+(Table~\ref{table:contig-accuracy}). About half the constituent genomes had
+an NG50 of 50kb or higher and an NG90 of 10kb (Table~\ref{table:ng50}),
+which, while low for current Illumina single-genome sequencing @cite,
+is sufficient to recover operon-level relationships for many genes.
 
-% @CTB add note: This could be caused
-% by misassembly (a computational error) or by rearrangements in the
-% source DNA (in which case the reference is incorrect).
- 
-%(Talk about gene content of assemblies here.)
-%Updated on 27 December 
-Approximately 6.23\% of the reference metagenome is missing from all of
-the assemblies when 99\% similarity is required, and large portions of
-the missing sequence are from a few genomes -- in one case, {\em
-  Fusobacterium nucleatum DP4}, the entire genome is absent.
-About a third of the missing reference (29.2\%) is low coverage based on
-read mapping, but the remainder has read coverage greater than 5.
-(Chase this down descriptively.)
-% @CTB chase this down.
+(Mention genes / prokka analysis.)
 
-%6.23 is the (12,807,937 bases)/205603715 *100: all coming from assemblies.stats.QC.AMBIGUOUS.99 
+@CTB need NG50 table for all three assemblers
 
-%932,873 out of these missing bases are GC bases.
+\subsection*{Chimeric contigs form between closely related species.}
 
-%The read coverage
-%of the unassembled regions of the source genome is low to nonexistent
-%, while other portions of the source genomes are well represented
-%within the reads; these regions were simply not sequenced, either
-%because they were missing from the input DNA or because they challenge
-%the sequencer. %However, some unassembled regions have good coverage:
-%we have only 29.2% with coverage <5 in the common uncovered.
+A primary interest of this study is to examine chimerism, in which a
+single contig is formed from multiple genomes.  Naively we expected
+chimerism to behave like misassembly, in which longer contigs would be
+more likely to contain large-scale errors.  Surprisingly, we found
+less chimerism the longer the contigs were; the shorter contigs
+contained a high rate of chimerae, while contigs longer than 50kb had
+none (Table~\ref{table:contig-chimera}).
 
-@CTB here mention gene recovery/prokka etc is good.
+Analysis of the genomic pattern of chimeric contigs provides a possible
+answer: the majority of chimeric contigs at all sizes are formed
+between closely related species or strain variants, suggesting that
+chimeric contigs are generated primarily where multiple species
+overlap in the assembly graph.  However, the same complexity in the
+local assembly graph that leads to chimera may also limit the
+extension of contigs, resulting in shorter chimeric contigs.
 
+\subsection*{MEGAHIT performs best by several metrics.}
 
-\subsection*{Assembly produces contiguous sequence not in the reference metagenome}
+MEGAHIT is clearly the most efficient computationally, outperforming
+both SPAdes and IDBA by 5-10x in memory and 17-42x in time
+(Table~\ref{table:time-memory}).  While the MEGAHIT assembly had 2m
+fewer reads mapping to it than the other assemblies (Table~\ref{table:ref_in_reads}), MEGAHIT
+covered more of the reference genome with both loose and strict
+alignments (Table~\ref{table:contig-coverage} and
+Table~\ref{table:contig-accuracy}), with little duplication.  Perhaps most
+importantly, MEGAHIT had the lowest rate of chimerism between the
+three assemblers.
 
-In addition to recovering most of the content of the reference
-metagenome, all three assemblers generate many contigs (approximately
-10\% of the total) that do not map to anything in the reference.  A
-search of these contigs against all of the RefSeq microbial genomes found
-that about 20\% of the unalignable contigs match to known strain
-variants of microbes included in the mock metagenome
-community.  Interestingly, in a number of these cases, the included
-microbial genome has poor coverage, suggesting that perhaps a strain
-variant was what was actually grown and included in the sequencing.
-However, as we do not necessarily known the correct strain variant's
-genome sequence, this is hard to ascertain.
+Moreover, the assembly content differs by only a small amount when
+loose alignments are allowed: all three assemblers miss more content
+(approximately 1.8\% of the reference) than they generate uniquely
+(0.9\% or less).  This suggests that combining assemblies may have
+little value in terms of recovering additional metagenome content.
 
-Regardless of their origin, it seems likely that these unalignable
-contigs represent contigs from the genomes of organisms that were
-truly included in the mock metagenome.  This demonstrates the value of
-(reference-free) assembly as an important component of microbial
-community sequencing analyses; assembly can reveal unexpected or
-unknown members of the community.
+% @CTB: figure it's probably got worse NG50, and/or more < 500.
+% @CTB we see little value in combining assemblies.
 
-\subsection*{Different assemblers differ in content recovery, but not by much}
-%Updated on 24 December :@CTB still need the XX from: we have 6.23% of the reference is commonly uncovered. We have 0.64% of bases covered by IDBA only, 0.74% of bases covered by SPAdes only, and 1.92% of bases covered by Megahit only.  Each uniquely fail to recover about 1\% (1.22-1.79\%) of the reference.
-
-The three assemblers differ very little in recovery of basic content,
-as judged by reference metagenome alignments: at 99\% identity, 86.13\%
-is recovered in common, with 0.64 to 1.92\% specific to each assembler
-(and a total of 93.77\% being recovered by one or two, but not all three,
-of the assemblers). None of the assemblers include all of the sequence
-produced by the others, suggesting that assembler-specific heuristics
-are responsible for the variation. However, this effect is minor, at least
-on this data set.
-
-% @CTB check w/the 50% of the genome that MQC recovered?
-% @CTB check with megahit read mapping rates.
-
-. %, and the extra sensitivity offered by
-%MEGAHIT comes with a higher level of duplication.
-%I commented the previous sentence as Megahit is not the lowest in duplication
-
-\subsection*{Misassembly analysis}
-
-Insert awesome analysis of misassemblies HERE.  Ignore Table \ref{table:misassembled}.
-
-\subsection*{Genome assembly metrics are misleading}
-
-\begin{itemize}
-\item content recovery is of first importance IMO
-\item contig n50/ng50 comparison?
-\item longer contigs lead to more misassemblies; suggest avoiding until long reads work well for metagenomes
-\item but long reads don't yet work well for metagenomes due to diversity
-\item fosmid type approaches maybe? moleculo etc.
-\end{itemize}
-
-\subsection*{Our recommendation: try MEGAHIT first}
-
-We do not see a significant advantage to one assembler over another in
-terms of recovering the known reference, and we speculate that there
-is little advantage to combining assemblies from multiple assemblers,
-since very little extra content will be recovered.
-
-While the other assemblers produce longer contigs, we are concerned by
-misassembly rates, which affect longer contigs disproportionately.
-Moreover, misassemblies are hard to detect without a reference. 
-(Talk
-more about misassemblies.)
-
-For these reasons, our recommendation is to use MEGAHIT with
-short-read data: it is significantly faster and lower memory than
-SPAdes and IDBA-UD, recovers essentially the same content, and -- for
-short read data sets -- does not offer significant disadvantages in
-terms of contig length.
-
-(Here note that megahit does not allow long reads, unlike SPAdes and maybe
-IDBA. @CTB verify this.)
+%(Here note that megahit does not allow long reads, unlike SPAdes and maybe
+%IDBA. @CTB verify this.)
 
 \section*{Conclusions}
 
