@@ -49,6 +49,7 @@ def main():
             assert gname in ref
             lengthlist[gname].append(e2 - s2 + 1)
 
+    # compute ng50 of aligned stuff
     ng50s = []
     ng90s = defaultdict(int)
     for gname, lengths in lengthlist.items():
@@ -57,6 +58,7 @@ def main():
         t50 = total / 2.
         t90 = total * .9
 
+        # aligned ng50
         sofar = 0.
         for x in lengths:
             sofar += x
@@ -64,12 +66,15 @@ def main():
                 ng50s.append((x, gname))
                 break
 
+        # aligned ng90
         sofar = 0.
         for x in lengths:
             sofar += x
             if sofar > t90:
                 ng90s[gname] = x
                 break
+
+    # output
 
     num50_5000 = 0
     num90_5000 = 0
@@ -84,7 +89,7 @@ def main():
             num90_5000 += 1
 
         if not args.latex:
-            print('{},{}'.format(x, gname))
+            print('{},{},{}'.format(ng50, ng90, gname))
         else:
             ng50 = ng50 / 1000
             ng90 = ng90 / 1000
