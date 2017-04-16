@@ -473,7 +473,7 @@ assemblers, we next examined k-mer containment of the reference in the
 reads for $k$ of 21, 31, 41, and 51 (Table \ref{table:ref_in_reads}).
 The k-mer overlap decreases from 96.8\% to 94.1\% as the k-mer size
 increases. This could be caused by low coverage of some portions
-of the reference.
+of the reference and/or variation between the reads and the reference.
 
 
 %Of
@@ -526,8 +526,8 @@ in the reference genome are present in the reads at any abundance.
 
 We next did a 51-mer containment analysis of each reference genome in
 the reads.  99\% or more of the constituent 51-mers for 46 of the 64
-reference genomes were present in the reads, suggesting that the
-entire genome had been sequenced to at least minimal coverage.
+reference genomes were present in the reads, suggesting that each
+entire genome was present at some  minimal coverage.
 
 We excluded the remaining 18 genomes from any comparative
 analysis of assembly quality, because interpreting coverage and
@@ -592,7 +592,7 @@ MEGAHIT &5,848,494 (5.37\%) &   3.7\% \\ \hline
 We assessed read inclusion in assemblies by mapping the QC reads to
 the length-filtered assemblies and counting the remaining unmapped
 reads. Depending on the assembly, between 3.3 million and 5.9 million
-reads (3-6\%) did not map to the assemblies
+reads (3.0-5.4\%) did not map to the assemblies
 (Table~\ref{table:reads-kmers}). Here, the MEGAHIT assembly was distinguished by representing 2 million fewer reads than the IDBA and SPAdes assemblies.
 
 k-mer inclusion, however, was more closely matched by the assemblies,
@@ -707,73 +707,14 @@ identity threshold, each of the three assemblies recovers more than 87.3\% of th
 reference, with MEGAHIT recovering the most -- 93.8\% of the reference
 (Table~\ref{table:contig-accuracy}).
 
-% @CTB compute the N50 of just these contigs?
+(CTB: add discussion of accuracy/mismatches/indels here.)
 
 \subsection*{Some statistics.}
 
-\begin{table}[!h]
-\centering
-\caption{NG50 and NG90 for reference genomes}
-\begin{tabular}{|c|c|l|}\hline
-{\bf NG50} & {\bf NG90} & {\bf Species} \\
-\hline
-
-0.9kb & 0.0kb & {\tiny Sulfitobacter sp. EE-36 } \\ \hline
-1.0kb & 0.0kb & {\tiny Sulfitobacter NAS-14.1 } \\ \hline
-1.8kb & 1.1kb & {\tiny SulfuriYO3AOP1 } \\ \hline
-4.4kb & 2.0kb & {\tiny Thermotoga sp. RQ2 } \\ \hline
-9.2kb & 4.8kb & {\tiny Salinispora tropica CNB-440 } \\ \hline
-15.5kb & 9.0kb & {\tiny Methanococcus maripaludis S2 } \\ \hline
-16.0kb & 8.4kb & {\tiny Methanococcus maripaludis C5 } \\ \hline
-19.9kb & 2.1kb & {\tiny Caldisaccharolyticus DSM 8903 } \\ \hline
-20.6kb & 5.1kb & {\tiny Porphyromonas gingivalis } \\ \hline
-20.9kb & 3.7kb & {\tiny Methanosarcina acetivorans } \\ \hline
-21.9kb & 2.0kb & {\tiny Caldibescii DSM 6725 } \\ \hline
-34.0kb & 2.2kb & {\tiny Chlorobiumphaeobacteroides DSM 266 } \\ \hline
-39.7kb & 6.7kb & {\tiny Thermoanaerobacter pseudethanolicus } \\ \hline
-40.3kb & 11.0kb & {\tiny Pyrococcus furiosus DSM 3638 } \\ \hline
-40.7kb & 10.9kb & {\tiny Chloroflexus aurantiacus J-10-fl } \\ \hline
-41.7kb & 8.4kb & {\tiny Nitrosomonas europaea ATCC 19718 } \\ \hline
-42.2kb & 11.0kb & {\tiny Pyrobaculum aerophilum str. IM2 } \\ \hline
-42.9kb & 8.3kb & {\tiny Sulfolobus tokodaii } \\ \hline
-45.7kb & 11.0kb & {\tiny Desulfovibrio piger ATCC 29098 } \\ \hline
-48.5kb & 17.5kb & {\tiny Aciduliprofundum boonei T469 } \\ \hline
-52.0kb & 13.9kb & {\tiny Methanocaldococcus jannaschii DSM 2661 } \\ \hline
-52.2kb & 7.8kb & {\tiny Clostridium thermocellum ATCC 27405 } \\ \hline
-66.0kb & 20.2kb & {\tiny Nostoc sp. PCC 7120 } \\ \hline
-70.4kb & 13.9kb & {\tiny Treponema denticola ATCC 35405 } \\ \hline
-73.5kb & 7.1kb & {\tiny Chlorobiumlimicola DSM 245 } \\ \hline
-73.7kb & 9.8kb & {\tiny Bacteroides vulgatus ATCC 8482 } \\ \hline
-73.8kb & 16.7kb & {\tiny Pyrobaculum arsenaticum DSM 13514 } \\ \hline
-75.3kb & 7.2kb & {\tiny Pelodictyon phaeoclathratiforme BU-1 } \\ \hline
-77.3kb & 26.8kb & {\tiny Archaeoglobus fulgidus DSM 4304 } \\ \hline
-78.3kb & 27.0kb & {\tiny Ignicoccus hospitalis KIN4/I } \\ \hline
-84.7kb & 27.7kb & {\tiny Chlorobiumtepidum TLS } \\ \hline
-93.2kb & 20.6kb & {\tiny Hydrogenobaculum sp. Y04AAS1 } \\ \hline
-94.9kb & 19.1kb & {\tiny Pyrococcus horikoshii OT3 DNA } \\ \hline
-95.0kb & 34.0kb & {\tiny Pyrobaculum calidifontis JCM 11548 } \\ \hline
-100.2kb & 22.1kb & {\tiny Herpetosiphon aurantiacus ATCC 23779 } \\ \hline
-100.7kb & 25.3kb & {\tiny Wolinella succinogenes DSM 1740 } \\ \hline
-101.6kb & 28.0kb & {\tiny Akkermansia muciniphila ATCC BAA-835 } \\ \hline
-104.4kb & 25.3kb & {\tiny Bacteroides thetaiotaomicron VPI-5482 } \\ \hline
-106.1kb & 24.2kb & {\tiny Rhodopirellula baltica SH 1 } \\ \hline
-111.7kb & 45.3kb & {\tiny Dictyoglomus turgidum DSM 6724 } \\ \hline
-115.0kb & 31.4kb & {\tiny Geobacter sulfurreducens PCA } \\ \hline
-124.8kb & 30.7kb & {\tiny Acidobacterium capsulatum ATCC 51196 } \\ \hline
-134.8kb & 32.1kb & {\tiny Chlorobiumphaeovibrioides DSM 265 } \\ \hline
-162.5kb & 35.3kb & {\tiny Methanopyrus kandleri AV19 } \\ \hline
-233.9kb & 121.2kb & {\tiny Gemmatimonas aurantiaca T-27 DNA } \\ \hline
-417.9kb & 55.5kb & {\tiny Nanoarchaeum equitans Kin4-M } \\ \hline
-551.1kb & 92.0kb & {\tiny Persephonella marina EX-H1 } \\ \hline
-
-%47 43 38
-
-\end{tabular}
-\label{table:ng50}
-\end{table}
-
-The NG50 and NG90 statistics for individual genomes vary widely
-(Table~\ref{table:ng50}).
+We computed the NGA50 for each individual genome and assembly.  (see
+Figure~\ref{fig:nga50}).  The NGA50 statistics for individual genomes
+vary widely, but MEGAHIT yields the lowest NGA50 for 42 of the 46
+genomes, while SPAdes yields the highest NGA50 for 38 of the 46 genomes.
 
 \subsection*{Longer contigs are less likely to be chimeric.}
 
@@ -794,13 +735,13 @@ SPAdes    & 0\% & 8.8\% & 18.4\% \\
 
 \end{table}
 
-Chimerism between the genomes of different organisms is a significant
-concern in metagenome assembly.  We evaluated the rate of chimerism
-between genomes at three different contig length cutoffs: 500bp, 5kb,
+We evaluated the rate of chimerism
+in contigs at three different contig length cutoffs: 500bp, 5kb,
 and 50kb (Table~\ref{table:contig-chimera}).  We found that the
-percentage of contigs formed chimerically dropped as the
-minimum contig size increased, to the point where contigs longer than 50kb
-had no chimeric contigs in any assembly.
+percentage of contigs that match to the genomes of two or more
+different species drop as the minimum contig size increases, to the
+point where contigs longer than 50kb had no chimeric contigs in any
+assembly.
 
 Upon further analysis, 99\% of the chimeric contigs greater than 5kb
 were formed between genomes from pairs of closely related species.
@@ -822,7 +763,20 @@ the reference.
 % >>> float(7494946 + 117005)
 % 7611951.0
 
-CTB: do k-mer/gather analysis of these reads; 454 analysis.
+Plan:
+
+\begin{itemize}
+\item analyze k-mer content of 7.6m reads with sbt gather against RefSeq
+\item extract genomes that match there, along with mircea reference
+\item do an analysis showing that there is higher match to some strain vars,
+  maybe also with assembled contigs; make point that we may be missing
+  true strains.
+\item muse on possible explanations;
+\item discuss shewanella situation
+  \item shall we bring in the 454 data?
+\end{itemize}
+
+Reference table~\ref{table:gather}.
 
 \begin{table}[t]
 \caption{RefSeq strains detected in unalignable contigs}
@@ -885,8 +839,8 @@ CTB: do k-mer/gather analysis of these reads; 454 analysis.
 
 \subsection*{Assembly recovers basic content sensitively and accurately.}
 
-All three assemblers performed well, assembling contigs from the
-content that was present in reads and k-mers.  After length filtering,
+All three assemblers performed well in assembling contigs from the
+content that was fully present in reads and k-mers.  After length filtering,
 all three assemblies contained more than 95\% of the reference
 (Table~\ref{table:contig-coverage}); even with removal of secondary
 alignments, more than 87\% was recovered by each assembler
@@ -896,8 +850,6 @@ which, while low for current Illumina single-genome sequencing @cite,
 is sufficient to recover operon-level relationships for many genes.
 
 (Mention genes / prokka analysis.)
-
-@CTB need NG50 table for all three assemblers
 
 \subsection*{Chimeric contigs form between closely related species.}
 
@@ -910,7 +862,7 @@ contained a high rate of chimerae, while contigs longer than 50kb had
 none (Table~\ref{table:contig-chimera}).
 
 Analysis of the genomic pattern of chimeric contigs provides a possible
-answer: the majority of chimeric contigs at all sizes are formed
+explanation: the majority of chimeric contigs at all sizes are formed
 between closely related species or strain variants, suggesting that
 chimeric contigs are generated primarily where multiple species
 overlap in the assembly graph.  However, the same complexity in the
@@ -925,23 +877,27 @@ both SPAdes and IDBA by 5-10x in memory and 17-42x in time
 fewer reads mapping to it than the other assemblies (Table~\ref{table:ref_in_reads}), MEGAHIT
 covered more of the reference genome with both loose and strict
 alignments (Table~\ref{table:contig-coverage} and
-Table~\ref{table:contig-accuracy}), with little duplication.  Perhaps most
-importantly, MEGAHIT had the lowest rate of chimerism between the
-three assemblers.
+Table~\ref{table:contig-accuracy}), with little duplication.
 
-Moreover, the assembly content differs by only a small amount when
-loose alignments are allowed: all three assemblers miss more content
-(approximately 1.8\% of the reference) than they generate uniquely
-(0.9\% or less).  This suggests that combining assemblies may have
-little value in terms of recovering additional metagenome content.
+While MEGAHIT yields the lowest NGA50 of the three assemblers on this
+data set, MEGAHIT also had the lowest rate of chimerism.  As discussed
+above, this may be an unavoidable tradeoff; either way, for complex
+populations, we believe conservative assembly is a feature rather than
+a bug.
 
-% @CTB: figure it's probably got worse NG50, and/or more < 500.
-% @CTB we see little value in combining assemblies.
+Between the assemblers, the assembly content differs by only a small
+amount when loose alignments are allowed: all three assemblers miss
+more content (approximately 1.8\% of the reference) than they generate
+uniquely (0.9\% or less).  This suggests that combining assemblies may
+have little value in terms of recovering additional metagenome
+content.
 
 %(Here note that megahit does not allow long reads, unlike SPAdes and maybe
 %IDBA. @CTB verify this.)
 
 \section*{Conclusions}
+
+% @CTB muse on long reads and complex populations
 
 Assembly works well. There is no big difference between assemblers'
 performance in terms of assembly quality. In terms of cost, Megahit is
@@ -1005,6 +961,16 @@ Michael R. Crusoe
 
 % We hope you find the F1000Research Overleaf template useful,
 % please let us know if you have any feedback using the help menu above.
+
+\newpage
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\textwidth]{nga50.pdf}  
+\caption{NGA50 by genome and assembler.}
+\label{fig:nga50}
+\end{figure}
+
 
 
 \end{document}
