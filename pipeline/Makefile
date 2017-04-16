@@ -236,11 +236,11 @@ assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
 
 assemblies.stats.QC.AMBIGUOUS.95: mqc500.coords
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.95 -a True 95 
+#	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.95 -a True 95 
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.95 -b True 95
+#	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.95 -b True 95
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.95 -c True 95
+#	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.95 -c True 95
 
 stats: megahit-quality-assembly500.fa 
 	python ${MYSCRIPTS}/compute_stats.py idba-quality-assembly500.fa ${REFERENCE} > idba.stats 
@@ -300,7 +300,11 @@ unmapped-qc-to-ref: qc-ref.sam
 	samtools view -h -o  qc-ref.pe.sam  qc-ref.pe.bam
 	samtools view -h -c -f 4  qc-ref.pe.bam >> unmapped-qc-to-ref 
 	samtools view -h -o  qc-ref.se.sam  qc-ref.se.bam
-	samtools view -h -c -f 4  qc-ref.se.bam >> unmapped-qc-to-ref 
+	samtools view -h -c -f 4  qc-ref.se.bam >> unmapped-qc-to-ref
+
+foo:
+	samtools view -f 4 -b sherine/qc-ref.bam > unmapped-qc-to-ref.bam
+	samtools bam2fq unmapped-qc-to-ref.bam > unmapped-qc-to-ref.fq
 
 SRR606249.qc.coverage: qc-ref.sam
 	python ${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  SRR606249.qc.coverage 
