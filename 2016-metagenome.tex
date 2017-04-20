@@ -1,5 +1,10 @@
 % @CTB read CAMI
 
+%
+% - Are plasmids present in the reference dataset?
+% - Reformat column tables for readability
+% - Add carbon footprint to assembly stats  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Welcome to Overleaf --- just edit your article on the left,
@@ -407,12 +412,12 @@ because we do not explicitly discard contigs that map to the same
 location in the reference.
 
 
-\subsection*{Gene annotations using Prokka}
-We used prokka \cite{prokka} to annotate the reference genome using
-{\tt{--metagenome}}. Then we parsed
-the testasm.tbl output file to get the coordinates of CDS genes and
-searched the alignments for how many genes were contained in those
-alignments.
+%\subsection*{Gene annotations using Prokka}
+%We used prokka \cite{prokka} to annotate the reference genome using
+%{\tt{--metagenome}}. Then we parsed
+%the testasm.tbl output file to get the coordinates of CDS genes and
+%searched the alignments for how many genes were contained in those
+%alignments.
 % @CTB what script?
 
 \section*{Results}
@@ -436,7 +441,7 @@ data set was used as the basis for all further analyses.
 %We used SAMStat \cite{samstat} to analyze the mapping quality and error profiles of quality filtered reads mapped to the reference genome. Figure \ref{fig:mapquality} shows number of alignments in various mapping quality (MAPQ) intervals and number of unmapped sequences. The percentage and number of alignments in each category is given in brackets. 
 %Figure \ref{fig:basequality} shows mean base quality of reads with low and high mapping quality. %Figure \ref{fig:errorprofile30} shows the error profile for MAPQ $\geq 30$ and Figure \ref{fig:nucleotidecomposition.png} shows the nucleotide compositions. We also found 309,414 chimeric reads. 
 
-\subsection*{The reference metagenome is mostly present in the reads}
+\subsection*{The reference metagenome is not completely present in the reads}
 
 We next evaluated the fraction of the reference genome covered by at least
 one read (see Methods for details). Quality filtered reads cover
@@ -753,87 +758,93 @@ were between pairs or groups of closely related species.
 % @CTB definitely need ``# contigs greater than...` table to match.
 % @CTB probably need general overall assembly stats somewhere.
 
-\subsection*{There are many reads not represented in the reference}
+\subsection*{The unmapped reads contain strain variants of reference genomes.}
 
-7.6 million reads (7.00\%) from the QC data set did not map anywhere in
-the reference.
 % number taken from unmapped-qc-to-ref.
 % >>> float(7494946 + 117005) / 108942761
 % 0.06987110414798464
 % >>> float(7494946 + 117005)
 % 7611951.0
 
-Plan:
-
-\begin{itemize}
-\item analyze k-mer content of 7.6m reads with sbt gather against RefSeq
-\item extract genomes that match there, along with mircea reference
-\item do an analysis showing that there is higher match to some strain vars,
-  maybe also with assembled contigs; make point that we may be missing
-  true strains.
-\item muse on possible explanations;
-\item discuss shewanella situation
-  \item shall we bring in the 454 data?
-\end{itemize}
-
-Reference table~\ref{table:gather}.
-
 \begin{table}[t]
-\caption{RefSeq strains detected in unalignable contigs}
+\caption{RefSeq strains detected in MEGAHIT assembly of unmapped reads}
 \centering
-\begin{tabular}{|l|c|}
+\begin{tabular}{|c|l|}
 \hline
 
-\textbf{Match}& \textbf{Fraction} \\ [0.5ex] % inserts table %heading
+\textbf{Fraction}& \textbf{RefSeq genome} \\ [0.5ex] % inserts table %heading
 \hline
 
-{\small NZ\_LN831027.1 F. nucleatum } & 0.13 \\
-{\small NZ\_AXNV01000001.1 F. nucleatum CTI-6} & \\
-{\small NZ\_KI965381.1 F. nucleatum 13\_3C} & \\
-{\small NZ\_JANA01000001.1 F. sp. OBRC1} & \\
+9.6\% & {\small NC\_013968.1 H. volcanii DS2 plasmid pHV1} \\
+\hline
+8.0\% & {\small NZ\_LN831027.1 F. nucleatum polymorphum} \\
+\hline
+7.4\% & {\small NC\_003272.1 Nostoc sp. PCC 7120} \\
+\hline
+5.3\% & {\small NC\_003911.12 R. pomeroyi DSS-3} \\
+\hline
+3.2\% & {\small NZ\_CH959311.1 Sulfitobacter sp. EE-36} \\
+\hline
+3.0\% & {\small NC\_006461.1 T. thermophilus HB8} \\
+\hline
+2.4\% & {\small NZ\_JNKC01000001.1 P. ruminis DSM 24773} \\
+\hline
+2.3\% & {\small NZ\_CH959317.1 Sulfitobacter sp. NAS-14.1} \\
+\hline
+1.9\% & {\small NC\_011663.1 S. baltica OS223} \\
+\hline
+1.8\% & {\small NZ\_KI965381.1 F. nucleatum 13\_3C} \\
+\hline
+1.6\% & {\small NC\_002937.3 D. vulgaris str. Hildenborough} \\
+\hline
+1.4\% & {\small NC\_001263.1 D. radiodurans R1} \\
+\hline
+1.3\% & {\small NZ\_AFHH01000001.1 E. faecalis OG1X} \\
+\hline
+1.1\% & {\small NZ\_AXNV01000001.1 F. nucleatum CTI-6} \\
 \hline
 
-{\small NC\_013968.1 H. volcanii DS2 plasmid } & 	0.08 \\
-\hline
-
-{\small NC\_006461.1 T. thermophilus HB8} &				0.03 \\
-\hline
-
-{\small NC\_008751.1 D. vulgaris DP4	}			& 0.06 \\
-{\small NC\_002937.3 D. vulgaris str. Hildenborough } & \\
-\hline
-
-{\small NC\_003911.12 Ruegeria pomeroyi DSS-3 } &				0.05 \\
-\hline
-{\small NC\_003272.1 Nostoc sp. PCC 7120} &				0.07 \\
-\hline
-
-{\small {\bf NC\_009665.1 Shewanella baltica OS185**}} &				 0.07 \\
-{\small {\bf NC\_011663.1 Shewanella baltica OS223**}} & \\
-\hline
-
-{\small NZ\_CH959317.1 Sulfitobacter sp. NAS-14.1} & 0.04 \\
-{\small NZ\_CH959311.1 Sulfitobacter sp. EE-36} \\
-\hline
-
-{\small\bf NZ\_JNKC01000001.1 P. ruminis DSM 24773*} & 0.02 \\
-\hline
-
-{\small NC\_010483.1 Thermotoga sp. RQ2} & 0.01 \\
-\hline
-
-{\small NZ\_AFHH01000001.1 E. faecalis OG1X} & 0.01 \\
-\hline
-{\small NZ\_JMLF01000001.1 D. radiodurans} & 0.01 \\
-
-\hline
-(Total) & 0.60 \\
+50.3\% & {\small (Sum fraction of contigs)} \\
 \hline
 
 \end{tabular}
 \label{table:gather}
 \end{table}
 
+Approximately 7.6 million reads (7.00\%) from the QC data set did not
+map anywhere in the reference provided by the authors of @cite.  We
+extracted and assembled these reads in isolation using MEGAHIT,
+yielding XXX bases YYY.  We then did a k-mer analysis of this assembly
+against all of the RefSeq genomes at k=51 using sourmash @cite, and
+estimated the fraction of the contigs that belonged to different
+species (Table~\ref{table:gather}). We estimate that 50.3\% of the
+contigs have $>$ 1\% k-mer content that positively matches to a genome
+not present in the reference metagenome (although note Shewanella).
+
+% @CTB shewanella
+
+To verify these assignments, we aligned the assembly of unmapped reads
+to these RefSeq genomes in aggregate under the ``loose'' alignment
+criteria and found XXX.
+
+We note that all but one of the matches in Table~\ref{table:gather},
+{\em P. ruminis}, are from genomes of strain variants of putative
+members of the reference metagenome.  Moreover, 4 of the 5 top
+uncovered reference genomes in the reads
+(Table~\ref{table:genomes_uncovered-analysis}) are from strain
+variants we find in the assembly of the unmapped reads -- only {\em
+  B. xenovorans} is omitted.
+
+%\begin{itemize}
+%\item extract genomes that match there, along with mircea reference
+%\item do an analysis showing that there is higher match to some strain vars,
+%  maybe also with assembled contigs; make point that we may be missing
+%  true strains.
+%\item muse on possible explanations;
+%\item discuss shewanella situation
+%\item shall we bring in the 454 data?
+%  \item look at ksize response with the better ref genomes?
+%\end{itemize}
 
 \section*{Discussion}
 
@@ -849,14 +860,14 @@ an NG50 of 50kb or higher and an NG90 of 10kb (Table~\ref{table:ng50}),
 which, while low for current Illumina single-genome sequencing @cite,
 is sufficient to recover operon-level relationships for many genes.
 
-(Mention genes / prokka analysis.)
+% (Mention genes / prokka analysis.)
 
 \subsection*{Chimeric contigs form between closely related species.}
 
 A primary interest of this study is to examine chimerism, in which a
 single contig is formed from multiple genomes.  Naively we expected
 chimerism to behave like misassembly, in which longer contigs would be
-more likely to contain large-scale errors.  Surprisingly, we found
+more likely to contain large-scale errors.  Surprisingly, we find
 less chimerism the longer the contigs were; the shorter contigs
 contained a high rate of chimerae, while contigs longer than 50kb had
 none (Table~\ref{table:contig-chimera}).
@@ -868,6 +879,8 @@ chimeric contigs are generated primarily where multiple species
 overlap in the assembly graph.  However, the same complexity in the
 local assembly graph that leads to chimera may also limit the
 extension of contigs, resulting in shorter chimeric contigs.
+Regardless, we find that chimeric contigs form between closely
+related species with an overwhelmingly high frequency.
 
 \subsection*{MEGAHIT performs best by several metrics.}
 
@@ -883,42 +896,83 @@ While MEGAHIT yields the lowest NGA50 of the three assemblers on this
 data set, MEGAHIT also had the lowest rate of chimerism.  As discussed
 above, this may be an unavoidable tradeoff; either way, for complex
 populations, we believe conservative assembly is a feature rather than
-a bug.
+a ``bug''.
 
 Between the assemblers, the assembly content differs by only a small
 amount when loose alignments are allowed: all three assemblers miss
 more content (approximately 1.8\% of the reference) than they generate
-uniquely (0.9\% or less).  This suggests that combining assemblies may
-have little value in terms of recovering additional metagenome
-content.
+uniquely (0.9\% or less).  In addition to preferring no one assembler
+over any other, this suggests that combining assemblies may have
+little value in terms of recovering additional metagenome content.
 
 %(Here note that megahit does not allow long reads, unlike SPAdes and maybe
 %IDBA. @CTB verify this.)
 
+\subsection*{The missing reference may be present in strain variants of the intended species.}
+
+Several individual genomes are missing in measurable portion from the
+QC reads (Table~\ref{table:genomes_uncovered-analysis}), and many QC
+reads (7\% of 108m) did not map to the provided reference genome.
+These may be related issues: upon analysis of the unmapped reads
+against RefSeq, we find that about half of the contigs assembled from
+the unmapped reads can be assigned to strain variants of the genomes
+in the mock community (Table~\ref{table:gather}).  This suggests that
+the mock community may have inadvertently included strain variants of
+the intended microbes.  We tentatively confirm this by doing a k-mer
+analysis of the 454 data from @cite against the assembled contigs and
+showing that XXX.
+
+Without returning to the original DNA samples, it is impossible to
+conclusveley confirm that unintended strains were used in the
+construction of the mock community.  In particular, our analysis is
+dependent on the genomes in RefSeq: the genomes we detect in the
+contigs are clearly more closely related to the contigs than the
+species in the reference metagenome, based on mapping, k-mer analysis,
+and contig alignment; but RefSeq is unlikely to contain the exact
+genomes of the included strain variants.  However we believe this
+theory is well supported bioinformatically and could explain both the
+missing parts of the reference genome and the unmapped reads.
+
+% @CTB do metapalette-style k-mer analysis?
+
 \section*{Conclusions}
 
+Overall, assembly of this moderately complex mock community works
+well, with good recovery of known genomic sequence with few
+inaccuracies or misassemblies.  All three assemblers that we evaluated
+recover similar amounts of sequence with similar error rates, although
+MEGAHIT is computationally most efficient.  MEGAHIT also clearly
+produces consistently shorter NGA50s and the fewest chimeric contigs;
+we believe these two facts reflect an important conservatism in
+MEGAHIT's contig assembly algorithm.  We can therefore unambiguously
+recommend MEGAHIT over SPAdes and IDBA, based on both sequence
+recovery and the lower rates of chimerism, as well as MEGAHIT's dramatically
+better computational peformance.
+
+A more general conclusion from our analysis is that shorter contigs
+are considerably more likely to be chimeric misassemblies than long,
+in even moderately complex communities; here, this is based on positive
+identification of the chimerae from good quality references.  We infer
+that strain variation may well be the cause of many short contigs. We
+also note that, in the absence of high-quality mock communities or
+isolate reference genomes, chimerism between strain variants is
+extremely hard to evaluate, and this trend may have gone undetected in
+studies of real microbial communities.
+
+An additional concern is that metagenome assemblies are often
+performed after pooling data sets to increase coverage; this pooled
+data is however more likely to contain multiple strains, which would
+then in turn adversely affect assembly of strains.  This may not be
+resolvable within the current paradigm of assembly, which focuses on
+outputting linear assemblies that cannot represent strain variation.
+
+We next plan to examine this trend in other mock communities, and with
+longer reads. (ref Disco)
+
 % @CTB muse on long reads and complex populations
-
-Assembly works well. There is no big difference between assemblers'
-performance in terms of assembly quality. In terms of cost, Megahit is
-much faster and utilizes less memory.
-
-\begin{itemize}
-\item If you have short-read sequencing only, use MEGAHIT.
-\item MEGAHIT can be useful for exploratory analysis of content as well.
-\item Metagenome assembly is good at recovering content of well covered
-  regions.  It is less good at long-range contiguity. It is better than
-  reference based analysis at recovering content.
-\item Resequence mock community genomes, as in evolutionary studies.
-\end{itemize}
-
-% @CTB mention long reads, microdiversity (banfield study).
-% consequences for genome binning etc.
-
-% do we make comments about tradeoff between single contig analysis,
-% quast analysis, etc?
-% better misassembly analysis?
-% do we want to bring in REAPR or whatnot? does it work OOB for metagenomes?
+% @CTB muse on co-assembling many things
+%
+% muse on importance of mock, resequencing.
 
 \subsection*{Author contributions}
 In order to give appropriate credit to each author of an article, the
