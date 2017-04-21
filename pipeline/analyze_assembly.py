@@ -214,6 +214,7 @@ class GenomeIntervalsContainer(object):
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
                 ccov = this_contig_cov[cname]
                 if sum(ccov[s2 - 1:e2]) / float(e2 - s2+ 1) >= 1.0: # any overlap? skip this alignment.
+                    print('skipping')
                     continue
 
                 # record that we're keeping this alignment
