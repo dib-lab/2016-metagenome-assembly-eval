@@ -27,7 +27,7 @@ def main():
     keep = gic_a.load_contigs_foo(args.coords, 99.0)
 
     matches = defaultdict(set)
-    for (s1, e1, s2, e2, ident, name1, name2) in _load_coords(args.coords):
+    for (s1, e1, s2, e2, ident, name1, name2) in keep:
         if ident >= args.percent_identity and e2 - s2 + 1 >= args.min_length:
             matches[name2].add(name1)
 
