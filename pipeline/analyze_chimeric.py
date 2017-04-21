@@ -26,7 +26,7 @@ def _load_coords(filename, only=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('coords')
-    parser.add_argument('-p', '--percent-identity', type=float, default=0.99)
+    parser.add_argument('-p', '--percent-identity', type=float, default=99)
     parser.add_argument('-l', '--min-length', type=int, default=100)
     parser.add_argument('--eliminate-prefix', type=int, default=None)
     args = parser.parse_args()

@@ -14,7 +14,7 @@ def main():
     parser.add_argument('reference')
     parser.add_argument('assem')
     parser.add_argument('coords')
-    parser.add_argument('-p', '--percent-identity', type=float, default=0.99)
+    parser.add_argument('-p', '--percent-identity', type=float, default=99)
     parser.add_argument('-l', '--min-length', type=int, default=100)
     parser.add_argument('--eliminate-prefix', type=int, default=None)
     args = parser.parse_args()
