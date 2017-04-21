@@ -422,7 +422,7 @@ location in the reference.
 
 \section*{Results}
 
-\subsection*{The raw data is high quality}
+\subsection*{The raw data is high quality.}
 
 The reads contains 11,072,579,096 bp (11.07 Gbp) in 109,629,496 reads
 with 101.0 average length (2x101bp Illumina HiSeq).
@@ -441,7 +441,7 @@ data set was used as the basis for all further analyses.
 %We used SAMStat \cite{samstat} to analyze the mapping quality and error profiles of quality filtered reads mapped to the reference genome. Figure \ref{fig:mapquality} shows number of alignments in various mapping quality (MAPQ) intervals and number of unmapped sequences. The percentage and number of alignments in each category is given in brackets. 
 %Figure \ref{fig:basequality} shows mean base quality of reads with low and high mapping quality. %Figure \ref{fig:errorprofile30} shows the error profile for MAPQ $\geq 30$ and Figure \ref{fig:nucleotidecomposition.png} shows the nucleotide compositions. We also found 309,414 chimeric reads. 
 
-\subsection*{The reference metagenome is not completely present in the reads}
+\subsection*{The reference metagenome is not completely present in the reads.}
 
 We next evaluated the fraction of the reference genome covered by at least
 one read (see Methods for details). Quality filtered reads cover
@@ -518,13 +518,14 @@ of the reference and/or variation between the reads and the reference.
 
 To see if specific reference genomes exhibited low coverage, we
 analyzed read mapping coverage and 21-mer containment for individual
-genomes.  Of the 64 reference genomes used in the metagenome,
-59 had a per-base mapping coverage above 95\% and a 21-mer containment in
-the QC reads above 95\%.  The remaining five varied significantly
-in both metrics (Table~\ref{table:time-memory}), with {\em F. nucleatum}
-the lowest -- only 47.30\% of the bases in the reference genome are
-covered by one or more mapped reads, and only 17.8\% of the 21-mers
-in the reference genome are present in the reads at any abundance.
+genomes.  Of the 64 reference genomes used in the metagenome, 59 had a
+per-base mapping coverage above 95\% and a 21-mer containment in the
+QC reads above 95\%.  The remaining five varied significantly in both
+metrics (Table~\ref{table:time-memory}), with {\em F. nucleatum} the
+lowest -- only 47.30\% of the bases in the reference genome are
+covered by one or more mapped reads, and only 17.8\% of the 21-mers in
+the {\em F. nucleatum} reference genome are present in the reads at
+any abundance.
 
 % @CTB: point out in discussion that read mapping correlates well with
 % k-mer presence.
@@ -532,13 +533,11 @@ in the reference genome are present in the reads at any abundance.
 We next did a 51-mer containment analysis of each reference genome in
 the reads.  99\% or more of the constituent 51-mers for 46 of the 64
 reference genomes were present in the reads, suggesting that each
-entire genome was present at some  minimal coverage.
+of the 46 genome was entirely present at some  minimal coverage.
 
 We excluded the remaining 18 genomes from any comparative
 analysis of assembly quality, because interpreting coverage and
-misassembly analysis for these genomes would be unproductive.  See
-``Strain variation analysis'', below, for further analysis of these
-genomes.
+misassembly analysis for these genomes would be impossible.
 
 % new reference size: 141,394,815
 
@@ -600,7 +599,7 @@ reads. Depending on the assembly, between 3.3 million and 5.9 million
 reads (3.0-5.4\%) did not map to the assemblies
 (Table~\ref{table:reads-kmers}). Here, the MEGAHIT assembly was distinguished by representing 2 million fewer reads than the IDBA and SPAdes assemblies.
 
-k-mer inclusion, however, was more closely matched by the assemblies,
+K-mer inclusion, however, was more closely matched across the assemblies,
 with all three assemblies containing between 95.8\% and 96.6\% of the
 51-mers in the k-mer trimmed reads.
 % (say more here?)
@@ -608,7 +607,7 @@ with all three assemblies containing between 95.8\% and 96.6\% of the
 % @CTB discuss the poor megahit mapping? maybe dropped a lot of short ocntigs?
 
 
-\subsection*{Much of the reference is covered by the assemblies}
+\subsection*{Much of the reference is covered by the assemblies.}
 %Numbers in this section are up to date 22 december 2016
 
 %QC Total base pairs             Percentage of Covered  Percentage of uncovered
@@ -680,7 +679,7 @@ uniquely covered by MEGAHIT, 0.6\% is uniquely covered by SPAdes, and
 % (update)
 %common uncovered / no.of bases in the reference *100
 
-\subsection*{The generated contigs are broadly accurate} 
+\subsection*{The generated contigs are broadly accurate.} 
 %Numbers in this section are up to date 22 december 2016
 
 %QC Total base pairs             Percentage of Covered  Percentage of uncovered
@@ -714,12 +713,15 @@ reference, with MEGAHIT recovering the most -- 93.8\% of the reference
 
 (CTB: add discussion of accuracy/mismatches/indels here.)
 
-\subsection*{Some statistics.}
+\subsection*{Assembly statistics for individual genomes.}
 
-We computed the NGA50 for each individual genome and assembly.  (see
+The NGA50 for a particular genome in a metagenome is the minimum
+contig size at which 50\% of that genome is covered by aligned contigs.
+We computed the NGA50 for each individual genome and assembly (see
 Figure~\ref{fig:nga50}).  The NGA50 statistics for individual genomes
-vary widely, but MEGAHIT yields the lowest NGA50 for 42 of the 46
-genomes, while SPAdes yields the highest NGA50 for 38 of the 46 genomes.
+vary widely, but there are consistent assembler-specific trends:
+MEGAHIT yields the lowest NGA50 for 42 of the 46 genomes, while SPAdes
+yields the highest NGA50 for 38 of the 46 genomes.
 
 \subsection*{Longer contigs are less likely to be chimeric.}
 
@@ -740,6 +742,8 @@ SPAdes    & 0\% & 8.8\% & 18.4\% \\
 
 \end{table}
 
+Chimerism is the formation of contigs that include sequence from multiple
+genomes.
 We evaluated the rate of chimerism
 in contigs at three different contig length cutoffs: 500bp, 5kb,
 and 50kb (Table~\ref{table:contig-chimera}).  We found that the
@@ -747,6 +751,8 @@ percentage of contigs that match to the genomes of two or more
 different species drop as the minimum contig size increases, to the
 point where contigs longer than 50kb had no chimeric contigs in any
 assembly.
+
+% @CTB could this be caused by nucmer?
 
 Upon further analysis, 99\% of the chimeric contigs greater than 5kb
 were formed between genomes from pairs of closely related species.
@@ -856,7 +862,7 @@ all three assemblies contained more than 95\% of the reference
 (Table~\ref{table:contig-coverage}); even with removal of secondary
 alignments, more than 87\% was recovered by each assembler
 (Table~\ref{table:contig-accuracy}). About half the constituent genomes had
-an NG50 of 50kb or higher and an NG90 of 10kb (Table~\ref{table:ng50}),
+an NGA50 of 50kb or higher (Table~\ref{fig:nga50}),
 which, while low for current Illumina single-genome sequencing @cite,
 is sufficient to recover operon-level relationships for many genes.
 
@@ -880,7 +886,7 @@ overlap in the assembly graph.  However, the same complexity in the
 local assembly graph that leads to chimera may also limit the
 extension of contigs, resulting in shorter chimeric contigs.
 Regardless, we find that chimeric contigs form between closely
-related species with an overwhelmingly high frequency.
+related species with a high frequency.
 
 \subsection*{MEGAHIT performs best by several metrics.}
 
@@ -915,7 +921,7 @@ QC reads (Table~\ref{table:genomes_uncovered-analysis}), and many QC
 reads (7\% of 108m) did not map to the provided reference genome.
 These may be related issues: upon analysis of the unmapped reads
 against RefSeq, we find that about half of the contigs assembled from
-the unmapped reads can be assigned to strain variants of the genomes
+the unmapped reads can be assigned to strain variants of the species
 in the mock community (Table~\ref{table:gather}).  This suggests that
 the mock community may have inadvertently included strain variants of
 the intended microbes.  We tentatively confirm this by doing a k-mer
@@ -923,15 +929,13 @@ analysis of the 454 data from @cite against the assembled contigs and
 showing that XXX.
 
 Without returning to the original DNA samples, it is impossible to
-conclusveley confirm that unintended strains were used in the
+conclusively confirm that unintended strains were used in the
 construction of the mock community.  In particular, our analysis is
 dependent on the genomes in RefSeq: the genomes we detect in the
 contigs are clearly more closely related to the contigs than the
 species in the reference metagenome, based on mapping, k-mer analysis,
 and contig alignment; but RefSeq is unlikely to contain the exact
-genomes of the included strain variants.  However we believe this
-theory is well supported bioinformatically and could explain both the
-missing parts of the reference genome and the unmapped reads.
+genomes of the included strain variants.
 
 % @CTB do metapalette-style k-mer analysis?
 
