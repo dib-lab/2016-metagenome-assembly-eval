@@ -1,35 +1,30 @@
 #! /usr/bin/env python
+from __future__ import print_function
 import sys
 import argparse
 from collections import defaultdict
-import pprint
+import os.path
 
-# load a .coords file output by nucmer
-def _load_coords(filename, only=None):
-    lines = [ x.strip() for x in (open(filename)) ]
-    assert lines[1].startswith('NUCMER'), lines[0]
-    
-    # process each line into (s1, e1, _, s2, e2, ..., % ident, _, name1, name2)
-    coords = []
-    for line_no in range(5, len(lines)):
-        line = lines[line_no].split()
-        s1, e1 = int(line[0]), int(line[1])
-        s2, e2 = int(line[3]), int(line[4])
-        ident = float(line[9])
-        name1, name2 = line[11], line[12]
-        s1, e1 = min(s1, e1), max(s1, e1)
-        s2, e2 = min(s2, e2), max(s2, e2)
-
-        yield (s1, e1, s2, e2, ident, name1, name2)
-
+# re-use some functions
+import analyze_assembly
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('reference')
+    parser.add_argument('assem')
     parser.add_argument('coords')
-    parser.add_argument('-p', '--percent-identity', type=float, default=0.99)
-    parser.add_argument('-l', '--min-length', type=int, default=100)
-    parser.add_argument('--eliminate-prefix', type=int, default=None)
     args = parser.parse_args()
+
+    refsizes, reference = analyze_assembly.load_reference(args.reference)
+
+    print('Loading Coords')
+ 
+    prefix1 = args.coords.split('.')[0]
+  
+    a, aseq = analyze_assembly.load_assembly(args.assem)
+    
+    gic_a = analyze_assembly.GenomeIntervalsContainer(refsizes, a, aseq)
+    keep = gic_a.load_contigs_foo(args.coords, 99.0)
 
     matches = defaultdict(set)
     for (s1, e1, s2, e2, ident, name1, name2) in _load_coords(args.coords):
@@ -63,6 +58,7 @@ def main():
 
     print(n, m, float(m) / n)
     pprint.pprint(sorted(namecounts.items(), key=lambda x: x[1]))
+
 
 if __name__ == '__main__':
     main()
