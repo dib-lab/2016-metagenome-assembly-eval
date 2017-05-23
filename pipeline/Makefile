@@ -1,5 +1,5 @@
 FULL_REFERENCE=mircea.fa
-REFERENCE = mircea.rm18.fa
+REFERENCE = mircea.rm13.fa
 MYSCRIPTS = ./
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin

@@ -1,18 +1,13 @@
-Zymomonas_mobilis_subsp._mobilis_ZM4
-Enterococcus_faecalis_V583
-Shewanella_baltica_OS223, complete genome
-Haloferax_volcanii_DS2
-Burkholderia1_xenovorans_LB400_chromosome_1,_complete_sequence
-Salinispora_arenicola_CNS-205
-Thermus_thermophilus_HB27
-Sulfurihydrogenibium_yellowstonense_SS-5
-Fusobacterium_nucleatum_subsp._nucleatum_ATCC_25586
-Desulfovibrio_vulgaris_DP4
-Leptothrix_cholodnii_SP-6
-Thermotoga_petrophila_RKU-1
-Deinococcus_radiodurans_R1_chromosome_1,_complete_sequence
-Bordetella_bronchiseptica_strain_RB50
-Shewanella_baltica_OS185
-Ruegeria_pomeroyi_DSS-3
-Thermotoga_neapolitana_DSM_4359
-Zymomonas_mobilis_subsp._mobilis_ZM4
+NZ_KQ961402.1 Zymomonas mobilis strain ATCC 31823 Scaffold1, whole genome shotgun sequence
+NZ_KE136524.1 Enterococcus faecalis V583 acyDH-supercont2.1, whole genome shotgun sequence
+NC_007951.1 Burkholderia xenovorans LB400 chromosome 1, complete sequence
+CP001013.1 Leptothrix cholodnii SP-6, complete genome
+AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
+CP000667.1 Salinispora tropica CNB-440, complete genome
+NZ_JGWU01000001.1 Bordetella bronchiseptica D989 ctg7180000008197, whole genome shotgun sequence
+CP001252.1 Shewanella baltica OS223, complete genome
+NZ_CP015081.1 Deinococcus radiodurans R1 chromosome 1, complete sequence
+CP000527.1 Desulfovibrio vulgaris DP4, complete genome
+NC_013968.1 Haloferax volcanii DS2 plasmid pHV1, complete sequence
+AE017221.1 Thermus thermophilus HB27, complete genome
+CP000031.2 Ruegeria pomeroyi DSS-3, complete genome
