@@ -27,10 +27,10 @@ def main():
     for record in screed.open(args.genome):
         name = record.name.split()[0]
         genome_dict1[name] = [0] * len(record.sequence)
-	n_rec += len(record.sequence) 
+        n_rec += len(record.sequence) 
 
     # why does 'arr' need to be this large? @CTB
-    arr = [0] * n_rec    
+    arr = [0] * 1000
     n = 0
     n_skipped = 0
 
@@ -39,6 +39,7 @@ def main():
         n += 1
         if n % 100000 == 0:
             print >>sys.stderr, '...1', n
+            if n > 5e6: break
 
         # parse each SAM record
         readname, flags, refname, refpos, _, _, _, _, _, seq = \
@@ -61,7 +62,7 @@ def main():
 
         # 
         for i in range(refpos - 1, refpos + len(seq) - 1):
-	     if i < len(ref):
+            if i < len(ref):
                 ref[i] += 1
     
     cov = 0. 
@@ -71,13 +72,13 @@ def main():
        total += len(genome_dict1[name]) 
        for j in range (len(genome_dict1[name])):
              arr[ref[j]] += 1
-	     if ref[j] >0:
-		 cov +=1 
+             if ref[j] >0:
+                 cov +=1 
 	   
     if cov == 0:
         assert 0, "summed coverage is 0 - this seems like a problem :)"
 
-    for i in range(len(arr)): 
+    for i in range(len(arr)):
         print >>fp, i, arr[i]
 
     # @CTB this seems like a problem -- it outputs this as the last line

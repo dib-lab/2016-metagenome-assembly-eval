@@ -33,7 +33,7 @@ megahit-quality: SRR606249.pe.qc.fq.gz \
 	megahit.qc.pe/final.contigs.fa \
 	megahit-quality-assembly.fa  
 #-------------------------------------------------Run Analysis----------------------------------------------------------------------------------------------
-analysis: idba-quality-assembly.fa spades-quality-assembly.fa megahit-quality-assembly.fa \
+analysis: idba-quality-assembly500.fa spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa \
 	mqc500.coords \
 	assemblies.stats.QC.AMBIGUOUS.99 \
@@ -214,7 +214,7 @@ megahit-part-2:
 	.megahit-part-finalize.sh \
         touch megahit-part-2
 #-------------------------------------------------------------------Analysis--------------------------------------------------------------------------------
-megahit-quality-assembly500.fa:  idba-quality-assembly.fa  spades-quality-assembly.fa  megahit-quality-assembly.fa 
+megahit-quality-assembly500.fa: # idba-quality-assembly.fa  spades-quality-assembly.fa  megahit-quality-assembly.fa 
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  idba-quality-assembly.fa 500	
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  spades-quality-assembly.fa 500 
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  megahit-quality-assembly.fa 500 
@@ -487,3 +487,80 @@ chimeric:  ${REFERENCE} SRR606249.pe.qc.fq.gz
 	bash ${MYSCRIPTS}/count-chimeric.sh 
 
 #---------------------------------------------------------------Cleaning ------------------------------------------------------------------------------------	
+xenovorans.sam: xenovorans.fa #SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
+	bwa index xenovorans.fa 
+	bwa aln xenovorans.fa SRR606249.pe.qc.fq.gz   >  xenovorans.pe.sai 
+	bwa aln xenovorans.fa SRR606249.se.qc.fq.gz   >  xenovorans.se.sai
+	bwa samse xenovorans.fa xenovorans.pe.sai SRR606249.pe.qc.fq.gz >  xenovorans.pe.sam 
+	bwa samse xenovorans.fa  xenovorans.se.sai  SRR606249.se.qc.fq.gz >  xenovorans.se.sam
+
+xenovorans.pe.mapped.fa.gz: xenovorans.pe.sam
+	./get-mapped.sh xenovorans.pe.sam | gzip > xenovorans.pe.mapped.fa.gz
+	./get-mapped.sh xenovorans.se.sam | gzip > xenovorans.se.mapped.fa.gz
+
+bar:
+	samtools faidx  xenovorans.fa 
+	samtools import  xenovorans.fa.fai  xenovorans.pe.sam  xenovorans.pe.bam 
+	samtools import  xenovorans.fa.fai  xenovorans.se.sam  xenovorans.se.bam 
+	samtools merge  xenovorans.bam  xenovorans.pe.bam  xenovorans.se.bam 
+	samtools view -h -o  xenovorans.sam  xenovorans.bam
+
+xenovorans.mapped.fq: xenovorans.sam
+	samtools view -F 4 -b xenovorans.sam > xenovorans.mapped.bam
+	samtools bam2fq xenovorans.mapped.bam > xenovorans.mapped.fq
+
+geobacter.sam: geobacter.fa #SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
+	bwa index geobacter.fa 
+	bwa aln geobacter.fa SRR606249.pe.qc.fq.gz   >  geobacter.pe.sai 
+	bwa aln geobacter.fa SRR606249.se.qc.fq.gz   >  geobacter.se.sai
+	bwa samse geobacter.fa geobacter.pe.sai SRR606249.pe.qc.fq.gz >  geobacter.pe.sam 
+	bwa samse geobacter.fa  geobacter.se.sai  SRR606249.se.qc.fq.gz >  geobacter.se.sam
+	samtools faidx  geobacter.fa 
+	samtools import  geobacter.fa.fai  geobacter.pe.sam  geobacter.pe.bam 
+	samtools import  geobacter.fa.fai  geobacter.se.sam  geobacter.se.bam 
+	samtools merge  geobacter.bam  geobacter.pe.bam  geobacter.se.bam 
+	samtools view -h -o  geobacter.sam  geobacter.bam
+
+####
+
+sigs: SRR606249.sig mircea.fa.sig faecalis.fa.sig nucleatum.fa.sig \
+	thermophilus.fa.sig vulgaris.fa.sig xenovorans.fa.sig \
+	idba-quality-assembly500.fa.sig \
+	megahit-quality-assembly500.fa.sig \
+	spades-quality-assembly500.fa.sig
+
+SRR606245.sig:
+	sourmash compute --scaled 10000 -k 21,31,41,51 SRR606245.fastq.gz -o SRR606245.sig
+
+SRR606249.sig:
+	sourmash compute --scaled 10000 -k 21,31,41,51 SRR606249.[ps]e.qc.fq.gz -o SRR606249.sig
+
+SRR606249-abund.sig:
+	cat SRR606249.[ps]e.qc.fq.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249-abund.sig --track-abundance
+
+mircea.fa.sig:
+	sourmash compute --scaled 10000 -k 21,31,41,51 mircea.fa -o mircea.fa.sig
+
+faecalis.fa.sig: faecalis.fa
+	sourmash compute --scaled 10000 -k 21,31,41,51 faecalis.fa -o faecalis.fa.sig
+
+nucleatum.fa.sig: nucleatum.fa 
+	sourmash compute --scaled 10000 -k 21,31,41,51 nucleatum.fa  -o nucleatum.fa.sig
+
+thermophilus.fa.sig: thermophilus.fa 
+	sourmash compute --scaled 10000 -k 21,31,41,51 thermophilus.fa  -o thermophilus.fa.sig
+
+vulgaris.fa.sig: vulgaris.fa 
+	sourmash compute --scaled 10000 -k 21,31,41,51 vulgaris.fa  -o vulgaris.fa.sig
+
+xenovorans.fa.sig: xenovorans.fa
+	sourmash compute --scaled 10000 -k 21,31,41,51 xenovorans.fa -o xenovorans.fa.sig
+
+idba-quality-assembly500.fa.sig: #idba-quality-assembly500.fa
+	sourmash compute --scaled 10000 -k 21,31,41,51 idba-quality-assembly500.fa -o idba-quality-assembly500.fa.sig
+
+megahit-quality-assembly500.fa.sig: #megahit-quality-assembly500.fa
+	sourmash compute --scaled 10000 -k 21,31,41,51 megahit-quality-assembly500.fa -o megahit-quality-assembly500.fa.sig
+
+spades-quality-assembly500.fa.sig: #spades-quality-assembly500.fa
+	sourmash compute --scaled 10000 -k 21,31,41,51 spades-quality-assembly500.fa -o spades-quality-assembly500.fa.sig
