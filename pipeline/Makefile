@@ -8,7 +8,7 @@ TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
 SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
-mc = 1000 2000 3000
+mc=500
 
 # remove 18 genomes for crimes of strain variation
 
@@ -90,6 +90,8 @@ SRR606249.idba.d.qc/scaffold.fa: SRR606249.pe.fa
 idba-quality-assembly.fa: SRR606249.idba.d.qc/scaffold.fa
 	python ${MYSCRIPTS}/multi-rename.py assembly SRR606249.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
+
+# @CTB we are specifying -m here...?
 megahit.qc.pe/final.contigs.fa: SRR606249.pe.qc.fq.gz  
 	#rm -r megahit.qc.pe
 	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 SRR606249.pe.qc.fq.gz -r SRR606249.se.qc.fq.gz -o megahit.qc.pe 
@@ -215,9 +217,9 @@ megahit-part-2:
         touch megahit-part-2
 #-------------------------------------------------------------------Analysis--------------------------------------------------------------------------------
 megahit-quality-assembly500.fa: # idba-quality-assembly.fa  spades-quality-assembly.fa  megahit-quality-assembly.fa 
-	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  idba-quality-assembly.fa 500	
-	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  spades-quality-assembly.fa 500 
-	python ${MYSCRIPTS}/filter_assembly_mincontig.py  ${REFERENCE}  megahit-quality-assembly.fa 500 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py idba-quality-assembly.fa 500	
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py spades-quality-assembly.fa 500 
+	python ${MYSCRIPTS}/filter_assembly_mincontig.py megahit-quality-assembly.fa 500 
 
 mqc500.coords: #megahit-quality-assembly500.fa 
 	${NUCMER}/nucmer --coords -p  iqc500  ${REFERENCE}  idba-quality-assembly500.fa
@@ -236,11 +238,11 @@ assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords
 
 assemblies.stats.QC.AMBIGUOUS.95: mqc500.coords
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-#	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.95 -a True 95 
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.95 -a True 95 
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-#	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.95 -b True 95
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.95 -b True 95
 	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
-#	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.95 -c True 95
+	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.95 -c True 95
 
 stats: megahit-quality-assembly500.fa 
 	python ${MYSCRIPTS}/compute_stats.py idba-quality-assembly500.fa ${REFERENCE} > idba.stats 
@@ -284,15 +286,15 @@ parse-prokka: mprokka/testasm.tbl
 
 
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
-qc-ref.sam: ${REFERENCE} SRR606249.pe.qc.fq.gz
-	bwa index  ${REFERENCE} 
-	bwa aln  ${REFERENCE}  SRR606249.pe.qc.fq.gz   >  qc-ref.pe.sai 
-	bwa aln  ${REFERENCE}  SRR606249.se.qc.fq.gz   >  qc-ref.se.sai
-	bwa samse ${REFERENCE}  qc-ref.pe.sai  SRR606249.pe.qc.fq.gz >  qc-ref.pe.sam 
-	bwa samse  ${REFERENCE}  qc-ref.se.sai  SRR606249.se.qc.fq.gz >  qc-ref.se.sam
-	samtools faidx  ${REFERENCE} 
-	samtools import  ${REFERENCE}.fai  qc-ref.pe.sam  qc-ref.pe.bam 
-	samtools import  ${REFERENCE}.fai  qc-ref.se.sam  qc-ref.se.bam 
+qc-ref.sam: ${FULL_REFERENCE} SRR606249.pe.qc.fq.gz
+	bwa index  ${FULL_REFERENCE} 
+	bwa aln  ${FULL_REFERENCE}  SRR606249.pe.qc.fq.gz   >  qc-ref.pe.sai 
+	bwa aln  ${FULL_REFERENCE}  SRR606249.se.qc.fq.gz   >  qc-ref.se.sai
+	bwa samse ${FULL_REFERENCE}  qc-ref.pe.sai  SRR606249.pe.qc.fq.gz >  qc-ref.pe.sam 
+	bwa samse  ${FULL_REFERENCE}  qc-ref.se.sai  SRR606249.se.qc.fq.gz >  qc-ref.se.sam
+	samtools faidx  ${FULL_REFERENCE} 
+	samtools import  ${FULL_REFERENCE}.fai  qc-ref.pe.sam  qc-ref.pe.bam 
+	samtools import  ${FULL_REFERENCE}.fai  qc-ref.se.sam  qc-ref.se.bam 
 	samtools merge  qc-ref.bam  qc-ref.pe.bam  qc-ref.se.bam 
 	samtools view -h -o  qc-ref.sam  qc-ref.bam
 
@@ -302,9 +304,14 @@ unmapped-qc-to-ref: qc-ref.sam
 	samtools view -h -o  qc-ref.se.sam  qc-ref.se.bam
 	samtools view -h -c -f 4  qc-ref.se.bam >> unmapped-qc-to-ref
 
-foo:
-	samtools view -f 4 -b sherine/qc-ref.bam > unmapped-qc-to-ref.bam
+unmapped-qc-to-ref.fq:
+	samtools view -f 4 -b qc-ref.bam > unmapped-qc-to-ref.bam
 	samtools bam2fq unmapped-qc-to-ref.bam > unmapped-qc-to-ref.fq
+
+# @CTB fix PE issue
+mqc-unmapped-reads.fa: unmapped-qc-to-ref.fq
+	python ${MEGAHIT}/megahit -l 101 --cpu-only --presets meta-large -r unmapped-qc-to-ref.fq -o mqc-unmapped-reads
+	python ${MYSCRIPTS}/multi-rename.py unmapped mqc-unmapped-reads/final.contigs.fa > mqc-unmapped-reads.fa
 
 SRR606249.qc.coverage: qc-ref.sam
 	python ${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  SRR606249.qc.coverage 
@@ -564,3 +571,6 @@ megahit-quality-assembly500.fa.sig: #megahit-quality-assembly500.fa
 
 spades-quality-assembly500.fa.sig: #spades-quality-assembly500.fa
 	sourmash compute --scaled 10000 -k 21,31,41,51 spades-quality-assembly500.fa -o spades-quality-assembly500.fa.sig
+
+megahit-assembly-unmapped.fa.sig: mqc-unmapped-reads.fa
+	sourmash compute --scaled 10000 -k 21,31,41,51 mqc-unmapped-reads.fa -o mqc-unmapped-reads.fa.sig
