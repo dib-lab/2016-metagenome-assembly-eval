@@ -22,15 +22,6 @@ def _load_coords(filename, only=None):
 
         yield (s1, e1, s2, e2, ident, name1, name2)
 
-def load_reference(filename):
-    d = {}
-    s = {}
-    for record in screed.open(filename):
-        d[record.name.split()[0]] = len(record.sequence) 
-        s[record.name.split()[0]] = record.sequence
-    return d, s 
-
-
 def load_assembly(assembly, mincontig, outfile):
     fout = open(outfile, 'w+')  
     d = {}
@@ -50,7 +41,6 @@ def load_assembly(assembly, mincontig, outfile):
           
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('reference')
     parser.add_argument('assem')
     parser.add_argument('mincontig')
     args = parser.parse_args()
