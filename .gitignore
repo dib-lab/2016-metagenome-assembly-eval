@@ -5,3 +5,4 @@
 2015-metag.log
 references.log
 *.pyc
+.DS_Store
