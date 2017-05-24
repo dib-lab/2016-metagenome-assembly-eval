@@ -61,10 +61,6 @@ unalignedcoverage: SRR606249.pe.qc.fq.gz assemblies.stats.QC.AMBIGUOUS.99 \
 	mqc.AM99-mapped-reads \
 	mqc.AM99.unmapped.sam \
 	mqc.unmapped.out 
-mincontig-analysis: megahit-quality-assembly.fa \
-	megahit-quality-assembly3000.fa \
-	mqc3000.coords \
-	assemblies.stats.QC.AMBIGUOUS3000.99
  
 #run-analysis.sh includes in addition to the above: common-uncovered-coverage.out and mqc500.dist	 
 #-----------------------------------------------------------QUALITY STARTS-------------------------------------------------------------------------------
@@ -98,123 +94,6 @@ megahit.qc.pe/final.contigs.fa: SRR606249.pe.qc.fq.gz
 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
 	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa	 
-#----------------------------------------------------------------DIGINORM STARTS-----------------------------------------------------------------------------
-SRR606249.ignore.long: SRR606249.pe.qc.fq.gz
-	extract-long-sequences.py -l 20 SRR606249.pe.qc.fq.gz -o SRR606249.ignore.long
-
-SRR606249.ignore.long.pe: 
-	extract-paired-reads.py SRR606249.ignore.long
-	mv SRR606249.pe.qc.fq.gz SRR606249.old
-	gzip -c SRR606249.ignore.long.pe > SRR606249.pe.qc.fq.gz
-
-normC20k20.kh:SRR606249.pe.qc.fq.gz
-	normalize-by-median.py -p -k 20 -C 20 -N 4 -x 1e9 --savegraph normC20k20.kh SRR606249.pe.qc.fq.gz
-	normalize-by-median.py -C 20 --loadgraph normC20k20.kh --savegraph normC20k20.kh SRR606249.se.qc.fq.gz
-
-SRR606249.pe.qc.fq.gz.keep.abundfilt: normC20k20.kh
-	filter-abund.py -V normC20k20.kh *.keep 
-
-SRR606249.pe.qc.fq.gz.keep.abundfilt.pe:  
-	extract-paired-reads.py SRR606249.pe.qc.fq.gz.keep.abundfilt 
-
-SRR606249.pe.qc.fq.gz.keep.abundfilt.se.keep:
-	normalize-by-median.py -C 5 -k 20 -N 4 -x 1e9 --savegraph normC5k20.kh -p SRR606249.pe.qc.fq.gz.keep.abundfilt.pe 
-	normalize-by-median.py -C 5 --savegraph normC5k20.kh --loadgraph normC5k20.kh SRR606249.pe.qc.fq.gz.keep.abundfilt.se \
-	SRR606249.se.qc.fq.gz.keep.abundfilt
-
-SRR606249.se.kak.qc.fq.gz:
-	cat  SRR606249.pe.qc.fq.gz.keep.abundfilt.pe >  SRR606249.pe.kak.qc.fq.gz
-	cat  SRR606249.pe.qc.fq.gz.keep.abundfilt.se  SRR606249.se.qc.fq.gz.keep.abundfilt >  SRR606249.se.kak.qc.fq.gz 
-#---------------------------------------------------------------SPADES DIGINORM------------------------------------------------------------------------------
-spades-diginorm-1:*.pe.kak.qc.fq.gz
-	.spades-dig.sh \
-	touch spades-diginorm-1
-
-spades-diginorm-2: SRR606249.pe.kak.qc.fq.gz SRR606249.se.kak.qc.fq.gz
-	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 SRR606249.pe.kak.qc.fq.gz -o SRR606249.pe.kak.qc.spades.d
-	/usr/bin/time -a -o sdig.txt ${SPADES}/spades.py --meta --pe1-12 SRR606249.se.kak.qc.fq.gz -o SRR606249.se.kak.qc.spades.d
-
-finalize-spades-diginorm:  SRR606249.spades.d/contigs.fasta 
-	python ${SANDBOX}/sandbox/calc-best-assembly.py SRR606249.*e.kak.qc.spades.d/contigs.fasta -o spades-diginorm-best.fa
-	python ${MYSCRIPTS}/multi-rename.py assembly spades-diginorm-best.fa > spades-diginorm-assembly.fa
-#------------------------------------------------------------------IDBA DIGINORM-----------------------------------------------------------------------------
-idba-diginorm-1: *.pe.kak.qc.fq.gz  
-	.idba-dig.sh \
-	touch idba-diginorm-1
-
-idba-diginorm-2: SRR606249.pe.kak.fa 
-	/usr/bin/time -a -o idig.txt idba_ud --pre_correction -r SRR606249.pe.kak.fa  -o SRR606249.idba.d.digi
-	#/opt/software/IDBAUD/1.1.0--GCC-4.4.5/binidba  --pre_correction -r SRR606249.pe.kak.fa  -o SRR606249.idba.d.digi
-
-finalize-idba-diginorm: SRR606249.idba.d.digi/scaffold.fa	
-	python ${SANDBOX}/sandbox/calc-best-assembly.py SRR606249.idba.d.digi/scaffold.fa -o idba-diginorm-best.fa
-	python ${MYSCRIPTS}/multi-rename.py assembly idba-diginorm-best.fa > idba-diginorm-assembly.fa
-#-------------------------------------------------------------Megahit DIGINORM------------------------------------------------------------------------------
-megahit-digi-1:
-	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r SRR606249.pe.kak.qc.fq.gz -o megahit.digi.pe
-	/usr/bin/time  -a  -o megdigi.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only -r SRR606249.se.kak.qc.fq.gz -o megahit.digi.se
-
-
-protocol-partition-below: normC5k20.kh *.kak.*.fq.gz
-	python ${SANDBOX}/sandbox/filter-below-abund.py normC5k20.kh *.kak.*.fq.gz 
-
-
-protocol-partition-rename-1: SRR606249.pe.kak.qc.fq.gz.below SRR606249.se.kak.qc.fq.gz.below
-	mv SRR606249.pe.kak.qc.fq.gz.below  SRR606249.pe.kak.qc.fq.gz.below.fq &&  mv SRR606249.se.kak.qc.fq.gz.below SRR606249.se.kak.qc.fq.gz.below.fq 
-
-protocol-partition-run: normC5k20.kh SRR606249.pe.kak.qc.fq.gz.below.fq  SRR606249.se.kak.qc.fq.gz.below.fq 
-	do-partition.py -k 32 -x 1e9 --threads 4 kak *.kak.qc.fq.gz.below.fq
-
-
-protocol-partition-extract: *.part  
-	extract-partitions.py -X 100000 kak *.part
-
-
-protocol-partition-rename-2:  
-	./seperate.sh \
-	touch protocol-partition-rename-2
-
-protocol-partition-compress: 
-	gzip *.pe.fq  *.se.fq
-
-#------------------------------------------------------------------Spades Partition--------------------------------------------------------------------------
-spades-partition-1: kak*.pe.fq.gz
-	.spades-part.sh \
-	touch spades-partition-1
-
-spades-partition-2: *.pe.fq
-	.spades-part-run.sh \
-	touch spades-partition-2
-
-spades-partition-3: kak.group*.pe.fq.gz
-	.spades-part-finalize.sh \
-	touch spades-partition-3
-
-finalize-spades-partition: 
-	python ${MYSCRIPTS}/multi-rename.py assembly spades-partition-best.group*.fa > spades-partition-assembly.fa
-#-----------------------------------------------------------------IDBA Partition-----------------------------------------------------------------------------
-idba-partition-1: kak*.pe.fq.gz
-	.idba-part.sh \
-	touch idba-partition-1
-
-idba-partition-2: *.pe.fa 
-	.idba-part-run.sh \
-	touch idba-partition-2
-
-idba-partition-3: kak.group*.pe.fq.gz
-	.idba-part-finalize.sh \
-	touch idba-partition-3
-
-finalize-idba-partition:
-	python ${MYSCRIPTS}/multi-rename.py assembly idba-partition-best.group*.fa > idba-partition-assembly.fa
-#-------------------------------------------------------------------Megahit PARTITION------------------------------------------------------------------------
-megahit-part-1: 
-	.megahit-part.sh \
-        touch megahit-part-1
-
-megahit-part-2:
-	.megahit-part-finalize.sh \
-        touch megahit-part-2
 #-------------------------------------------------------------------Analysis--------------------------------------------------------------------------------
 megahit-quality-assembly500.fa: # idba-quality-assembly.fa  spades-quality-assembly.fa  megahit-quality-assembly.fa 
 	python ${MYSCRIPTS}/filter_assembly_mincontig.py idba-quality-assembly.fa 500	
@@ -248,31 +127,6 @@ stats: megahit-quality-assembly500.fa
 	python ${MYSCRIPTS}/compute_stats.py idba-quality-assembly500.fa ${REFERENCE} > idba.stats 
 	python ${MYSCRIPTS}/compute_stats.py spades-quality-assembly500.fa ${REFERENCE} > spades.stats
 	python ${MYSCRIPTS}/compute_stats.py megahit-quality-assembly500.fa ${REFERENCE} > megahit.stats
-
-megahit-quality-assembly3000.fa:  megahit-quality-assembly.fa
-	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} idba-quality-assembly.fa $(i); ) 
-	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} spades-quality-assembly.fa $(i); ) 
-	$(foreach i,$(mc),python ${MYSCRIPTS}/filter_assembly_mincontig.py ${REFERENCE} megahit-quality-assembly.fa $(i); ) 
-
-mqc3000.coords: megahit-quality-assembly3000.fa
-	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p iqc$(i) ${REFERENCE}  idba-quality-assembly$(i).fa ; ) 
-	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p sqc$(i) ${REFERENCE}  spades-quality-assembly$(i).fa ;) 
-	$(foreach i,$(mc), ${NUCMER}/nucmer --coords -p mqc$(i) ${REFERENCE}  megahit-quality-assembly$(i).fa ; ) 
-
-assemblies.stats.QC.AMBIGUOUS3000.99: mqc3000.coords 
-	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
-	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).99 -a True 99;)
-	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
-        megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.BESTHIT$(i).99 -b True 99 ;) 
-	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
-        megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).99 -c True 99 ;)
-
-	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
-	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.AMBIGUOUS$(i).95 -a True 95;)
-	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
-	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.BESTHIT$(i).95 -b True 95 ;) 
-	$(foreach i, $(mc), python ${MYSCRIPTS}/analyze_assembly.py ${REFERENCE} idba-quality-assembly$(i).fa spades-quality-assembly$(i).fa \
-	megahit-quality-assembly$(i).fa iqc$(i).coords  sqc$(i).coords  mqc$(i).coords QC.NOOVERLAP$(i).95 -c True 95 ;)
 
 
 annotate-prokka: ${REFERENCE} # megahit-quality-assembly500.fa
@@ -480,55 +334,7 @@ mqc500.dist: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
 
-#------------------------------------------------------------Finding Chimeric Reads-------------------------------------------------------------------------- 
-#This is an ignored part 
-chimeric:  ${REFERENCE} SRR606249.pe.qc.fq.gz
-	bwa index ${REFERENCE} 
-	bwa mem -M -t 16 ${REFERENCE} SRR606249.se.qc.fq.gz  > SRR606249-se.sam
-	bwa mem -M -t 16 ${REFERENCE} SRR606249.pe.qc.fq.gz  > SRR606249-pe.sam
-	samtools faidx ${REFERENCE}
-	samtools import ${REFERENCE}.fai SRR606249-pe.sam SRR606249-pe.bam
-	samtools import ${REFERENCE}.fai SRR606249-se.sam SRR606249-se.bam
-	samtools view SRR606249-pe.bam | grep 'SA:'  > SRR606249-pe.chimeric
-	samtools view SRR606249-se.bam | grep 'SA:'  > SRR606249-se.chimeric
-	bash ${MYSCRIPTS}/count-chimeric.sh 
-
-#---------------------------------------------------------------Cleaning ------------------------------------------------------------------------------------	
-xenovorans.sam: xenovorans.fa #SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
-	bwa index xenovorans.fa 
-	bwa aln xenovorans.fa SRR606249.pe.qc.fq.gz   >  xenovorans.pe.sai 
-	bwa aln xenovorans.fa SRR606249.se.qc.fq.gz   >  xenovorans.se.sai
-	bwa samse xenovorans.fa xenovorans.pe.sai SRR606249.pe.qc.fq.gz >  xenovorans.pe.sam 
-	bwa samse xenovorans.fa  xenovorans.se.sai  SRR606249.se.qc.fq.gz >  xenovorans.se.sam
-
-xenovorans.pe.mapped.fa.gz: xenovorans.pe.sam
-	./get-mapped.sh xenovorans.pe.sam | gzip > xenovorans.pe.mapped.fa.gz
-	./get-mapped.sh xenovorans.se.sam | gzip > xenovorans.se.mapped.fa.gz
-
-bar:
-	samtools faidx  xenovorans.fa 
-	samtools import  xenovorans.fa.fai  xenovorans.pe.sam  xenovorans.pe.bam 
-	samtools import  xenovorans.fa.fai  xenovorans.se.sam  xenovorans.se.bam 
-	samtools merge  xenovorans.bam  xenovorans.pe.bam  xenovorans.se.bam 
-	samtools view -h -o  xenovorans.sam  xenovorans.bam
-
-xenovorans.mapped.fq: xenovorans.sam
-	samtools view -F 4 -b xenovorans.sam > xenovorans.mapped.bam
-	samtools bam2fq xenovorans.mapped.bam > xenovorans.mapped.fq
-
-geobacter.sam: geobacter.fa #SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
-	bwa index geobacter.fa 
-	bwa aln geobacter.fa SRR606249.pe.qc.fq.gz   >  geobacter.pe.sai 
-	bwa aln geobacter.fa SRR606249.se.qc.fq.gz   >  geobacter.se.sai
-	bwa samse geobacter.fa geobacter.pe.sai SRR606249.pe.qc.fq.gz >  geobacter.pe.sam 
-	bwa samse geobacter.fa  geobacter.se.sai  SRR606249.se.qc.fq.gz >  geobacter.se.sam
-	samtools faidx  geobacter.fa 
-	samtools import  geobacter.fa.fai  geobacter.pe.sam  geobacter.pe.bam 
-	samtools import  geobacter.fa.fai  geobacter.se.sam  geobacter.se.bam 
-	samtools merge  geobacter.bam  geobacter.pe.bam  geobacter.se.bam 
-	samtools view -h -o  geobacter.sam  geobacter.bam
-
-####
+### sourmash stuff / Jaccard comparison foo
 
 sigs: SRR606249.sig mircea.fa.sig faecalis.fa.sig nucleatum.fa.sig \
 	thermophilus.fa.sig vulgaris.fa.sig xenovorans.fa.sig \
@@ -547,21 +353,6 @@ SRR606249-abund.sig:
 
 mircea.fa.sig:
 	sourmash compute --scaled 10000 -k 21,31,41,51 mircea.fa -o mircea.fa.sig
-
-faecalis.fa.sig: faecalis.fa
-	sourmash compute --scaled 10000 -k 21,31,41,51 faecalis.fa -o faecalis.fa.sig
-
-nucleatum.fa.sig: nucleatum.fa 
-	sourmash compute --scaled 10000 -k 21,31,41,51 nucleatum.fa  -o nucleatum.fa.sig
-
-thermophilus.fa.sig: thermophilus.fa 
-	sourmash compute --scaled 10000 -k 21,31,41,51 thermophilus.fa  -o thermophilus.fa.sig
-
-vulgaris.fa.sig: vulgaris.fa 
-	sourmash compute --scaled 10000 -k 21,31,41,51 vulgaris.fa  -o vulgaris.fa.sig
-
-xenovorans.fa.sig: xenovorans.fa
-	sourmash compute --scaled 10000 -k 21,31,41,51 xenovorans.fa -o xenovorans.fa.sig
 
 idba-quality-assembly500.fa.sig: #idba-quality-assembly500.fa
 	sourmash compute --scaled 10000 -k 21,31,41,51 idba-quality-assembly500.fa -o idba-quality-assembly500.fa.sig
