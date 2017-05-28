@@ -189,6 +189,7 @@ class GenomeIntervalsContainer(object):
         """
         covered = self.covered
         aligned = self.aligned
+        total = 0
 
         # store contigs by name
         contig_ival_list = defaultdict(list)
@@ -197,6 +198,7 @@ class GenomeIntervalsContainer(object):
                 if e1 - s1 + 1 >= min_length and ident >= min_ident:
                     x = contig_ival_list[name2]
                     x.append([s1, e1, s2, e2, ident, name1, name2])
+                    total += 1
 
         # now, for each contig name, sort the list by length (top down)
         def sort_matches_by_length(a, b):
@@ -210,6 +212,7 @@ class GenomeIntervalsContainer(object):
         # go through and eliminate matches where the same part of one
         # contig matches to multiple genomic regions.
         keep = []
+        skipped = 0
         for k in contig_ival_list:
             contig_ival_list[k].sort(sort_matches_by_length)
 
@@ -222,7 +225,7 @@ class GenomeIntervalsContainer(object):
                 ccov = this_contig_cov[cname]
                 cov = sum(ccov[s2 - 1:e2]) / float(e2 - s2+ 1)
                 if cov >= 0.9: # significant overlap? skip this alignment.
-                    print('skipping', cov)
+                    skipped += 1
                     continue
 
                 # record that we're keeping this alignment
@@ -231,6 +234,7 @@ class GenomeIntervalsContainer(object):
 
                 keep.append((s1, e2, s2, e2, ident, gname, cname))
 
+        print 'skipped:', skipped, 'of', total
         return keep
 
 

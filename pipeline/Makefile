@@ -15,6 +15,10 @@ mc=500
 ${REFERENCE}: ${FULL_REFERENCE}
 	python ./subtract-names.py genome-remove-list.txt ${FULL_REFERENCE} > ${REFERENCE}
 
+ref.x.self.coords: ${REFERENCE}
+	${NUCMER}/nucmer --coords -p ref.x.self ${REFERENCE}  ${REFERENCE}
+
+
 #-----------------------------------------------------------All quality-------------------------------------------------------------------------------------
 quality: SRR606249-1.fastq.gz   SRR606249-2.fastq.gz \
 	SRR606249.se.qc.fq.gz 
@@ -161,6 +165,28 @@ unmapped-qc-to-ref: qc-ref.sam
 unmapped-qc-to-ref.fq:
 	samtools view -f 4 -b qc-ref.bam > unmapped-qc-to-ref.bam
 	samtools bam2fq unmapped-qc-to-ref.bam > unmapped-qc-to-ref.fq
+
+qc-ref-rm.sam: ${REFERENCE} SRR606249.pe.qc.fq.gz
+	bwa index  ${REFERENCE} 
+	bwa aln  ${REFERENCE}  SRR606249.pe.qc.fq.gz   >  qc-ref-rm.pe.sai 
+	bwa aln  ${REFERENCE}  SRR606249.se.qc.fq.gz   >  qc-ref-rm.se.sai
+	bwa samse ${REFERENCE}  qc-ref-rm.pe.sai  SRR606249.pe.qc.fq.gz >  qc-ref-rm.pe.sam 
+	bwa samse  ${REFERENCE}  qc-ref-rm.se.sai  SRR606249.se.qc.fq.gz >  qc-ref-rm.se.sam
+	samtools faidx  ${REFERENCE} 
+	samtools import  ${REFERENCE}.fai  qc-ref-rm.pe.sam  qc-ref-rm.pe.bam 
+	samtools import  ${REFERENCE}.fai  qc-ref-rm.se.sam  qc-ref-rm.se.bam 
+	samtools merge  qc-ref-rm.bam  qc-ref-rm.pe.bam  qc-ref-rm.se.bam 
+	samtools view -h -o  qc-ref-rm.sam  qc-ref-rm.bam
+
+unmapped-qc-to-ref-rm: qc-ref-rm.sam 
+	samtools view -h -o  qc-ref-rm.pe.sam  qc-ref-rm.pe.bam
+	samtools view -h -c -f 4  qc-ref-rm.pe.bam >> unmapped-qc-to-ref-rm
+	samtools view -h -o  qc-ref-rm.se.sam  qc-ref-rm.se.bam
+	samtools view -h -c -f 4  qc-ref-rm.se.bam >> unmapped-qc-to-ref-rm
+
+unmapped-qc-to-ref-rm.fq:
+	samtools view -f 4 -b qc-ref-rm.bam > unmapped-qc-to-ref-rm.bam
+	samtools bam2fq unmapped-qc-to-ref.bam > unmapped-qc-to-ref-rm.fq
 
 # @CTB fix PE issue
 mqc-unmapped-reads.fa: unmapped-qc-to-ref.fq
