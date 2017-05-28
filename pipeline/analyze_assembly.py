@@ -178,8 +178,15 @@ class GenomeIntervalsContainer(object):
                     for j in range(s2-1, e2):
                         align[j] +=1
 
-    # load_contigs_foo:
-    def load_contigs_foo(self, filename, min_ident, min_length=100):
+    # load_contigs_uniq:
+    def load_contigs_uniq(self, filename, min_ident, min_length=100):
+        """
+        return only the alignments uniqifed by longest match - 
+         * sort by match length against contig
+         * return the first (longest) alignment of that contig
+         * only return additional alignments if they are to different portions
+           of the contig.
+        """
         covered = self.covered
         aligned = self.aligned
 
@@ -214,7 +221,7 @@ class GenomeIntervalsContainer(object):
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
                 ccov = this_contig_cov[cname]
                 cov = sum(ccov[s2 - 1:e2]) / float(e2 - s2+ 1)
-                if cov >= 0.9: # any overlap? skip this alignment.
+                if cov >= 0.9: # significant overlap? skip this alignment.
                     print('skipping', cov)
                     continue
 
