@@ -3,10 +3,12 @@
 #    mircea.fa - putative references for mock community
 #    mircea.rm13.fa - references that are > 99% present at k=51
 #    assemblies.stats.QC.AMBIGUOUS.99 - reference-based assembly stats
-
+#
 #    unmapped-qc-to-ref.fq - reads that don't map to mircea.fa
 #    unmapped-qc-to-ref-rm.fq - reads that don't map to mircea.rm13.fa
 #    unmapped-mqc-assembly500.fa - megahit assembly of unmapped-qc-to-ref-rm.fq
+#
+#    %.fa.pe.mapped.fa.gz - reads mapped to individual genomes
 
 FULL_REFERENCE=mircea.fa
 REFERENCE = mircea.rm13.fa
