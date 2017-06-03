@@ -38,8 +38,8 @@ def load_assembly(assembly):
     d = {}
     s = {}
     for record in screed.open(assembly):
-        d[record.name.split()[0] ] = len(record.sequence)
-        s[record.name.split()[0] ] = record.sequence
+        d[record.name.split()[0]] = len(record.sequence)
+        s[record.name.split()[0]] = record.sequence
     return d, s 
 
 
@@ -224,7 +224,7 @@ class GenomeIntervalsContainer(object):
             for (s1, e1, s2, e2, ident, gname, cname) in contig_ival_list[k]:
                 ccov = this_contig_cov[cname]
                 cov = sum(ccov[s2 - 1:e2]) / float(e2 - s2+ 1)
-                if cov >= 0.9: # significant overlap? skip this alignment.
+                if cov == 1.0: # complete overlap? skip this alignment.
                     skipped += 1
                     continue
 

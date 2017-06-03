@@ -1,8 +1,18 @@
+# Targets:
+#
+#    mircea.fa - putative references for mock community
+#    mircea.rm13.fa - references that are > 99% present at k=51
+#    assemblies.stats.QC.AMBIGUOUS.99 - reference-based assembly stats
+
+#    unmapped-qc-to-ref.fq - reads that don't map to mircea.fa
+#    unmapped-qc-to-ref-rm.fq - reads that don't map to mircea.rm13.fa
+#    unmapped-mqc-assembly500.fa - megahit assembly of unmapped-qc-to-ref-rm.fq
+
 FULL_REFERENCE=mircea.fa
 REFERENCE = mircea.rm13.fa
 MYSCRIPTS = ./
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
-SPADES = /mnt/home/mahmoud4/SPAdes-3.9.0-Linux/bin
+SPADES = /mnt/home/ctb/research/SPAdes-3.10.1/bin/metaspades.py
 MEGAHIT=/mnt/home/mahmoud4/megahit
 TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
@@ -11,6 +21,16 @@ SCRIPTS = /opt/software/khmer/2.0--GCC-4.8.2/scripts
 mc=500
 
 # remove 18 genomes for crimes of strain variation
+
+podar-reference-genomes-2017.05.30.tar.gz:
+	curl -L -o podar-reference-genomes-2017.05.30.tar.gz 'https://osf.io/ud5hc/?action=download&version=1'
+
+63.fa: podar-reference-genomes-2017.05.30.tar.gz
+	tar xzf podar-reference-genomes-2017.05.30.tar.gz
+	touch [0-9].fa [1-6]?.fa
+
+${FULL_REFERENCE}: 63.fa
+	cat [0-9].fa [1-6]?.fa > ${FULL_REFERENCE}
 
 ${REFERENCE}: ${FULL_REFERENCE}
 	python ./subtract-names.py genome-remove-list.txt ${FULL_REFERENCE} > ${REFERENCE}
@@ -49,22 +69,6 @@ readcoverage: SRR606249.pe.qc.fq.gz \
 	qc-ref.sam \
 	unmapped-qc-to-ref \
 	SRR606249.qc.coverage
-#count the reads that map to the unaligned contigs and not to the reference 
-countunmapped: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa \
-	iq-unmapped.count \
-	sq-unmapped.count \
-	mq-unmapped.count
-#for the unaligned contigs, find their coverage 
-unalignedcoverage: SRR606249.pe.qc.fq.gz assemblies.stats.QC.AMBIGUOUS.99 \
-	iqc.AM99-mapped-reads \
-	iqc.AM99.unmapped.sam \
-	iqc.unmapped.out \
-	sqc.AM99-mapped-reads \
-	sqc.AM99.unmapped.sam \
-	sqc.unmapped.out \
-	mqc.AM99-mapped-reads \
-	mqc.AM99.unmapped.sam \
-	mqc.unmapped.out 
  
 #run-analysis.sh includes in addition to the above: common-uncovered-coverage.out and mqc500.dist	 
 #-----------------------------------------------------------QUALITY STARTS-------------------------------------------------------------------------------
@@ -76,7 +80,7 @@ SRR606249.se.qc.fq.gz:   SRR606249-1.fastq.gz   SRR606249-2.fastq.gz
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
 SRR606249.spades.d/scaffolds.fasta: SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz 
-	/usr/bin/time -a -o sqc.txt  ${SPADES}/spades.py --meta --pe1-12 SRR606249.pe.qc.fq.gz --pe1-s SRR606249.se.qc.fq.gz -o SRR606249.spades.d
+	/usr/bin/time -a -o sqc.txt  ${SPADES} --pe1-12 SRR606249.pe.qc.fq.gz --pe1-s SRR606249.se.qc.fq.gz -o SRR606249.spades.d
 
 spades-quality-assembly.fa: SRR606249.spades.d/scaffolds.fasta  
 	python ${MYSCRIPTS}/multi-rename.py assembly SRR606249.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
@@ -184,14 +188,13 @@ unmapped-qc-to-ref-rm: qc-ref-rm.sam
 	samtools view -h -o  qc-ref-rm.se.sam  qc-ref-rm.se.bam
 	samtools view -h -c -f 4  qc-ref-rm.se.bam >> unmapped-qc-to-ref-rm
 
-unmapped-qc-to-ref-rm.fq:
+unmapped-qc-to-ref-rm.fq: qc-ref-rm.sam
 	samtools view -f 4 -b qc-ref-rm.bam > unmapped-qc-to-ref-rm.bam
 	samtools bam2fq unmapped-qc-to-ref.bam > unmapped-qc-to-ref-rm.fq
 
-# @CTB fix PE issue
-mqc-unmapped-reads.fa: unmapped-qc-to-ref.fq
-	python ${MEGAHIT}/megahit -l 101 --cpu-only --presets meta-large -r unmapped-qc-to-ref.fq -o mqc-unmapped-reads
-	python ${MYSCRIPTS}/multi-rename.py unmapped mqc-unmapped-reads/final.contigs.fa > mqc-unmapped-reads.fa
+unmapped-mqc-assembly500.fa: unmapped-qc-to-ref-rm.fq
+	python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref-rm.fq -o unmapped-mqc-assembly
+	python ${SCRIPTS}/extract-long-sequences.py unmapped-mqc-assembly/final.contigs.fa -l 500 -o unmapped-mqc-assembly500.fa
 
 SRR606249.qc.coverage: qc-ref.sam
 	python ${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  SRR606249.qc.coverage 
@@ -209,6 +212,28 @@ mqc500.dist: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
 	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
+
+### individual genomes & mapped reads
+
+%.fa.pe.mapped.fa.gz: %.fa SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
+	./get-aligned-reads.sh $< SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
+
+%.fa.se.mapped.fa.gz: %.fa.pe.mapped.fa.gz
+
+%.fa.cov.txt: %.fa.pe.mapped.fa.gz
+
+### chimeric
+
+chimera.sqc50k.txt:
+	python analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 500 --save-contigs mqc.chimeric.contigs > chimera.mqc500.txt
+	python analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 500 --save-contigs iqc.chimeric.contigs > chimera.iqc500.txt
+	python analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 500 --save-contigs sqc.chimeric.contigs > chimera.sqc500.txt
+	python analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 5000 > chimera.mqc5k.txt
+	python analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 5000 > chimera.iqc5k.txt
+	python analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 5000 > chimera.sqc5k.txt
+	python analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 50000 > chimera.mqc50k.txt
+	python analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 50000 > chimera.iqc50k.txt
+	python analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 50000 > chimera.sqc50k.txt
 
 ### sourmash stuff / Jaccard comparison foo
 
@@ -239,5 +264,6 @@ megahit-quality-assembly500.fa.sig: #megahit-quality-assembly500.fa
 spades-quality-assembly500.fa.sig: #spades-quality-assembly500.fa
 	sourmash compute --scaled 10000 -k 21,31,41,51 spades-quality-assembly500.fa -o spades-quality-assembly500.fa.sig
 
-megahit-assembly-unmapped.fa.sig: mqc-unmapped-reads.fa
-	sourmash compute --scaled 10000 -k 21,31,41,51 mqc-unmapped-reads.fa -o mqc-unmapped-reads.fa.sig
+unmapped-mqc-assembly500.fa.sig: unmapped-mqc-assembly500.fa
+	sourmash compute --scaled 10000 -k 21,31,41,51 unmapped-mqc-assembly500.fa -o unmapped-mqc-assembly500.fa.sig
+
