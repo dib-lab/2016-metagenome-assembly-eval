@@ -39,6 +39,7 @@ def main():
     n = 0
     m = 0
     namecounts = defaultdict(int)
+    pairs = set()
     for k in matches:
         n += 1
 
@@ -52,6 +53,9 @@ def main():
                         namecounts[j] += 1
                     m += 1
             else:
+                v = list(matches[k])
+                v.sort()
+                pairs.update(set(v))
                 #print(k, matches[k])
                 m += 1
                 for j in matches[k]:
@@ -62,7 +66,9 @@ def main():
 #                        print('B', k)
 
     print(n, m, float(m) / n)
-    pprint.pprint(sorted(namecounts.items(), key=lambda x: x[1]))
+    #pprint.pprint(sorted(namecounts.items(), key=lambda x: x[1]))
+
+    pprint.pprint(pairs)
 
 if __name__ == '__main__':
     main()
