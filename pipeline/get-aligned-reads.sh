@@ -19,4 +19,4 @@ cat ${REFERENCE}.pe.sam ${REFERENCE}.se.sam > ${REFERENCE}.cov.sam
 ./get-mapped.sh ${REFERENCE}.se.sam | gzip > ${REFERENCE}.se.mapped.fa.gz
 
 rm ${REFERENCE}.pe.sam ${REFERENCE}.se.sam
-rm ${REFERENCE}.{amb,ann,bwt,pac,sa,se.sai}
+rm ${REFERENCE}.{amb,ann,bwt,pac,sa,se.sai,pe.sai,cov.sam}

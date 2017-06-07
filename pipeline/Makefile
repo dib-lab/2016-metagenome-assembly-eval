@@ -15,7 +15,7 @@ REFERENCE = mircea.rm13.fa
 MYSCRIPTS = ./
 NUCMER = /mnt/home/mahmoud4/MUMmer3.23
 SPADES = /mnt/home/ctb/research/SPAdes-3.10.1/bin/metaspades.py
-MEGAHIT=/mnt/home/mahmoud4/megahit
+MEGAHIT=/mnt/research/ged/ctb/megahit/megahit
 TRIM = /opt/software/Trimmomatic/0.32
 TOOLKIT =/opt/software/FASTX/0.0.14--GCC-4.4.5/bin
 SANDBOX = /opt/software/khmer/2.0--GCC-4.8.2
@@ -97,10 +97,10 @@ idba-quality-assembly.fa: SRR606249.idba.d.qc/scaffold.fa
 	python ${MYSCRIPTS}/multi-rename.py assembly SRR606249.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 #---------------------------------------------------------------Megahit Quality------------------------------------------------------------------------------
 
-# @CTB we are specifying -m here...?
+# @CTB we are specifying -m here...? -m 1e+10 
 megahit.qc.pe/final.contigs.fa: SRR606249.pe.qc.fq.gz  
 	#rm -r megahit.qc.pe
-	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large --12 SRR606249.pe.qc.fq.gz -r SRR606249.se.qc.fq.gz -o megahit.qc.pe 
+	/usr/bin/time  -a  -o megqc.txt python ${MEGAHIT} -f -l 101 --cpu-only --presets meta-large --12 SRR606249.pe.qc.fq.gz -t 16 -m 1e+10 -r SRR606249.se.qc.fq.gz -o megahit.qc.pe 
 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
 	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa	 
@@ -181,7 +181,7 @@ qc-ref-rm.sam: ${REFERENCE} SRR606249.pe.qc.fq.gz
 	samtools faidx  ${REFERENCE} 
 	samtools import  ${REFERENCE}.fai  qc-ref-rm.pe.sam  qc-ref-rm.pe.bam 
 	samtools import  ${REFERENCE}.fai  qc-ref-rm.se.sam  qc-ref-rm.se.bam 
-	samtools merge  qc-ref-rm.bam  qc-ref-rm.pe.bam  qc-ref-rm.se.bam 
+	samtools merge  -f qc-ref-rm.bam  qc-ref-rm.pe.bam  qc-ref-rm.se.bam 
 	samtools view -h -o  qc-ref-rm.sam  qc-ref-rm.bam
 
 unmapped-qc-to-ref-rm: qc-ref-rm.sam 
@@ -195,7 +195,7 @@ unmapped-qc-to-ref-rm.fq: qc-ref-rm.sam
 	samtools bam2fq unmapped-qc-to-ref.bam > unmapped-qc-to-ref-rm.fq
 
 unmapped-mqc-assembly500.fa: unmapped-qc-to-ref-rm.fq
-	python ${MEGAHIT}/megahit -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref-rm.fq -o unmapped-mqc-assembly
+	python ${MEGAHIT} -f -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref-rm.fq -o unmapped-mqc-assembly
 	python ${SCRIPTS}/extract-long-sequences.py unmapped-mqc-assembly/final.contigs.fa -l 500 -o unmapped-mqc-assembly500.fa
 
 SRR606249.qc.coverage: qc-ref.sam
@@ -269,3 +269,23 @@ spades-quality-assembly500.fa.sig: #spades-quality-assembly500.fa
 unmapped-mqc-assembly500.fa.sig: unmapped-mqc-assembly500.fa
 	sourmash compute --scaled 10000 -k 21,31,41,51 unmapped-mqc-assembly500.fa -o unmapped-mqc-assembly500.fa.sig
 
+foo:
+	sourmash gather -k 31 unmapped-mqc-assembly500.fa.sig ~/research/genbank-k31 -o unmapped-mqc-assembly500.x.genbank.csv
+
+bar:
+	${NUCMER}/nucmer --coords -p bestunal unaligned/best-matches.fa unmapped-mqc-assembly500.fa
+
+bar-count:
+	sort -rn -k10 bestunal.coords | head -1425 | sort -rn -k8 | cut -c 52-60| paste -sd+ | bc
+
+bar2:
+	${NUCMER}/nucmer --coords -p bestunal-vs-mirc mircea.fa unmapped-mqc-assembly500.fa
+
+bar2-count:
+	sort -rn -k10 bestunal-vs-mirc.coords | head -265 | cut -c 52-60 | paste -sd+ | bc
+
+bar3:
+	${NUCMER}/nucmer --coords -p os223-vs-megahit 63.fa megahit-quality-assembly500.fa
+
+bar4:
+	${NUCMER}/nucmer --coords -p os223-vs-os185 63.fa 47.fa

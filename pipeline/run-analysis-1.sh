@@ -1,6 +1,6 @@
 #PBS -A ged
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=96:00:00
+#PBS -l walltime=24:00:00
 #PBS -l mem=10GB
 #PBS -N analysis-1
 #PBS -m abe

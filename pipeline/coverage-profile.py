@@ -22,24 +22,20 @@ def main():
 
     dist = {}
     genome_dict1 = {}
-    arr = []
     n_rec = 0 
     for record in screed.open(args.genome):
         name = record.name.split()[0]
         genome_dict1[name] = [0] * len(record.sequence)
         n_rec += len(record.sequence) 
 
-    # why does 'arr' need to be this large? @CTB
-    arr = [0] * 1000
     n = 0
     n_skipped = 0
 
     # iterate through SAM file
     for samline in ignore_at(open(args.samfile1)):
         n += 1
-        if n % 100000 == 0:
+        if n % 1000000 == 0:
             print >>sys.stderr, '...1', n
-            if n > 5e6: break
 
         # parse each SAM record
         readname, flags, refname, refpos, _, _, _, _, _, seq = \
@@ -49,24 +45,22 @@ def main():
         if refname == '*' or refpos == '*':
             # (don't count these as skipped)
             continue
-        
-        # why do we ignore 'except'/else here?
-        refpos = int(refpos)
-        if refname in genome_dict1:
-               ref = genome_dict1[refname]
-        #except KeyError:
-        #    print >>sys.stderr, "unknown refname: %s; ignoring (read %s)" % (refname, readname)
-        #    n_skipped += 1
-        else: 
+
+        # aligned to something not in samfile
+        if refname not in genome_dict1:
             continue
 
-        # 
+        refpos = int(refpos)
+        ref = genome_dict1[refname]
+
         for i in range(refpos - 1, refpos + len(seq) - 1):
             if i < len(ref):
                 ref[i] += 1
-    
+
+    # now, go through all of the bases in the genome contigs, and tally up.
     cov = 0. 
     total = 0.      
+    arr = [0] * 1000
     for name in genome_dict1: 
        ref = genome_dict1[name]
        total += len(genome_dict1[name]) 
