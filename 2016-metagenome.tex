@@ -117,7 +117,7 @@ microbes with known genomes.
 % other than these.
  
 Moya et al. in \cite{moya2014} evaluated metagenome assembly using
-simulated two 454 viral metagenome and six assemblers. The assemblies
+two simulated 454 viral metagenome and six assemblers. The assemblies
 were evaluated based on several metrics including N50, percentages of
 reads assembled, accuracy when compared to the reference genome. In
 addition to, chimeras per contigs and the effect of assembly on
@@ -157,6 +157,9 @@ a mapping based analysis rather than an assembly based analysis.
 
 % @CTB pignatelli & moya 2011
 
+More recently, several benchmark studies systematically evaluated
+metagenome assembly of short reads. (CAMI and ...)
+
 In this paper, we evaluate metagenome assembly on the Illumina data set from
 Shakya et al. (2013) using three assemblers; IDBA-UD \cite{idba},
 SPAdes \cite {spades}, and MEGAHIT \cite{megahit}.  These three assemblers
@@ -190,6 +193,16 @@ In contrast to some other evaluations (assemblathon 2), we work with a
 synthetic community with a known answer, do not tune the default
 parameters, and investigate memory and runtime as a key part of the
 process.  This mimics default user experience. (Expand.)
+
+In this report, we update the list of reference genomes for Shakya et
+al.  to include plasmids and compare IDBA, SPAdes, and MEGAHIT
+performance on short-read metagenome assembly.  We also evaluate
+inter-strain chimerism in the assemblies, explore the failure to
+recover a specific {\em Shewanella baltica} strain variant in the
+assembly, and detect several previously unreported genomes in the
+Shakya et al. data set.  Our report provides strong guidance on choice
+of assemblers and significantly extends previous analyses of this
+low-complexity metagenome benchmarking data set.
 
 % \subsection*{Sections}
 
@@ -285,7 +298,10 @@ Archive at Accession SRX200676.
 We received the 64 reference genomes from the original authors. They
 consist of 205.6 Mbp of assembled genomes in 64 contigs, and are
 available for download at
-https://dx.doi.org/10.6084/m9.figshare.1506873.v2
+https://dx.doi.org/10.6084/m9.figshare.1506873.v2.
+
+We updated the data sets from NCBI etc. etc.  The following genomes
+were updated.  Updated data is available for download here (OSF).
 
 \section*{Methods}
 The analysis code and run scripts for this paper are available at:
@@ -312,24 +328,24 @@ reads (custom script {\tt coverage-profile.py}).
 
 \subsection*{Assemblers}
 We assembled the quality-filtered reads using three different assemblers: IDBA-UD
-\cite{idba}, SPAdes \cite{spades}, and MEGAHIT \cite{megahit}.  For
+\cite{idba}, MetaSPAdes \cite{spades}, and MEGAHIT \cite{megahit}.  For
 IDBA-UD v1.1.1 \cite{idba}, we used {\tt {--pre\_correction}} to
 perform pre-correction before assembly and -r for the pe files.
 
-For SPAdes v3.9.0 \cite{spades}, we used { \tt {--meta --pe1-12
-    --pe1-s}} where {\tt{--meta}} is recommended when working with
+For MetaSPAdes v3.9.0 \cite{spades}, we used { \tt {--meta --pe1-12
+    --pe1-s}} where {\tt{--meta}} is used for
 metagenomic data sets, {\tt{--pe1-12}} specifies the interlaced reads
 for the first paired-end library, and {\tt{--pe1-s}} provides the
 orphan reads remaining from quality trimming.
 
-%@SAM this is what we used?  
-For MEGAHIT \cite{megahit}, we used -l 101 {\tt{-m 3e9
+For MEGAHIT v1.1.1-2-g02102e1 \cite{megahit}, we used -l 101 {\tt{-m 3e9
     --cpu-only}} where {\tt -l} is for maximum read length, {\tt -m} is
 for max memory in bytes to be used in constructing the graph, and {\tt
   {--cpu-only}} to use only the CPU and no GPUs. We also used {\tt
   {--presets meta-large}} for large and complex metagenomes, and {\tt
   {--12} } and {\tt{-r}} to specify the
-interleaved-paired-end and single-end files respectively.
+interleaved-paired-end and single-end files respectively.  MEGAHIT allows
+the specification of a memory limit and we used {\tt -M 1e+10} for 10 GB.
 
 All three assemblies were executed on the same high-memory buy-in node
 on the Michigan State University High Performance Compute Cluster, and
@@ -411,6 +427,24 @@ All approaches have a non-zero duplication ratio within the reference
 because we do not explicitly discard contigs that map to the same
 location in the reference.
 
+\subsection*{Analysis of chimeric misassemblies}
+
+%@CTB cami, disco just used quast.
+
+We analyzed each assembly for chimeric misassemblies by counting the
+number of contigs that contained matches to two distinct reference
+genomes.  In order to remove secondary alignments from consideration,
+we first filtered matches extracted the longest non-overlapping NUCmer
+alignments for each contig at a minimum alignment identity of 99\%.
+We then used the script {\tt analyze\_chimeric2.py} to find contigs
+that matched sequences two or more distinct reference species.  As a
+negative control on our analysis, we verified that this approach
+yielded no positive results when applied to the alignments of the
+reference metagenome against itself.
+
+%@CTB Note: The rate of chimerism is probably higher when you include Shewanella OS185 and bordetella and haloferax.
+% @CTB note that cami reported megahit has highest # misassemblies.
+
 
 %\subsection*{Gene annotations using Prokka}
 %We used prokka \cite{prokka} to annotate the reference genome using
@@ -491,21 +525,50 @@ of the reference and/or variation between the reads and the reference.
 
 \subsection*{Some individual reference genomes are poorly represented in the reads.}
 
+% measured in *.cov.txt
+
 \begin{table}[!h]
 \centering
 \caption{Top uncovered genomes}
 \begin{tabular}{|l|c|c|}\hline
 \textbf{Genome} & \textbf {Read coverage} & \textbf{21-mer presence} \\ \hline 
-%And I mean by uncovered by reads : has coverage =0 
-{{\em B. xenovorans}} & XX.XX\% & 91.6\% \\
+% 7.fa
+{{\em B. xenovorans}} & 99.2\% & 91.6\% \\
 \hline
+% 17.fa
 {{\em D. vulgaris} DP4}  & 91.98\% & 79.1\% \\
 \hline
+% 55
 {{\em T. thermophilus} HB27}  & 91.06\% & 79.7\% \\
-\hline    
+\hline
+% 19
 {{\em E. faecalis} V583}  & 78.14\% & 68.0\% \\
 \hline
-{{\em F. nucleatum}}  & 47.30\% & 17.8\% \\
+% 20
+{{\em F. nucleatum}}  & 47.6\% & 17.8\% \\
+
+% 18.fa.cov.txt:18.fa.cov.sam
+{{\em }} & 89.22\& & XX\% \\
+% 10.fa.cov.txt:10.fa.cov.sam
+{{\em }} & 87.69\& & XX\% \\
+% 11.fa.cov.txt:11.fa.cov.sam
+{{\em }} & 85.16\& & XX\% \\
+% 14.fa.cov.txt:14.fa.cov.sam
+{{\em }} & 80.00\& & XX\% \\
+% 15.fa.cov.txt:15.fa.cov.sam
+{{\em }} & 79.07\& & XX\% \\
+% 19.fa.cov.txt:19.fa.cov.sam
+{{\em E. faecalis}} & 74.62\& & XX\% \\
+% 17.fa.cov.txt:17.fa.cov.sam
+{{\em D. vulgaris}} & 62.37\& & XX\% \\
+% 19.fa.cov.txt:19.fa.cov.sam
+{{\em E. faecalis}} & 61.86\& & XX\% \\
+% 16.fa.cov.txt:16.fa.cov.sam
+{{\em D. radiodurans}} & 55.33\& & XX\% \\
+% 20.fa.cov.txt:20.fa.cov.sam
+{{\em F. nucleatum }} & 47.58\& & XX\% \\
+
+
 \hline
 \end{tabular}
 \label{table:genomes_uncovered-analysis}
@@ -531,13 +594,14 @@ any abundance.
 % k-mer presence.
 
 We next did a 51-mer containment analysis of each reference genome in
-the reads.  99\% or more of the constituent 51-mers for 46 of the 64
+the reads.  99\% or more of the constituent 51-mers for 51 of the 64
 reference genomes were present in the reads, suggesting that each
-of the 46 genome was entirely present at some  minimal coverage.
+of the 51 genome was entirely present at some minimal coverage.
 
-We excluded the remaining 18 genomes from any comparative
+We excluded the remaining 13 genomes from any comparative
 analysis of assembly quality, because interpreting coverage and
 misassembly analysis for these genomes would be impossible.
+(@CTB list or table?)
 
 % new reference size: 141,394,815
 
@@ -551,15 +615,15 @@ misassembly analysis for these genomes would be impossible.
  \begin{table}[h]
 \caption{Running Time and Memory Utilization}
 \centering
-\begin{tabular}{|l|c|c|}
+\begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Assembler} & \textbf{Runtime} & \textbf{RAM} \\ [0.5ex]
+\textbf{Assembler} & \textbf{CPU time} & \textbf{Wall time} & \textbf{RAM} \\ [0.5ex]
 \hline
-MEGAHIT & 0hr 56m & 34.4 GB \\
+MEGAHIT & 52hr 25m & 4 hr 9m & 11.4 GB \\
 \hline
-IDBA-UD & 17h 12m & 149.1 GB \\
+IDBA-UD & 17h & & 149.1 GB \\
 \hline
-SPAdes & 41h 14m & 391.5 GB \\
+SPAdes & 94hr 43m & 94hr 44m & 100.7 GB \\
 \hline
 
 \end{tabular}
@@ -569,10 +633,12 @@ SPAdes & 41h 14m & 391.5 GB \\
  We ran three commonly used metagenome assemblers on the QC data set:
 IDBA-UD, SPAdes, and MEGAHIT. We recorded the time and memory usage of
 each (Table \ref{table:time-memory}).  In computational requirements, MEGAHIT outperformed both
-SPAdes and IDBA-UD considerably, producing an assembly in one hour --
-approximately 17 times faster than IDBA and 42 times faster than
-SPAdes.  MEGAHIT used only 34.4 GB of RAM -- 1/5 to 1/11th
+SPAdes and IDBA-UD considerably, producing an assembly in four hours --
+approximately 4 times faster than IDBA and 8 times faster than
+SPAdes.  MEGAHIT used only 11.4 GB of RAM -- 1/13th to 1/9th
 the memory used by IDBA and SPAdes, respectively.
+
+% see pipeline/runtimes/
 
 \subsection*{The assemblies contain most of the raw data}
 %Numbers in this section are up to date 22 december 2016
@@ -635,12 +701,15 @@ IDBA    & 95.6\% & 0.88\% \\ \hline
 \label{table:contig-coverage}
 \end{table}
 
-(Update this section to include k-mer overlap.)
-% sourmash search -k 51 mircea.rm18.fa.sig *-quality*.sig
-% idba-quality-assembly500.fa     0.983   idba-quality-assembly500.fa.sig
-% spades-quality-assembly500.fa   0.979   spades-quality-assembly500.fa.sig
-% megahit-quality-assembly500.fa          0.975   megahit-quality-assembly500.fa.sig
+(Update this section to include k-mer overlap - see comments.)
 
+%sourmash search -k 51 mircea.rm13.fa.sig *-quality*.sig --containment -q
+%3 matches:
+%similarity   match
+%----------   -----
+%97.2%       idba-quality-assembly500.fa
+%96.7%       megahit-quality-assembly500.fa
+%96.2%       spades-quality-assembly500.fa
 
 We next evaluated the extent to which the assembled contigs recovered the
 ``known/true'' metagenome sequence by aligning each assembly to the
@@ -851,6 +920,73 @@ variants we find in the assembly of the unmapped reads -- only {\em
 %\item shall we bring in the 454 data?
 %  \item look at ksize response with the better ref genomes?
 %\end{itemize}
+
+The majority of the matches are to strain variants of species present
+in the mock community design: e.g. the Nostoc sp. present in the reads
+is 87.8\% similar by Jaccard at k=31 to the Nostoc sp. in the mock,
+the {\em Ruegeria pomeroyi} strains are 87.6\% similar at k=31,
+and the {\em Herpetosiphon aurantiacus} strains are 92.4\% similar
+at k=31.  (Thermus as well.) There are many {\em Fusobacterium} matches as well.
+
+Interestingly, of these, a few of the mock community members are
+incomplete in the reads (Fusobacterium, Ruegeria, Thermus,
+Enterococcus) while others are entirely present (Nostoc,
+Herpetosiphon).  Nostoc and Herp: plasmids that aren't present in the
+original accession. Should we add them?? Yeah probably.
+
+The presence of about 700 KB of {\em Proteiniclasticum ruminis} is a puzzle,
+since there is no closely related species in the mock community design.
+Note that very little of the assembly aligns to the known P. ruminis
+genome via nucmer at 99\%, suggesting that this is a strain variant
+(most alignments are at 94\% or higher, representing 2.73 Mbp).
+
+{\em Shewanella baltica OS223} presents a puzzling situation.  While
+{\em Shewanella baltica OS223} was removed from the reference
+metagenome for having less than 99\% of 51-mers present in the reads,
+the genome {\em is} well represented in the read data set - 99.95\% of
+the genome is covered by at least one read.  We would therefore expect
+to recover a considerable fraction of the OS223 genome in the reads
+that didn't map to the reference metagenome; however, we find less
+than XXX bases in the MEGAHIT assembly that align to OS223 at 99\% or
+higher identity.  Why is OS223 is present but doesn't assemble?  This
+appears to be due to the presence of a closely related strain, {\em
+  Shewanella baltica OS185}.  Despite a fairly low Jaccard distance of
+37.5\% at k=31, approximately 2/3 of the QC reads that map to OS223
+also map to OS185 with our choice of parameters to {\tt bwa aln},
+while less than 5\% of the OS223 genome aligns to OS185 with nucmer
+at 99\% or higher.
+
+We infer that the assemblers are ``choosing'' to assemble OS185 based
+on its higher abundance in the reads, and discarding OS223 reads as
+erroneous variants of OS185.  This highlights another
+challenge presented by the presence of multiple strains in a sample:
+strains may assemble quite poorly (also observed in CAMI).
+
+./summarize-coords.py os223-vs-megahit.coords genomes/63.fa
+NC_011663.1,2501017
+NC_011664.1,53226
+NC_011668.1,45752
+NC_011665.1,27929
+TOTAL,2627924.0
+
+so about half of OS223 is covered in the regular assembly
+
+what happens to OS185? about 80% covered
+
+maybe compute coverage stats for all genomes wrt assembly.
+
+note plasmids covered!?
+
+
+@CTB how many reads in unmapped map to shewanella?
+
+@CTB how many reads map to both OS223 and OS185? apprx 2/3.
+
+@CTB check to see what's going on with nucmer align of OS223 to OS185. (very little)
+
+@CTB split to discussion?
+
+@CTB abundance of one vs other in original?
 
 \section*{Discussion}
 
