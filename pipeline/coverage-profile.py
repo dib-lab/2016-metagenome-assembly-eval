@@ -18,7 +18,7 @@ def main():
 
     args = parser.parse_args()
    
-    fp = open(args.outfile, 'a+')  
+    fp = open(args.outfile, 'w')  
 
     dist = {}
     genome_dict1 = {}
