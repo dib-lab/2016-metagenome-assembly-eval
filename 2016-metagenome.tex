@@ -147,62 +147,76 @@ based on one assembler, and did not evaluate assembly against several
 assemblers.  Also, both previous studies used simulated data, which
 may lack confounders of assembly such as sequencing artifacts and GC bias.
 
-Shakya et al. (2013) constructed a complex synthetic community of
-organisms by mixing DNA isolated from individual cultures of 64
-bacteria and archaea.  In addition to performing 16s amplicon analysis
-and doing 454 sequencing, the authors shotgun sequenced the mixture
-with Illumina (@cite).  While the authors concluded that this metagenomic
-sequencing generally outperformed amplicon sequencing, they conducted
+Shakya et al. (2013) constructed a synthetic community of organisms by
+mixing DNA isolated from individual cultures of 64 bacteria and
+archaea, including a variety of strains across a range of nucleotide
+distances.  In addition to performing 16s amplicon analysis and doing
+454 sequencing, the authors shotgun sequenced the mixture with
+Illumina (@cite).  While the authors concluded that this metagenomic
+sequencing generally outperformed amplicon sequencing, they did not
+conduct an assembly based analysis.
 a mapping based analysis rather than an assembly based analysis.
 
 % @CTB pignatelli & moya 2011
 
 More recently, several benchmark studies systematically evaluated
-metagenome assembly of short reads. (CAMI and ...)
+metagenome assembly of short reads.  The Critical Assessment of
+Metagenome Interpretation (CAMI) collaboration benchmarked a number of
+metagenome assemblers on several data sets of varying complexity,
+evaluating recovery of novel genomes and multiple strain variants
+(@cite).  Notably, CAMI concluded that ``The resolution of
+strain-level diversity represents a substantial challenge to all
+evaluated programs.''  Another recent study evaluated eight assemblers
+on nine environmental metagenomes and three simulated data sets (@cite).
 
 In this paper, we evaluate metagenome assembly on the Illumina data set from
 Shakya et al. (2013) using three assemblers; IDBA-UD \cite{idba},
 SPAdes \cite {spades}, and MEGAHIT \cite{megahit}.  These three assemblers
-were chosen because they are actively used and highly cited.
+were chosen because they are actively used and highly cited, and typically
+perform well.
 
-SPAdes \cite{spades} is an assembler for both single-cell and standard
-(multicell) assembly. (More description here @CTB.)
+%SPAdes \cite{spades} is an assembler for both single-cell and standard
+%(multicell) assembly. (More description here @CTB.)
 
-IDBA-UD \cite{idba} is a de Bruijn graph
-approach for assembling reads from single cell sequencing or
-metagenomic sequencing technologies with uneven sequencing
-depths. IDBA-UD uses multiple depth-relative thresholds to remove
-erroneous k-mers in both low-depth and high-depth regions. It also
-uses paired-end information to solve the branch problem of low-depth
-short repeat regions. It also applies an error correction step to correct
-reads of high-depth regions that can be aligned to high confident
-contigs.
+%IDBA-UD \cite{idba} is a de Bruijn graph
+%approach for assembling reads from single cell sequencing or
+%metagenomic sequencing technologies with uneven sequencing
+%depths. IDBA-UD uses multiple depth-relative thresholds to remove
+%erroneous k-mers in both low-depth and high-depth regions. It also
+%uses paired-end information to solve the branch problem of low-depth
+%short repeat regions. It also applies an error correction step to correct
+%reads of high-depth regions that can be aligned to high confident
+%contigs.
 
-MEGAHIT \cite{megahit} is a newer approach that constructs a succinct
-de Bruijn graph using multiple k-mer sizes, and uses a novel ``mercy
-k-mer'' approach that preserves low-abundance regions of reads. It also
-can use GPUs to accelerate the graph construction.
+%MEGAHIT \cite{megahit} is a newer approach that constructs a succinct
+%de Bruijn graph using multiple k-mer sizes, and uses a novel ``mercy
+%k-mer'' approach that preserves low-abundance regions of reads. It also
+%can use GPUs to accelerate the graph construction.
 
 Below, we evaluate the performance of these three assemblers using the
-synthetic (``mock'') community data from the Shakya et al. study.
+mock community data from the Shakya et al. study.
 The performance of each assembler is compared in terms
 of resource utilization, covered genome fraction, duplication ratio, gene
 recovery, contig misassembly, and contig length.
 
-In contrast to some other evaluations (assemblathon 2), we work with a
-synthetic community with a known answer, do not tune the default
-parameters, and investigate memory and runtime as a key part of the
-process.  This mimics default user experience. (Expand.)
+%In contrast to some other evaluations (assemblathon 2), we work with a
+%synthetic community with a known answer, do not tune the default
+%parameters, and investigate memory and runtime as a key part of the
+%process.  This mimics default user experience. (Expand.)
 
-In this report, we update the list of reference genomes for Shakya et
-al.  to include plasmids and compare IDBA, SPAdes, and MEGAHIT
-performance on short-read metagenome assembly.  We also evaluate
-inter-strain chimerism in the assemblies, explore the failure to
-recover a specific {\em Shewanella baltica} strain variant in the
-assembly, and detect several previously unreported genomes in the
-Shakya et al. data set.  Our report provides strong guidance on choice
-of assemblers and significantly extends previous analyses of this
-low-complexity metagenome benchmarking data set.
+In this report, we extend the CAMI study by delving into questions of
+chimeric misassembly and strain recovery.  First, we update the list
+of reference genomes for Shakya et al.  to include updated assemblies
+as well as plasmids. We then compare IDBA, SPAdes, and MEGAHIT
+performance on assembling this short-read data set, and explore
+concordance in recovery between the three assemblers.  We also evaluate
+inter-strain chimerism in the assemblies and explore the poor
+assemblies caused by ``strain confusion'' between two {\em Shewanella
+  baltica} strain.  We detect and analyze several previously
+unreported strains and genomes in the Shakya et al. data set. Our
+report provides strong guidance on choice of assemblers and
+significantly extends previous analyses of this low-complexity
+metagenome benchmarking data set.
 
 % \subsection*{Sections}
 
@@ -963,11 +977,11 @@ challenge presented by the presence of multiple strains in a sample:
 strains may assemble quite poorly (also observed in CAMI).
 
 ./summarize-coords.py os223-vs-megahit.coords genomes/63.fa
-NC_011663.1,2501017
-NC_011664.1,53226
-NC_011668.1,45752
-NC_011665.1,27929
-TOTAL,2627924.0
+%NC_011663.1,2501017
+%NC_011664.1,53226
+%NC_011668.1,45752
+%NC_011665.1,27929
+%TOTAL,2627924.0
 
 so about half of OS223 is covered in the regular assembly
 
