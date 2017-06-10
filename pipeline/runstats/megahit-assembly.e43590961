@@ -1,0 +1,62 @@
+
+Inactive Modules:
+  1) R     2) TBB
+
+The following have been reloaded with a version change:
+  1) Boost/1.47.0 => Boost/1.63.0     3) OpenMPI/1.4.3 => OpenMPI/2.0.2
+  2) GNU/4.4.5 => GNU/6.2
+
+
+The following have been reloaded with a version change:
+  1) Python/2.7.2 => Python/3.5.0
+
+MEGAHIT v1.1.1-2-g02102e1
+--- [Tue Jun  6 10:00:38 2017] Start assembly. Number of CPU threads 16 ---
+--- [Tue Jun  6 10:00:38 2017] Available memory: 6506102108160, used: 10000000000
+--- [Tue Jun  6 10:00:38 2017] Converting reads to binaries ---
+b'    [read_lib_functions-inl.h  : 209]     Lib 0 (SRR606249.pe.qc.fq.gz): interleaved, 108422358 reads, 101 max length'
+b'    [read_lib_functions-inl.h  : 209]     Lib 1 (SRR606249.se.qc.fq.gz): se, 520403 reads, 101 max length'
+b'    [utils.h                   : 126]     Real: 350.7805\tuser: 128.5785\tsys: 16.2925\tmaxrss: 154544'
+--- [Tue Jun  6 10:06:30 2017] k-max reset to: 117 ---
+--- [Tue Jun  6 10:06:30 2017] k list: 27,37,47,57,67,77,87,97,107,117 ---
+--- [Tue Jun  6 10:06:30 2017] Extracting solid (k+1)-mers and building sdbg for k = 27 ---
+--- [Tue Jun  6 10:35:35 2017] Assembling contigs from SdBG for k = 27 ---
+--- [Tue Jun  6 10:56:50 2017] Local assembling k = 27 ---
+--- [Tue Jun  6 11:05:43 2017] Extracting iterative edges from k = 27 to 37 ---
+--- [Tue Jun  6 11:19:15 2017] Building graph for k = 37 ---
+--- [Tue Jun  6 11:21:42 2017] Assembling contigs from SdBG for k = 37 ---
+--- [Tue Jun  6 11:29:24 2017] Local assembling k = 37 ---
+--- [Tue Jun  6 11:38:58 2017] Extracting iterative edges from k = 37 to 47 ---
+--- [Tue Jun  6 11:54:56 2017] Building graph for k = 47 ---
+--- [Tue Jun  6 11:57:10 2017] Assembling contigs from SdBG for k = 47 ---
+--- [Tue Jun  6 12:02:47 2017] Local assembling k = 47 ---
+--- [Tue Jun  6 12:11:08 2017] Extracting iterative edges from k = 47 to 57 ---
+--- [Tue Jun  6 12:24:22 2017] Building graph for k = 57 ---
+--- [Tue Jun  6 12:26:26 2017] Assembling contigs from SdBG for k = 57 ---
+--- [Tue Jun  6 12:31:24 2017] Local assembling k = 57 ---
+--- [Tue Jun  6 12:40:33 2017] Extracting iterative edges from k = 57 to 67 ---
+--- [Tue Jun  6 12:45:42 2017] Building graph for k = 67 ---
+--- [Tue Jun  6 12:47:57 2017] Assembling contigs from SdBG for k = 67 ---
+--- [Tue Jun  6 12:52:17 2017] Local assembling k = 67 ---
+--- [Tue Jun  6 13:00:49 2017] Extracting iterative edges from k = 67 to 77 ---
+--- [Tue Jun  6 13:04:45 2017] Building graph for k = 77 ---
+--- [Tue Jun  6 13:06:40 2017] Assembling contigs from SdBG for k = 77 ---
+--- [Tue Jun  6 13:11:03 2017] Local assembling k = 77 ---
+--- [Tue Jun  6 13:18:44 2017] Extracting iterative edges from k = 77 to 87 ---
+--- [Tue Jun  6 13:21:20 2017] Building graph for k = 87 ---
+--- [Tue Jun  6 13:22:49 2017] Assembling contigs from SdBG for k = 87 ---
+--- [Tue Jun  6 13:26:31 2017] Local assembling k = 87 ---
+--- [Tue Jun  6 13:35:38 2017] Extracting iterative edges from k = 87 to 97 ---
+--- [Tue Jun  6 13:38:56 2017] Building graph for k = 97 ---
+--- [Tue Jun  6 13:40:29 2017] Assembling contigs from SdBG for k = 97 ---
+--- [Tue Jun  6 13:43:47 2017] Local assembling k = 97 ---
+--- [Tue Jun  6 13:53:09 2017] Extracting iterative edges from k = 97 to 107 ---
+--- [Tue Jun  6 13:53:36 2017] Building graph for k = 107 ---
+--- [Tue Jun  6 13:54:24 2017] Assembling contigs from SdBG for k = 107 ---
+--- [Tue Jun  6 13:57:54 2017] Local assembling k = 107 ---
+--- [Tue Jun  6 14:06:16 2017] Extracting iterative edges from k = 107 to 117 ---
+--- [Tue Jun  6 14:06:29 2017] Building graph for k = 117 ---
+--- [Tue Jun  6 14:07:24 2017] Assembling contigs from SdBG for k = 117 ---
+--- [Tue Jun  6 14:09:56 2017] Merging to output final contigs ---
+--- [STAT] 26352 contigs, total 205120378 bp, min 200 bp, max 1151883 bp, avg 7784 bp, N50 51597 bp
+--- [Tue Jun  6 14:10:00 2017] ALL DONE. Time elapsed: 14961.637300 seconds ---
