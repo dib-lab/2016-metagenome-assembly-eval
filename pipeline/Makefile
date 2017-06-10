@@ -99,9 +99,9 @@ megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa
 	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa	 
 #-------------------------------------------------------------------Analysis--------------------------------------------------------------------------------
 megahit-quality-assembly500.fa: # idba-quality-assembly.fa  spades-quality-assembly.fa  megahit-quality-assembly.fa 
-	python ${MYSCRIPTS}/filter_assembly_mincontig.py idba-quality-assembly.fa 500	
-	python ${MYSCRIPTS}/filter_assembly_mincontig.py spades-quality-assembly.fa 500 
-	python ${MYSCRIPTS}/filter_assembly_mincontig.py megahit-quality-assembly.fa 500 
+	extract-long-sequences.py -l 500 idba-quality-assembly.fa -o idba-quality-assembly500.fa
+	extract-long-sequences.py -l 500 spades-quality-assembly.fa -o spades-quality-assembly500.fa
+	extract-long-sequences.py -l 500 megahit-quality-assembly.fa -o megahit-quality-assembly500.fa
 
 mqc500.coords: #megahit-quality-assembly500.fa 
 	${NUCMER}/nucmer --coords -p  iqc500  ${REFERENCE}  idba-quality-assembly500.fa
