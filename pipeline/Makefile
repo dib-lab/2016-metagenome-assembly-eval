@@ -24,15 +24,8 @@ mc=500
 
 # remove 18 genomes for crimes of strain variation
 
-podar-reference-genomes-2017.05.30.tar.gz:
-	curl -L -o podar-reference-genomes-2017.05.30.tar.gz 'https://osf.io/ud5hc/?action=download&version=1'
-
-63.fa: podar-reference-genomes-2017.05.30.tar.gz
-	tar xzf podar-reference-genomes-2017.05.30.tar.gz
-	touch [0-9].fa [1-6]?.fa
-
-${FULL_REFERENCE}: 63.fa
-	cat [0-9].fa [1-6]?.fa > ${FULL_REFERENCE}
+${FULL_REFERENCE}: genomes/63.fa
+	cat genomes/[0-9].fa genomes/[1-6]?.fa > ${FULL_REFERENCE}
 
 ${REFERENCE}: ${FULL_REFERENCE}
 	python ./subtract-names.py genome-remove-list.txt ${FULL_REFERENCE} > ${REFERENCE}
@@ -82,7 +75,7 @@ SRR606249.se.qc.fq.gz:   SRR606249-1.fastq.gz   SRR606249-2.fastq.gz
 
 #-------------------------------------------------------------SPADES QUALITY---------------------------------------------------------------------------------
 SRR606249.spades.d/scaffolds.fasta: SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz 
-	/usr/bin/time -a -o sqc.txt  ${SPADES} --pe1-12 SRR606249.pe.qc.fq.gz --pe1-s SRR606249.se.qc.fq.gz -o SRR606249.spades.d
+	/usr/bin/time -a -o sqc.txt  ${SPADES} --pe1-12 SRR606249.pe.qc.fq.gz --pe1-s SRR606249.se.qc.fq.gz -o SRR606249.spades.d -t 16
 
 spades-quality-assembly.fa: SRR606249.spades.d/scaffolds.fasta  
 	python ${MYSCRIPTS}/multi-rename.py assembly SRR606249.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
@@ -150,7 +143,7 @@ parse-prokka: mprokka/testasm.tbl
 
 
 #----------------------------------------------------------------Reads Coverage-----------------------------------------------------------------------------
-qc-ref.sam: ${FULL_REFERENCE} SRR606249.pe.qc.fq.gz
+qc-ref.bam: ${FULL_REFERENCE} SRR606249.pe.qc.fq.gz
 	bwa index  ${FULL_REFERENCE} 
 	bwa aln  ${FULL_REFERENCE}  SRR606249.pe.qc.fq.gz   >  qc-ref.pe.sai 
 	bwa aln  ${FULL_REFERENCE}  SRR606249.se.qc.fq.gz   >  qc-ref.se.sai
@@ -160,15 +153,19 @@ qc-ref.sam: ${FULL_REFERENCE} SRR606249.pe.qc.fq.gz
 	samtools import  ${FULL_REFERENCE}.fai  qc-ref.pe.sam  qc-ref.pe.bam 
 	samtools import  ${FULL_REFERENCE}.fai  qc-ref.se.sam  qc-ref.se.bam 
 	samtools merge  qc-ref.bam  qc-ref.pe.bam  qc-ref.se.bam 
+
+qc-ref.sam: qc-ref.bam
 	samtools view -h -o  qc-ref.sam  qc-ref.bam
 
-unmapped-qc-to-ref: qc-ref.sam 
+qc-ref.pe.bam: qc-ref.bam
+
+unmapped-qc-to-ref: qc-ref.pe.bam
 	samtools view -h -o  qc-ref.pe.sam  qc-ref.pe.bam
 	samtools view -h -c -f 4  qc-ref.pe.bam >> unmapped-qc-to-ref 
 	samtools view -h -o  qc-ref.se.sam  qc-ref.se.bam
 	samtools view -h -c -f 4  qc-ref.se.bam >> unmapped-qc-to-ref
 
-unmapped-qc-to-ref.fq:
+unmapped-qc-to-ref.fq: qc-ref.bam
 	samtools view -f 4 -b qc-ref.bam > unmapped-qc-to-ref.bam
 	samtools bam2fq unmapped-qc-to-ref.bam > unmapped-qc-to-ref.fq
 
@@ -217,7 +214,13 @@ mqc500.dist: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa
 
 ### individual genomes & mapped reads
 
-%.fa.pe.mapped.fa.gz: %.fa SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
+download-genomes:
+	mkdir -p genomes
+	-rm genomes/{?,??}.fa 
+	curl -L -o genomes/podar-reference-genomes-updated-2017.06.10.tar.gz https://osf.io/8uxj9/?action=download
+	cd genomes && tar xzf podar-reference-genomes-updated-2017.06.10.tar.gz
+
+%.fa.pe.mapped.fa.gz: genomes/%.fa SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
 	./get-aligned-reads.sh $< SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
 
 %.fa.se.mapped.fa.gz: %.fa.pe.mapped.fa.gz
@@ -239,8 +242,7 @@ chimera.sqc50k.txt:
 
 ### sourmash stuff / Jaccard comparison foo
 
-sigs: SRR606249.sig mircea.fa.sig faecalis.fa.sig nucleatum.fa.sig \
-	thermophilus.fa.sig vulgaris.fa.sig xenovorans.fa.sig \
+sigs: SRR606249.sig mircea.fa.sig SRR606245.sig \
 	idba-quality-assembly500.fa.sig \
 	megahit-quality-assembly500.fa.sig \
 	spades-quality-assembly500.fa.sig
@@ -249,13 +251,13 @@ SRR606245.sig:
 	sourmash compute --scaled 10000 -k 21,31,41,51 SRR606245.fastq.gz -o SRR606245.sig
 
 SRR606249.sig:
-	sourmash compute --scaled 10000 -k 21,31,41,51 SRR606249.[ps]e.qc.fq.gz -o SRR606249.sig
+	gunzip -c SRR606249.[?e.qc.fq.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249.sig
 
-SRR606249-abund.sig:
-	cat SRR606249.[ps]e.qc.fq.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249-abund.sig --track-abundance
-
-mircea.fa.sig:
+mircea.fa.sig: ${FULL_REFERENCE}
 	sourmash compute --scaled 10000 -k 21,31,41,51 mircea.fa -o mircea.fa.sig
+
+${REFERENCE}.sig: ${REFERENCE}
+	sourmash compute --scaled 10000 -k 21,31,41,51 ${REFERENCE} -o ${REFERENCE}.sig	
 
 idba-quality-assembly500.fa.sig: #idba-quality-assembly500.fa
 	sourmash compute --scaled 10000 -k 21,31,41,51 idba-quality-assembly500.fa -o idba-quality-assembly500.fa.sig
