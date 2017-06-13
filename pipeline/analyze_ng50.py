@@ -46,7 +46,7 @@ def main():
     matches = defaultdict(set)
     for (s1, e1, s2, e2, ident, gname, cname) in _load_coords(args.coords):
         if ident >= args.percent_identity and e2 - s2 + 1 >= args.min_length:
-            assert gname in ref
+            assert gname in ref, gname
             lengthlist[gname].append(e2 - s2 + 1)
 
     # compute ng50 of aligned stuff
