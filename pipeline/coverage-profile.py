@@ -4,6 +4,8 @@ import argparse
 import screed
 import math
 
+MAX_COVERAGE=100000
+
 def ignore_at(iter):
     for item in iter:
         if item.startswith('@'):
@@ -60,20 +62,21 @@ def main():
     # now, go through all of the bases in the genome contigs, and tally up.
     cov = 0. 
     total = 0.      
-    arr = [0] * 1000
+    arr = [0] * (MAX_COVERAGE+1)
     for name in genome_dict1: 
        ref = genome_dict1[name]
        total += len(genome_dict1[name]) 
        for j in range (len(genome_dict1[name])):
-             arr[ref[j]] += 1
-             if ref[j] >0:
-                 cov +=1 
+           arr[min(ref[j], MAX_COVERAGE)] += 1
+           if ref[j] > 0:
+               cov +=1 
 	   
     if cov == 0:
         assert 0, "summed coverage is 0 - this seems like a problem :)"
 
     for i in range(len(arr)):
-        print >>fp, i, arr[i]
+        if arr[i]:
+            print >>fp, i, arr[i]
 
     # @CTB this seems like a problem -- it outputs this as the last line
     # of the coverage file. what awk command is being used to count?
