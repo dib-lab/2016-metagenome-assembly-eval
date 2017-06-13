@@ -546,42 +546,31 @@ of the reference and/or variation between the reads and the reference.
 \caption{Top uncovered genomes}
 \begin{tabular}{|l|c|c|}\hline
 \textbf{Genome} & \textbf {Read coverage} & \textbf{21-mer presence} \\ \hline 
-% 7.fa
-{{\em B. xenovorans}} & 99.2\% & 91.6\% \\
-\hline
-% 17.fa
-{{\em D. vulgaris} DP4}  & 91.98\% & 79.1\% \\
-\hline
-% 55
-{{\em T. thermophilus} HB27}  & 91.06\% & 79.7\% \\
-\hline
-% 19
-{{\em E. faecalis} V583}  & 78.14\% & 68.0\% \\
-\hline
-% 20
-{{\em F. nucleatum}}  & 47.6\% & 17.8\% \\
 
-% 18.fa.cov.txt:18.fa.cov.sam
-{{\em }} & 89.22\& & XX\% \\
-% 10.fa.cov.txt:10.fa.cov.sam
-{{\em }} & 87.69\& & XX\% \\
-% 11.fa.cov.txt:11.fa.cov.sam
-{{\em }} & 85.16\& & XX\% \\
-% 14.fa.cov.txt:14.fa.cov.sam
-{{\em }} & 80.00\& & XX\% \\
-% 15.fa.cov.txt:15.fa.cov.sam
-{{\em }} & 79.07\& & XX\% \\
-% 19.fa.cov.txt:19.fa.cov.sam
-{{\em E. faecalis}} & 74.62\& & XX\% \\
-% 17.fa.cov.txt:17.fa.cov.sam
-{{\em D. vulgaris}} & 62.37\& & XX\% \\
-% 19.fa.cov.txt:19.fa.cov.sam
-{{\em E. faecalis}} & 61.86\& & XX\% \\
-% 16.fa.cov.txt:16.fa.cov.sam
-{{\em D. radiodurans}} & 55.33\& & XX\% \\
-% 20.fa.cov.txt:20.fa.cov.sam
-{{\em F. nucleatum }} & 47.58\& & XX\% \\
-
+%genomes/6.fa.cov.sam 0.982701100644 5230802.0 5322882.0
+%>NZ_JGWU01000001.1 Bordetella bronchiseptica D989 ctg7180000008197, whole genome shotgun sequence
+%97.3%
+{{\em B. bronchispetica}} & 98.2\% & 97.3\% \\
+\hline
+%genomes/17.fa.cov.sam 0.931870428479 3411942.0 3661391.0
+%>NC_008751.1 Desulfovibrio vulgaris DP4, complete genome
+%82.5
+{{\em D. vulgaris} DP4}  & 93.2\% & 82.5\% \\
+\hline
+%genomes/55.fa.cov.sam 0.910651720402 1725573.0 1894877.0
+%>AE017221.1 Thermus thermophilus HB27, complete genome
+%79.7
+{{\em T. thermophilus} HB27}  & 91.1\% & 79.7\% \\
+\hline
+%genomes/19.fa.cov.sam 0.746209918949 2510480.0 3364308.0
+%>NZ_KE136524.1 Enterococcus faecalis V583 acyDH-supercont2.1, whole genome shotgun sequence
+%65.6
+{{\em E. faecalis} V583}  & 74.6\% & 65.6\% \\
+\hline
+%genomes/20.fa.cov.sam 0.475837203955 1034708.0 2174500.0
+%>AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
+%18.2
+{{\em F. nucleatum}}  & 47.6\% & 18.2\% \\
 
 \hline
 \end{tabular}
@@ -610,7 +599,7 @@ any abundance.
 We next did a 51-mer containment analysis of each reference genome in
 the reads.  99\% or more of the constituent 51-mers for 51 of the 64
 reference genomes were present in the reads, suggesting that each
-of the 51 genome was entirely present at some minimal coverage.
+of the 51 genomes was entirely present at some minimal coverage.
 
 We excluded the remaining 13 genomes from any comparative
 analysis of assembly quality, because interpreting coverage and
@@ -705,17 +694,16 @@ with all three assemblies containing between 95.8\% and 96.6\% of the
 \begin{table}[!h]
 \centering
 \caption{Contig coverage of reference with ``loose'' alignment conditions.}
-\begin{tabular}{|l|c|c|}\hline
-\textbf{Assembly} & \textbf{\% covered} & \textbf{\% Duplication}
+\begin{tabular}{|l|c|c|c|}\hline
+  \textbf{Assembly} & \textbf{bases aligned} & \textbf{duplication}
+  & \textbf{k=51 cov}
   \\ \hline
-MEGAHIT & 96.2\% & 0.72\% \\ \hline
-SPAdes  & 95.8\% & 0.99\% \\ \hline
-IDBA    & 95.6\% & 0.88\% \\ \hline
+MEGAHIT & 96.2\% & 0.72\% & 96.7\% \\ \hline
+SPAdes  & 95.8\% & 0.99\% & 96.2\% \\ \hline
+IDBA    & 95.6\% & 0.88\% & 97.2\% \\ \hline
 \end{tabular}
 \label{table:contig-coverage}
 \end{table}
-
-(Update this section to include k-mer overlap - see comments.)
 
 %sourmash search -k 51 mircea.rm13.fa.sig *-quality*.sig --containment -q
 %3 matches:
@@ -730,7 +718,8 @@ We next evaluated the extent to which the assembled contigs recovered the
 adjusted reference (Table ~\ref{table:contig-coverage}).  Each of the three
 assemblers generates contigs that cover more than 95.6\% of the reference
 metagenome at high identity (99\%) with little duplication
-(0.72-0.99\%).
+(0.72-0.99\%).  All three assemblies contain between 96.2\% and 97.2\% of
+the 51-mers in the reference.
 
 % @CTB note for discussion: so here the assemblies approximate the
 % best possible, as measured by high-coverage bases/k-mers.
@@ -850,6 +839,13 @@ were between pairs or groups of closely related species.
 \subsection*{The unmapped reads contain strain variants of reference genomes.}
 
 % number taken from unmapped-qc-to-ref.
+
+
+% unmapped-qc-to-ref.fq:
+% 4773066.0 total reads
+% unmapped-qc-to-ref-rm.fq
+%14674021
+
 % >>> float(7494946 + 117005) / 108942761
 % 0.06987110414798464
 % >>> float(7494946 + 117005)
