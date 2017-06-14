@@ -1126,6 +1126,8 @@ nicenames['genomes/55.fa'] = 'Thermus thermophilus HB27'
 nicenames['genomes/51.fa'] = 'Thermotoga neapolitana'
 nicenames['genomes/27.fa'] = 'Leptothrix cholodnii'
 nicenames['genomes/47.fa'] = 'Shewanella baltica OS185'
+nicenames['genomes/17.fa'] = 'Desulfovibrio vulgaris DP4'
+nicenames['genomes/63.fa'] = 'Shewanella baltica OS223'
 
 ###
 
@@ -1152,11 +1154,13 @@ def seq_to_nicename(seqname):
     return nicename
 
 # check
+seq_to_nicename_mapping = {}
 for x in fasta_to_filename:
-    seq_to_nicename(x)
-
+    seq_to_nicename_mapping[x] = seq_to_nicename(x)
+    
 revname = {}
 for filename in nicenames:
     nicename = nicenames[filename]
-    assert nicename not in revname
+    if nicename in revname:
+        print('dup', nicename)
     revname[nicename] = filename

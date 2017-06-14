@@ -4,7 +4,7 @@ import argparse
 from collections import defaultdict
 import pprint
 import screed
-from nicenames import nicenames
+from nicenames import seq_to_nicename
 
 def load_reference(filename):
     d = {}
@@ -40,14 +40,21 @@ def main():
     parser.add_argument('--latex', type=bool, default=False)
     args = parser.parse_args()
 
-    ref = load_reference(args.ref)
+    ref2 = load_reference(args.ref)
+
+    ref = defaultdict(int)
+    for k in ref2:
+        nicename = seq_to_nicename(k)
+        ref[nicename] += ref2[k]
+        
     lengthlist = defaultdict(list)
 
     matches = defaultdict(set)
     for (s1, e1, s2, e2, ident, gname, cname) in _load_coords(args.coords):
         if ident >= args.percent_identity and e2 - s2 + 1 >= args.min_length:
-            assert gname in ref, gname
-            lengthlist[gname].append(e2 - s2 + 1)
+            assert gname in ref2, gname
+            nicename = seq_to_nicename(gname)
+            lengthlist[nicename].append(e2 - s2 + 1)
 
     # compute ng50 of aligned stuff
     ng50s = []
@@ -59,20 +66,29 @@ def main():
         t90 = total * .9
 
         # aligned ng50
+        did_set = False
         sofar = 0.
         for x in lengths:
             sofar += x
             if sofar > t50:
                 ng50s.append((x, gname))
+                did_set = True
                 break
+
+        if not did_set:
+            ng50s.append((0, gname))
 
         # aligned ng90
         sofar = 0.
+        did_set = False
         for x in lengths:
             sofar += x
             if sofar > t90:
                 ng90s[gname] = x
+                did_set = True
                 break
+        if not did_set:
+            ng90s[gname] = 0
 
     # output
 
