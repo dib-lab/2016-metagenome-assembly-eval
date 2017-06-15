@@ -8,6 +8,8 @@
 #    unmapped-qc-to-ref-rm.fq - reads that don't map to mircea.rm13.fa
 #    unmapped-mqc-assembly500.fa - megahit assembly of unmapped-qc-to-ref-rm.fq
 #
+#    unmapped-assemblies - build/count reads that don't map to assemblies
+#
 #    %.fa.pe.mapped.fa.gz - reads mapped to individual genomes
 
 FULL_REFERENCE=mircea.fa
@@ -67,7 +69,7 @@ readcoverage: SRR606249.pe.qc.fq.gz \
  
 #run-analysis.sh includes in addition to the above: common-uncovered-coverage.out and mqc500.dist	 
 #-----------------------------------------------------------QUALITY STARTS-------------------------------------------------------------------------------
-SRR606249.se.qc.fq.gz:   SRR606249-1.fastq.gz   SRR606249-2.fastq.gz
+SRR606249.se.qc.fq.gz:   #SRR606249-1.fastq.gz   SRR606249-2.fastq.gz
 	java -jar ${TRIM}/trimmomatic-0.32.jar PE  SRR606249-1.fastq.gz   SRR606249-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:${TRIM}/adapters/TruSeq2-PE.fa:2:40:15 \
 	LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25 
 	${SCRIPTS}/interleave-reads.py s1_pe s2_pe | gzip -9c > SRR606249.pe.qc.fq.gz 
@@ -207,6 +209,50 @@ unmapped-mqc-rm-assembly500.fa: unmapped-qc-to-ref-rm.fq
 SRR606249.qc.coverage: qc-ref.sam
 	python ${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  SRR606249.qc.coverage 
 
+# -------------------------------------------------------------READ INCORPORATION---------------------------------------------
+
+unmapped-assemblies: iq-unmapped.count mq-unmapped.count sq-unmapped.count
+
+iq-unmapped.count:  SRR606249.pe.qc.fq.gz  megahit-quality-assembly500.fa
+	bwa index  idba-quality-assembly500.fa 
+	bwa aln  idba-quality-assembly500.fa  SRR606249.pe.qc.fq.gz   >  iq.pe.sai 
+	bwa aln  idba-quality-assembly500.fa  SRR606249.se.qc.fq.gz   >  iq.se.sai 
+	bwa samse  idba-quality-assembly500.fa  iq.pe.sai  SRR606249.pe.qc.fq.gz >  iq.pe.sam 
+	bwa samse  idba-quality-assembly500.fa  iq.se.sai  SRR606249.se.qc.fq.gz >  iq.se.sam
+	samtools faidx  idba-quality-assembly500.fa 
+	samtools import  idba-quality-assembly500.fa.fai  iq.pe.sam  iq.pe.bam 
+	samtools import  idba-quality-assembly500.fa.fai  iq.se.sam  iq.se.bam 
+	samtools faidx  idba-quality-assembly500.fa 
+	samtools import  idba-quality-assembly500.fa.fai  iq.pe.sam  iq.pe.bam 
+	samtools import  idba-quality-assembly500.fa.fai  iq.se.sam  iq.se.bam 
+	samtools view -c -f 4  iq.pe.bam >  iq-unmapped.count
+	samtools view -c -f 4  iq.se.bam >>  iq-unmapped.count 
+
+sq-unmapped.count: SRR606249.pe.qc.fq.gz  megahit-quality-assembly500.fa
+	bwa index  spades-quality-assembly500.fa 
+	bwa aln  spades-quality-assembly500.fa  SRR606249.pe.qc.fq.gz   >  sq.pe.sai 
+	bwa aln  spades-quality-assembly500.fa  SRR606249.se.qc.fq.gz   >  sq.se.sai 
+	bwa samse  spades-quality-assembly500.fa  sq.pe.sai  SRR606249.pe.qc.fq.gz >  sq.pe.sam 
+	bwa samse  spades-quality-assembly500.fa  sq.se.sai  SRR606249.se.qc.fq.gz >  sq.se.sam 
+	samtools faidx  spades-quality-assembly500.fa 
+	samtools import  spades-quality-assembly500.fa.fai  sq.pe.sam  sq.pe.bam 
+	samtools import  spades-quality-assembly500.fa.fai  sq.se.sam  sq.se.bam 
+	samtools view -c -f 4  sq.pe.bam >  sq-unmapped.count
+	samtools view -c -f 4  sq.se.bam >>  sq-unmapped.count
+
+mq-unmapped.count: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa
+	bwa index  megahit-quality-assembly500.fa 
+	bwa aln  megahit-quality-assembly500.fa  SRR606249.pe.qc.fq.gz   >  mq.pe.sai 	
+	bwa aln  megahit-quality-assembly500.fa  SRR606249.se.qc.fq.gz   >  mq.se.sai 
+	bwa samse  megahit-quality-assembly500.fa  mq.pe.sai  SRR606249.pe.qc.fq.gz >  mq.pe.sam 
+	bwa samse  megahit-quality-assembly500.fa  mq.se.sai  SRR606249.se.qc.fq.gz >  mq.se.sam 
+	samtools faidx  megahit-quality-assembly500.fa 
+	samtools import  megahit-quality-assembly500.fa.fai  mq.pe.sam  mq.pe.bam 
+	samtools import  megahit-quality-assembly500.fa.fai  mq.se.sam  mq.se.bam 
+	samtools view -c -f 4  mq.pe.bam >  mq-unmapped.count
+	samtools view -c -f 4  mq.se.bam >>  mq-unmapped.count
+
+
 #------------------------------------------------------------Kmer Abundance---------------------------------------------------------------------------------
 mqc500.dist: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa
 	gunzip -c SRR606249.pe.qc.fq.gz > SRR606249.pe.qc.fastq 
@@ -251,16 +297,25 @@ chimera.sqc50k.txt:
 
 ### sourmash stuff / Jaccard comparison foo
 
-sigs: SRR606249.sig mircea.fa.sig SRR606245.sig \
+sigs: SRR606249.sig mircea.fa.sig SRR606245.sig SRR606249-trimV.sig \
 	idba-quality-assembly500.fa.sig \
 	megahit-quality-assembly500.fa.sig \
-	spades-quality-assembly500.fa.sig
+	spades-quality-assembly500.fa.sig SRR606249-hardtrim.sig
 
 SRR606245.sig:
 	sourmash compute --scaled 10000 -k 21,31,41,51 SRR606245.fastq.gz -o SRR606245.sig
 
 SRR606249.sig:
 	gunzip -c SRR606249.?e.qc.fq.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249.sig
+
+SRR606249-trimV-foo:
+	trim-low-abund.py -k 31 -M 20e9 -C 3 -Z 20 SRR606249.pe.qc.fastq SRR606249.se.qc.fastq --gzip -V
+
+SRR606249-trimV.sig:
+	gunzip -c SRR606249.?e.qc.fastq.abundtrim.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249-trimV.sig
+
+SRR606249-hardtrim.sig:
+	gunzip -c SRR606249.hardtrim.qc.fq.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249-hardtrim.sig
 
 mircea.fa.sig: ${FULL_REFERENCE}
 	sourmash compute --scaled 10000 -k 21,31,41,51 mircea.fa -o mircea.fa.sig
@@ -312,3 +367,8 @@ bar6:
 	wc genomes/47.fa
 	./summarize-coords.py os223-vs-megahit.coords genomes/63.fa
 	wc genomes/63.fa
+
+bar7:
+	#for i in genomes/*.fa; do ./summarize-coords2.py mqc500.coords $i > $(basename $i).mqc.aligncov.txt; echo $i; done
+	for i in genomes/*.fa; do ./summarize-coords2.py sqc500.coords $i > $(basename $i).sqc.aligncov.txt; echo $i; done
+	for i in genomes/*.fa; do ./summarize-coords2.py iqc500.coords $i > $(basename $i).iqc.aligncov.txt; echo $i; done
