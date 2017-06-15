@@ -76,7 +76,7 @@ def main():
                 break
 
         if not did_set:
-            ng50s.append((0, gname))
+            ng50s.append((1000, gname))
 
         # aligned ng90
         sofar = 0.
@@ -88,7 +88,7 @@ def main():
                 did_set = True
                 break
         if not did_set:
-            ng90s[gname] = 0
+            ng90s[gname] = 1000
 
     # output
 
