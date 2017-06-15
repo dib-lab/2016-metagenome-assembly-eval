@@ -1,3 +1,5 @@
+import sys
+
 fasta_to_filename = {}
 filename_to_header = {}
 
@@ -1070,10 +1072,10 @@ nicenames['genomes/53.fa'] = 'Thermotoga sp. RQ2'
 nicenames['genomes/46.fa'] = 'Salinispora tropica CNB-440' 
 nicenames['genomes/30.fa'] = 'Methanococcus maripaludis S2'
 nicenames['genomes/29.fa'] = 'Methanococcus maripaludis C5'
-nicenames['genomes/8.fa'] = 'Caldisaccharolyticus DSM 8903'
+nicenames['genomes/8.fa'] = 'Caldicellulosiruptor saccharolyticus'
 nicenames['genomes/37.fa'] = 'Porphyromonas gingivalis'
 nicenames['genomes/32.fa'] = 'Methanosarcina acetivorans'
-nicenames['genomes/9.fa'] = 'Caldicllulosiruptor bescii'
+nicenames['genomes/9.fa'] = 'Caldicellulosiruptor bescii'
 nicenames['genomes/11.fa'] = 'Chlorobium phaeobacteroides' 
 nicenames['genomes/50.fa'] = 'Thermoanaerobacter pseudethanolicus'
 nicenames['genomes/41.fa'] = 'Pyrococcus furiosus DSM 3638'
@@ -1162,5 +1164,31 @@ revname = {}
 for filename in nicenames:
     nicename = nicenames[filename]
     if nicename in revname:
-        print('dup', nicename)
+        print('dup', nicename, file=sys.stderr)
     revname[nicename] = filename
+
+strain_bool = {}
+strain_bool['Caldicellulosiruptor saccharolyticus'] = True
+strain_bool['Caldicellulosiruptor bescii'] = True
+
+strain_bool['Salinispora tropica CNB-440' ] = True
+strain_bool['Salinispora arenicola'] = True
+
+strain_bool['Shewanella baltica OS185'] = True
+strain_bool['Shewanella baltica OS223'] = True
+
+strain_bool['Thermotoga neapolitana'] = True
+strain_bool['Thermotoga petrophila'] = True
+strain_bool['Thermotoga sp. RQ2'] = True
+
+strain_bool['Methanococcus maripaludis S2'] = True
+strain_bool['Methanococcus maripaludis C5'] = True
+
+strain_bool['Sulfurihydrogenibium yellowstonense SS-5'] = True
+strain_bool['Sulfurihydrogenibium sp. YO3AOP1'] = True
+
+strain_bool['Sulfitobacter sp. EE-36' ] = True
+strain_bool['Sulfitobacter NAS-14.1' ] = True
+
+def is_strain(nicename):
+    return strain_bool.get(nicename)

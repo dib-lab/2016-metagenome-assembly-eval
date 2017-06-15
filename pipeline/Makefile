@@ -372,3 +372,8 @@ bar7:
 	#for i in genomes/*.fa; do ./summarize-coords2.py mqc500.coords $i > $(basename $i).mqc.aligncov.txt; echo $i; done
 	for i in genomes/*.fa; do ./summarize-coords2.py sqc500.coords $i > $(basename $i).sqc.aligncov.txt; echo $i; done
 	for i in genomes/*.fa; do ./summarize-coords2.py iqc500.coords $i > $(basename $i).iqc.aligncov.txt; echo $i; done
+
+nga50:
+	./analyze_ng50.py iqc500.coords mircea.rm13.fa  > iqc.ng50.txt
+	./analyze_ng50.py mqc500.coords mircea.rm13.fa  > mqc.ng50.txt
+	./analyze_ng50.py sqc500.coords mircea.rm13.fa  > sqc.ng50.txt
