@@ -11,5 +11,5 @@ module load bwa
 module load samtools
 
 #make analysis
-make  unmapped-qc-to-ref.fq
+make  unmapped-assemblies
 
