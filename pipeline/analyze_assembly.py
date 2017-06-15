@@ -210,12 +210,15 @@ class GenomeIntervalsContainer(object):
             else:
                 return -cmp(l1, l2)
 
+        def get_length_ident(a):
+            return (-(a[1] - a[0] + 1), -a[4])
+
         # go through and eliminate matches where the same part of one
         # contig matches to multiple genomic regions.
         keep = []
         skipped = 0
         for k in contig_ival_list:
-            contig_ival_list[k].sort(sort_matches_by_length)
+            contig_ival_list[k].sort(key=get_length_ident)
 
             # dumb and expensive but simple
             this_contig_cov = {}
