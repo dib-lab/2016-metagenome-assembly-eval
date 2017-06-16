@@ -338,20 +338,17 @@ unmapped-mqc-assembly500.fa.sig: unmapped-mqc-assembly500.fa
 unmapped-mqc-rm-assembly500.fa.sig: unmapped-mqc-rm-assembly500.fa
 	sourmash compute --scaled 10000 -k 21,31,41,51 unmapped-mqc-rm-assembly500.fa -o unmapped-mqc-rm-assembly500.fa.sig
 
-foo:
-	sourmash gather -k 31 unmapped-mqc-assembly500.fa.sig ~/research/genbank-k31 -o unmapped-mqc-assembly500.x.genbank.csv
-
 bar:
 	${NUCMER}/nucmer --coords -p bestunal unaligned/best-matches.fa unmapped-mqc-assembly500.fa
 
 bar-count:
-	sort -rn -k10 bestunal.coords | head -1425 | sort -rn -k8 | cut -c 52-60| paste -sd+ | bc
+	./summarize-coords.py bestunal.coords
 
 bar2:
 	${NUCMER}/nucmer --coords -p bestunal-vs-mirc mircea.fa unmapped-mqc-assembly500.fa
 
 bar2-count:
-	sort -rn -k10 bestunal-vs-mirc.coords | head -265 | cut -c 52-60 | paste -sd+ | bc
+	./summarize-coords.py bestunal-vs-mirc.coords
 
 bar3:
 	${NUCMER}/nucmer --coords -p os223-vs-megahit genomes/63.fa megahit-quality-assembly500.fa
