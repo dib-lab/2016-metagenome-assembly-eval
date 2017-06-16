@@ -377,3 +377,6 @@ nga50:
 	./analyze_ng50.py iqc500.coords mircea.rm13.fa  > iqc.ng50.txt
 	./analyze_ng50.py mqc500.coords mircea.rm13.fa  > mqc.ng50.txt
 	./analyze_ng50.py sqc500.coords mircea.rm13.fa  > sqc.ng50.txt
+
+bar8:
+	sourmash gather unmapped-mqc-assembly500.fa.sig -k 31 ~/dev/sourmash/genbank/genbank-k31.sbt.json -o unmapped-mqc-assembly500.fa.sig.gather.k31.csv > unmapped-mqc-assembly500.fa.sig.gather.k31.txt

@@ -3,6 +3,7 @@ import sys
 fasta_to_filename = {}
 filename_to_header = {}
 
+fasta_to_filename['AP008226.1'] = 'unaligned/GCF_000091545.1_ASM9154v1_genomic.fna.gz'
 fasta_to_filename['CP001472.1'] = 'genomes/0.fa'
 fasta_to_filename['CP001941.1'] = 'genomes/1.fa'
 fasta_to_filename['CP001071.1'] = 'genomes/2.fa'
@@ -1137,9 +1138,9 @@ nicenames['unaligned/GCF_000015485.1_ASM1548v1_genomic.fna.gz'] = 'Desulfovibrio
 nicenames['unaligned/GCF_000021665.1_ASM2166v1_genomic.fna.gz'] = 'Shewanella baltica OS223'
 nicenames['unaligned/GCF_000091545.1_ASM9154v1_genomic.fna.gz'] = 'Thermus thermophilus HB8'
 nicenames['unaligned/GCF_000153625.3_ASM15362v1_genomic.fna.gz'] = 'NZ_CM000440.1 F. nucleatum subsp. polymorphum'
-nicenames['unaligned/GCF_000158255.2_Fuso_sp_4_1_13_V2_genomic.fna.gz'] = 'NZ_KQ235732.1 F nucleatum subsp. vincentii'
+nicenames['unaligned/GCF_000158255.2_Fuso_sp_4_1_13_V2_genomic.fna.gz'] = 'NZ_KQ235732.1 F. nucleatum subsp. vincentii'
 nicenames['unaligned/GCF_000320325.1_ASM32032v1_genomic.fna.gz'] = 'NZ_AGVN01000001.1 Enterococcus faecalis M7'
-nicenames['unaligned/GCF_000455885.1_de_novo_genomic.fna.gz'] = 'NZ_ATKF01000001.1 F. hwasookii'
+nicenames['unaligned/GCF_000455885.1_de_novo_genomic.fna.gz'] = 'NZ_ATKF01000001.1 Fusobacterium hwasookii'
 nicenames['unaligned/GCF_000523555.1_Fuso_nucl_13_3C_V1_genomic.fna.gz'] = 'NZ_KI965381.1 F. nucleatum 13_3C'
 nicenames['unaligned/GCF_000524235.1_FspOBRC1v1.0_genomic.fna.gz'] = 'NZ_JANA01000001.1 Fusobacterium sp. OBRC1'
 nicenames['unaligned/GCF_001268685.1_YE19_genomic.fna.gz'] = 'NZ_CXYJ01000001.1 E. coli isolate YS'
@@ -1149,6 +1150,11 @@ nicenames['unaligned/GCF_900115135.1_IMG-taxon_2642422541_annotated_assembly_gen
 
 def seq_to_nicename(seqname):
     seqname = seqname.split(' ')[0]
+    if seqname not in fasta_to_filename:
+        if seqname.startswith('NZ_'):
+            seqname = seqname[3:]
+        elif 'NZ_'+seqname in fasta_to_filename:
+            seqname = 'NZ_'+seqname
     assert seqname in fasta_to_filename, seqname
 
     filename = fasta_to_filename[seqname]
