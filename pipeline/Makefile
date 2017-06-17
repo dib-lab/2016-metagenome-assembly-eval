@@ -314,6 +314,9 @@ SRR606249-trimV-foo:
 SRR606249-trimV.sig:
 	gunzip -c SRR606249.?e.qc.fastq.abundtrim.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249-trimV.sig
 
+SRR606249-hardtrim:
+	trim-low-abund.py -k 31 -M 20e9 -C 5 SRR606249.pe.qc.fastq SRR606249.se.qc.fastq --gzip -o SRR606249.hardtrim.qc.fq.gz
+
 SRR606249-hardtrim.sig:
 	gunzip -c SRR606249.hardtrim.qc.fq.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249-hardtrim.sig
 
