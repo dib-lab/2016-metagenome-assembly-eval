@@ -358,7 +358,7 @@ class GenomeIntervalsContainer(object):
             n =">"+k
             count = 0
             print(n, file=fout1)
-            for j in xrange(0, len(self.covered[k])):
+            for j in range(0, len(self.covered[k])):
                 if (self.covered[k][j] ==0) and (other1.covered[k][j] ==0) and (other2.covered[k][j] ==0) :
                     count += 1
                     fout1.write(str (j) )
@@ -371,7 +371,7 @@ class GenomeIntervalsContainer(object):
         for k in self.covered:
            n =">"+k
            count =0
-           for j in xrange(0, len(self.covered[k])):
+           for j in range(0, len(self.covered[k])):
                 if (self.covered[k][j] ==0) and (other1.covered[k][j] ==0) and (other2.covered[k][j] ==0) :
                     count+=1  
            print(n, count, file=fout)
@@ -384,7 +384,7 @@ class GenomeIntervalsContainer(object):
         for k in self.covered:
            n =">"+k
            count =0
-           for j in xrange(0, len(self.covered[k])):
+           for j in range(0, len(self.covered[k])):
                 if (self.covered[k][j] ==0) and (other1.covered[k][j] >0 ) and (other2.covered[k][j] > 0) :
                     count+=1
            print(n, count, self.refsizes[k], file=fout)
@@ -398,7 +398,7 @@ class GenomeIntervalsContainer(object):
         for k in self.covered:
            n =">"+k
            count =0
-           for j in xrange(0, len(self.covered[k])):
+           for j in range(0, len(self.covered[k])):
                 if (self.covered[k][j] >0) and (other1.covered[k][j] ==0 ) and (other2.covered[k][j] ==0) :
                     count+=1
            print(n, count, self.refsizes[k], file=fout)
