@@ -3,24 +3,7 @@ import sys
 import argparse
 from collections import defaultdict
 import pprint
-
-# load a .coords file output by nucmer
-def _load_coords(filename, only=None):
-    lines = [ x.strip() for x in (open(filename)) ]
-    assert lines[1].startswith('NUCMER'), lines[0]
-    
-    # process each line into (s1, e1, _, s2, e2, ..., % ident, _, name1, name2)
-    coords = []
-    for line_no in range(5, len(lines)):
-        line = lines[line_no].split()
-        s1, e1 = int(line[0]), int(line[1])
-        s2, e2 = int(line[3]), int(line[4])
-        ident = float(line[9])
-        name1, name2 = line[11], line[12]
-        s1, e1 = min(s1, e1), max(s1, e1)
-        s2, e2 = min(s2, e2), max(s2, e2)
-
-        yield (s1, e1, s2, e2, ident, name1, name2)
+from analyze_assembly import _load_coords
 
 
 def main():

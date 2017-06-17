@@ -238,7 +238,7 @@ class GenomeIntervalsContainer(object):
 
                 keep.append((s1, e2, s2, e2, ident, gname, cname))
 
-        print('skipped:', skipped, 'of', total)
+        print('skipped:', skipped, 'of', total, file=sys.stderr)
         return keep
 
 

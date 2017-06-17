@@ -373,10 +373,12 @@ bar7:
 	for i in genomes/*.fa; do ./summarize-coords2.py sqc500.coords $i > $(basename $i).sqc.aligncov.txt; echo $i; done
 	for i in genomes/*.fa; do ./summarize-coords2.py iqc500.coords $i > $(basename $i).iqc.aligncov.txt; echo $i; done
 
-nga50:
-	./analyze_ng50.py iqc500.coords mircea.rm13.fa  > iqc.ng50.txt
-	./analyze_ng50.py mqc500.coords mircea.rm13.fa  > mqc.ng50.txt
-	./analyze_ng50.py sqc500.coords mircea.rm13.fa  > sqc.ng50.txt
+nga50: sqc.ng50.txt
+
+sqc.ng50.txt: sqc500.coords mircea.rm13.fa spades-quality-assembly500.fa
+	./analyze_ng50.py iqc500.coords mircea.rm13.fa idba-quality-assembly500.fa > iqc.ng50.txt
+	./analyze_ng50.py mqc500.coords mircea.rm13.fa megahit-quality-assembly500.fa > mqc.ng50.txt
+	./analyze_ng50.py sqc500.coords mircea.rm13.fa spades-quality-assembly500.fa > sqc.ng50.txt
 
 bar8:
 	sourmash gather unmapped-mqc-assembly500.fa.sig -k 31 ~/dev/sourmash/genbank/genbank-k31.sbt.json -o unmapped-mqc-assembly500.fa.sig.gather.k31.csv > unmapped-mqc-assembly500.fa.sig.gather.k31.txt
