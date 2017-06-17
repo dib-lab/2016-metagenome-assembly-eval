@@ -5,52 +5,35 @@ from collections import defaultdict
 import pprint
 import screed
 from nicenames import seq_to_nicename
-
-def load_reference(filename):
-    d = {}
-    for record in screed.open(filename):
-        d[record.name.split()[0]] = len(record.sequence)
-    return d
-
-# load a .coords file output by nucmer
-def _load_coords(filename, only=None):
-    lines = [ x.strip() for x in (open(filename)) ]
-    assert lines[1].startswith('NUCMER'), lines[0]
-    
-    # process each line into (s1, e1, _, s2, e2, ..., % ident, _, name1, name2)
-    coords = []
-    for line_no in range(5, len(lines)):
-        line = lines[line_no].split()
-        s1, e1 = int(line[0]), int(line[1])
-        s2, e2 = int(line[3]), int(line[4])
-        ident = float(line[9])
-        name1, name2 = line[11], line[12]
-        s1, e1 = min(s1, e1), max(s1, e1)
-        s2, e2 = min(s2, e2), max(s2, e2)
-
-        yield (s1, e1, s2, e2, ident, name1, name2)
+import analyze_assembly
+from analyze_assembly import _load_coords, load_assembly, load_reference
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('coords')
     parser.add_argument('ref')
+    parser.add_argument('assem')
     parser.add_argument('-p', '--percent-identity', type=float, default=0.99)
     parser.add_argument('-l', '--min-length', type=int, default=100)
     parser.add_argument('--latex', type=bool, default=False)
     args = parser.parse_args()
 
-    ref2 = load_reference(args.ref)
+    refsizes, ref2 = load_reference(args.ref)
 
     ref = defaultdict(int)
     for k in ref2:
         nicename = seq_to_nicename(k)
-        ref[nicename] += ref2[k]
+        ref[nicename] += len(ref2[k])
         
     lengthlist = defaultdict(list)
 
+    a, aseq = analyze_assembly.load_assembly(args.assem)
+    gic_a = analyze_assembly.GenomeIntervalsContainer(refsizes, a, aseq)
+    keep = gic_a.load_contigs_uniq(args.coords, args.percent_identity*100)
+
     matches = defaultdict(set)
-    for (s1, e1, s2, e2, ident, gname, cname) in _load_coords(args.coords):
+    for (s1, e1, s2, e2, ident, gname, cname) in keep:
         if ident >= args.percent_identity and e2 - s2 + 1 >= args.min_length:
             assert gname in ref2, gname
             nicename = seq_to_nicename(gname)

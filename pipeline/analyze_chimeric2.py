@@ -26,8 +26,6 @@ def main():
 
     print('Loading Coords')
  
-    prefix1 = args.coords.split('.')[0]
-  
     a, aseq = analyze_assembly.load_assembly(args.assem)
     
     gic_a = analyze_assembly.GenomeIntervalsContainer(refsizes, a, aseq)
