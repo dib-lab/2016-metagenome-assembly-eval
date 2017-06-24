@@ -204,7 +204,7 @@ low-complexity metagenome benchmarking data set.
 % \caption{\label{fig:min-contig-analysis} Genome fraction, duplication ratio, Contigs overlap ratio, and number of contigs using different minimum contig length,  identity 99\%, and Ambiguous Approach}
 % \end{figure}
 
-% @CTB maybe we should put this back in?
+% CTB maybe we should put this back in?
 % \begin{figure}[!h]
 % \centering
 % \includegraphics[width=0.4\textwidth]{CommonUncoveredCoverageProfile.pdf} 
@@ -327,8 +327,6 @@ for max memory in bytes to be used in constructing the graph, and {\tt
 interleaved-paired-end and single-end files respectively.  MEGAHIT allows
 the specification of a memory limit and we used {\tt -M 1e+10} for 10 GB.
 
-% @CTB threads.
-
 All three assemblies were executed on the same high-memory buy-in node
 on the Michigan State University High Performance Compute Cluster, and
 we recorded RAM and CPU time of each assembly job using the {\tt
@@ -393,7 +391,7 @@ each individual reference genome.
 
 \subsection*{Analysis of chimeric misassemblies}
 
-%@CTB cami, disco just used quast.
+%CTB cami, disco just used quast.
 
 We analyzed each assembly for chimeric misassemblies by counting the
 number of contigs that contained matches to two distinct reference
@@ -406,8 +404,7 @@ negative control on our analysis, we verified that this approach
 yielded no positive results when applied to the alignments of the
 reference metagenome against itself.
 
-%@CTB Note: The rate of chimerism is probably higher when you include Shewanella OS185 and bordetella and haloferax.
-% @CTB note that cami reported megahit has highest # misassemblies.
+% CTB note that cami reported megahit has highest # misassemblies.
 
 %\subsection*{Gene annotations using Prokka}
 %We used prokka \cite{prokka} to annotate the reference genome using
@@ -520,7 +517,6 @@ of the reference and/or variation between the reads and the reference.
 %>AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
 %18.2
 {{\em Fusobacterium nucleatum}}  & 47.6\% \\
-% @CTB name should be full, first time. JG
 \hline
 \end{tabular}
 \label{table:genomes_uncovered-analysis}
@@ -533,9 +529,6 @@ coverage above 95\%.  The remaining four varied significantly
 (Table~\ref{table:genomes_uncovered-analysis}), with {\em
   F. nucleatum} the lowest -- only 47.6\% of the bases in the
 reference genome are covered by one or more mapped reads.
-
-% @CTB: point out in discussion that read mapping correlates well with
-% k-mer presence.
 
 \begin{table}[t]
 \caption{Genomes removed from reference for low 51-mer presence}
@@ -922,7 +915,7 @@ is sufficient to recover operon-level relationships for many genes.
 
 % (Mention genes / prokka analysis.)
 
-% @CTB do we want to include sourmash comparison matrix?
+% CTB do we want to include sourmash comparison matrix?
 
 \subsection*{The presence of multiple closely related genomes confounds assembly.}
 
@@ -1088,8 +1081,8 @@ approaches systematically applied to mock communities such as CAMI
 \cite{CAMI} can then provide fair comparisons of entire toolchains
 (wet + dry) applied to these mock communities.
 
-% @CTB didn't mesaure N50, error rates, etc.
-% @@CTB size cutoff for recovery / binning / 2kb on figure!!
+% CTB didn't mesaure N50, error rates, etc.
+% CTB size cutoff for recovery / binning / 2kb on figure!!
 
 We omitted two important questions in this study: binning and choice
 of parameters.  We chose not to evaluate genome binning because most
@@ -1119,8 +1112,9 @@ SA and CTB created the tables and figures and wrote the paper.
 No competing interest to our knowledge.
 
 \subsection*{Grant information}
-This work is funded by Moore and NIH.
-% @CTB grant foo
+This work is funded by
+Gordon and Betty Moore Foundation Grant GBMF4551 and
+NIH NHGRI R01 grant HG007513-03, both to CTB.
 
 \subsection*{Acknowledgments}
 We thank Michael R. Crusoe and Phillip T. Brooks for input on analysis
