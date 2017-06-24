@@ -55,15 +55,15 @@ $\ast$ E-mail: ctbrown@ucdavis.edu
 \begin{abstract}
  
   We evaluate the performance of three metagenome assemblers, IDBA,
-  SPAdes, and MEGAHIT, on short-read sequencing of a defined ``mock''
-  community from Shakya et al. (2013) containing 64 genomes.  We
-  update the reference metagenome for this mock community and detect
-  several additional genomes in the read data set.  We show that
-  strain confusion results in significant loss of reference genomes
-  that are otherwise completely present in the read data set.  In
-  agreement with previous studies, we find that MEGAHIT performs best
-  computationally; we also show that MEGAHIT tends to recover larger
-  portions of the strain variants than the other assemblers.
+  MetaSPAdes, and MEGAHIT, on short-read sequencing of a defined ``mock''
+  community containing 64 genomes (Shakya et al. (2013)).  We update
+  the reference metagenome for this mock community and detect several
+  additional genomes in the read data set.  We show that strain
+  confusion results in significant loss in assembly of reference
+  genomes that are otherwise completely present in the read data set.
+  In agreement with previous studies, we find that MEGAHIT performs
+  best computationally; we also show that MEGAHIT tends to recover
+  larger portions of the strain variants than the other assemblers.
   
 \end{abstract}
 
@@ -80,25 +80,18 @@ metagenomic data rely on mapping or comparing sequencing reads to
 reference sequence collections. However, reference databases contain
 only a small subset of microbial diversity \cite{geba}, and the much
 of the remaining diversity is evolutionarily distant and search
-techniques may not access it.
+techniques may not recover it \cite{CAMI}.
 
 As sequencing capacity increases and sequence data is generated from
-many more environmental samples, metagenomics is increasingly using de
-novo assembly techniques to generate new reference genomes and
-metagenomes.  There are a number of metagenome assemblers that are
-widely used. However, evaluating the results of these assemblers is
-challenging due to the general lack of good quality reference
-metagenomes.
+many more environmental samples, metagenomics is increasingly using
+{\em de novo} assembly techniques to generate new reference genomes
+and metagenomes \cite{Sharon2012}.  There are a number of metagenome
+assemblers that are widely used. However, evaluating the results of
+these assemblers is challenging due to the general lack of good
+quality reference metagenomes.
 
-% @CTB reference megahit 1.0 paper which did an assembly and evaluation
-% of the same data set as us.
-
- 
 %-----------Literature Review starts here ---------------------
 
-% @CTB do a few quick checks, but I don't know of any benchmark studies
-% other than these.
- 
 Moya et al. in \cite{moya2014} evaluated metagenome assembly using
 two simulated 454 viral metagenome and six assemblers. The assemblies
 were evaluated based on several metrics including N50, percentages of
@@ -107,10 +100,9 @@ addition to, chimeras per contigs and the effect of assembly on
 taxonomic and functional annotations.
  
 Mavromatis et al. in \cite{mavromatis2007} provided a benchmark study
-to evaluate the fidelity of metagenome process methods. The study used
+to evaluate the fidelity of metagenome processing methods. The study used
 simulated metagenomic data sets constructed at different complexity
 levels.
-%The low complexity set is dominated by a single near-clonal organism. The medium complexity set includes moderate communities with more than one dominant organism. The high complexity set lacks dominant population.  
 The datasets were assembled using Phrap v3.57, Arachne v.2
 \cite{arachne} and JAZZ \cite{jazz}.
 This study evaluates assembly, gene prediction, and binning
@@ -120,27 +112,25 @@ against a reference genome.
 Rangwala et al. in \cite{huzefa2011} presented an evaluation study of
 metagenome assembly. The study used a de Bruijn graph based assembler
 ABYSS \cite{abyss} to assemble simulated metagnome reads of 36 bp. The
-data set is classified at different complexity levels.
-%The data set is classified into 3 classes, low complexity data set in which the reads belongs to a single dominant organism, a medium complexity data set, in which the reads has more than one dominant organism with lower concentration, and the high complexity data set which has no distinct dominant organism.
-The study compares the quality of the assembly of the data sets in
-terms of quality measures of contigs length, assembly accuracy. The
-study also took into consideration the effect of kmer size and the
-degree of chimericity.  However, the study evaluated the assembly
-based on one assembler, and did not evaluate assembly against several
-assemblers.  Also, both previous studies used simulated data, which
-may lack confounders of assembly such as sequencing artifacts and GC bias.
+data set is classified at different complexity levels.  The study
+compared the quality of the assembly of the data sets in terms of
+contig length and assembly accuracy. The study also took into
+consideration the effect of kmer size and the degree of chimericity.
+However, the study evaluated the assembly based on only one
+assembler. Also, both previous studies used simulated data, which may
+lack confounders of assembly such as sequencing artifacts and GC bias.
 
-Shakya et al. (2013) constructed a synthetic community of organisms by
-mixing DNA isolated from individual cultures of 64 bacteria and
-archaea, including a variety of strains across a range of nucleotide
-distances \cite{podar}.  In addition to performing 16s amplicon
-analysis and doing 454 sequencing, the authors shotgun-sequenced the
-mixture with Illumina.  While the authors concluded that this
-metagenomic sequencing generally outperformed amplicon sequencing,
-they did not conduct an assembly based analysis.  This data set was
-also used in several other evaluation studies, including gbtools for
-binning \cite{Seah2015} and benchmarking of the MEGAHIT assembler
-\cite{Li2016}.
+In a landmark study, Shakya et al. (2013) constructed a synthetic
+community of organisms by mixing DNA isolated from individual cultures
+of 64 bacteria and archaea, including a variety of strains across a
+range of nucleotide distances \cite{podar}.  In addition to performing
+16s amplicon analysis and doing 454 sequencing, the authors
+shotgun-sequenced the mixture with Illumina.  While the authors
+concluded that this metagenomic sequencing generally outperformed
+amplicon sequencing, they did not conduct an assembly based analysis.
+This data set was also used in several other evaluation studies,
+including gbtools for binning \cite{Seah2015} and benchmarking of the
+MEGAHIT assembler \cite{Li2016}.
 
 % @CTB pignatelli & moya 2011
 
@@ -153,26 +143,27 @@ evaluating recovery of novel genomes and multiple strain variants
 strain-level diversity represents a substantial challenge to all
 evaluated programs.''  Another recent study evaluated eight assemblers
 on nine environmental metagenomes and three simulated data sets
-\cite{metag_one}. Also see \cite{Greenwald2017}.
+\cite{metag_one} but used no mock. Also see \cite{Greenwald2017}.
 % @CTB JG: what's the finding?
 
 In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
 data set.  First, we update the list of reference genomes for Shakya
-et al. to include the latest Genbank assemblies. We then compare IDBA
-\cite{idba}, SPAdes \cite{metaspades}, and MEGAHIT \cite{megahit}
-performance on assembling this short-read data set, and explore
-concordance in recovery between the three assemblers.  We describe the
-effects of ``strain confusion'' between multiple strains.  We also
-detect and analyze several previously unreported strains and genomes
-in the Shakya et al. data set.  We find that in the absence of closely
-related genomes, all three metagenome assemblers recover 95\% or more
-of known reference genomes.  However, in the presence of closely
-related genomes, metagenome assemblers vary widely in their
-performance and can fail to recover the majority of some genomes even
-when they are completely present in the reads.  Our report provides
-strong guidance on choice of assemblers and extends previous analyses
-of this low-complexity metagenome benchmarking data set.
+et al. to include the latest Genbank assemblies along with
+plasmids. We then compare IDBA \cite{idba}, MetSPAdes \cite{metaspades},
+and MEGAHIT \cite{megahit} performance on assembling this short-read
+data set, and explore concordance in recovery between the three
+assemblers.  We describe the effects of ``strain confusion'' between
+multiple strains.  We also detect and analyze several previously
+unreported strains and genomes in the Shakya et al. data set.  We find
+that in the absence of closely related genomes, all three metagenome
+assemblers recover 95\% or more of known reference genomes.  However,
+in the presence of closely related genomes, these three metagenome
+assemblers vary widely in their performance and, in extreme cases, can
+fail to recover the majority of some genomes even when they are
+completely present in the reads.  Our report provides strong guidance
+on choice of assemblers and extends previous analyses of this
+low-complexity metagenome benchmarking data set.
 
 % \subsection*{Sections}
 
@@ -259,12 +250,15 @@ total length of 11.07 Gbp and an estimated fragment size of 380 bp
  
 The original reads are available through the NCBI Sequence Read
 Archive at Accession SRX200676.  We updated the 64 reference genomes
-sets from NCBI Genbank using the latest available assemblies (June
-2017); updated data is available for download at
+sets from NCBI Genbank using the latest available assemblies with
+plasmid content (June 2017); updated data is available for download at
 https://osf.io/8uxj9/.
 
 \section*{Methods}
-The analysis code and run scripts for this paper are available at:
+
+% @CTB License; Zenodo.
+The analysis code and run scripts for this paper are written in Python
+and bash, and are available at:
 https://github.com/dib-lab/2015-metagenome-assembly/. The scripts and
 overall pipeline were examined by the first and senior authors for
 correctness.  In addition, the bespoke reference-based analysis
@@ -275,6 +269,7 @@ data set with a high quality reference genome \cite{chitsaz2011}.
 
 We removed adapters with Trimmomatic v0.30 in paired-end mode with the
 Truseq adapters \cite{trimmomatic}, using light quality score trimming
+({\tt LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25})
 as recommended in MacManes, 2014 \cite{macmanes2014optimal}.
 
 %We next used the fastq\_quality\_filter from the FASTX-Toolkit v0.0.13.2  \cite{FXtoolkit} to remove sequences using the parameters  {\tt{-Q33   -q 30 --p 50}} , which keeps all sequences with  50\%  or more bases with quality score greater than or equal to 30.
@@ -291,19 +286,19 @@ bases were covered by mapped reads (custom script {\tt
 
 We used MinHashing as implemented in sourmash to estimate k-mer
 inclusion and Jaccard similarity between data sets \cite{sourmash}.
-MinHash signatures were prepared with `sourmash compute` using
-`--scaled 10000`.  K-mer inclusion was computed by taking the ratio of
+MinHash signatures were prepared with {\tt sourmash compute} using
+{\tt --scaled 10000}.  K-mer inclusion was computed by taking the ratio of
 the number of intersecting hashes with the query over the total number
 of hashes in the subject MinHash. Jaccard similarity was computed as
 in \cite{mash} by taking the ratio of the number of intersecting
 hashes between the query and subject over the number of hashes in the
 union.  K-mer sizes for comparison were chosen at 21, 31, or 51,
 depending on the level of taxonomic specificity desired - genus,
-species, or strain, as described in \cite{metapalette}.
+species, or strain, respectively, as described in \cite{metapalette}.
 
 When specified, high-abundance k-mers were selected for counting by
 using the script {\tt trim-low-abund.py} script with {\tt -C 5} from
-khmer 2.x \cite{streaming, khmer2}.
+khmer v2 \cite{streaming, khmer2}.
 
 \subsection*{Assemblers}
 
@@ -440,7 +435,7 @@ data set was used as the basis for all further analyses.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.45\textwidth]{CoverageProfile.pdf}  
-\caption{\label{fig:coverage-profile} Cumulative coverage profile for the refernce metagenome, based on read mapping. }
+\caption{\label{fig:coverage-profile} Cumulative coverage profile for the reference metagenome, based on read mapping. }
 \end{figure}
 
 \subsection*{The reference metagenome is not completely present in the reads.}
@@ -601,7 +596,7 @@ MEGAHIT & 52hr 25m & 4 hr 9m & 11.4 GB \\
 \hline
 IDBA-UD & 17h & & 149.1 GB \\
 \hline
-SPAdes & 94hr 43m & 94hr 44m & 100.7 GB \\
+MetaSPAdes & 94hr 43m & 94hr 44m & 100.7 GB \\
 \hline
 
 \end{tabular}
@@ -609,11 +604,11 @@ SPAdes & 94hr 43m & 94hr 44m & 100.7 GB \\
 \end{table}
 
  We ran three commonly used metagenome assemblers on the QC data set:
-IDBA-UD, SPAdes, and MEGAHIT. We recorded the time and memory usage of
+IDBA-UD, MetaSPAdes, and MEGAHIT. We recorded the time and memory usage of
 each (Table \ref{table:time-memory}).  In computational requirements, MEGAHIT outperformed both
-SPAdes and IDBA-UD considerably, producing an assembly in four hours --
+MetaSPAdes and IDBA-UD considerably, producing an assembly in four hours --
 approximately 4 times faster than IDBA and 8 times faster than
-SPAdes.  MEGAHIT used only 11.4 GB of RAM -- 1/13th to 1/9th
+MetaSPAdes.  MEGAHIT used only 11.4 GB of RAM -- 1/13th to 1/9th
 the memory used by IDBA and SPAdes, respectively.
 % @CTB mention wall time and CPU time.
 
