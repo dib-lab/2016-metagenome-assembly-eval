@@ -111,7 +111,7 @@ against a reference genome.
 
 Rangwala et al. in \cite{huzefa2011} presented an evaluation study of
 metagenome assembly. The study used a de Bruijn graph based assembler
-ABYSS \cite{abyss} to assemble simulated metagnome reads of 36 bp. The
+ABYSS \cite{abyss} to assemble simulated metagenome reads of 36 bp. The
 data set is classified at different complexity levels.  The study
 compared the quality of the assembly of the data sets in terms of
 contig length and assembly accuracy. The study also took into
@@ -150,7 +150,7 @@ In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
 data set.  First, we update the list of reference genomes for Shakya
 et al. to include the latest Genbank assemblies along with
-plasmids. We then compare IDBA \cite{idba}, MetSPAdes \cite{metaspades},
+plasmids. We then compare IDBA \cite{idba}, MetaSPAdes \cite{metaspades},
 and MEGAHIT \cite{megahit} performance on assembling this short-read
 data set, and explore concordance in recovery between the three
 assemblers.  We describe the effects of ``strain confusion'' between
@@ -268,7 +268,7 @@ data set with a high quality reference genome \cite{chitsaz2011}.
 \subsection*{Quality Filtering} 
 
 We removed adapters with Trimmomatic v0.30 in paired-end mode with the
-Truseq adapters \cite{trimmomatic}, using light quality score trimming
+TruSeq adapters \cite{trimmomatic}, using light quality score trimming
 ({\tt LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25})
 as recommended in MacManes, 2014 \cite{macmanes2014optimal}.
 
@@ -323,6 +323,8 @@ for max memory in bytes to be used in constructing the graph, and {\tt
 interleaved-paired-end and single-end files respectively.  MEGAHIT allows
 the specification of a memory limit and we used {\tt -M 1e+10} for 10 GB.
 
+% @CTB threads.
+
 All three assemblies were executed on the same high-memory buy-in node
 on the Michigan State University High Performance Compute Cluster, and
 we recorded RAM and CPU time of each assembly job using the {\tt
@@ -363,7 +365,7 @@ included only those records with the ``4'' flag in the SAM files
 %{\tt{abundance-dist.py}}. We followed the same approach to examine
 %k-mer presence in assemblies.
 
-\subsection*{Assembly analysis using Nucmer}
+\subsection*{Assembly analysis using NUCmer}
 
 We used the NUCmer tool from MUMmer3.23 \cite{mummer3.0} to align
 assemblies to the reference genome with options {\tt \--coords} {\tt
@@ -494,32 +496,27 @@ of the reference and/or variation between the reads and the reference.
 \centering
 \caption{Top uncovered genomes}
 \begin{tabular}{|l|c|c|}\hline
-\textbf{Genome} & \textbf {Read coverage} & \textbf{21-mer presence} \\ \hline 
+\textbf{Genome} & \textbf {Read coverage} \\ \hline 
 
-%genomes/6.fa.cov.sam 0.982701100644 5230802.0 5322882.0
-%>NZ_JGWU01000001.1 Bordetella bronchiseptica D989 ctg7180000008197, whole genome shotgun sequence
-%97.3%
-{{\em B. bronchiseptica}} & 98.2\% & 97.3\% \\
-\hline
 %genomes/17.fa.cov.sam 0.931870428479 3411942.0 3661391.0
 %>NC_008751.1 Desulfovibrio vulgaris DP4, complete genome
 %82.5
-{{\em D. vulgaris} DP4}  & 93.2\% & 82.5\% \\
+{{\em D. vulgaris} DP4}  & 93.2\% \\
 \hline
 %genomes/55.fa.cov.sam 0.910651720402 1725573.0 1894877.0
 %>AE017221.1 Thermus thermophilus HB27, complete genome
 %79.7
-{{\em T. thermophilus} HB27}  & 91.1\% & 79.7\% \\
+{{\em T. thermophilus} HB27}  & 91.1\% \\
 \hline
 %genomes/19.fa.cov.sam 0.746209918949 2510480.0 3364308.0
 %>NZ_KE136524.1 Enterococcus faecalis V583 acyDH-supercont2.1, whole genome shotgun sequence
 %65.6
-{{\em E. faecalis} V583}  & 74.6\% & 65.6\% \\
+{{\em E. faecalis} V583}  & 74.6\% \\
 \hline
 %genomes/20.fa.cov.sam 0.475837203955 1034708.0 2174500.0
 %>AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
 %18.2
-{{\em F. nucleatum}}  & 47.6\% & 18.2\% \\
+{{\em F. nucleatum}}  & 47.6\% \\
 % @CTB name should be full, first time. JG
 \hline
 \end{tabular}
@@ -527,29 +524,15 @@ of the reference and/or variation between the reads and the reference.
 \end{table}
 
 To see if specific reference genomes exhibited low coverage, we
-analyzed read mapping coverage and 21-mer containment for individual
-genomes.  Of the 64 reference genomes used in the metagenome, 59 had a
-per-base mapping coverage above 95\% and a 21-mer containment in the
-QC reads above 95\%.  The remaining five varied significantly in both
-metrics (Table~\ref{table:time-memory}), with {\em F. nucleatum} the
-lowest -- only 47.6\% of the bases in the reference genome are
-covered by one or more mapped reads, and only 18.2\% of the 21-mers in
-the {\em F. nucleatum} reference genome are present in the reads at
-any abundance.
+analyzed read mapping coverage for individual genomes.  Of the 64
+reference genomes used in the metagenome, 60 had a per-base mapping
+coverage above 95\%.  The remaining four varied significantly
+(Table~\ref{table:genomes_uncovered-analysis}), with {\em
+  F. nucleatum} the lowest -- only 47.6\% of the bases in the
+reference genome are covered by one or more mapped reads.
 
 % @CTB: point out in discussion that read mapping correlates well with
 % k-mer presence.
-
-We next did a 51-mer containment analysis of each reference genome in
-the reads, mimicking the analysis done in \cite{metapalette}.  99\% or
-more of the constituent 51-mers for 51 of the 64 reference genomes
-were present in the reads, suggesting that each of the 51 genomes was
-entirely present at some minimal coverage.
-
-We excluded the remaining 13 genomes (see
-Table~\ref{table:51mer_remove}) from any comparative analysis of
-assembly quality, because interpreting coverage and misassembly
-analysis for these genomes would be challenging.
 
 \begin{table}[t]
 \caption{Genomes removed from reference for low 51-mer presence}
@@ -578,8 +561,17 @@ analysis for these genomes would be challenging.
 
 % new reference size: 141,394,815
 
-% @CTB: point out in discussion that whether low coverage or strain variation,
-% not fair to analyze misassemblies when k-mers entirely absent.
+We next did a 51-mer containment analysis of each reference genome in
+the reads; k=51 was chosen so as to be specific to strain content
+\cite{metapalette}.  99\% or more of the constituent 51-mers for 51 of
+the 64 reference genomes were present in the reads, suggesting that
+each of the 51 genomes was entirely present at some minimal coverage.
+
+We excluded the remaining 13 genomes (see
+Table~\ref{table:51mer_remove}) from any further reference-based
+analysis because interpreting recovery and misassembly statistics for
+these genomes would be confounding; also see the discussion of strain
+variants, below.
 
 \subsection*{MEGAHIT is the fastest and lowest-memory assembler evaluated}
 %Numbers in this section are up to date 22 december 2016
@@ -594,7 +586,7 @@ analysis for these genomes would be challenging.
 \hline
 MEGAHIT & 52hr 25m & 4 hr 9m & 11.4 GB \\
 \hline
-IDBA-UD & 17h & & 149.1 GB \\
+IDBA-UD & 49h & 49h & 39.8GB \\
 \hline
 MetaSPAdes & 94hr 43m & 94hr 44m & 100.7 GB \\
 \hline
@@ -603,13 +595,25 @@ MetaSPAdes & 94hr 43m & 94hr 44m & 100.7 GB \\
 \label{table:time-memory}
 \end{table}
 
- We ran three commonly used metagenome assemblers on the QC data set:
-IDBA-UD, MetaSPAdes, and MEGAHIT. We recorded the time and memory usage of
-each (Table \ref{table:time-memory}).  In computational requirements, MEGAHIT outperformed both
-MetaSPAdes and IDBA-UD considerably, producing an assembly in four hours --
-approximately 4 times faster than IDBA and 8 times faster than
-MetaSPAdes.  MEGAHIT used only 11.4 GB of RAM -- 1/13th to 1/9th
-the memory used by IDBA and SPAdes, respectively.
+We ran three commonly used metagenome assemblers on the QC data set:
+IDBA-UD, MetaSPAdes, and MEGAHIT. We recorded the time and memory
+usage of each (Table \ref{table:time-memory}).  In computational
+requirements, MEGAHIT outperformed both MetaSPAdes and IDBA-UD
+considerably, producing an assembly in four hours (``wall time'') --
+approximately 12 times faster than IDBA and 23 times faster than
+MetaSPAdes.  MEGAHIT used only 11.4 GB of RAM -- 1/3rd to 1/9th the
+memory used by IDBA and SPAdes, respectively.
+
+CPU time measurements (which include processing on multiple CPU cores)
+show that MEGAHIT and IDBA are competitive in overall processing time,
+but MEGAHIT's ability to make use of multiple cores results in
+significantly less overall assembly time; this is particularly
+relevant given the increasing availability of manycore processors.  Despite a
+variety of configuration attempts, we were unable to get MetaSPAdes to
+use threading effectively; however, we note that even with perfectly
+parallel processing on 16 cores, MetaSPAdes would take 6 hours and
+still use approximately 9 times as much RAM as MEGAHIT.
+
 % @CTB mention wall time and CPU time.
 
 % see pipeline/runtimes/
@@ -779,7 +783,7 @@ yields the lowest NGA50 for 28 of the 51 genomes, while SPAdes yields
 the highest NGA50 for 32 of the 51 genomes.
 
 We also evaluated aligned coverage per genome for each of the three
-assemblies (right panel, Figure~\ref{fig:nga50}.  We found that a 13
+assemblies (right panel, Figure~\ref{fig:nga50}).  We found that 13
 of the 51 genomes were missing 5\% or more of bases in at least one
 assembly, despite all 51 genomes having 99\% or higher read- and
 51-mer coverage.
@@ -811,7 +815,7 @@ SPAdes       & 0 & 3 & 30 \\
 
 % @CTB add percent of contigs? (table 8)
 % @CTB ``it would be interesting to know what genes chimeric contigs...'' JG
-% @CTB JG: correlation b/t NGA50 and jaccard?
+% @CTB JG: correlation b/t NGA50 and Jaccard?
 
 Chimerism is the formation of contigs that include sequence from
 multiple genomes.  We evaluated the rate of chimerism in contigs at
@@ -824,7 +828,7 @@ Overall, chimeric misassemblies were rare, with no assembler
 generating more than 30 chimeric contigs out of thousands of total
 contigs.
 
-% @CTB could this be caused by nucmer?
+% @CTB could this be caused by NUCmer?
 
 \subsection*{The unmapped reads contain strain variants of reference genomes.}
 
@@ -887,7 +891,7 @@ a genome present in Genbank but not in the reference metagenome.
 
 To verify these assignments, we aligned the MEGAHIT assembly of
 unmapped reads to the Genbank genomes in Table~\ref{table:gather} with
-nucmer using ``loose'' alignment criteria. We found that 1.78 Mbp of
+NUCmer using ``loose'' alignment criteria. We found that 1.78 Mbp of
 the contigs aligned at 99\% identity or better to these Genbank
 genomes.  We also confirmed that, as expected, there are no matches in
 this assembly to the full updated reference metagenome.
@@ -902,7 +906,8 @@ aligns to known {\em P. ruminis} genomes at 99\%.  However, there are
 many alignments to {\em P. ruminis} at 94\% or higher, for
 approximately 2.73 Mbp total.  This suggests that the unmapped reads
 contain at least some data from a novel species of {\em
-  Proteiniclasticum}.
+  Proteiniclasticum}; this matches the observation in \cite{podar} of
+a contaminating genome from an unknown {\em Clostridium} spp.
 
 \section*{Discussion}
 
@@ -924,7 +929,7 @@ is sufficient to recover operon-level relationships for many genes.
 
 \subsection*{The presence of multiple closely related genomes confounds assembly.}
 
-As reported by CAMI, we also find that the presence of closely related
+In agreement with CAMI, we also find that the presence of closely related
 genomes in the metagenome causes many assembly problems.  This is
 clearly shown by Figure~\ref{fig:nga50}, where 12 of the bottom 14
 genomes by NGA50 (left panel) also exhibit poor genome recovery by
@@ -949,7 +954,10 @@ output contigs for a substantial portion of the two genomes.
 Another interest of this study was to examine cross-species chimeric
 assembly, in which a single contig is formed from multiple genomes.
 In Table~\ref{table:contig-chimera}, we show that there is relatively
-little cross-species chimerism.
+little cross-species chimerism.  Surprisingly, what little is present is
+length-dependent: longer contigs are less likely to be chimeric.  This
+might well be due to the same ``strain confusion'' effect as above,
+where contigs that share paths in the assembly graphs are broken in twain.
 
 \subsection*{MEGAHIT performs best by several metrics.}
 
@@ -961,7 +969,7 @@ more of the unique 51-mers from the reads than IDBA.  MEGAHIT covered
 more of the reference genome with both loose and strict alignments
 (Table~\ref{table:contig-coverage} and
 Table~\ref{table:contig-accuracy}), with little duplication.  This is
-clearly because of MEGAHIT's superior performance in recovering the
+clearly because of MEGAHIT's generally superior performance in recovering the
 genomes of closely related strains (Figure~\ref{fig:nga50}, right
 panel).  The sum ``fraction of genome recovered'' is arguably the most
 important measure of a metagenome assembler (see \cite{Vollmers2017}
@@ -992,9 +1000,12 @@ unmapped reads can be assigned to strain variants of the species in
 the mock community (Table~\ref{table:gather}).  This suggests that the
 constructors of the mock community may have unintentionally included
 strain variants of {\em Fusobacterium nucleatum}, {\em Thermus
-  thermophilus} HB27, and {\em Enterococcus faecalis}.  In addition,
-we detect what may be portions of a novel member of the {\em
-  Proteiniclasticum} genus in the assembly of these reads.
+  thermophilus} HB27, and {\em Enterococcus faecalis}; note that the
+microbes used were sourced from the community rather than the ATCC
+(M. Podar, pers.  communication).  In addition, we detect what may be
+portions of a novel member of the {\em Proteiniclasticum} genus in the
+assembly of these reads - likely the {\em Clostridium} spp. detected
+through amplicon sequencing \cite{podar}.
 
 Without returning to the original DNA samples, it is impossible to
 conclusively confirm that unintended strains were used in the
@@ -1035,16 +1046,17 @@ however be transferred directly to metagenomes, which have unknown
 abundance distributions and strain content.
 
 An additional concern is that metagenome assemblies are often
-performed after pooling data sets to increase coverage; this pooled
-data is more likely to contain multiple strains, which would then in
-turn adversely affect assembly of strains.  This may not be resolvable
-within the current paradigm of assembly, which focuses on outputting
-linear assemblies that cannot properly represent strain variation.
-The human genomics community is moving towards using {\em reference
-  graphs}, which can represent multiple incompatible variants in a
-single data structure \cite{paten2017genome}; this approach, however,
-requires high-quality isolate reference genomes, which are generally
-unavailable for environmental metagenomes.
+performed after pooling data sets to increase coverage
+(e.g. \cite{Sharon2012,Hu2016}; this pooled data is more likely to
+contain multiple strains, which would then in turn adversely affect
+assembly of strains.  This may not be resolvable within the current
+paradigm of assembly, which focuses on outputting linear assemblies
+that cannot properly represent strain variation.  The human genomics
+community is moving towards using {\em reference graphs}, which can
+represent multiple incompatible variants in a single data structure
+\cite{paten2017genome}; this approach, however, requires high-quality
+isolate reference genomes, which are generally unavailable for
+environmental metagenomes.
 
 Long read sequencing (and related technologies) will undoubtedly help
 resolve strain variation in the future, but even with highly accurate
@@ -1122,7 +1134,9 @@ This work is funded by Moore and NIH.
 
 \subsection*{Acknowledgments}
 We thank Michael R. Crusoe and Phillip T. Brooks for input on analysis
-and pipeline development.
+and pipeline development.  We thank Migun Shakya, Mircea Podar, Jiarong Guo,
+Harald R. Gruber-Vodicka, Juliane Wippler, Krista Ternus, and Stephen
+Turner for valuable comments on drafts of this manuscript.
 
 {\small\bibliographystyle{unsrtnat} \bibliography{references}}
 
@@ -1154,4 +1168,3 @@ and pipeline development.
 
 
 \end{document}
-
