@@ -598,7 +598,7 @@ requirements, MEGAHIT outperformed both MetaSPAdes and IDBA-UD
 considerably, producing an assembly in four hours (``wall time'') --
 approximately 12 times faster than IDBA and 23 times faster than
 MetaSPAdes.  MEGAHIT used only 11.4 GB of RAM -- 1/3rd to 1/9th the
-memory used by IDBA and SPAdes, respectively.
+memory used by IDBA and MetaSPAdes, respectively.
 
 CPU time measurements (which include processing on multiple CPU cores)
 show that MEGAHIT and IDBA are competitive in overall processing time,
@@ -757,7 +757,7 @@ reference, with MEGAHIT recovering the most -- 93.8\% of the reference
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{combined.pdf}  
-\caption{NGA50 by genome and assembler. A '*' after the name indicates the presence of at least one other genome with $>$ 2\% Jaccard similarity at k=31 in the community.}
+\caption{NGA50 and genome fraction covered, by genome and assembler. A '*' after the name indicates the presence of at least one other genome with $>$ 2\% Jaccard similarity at k=31 in the community.}
 \label{fig:nga50}
 \end{figure}
 
@@ -841,25 +841,25 @@ contigs.
 \hline
 
 \textbf{match}& \textbf{Genbank genome} \\ [0.5ex] % inserts table %heading
-44.1\% & {\em \small Fusobacterium sp. OBRC1 } \\
+44.1\% & {\em \small Fusobacterium sp.} OBRC1 \\
 \hline
-23.0\% & {\em \small P. ruminis strain ML2 } \\
+23.0\% & {\em \small P. ruminis strain} ML2 \\
 \hline
-18.2\% & {\em \small Thermus thermophilus HB8 } \\
+18.2\% & {\em \small Thermus thermophilus} HB8 \\
 \hline
-7.7\% & {\em \small P. ruminis strain CGMCC } \\
+7.7\% & {\em \small P. ruminis strain } CGMCC \\
 \hline
-8.2\% & {\em \small Enterococcus faecalis M7 } \\
+8.2\% & {\em \small Enterococcus faecalis } M7 \\
 \hline
-7.3\% & {\em \small F. nucleatum 13\_3C } \\
+7.3\% & {\em \small F. nucleatum } 13\_3C  \\
 \hline
 3.7\% & {\em \small F. nucleatum subsp. polymorphum } \\
 \hline
 2.9\% & {\em \small Fusobacterium hwasookii } \\
 \hline
-1.0\% & {\em \small E. coli isolate YS } \\
+1.0\% & {\em \small E. coli isolate } YS \\
 \hline
-1.7\% & {\em \small F. nucleatum subsp. polymorphum } \\
+1.7\% & {\em \small F. nucleatum subsp. polymorphum}, alt. \\
 \hline
 1.9\% & {\em \small F. nucleatum subsp. vincentii } \\
 \hline
@@ -896,7 +896,8 @@ many alignments to {\em P. ruminis} at 94\% or higher, for
 approximately 2.73 Mbp total.  This suggests that the unmapped reads
 contain at least some data from a novel species of {\em
   Proteiniclasticum}; this matches the observation in \cite{podar} of
-a contaminating genome from an unknown {\em Clostridium} spp.
+a contaminating genome from an unknown {\em Clostridium} spp., as at the time
+there was no {\em P. ruminis genome}.
 
 \section*{Discussion}
 
@@ -919,7 +920,7 @@ is sufficient to recover operon-level relationships for many genes.
 \subsection*{The presence of multiple closely related genomes confounds assembly.}
 
 In agreement with CAMI, we also find that the presence of closely related
-genomes in the metagenome causes many assembly problems.  This is
+genomes in the metagenome causes loss of assembly \cite{CAMI}.  This is
 clearly shown by Figure~\ref{fig:nga50}, where 12 of the bottom 14
 genomes by NGA50 (left panel) also exhibit poor genome recovery by
 assembly (right panel).  Interestingly, different assemblers handle
@@ -930,7 +931,7 @@ that one or more assembler will fail to recover 5\% or more - of the
 13/51 genomes for which less than 95\% is recovered, 12 of them have
 close genomes in the community.  Interestingly, very little similarity
 is needed - all genomes with Jaccard similarity of 2\% or higher at k=31
-exhibited these problems.
+exhibit these problems.
 
 The {\em Shewanella baltica} OS185 genome is a good example: there
 are two strain variants, OS185 and OS223, present in the defined
@@ -951,7 +952,7 @@ where contigs that share paths in the assembly graphs are broken in twain.
 \subsection*{MEGAHIT performs best by several metrics.}
 
 MEGAHIT is clearly the most efficient computationally, outperforming
-both MetaSPAdes and IDBA by 5-10x in memory and 17-42x in time
+both MetaSPAdes and IDBA by 3-9 in memory and 12-23x in time
 (Table~\ref{table:time-memory}).  The MEGAHIT assembly also included
 more of the reads than either IDBA or MetaSPAdes, and omitted only 0.4\%
 more of the unique 51-mers from the reads than IDBA.  MEGAHIT covered
@@ -991,15 +992,15 @@ strain variants of {\em Fusobacterium nucleatum}, {\em Thermus
 microbes used were sourced from the community rather than the ATCC
 (M. Podar, pers.  communication).  In addition, we detect what may be
 portions of a novel member of the {\em Proteiniclasticum} genus in the
-assembly of these reads - likely the {\em Clostridium} spp. detected
-through amplicon sequencing \cite{podar}.
+assembly of these reads - this is likely the {\em Clostridium} spp. detected
+through amplicon sequencing in \cite{podar}.
 
 Without returning to the original DNA samples, it is impossible to
 conclusively confirm that unintended strains were used in the
 construction of the mock community.  In particular, our analysis is
 dependent on the genomes in Genbank: the genomes we detect in the
-contigs are clearly more closely related to Genbank genomes other than
-the species in the reference metagenome, based on k-mer analysis and
+contigs are clearly more closely related to Genbank genomes not in
+the reference metagenome, based on k-mer analysis and
 contig alignment.  However, Genbank is unlikely to contain the exact
 genomes of the included strain variants, rendering conclusive
 identification impossible.
@@ -1016,7 +1017,8 @@ We note that assembly
 resolves substantial portions of several previously undetected strain
 variants, as well as recovering a substantial portion of a novel
 {\em Proteiniclasticum} spp. that was detected via amplicon analysis
-in \cite{podar}.  
+in \cite{podar}, suggesting that assembly is a useful complement to amplicon
+or reference-based analyses.
 
 The presence of closely related strains is a major confounder of
 metagenome assembly, and causes assemblers to drop considerable
@@ -1024,9 +1026,9 @@ portions of genomes that (based on read mapping and k-mer inclusion)
 are clearly present.  In this relatively simple community, this strain
 confusion is present but does not dominate the assembly.  However,
 real microbial communities are likely to have many closely related
-strains and any resulting loss of assembly will be hard to detect in
+strains and any resulting loss of assembly would be hard to detect in
 the absence of good reference genomes.  While high polymorphism rates
-in e.g. animal genomes is known to cause duplication or loss of
+in e.g. animal genomes are known to cause duplication or loss of
 assembly, some solutions have emerged that make use of assumptions of
 uniform coverage and diploidy \cite{Kim2007}.  These solutions cannot
 however be transferred directly to metagenomes, which have unknown
@@ -1034,7 +1036,7 @@ abundance distributions and strain content.
 
 An additional concern is that metagenome assemblies are often
 performed after pooling data sets to increase coverage
-(e.g. \cite{Sharon2012,Hu2016}; this pooled data is more likely to
+(e.g. \cite{Sharon2012,Hu2016}); this pooled data is more likely to
 contain multiple strains, which would then in turn adversely affect
 assembly of strains.  This may not be resolvable within the current
 paradigm of assembly, which focuses on outputting linear assemblies
@@ -1043,7 +1045,7 @@ community is moving towards using {\em reference graphs}, which can
 represent multiple incompatible variants in a single data structure
 \cite{paten2017genome}; this approach, however, requires high-quality
 isolate reference genomes, which are generally unavailable for
-environmental metagenomes.
+environmental microbes.
 
 Long read sequencing (and related technologies) will undoubtedly help
 resolve strain variation in the future, but even with highly accurate
@@ -1055,7 +1057,7 @@ instruments \cite{Cherf2012}) will perform on complex metagenomes:
 with high error rates, deep coverage of each individual genome is
 required to achieve accurate assembly, and this may not be easily
 obtainable for complex communities.  Single-molecule barcoding
-(e.g. 10X Genomics \cite{10.1101/125211}) and HiC approaches
+(e.g. 10X Genomics \cite{Moss125211}) and HiC approaches
 \cite{SmukowskiHeil150722} show promise but these remain untested on
 well-defined complex communities and are still challenged by the
 complexity of complex environmental metagenomes; see
@@ -1086,18 +1088,19 @@ We omitted two important questions in this study: binning and choice
 of parameters.  We chose not to evaluate genome binning because most
 binning strategies either operate post-assembly (see
 e.g. \cite{laczny2017busybee}), in which case the challenges with
-assembly discussed above will apply, or require multiple samples
-(e.g. \cite{Cleary2015}).  We also chose to use only default
-parameters with all three assemblers, for two
-reasons.  First, we are not aware of any widely used automated
-approaches for determining the ``best'' set of parameters or
-evaluating the output, other than those integrated into the assemblers
-themselves (e.g. choice of k-mer sizes), and absent such guidance we
-do not feel comfortable blessing any particular set of parameters; here the
-choice of default parameters is parsimonious.  Second, any parameter
+assembly discussed above will apply; or require multiple samples
+(e.g. \cite{Cleary2015}), which we do not have.  We also chose to use
+only default parameters with all three assemblers, for two reasons.
+First, we are not aware of any widely used automated approaches for
+determining the ``best'' set of parameters or evaluating the output,
+other than those integrated into the assemblers themselves
+(e.g. choice of k-mer sizes), and absent such guidance we do not feel
+comfortable blessing any particular set of parameters; here the choice
+of default parameters is parsimonious.  Second, any parameter
 exploration pipeline would not only need to be automated but would
-need to run multiple assemblies; in this case, any comparison based on
-runtime of the parameter choice pipeline would naturally favor MEGAHIT
+need to run multiple assemblies, whose time and resource usage should
+be measured; in this case, any comparison based on
+runtime of the parameter choice pipeline should naturally favor MEGAHIT
 because of its substantial advantage in computational efficiency.
 
 \subsection*{Author contributions}
@@ -1110,6 +1113,7 @@ No competing interest to our knowledge.
 
 \subsection*{Grant information}
 This work is funded by Moore and NIH.
+% @CTB grant foo
 
 \subsection*{Acknowledgments}
 We thank Michael R. Crusoe and Phillip T. Brooks for input on analysis
