@@ -1,8 +1,5 @@
 % referee sugg: laczny, iqbal
 % @CTB discuss inclusion rather than accuracy
-% @CTB methods methods methods :)
-% @CTB revise abstract
-% @CTB links to OSF
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -411,7 +408,6 @@ reference metagenome against itself.
 %the testasm.tbl output file to get the coordinates of CDS genes and
 %searched the alignments for how many genes were contained in those
 %alignments.
-% @CTB what script?
 
 \section*{Results}
 
@@ -501,22 +497,22 @@ of the reference and/or variation between the reads and the reference.
 %genomes/17.fa.cov.sam 0.931870428479 3411942.0 3661391.0
 %>NC_008751.1 Desulfovibrio vulgaris DP4, complete genome
 %82.5
-{{\em D. vulgaris} DP4}  & 93.2\% \\
+{{\em Desulfovibrio vulgaris} DP4}  & 93.2\% \\
 \hline
 %genomes/55.fa.cov.sam 0.910651720402 1725573.0 1894877.0
 %>AE017221.1 Thermus thermophilus HB27, complete genome
 %79.7
-{{\em T. thermophilus} HB27}  & 91.1\% \\
+{{\em Thermus thermophilus} HB27}  & 91.1\% \\
 \hline
 %genomes/19.fa.cov.sam 0.746209918949 2510480.0 3364308.0
 %>NZ_KE136524.1 Enterococcus faecalis V583 acyDH-supercont2.1, whole genome shotgun sequence
 %65.6
-{{\em E. faecalis} V583}  & 74.6\% \\
+{{\em Enterococcus faecalis} V583}  & 74.6\% \\
 \hline
 %genomes/20.fa.cov.sam 0.475837203955 1034708.0 2174500.0
 %>AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
 %18.2
-{{\em F. nucleatum}}  & 47.6\% \\
+{{\em Fusobacterium nucleatum}}  & 47.6\% \\
 % @CTB name should be full, first time. JG
 \hline
 \end{tabular}
@@ -543,18 +539,18 @@ reference genome are covered by one or more mapped reads.
 \textbf{51-mers in reads}& \textbf{Genome} \\ [0.5ex] % inserts table %heading
 \hline
 98.7 & { \small \em Leptothrix cholodnii } \\ \hline
-98.7 & { \small \em Haloferax volcanii DS2 } \\ \hline
-98.6 & { \small \em Salinispora tropica CNB-440 } \\ \hline
+98.7 & { \small \em Haloferax volcanii} DS2  \\ \hline
+98.6 & { \small \em Salinispora tropica} CNB-440 \\ \hline
 97.4 & { \small \em Deinococcus radiodurans } \\ \hline
 97.2 & { \small \em Zymomonas mobilis } \\ \hline
 97.1 & { \small \em Ruegeria pomeroyi } \\ \hline
-96.8 & { \small \em Shewanella baltica OS223 } \\ \hline
-95.5 & { \small \em B. bronchiseptica D989 } \\ \hline
+96.8 & { \small \em Shewanella baltica} OS223  \\ \hline
+95.5 & { \small \em B. bronchiseptica} D989  \\ \hline
 94.5 & { \small \em Burkholderia xenovorans } \\ \hline
-72.0 & { \small \em Desulfovibrio vulgaris DP4 } \\ \hline
-65.0 & { \small \em Thermus thermophilus HB27 } \\ \hline
+72.0 & { \small \em Desulfovibrio vulgaris} DP4  \\ \hline
+65.0 & { \small \em Thermus thermophilus} HB27  \\ \hline
 53.4 & { \small \em Enterococcus faecalis } \\ \hline
-4.7 & { \small \em Fusobacterium nucleatum ATCC 25586 } \\ \hline
+4.7 & { \small \em Fusobacterium nucleatum} ATCC 25586  \\ \hline
 \end{tabular}
 \label{table:51mer_remove}
 \end{table}
@@ -614,8 +610,6 @@ use threading effectively; however, we note that even with perfectly
 parallel processing on 16 cores, MetaSPAdes would take 6 hours and
 still use approximately 9 times as much RAM as MEGAHIT.
 
-% @CTB mention wall time and CPU time.
-
 % see pipeline/runtimes/
 
 \subsection*{The assemblies contain most of the raw data}
@@ -669,7 +663,6 @@ reads (2.5-3.5\%) did not map to the assemblies
 majority of high-abundance 51-mers (more than 96.8\% in all cases).
 
 \subsection*{Much of the reference is covered by the assemblies.}
-%@CTB update
 
 %QC Total base pairs             Percentage of Covered  Percentage of uncovered
 %assemblies.stats.QC.AMBIGUOUS.99
@@ -750,7 +743,6 @@ IDBA & 87.7\% \\ \hline
 MetaSPAdes &  83.4\% \\ \hline
 \end{tabular}
 \label{table:contig-accuracy}
-% @CTB do we want duplication mentioned in this table? It's low... 0.0 :)
 \end{table}
 
 When counting only the best (longest) alignment per contig at a 99\%
@@ -813,9 +805,8 @@ MetaSPAdes       & 0 & 3 & 30 (0.48\%) \\
 
 \end{table}
 
-% @CTB add percent of contigs? (table 8)
-% @CTB ``it would be interesting to know what genes chimeric contigs...'' JG
-% @CTB JG: correlation b/t NGA50 and Jaccard?
+% CTB ``it would be interesting to know what genes chimeric contigs...'' JG
+% CTB JG: correlation b/t NGA50 and Jaccard?
 
 Chimerism is the formation of contigs that include sequence from
 multiple genomes.  We evaluated the rate of chimerism in contigs at
@@ -827,8 +818,6 @@ MEGAHIT assembly had a single chimeric contig longer than 50kb.
 Overall, chimeric misassemblies were rare, with no assembler
 generating more than 30 chimeric contigs out of thousands of total
 contigs.
-
-% @CTB could this be caused by NUCmer?
 
 \subsection*{The unmapped reads contain strain variants of reference genomes.}
 
@@ -982,12 +971,10 @@ the presence of strain variation.
 When comparing details of sequence recovery between the assemblers,
 the assembly content differs by only a small amount when loose
 alignments are allowed: all three assemblers miss more content
-(approximately 1.8\% of the reference) than they generate uniquely
-(0.9\% or less).  In addition to preferring no one assembler over any
+(approximately 2.5\% of the reference) than they generate uniquely
+(1.7\% or less).  In addition to preferring no one assembler over any
 other, this suggests that combining assemblies may have little value
 in terms of recovering additional metagenome content.
-
-% @CTB update these numbers
 
 \subsection*{The missing reference may be present in strain variants of the intended species.}
 
@@ -1112,14 +1099,6 @@ exploration pipeline would not only need to be automated but would
 need to run multiple assemblies; in this case, any comparison based on
 runtime of the parameter choice pipeline would naturally favor MEGAHIT
 because of its substantial advantage in computational efficiency.
-
-% @CTB foo
-
-% @CTB muse on long reads and complex populations
-% @CTB muse on co-assembling many things
-% @CTB binning, etc.
-%
-% muse on importance of mock, resequencing.
 
 \subsection*{Author contributions}
 
