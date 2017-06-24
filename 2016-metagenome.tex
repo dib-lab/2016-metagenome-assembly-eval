@@ -35,7 +35,7 @@
 
 \author{Sherine Awad$^{1}$, Luiz Irber$^{1}$, C. Titus Brown$^{1\ast}$\\
 \small
-\bf{1} Department of Population Health and Reproduction \\
+\bf{$^1$}Department of Population Health and Reproduction \\
 \small
 University of California, Davis\\
 \small
@@ -139,9 +139,16 @@ evaluating recovery of novel genomes and multiple strain variants
 \cite{CAMI}.  Notably, CAMI concluded that ``The resolution of
 strain-level diversity represents a substantial challenge to all
 evaluated programs.''  Another recent study evaluated eight assemblers
-on nine environmental metagenomes and three simulated data sets
-\cite{metag_one} but used no mock. Also see \cite{Greenwald2017}.
-% @CTB JG: what's the finding?
+on nine environmental metagenomes and three simulated data sets and
+provided a workflow for choosing a metagenome assembler based on the
+biological goal and computational resources available
+\cite{metag_one}.  \cite{Vollmers2017} explored metagenome assembler
+performance on a pair of real data sets, again concluding that the
+biological goal and computational resources defined the choice of
+assembler.  Also see \cite{Greenwald2017} for an analysis of a previously
+generated HMP benchmark data set; however, the Illumina reads used for this
+study are much shorter than current sequencing and are arguably not relevant
+for future studies.
 
 In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
@@ -1011,8 +1018,8 @@ identification impossible.
 Overall, assembly of this mock community works well, with good
 recovery of known genomic sequence for the majority of genomes.  All
 three assemblers that we evaluated recover similar amounts of most
-genomic sequence, but (recapitulating several other studies @cite)
-MEGAHIT is computationally most efficient.
+genomic sequence, but (recapitulating several other studies \cite{Vollmers2017}, \cite{metag_one}, \cite{CAMI})
+MEGAHIT is computationally the most efficient of the three.
 We note that assembly
 resolves substantial portions of several previously undetected strain
 variants, as well as recovering a substantial portion of a novel
