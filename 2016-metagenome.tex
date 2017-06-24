@@ -1,3 +1,4 @@
+% referee sugg: laczny, iqbal
 % @CTB discuss inclusion rather than accuracy
 % @CTB methods methods methods :)
 % @CTB revise abstract
@@ -73,12 +74,13 @@ $\ast$ E-mail: ctbrown@ucdavis.edu
 Metagenomics refers to sequencing of DNA from a mixture of organisms,
 often from an environmental or uncultured sample. Unlike whole genome
 sequencing, metagenomics targets a mixture of genomes, which
-introduces metagenome-specific challenges in analysis.  Most
-approaches to analyzing metagenomic data rely on mapping or comparing
-sequencing reads to reference sequence collections. However, reference
-databases contain only a small subset of microbial diversity \cite{geba},
-and the much of the remaining diversity is evolutionarily distant
-and search techniques may not access it.
+introduces metagenome-specific challenges in analysis
+\cite{ghurye2016metagenomic}.  Most approaches to analyzing
+metagenomic data rely on mapping or comparing sequencing reads to
+reference sequence collections. However, reference databases contain
+only a small subset of microbial diversity \cite{geba}, and the much
+of the remaining diversity is evolutionarily distant and search
+techniques may not access it.
 
 As sequencing capacity increases and sequence data is generated from
 many more environmental samples, metagenomics is increasingly using de
@@ -110,7 +112,7 @@ simulated metagenomic data sets constructed at different complexity
 levels.
 %The low complexity set is dominated by a single near-clonal organism. The medium complexity set includes moderate communities with more than one dominant organism. The high complexity set lacks dominant population.  
 The datasets were assembled using Phrap v3.57, Arachne v.2
-\cite{arachne} and JAZZ. \cite{jazz}
+\cite{arachne} and JAZZ \cite{jazz}.
 This study evaluates assembly, gene prediction, and binning
 methods. However, the study did not evaluate the assembly quality
 against a reference genome.
@@ -135,7 +137,10 @@ distances \cite{podar}.  In addition to performing 16s amplicon
 analysis and doing 454 sequencing, the authors shotgun-sequenced the
 mixture with Illumina.  While the authors concluded that this
 metagenomic sequencing generally outperformed amplicon sequencing,
-they did not conduct an assembly based analysis.
+they did not conduct an assembly based analysis.  This data set was
+also used in several other evaluation studies, including gbtools for
+binning \cite{Seah2015} and benchmarking of the MEGAHIT assembler
+\cite{Li2016}.
 
 % @CTB pignatelli & moya 2011
 
@@ -148,7 +153,8 @@ evaluating recovery of novel genomes and multiple strain variants
 strain-level diversity represents a substantial challenge to all
 evaluated programs.''  Another recent study evaluated eight assemblers
 on nine environmental metagenomes and three simulated data sets
-\cite{metag_one}.
+\cite{metag_one}. Also see \cite{Greenwald2017}.
+% @CTB JG: what's the finding?
 
 In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
@@ -519,7 +525,7 @@ of the reference and/or variation between the reads and the reference.
 %>AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
 %18.2
 {{\em F. nucleatum}}  & 47.6\% & 18.2\% \\
-
+% @CTB name should be full, first time. JG
 \hline
 \end{tabular}
 \label{table:genomes_uncovered-analysis}
@@ -609,6 +615,7 @@ SPAdes and IDBA-UD considerably, producing an assembly in four hours --
 approximately 4 times faster than IDBA and 8 times faster than
 SPAdes.  MEGAHIT used only 11.4 GB of RAM -- 1/13th to 1/9th
 the memory used by IDBA and SPAdes, respectively.
+% @CTB mention wall time and CPU time.
 
 % see pipeline/runtimes/
 
@@ -807,6 +814,10 @@ SPAdes       & 0 & 3 & 30 \\
 
 \end{table}
 
+% @CTB add percent of contigs? (table 8)
+% @CTB ``it would be interesting to know what genes chimeric contigs...'' JG
+% @CTB JG: correlation b/t NGA50 and jaccard?
+
 Chimerism is the formation of contigs that include sequence from
 multiple genomes.  We evaluated the rate of chimerism in contigs at
 three different contig length cutoffs: 500bp, 5kb, and 50kb
@@ -957,20 +968,23 @@ more of the reference genome with both loose and strict alignments
 Table~\ref{table:contig-accuracy}), with little duplication.  This is
 clearly because of MEGAHIT's superior performance in recovering the
 genomes of closely related strains (Figure~\ref{fig:nga50}, right
-panel).
+panel).  The sum ``fraction of genome recovered'' is arguably the most
+important measure of a metagenome assembler (see \cite{Vollmers2017}
+in particular) and here MEGAHIT excels for individual genomes even in
+the presence of strain variation.
 
 % @CTB reference Nature foo strain foo.
 
 
-Between the assemblers, the assembly content differs by only a small
-amount when loose alignments are allowed: all three assemblers miss
-more content (approximately 1.8\% of the reference) than they generate
-uniquely (0.9\% or less).  In addition to preferring no one assembler
-over any other, this suggests that combining assemblies may have
-little value in terms of recovering additional metagenome content.
+When comparing details of sequence recovery between the assemblers,
+the assembly content differs by only a small amount when loose
+alignments are allowed: all three assemblers miss more content
+(approximately 1.8\% of the reference) than they generate uniquely
+(0.9\% or less).  In addition to preferring no one assembler over any
+other, this suggests that combining assemblies may have little value
+in terms of recovering additional metagenome content.
 
-%(Here note that megahit does not allow long reads, unlike SPAdes and maybe
-%IDBA. @CTB verify this.)
+% @CTB update these numbers
 
 \subsection*{The missing reference may be present in strain variants of the intended species.}
 
@@ -1003,22 +1017,27 @@ identification impossible.
 Overall, assembly of this mock community works well, with good
 recovery of known genomic sequence for the majority of genomes.  All
 three assemblers that we evaluated recover similar amounts of most
-genomic sequence, but (recapitulating several other studies) MEGAHIT
-is computationally most efficient.
+genomic sequence, but (recapitulating several other studies @cite)
+MEGAHIT is computationally most efficient.
+We note that assembly
+resolves substantial portions of several previously undetected strain
+variants, as well as recovering a substantial portion of a novel
+{\em Proteiniclasticum} spp. that was detected via amplicon analysis
+in \cite{podar}.  
 
 The presence of closely related strains is a major confounder of
 metagenome assembly, and causes assemblers to drop considerable
-portions of genomes that (based on read mapping and k-mer inclusion) are
-clearly present.  In this relatively simple community, this strain confusion
-is present but does not dominate the assembly.  However, real microbial
-communities are likely to have many closely related strains and any
-resulting loss of assembly will be hard to detect in the absence of
-good reference genomes.  While high polymorphism rates in e.g. animal
-genomes is known to cause duplication or loss of assembly, some
-solutions have emerged that make use of assumptions of uniform
-coverage and diploidy.  These solutions cannot however be transferred
-directly to metagenomes, which have unknown abundance distributions
-and strain content.
+portions of genomes that (based on read mapping and k-mer inclusion)
+are clearly present.  In this relatively simple community, this strain
+confusion is present but does not dominate the assembly.  However,
+real microbial communities are likely to have many closely related
+strains and any resulting loss of assembly will be hard to detect in
+the absence of good reference genomes.  While high polymorphism rates
+in e.g. animal genomes is known to cause duplication or loss of
+assembly, some solutions have emerged that make use of assumptions of
+uniform coverage and diploidy \cite{Kim2007}.  These solutions cannot
+however be transferred directly to metagenomes, which have unknown
+abundance distributions and strain content.
 
 An additional concern is that metagenome assemblies are often
 performed after pooling data sets to increase coverage; this pooled
@@ -1026,18 +1045,68 @@ data is more likely to contain multiple strains, which would then in
 turn adversely affect assembly of strains.  This may not be resolvable
 within the current paradigm of assembly, which focuses on outputting
 linear assemblies that cannot properly represent strain variation.
+The human genomics community is moving towards using {\em reference
+  graphs}, which can represent multiple incompatible variants in a
+single data structure \cite{paten2017genome}; this approach, however,
+requires high-quality isolate reference genomes, which are generally
+unavailable for environmental metagenomes.
 
-Long read sequencing (and related technologies) may help resolve
-strain variants in the future, but even with highly accurate long-read
-sequencing, sequencing depth is still too low to resolve deep
-metagenomes \cite{Sharon2015}.  It is unclear how well long
-error-prone reads (such as those output by Pacific Biosciences SMRT
-and Oxford Nanopore instruments) will perform on complex metagenomes;
+Long read sequencing (and related technologies) will undoubtedly help
+resolve strain variation in the future, but even with highly accurate
+long-read sequencing, current sequencing depth is still too low to
+resolve deep environmental metagenomes \cite{Sharon2015,White2016}.
+It is unclear how well long error-prone reads (such as those output by
+Pacific Biosciences SMRT \cite{Eid2009} and Oxford Nanopore
+instruments \cite{Cherf2012}) will perform on complex metagenomes:
 with high error rates, deep coverage of each individual genome is
 required to achieve accurate assembly, and this may not be easily
 obtainable for complex communities.  Single-molecule barcoding
-(e.g. 10X Genomics) and HiC approaches may work better but these
-remain untested on well-defined communities.
+(e.g. 10X Genomics \cite{10.1101/125211}) and HiC approaches
+\cite{SmukowskiHeil150722} show promise but these remain untested on
+well-defined complex communities and are still challenged by the
+complexity of complex environmental metagenomes; see
+\cite{Burton2014,Marbouty2014,Beitel2014}.
+
+Much of our analysis depended on having a high-quality ``mock''
+metagenome.  While computationally constructed synthetic communities
+and computational ``spike-ins'' to real data sets can provide valuable
+controls (e.g. see \cite{metag_one} and \cite{ahowe2014}) we strongly
+believe that standardized communities constructed {\em in vitro} and
+sequenced with the latest technologies are critical to the evaluation
+of both canonical and emerging tools, e.g. efforts such as
+\cite{Brown2017}. From the perspective of tool evaluation, we must
+disagree somewhat with Vollmers et al. \cite{Vollmers2017}: good
+metagenome tool evaluation necessarily depends on mock communities
+that are as realistic as we can make them.  Likewise, from the
+perspective of bench biologists, actually sequencing real DNA is
+critical because it can evaluate confounding effects such as kit
+contamination \cite{Salter2014}.  Large-scale studies of computational
+approaches systematically applied to mock communities such as CAMI
+\cite{CAMI} can then provide fair comparisons of entire toolchains
+(wet + dry) applied to these mock communities.
+
+% @CTB didn't mesaure N50, error rates, etc.
+% @@CTB size cutoff for recovery / binning / 2kb on figure!!
+
+We omitted two important questions in this study: binning and choice
+of parameters.  We chose not to evaluate genome binning because most
+binning strategies either operate post-assembly (see
+e.g. \cite{laczny2017busybee}), in which case the challenges with
+assembly discussed above will apply, or require multiple samples
+(e.g. \cite{Cleary2015}).  We also chose to use only default
+parameters with all three assemblers, for two
+reasons.  First, we are not aware of any widely used automated
+approaches for determining the ``best'' set of parameters or
+evaluating the output, other than those integrated into the assemblers
+themselves (e.g. choice of k-mer sizes), and absent such guidance we
+do not feel comfortable blessing any particular set of parameters; here the
+choice of default parameters is parsimonious.  Second, any parameter
+exploration pipeline would not only need to be automated but would
+need to run multiple assemblies; in this case, any comparison based on
+runtime of the parameter choice pipeline would naturally favor MEGAHIT
+because of its substantial advantage in computational efficiency.
+
+% @CTB foo
 
 % @CTB muse on long reads and complex populations
 % @CTB muse on co-assembling many things
