@@ -655,7 +655,7 @@ still use approximately 9 times as much RAM as MEGAHIT.
   \textbf{Assembly} & \textbf{Unmapped Reads} & \textbf {51-mers omitted}
   \\ \hline
 IDBA &3,328,674 (3.05\%)&  2.4\% \\ \hline
-SPAdes &3,844,123 (3.52\%) &  3.2\% \\ \hline
+MetaSPAdes &3,844,123 (3.52\%) &  3.2\% \\ \hline
 MEGAHIT &2,737,640 (2.51\%) &   2.8\% \\ \hline
 \end{tabular}
 \label{table:reads-kmers}
@@ -673,14 +673,16 @@ majority of high-abundance 51-mers (more than 96.8\% in all cases).
 
 %QC Total base pairs             Percentage of Covered  Percentage of uncovered
 %assemblies.stats.QC.AMBIGUOUS.99
-%iqc500 QC.AMBIGUOUS.99 141394815        95.6485080447   4.35149195535
-%sqc500 QC.AMBIGUOUS.99 141394815        95.8248518519   4.17514814811
-%mqc500 QC.AMBIGUOUS.99 141394815        96.1636577692   3.8363422308
+
+%iqc500 QC.AMBIGUOUS.99 154977982         93.62573904207889       6.374260957921106
+%sqc500 QC.AMBIGUOUS.99 154977982         93.1387324426511        6.861267557348888
+%mqc500 QC.AMBIGUOUS.99 154977982         94.8199744916023        5.180025508397702
 
 %Assembler         In Reference  In Alignments    Percentages
-%iqc500 duplication ratio: 1437913 1760072 1.063214586 0.878259930074
-%sqc500 duplication ratio: 1604871 1982514 1.18448206429 0.994623621928
-%mqc500 duplication ratio: 748745 1433658 0.550667540013 0.715800963078
+%iqc500 duplication ratio: 1600448 1968815 1.103002019699877 0.9824091177569778
+%sqc500 duplication ratio: 1791081 2255975 1.2408374773999054 1.131928938821066
+%mqc500 duplication ratio: 1379752 2071376 0.9389256350403015 1.0205098498496519
+
 
 
 \begin{table}[!h]
@@ -690,9 +692,9 @@ majority of high-abundance 51-mers (more than 96.8\% in all cases).
   \textbf{Assembly} & \textbf{bases aligned} & \textbf{duplication}
   & \textbf{51-mers}
   \\ \hline
-MEGAHIT & 96.2\% & 0.72\% & 96.7\% \\ \hline
-SPAdes  & 95.8\% & 0.99\% & 96.2\% \\ \hline
-IDBA    & 95.6\% & 0.88\% & 97.2\% \\ \hline
+MEGAHIT & 94.8\% & 1.0\% & 96.7\% \\ \hline
+MetaSPAdes  & 93.1\% & 1.1\% & 96.2\% \\ \hline
+IDBA    & 93.6\% & 0.98\% & 97.2\% \\ \hline
 \end{tabular}
 \label{table:contig-coverage}
 \end{table}
@@ -708,22 +710,23 @@ IDBA    & 95.6\% & 0.88\% & 97.2\% \\ \hline
 We next evaluated the extent to which the assembled contigs recovered the
 ``known/true'' metagenome sequence by aligning each assembly to the
 adjusted reference (Table ~\ref{table:contig-coverage}).  Each of the three
-assemblers generates contigs that cover more than 95.6\% of the reference
+assemblers generates contigs that cover more than 93.1\% of the reference
 metagenome at high identity (99\%) with little duplication
-(0.72-0.99\%).  All three assemblies contain between 96.2\% and 97.2\% of
+(approximately 1\%).  All three assemblies contain between 96.2\% and 97.2\% of
 the 51-mers in the reference.
 
-At 99\% identity with the loose mapping approach, approximately 1.8\%
-of the reference is missed by all three assemblers, while 0.9\% is
-uniquely covered by MEGAHIT, 0.6\% is uniquely covered by SPAdes, and
-0.4\% is uniquely covered by IDBA.
+At 99\% identity with the loose mapping approach, approximately 2.5\%
+of the reference is missed by all three assemblers, while 1.7\% is
+uniquely covered by MEGAHIT, 0.74\% is uniquely covered by MetaSPAdes, and
+0.64\% is uniquely covered by IDBA.
 
-% Bases that are covered by iqc500 QC.AMBIGUOUS.99 only:  614749 ~ 0.434774782937\
-%
-% Bases that are covered by sqc500 QC.AMBIGUOUS.99 only:  857507 ~ 0.60646283246 \
-%
-% Bases that are covered by mqc500 QC.AMBIGUOUS.99 only:  1276542 ~ 0.902820941489 %
-% @CTB 
+%Bases that are covered by iqc500 QC.AMBIGUOUS.99 only:  1003205 ~ 0.6473209852480851 %
+%Bases that are covered by sqc500 QC.AMBIGUOUS.99 only:  1153044 ~ 0.7440050419549274 %
+%Bases that are covered by mqc500 QC.AMBIGUOUS.99 only:  2700260 ~ 1.7423507295378253 %
+%Common uncovered bases among iqc500 sqc500 mqc500 using QC.AMBIGUOUS.99 is:  3916287
+%Bases that are uncovered by iqc500 QC.AMBIGUOUS.99 only:  2109110 ~ 1.3609094484144206 %
+%Bases that are uncovered by sqc500 QC.AMBIGUOUS.99 only:  3013702 ~ 1.9446001045490449 %
+%Bases that are uncovered by mqc500 QC.AMBIGUOUS.99 only:  1955363 ~ 1.2617037431807572 %
 
 
 \subsection*{The generated contigs are broadly accurate.} 
@@ -731,13 +734,10 @@ uniquely covered by MEGAHIT, 0.6\% is uniquely covered by SPAdes, and
 
 %QC Total base pairs             Percentage of Covered  Percentage of uncovered
 %assemblies.stats.QC.BESTHIT.99
+%iqc500 QC.BESTHIT.99 154977982   87.66806177667225       12.33193822332775
+%sqc500 QC.BESTHIT.99 154977982   83.35819084287728       16.64180915712272
+%mqc500 QC.BESTHIT.99 154977982   89.29646728784995       10.70353271215004
 
-%iqc500 QC.BESTHIT.99 141394815  89.5078924924   10.4921075076
-%sqc500 QC.BESTHIT.99 141394815  87.3164302383   12.6835697617
-%mqc500 QC.BESTHIT.99 141394815  93.8139520887   6.1860479113
-%iqc500 duplication ratio: 328518 0 0.259575891719 0.0
-%sqc500 duplication ratio: 102689 0 0.0831753177251 0.0
-%mqc500 duplication ratio: 367466 0 0.277023266619 0.0
 
 \begin{table}[!h]
 \centering
@@ -745,9 +745,9 @@ uniquely covered by MEGAHIT, 0.6\% is uniquely covered by SPAdes, and
 \begin{tabular}{|l|c|c|}\hline
 \textbf{Assembly} & \textbf {\% covered}
   \\ \hline
-MEGAHIT & 93.8\% \\ \hline
-IDBA & 89.5\% \\ \hline
-SPAdes &  87.3\% \\ \hline
+MEGAHIT & 89.3\% \\ \hline
+IDBA & 87.7\% \\ \hline
+MetaSPAdes &  83.4\% \\ \hline
 \end{tabular}
 \label{table:contig-accuracy}
 % @CTB do we want duplication mentioned in this table? It's low... 0.0 :)
@@ -779,7 +779,7 @@ We computed the NGA50 for each individual genome and assembly in order
 to compare assembler performance on genome recovery (see left panel of
 Figure~\ref{fig:nga50}).  The NGA50 statistics for individual genomes
 vary widely, but there are consistent assembler-specific trends: IDBA
-yields the lowest NGA50 for 28 of the 51 genomes, while SPAdes yields
+yields the lowest NGA50 for 28 of the 51 genomes, while MetaSPAdes yields
 the highest NGA50 for 32 of the 51 genomes.
 
 We also evaluated aligned coverage per genome for each of the three
@@ -803,9 +803,9 @@ missing 5\% or more of their content, and the lowest eight NGA50 numbers.
 \textbf{Assembly} & \textbf {$>$ 50kb} & \textbf {$>$ 5kb} & \textbf{$>$ 500 bp}
 \\ \hline
 
-IDBA         & 0 & 1 & 7 \\
-MEGAHIT      & 1 & 4 & 14 \\ 
-SPAdes       & 0 & 3 & 30 \\
+IDBA         & 0 & 1 & 7 (0.06\%) \\
+MEGAHIT      & 1 & 4 & 14 (0.13\%) \\ 
+MetaSPAdes       & 0 & 3 & 30 (0.48\%) \\
 \hline
 
 \end{tabular}
@@ -934,7 +934,7 @@ genomes in the metagenome causes many assembly problems.  This is
 clearly shown by Figure~\ref{fig:nga50}, where 12 of the bottom 14
 genomes by NGA50 (left panel) also exhibit poor genome recovery by
 assembly (right panel).  Interestingly, different assemblers handle
-this quite differently, with e.g. SPAdes failing to recover
+this quite differently, with e.g. MetaSPAdes failing to recover
 essentially any of {\em Thermotoga petrophila}, while MEGAHIT recovers
 73\%.  The presence of nearby genomes is an almost perfect predictor
 that one or more assembler will fail to recover 5\% or more - of the
@@ -962,9 +962,9 @@ where contigs that share paths in the assembly graphs are broken in twain.
 \subsection*{MEGAHIT performs best by several metrics.}
 
 MEGAHIT is clearly the most efficient computationally, outperforming
-both SPAdes and IDBA by 5-10x in memory and 17-42x in time
+both MetaSPAdes and IDBA by 5-10x in memory and 17-42x in time
 (Table~\ref{table:time-memory}).  The MEGAHIT assembly also included
-more of the reads than either IDBA or SPAdes, and omitted only 0.4\%
+more of the reads than either IDBA or MetaSPAdes, and omitted only 0.4\%
 more of the unique 51-mers from the reads than IDBA.  MEGAHIT covered
 more of the reference genome with both loose and strict alignments
 (Table~\ref{table:contig-coverage} and
