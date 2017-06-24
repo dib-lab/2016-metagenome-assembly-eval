@@ -75,7 +75,7 @@ introduces metagenome-specific challenges in analysis
 \cite{ghurye2016metagenomic}.  Most approaches to analyzing
 metagenomic data rely on mapping or comparing sequencing reads to
 reference sequence collections. However, reference databases contain
-only a small subset of microbial diversity \cite{geba}, and the much
+only a small subset of microbial diversity \cite{geba}, and much
 of the remaining diversity is evolutionarily distant and search
 techniques may not recover it \cite{CAMI}.
 
@@ -83,9 +83,11 @@ As sequencing capacity increases and sequence data is generated from
 many more environmental samples, metagenomics is increasingly using
 {\em de novo} assembly techniques to generate new reference genomes
 and metagenomes \cite{Sharon2012}.  There are a number of metagenome
-assemblers that are widely used. However, evaluating the results of
-these assemblers is challenging due to the general lack of good
-quality reference metagenomes.
+assemblers that are widely used - see \cite{Vollmers2017} for an
+overview of the available software, and \cite{ghurye2016metagenomic}
+for a review of the different assembler methodologies. However,
+evaluating the results of these assemblers is challenging due to the
+general lack of good quality reference metagenomes.
 
 %-----------Literature Review starts here ---------------------
 
@@ -153,7 +155,7 @@ for future studies.
 In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
 data set.  First, we update the list of reference genomes for Shakya
-et al. to include the latest Genbank assemblies along with
+et al. to include the latest GenBank assemblies along with
 plasmids. We then compare IDBA \cite{idba}, MetaSPAdes \cite{metaspades},
 and MEGAHIT \cite{megahit} performance on assembling this short-read
 data set, and explore concordance in recovery between the three
@@ -254,7 +256,7 @@ total length of 11.07 Gbp and an estimated fragment size of 380 bp
  
 The original reads are available through the NCBI Sequence Read
 Archive at Accession SRX200676.  We updated the 64 reference genomes
-sets from NCBI Genbank using the latest available assemblies with
+sets from NCBI GenBank using the latest available assemblies with
 plasmid content (June 2017); updated data is available for download at
 https://osf.io/8uxj9/.
 
@@ -835,33 +837,33 @@ contigs.
 % 7611951.0
 
 \begin{table}[t]
-\caption{Genbank genomes detected in assembly of unmapped reads}
+\caption{GenBank genomes detected in assembly of unmapped reads}
 \centering
 \begin{tabular}{|c|l|}
 \hline
 
-\textbf{match}& \textbf{Genbank genome} \\ [0.5ex] % inserts table %heading
+\textbf{match}& \textbf{GenBank genome} \\ [0.5ex] % inserts table %heading
 44.1\% & {\em \small Fusobacterium sp.} OBRC1 \\
 \hline
 23.0\% & {\em \small P. ruminis strain} ML2 \\
 \hline
 18.2\% & {\em \small Thermus thermophilus} HB8 \\
 \hline
-7.7\% & {\em \small P. ruminis strain } CGMCC \\
+7.7\% & {\em \small P. ruminis strain} CGMCC \\
 \hline
-8.2\% & {\em \small Enterococcus faecalis } M7 \\
+8.2\% & {\em \small Enterococcus faecalis} M7 \\
 \hline
-7.3\% & {\em \small F. nucleatum } 13\_3C  \\
+7.3\% & {\em \small F. nucleatum} 13\_3C  \\
 \hline
-3.7\% & {\em \small F. nucleatum subsp. polymorphum } \\
+3.7\% & {\em \small F. nucleatum subsp. polymorphum} \\
 \hline
-2.9\% & {\em \small Fusobacterium hwasookii } \\
+2.9\% & {\em \small Fusobacterium hwasookii} \\
 \hline
-1.0\% & {\em \small E. coli isolate } YS \\
+1.0\% & {\em \small E. coli isolate} YS \\
 \hline
 1.7\% & {\em \small F. nucleatum subsp. polymorphum}, alt. \\
 \hline
-1.9\% & {\em \small F. nucleatum subsp. vincentii } \\
+1.9\% & {\em \small F. nucleatum subsp. vincentii} \\
 \hline
 
 \end{tabular}
@@ -873,15 +875,15 @@ map anywhere in the reference provided by the authors of \cite{podar}.
 We extracted and assembled these reads in isolation using MEGAHIT,
 yielding 6.5 Mbp of assembly in 1711 contigs $>$ 500bp in length.  We
 then did a k-mer inclusion analysis of this assembly against all of
-the Genbank genomes at k=31, and estimated the fraction of the k-mers
+the GenBank genomes at k=31, and estimated the fraction of the k-mers
 that belonged to different species (Table~\ref{table:gather}). We find
 that 51.1\% of the k-mer content of these contigs positively match to
-a genome present in Genbank but not in the reference metagenome.
+a genome present in GenBank but not in the reference metagenome.
 
 To verify these assignments, we aligned the MEGAHIT assembly of
-unmapped reads to the Genbank genomes in Table~\ref{table:gather} with
+unmapped reads to the GenBank genomes in Table~\ref{table:gather} with
 NUCmer using ``loose'' alignment criteria. We found that 1.78 Mbp of
-the contigs aligned at 99\% identity or better to these Genbank
+the contigs aligned at 99\% identity or better to these GenBank
 genomes.  We also confirmed that, as expected, there are no matches in
 this assembly to the full updated reference metagenome.
 
@@ -897,7 +899,7 @@ approximately 2.73 Mbp total.  This suggests that the unmapped reads
 contain at least some data from a novel species of {\em
   Proteiniclasticum}; this matches the observation in \cite{podar} of
 a contaminating genome from an unknown {\em Clostridium} spp., as at the time
-there was no {\em P. ruminis genome}.
+there was no {\em P. ruminis} genome.
 
 \section*{Discussion}
 
@@ -952,7 +954,7 @@ where contigs that share paths in the assembly graphs are broken in twain.
 \subsection*{MEGAHIT performs best by several metrics.}
 
 MEGAHIT is clearly the most efficient computationally, outperforming
-both MetaSPAdes and IDBA by 3-9 in memory and 12-23x in time
+both MetaSPAdes and IDBA by 3-9x in memory and 12-23x in time
 (Table~\ref{table:time-memory}).  The MEGAHIT assembly also included
 more of the reads than either IDBA or MetaSPAdes, and omitted only 0.4\%
 more of the unique 51-mers from the reads than IDBA.  MEGAHIT covered
@@ -983,7 +985,7 @@ Several individual genomes are missing in measurable portion from the
 QC reads (Table~\ref{table:genomes_uncovered-analysis}), and many QC
 reads (4.4\% of 108m) did not map to the full reference metagenome.
 These appear to be related issues: upon analysis of the unmapped reads
-against Genbank, we find that many of the contigs assembled from the
+against GenBank, we find that many of the contigs assembled from the
 unmapped reads can be assigned to strain variants of the species in
 the mock community (Table~\ref{table:gather}).  This suggests that the
 constructors of the mock community may have unintentionally included
@@ -998,11 +1000,11 @@ through amplicon sequencing in \cite{podar}.
 Without returning to the original DNA samples, it is impossible to
 conclusively confirm that unintended strains were used in the
 construction of the mock community.  In particular, our analysis is
-dependent on the genomes in Genbank: the genomes we detect in the
-contigs are clearly more closely related to Genbank genomes not in
+dependent on the genomes in GenBank: the genomes we detect in the
+contigs are clearly closely related to GenBank genomes not in
 the reference metagenome, based on k-mer analysis and
-contig alignment.  However, Genbank is unlikely to contain the exact
-genomes of the included strain variants, rendering conclusive
+contig alignment.  However, GenBank is unlikely to contain the exact
+genomes of the actually included strain variants, rendering conclusive
 identification impossible.
 
 \section*{Conclusions}
@@ -1011,7 +1013,7 @@ identification impossible.
 Overall, assembly of this mock community works well, with good
 recovery of known genomic sequence for the majority of genomes.  All
 three assemblers that we evaluated recover similar amounts of most
-genomic sequence, but (recapitulating several other studies \cite{Vollmers2017}, \cite{metag_one}, \cite{CAMI})
+genomic sequence, but (recapitulating several other studies \cite{CAMI,Vollmers2017,metag_one})
 MEGAHIT is computationally the most efficient of the three.
 We note that assembly
 resolves substantial portions of several previously undetected strain
@@ -1063,7 +1065,7 @@ well-defined complex communities and are still challenged by the
 complexity of complex environmental metagenomes; see
 \cite{Burton2014,Marbouty2014,Beitel2014}.
 
-Much of our analysis depended on having a high-quality ``mock''
+Much of our analysis above depends on having a high-quality ``mock''
 metagenome.  While computationally constructed synthetic communities
 and computational ``spike-ins'' to real data sets can provide valuable
 controls (e.g. see \cite{metag_one} and \cite{ahowe2014}) we strongly
