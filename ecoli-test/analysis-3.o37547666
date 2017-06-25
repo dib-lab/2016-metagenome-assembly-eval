@@ -1,0 +1,120 @@
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa idba-quality-assembly.fa 1000;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa idba-quality-assembly.fa 2000;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa idba-quality-assembly.fa 3000;  
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa spades-quality-assembly.fa 1000;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa spades-quality-assembly.fa 2000;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa spades-quality-assembly.fa 3000;  
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa megahit-quality-assembly.fa 1000;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa megahit-quality-assembly.fa 2000;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py ecoliMG1655.fa megahit-quality-assembly.fa 3000;  
+/mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p iqc1000 ecoliMG1655.fa  idba-quality-assembly1000.fa ;   /mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p iqc2000 ecoliMG1655.fa  idba-quality-assembly2000.fa ;   /mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p iqc3000 ecoliMG1655.fa  idba-quality-assembly3000.fa ;  
+/mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p sqc1000 ecoliMG1655.fa  spades-quality-assembly1000.fa ;  /mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p sqc2000 ecoliMG1655.fa  spades-quality-assembly2000.fa ;  /mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p sqc3000 ecoliMG1655.fa  spades-quality-assembly3000.fa ; 
+/mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p mqc1000 ecoliMG1655.fa  megahit-quality-assembly1000.fa ;   /mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p mqc2000 ecoliMG1655.fa  megahit-quality-assembly2000.fa ;   /mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p mqc3000 ecoliMG1655.fa  megahit-quality-assembly3000.fa ;  
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly1000.fa spades-quality-assembly1000.fa megahit-quality-assembly1000.fa iqc1000.coords  sqc1000.coords  mqc1000.coords QC.AMBIGUOUS1000.99 -a True 99;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly2000.fa spades-quality-assembly2000.fa megahit-quality-assembly2000.fa iqc2000.coords  sqc2000.coords  mqc2000.coords QC.AMBIGUOUS2000.99 -a True 99;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly3000.fa spades-quality-assembly3000.fa megahit-quality-assembly3000.fa iqc3000.coords  sqc3000.coords  mqc3000.coords QC.AMBIGUOUS3000.99 -a True 99;
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
+63578 57286 98431
+{u'mg1655': 63578}
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
+80709 78958 125925
+{u'mg1655': 80709}
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
+92660 89388 148218
+{u'mg1655': 92660}
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly1000.fa spades-quality-assembly1000.fa megahit-quality-assembly1000.fa iqc1000.coords  sqc1000.coords  mqc1000.coords QC.BESTHIT1000.99 -b True 99 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly2000.fa spades-quality-assembly2000.fa megahit-quality-assembly2000.fa iqc2000.coords  sqc2000.coords  mqc2000.coords QC.BESTHIT2000.99 -b True 99 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly3000.fa spades-quality-assembly3000.fa megahit-quality-assembly3000.fa iqc3000.coords  sqc3000.coords  mqc3000.coords QC.BESTHIT3000.99 -b True 99 ; 
+loading refsizes
+Loading Coords
+False True
+.....Running best hit analysis
+1621502 1340757 1298923
+{u'mg1655': 1621502}
+loading refsizes
+Loading Coords
+False True
+.....Running best hit analysis
+1633579 1354049 1323541
+{u'mg1655': 1633579}
+loading refsizes
+Loading Coords
+False True
+.....Running best hit analysis
+1645629 1362071 1341424
+{u'mg1655': 1645629}
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly1000.fa spades-quality-assembly1000.fa megahit-quality-assembly1000.fa iqc1000.coords  sqc1000.coords  mqc1000.coords QC.NOOVERLAP1000.99 -c True 99 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly2000.fa spades-quality-assembly2000.fa megahit-quality-assembly2000.fa iqc2000.coords  sqc2000.coords  mqc2000.coords QC.NOOVERLAP2000.99 -c True 99 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly3000.fa spades-quality-assembly3000.fa megahit-quality-assembly3000.fa iqc3000.coords  sqc3000.coords  mqc3000.coords QC.NOOVERLAP3000.99 -c True 99 ;
+loading refsizes
+Loading Coords
+False False
+.... Running no overlaps analysis
+3229728 2931205 2411393
+{u'mg1655': 3229728}
+loading refsizes
+Loading Coords
+False False
+.... Running no overlaps analysis
+3238387 2939009 2430656
+{u'mg1655': 3238387}
+loading refsizes
+Loading Coords
+False False
+.... Running no overlaps analysis
+3250437 2941708 2446546
+{u'mg1655': 3250437}
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly1000.fa spades-quality-assembly1000.fa megahit-quality-assembly1000.fa iqc1000.coords  sqc1000.coords  mqc1000.coords QC.AMBIGUOUS1000.95 -a True 95;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly2000.fa spades-quality-assembly2000.fa megahit-quality-assembly2000.fa iqc2000.coords  sqc2000.coords  mqc2000.coords QC.AMBIGUOUS2000.95 -a True 95;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly3000.fa spades-quality-assembly3000.fa megahit-quality-assembly3000.fa iqc3000.coords  sqc3000.coords  mqc3000.coords QC.AMBIGUOUS3000.95 -a True 95;
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
+61103 54160 94679
+{u'mg1655': 61103}
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
+79635 76628 125006
+{u'mg1655': 79635}
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
+91586 85831 147294
+{u'mg1655': 91586}
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly1000.fa spades-quality-assembly1000.fa megahit-quality-assembly1000.fa iqc1000.coords  sqc1000.coords  mqc1000.coords QC.BESTHIT1000.95 -b True 95 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly2000.fa spades-quality-assembly2000.fa megahit-quality-assembly2000.fa iqc2000.coords  sqc2000.coords  mqc2000.coords QC.BESTHIT2000.95 -b True 95 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly3000.fa spades-quality-assembly3000.fa megahit-quality-assembly3000.fa iqc3000.coords  sqc3000.coords  mqc3000.coords QC.BESTHIT3000.95 -b True 95 ; 
+loading refsizes
+Loading Coords
+False True
+.....Running best hit analysis
+1621502 1340757 1297432
+{u'mg1655': 1621502}
+loading refsizes
+Loading Coords
+False True
+.....Running best hit analysis
+1633579 1354049 1323541
+{u'mg1655': 1633579}
+loading refsizes
+Loading Coords
+False True
+.....Running best hit analysis
+1645629 1362071 1341424
+{u'mg1655': 1645629}
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly1000.fa spades-quality-assembly1000.fa megahit-quality-assembly1000.fa iqc1000.coords  sqc1000.coords  mqc1000.coords QC.NOOVERLAP1000.95 -c True 95 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly2000.fa spades-quality-assembly2000.fa megahit-quality-assembly2000.fa iqc2000.coords  sqc2000.coords  mqc2000.coords QC.NOOVERLAP2000.95 -c True 95 ;  python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py ecoliMG1655.fa idba-quality-assembly3000.fa spades-quality-assembly3000.fa megahit-quality-assembly3000.fa iqc3000.coords  sqc3000.coords  mqc3000.coords QC.NOOVERLAP3000.95 -c True 95 ;
+loading refsizes
+Loading Coords
+False False
+.... Running no overlaps analysis
+3229728 2931205 2409902
+{u'mg1655': 3229728}
+loading refsizes
+Loading Coords
+False False
+.... Running no overlaps analysis
+3238387 2939009 2430656
+{u'mg1655': 3238387}
+loading refsizes
+Loading Coords
+False False
+.... Running no overlaps analysis
+3250437 2941708 2446546
+{u'mg1655': 3250437}

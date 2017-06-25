@@ -1,0 +1,64 @@
+SRR606249.pe.qc.fq.gz,"CP000916.1 Thermotoga neapolitana DSM 4359, complete genome",../genomes/51.fa.sig,1.0,1.0,0.9942196531791907
+SRR606249.pe.qc.fq.gz,"CP001071.1 Akkermansia muciniphila ATCC BAA-835, complete genome",../genomes/2.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_000909.1 Methanocaldococcus jannaschii DSM 2661, complete genome",../genomes/28.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP001472.1 Acidobacterium capsulatum ATCC 51196, complete genome",../genomes/0.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_005213.1 Nanoarchaeum equitans Kin4-M chromosome, complete genome",../genomes/33.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AE006470.1 Chlorobium tepidum TLS, complete genome",../genomes/13.fa.sig,1.0,1.0,0.9949748743718593
+SRR606249.pe.qc.fq.gz,"CP000850.1 Salinispora arenicola CNS-205, complete genome",../genomes/45.fa.sig,0.9926739926739927,0.9895104895104895,0.9947735191637631
+SRR606249.pe.qc.fq.gz,"BA000001.2 Pyrococcus horikoshii OT3 DNA, complete genome",../genomes/42.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP000969.1 Thermotoga sp. RQ2, complete genome",../genomes/53.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP000702.1 Thermotoga petrophila RKU-1, complete genome",../genomes/52.fa.sig,0.9947368421052631,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP001230.1 Persephonella marina EX-H1, complete genome",../genomes/54.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP001941.1 Aciduliprofundum boonei T469, complete genome",../genomes/1.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NZ_CH959317.1 Sulfitobacter sp. NAS-14.1 scf_1099451320472, whole genome shotgun sequence",../genomes/60.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP000607.1 Chlorobium phaeovibrioides DSM 265, complete genome",../genomes/12.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP000609.1 Methanococcus maripaludis C5, complete genome",../genomes/29.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_003911.12 Ruegeria pomeroyi DSS-3, complete genome",../genomes/44.fa.sig,0.9955456570155902,0.9878048780487805,0.9710467706013363
+SRR606249.pe.qc.fq.gz,"CP001097.1 Chlorobium limicola DSM 245, complete genome",../genomes/10.fa.sig,0.9961832061068703,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NZ_CP015081.1 Deinococcus radiodurans R1 chromosome 1, complete sequence",../genomes/16.fa.sig,0.9770114942528736,0.9730538922155688,0.9741100323624595
+SRR606249.pe.qc.fq.gz,"CP000679.1 Caldicellulosiruptor saccharolyticus DSM 8903, complete genome",../genomes/8.fa.sig,0.9963369963369964,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AE009439.1 Methanopyrus kandleri AV19, complete genome",../genomes/31.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_013968.1 Haloferax volcanii DS2 plasmid pHV1, complete sequence",../genomes/23.fa.sig,1.0,0.9919786096256684,0.9872122762148338
+SRR606249.pe.qc.fq.gz,"AE015928.1 Bacteroides thetaiotaomicron VPI-5482, complete genome",../genomes/4.fa.sig,1.0,0.9983739837398374,1.0
+SRR606249.pe.qc.fq.gz,"NZ_KQ961402.1 Zymomonas mobilis strain ATCC 31823 Scaffold1, whole genome shotgun sequence",../genomes/58.fa.sig,0.9854368932038835,0.9806763285024155,0.9719626168224299
+SRR606249.pe.qc.fq.gz,"CP000492.1 Chlorobium phaeobacteroides DSM 266, complete genome",../genomes/11.fa.sig,0.9963369963369964,1.0,0.9966101694915255
+SRR606249.pe.qc.fq.gz,"CP000816.1 Ignicoccus hospitalis KIN4/I, complete genome",../genomes/26.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NZ_CH959311.1 Sulfitobacter sp. EE-36 scf_1099451318005, whole genome shotgun sequence",../genomes/59.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_009972.1 Herpetosiphon aurantiacus DSM 785, complete genome",../genomes/24.fa.sig,1.0,1.0,0.9971590909090909
+SRR606249.pe.qc.fq.gz,"AL954747.1 Nitrosomonas europaea ATCC 19718, complete genome",../genomes/34.fa.sig,1.0,0.9959349593495935,1.0
+SRR606249.pe.qc.fq.gz,"NZ_KE136524.1 Enterococcus faecalis V583 acyDH-supercont2.1, whole genome shotgun sequence",../genomes/19.fa.sig,0.6560509554140127,0.5732899022801303,0.5342019543973942
+SRR606249.pe.qc.fq.gz,"NC_003272.1 Nostoc sp. PCC 7120 DNA, complete genome",../genomes/35.fa.sig,0.9985443959243085,0.998730964467005,1.0
+SRR606249.pe.qc.fq.gz,"BX950229.1 Methanococcus maripaludis strain S2, complete sequence",../genomes/30.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP000139.1 Bacteroides vulgatus ATCC 8482, complete genome",../genomes/5.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP001130.1 Hydrogenobaculum sp. Y04AAS1, complete genome",../genomes/25.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AE017180.2 Geobacter sulfurreducens PCA, complete genome",../genomes/22.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NZ_ABZS01000228.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_18, whole genome shotgun sequence",../genomes/49.fa.sig,1.0,0.994535519125683,1.0
+SRR606249.pe.qc.fq.gz,"CP000909.1 Chloroflexus aurantiacus J-10-fl, complete genome",../genomes/14.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AP009153.1 Gemmatimonas aurantiaca T-27 DNA, complete genome",../genomes/21.fa.sig,1.0,1.0,0.997737556561086
+SRR606249.pe.qc.fq.gz,"AE017226.1 Treponema denticola ATCC 35405, complete genome",../genomes/56.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AP009380.1 Porphyromonas gingivalis ATCC 33277 DNA, complete genome",../genomes/37.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP001013.1 Leptothrix cholodnii SP-6, complete genome",../genomes/27.fa.sig,0.9958419958419958,0.9980119284294234,0.9873684210526316
+SRR606249.pe.qc.fq.gz,"CP001251.1 Dictyoglomus turgidum DSM 6724, complete genome",../genomes/18.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AE017221.1 Thermus thermophilus HB27, complete genome",../genomes/55.fa.sig,0.7965116279069767,0.772972972972973,0.6502242152466368
+SRR606249.pe.qc.fq.gz,"NZ_FWDH01000003.1 Caldicellulosiruptor bescii strain MACB1021, whole genome shotgun sequence",../genomes/9.fa.sig,1.0,1.0,0.9961389961389961
+SRR606249.pe.qc.fq.gz,"BA000023.2 Sulfolobus tokodaii str. 7 DNA, complete genome",../genomes/62.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_008751.1 Desulfovibrio vulgaris DP4, complete genome",../genomes/17.fa.sig,0.8248587570621468,0.8011204481792717,0.7196765498652291
+SRR606249.pe.qc.fq.gz,"AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome",../genomes/20.fa.sig,0.1822429906542056,0.10476190476190476,0.04700854700854701
+SRR606249.pe.qc.fq.gz,"AE009441.1 Pyrobaculum aerophilum str. IM2, complete genome",../genomes/38.fa.sig,1.0,1.0,0.9919354838709677
+SRR606249.pe.qc.fq.gz,"NZ_JGWU01000001.1 Bordetella bronchiseptica D989 ctg7180000008197, whole genome shotgun sequence",../genomes/6.fa.sig,0.97265625,0.9726775956284153,0.9550561797752809
+SRR606249.pe.qc.fq.gz,"CP000667.1 Salinispora tropica CNB-440, complete genome",../genomes/46.fa.sig,0.9939393939393939,0.9919354838709677,0.9858012170385395
+SRR606249.pe.qc.fq.gz,"CP000561.1 Pyrobaculum calidifontis JCM 11548, complete genome",../genomes/40.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AE000782.1 Archaeoglobus fulgidus DSM 4304, complete genome",../genomes/3.fa.sig,1.0,1.0,0.9954954954954955
+SRR606249.pe.qc.fq.gz,"CP001110.1 Pelodictyon phaeoclathratiforme BU-1, complete genome",../genomes/36.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP000924.1 Thermoanaerobacter pseudethanolicus ATCC 33223, complete genome",../genomes/50.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AE010299.1 Methanosarcina acetivorans str. C2A, complete genome",../genomes/32.fa.sig,0.9981132075471698,1.0,1.0
+SRR606249.pe.qc.fq.gz,"CP000568.1 Clostridium thermocellum ATCC 27405, complete genome",../genomes/15.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_011663.1 Shewanella baltica OS223, complete genome",../genomes/63.fa.sig,1.0,0.9963636363636363,0.9682539682539683
+SRR606249.pe.qc.fq.gz,"NC_010730.1 Sulfurihydrogenibium sp. YO3AOP1, complete genome",../genomes/48.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_007951.1 Burkholderia xenovorans LB400 chromosome 1, complete sequence",../genomes/7.fa.sig,0.9872611464968153,0.9793478260869565,0.944560669456067
+SRR606249.pe.qc.fq.gz,"BX571656.1 Wolinella succinogenes DSM 1740, complete genome",../genomes/57.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NC_009665.1 Shewanella baltica OS185, complete genome",../genomes/47.fa.sig,0.9957264957264957,0.9980544747081712,0.9945553539019963
+SRR606249.pe.qc.fq.gz,BX119912.1 Rhodopirellula baltica SH 1 complete genome,../genomes/43.fa.sig,1.0,1.0,1.0
+SRR606249.pe.qc.fq.gz,"AE009950.1 Pyrococcus furiosus DSM 3638, complete genome",../genomes/41.fa.sig,0.9947916666666666,1.0,1.0
+SRR606249.pe.qc.fq.gz,"NZ_DS996397.1 Desulfovibrio piger ATCC 29098 Scfld442, whole genome shotgun sequence",../genomes/61.fa.sig,1.0,0.9963369963369964,1.0
+SRR606249.pe.qc.fq.gz,"CP000660.1 Pyrobaculum arsenaticum DSM 13514, complete genome",../genomes/39.fa.sig,1.0,1.0,1.0

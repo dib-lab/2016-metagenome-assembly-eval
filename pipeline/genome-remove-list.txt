@@ -1,0 +1,139 @@
+NC_003911.12 Ruegeria pomeroyi DSS-3, complete genome
+NC_006569.1 Ruegeria pomeroyi DSS-3 megaplasmid, complete sequence
+NZ_CP015081.1 Deinococcus radiodurans R1 chromosome 1, complete sequence
+NZ_CP015082.1 Deinococcus radiodurans R1 chromosome 2, complete sequence
+NZ_CP015084.1 Deinococcus radiodurans R1 plasmid CP1, complete sequence
+NZ_CP015083.1 Deinococcus radiodurans R1 plasmid MP1, complete sequence
+NC_013968.1 Haloferax volcanii DS2 plasmid pHV1, complete sequence
+NC_013965.1 Haloferax volcanii DS2 plasmid pHV2, complete sequence
+NC_013964.1 Haloferax volcanii DS2 plasmid pHV3, complete sequence
+NC_013966.1 Haloferax volcanii DS2 plasmid pHV4, complete sequence
+NC_013967.1 Haloferax volcanii DS2, complete genome
+NZ_KQ961402.1 Zymomonas mobilis strain ATCC 31823 Scaffold1, whole genome shotgun sequence
+NZ_KQ961403.1 Zymomonas mobilis strain ATCC 31823 Scaffold2, whole genome shotgun sequence
+NZ_LSFP01000005.1 Zymomonas mobilis strain ATCC 31823 Scaffold3_1, whole genome shotgun sequence
+NZ_LSFP01000006.1 Zymomonas mobilis strain ATCC 31823 Scaffold4_1, whole genome shotgun sequence
+NZ_LSFP01000007.1 Zymomonas mobilis strain ATCC 31823 Scaffold5_1, whole genome shotgun sequence
+NZ_KQ961404.1 Zymomonas mobilis strain ATCC 31823 Scaffold6, whole genome shotgun sequence
+NZ_KQ961405.1 Zymomonas mobilis strain ATCC 31823 Scaffold7, whole genome shotgun sequence
+NZ_KQ961406.1 Zymomonas mobilis strain ATCC 31823 Scaffold8, whole genome shotgun sequence
+NZ_LSFP01000014.1 Zymomonas mobilis strain ATCC 31823 Scaffold9_1, whole genome shotgun sequence
+NZ_KQ961407.1 Zymomonas mobilis strain ATCC 31823 Scaffold10, whole genome shotgun sequence
+NZ_KQ961408.1 Zymomonas mobilis strain ATCC 31823 Scaffold11, whole genome shotgun sequence
+NZ_LSFP01000019.1 Zymomonas mobilis strain ATCC 31823 Scaffold12_1, whole genome shotgun sequence
+NZ_LSFP01000020.1 Zymomonas mobilis strain ATCC 31823 Scaffold13_1, whole genome shotgun sequence
+NZ_LSFP01000021.1 Zymomonas mobilis strain ATCC 31823 Scaffold14_1, whole genome shotgun sequence
+NZ_LSFP01000022.1 Zymomonas mobilis strain ATCC 31823 Scaffold15_1, whole genome shotgun sequence
+NZ_LSFP01000023.1 Zymomonas mobilis strain ATCC 31823 Scaffold16_1, whole genome shotgun sequence
+NZ_LSFP01000024.1 Zymomonas mobilis strain ATCC 31823 Scaffold17_1, whole genome shotgun sequence
+NZ_LSFP01000025.1 Zymomonas mobilis strain ATCC 31823 Scaffold18_1, whole genome shotgun sequence
+NZ_LSFP01000026.1 Zymomonas mobilis strain ATCC 31823 Scaffold19_1, whole genome shotgun sequence
+NZ_LSFP01000027.1 Zymomonas mobilis strain ATCC 31823 Scaffold20_1, whole genome shotgun sequence
+NZ_LSFP01000028.1 Zymomonas mobilis strain ATCC 31823 Scaffold21_1, whole genome shotgun sequence
+NZ_KQ961409.1 Zymomonas mobilis strain ATCC 31823 Scaffold22, whole genome shotgun sequence
+NZ_LSFP01000031.1 Zymomonas mobilis strain ATCC 31823 Scaffold23_1, whole genome shotgun sequence
+NZ_KQ961410.1 Zymomonas mobilis strain ATCC 31823 Scaffold24, whole genome shotgun sequence
+NZ_KQ961411.1 Zymomonas mobilis strain ATCC 31823 Scaffold25, whole genome shotgun sequence
+NZ_LSFP01000036.1 Zymomonas mobilis strain ATCC 31823 Scaffold26_1, whole genome shotgun sequence
+NZ_LSFP01000037.1 Zymomonas mobilis strain ATCC 31823 Scaffold27_1, whole genome shotgun sequence
+NZ_KQ961412.1 Zymomonas mobilis strain ATCC 31823 Scaffold28, whole genome shotgun sequence
+NZ_LSFP01000040.1 Zymomonas mobilis strain ATCC 31823 Scaffold29_1, whole genome shotgun sequence
+NZ_LSFP01000041.1 Zymomonas mobilis strain ATCC 31823 Scaffold30_1, whole genome shotgun sequence
+NZ_KE136524.1 Enterococcus faecalis V583 acyDH-supercont2.1, whole genome shotgun sequence
+NZ_KE136525.1 Enterococcus faecalis V583 acyDH-supercont2.2, whole genome shotgun sequence
+NZ_KE136526.1 Enterococcus faecalis V583 acyDH-supercont2.3, whole genome shotgun sequence
+NZ_KE136527.1 Enterococcus faecalis V583 acyDH-supercont2.4, whole genome shotgun sequence
+NZ_KE136528.1 Enterococcus faecalis V583 acyDH-supercont2.5, whole genome shotgun sequence
+NZ_KE136529.1 Enterococcus faecalis V583 acyDH-supercont2.6, whole genome shotgun sequence
+NZ_KE136530.1 Enterococcus faecalis V583 acyDH-supercont2.7, whole genome shotgun sequence
+NZ_KE136531.1 Enterococcus faecalis V583 acyDH-supercont2.8, whole genome shotgun sequence
+NZ_KE136532.1 Enterococcus faecalis V583 acyDH-supercont2.9, whole genome shotgun sequence
+CP001013.1 Leptothrix cholodnii SP-6, complete genome
+AE017221.1 Thermus thermophilus HB27, complete genome
+NC_008751.1 Desulfovibrio vulgaris DP4, complete genome
+NC_008741.1 Desulfovibrio vulgaris DP4 plasmid pDVUL01, complete sequence
+AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
+NZ_JGWU01000001.1 Bordetella bronchiseptica D989 ctg7180000008197, whole genome shotgun sequence
+NZ_JGWU01000002.1 Bordetella bronchiseptica D989 ctg00009, whole genome shotgun sequence
+NZ_JGWU01000003.1 Bordetella bronchiseptica D989 ctg7180000009390, whole genome shotgun sequence
+NZ_JGWU01000004.1 Bordetella bronchiseptica D989 ctg000028, whole genome shotgun sequence
+NZ_JGWU01000005.1 Bordetella bronchiseptica D989 ctg7180000009410, whole genome shotgun sequence
+NZ_JGWU01000006.1 Bordetella bronchiseptica D989 ctg000015, whole genome shotgun sequence
+NZ_JGWU01000007.1 Bordetella bronchiseptica D989 ctg000032, whole genome shotgun sequence
+NZ_JGWU01000008.1 Bordetella bronchiseptica D989 ctg000025, whole genome shotgun sequence
+NZ_JGWU01000009.1 Bordetella bronchiseptica D989 ctg7180000009411, whole genome shotgun sequence
+NZ_JGWU01000010.1 Bordetella bronchiseptica D989 ctg000023, whole genome shotgun sequence
+NZ_JGWU01000011.1 Bordetella bronchiseptica D989 ctg7180000009343, whole genome shotgun sequence
+NZ_JGWU01000012.1 Bordetella bronchiseptica D989 ctg7180000009371, whole genome shotgun sequence
+NZ_JGWU01000013.1 Bordetella bronchiseptica D989 ctg7180000009416, whole genome shotgun sequence
+NZ_JGWU01000014.1 Bordetella bronchiseptica D989 ctg00004, whole genome shotgun sequence
+NZ_JGWU01000015.1 Bordetella bronchiseptica D989 ctg7180000009379, whole genome shotgun sequence
+NZ_JGWU01000016.1 Bordetella bronchiseptica D989 ctg7180000009386, whole genome shotgun sequence
+NZ_JGWU01000017.1 Bordetella bronchiseptica D989 ctg000027, whole genome shotgun sequence
+NZ_JGWU01000018.1 Bordetella bronchiseptica D989 ctg000018, whole genome shotgun sequence
+NZ_JGWU01000019.1 Bordetella bronchiseptica D989 ctg00008, whole genome shotgun sequence
+NZ_JGWU01000020.1 Bordetella bronchiseptica D989 ctg7180000009311, whole genome shotgun sequence
+NZ_JGWU01000021.1 Bordetella bronchiseptica D989 ctg000019, whole genome shotgun sequence
+NZ_JGWU01000022.1 Bordetella bronchiseptica D989 ctg7180000009348, whole genome shotgun sequence
+NZ_JGWU01000023.1 Bordetella bronchiseptica D989 deg7180000009139, whole genome shotgun sequence
+NZ_JGWU01000024.1 Bordetella bronchiseptica D989 ctg7180000009394, whole genome shotgun sequence
+NZ_JGWU01000025.1 Bordetella bronchiseptica D989 ctg00006, whole genome shotgun sequence
+NZ_JGWU01000026.1 Bordetella bronchiseptica D989 ctg7180000009351, whole genome shotgun sequence
+NZ_JGWU01000027.1 Bordetella bronchiseptica D989 ctg7180000009318, whole genome shotgun sequence
+NZ_JGWU01000028.1 Bordetella bronchiseptica D989 ctg7180000009391, whole genome shotgun sequence
+NZ_JGWU01000029.1 Bordetella bronchiseptica D989 ctg7180000009381, whole genome shotgun sequence
+NZ_JGWU01000030.1 Bordetella bronchiseptica D989 ctg7180000009324, whole genome shotgun sequence
+NZ_JGWU01000031.1 Bordetella bronchiseptica D989 ctg00002, whole genome shotgun sequence
+NZ_JGWU01000032.1 Bordetella bronchiseptica D989 ctg000022, whole genome shotgun sequence
+NZ_JGWU01000033.1 Bordetella bronchiseptica D989 ctg7180000009359, whole genome shotgun sequence
+NZ_JGWU01000034.1 Bordetella bronchiseptica D989 ctg7180000009383, whole genome shotgun sequence
+NZ_JGWU01000035.1 Bordetella bronchiseptica D989 ctg7180000009378, whole genome shotgun sequence
+NZ_JGWU01000036.1 Bordetella bronchiseptica D989 ctg7180000009415, whole genome shotgun sequence
+NZ_JGWU01000037.1 Bordetella bronchiseptica D989 ctg7180000009396, whole genome shotgun sequence
+NZ_JGWU01000038.1 Bordetella bronchiseptica D989 ctg7180000009344, whole genome shotgun sequence
+NZ_JGWU01000039.1 Bordetella bronchiseptica D989 deg7180000009138, whole genome shotgun sequence
+NZ_JGWU01000040.1 Bordetella bronchiseptica D989 ctg000026, whole genome shotgun sequence
+NZ_JGWU01000041.1 Bordetella bronchiseptica D989 ctg7180000009388, whole genome shotgun sequence
+NZ_JGWU01000042.1 Bordetella bronchiseptica D989 ctg7180000009370, whole genome shotgun sequence
+NZ_JGWU01000043.1 Bordetella bronchiseptica D989 ctg7180000009403, whole genome shotgun sequence
+NZ_JGWU01000044.1 Bordetella bronchiseptica D989 ctg7180000009408, whole genome shotgun sequence
+NZ_JGWU01000045.1 Bordetella bronchiseptica D989 ctg7180000009406, whole genome shotgun sequence
+NZ_JGWU01000046.1 Bordetella bronchiseptica D989 ctg000010, whole genome shotgun sequence
+NZ_JGWU01000047.1 Bordetella bronchiseptica D989 ctg000024, whole genome shotgun sequence
+NZ_JGWU01000048.1 Bordetella bronchiseptica D989 ctg00001, whole genome shotgun sequence
+NZ_JGWU01000049.1 Bordetella bronchiseptica D989 ctg00007, whole genome shotgun sequence
+NZ_JGWU01000050.1 Bordetella bronchiseptica D989 ctg000031, whole genome shotgun sequence
+NZ_JGWU01000051.1 Bordetella bronchiseptica D989 ctg00005, whole genome shotgun sequence
+NZ_JGWU01000052.1 Bordetella bronchiseptica D989 ctg7180000009417, whole genome shotgun sequence
+NZ_JGWU01000053.1 Bordetella bronchiseptica D989 ctg7180000009322, whole genome shotgun sequence
+NZ_JGWU01000054.1 Bordetella bronchiseptica D989 ctg000021, whole genome shotgun sequence
+NZ_JGWU01000055.1 Bordetella bronchiseptica D989 ctg7180000009407, whole genome shotgun sequence
+NZ_JGWU01000056.1 Bordetella bronchiseptica D989 ctg7180000009382, whole genome shotgun sequence
+NZ_JGWU01000057.1 Bordetella bronchiseptica D989 ctg7180000009350, whole genome shotgun sequence
+NZ_JGWU01000058.1 Bordetella bronchiseptica D989 ctg000030, whole genome shotgun sequence
+NZ_JGWU01000059.1 Bordetella bronchiseptica D989 ctg7180000009364, whole genome shotgun sequence
+NZ_JGWU01000060.1 Bordetella bronchiseptica D989 ctg000029, whole genome shotgun sequence
+NZ_JGWU01000061.1 Bordetella bronchiseptica D989 ctg7180000009326, whole genome shotgun sequence
+NZ_JGWU01000062.1 Bordetella bronchiseptica D989 ctg7180000009345, whole genome shotgun sequence
+NZ_JGWU01000063.1 Bordetella bronchiseptica D989 ctg00003, whole genome shotgun sequence
+NZ_JGWU01000064.1 Bordetella bronchiseptica D989 ctg000020, whole genome shotgun sequence
+NZ_JGWU01000065.1 Bordetella bronchiseptica D989 ctg000014, whole genome shotgun sequence
+NZ_JGWU01000066.1 Bordetella bronchiseptica D989 ctg000011, whole genome shotgun sequence
+NZ_JGWU01000067.1 Bordetella bronchiseptica D989 ctg7180000009312, whole genome shotgun sequence
+NZ_JGWU01000068.1 Bordetella bronchiseptica D989 ctg000017, whole genome shotgun sequence
+NZ_JGWU01000069.1 Bordetella bronchiseptica D989 ctg7180000009353, whole genome shotgun sequence
+NZ_JGWU01000070.1 Bordetella bronchiseptica D989 ctg7180000009346, whole genome shotgun sequence
+NZ_JGWU01000071.1 Bordetella bronchiseptica D989 ctg000016, whole genome shotgun sequence
+NZ_JGWU01000073.1 Bordetella bronchiseptica D989 ctg000012, whole genome shotgun sequence
+NZ_JGWU01000074.1 Bordetella bronchiseptica D989 ctg7180000009310, whole genome shotgun sequence
+NZ_JGWU01000075.1 Bordetella bronchiseptica D989 ctg7180000009314, whole genome shotgun sequence
+NZ_JGWU01000076.1 Bordetella bronchiseptica D989 ctg7180000009335, whole genome shotgun sequence
+NZ_JGWU01000077.1 Bordetella bronchiseptica D989 ctg000013, whole genome shotgun sequence
+CP000667.1 Salinispora tropica CNB-440, complete genome
+NC_011663.1 Shewanella baltica OS223, complete genome
+NC_011664.1 Shewanella baltica OS223 plasmid pS22301, complete sequence
+NC_011668.1 Shewanella baltica OS223 plasmid pS22302, complete sequence
+NC_011665.1 Shewanella baltica OS223 plasmid pS22303, complete sequence
+NC_007951.1 Burkholderia xenovorans LB400 chromosome 1, complete sequence
+NC_007952.1 Burkholderia xenovorans LB400 chromosome 2, complete sequence
+NC_007953.1 Burkholderia xenovorans LB400 chromosome 3, complete sequence

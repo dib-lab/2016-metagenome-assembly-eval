@@ -1,0 +1,37 @@
+Min ident used is: 95
+Total bases in Reference is:  172045214
+Total bases in iqc500 QC.AMBIGUOUS.95 is 200416257 with 19988 contigs
+Total bases in sqc500 QC.AMBIGUOUS.95 is 199333135 with 15254 contigs
+Total bases in mqc500 QC.AMBIGUOUS.95 is 200302322 with 27657 contigs
+Analysis of unalignments
+=========================
+QC 	  Total Bases 	 Total Aligned 	 Percentage to Assembly 	 Total Unaligned 	 Percentage to Assembly
+iqc500 QC.AMBIGUOUS.95 200416257 	200411100 	99.9974268554 	5157 	0.00257314455284
+sqc500 QC.AMBIGUOUS.95 199333135 	199328124 	99.9974861179 	5011 	0.00251388209993
+mqc500 QC.AMBIGUOUS.95 200302322 	200296364 	99.9970254963 	5958 	0.00297450371045
+iqc500 QC.AMBIGUOUS.95 has 13338 totally aligned contigs ~ 66.7300380228
+sqc500 QC.AMBIGUOUS.95 has 9057 totally aligned contigs ~ 59.3745902714
+mqc500 QC.AMBIGUOUS.95 has 20597 totally aligned contigs ~ 74.4730086416
+iqc500 QC.AMBIGUOUS.95 has 1493 partially aligned contigs ~ 7.46948168901
+sqc500 QC.AMBIGUOUS.95 has 1186 partially aligned contigs ~ 7.77500983349
+mqc500 QC.AMBIGUOUS.95 has 1102 partially aligned contigs ~ 3.98452471345
+iqc500 QC.AMBIGUOUS.95 has 5157 unaligned contigs ~ 25.8004802882
+sqc500 QC.AMBIGUOUS.95 has 5011 unaligned contigs ~ 32.8503998951
+mqc500 QC.AMBIGUOUS.95 has 5958 unaligned contigs ~ 21.542466645
+Assembler 	  In Reference 	In Alignments 	 Percentages 
+iqc500 duplication ratio: 3496292 6463489 2.10406745159 3.22511527555
+sqc500 duplication ratio: 3825351 7335550 2.31114406631 3.68013798193
+mqc500 duplication ratio: 2691404 4129962 1.64111272863 2.06192559741
+Uncovered regions analysis
+==========================
+QC 	  Total base pairs 	 Percentage of Covered  	 Percentage of uncovered
+iqc500 QC.AMBIGUOUS.95 172045214 	96.5840566771 	3.4159433229
+sqc500 QC.AMBIGUOUS.95 172045214 	96.205893295 	3.794106705
+mqc500 QC.AMBIGUOUS.95 172045214 	95.3230399074 	4.6769600926
+Bases that are covered by iqc500 QC.AMBIGUOUS.95 only:  615881 ~ 0.357976246872 %
+Bases that are covered by sqc500 QC.AMBIGUOUS.95 only:  867953 ~ 0.504491220546 %
+Bases that are covered by mqc500 QC.AMBIGUOUS.95 only:  595720 ~ 0.346257815693 %
+Common uncovered bases among iqc500 sqc500 mqc500 using QC.AMBIGUOUS.95 is:  3779658
+Bases that are uncovered by iqc500 QC.AMBIGUOUS.95 only:  633636 ~ 0.368296208461 %
+Bases that are uncovered by sqc500 QC.AMBIGUOUS.95 only:  1536320 ~ 0.892974564233 %
+Bases that are uncovered by mqc500 QC.AMBIGUOUS.95 only:  2782994 ~ 1.61759454698 %

@@ -3,3 +3,6 @@
 2016-metagenome.bbl
 2016-metagenome.blg
 2016-metagenome.log
+references.log
+*.pyc
+.DS_Store

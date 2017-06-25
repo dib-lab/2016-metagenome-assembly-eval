@@ -1,0 +1,156 @@
+
+Inactive Modules:
+  1) bwa
+
+Due to MODULEPATH changes the following have been reloaded:
+  1) TBB/4.1.0
+
+The following have been reloaded with a version change:
+  1) Boost/1.47.0 => Boost/1.55.0       4) R/2.15.1 => R/3.1.0
+  2) GNU/4.4.5 => GNU/4.8.2             5) SAMTools/1.2 => SAMTools/0.1.19
+  3) OpenMPI/1.4.3 => OpenMPI/1.6.5
+
+
+To run Trimmomatic use 'java -jar $TRIM/trimmomatic'.
+===================================
+When using Trimmomatic with -threads, please request one additional ppn (e.g. -threads 4 requests ppn=5)
+
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/common-uncovered-coverage.py mircea.fa qc-ref.sam QC.AMBIGUOUS.99.uncovered.bases common-uncovered-coverage.out 
+gunzip -c sample5per.pe.qc.fq.gz > sample5per.pe.qc.fastq 
+gunzip -c sample5per.se.qc.fq.gz > sample5per.se.qc.fastq  
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh sample5per.pe.qc.fastq sample5per.se.qc.fastq 
+
+|| This is the script load-into-counting.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||   * A. Döring et al. http://dx.doi.org:80/10.1186/1471-2105-9-11
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+
+PARAMETERS:
+ - kmer size =    20 		(-k)
+ - n tables =     4 		(-N)
+ - max tablesize = 2e+09 	(-x)
+
+Estimated memory usage is 8e+09 bytes (n_tables x max_tablesize)
+--------
+Saving k-mer countgraph to qc.counts.kh
+Loading kmers from sequences in ['sample5per.pe.qc.fastq', 'sample5per.se.qc.fastq']
+making countgraph
+consuming input sample5per.pe.qc.fastq
+consuming input sample5per.se.qc.fastq
+Total number of unique k-mers: 149580373
+saving qc.counts.kh
+fp rate estimated to be 0.000
+DONE.
+wrote to: qc.counts.kh.info
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/abundance-dist.py -s qc.counts.kh mircea.fa sample5per.qc.dist
+
+|| This is the script abundance-dist.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Counting graph from qc.counts.kh
+K: 20
+outputting to sample5per.qc.dist
+preparing hist...
+cat sample5per.pe.qc.fastq sample5per.se.qc.fastq  > sample5per-qc.fastq 
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/abundance-dist.py qc.counts.kh sample5per-qc.fastq qc.dist 
+
+|| This is the script abundance-dist.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Counting graph from qc.counts.kh
+K: 20
+outputting to qc.dist
+preparing hist...
+cat idba-quality-assembly500.fa spades-quality-assembly500.fa megahit-quality-assembly500.fa > qc-assembly500.fa 
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist
+
+|| This is the script abundance-dist.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Counting graph from qc.counts.kh
+K: 20
+outputting to qc500.dist
+preparing hist...
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist
+
+|| This is the script abundance-dist.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Counting graph from qc.counts.kh
+K: 20
+outputting to iqc500.dist
+preparing hist...
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist 
+
+|| This is the script abundance-dist.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Counting graph from qc.counts.kh
+K: 20
+outputting to sqc500.dist
+preparing hist...
+python /opt/software/khmer/2.0--GCC-4.8.2/scripts/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist 
+
+|| This is the script abundance-dist.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||   * Q Zhang et al., http://dx.doi.org/10.1371/journal.pone.0101271
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Counting graph from qc.counts.kh
+K: 20
+outputting to mqc500.dist
+preparing hist...

@@ -1,0 +1,65 @@
+
+To run Trimmomatic use 'java -jar $TRIM/trimmomatic'.
+===================================
+When using Trimmomatic with -threads, please request one additional ppn (e.g. -threads 4 requests ppn=5)
+
+java -jar /opt/software/Trimmomatic/0.32/trimmomatic-0.32.jar PE  ecoli-1.fastq.gz   ecoli-2.fastq.gz  s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:40:15 \
+	LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25  
+TrimmomaticPE: Started with arguments: ecoli-1.fastq.gz ecoli-2.fastq.gz s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/opt/software/Trimmomatic/0.32/adapters/TruSeq2-PE.fa:2:40:15 LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25
+Multiple cores found: Using 16 threads
+Using PrefixPair: 'AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'CAAGCAGAAGACGGCATACGAGATCGGTCTCGGCATTCCTGCTGAACCGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TTTTTTTTTTAATGATACGGCGACCACCGAGATCTACAC'
+Using Long Clipping Sequence: 'TTTTTTTTTTCAAGCAGAAGACGGCATACGA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGGTTCAGCAGGAATGCCGAGACCGATCTCGTATGCCGTCTTCTGCTTG'
+Using Long Clipping Sequence: 'CAAGCAGAAGACGGCATACGAGATCGGTCTCGGCATTCCTGCTGAACCGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 6 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Quality encoding detected as phred33
+Input Read Pairs: 2500000 Both Surviving: 2495601 (99.82%) Forward Only Surviving: 3902 (0.16%) Reverse Only Surviving: 463 (0.02%) Dropped: 34 (0.00%)
+TrimmomaticPE: Completed successfully
+/opt/software/khmer/2.0--GCC-4.8.2/scripts/interleave-reads.py s1_pe s2_pe | gzip -9c > ecoli.pe.qc.fq.gz 
+
+|| This is the script interleave-reads.py in khmer.
+|| You are running khmer version 2.0
+|| You are also using screed version 0.9
+||
+|| If you use this script in a publication, please cite EACH of the following:
+||
+||   * MR Crusoe et al., 2015. http://dx.doi.org/10.12688/f1000research.6924.1
+||
+|| Please see http://khmer.readthedocs.org/en/latest/citations.html for details.
+
+Interleaving:
+	s1_pe
+	s2_pe
+... 0 pairs
+... 100000 pairs
+... 200000 pairs
+... 300000 pairs
+... 400000 pairs
+... 500000 pairs
+... 600000 pairs
+... 700000 pairs
+... 800000 pairs
+... 900000 pairs
+... 1000000 pairs
+... 1100000 pairs
+... 1200000 pairs
+... 1300000 pairs
+... 1400000 pairs
+... 1500000 pairs
+... 1600000 pairs
+... 1700000 pairs
+... 1800000 pairs
+... 1900000 pairs
+... 2000000 pairs
+... 2100000 pairs
+... 2200000 pairs
+... 2300000 pairs
+... 2400000 pairs
+final: interleaved 2495601 pairs
+output written to block device
+cat s1_se s2_se | gzip -9c > ecoli.se.qc.fq.gz
+cat quality.sh >quality 
+chmod a+x quality

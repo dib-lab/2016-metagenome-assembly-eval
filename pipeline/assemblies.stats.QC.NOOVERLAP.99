@@ -1,0 +1,37 @@
+Min ident used is: 99
+Total bases in Reference is:  172045214
+Total bases in iqc500 QC.NOOVERLAP.99 is 200416257 with 19988 contigs
+Total bases in sqc500 QC.NOOVERLAP.99 is 199333135 with 15254 contigs
+Total bases in mqc500 QC.NOOVERLAP.99 is 200302322 with 27657 contigs
+Analysis of unalignments
+=========================
+QC 	  Total Bases 	 Total Aligned 	 Percentage to Assembly 	 Total Unaligned 	 Percentage to Assembly
+iqc500 QC.NOOVERLAP.99 200416257 	200408598 	99.9961784537 	7659 	0.00382154627307
+sqc500 QC.NOOVERLAP.99 199333135 	199326598 	99.9967205653 	6537 	0.00327943470111
+mqc500 QC.NOOVERLAP.99 200302322 	200293701 	99.995696006 	8621 	0.00430399403957
+iqc500 QC.NOOVERLAP.99 has 11009 totally aligned contigs ~ 55.0780468281
+sqc500 QC.NOOVERLAP.99 has 7756 totally aligned contigs ~ 50.8456798217
+mqc500 QC.NOOVERLAP.99 has 18188 totally aligned contigs ~ 65.7627363778
+iqc500 QC.NOOVERLAP.99 has 1320 partially aligned contigs ~ 6.60396237743
+sqc500 QC.NOOVERLAP.99 has 961 partially aligned contigs ~ 6.29998688868
+mqc500 QC.NOOVERLAP.99 has 848 partially aligned contigs ~ 3.06613153994
+iqc500 QC.NOOVERLAP.99 has 7659 unaligned contigs ~ 38.3179907945
+sqc500 QC.NOOVERLAP.99 has 6537 unaligned contigs ~ 42.8543332896
+mqc500 QC.NOOVERLAP.99 has 8621 unaligned contigs ~ 31.1711320823
+Assembler 	  In Reference 	In Alignments 	 Percentages 
+iqc500 duplication ratio: 410404 0 0.391836831339 0.0
+sqc500 duplication ratio: 145160 0 0.130547803892 0.0
+mqc500 duplication ratio: 491451 0 0.388771135348 0.0
+Uncovered regions analysis
+==========================
+QC 	  Total base pairs 	 Percentage of Covered  	 Percentage of uncovered
+iqc500 QC.NOOVERLAP.99 172045214 	60.8784705862 	39.1215294138
+sqc500 QC.NOOVERLAP.99 172045214 	64.630094854 	35.369905146
+mqc500 QC.NOOVERLAP.99 172045214 	73.4756800616 	26.5243199384
+Bases that are covered by iqc500 QC.NOOVERLAP.99 only:  2591884 ~ 1.50651328203 %
+Bases that are covered by sqc500 QC.NOOVERLAP.99 only:  14330022 ~ 8.3292186204 %
+Bases that are covered by mqc500 QC.NOOVERLAP.99 only:  13658552 ~ 7.93893168106 %
+Common uncovered bases among iqc500 sqc500 mqc500 using QC.NOOVERLAP.99 is:  25649367
+Bases that are uncovered by iqc500 QC.NOOVERLAP.99 only:  13668778 ~ 7.94487546745 %
+Bases that are uncovered by sqc500 QC.NOOVERLAP.99 only:  18952426 ~ 11.015956538 %
+Bases that are uncovered by mqc500 QC.NOOVERLAP.99 only:  3062550 ~ 1.78008439107 %

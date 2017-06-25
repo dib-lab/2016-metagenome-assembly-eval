@@ -1,0 +1,1636 @@
+
+Lmod Warning: samtools not found, loading: SAMTools/1.2
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py  ecoliMG1655.fa  idba-quality-assembly.fa 500	
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py  ecoliMG1655.fa  spades-quality-assembly.fa 500 
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/filter_assembly_mincontig.py  ecoliMG1655.fa  megahit-quality-assembly.fa 500 
+/mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p  iqc500  ecoliMG1655.fa  idba-quality-assembly500.fa
+1: PREPARING DATA
+2,3: RUNNING mummer AND CREATING CLUSTERS
+# reading input file "iqc500.ntref" of length 4639676
+# construct suffix tree for sequence of length 4639676
+# (maximum reference length is 536870908)
+# (maximum query length is 4294967295)
+# process 46396 characters per dot
+#....................................................................................................
+# CONSTRUCTIONTIME /mnt/home/mahmoud4/MUMmer3.23/mummer iqc500.ntref 1.09
+# reading input file "/mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/idba-quality-assembly500.fa" of length 4564319
+# matching query-file "/mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/idba-quality-assembly500.fa"
+# against subject-file "iqc500.ntref"
+# COMPLETETIME /mnt/home/mahmoud4/MUMmer3.23/mummer iqc500.ntref 3.86
+# SPACE /mnt/home/mahmoud4/MUMmer3.23/mummer iqc500.ntref 8.86
+4: FINISHING DATA
+5: GENERATING COORDS FILE
+/mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p  sqc500  ecoliMG1655.fa  spades-quality-assembly500.fa
+1: PREPARING DATA
+2,3: RUNNING mummer AND CREATING CLUSTERS
+# reading input file "sqc500.ntref" of length 4639676
+# construct suffix tree for sequence of length 4639676
+# (maximum reference length is 536870908)
+# (maximum query length is 4294967295)
+# process 46396 characters per dot
+#....................................................................................................
+# CONSTRUCTIONTIME /mnt/home/mahmoud4/MUMmer3.23/mummer sqc500.ntref 1.14
+# reading input file "/mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/spades-quality-assembly500.fa" of length 4561065
+# matching query-file "/mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/spades-quality-assembly500.fa"
+# against subject-file "sqc500.ntref"
+# COMPLETETIME /mnt/home/mahmoud4/MUMmer3.23/mummer sqc500.ntref 3.76
+# SPACE /mnt/home/mahmoud4/MUMmer3.23/mummer sqc500.ntref 8.85
+4: FINISHING DATA
+5: GENERATING COORDS FILE
+/mnt/home/mahmoud4/MUMmer3.23/nucmer --coords -p  mqc500  ecoliMG1655.fa  megahit-quality-assembly500.fa
+1: PREPARING DATA
+2,3: RUNNING mummer AND CREATING CLUSTERS
+# reading input file "mqc500.ntref" of length 4639676
+# construct suffix tree for sequence of length 4639676
+# (maximum reference length is 536870908)
+# (maximum query length is 4294967295)
+# process 46396 characters per dot
+#....................................................................................................
+# CONSTRUCTIONTIME /mnt/home/mahmoud4/MUMmer3.23/mummer mqc500.ntref 1.51
+# reading input file "/mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/megahit-quality-assembly500.fa" of length 4550057
+# matching query-file "/mnt/research/ged/sherine/2015-metagenome-assembly/ecoli-test/megahit-quality-assembly500.fa"
+# against subject-file "mqc500.ntref"
+# COMPLETETIME /mnt/home/mahmoud4/MUMmer3.23/mummer mqc500.ntref 4.90
+# SPACE /mnt/home/mahmoud4/MUMmer3.23/mummer mqc500.ntref 8.85
+4: FINISHING DATA
+5: GENERATING COORDS FILE
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py  ecoliMG1655.fa  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+         megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py:324: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  dist[i] +=1
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py:337: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  dist[i] +=1
+loading refsizes
+Loading Coords
+True False
+......Running ambigious analysis
+59414 53939 91649
+{u'mg1655': 59414}
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py  ecoliMG1655.fa  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+         megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT5.99 -b True 99
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py:324: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  dist[i] +=1
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py:337: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  dist[i] +=1
+loading refsizes
+Loading Coords
+False True
+.....Running best hit analysis
+1618503 1337642 1293582
+{u'mg1655': 1618503}
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py  ecoliMG1655.fa  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+         megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py:324: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  dist[i] +=1
+/mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/analyze_assembly.py:337: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  dist[i] +=1
+loading refsizes
+Loading Coords
+False False
+.... Running no overlaps analysis
+3227248 2929606 2407261
+{u'mg1655': 3227248}
+bwa index  ecoliMG1655.fa 
+[bwa_index] Pack FASTA... 0.03 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 1.03 seconds elapse.
+[bwa_index] Update BWT... 0.03 sec
+[bwa_index] Pack forward-only FASTA... 0.02 sec
+[bwa_index] Construct SA from BWT and Occ... 0.44 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index ecoliMG1655.fa
+[main] Real time: 1.716 sec; CPU: 1.566 sec
+bwa aln  ecoliMG1655.fa  ecoli.pe.qc.fq.gz   >  qc-ref.pe.sai 
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 14.11 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.97 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.48 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.66 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.22 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.81 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.53 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.13 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.84 sec
+[bwa_aln_core] write to the disk... 0.04 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.15 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.71 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.37 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.71 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.66 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.78 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.47 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 2.28 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln ecoliMG1655.fa ecoli.pe.qc.fq.gz
+[main] Real time: 251.318 sec; CPU: 251.424 sec
+bwa aln  ecoliMG1655.fa  ecoli.se.qc.fq.gz   >  qc-ref.se.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 19.82 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 3.56 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln ecoliMG1655.fa ecoli.se.qc.fq.gz
+[main] Real time: 24.277 sec; CPU: 24.216 sec
+bwa samse ecoliMG1655.fa  qc-ref.pe.sai  ecoli.pe.qc.fq.gz >  qc-ref.pe.sam 
+[bwa_aln_core] convert to sequence coordinate... 0.65 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.49 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.61 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.47 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.63 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.47 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.59 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.47 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.62 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.47 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.61 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.60 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.46 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.59 sec
+[bwa_aln_core] refine gapped alignments... 0.21 sec
+[bwa_aln_core] print alignments... 0.49 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.57 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.57 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.65 sec
+[bwa_aln_core] refine gapped alignments... 0.20 sec
+[bwa_aln_core] print alignments... 0.48 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.62 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.48 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.61 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.48 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.61 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.47 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.59 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.62 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.47 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.11 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.07 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse ecoliMG1655.fa qc-ref.pe.sai ecoli.pe.qc.fq.gz
+[main] Real time: 42.787 sec; CPU: 31.771 sec
+bwa samse  ecoliMG1655.fa  qc-ref.se.sai  ecoli.se.qc.fq.gz >  qc-ref.se.sam
+[bwa_aln_core] convert to sequence coordinate... 0.58 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.41 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.10 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.07 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse ecoliMG1655.fa qc-ref.se.sai ecoli.se.qc.fq.gz
+[main] Real time: 3.109 sec; CPU: 2.247 sec
+samtools faidx  ecoliMG1655.fa 
+samtools import  ecoliMG1655.fa.fai  qc-ref.pe.sam  qc-ref.pe.bam 
+samtools import  ecoliMG1655.fa.fai  qc-ref.se.sam  qc-ref.se.bam 
+samtools merge  qc-ref.bam  qc-ref.pe.bam  qc-ref.se.bam 
+samtools view -h -o  qc-ref.sam  qc-ref.bam
+samtools view -h -o  qc-ref.pe.sam  qc-ref.pe.bam
+samtools view -h -c -f 4  qc-ref.pe.bam >> unmapped-qc-to-ref 
+samtools view -h -o  qc-ref.se.sam  qc-ref.se.bam
+samtools view -h -c -f 4  qc-ref.se.bam >> unmapped-qc-to-ref 
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/coverage-profile.py  ecoliMG1655.fa  qc-ref.sam  ecoli.qc.coverage 
+...1 100000
+...1 200000
+...1 300000
+...1 400000
+...1 500000
+...1 600000
+...1 700000
+...1 800000
+...1 900000
+...1 1000000
+...1 1100000
+...1 1200000
+...1 1300000
+...1 1400000
+...1 1500000
+...1 1600000
+...1 1700000
+...1 1800000
+...1 1900000
+...1 2000000
+...1 2100000
+...1 2200000
+...1 2300000
+...1 2400000
+...1 2500000
+...1 2600000
+...1 2700000
+...1 2800000
+...1 2900000
+...1 3000000
+...1 3100000
+...1 3200000
+...1 3300000
+...1 3400000
+...1 3500000
+...1 3600000
+...1 3700000
+...1 3800000
+...1 3900000
+...1 4000000
+...1 4100000
+...1 4200000
+...1 4300000
+...1 4400000
+...1 4500000
+bwa index  idba-quality-assembly500.fa 
+[bwa_index] Pack FASTA... 0.02 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.93 seconds elapse.
+[bwa_index] Update BWT... 0.01 sec
+[bwa_index] Pack forward-only FASTA... 0.03 sec
+[bwa_index] Construct SA from BWT and Occ... 0.43 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index idba-quality-assembly500.fa
+[main] Real time: 1.563 sec; CPU: 1.428 sec
+bwa aln  idba-quality-assembly500.fa  ecoli.pe.qc.fq.gz   >  iq.pe.sai 
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 13.79 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.41 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.48 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.52 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.99 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.23 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 13.85 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 13.97 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 13.97 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.56 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.48 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 13.81 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.11 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.24 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.55 sec
+[bwa_aln_core] write to the disk... 0.04 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.57 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 2.16 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln idba-quality-assembly500.fa ecoli.pe.qc.fq.gz
+[main] Real time: 240.792 sec; CPU: 240.825 sec
+bwa aln  idba-quality-assembly500.fa  ecoli.se.qc.fq.gz   >  iq.se.sai 
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 19.28 sec
+[bwa_aln_core] write to the disk... 0.04 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 3.28 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln idba-quality-assembly500.fa ecoli.se.qc.fq.gz
+[main] Real time: 23.432 sec; CPU: 23.372 sec
+bwa samse  idba-quality-assembly500.fa  iq.pe.sai  ecoli.pe.qc.fq.gz >  iq.pe.sam 
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.45 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.45 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.45 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.56 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.56 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.56 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.10 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.06 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse idba-quality-assembly500.fa iq.pe.sai ecoli.pe.qc.fq.gz
+[main] Real time: 40.024 sec; CPU: 29.092 sec
+bwa samse  idba-quality-assembly500.fa  iq.se.sai  ecoli.se.qc.fq.gz >  iq.se.sam
+[bwa_aln_core] convert to sequence coordinate... 0.50 sec
+[bwa_aln_core] refine gapped alignments... 0.20 sec
+[bwa_aln_core] print alignments... 0.41 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.10 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.07 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse idba-quality-assembly500.fa iq.se.sai ecoli.se.qc.fq.gz
+[main] Real time: 2.962 sec; CPU: 2.104 sec
+samtools faidx  idba-quality-assembly500.fa 
+samtools import  idba-quality-assembly500.fa.fai  iq.pe.sam  iq.pe.bam 
+samtools import  idba-quality-assembly500.fa.fai  iq.se.sam  iq.se.bam 
+samtools faidx  idba-quality-assembly500.fa 
+samtools import  idba-quality-assembly500.fa.fai  iq.pe.sam  iq.pe.bam 
+samtools import  idba-quality-assembly500.fa.fai  iq.se.sam  iq.se.bam 
+samtools view -c -f 4  iq.pe.bam >  iq-unmapped.count
+samtools view -c -f 4  iq.se.bam >>  iq-unmapped.count 
+bwa index  spades-quality-assembly500.fa 
+[bwa_index] Pack FASTA... 0.02 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 5.54 seconds elapse.
+[bwa_index] Update BWT... 0.01 sec
+[bwa_index] Pack forward-only FASTA... 0.03 sec
+[bwa_index] Construct SA from BWT and Occ... 0.41 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index spades-quality-assembly500.fa
+[main] Real time: 6.261 sec; CPU: 6.019 sec
+bwa aln  spades-quality-assembly500.fa  ecoli.pe.qc.fq.gz   >  sq.pe.sai 
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 17.02 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 16.59 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 17.36 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 16.04 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.44 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.85 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.17 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.08 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.65 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.48 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 13.69 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.41 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.34 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.29 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.21 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.56 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 2.09 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln spades-quality-assembly500.fa ecoli.pe.qc.fq.gz
+[main] Real time: 260.677 sec; CPU: 260.592 sec
+bwa aln  spades-quality-assembly500.fa  ecoli.se.qc.fq.gz   >  sq.se.sai 
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 19.84 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 3.52 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln spades-quality-assembly500.fa ecoli.se.qc.fq.gz
+[main] Real time: 24.154 sec; CPU: 24.097 sec
+bwa samse  spades-quality-assembly500.fa  sq.pe.sai  ecoli.pe.qc.fq.gz >  sq.pe.sam 
+[bwa_aln_core] convert to sequence coordinate... 0.62 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.57 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.56 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.53 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.52 sec
+[bwa_aln_core] refine gapped alignments... 0.18 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.53 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.52 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.58 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.46 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.59 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.48 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.20 sec
+[bwa_aln_core] print alignments... 0.46 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.09 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.08 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse spades-quality-assembly500.fa sq.pe.sai ecoli.pe.qc.fq.gz
+[main] Real time: 40.141 sec; CPU: 29.058 sec
+bwa samse  spades-quality-assembly500.fa  sq.se.sai  ecoli.se.qc.fq.gz >  sq.se.sam 
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.21 sec
+[bwa_aln_core] print alignments... 0.45 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.10 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.08 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse spades-quality-assembly500.fa sq.se.sai ecoli.se.qc.fq.gz
+[main] Real time: 3.114 sec; CPU: 2.265 sec
+samtools faidx  spades-quality-assembly500.fa 
+samtools import  spades-quality-assembly500.fa.fai  sq.pe.sam  sq.pe.bam 
+samtools import  spades-quality-assembly500.fa.fai  sq.se.sam  sq.se.bam 
+samtools view -c -f 4  sq.pe.bam >  sq-unmapped.count
+samtools view -c -f 4  sq.se.bam >>  sq-unmapped.count
+bwa index  megahit-quality-assembly500.fa 
+[bwa_index] Pack FASTA... 0.02 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.86 seconds elapse.
+[bwa_index] Update BWT... 0.03 sec
+[bwa_index] Pack forward-only FASTA... 0.02 sec
+[bwa_index] Construct SA from BWT and Occ... 0.40 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index megahit-quality-assembly500.fa
+[main] Real time: 1.475 sec; CPU: 1.342 sec
+bwa aln  megahit-quality-assembly500.fa  ecoli.pe.qc.fq.gz   >  mq.pe.sai 	
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 13.63 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.29 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.19 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.22 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.24 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 13.70 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.30 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.72 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.30 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.44 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.86 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 13.76 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.30 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 14.62 sec
+[bwa_aln_core] write to the disk... 0.03 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.12 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 15.01 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 2.07 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln megahit-quality-assembly500.fa ecoli.pe.qc.fq.gz
+[main] Real time: 242.700 sec; CPU: 242.797 sec
+bwa aln  megahit-quality-assembly500.fa  ecoli.se.qc.fq.gz   >  mq.se.sai 
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 18.56 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 3.28 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln megahit-quality-assembly500.fa ecoli.se.qc.fq.gz
+[main] Real time: 22.626 sec; CPU: 22.561 sec
+bwa samse  megahit-quality-assembly500.fa  mq.pe.sai  ecoli.pe.qc.fq.gz >  mq.pe.sam 
+[bwa_aln_core] convert to sequence coordinate... 0.51 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.53 sec
+[bwa_aln_core] refine gapped alignments... 0.15 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.15 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.53 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.53 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.52 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.52 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.53 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.53 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.43 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.54 sec
+[bwa_aln_core] refine gapped alignments... 0.17 sec
+[bwa_aln_core] print alignments... 0.42 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.52 sec
+[bwa_aln_core] refine gapped alignments... 0.16 sec
+[bwa_aln_core] print alignments... 0.44 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.55 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.45 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.10 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.07 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse megahit-quality-assembly500.fa mq.pe.sai ecoli.pe.qc.fq.gz
+[main] Real time: 39.332 sec; CPU: 28.011 sec
+bwa samse  megahit-quality-assembly500.fa  mq.se.sai  ecoli.se.qc.fq.gz >  mq.se.sam 
+[bwa_aln_core] convert to sequence coordinate... 0.56 sec
+[bwa_aln_core] refine gapped alignments... 0.19 sec
+[bwa_aln_core] print alignments... 0.45 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.11 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.08 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse megahit-quality-assembly500.fa mq.se.sai ecoli.se.qc.fq.gz
+[main] Real time: 3.077 sec; CPU: 2.229 sec
+samtools faidx  megahit-quality-assembly500.fa 
+samtools import  megahit-quality-assembly500.fa.fai  mq.pe.sam  mq.pe.bam 
+samtools import  megahit-quality-assembly500.fa.fai  mq.se.sam  mq.se.bam 
+samtools view -c -f 4  mq.pe.bam >  mq-unmapped.count
+samtools view -c -f 4  mq.se.bam >>  mq-unmapped.count
+cat iqc500.QC.AMBIGUOUS.99.unaligned > iqc.AM99.fa   
+bwa index  iqc.AM99.fa
+[bwa_index] Pack FASTA... 0.00 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.00 seconds elapse.
+[bwa_index] Update BWT... 0.00 sec
+[bwa_index] Pack forward-only FASTA... 0.00 sec
+[bwa_index] Construct SA from BWT and Occ... 0.00 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index iqc.AM99.fa
+[main] Real time: 0.017 sec; CPU: 0.004 sec
+bwa aln  iqc.AM99.fa  ecoli.pe.qc.fq.gz  >  iqc.AM99.pe.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.36 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.37 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.37 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.40 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.36 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.36 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.36 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.36 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.39 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.44 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.43 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.46 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.43 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.43 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.44 sec
+[bwa_aln_core] write to the disk... 0.02 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 0.21 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln iqc.AM99.fa ecoli.pe.qc.fq.gz
+[main] Real time: 32.371 sec; CPU: 32.238 sec
+bwa aln  iqc.AM99.fa  ecoli.se.qc.fq.gz  >  iqc.AM99.se.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.47 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 0.27 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln iqc.AM99.fa ecoli.se.qc.fq.gz
+[main] Real time: 2.484 sec; CPU: 2.472 sec
+bwa samse  iqc.AM99.fa  iqc.AM99.pe.sai  ecoli.pe.qc.fq.gz  >  iqc.AM99.pe.sam
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.18 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.18 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.00 sec
+[bwa_aln_core] refine gapped alignments... 0.00 sec
+[bwa_aln_core] print alignments... 0.03 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse iqc.AM99.fa iqc.AM99.pe.sai ecoli.pe.qc.fq.gz
+[main] Real time: 22.119 sec; CPU: 13.655 sec
+bwa samse  iqc.AM99.fa  iqc.AM99.se.sai  ecoli.se.qc.fq.gz  >  iqc.AM99.se.sam
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.00 sec
+[bwa_aln_core] print alignments... 0.03 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse iqc.AM99.fa iqc.AM99.se.sai ecoli.se.qc.fq.gz
+[main] Real time: 1.687 sec; CPU: 1.021 sec
+samtools faidx  iqc.AM99.fa
+samtools import  iqc.AM99.fa.fai  iqc.AM99.pe.sam  iqc.AM99.pe.bam 
+samtools import  iqc.AM99.fa.fai  iqc.AM99.se.sam  iqc.AM99.se.bam
+samtools view -h -F 4  iqc.AM99.pe.bam >  iqc.AM99.mapped.pe.bam
+samtools view -h -F 4  iqc.AM99.se.bam >  iqc.AM99.mapped.se.bam
+samtools view -c -F 4  iqc.AM99.pe.bam >  iqc.AM99.aligned.reads
+samtools view -c -F 4  iqc.AM99.se.bam >>  iqc.AM99.aligned.reads
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-mapped.sh  iqc.AM99.mapped.pe.bam >  iqc.AM99.mappedreads.fa
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-mapped.sh  iqc.AM99.mapped.se.bam >>  iqc.AM99.mappedreads.fa
+bwa index  ecoliMG1655.fa
+[bwa_index] Pack FASTA... 0.03 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.94 seconds elapse.
+[bwa_index] Update BWT... 0.03 sec
+[bwa_index] Pack forward-only FASTA... 0.03 sec
+[bwa_index] Construct SA from BWT and Occ... 0.44 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index ecoliMG1655.fa
+[main] Real time: 1.894 sec; CPU: 1.487 sec
+bwa aln ecoliMG1655.fa  iqc.AM99.mappedreads.fa  > iqc.AM99.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.02 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 19397 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln ecoliMG1655.fa iqc.AM99.mappedreads.fa
+[main] Real time: 1.111 sec; CPU: 1.047 sec
+bwa samse ecoliMG1655.fa  iqc.AM99.sai  iqc.AM99.mappedreads.fa >  iqc.AM99.sam
+[bwa_aln_core] convert to sequence coordinate... 0.05 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.03 sec
+[bwa_aln_core] 19397 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse ecoliMG1655.fa iqc.AM99.sai iqc.AM99.mappedreads.fa
+[main] Real time: 0.236 sec; CPU: 0.120 sec
+samtools faidx ecoliMG1655.fa
+samtools import ecoliMG1655.fa.fai  iqc.AM99.sam  iqc.AM99.bam
+samtools view -c -F 4  iqc.AM99.bam >  iqc.AM99-mapped-reads
+samtools view -h -f 4  iqc.AM99.bam >  iqc.AM99.unmapped.bam 
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-unmapped.sh  iqc.AM99.unmapped.bam >  iqc.AM99.unmappedreads.fa 
+bwa index iqc.AM99.fa
+[bwa_index] Pack FASTA... 0.00 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.00 seconds elapse.
+[bwa_index] Update BWT... 0.00 sec
+[bwa_index] Pack forward-only FASTA... 0.00 sec
+[bwa_index] Construct SA from BWT and Occ... 0.00 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index iqc.AM99.fa
+[main] Real time: 0.020 sec; CPU: 0.004 sec
+bwa aln iqc.AM99.fa iqc.AM99.unmappedreads.fa  > iqc.AM99.unmapped.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 0.00 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 893 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln iqc.AM99.fa iqc.AM99.unmappedreads.fa
+[main] Real time: 0.013 sec; CPU: 0.012 sec
+bwa samse  iqc.AM99.fa iqc.AM99.unmapped.sai  iqc.AM99.unmappedreads.fa >  iqc.AM99.unmapped.sam
+[bwa_aln_core] convert to sequence coordinate... 1.34 sec
+[bwa_aln_core] refine gapped alignments... 0.00 sec
+[bwa_aln_core] print alignments... 0.00 sec
+[bwa_aln_core] 893 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse iqc.AM99.fa iqc.AM99.unmapped.sai iqc.AM99.unmappedreads.fa
+[main] Real time: 1.372 sec; CPU: 1.347 sec
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/coverage-profile.py iqc.AM99.fa iqc.AM99.unmapped.sam iqc.unmapped.out     
+cat sqc500.QC.AMBIGUOUS.99.unaligned  > sqc.AM99.fa         
+bwa index  sqc.AM99.fa
+[bwa_index] Pack FASTA... 0.00 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.00 seconds elapse.
+[bwa_index] Update BWT... 0.00 sec
+[bwa_index] Pack forward-only FASTA... 0.00 sec
+[bwa_index] Construct SA from BWT and Occ... 0.00 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index sqc.AM99.fa
+[main] Real time: 0.022 sec; CPU: 0.004 sec
+bwa aln  sqc.AM99.fa  ecoli.pe.qc.fq.gz  >  sqc.AM99.pe.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.51 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.50 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.51 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.51 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.44 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.44 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.39 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.37 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.34 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.42 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.37 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.35 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.38 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.44 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.48 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 0.22 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln sqc.AM99.fa ecoli.pe.qc.fq.gz
+[main] Real time: 40.349 sec; CPU: 39.424 sec
+bwa aln  sqc.AM99.fa  ecoli.se.qc.fq.gz  >  sqc.AM99.se.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 0.25 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln sqc.AM99.fa ecoli.se.qc.fq.gz
+[main] Real time: 3.437 sec; CPU: 3.104 sec
+bwa samse  sqc.AM99.fa  sqc.AM99.pe.sai  ecoli.pe.qc.fq.gz  >  sqc.AM99.pe.sam 
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.03 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.18 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.18 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.00 sec
+[bwa_aln_core] refine gapped alignments... 0.01 sec
+[bwa_aln_core] print alignments... 0.01 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse sqc.AM99.fa sqc.AM99.pe.sai ecoli.pe.qc.fq.gz
+[main] Real time: 22.616 sec; CPU: 13.899 sec
+bwa samse  sqc.AM99.fa  sqc.AM99.se.sai  ecoli.se.qc.fq.gz  >  sqc.AM99.se.sam
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.18 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.00 sec
+[bwa_aln_core] refine gapped alignments... 0.01 sec
+[bwa_aln_core] print alignments... 0.03 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse sqc.AM99.fa sqc.AM99.se.sai ecoli.se.qc.fq.gz
+[main] Real time: 1.913 sec; CPU: 1.155 sec
+samtools faidx  sqc.AM99.fa
+samtools import  sqc.AM99.fa.fai  sqc.AM99.pe.sam  sqc.AM99.pe.bam 
+samtools import  sqc.AM99.fa.fai  sqc.AM99.se.sam  sqc.AM99.se.bam
+samtools view -h -F 4  sqc.AM99.pe.bam >  sqc.AM99.mapped.pe.bam
+samtools view -h -F 4  sqc.AM99.se.bam >  sqc.AM99.mapped.se.bam
+samtools view -c -F 4  sqc.AM99.pe.bam >  sqc.AM99.aligned.reads   
+samtools view -c -F 4  sqc.AM99.se.bam >>  sqc.AM99.aligned.reads 
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-mapped.sh  sqc.AM99.mapped.pe.bam >  sqc.AM99.mappedreads.fa
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-mapped.sh  sqc.AM99.mapped.se.bam >>  sqc.AM99.mappedreads.fa
+bwa index ecoliMG1655.fa
+[bwa_index] Pack FASTA... 0.02 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 1.63 seconds elapse.
+[bwa_index] Update BWT... 0.04 sec
+[bwa_index] Pack forward-only FASTA... 0.02 sec
+[bwa_index] Construct SA from BWT and Occ... 0.45 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index ecoliMG1655.fa
+[main] Real time: 2.370 sec; CPU: 2.179 sec
+bwa aln ecoliMG1655.fa  sqc.AM99.mappedreads.fa  > sqc.AM99.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 0.97 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 20344 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln ecoliMG1655.fa sqc.AM99.mappedreads.fa
+[main] Real time: 0.995 sec; CPU: 0.987 sec
+bwa samse ecoliMG1655.fa  sqc.AM99.sai  sqc.AM99.mappedreads.fa >  sqc.AM99.sam
+[bwa_aln_core] convert to sequence coordinate... 0.04 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.03 sec
+[bwa_aln_core] 20344 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse ecoliMG1655.fa sqc.AM99.sai sqc.AM99.mappedreads.fa
+[main] Real time: 0.181 sec; CPU: 0.117 sec
+samtools faidx ecoliMG1655.fa
+samtools import ecoliMG1655.fa.fai  sqc.AM99.sam  sqc.AM99.bam
+samtools view -c -F 4  sqc.AM99.bam >  sqc.AM99-mapped-reads
+samtools view -h -f 4  sqc.AM99.bam >  sqc.AM99.unmapped.bam 
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-unmapped.sh  sqc.AM99.unmapped.bam >  sqc.AM99.unmappedreads.fa 	
+bwa index sqc.AM99.fa
+[bwa_index] Pack FASTA... 0.00 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.00 seconds elapse.
+[bwa_index] Update BWT... 0.00 sec
+[bwa_index] Pack forward-only FASTA... 0.00 sec
+[bwa_index] Construct SA from BWT and Occ... 0.00 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index sqc.AM99.fa
+[main] Real time: 0.057 sec; CPU: 0.004 sec
+bwa aln sqc.AM99.fa sqc.AM99.unmappedreads.fa  > sqc.AM99.unmapped.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 0.00 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 905 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln sqc.AM99.fa sqc.AM99.unmappedreads.fa
+[main] Real time: 0.013 sec; CPU: 0.011 sec
+bwa samse sqc.AM99.fa sqc.AM99.unmapped.sai  sqc.AM99.unmappedreads.fa >  sqc.AM99.unmapped.sam
+[bwa_aln_core] convert to sequence coordinate... 0.00 sec
+[bwa_aln_core] refine gapped alignments... 0.00 sec
+[bwa_aln_core] print alignments... 0.00 sec
+[bwa_aln_core] 905 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse sqc.AM99.fa sqc.AM99.unmapped.sai sqc.AM99.unmappedreads.fa
+[main] Real time: 0.010 sec; CPU: 0.003 sec
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/coverage-profile.py sqc.AM99.fa sqc.AM99.unmapped.sam sqc.unmapped.out      
+cat mqc500.QC.AMBIGUOUS.99.unaligned  >mqc.AM99.fa 
+bwa index  mqc.AM99.fa
+[bwa_index] Pack FASTA... 0.00 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.00 seconds elapse.
+[bwa_index] Update BWT... 0.00 sec
+[bwa_index] Pack forward-only FASTA... 0.00 sec
+[bwa_index] Construct SA from BWT and Occ... 0.00 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index mqc.AM99.fa
+[main] Real time: 0.022 sec; CPU: 0.004 sec
+bwa aln  mqc.AM99.fa  ecoli.pe.qc.fq.gz  >  mqc.AM99.pe.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.43 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.42 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.38 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.37 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.42 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.43 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.40 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.43 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.50 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.38 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.40 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.38 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 0.23 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln mqc.AM99.fa ecoli.pe.qc.fq.gz
+[main] Real time: 36.851 sec; CPU: 36.517 sec
+bwa aln  mqc.AM99.fa  ecoli.se.qc.fq.gz  >  mqc.AM99.se.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.41 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] calculate SA coordinate... 0.24 sec
+[bwa_aln_core] write to the disk... 0.01 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln mqc.AM99.fa ecoli.se.qc.fq.gz
+[main] Real time: 2.400 sec; CPU: 2.388 sec
+bwa samse  mqc.AM99.fa  mqc.AM99.pe.sai  ecoli.pe.qc.fq.gz  >  mqc.AM99.pe.sam
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 786432 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 1048576 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 1310720 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 1572864 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.17 sec
+[bwa_aln_core] 1835008 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 2097152 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 2359296 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 2621440 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 2883584 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 3145728 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 3407872 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 3670016 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.01 sec
+[bwa_aln_core] refine gapped alignments... 0.03 sec
+[bwa_aln_core] print alignments... 0.15 sec
+[bwa_aln_core] 3932160 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 4194304 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.00 sec
+[bwa_aln_core] refine gapped alignments... 0.01 sec
+[bwa_aln_core] print alignments... 0.01 sec
+[bwa_aln_core] 4235140 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse mqc.AM99.fa mqc.AM99.pe.sai ecoli.pe.qc.fq.gz
+[main] Real time: 23.255 sec; CPU: 14.655 sec
+bwa samse  mqc.AM99.fa  mqc.AM99.se.sai  ecoli.se.qc.fq.gz  >  mqc.AM99.se.sam
+[bwa_aln_core] convert to sequence coordinate... 0.02 sec
+[bwa_aln_core] refine gapped alignments... 0.02 sec
+[bwa_aln_core] print alignments... 0.16 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 0.00 sec
+[bwa_aln_core] refine gapped alignments... 0.00 sec
+[bwa_aln_core] print alignments... 0.04 sec
+[bwa_aln_core] 308073 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse mqc.AM99.fa mqc.AM99.se.sai ecoli.se.qc.fq.gz
+[main] Real time: 1.687 sec; CPU: 1.013 sec
+samtools faidx  mqc.AM99.fa
+samtools import  mqc.AM99.fa.fai  mqc.AM99.pe.sam  mqc.AM99.pe.bam
+samtools import  mqc.AM99.fa.fai  mqc.AM99.se.sam  mqc.AM99.se.bam
+samtools view -h -F 4  mqc.AM99.pe.bam >  mqc.AM99.mapped.pe.bam
+samtools view -h -F 4  mqc.AM99.se.bam >  mqc.AM99.mapped.se.bam
+samtools view -c -F 4  mqc.AM99.pe.bam >  mqc.AM99.aligned.reads
+samtools view -c -F 4  mqc.AM99.se.bam >>  mqc.AM99.aligned.reads
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-mapped.sh  mqc.AM99.mapped.pe.bam >  mqc.AM99.mappedreads.fa
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-mapped.sh  mqc.AM99.mapped.se.bam >>  mqc.AM99.mappedreads.fa
+bwa index ecoliMG1655.fa
+[bwa_index] Pack FASTA... 0.03 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 3.16 seconds elapse.
+[bwa_index] Update BWT... 0.93 sec
+[bwa_index] Pack forward-only FASTA... 0.94 sec
+[bwa_index] Construct SA from BWT and Occ... 0.44 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index ecoliMG1655.fa
+[main] Real time: 5.932 sec; CPU: 5.515 sec
+bwa aln ecoliMG1655.fa  mqc.AM99.mappedreads.fa  > mqc.AM99.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 1.01 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 17292 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln ecoliMG1655.fa mqc.AM99.mappedreads.fa
+[main] Real time: 1.943 sec; CPU: 1.854 sec
+bwa samse ecoliMG1655.fa  mqc.AM99.sai  mqc.AM99.mappedreads.fa >  mqc.AM99.sam
+[bwa_aln_core] convert to sequence coordinate... 0.04 sec
+[bwa_aln_core] refine gapped alignments... 0.01 sec
+[bwa_aln_core] print alignments... 0.03 sec
+[bwa_aln_core] 17292 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse ecoliMG1655.fa mqc.AM99.sai mqc.AM99.mappedreads.fa
+[main] Real time: 0.167 sec; CPU: 0.108 sec
+samtools faidx ecoliMG1655.fa
+samtools import ecoliMG1655.fa.fai  mqc.AM99.sam  mqc.AM99.bam
+samtools view -c -F 4  mqc.AM99.bam >  mqc.AM99-mapped-reads
+samtools view -h -f 4  mqc.AM99.bam >  mqc.AM99.unmapped.bam 
+bash /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/get-unmapped.sh  mqc.AM99.unmapped.bam >  mqc.AM99.unmappedreads.fa 
+bwa index mqc.AM99.fa
+[bwa_index] Pack FASTA... 0.00 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.00 seconds elapse.
+[bwa_index] Update BWT... 0.00 sec
+[bwa_index] Pack forward-only FASTA... 0.00 sec
+[bwa_index] Construct SA from BWT and Occ... 0.00 sec
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa index mqc.AM99.fa
+[main] Real time: 0.018 sec; CPU: 0.004 sec
+bwa aln mqc.AM99.fa mqc.AM99.unmappedreads.fa  > mqc.AM99.unmapped.sai
+[bwa_aln] 17bp reads: max_diff = 2
+[bwa_aln] 38bp reads: max_diff = 3
+[bwa_aln] 64bp reads: max_diff = 4
+[bwa_aln] 93bp reads: max_diff = 5
+[bwa_aln] 124bp reads: max_diff = 6
+[bwa_aln] 157bp reads: max_diff = 7
+[bwa_aln] 190bp reads: max_diff = 8
+[bwa_aln] 225bp reads: max_diff = 9
+[bwa_aln_core] calculate SA coordinate... 0.01 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 969 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa aln mqc.AM99.fa mqc.AM99.unmappedreads.fa
+[main] Real time: 0.013 sec; CPU: 0.012 sec
+bwa samse mqc.AM99.fa mqc.AM99.unmapped.sai  mqc.AM99.unmappedreads.fa >  mqc.AM99.unmapped.sam
+[bwa_aln_core] convert to sequence coordinate... 0.00 sec
+[bwa_aln_core] refine gapped alignments... 0.00 sec
+[bwa_aln_core] print alignments... 0.00 sec
+[bwa_aln_core] 969 sequences have been processed.
+[main] Version: 0.7.12-r1044
+[main] CMD: bwa samse mqc.AM99.fa mqc.AM99.unmapped.sai mqc.AM99.unmappedreads.fa
+[main] Real time: 0.008 sec; CPU: 0.004 sec
+python /mnt/research/ged/sherine/2015-metagenome-assembly/pipeline/coverage-profile.py mqc.AM99.fa mqc.AM99.unmapped.sam mqc.unmapped.out   

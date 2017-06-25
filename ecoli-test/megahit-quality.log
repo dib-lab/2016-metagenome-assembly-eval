@@ -1,0 +1,78 @@
+
+Due to MODULEPATH changes the following have been reloaded:
+  1) TBB/4.1.0
+
+The following have been reloaded with a version change:
+  1) Boost/1.47.0 => Boost/1.55.0     3) OpenMPI/1.4.3 => OpenMPI/1.6.5
+  2) GNU/4.4.5 => GNU/4.8.2           4) R/2.15.1 => R/3.1.0
+
+/usr/bin/time  -a  -o megqc.txt python /mnt/home/mahmoud4/megahit/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.pe.qc.fq.gz -o megahit.qc.pe 
+MEGAHIT v1.0.6-hotfix1
+--- [Sun Nov 20 20:39:38 2016] Start assembly. Number of CPU threads 20 ---
+--- [Sun Nov 20 20:39:38 2016] Available memory: 270819328000, used: 10000000000
+--- [Sun Nov 20 20:39:38 2016] k list: 21,41,61,81,99 ---
+--- [Sun Nov 20 20:39:38 2016] Converting reads to binaries ---
+    [read_lib_functions-inl.h  : 209]     Lib 0 (ecoli.pe.qc.fq.gz): se, 4235140 reads, 100 max length
+    [utils.h                   : 126]     Real: 8.9460	user: 3.0195	sys: 0.2570	maxrss: 157424
+--- [Sun Nov 20 20:39:48 2016] Extracting solid (k+1)-mers for k = 21 ---
+--- [Sun Nov 20 20:39:58 2016] Building graph for k = 21 ---
+--- [Sun Nov 20 20:40:01 2016] Assembling contigs from SdBG for k = 21 ---
+--- [Sun Nov 20 20:40:05 2016] Local assembling k = 21 ---
+--- [Sun Nov 20 20:40:07 2016] Extracting iterative edges from k = 21 to 41 ---
+--- [Sun Nov 20 20:40:14 2016] Building graph for k = 41 ---
+--- [Sun Nov 20 20:40:16 2016] Assembling contigs from SdBG for k = 41 ---
+--- [Sun Nov 20 20:40:20 2016] Local assembling k = 41 ---
+--- [Sun Nov 20 20:40:23 2016] Extracting iterative edges from k = 41 to 61 ---
+--- [Sun Nov 20 20:40:29 2016] Building graph for k = 61 ---
+--- [Sun Nov 20 20:40:32 2016] Assembling contigs from SdBG for k = 61 ---
+--- [Sun Nov 20 20:40:35 2016] Local assembling k = 61 ---
+--- [Sun Nov 20 20:40:38 2016] Extracting iterative edges from k = 61 to 81 ---
+--- [Sun Nov 20 20:40:42 2016] Building graph for k = 81 ---
+--- [Sun Nov 20 20:40:44 2016] Assembling contigs from SdBG for k = 81 ---
+--- [Sun Nov 20 20:40:48 2016] Local assembling k = 81 ---
+--- [Sun Nov 20 20:40:50 2016] Extracting iterative edges from k = 81 to 99 ---
+--- [Sun Nov 20 20:40:53 2016] Building graph for k = 99 ---
+--- [Sun Nov 20 20:40:54 2016] Assembling contigs from SdBG for k = 99 ---
+--- [Sun Nov 20 20:40:56 2016] Merging to output final contigs ---
+--- [STAT] 182 contigs, total 4561331 bp, min 296 bp, max 221639 bp, avg 25062 bp, N50 65427 bp
+--- [Sun Nov 20 20:40:56 2016] ALL DONE. Time elapsed: 78.619512 seconds ---
+/usr/bin/time  -a  -o megqc.txt python /mnt/home/mahmoud4/megahit/megahit -l 101 -m 1e+10 --cpu-only -r ecoli.se.qc.fq.gz -o megahit.qc.se
+MEGAHIT v1.0.6-hotfix1
+--- [Sun Nov 20 20:40:56 2016] Start assembly. Number of CPU threads 20 ---
+--- [Sun Nov 20 20:40:56 2016] Available memory: 270819328000, used: 10000000000
+--- [Sun Nov 20 20:40:56 2016] k list: 21,41,61,81,99 ---
+--- [Sun Nov 20 20:40:56 2016] Converting reads to binaries ---
+    [read_lib_functions-inl.h  : 209]     Lib 0 (ecoli.se.qc.fq.gz): se, 308073 reads, 100 max length
+    [utils.h                   : 126]     Real: 0.6891	user: 0.2230	sys: 0.0280	maxrss: 18332
+--- [Sun Nov 20 20:40:57 2016] Extracting solid (k+1)-mers for k = 21 ---
+--- [Sun Nov 20 20:40:58 2016] Building graph for k = 21 ---
+--- [Sun Nov 20 20:41:00 2016] Assembling contigs from SdBG for k = 21 ---
+--- [Sun Nov 20 20:41:03 2016] Local assembling k = 21 ---
+--- [Sun Nov 20 20:41:03 2016] Extracting iterative edges from k = 21 to 41 ---
+--- [Sun Nov 20 20:41:04 2016] Building graph for k = 41 ---
+--- [Sun Nov 20 20:41:05 2016] Assembling contigs from SdBG for k = 41 ---
+--- [Sun Nov 20 20:41:07 2016] Local assembling k = 41 ---
+--- [Sun Nov 20 20:41:08 2016] Extracting iterative edges from k = 41 to 61 ---
+--- [Sun Nov 20 20:41:08 2016] Building graph for k = 61 ---
+--- [Sun Nov 20 20:41:09 2016] Assembling contigs from SdBG for k = 61 ---
+--- [Sun Nov 20 20:41:11 2016] Local assembling k = 61 ---
+--- [Sun Nov 20 20:41:12 2016] Extracting iterative edges from k = 61 to 81 ---
+--- [Sun Nov 20 20:41:12 2016] Building graph for k = 81 ---
+--- [Sun Nov 20 20:41:13 2016] Assembling contigs from SdBG for k = 81 ---
+--- [Sun Nov 20 20:41:15 2016] Local assembling k = 81 ---
+--- [Sun Nov 20 20:41:15 2016] Extracting iterative edges from k = 81 to 99 ---
+--- [Sun Nov 20 20:41:15 2016] Building graph for k = 99 ---
+--- [Sun Nov 20 20:41:16 2016] Assembling contigs from SdBG for k = 99 ---
+--- [Sun Nov 20 20:41:18 2016] Merging to output final contigs ---
+--- [STAT] 4143 contigs, total 2167611 bp, min 240 bp, max 2519 bp, avg 523 bp, N50 537 bp
+--- [Sun Nov 20 20:41:18 2016] ALL DONE. Time elapsed: 21.500111 seconds ---
+#cat megahit.qc.pe/final.contigs.fa megahit.qc.se/final.contigs.fa > megahit-quality-assembly.fa
+python /opt/software/khmer/2.0--GCC-4.8.2/sandbox/calc-best-assembly.py megahit.qc.*e/final.contigs.fa -o megahit-quality-best.fa
+assembly megahit.qc.pe/final.contigs.fa has 4549907 bp > 500
+assembly megahit.qc.se/final.contigs.fa has 1199728 bp > 500
+----
+assembly megahit.qc.pe/final.contigs.fa wins: 4549907 total bp > 500
+megahit.qc.pe/final.contigs.fa
+python /opt/software/khmer/khmer-1.4/sandbox/multi-rename.py assembly megahit-quality-best.fa > megahit-quality-assembly.fa	 
+cat megahit-quality.sh >megahit-quality 
+chmod a+x megahit-quality
