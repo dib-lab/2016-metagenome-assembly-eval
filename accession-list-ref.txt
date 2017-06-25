@@ -1,0 +1,490 @@
+CP001472.1 Acidobacterium capsulatum ATCC 51196, complete genome
+CP001941.1 Aciduliprofundum boonei T469, complete genome
+CP001071.1 Akkermansia muciniphila ATCC BAA-835, complete genome
+AE000782.1 Archaeoglobus fulgidus DSM 4304, complete genome
+AE015928.1 Bacteroides thetaiotaomicron VPI-5482, complete genome
+CP000139.1 Bacteroides vulgatus ATCC 8482, complete genome
+NZ_JGWU01000001.1 Bordetella bronchiseptica D989 ctg7180000008197, whole genome shotgun sequence
+NZ_JGWU01000002.1 Bordetella bronchiseptica D989 ctg00009, whole genome shotgun sequence
+NZ_JGWU01000003.1 Bordetella bronchiseptica D989 ctg7180000009390, whole genome shotgun sequence
+NZ_JGWU01000004.1 Bordetella bronchiseptica D989 ctg000028, whole genome shotgun sequence
+NZ_JGWU01000005.1 Bordetella bronchiseptica D989 ctg7180000009410, whole genome shotgun sequence
+NZ_JGWU01000006.1 Bordetella bronchiseptica D989 ctg000015, whole genome shotgun sequence
+NZ_JGWU01000007.1 Bordetella bronchiseptica D989 ctg000032, whole genome shotgun sequence
+NZ_JGWU01000008.1 Bordetella bronchiseptica D989 ctg000025, whole genome shotgun sequence
+NZ_JGWU01000009.1 Bordetella bronchiseptica D989 ctg7180000009411, whole genome shotgun sequence
+NZ_JGWU01000010.1 Bordetella bronchiseptica D989 ctg000023, whole genome shotgun sequence
+NZ_JGWU01000011.1 Bordetella bronchiseptica D989 ctg7180000009343, whole genome shotgun sequence
+NZ_JGWU01000012.1 Bordetella bronchiseptica D989 ctg7180000009371, whole genome shotgun sequence
+NZ_JGWU01000013.1 Bordetella bronchiseptica D989 ctg7180000009416, whole genome shotgun sequence
+NZ_JGWU01000014.1 Bordetella bronchiseptica D989 ctg00004, whole genome shotgun sequence
+NZ_JGWU01000015.1 Bordetella bronchiseptica D989 ctg7180000009379, whole genome shotgun sequence
+NZ_JGWU01000016.1 Bordetella bronchiseptica D989 ctg7180000009386, whole genome shotgun sequence
+NZ_JGWU01000017.1 Bordetella bronchiseptica D989 ctg000027, whole genome shotgun sequence
+NZ_JGWU01000018.1 Bordetella bronchiseptica D989 ctg000018, whole genome shotgun sequence
+NZ_JGWU01000019.1 Bordetella bronchiseptica D989 ctg00008, whole genome shotgun sequence
+NZ_JGWU01000020.1 Bordetella bronchiseptica D989 ctg7180000009311, whole genome shotgun sequence
+NZ_JGWU01000021.1 Bordetella bronchiseptica D989 ctg000019, whole genome shotgun sequence
+NZ_JGWU01000022.1 Bordetella bronchiseptica D989 ctg7180000009348, whole genome shotgun sequence
+NZ_JGWU01000023.1 Bordetella bronchiseptica D989 deg7180000009139, whole genome shotgun sequence
+NZ_JGWU01000024.1 Bordetella bronchiseptica D989 ctg7180000009394, whole genome shotgun sequence
+NZ_JGWU01000025.1 Bordetella bronchiseptica D989 ctg00006, whole genome shotgun sequence
+NZ_JGWU01000026.1 Bordetella bronchiseptica D989 ctg7180000009351, whole genome shotgun sequence
+NZ_JGWU01000027.1 Bordetella bronchiseptica D989 ctg7180000009318, whole genome shotgun sequence
+NZ_JGWU01000028.1 Bordetella bronchiseptica D989 ctg7180000009391, whole genome shotgun sequence
+NZ_JGWU01000029.1 Bordetella bronchiseptica D989 ctg7180000009381, whole genome shotgun sequence
+NZ_JGWU01000030.1 Bordetella bronchiseptica D989 ctg7180000009324, whole genome shotgun sequence
+NZ_JGWU01000031.1 Bordetella bronchiseptica D989 ctg00002, whole genome shotgun sequence
+NZ_JGWU01000032.1 Bordetella bronchiseptica D989 ctg000022, whole genome shotgun sequence
+NZ_JGWU01000033.1 Bordetella bronchiseptica D989 ctg7180000009359, whole genome shotgun sequence
+NZ_JGWU01000034.1 Bordetella bronchiseptica D989 ctg7180000009383, whole genome shotgun sequence
+NZ_JGWU01000035.1 Bordetella bronchiseptica D989 ctg7180000009378, whole genome shotgun sequence
+NZ_JGWU01000036.1 Bordetella bronchiseptica D989 ctg7180000009415, whole genome shotgun sequence
+NZ_JGWU01000037.1 Bordetella bronchiseptica D989 ctg7180000009396, whole genome shotgun sequence
+NZ_JGWU01000038.1 Bordetella bronchiseptica D989 ctg7180000009344, whole genome shotgun sequence
+NZ_JGWU01000039.1 Bordetella bronchiseptica D989 deg7180000009138, whole genome shotgun sequence
+NZ_JGWU01000040.1 Bordetella bronchiseptica D989 ctg000026, whole genome shotgun sequence
+NZ_JGWU01000041.1 Bordetella bronchiseptica D989 ctg7180000009388, whole genome shotgun sequence
+NZ_JGWU01000042.1 Bordetella bronchiseptica D989 ctg7180000009370, whole genome shotgun sequence
+NZ_JGWU01000043.1 Bordetella bronchiseptica D989 ctg7180000009403, whole genome shotgun sequence
+NZ_JGWU01000044.1 Bordetella bronchiseptica D989 ctg7180000009408, whole genome shotgun sequence
+NZ_JGWU01000045.1 Bordetella bronchiseptica D989 ctg7180000009406, whole genome shotgun sequence
+NZ_JGWU01000046.1 Bordetella bronchiseptica D989 ctg000010, whole genome shotgun sequence
+NZ_JGWU01000047.1 Bordetella bronchiseptica D989 ctg000024, whole genome shotgun sequence
+NZ_JGWU01000048.1 Bordetella bronchiseptica D989 ctg00001, whole genome shotgun sequence
+NZ_JGWU01000049.1 Bordetella bronchiseptica D989 ctg00007, whole genome shotgun sequence
+NZ_JGWU01000050.1 Bordetella bronchiseptica D989 ctg000031, whole genome shotgun sequence
+NZ_JGWU01000051.1 Bordetella bronchiseptica D989 ctg00005, whole genome shotgun sequence
+NZ_JGWU01000052.1 Bordetella bronchiseptica D989 ctg7180000009417, whole genome shotgun sequence
+NZ_JGWU01000053.1 Bordetella bronchiseptica D989 ctg7180000009322, whole genome shotgun sequence
+NZ_JGWU01000054.1 Bordetella bronchiseptica D989 ctg000021, whole genome shotgun sequence
+NZ_JGWU01000055.1 Bordetella bronchiseptica D989 ctg7180000009407, whole genome shotgun sequence
+NZ_JGWU01000056.1 Bordetella bronchiseptica D989 ctg7180000009382, whole genome shotgun sequence
+NZ_JGWU01000057.1 Bordetella bronchiseptica D989 ctg7180000009350, whole genome shotgun sequence
+NZ_JGWU01000058.1 Bordetella bronchiseptica D989 ctg000030, whole genome shotgun sequence
+NZ_JGWU01000059.1 Bordetella bronchiseptica D989 ctg7180000009364, whole genome shotgun sequence
+NZ_JGWU01000060.1 Bordetella bronchiseptica D989 ctg000029, whole genome shotgun sequence
+NZ_JGWU01000061.1 Bordetella bronchiseptica D989 ctg7180000009326, whole genome shotgun sequence
+NZ_JGWU01000062.1 Bordetella bronchiseptica D989 ctg7180000009345, whole genome shotgun sequence
+NZ_JGWU01000063.1 Bordetella bronchiseptica D989 ctg00003, whole genome shotgun sequence
+NZ_JGWU01000064.1 Bordetella bronchiseptica D989 ctg000020, whole genome shotgun sequence
+NZ_JGWU01000065.1 Bordetella bronchiseptica D989 ctg000014, whole genome shotgun sequence
+NZ_JGWU01000066.1 Bordetella bronchiseptica D989 ctg000011, whole genome shotgun sequence
+NZ_JGWU01000067.1 Bordetella bronchiseptica D989 ctg7180000009312, whole genome shotgun sequence
+NZ_JGWU01000068.1 Bordetella bronchiseptica D989 ctg000017, whole genome shotgun sequence
+NZ_JGWU01000069.1 Bordetella bronchiseptica D989 ctg7180000009353, whole genome shotgun sequence
+NZ_JGWU01000070.1 Bordetella bronchiseptica D989 ctg7180000009346, whole genome shotgun sequence
+NZ_JGWU01000071.1 Bordetella bronchiseptica D989 ctg000016, whole genome shotgun sequence
+NZ_JGWU01000073.1 Bordetella bronchiseptica D989 ctg000012, whole genome shotgun sequence
+NZ_JGWU01000074.1 Bordetella bronchiseptica D989 ctg7180000009310, whole genome shotgun sequence
+NZ_JGWU01000075.1 Bordetella bronchiseptica D989 ctg7180000009314, whole genome shotgun sequence
+NZ_JGWU01000076.1 Bordetella bronchiseptica D989 ctg7180000009335, whole genome shotgun sequence
+NZ_JGWU01000077.1 Bordetella bronchiseptica D989 ctg000013, whole genome shotgun sequence
+NC_007951.1 Burkholderia xenovorans LB400 chromosome 1, complete sequence
+NC_007952.1 Burkholderia xenovorans LB400 chromosome 2, complete sequence
+NC_007953.1 Burkholderia xenovorans LB400 chromosome 3, complete sequence
+CP000679.1 Caldicellulosiruptor saccharolyticus DSM 8903, complete genome
+NZ_FWDH01000003.1 Caldicellulosiruptor bescii strain MACB1021, whole genome shotgun sequence
+NZ_FWDH01000002.1 Caldicellulosiruptor bescii strain MACB1021, whole genome shotgun sequence
+NZ_FWDH01000001.1 Caldicellulosiruptor bescii strain MACB1021, whole genome shotgun sequence
+CP001097.1 Chlorobium limicola DSM 245, complete genome
+CP000492.1 Chlorobium phaeobacteroides DSM 266, complete genome
+CP000607.1 Chlorobium phaeovibrioides DSM 265, complete genome
+AE006470.1 Chlorobium tepidum TLS, complete genome
+CP000909.1 Chloroflexus aurantiacus J-10-fl, complete genome
+CP000568.1 Clostridium thermocellum ATCC 27405, complete genome
+NZ_CP015081.1 Deinococcus radiodurans R1 chromosome 1, complete sequence
+NZ_CP015082.1 Deinococcus radiodurans R1 chromosome 2, complete sequence
+NZ_CP015084.1 Deinococcus radiodurans R1 plasmid CP1, complete sequence
+NZ_CP015083.1 Deinococcus radiodurans R1 plasmid MP1, complete sequence
+NC_008751.1 Desulfovibrio vulgaris DP4, complete genome
+NC_008741.1 Desulfovibrio vulgaris DP4 plasmid pDVUL01, complete sequence
+CP001251.1 Dictyoglomus turgidum DSM 6724, complete genome
+NZ_KE136524.1 Enterococcus faecalis V583 acyDH-supercont2.1, whole genome shotgun sequence
+NZ_KE136525.1 Enterococcus faecalis V583 acyDH-supercont2.2, whole genome shotgun sequence
+NZ_KE136526.1 Enterococcus faecalis V583 acyDH-supercont2.3, whole genome shotgun sequence
+NZ_KE136527.1 Enterococcus faecalis V583 acyDH-supercont2.4, whole genome shotgun sequence
+NZ_KE136528.1 Enterococcus faecalis V583 acyDH-supercont2.5, whole genome shotgun sequence
+NZ_KE136529.1 Enterococcus faecalis V583 acyDH-supercont2.6, whole genome shotgun sequence
+NZ_KE136530.1 Enterococcus faecalis V583 acyDH-supercont2.7, whole genome shotgun sequence
+NZ_KE136531.1 Enterococcus faecalis V583 acyDH-supercont2.8, whole genome shotgun sequence
+NZ_KE136532.1 Enterococcus faecalis V583 acyDH-supercont2.9, whole genome shotgun sequence
+AE009951.2 Fusobacterium nucleatum subsp. nucleatum ATCC 25586, complete genome
+AP009153.1 Gemmatimonas aurantiaca T-27 DNA, complete genome
+AE017180.2 Geobacter sulfurreducens PCA, complete genome
+NC_013968.1 Haloferax volcanii DS2 plasmid pHV1, complete sequence
+NC_013965.1 Haloferax volcanii DS2 plasmid pHV2, complete sequence
+NC_013964.1 Haloferax volcanii DS2 plasmid pHV3, complete sequence
+NC_013966.1 Haloferax volcanii DS2 plasmid pHV4, complete sequence
+NC_013967.1 Haloferax volcanii DS2, complete genome
+NC_009972.1 Herpetosiphon aurantiacus DSM 785, complete genome
+NC_009973.1 Herpetosiphon aurantiacus DSM 785 plasmid pHAU01, complete sequence
+NC_009974.1 Herpetosiphon aurantiacus DSM 785 plasmid pHAU02, complete sequence
+CP001130.1 Hydrogenobaculum sp. Y04AAS1, complete genome
+CP000816.1 Ignicoccus hospitalis KIN4/I, complete genome
+CP001013.1 Leptothrix cholodnii SP-6, complete genome
+NC_000909.1 Methanocaldococcus jannaschii DSM 2661, complete genome
+NC_001732.1 Methanocaldococcus jannaschii DSM 2661 plasmid pDSM2661_1, complete sequence
+NC_001733.1 Methanocaldococcus jannaschii DSM 2661 plasmid pDSM2661_2, complete sequence
+CP000609.1 Methanococcus maripaludis C5, complete genome
+BX950229.1 Methanococcus maripaludis strain S2, complete sequence
+AE009439.1 Methanopyrus kandleri AV19, complete genome
+AE010299.1 Methanosarcina acetivorans str. C2A, complete genome
+NC_005213.1 Nanoarchaeum equitans Kin4-M chromosome, complete genome
+AL954747.1 Nitrosomonas europaea ATCC 19718, complete genome
+NC_003272.1 Nostoc sp. PCC 7120 DNA, complete genome
+NC_003276.1 Nostoc sp. PCC 7120 plasmid pCC7120alpha DNA, complete genome
+NC_003240.1 Nostoc sp. PCC 7120 plasmid pCC7120beta DNA, complete sequence
+NC_003273.1 Nostoc sp. PCC 7120 plasmid pCC7120delta DNA, complete sequence
+NC_003270.1 Nostoc sp. PCC 7120 plasmid pCC7120epsilon DNA, complete sequence
+NC_003267.1 Nostoc sp. PCC 7120 plasmid pCC7120gamma DNA, complete sequence
+NC_003241.1 Nostoc sp. PCC 7120 plasmid pCC7120zeta DNA, complete sequence
+CP001110.1 Pelodictyon phaeoclathratiforme BU-1, complete genome
+AP009380.1 Porphyromonas gingivalis ATCC 33277 DNA, complete genome
+AE009441.1 Pyrobaculum aerophilum str. IM2, complete genome
+CP000660.1 Pyrobaculum arsenaticum DSM 13514, complete genome
+CP000561.1 Pyrobaculum calidifontis JCM 11548, complete genome
+AE009950.1 Pyrococcus furiosus DSM 3638, complete genome
+BA000001.2 Pyrococcus horikoshii OT3 DNA, complete genome
+BX119912.1 Rhodopirellula baltica SH 1 complete genome
+NC_003911.12 Ruegeria pomeroyi DSS-3, complete genome
+NC_006569.1 Ruegeria pomeroyi DSS-3 megaplasmid, complete sequence
+CP000850.1 Salinispora arenicola CNS-205, complete genome
+CP000667.1 Salinispora tropica CNB-440, complete genome
+NC_009665.1 Shewanella baltica OS185, complete genome
+NC_009661.1 Shewanella baltica OS185 plasmid pS18501, complete sequence
+NC_010730.1 Sulfurihydrogenibium sp. YO3AOP1, complete genome
+NZ_ABZS01000228.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_18, whole genome shotgun sequence
+NZ_ABZS01000227.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_49, whole genome shotgun sequence
+NZ_ABZS01000226.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_86, whole genome shotgun sequence
+NZ_ABZS01000225.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_176, whole genome shotgun sequence
+NZ_ABZS01000224.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_84, whole genome shotgun sequence
+NZ_ABZS01000223.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_63, whole genome shotgun sequence
+NZ_ABZS01000222.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_203, whole genome shotgun sequence
+NZ_ABZS01000221.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_125, whole genome shotgun sequence
+NZ_ABZS01000220.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_115, whole genome shotgun sequence
+NZ_ABZS01000219.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_100, whole genome shotgun sequence
+NZ_ABZS01000218.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_201, whole genome shotgun sequence
+NZ_ABZS01000217.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_173, whole genome shotgun sequence
+NZ_ABZS01000216.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_85, whole genome shotgun sequence
+NZ_ABZS01000215.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_82, whole genome shotgun sequence
+NZ_ABZS01000214.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_95, whole genome shotgun sequence
+NZ_ABZS01000213.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_186, whole genome shotgun sequence
+NZ_ABZS01000212.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_171, whole genome shotgun sequence
+NZ_ABZS01000211.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_48, whole genome shotgun sequence
+NZ_ABZS01000210.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_140, whole genome shotgun sequence
+NZ_ABZS01000209.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_158, whole genome shotgun sequence
+NZ_ABZS01000208.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_7, whole genome shotgun sequence
+NZ_ABZS01000207.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_112, whole genome shotgun sequence
+NZ_ABZS01000206.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_225, whole genome shotgun sequence
+NZ_ABZS01000205.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_187, whole genome shotgun sequence
+NZ_ABZS01000204.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_104, whole genome shotgun sequence
+NZ_ABZS01000203.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_106, whole genome shotgun sequence
+NZ_ABZS01000202.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_9, whole genome shotgun sequence
+NZ_ABZS01000201.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_178, whole genome shotgun sequence
+NZ_ABZS01000200.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_67, whole genome shotgun sequence
+NZ_ABZS01000199.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_39, whole genome shotgun sequence
+NZ_ABZS01000198.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_224, whole genome shotgun sequence
+NZ_ABZS01000197.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_27, whole genome shotgun sequence
+NZ_ABZS01000196.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_109, whole genome shotgun sequence
+NZ_ABZS01000195.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_151, whole genome shotgun sequence
+NZ_ABZS01000194.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_184, whole genome shotgun sequence
+NZ_ABZS01000193.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_35, whole genome shotgun sequence
+NZ_ABZS01000192.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_89, whole genome shotgun sequence
+NZ_ABZS01000191.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_79, whole genome shotgun sequence
+NZ_ABZS01000190.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_214, whole genome shotgun sequence
+NZ_ABZS01000189.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_8, whole genome shotgun sequence
+NZ_ABZS01000188.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_78, whole genome shotgun sequence
+NZ_ABZS01000187.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_199, whole genome shotgun sequence
+NZ_ABZS01000186.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_81, whole genome shotgun sequence
+NZ_ABZS01000185.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_60, whole genome shotgun sequence
+NZ_ABZS01000184.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_162, whole genome shotgun sequence
+NZ_ABZS01000183.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_223, whole genome shotgun sequence
+NZ_ABZS01000182.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_219, whole genome shotgun sequence
+NZ_ABZS01000181.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_69, whole genome shotgun sequence
+NZ_ABZS01000180.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_59, whole genome shotgun sequence
+NZ_ABZS01000179.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_183, whole genome shotgun sequence
+NZ_ABZS01000178.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_73, whole genome shotgun sequence
+NZ_ABZS01000177.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_50, whole genome shotgun sequence
+NZ_ABZS01000176.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_213, whole genome shotgun sequence
+NZ_ABZS01000175.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_90, whole genome shotgun sequence
+NZ_ABZS01000174.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_11, whole genome shotgun sequence
+NZ_ABZS01000173.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_130, whole genome shotgun sequence
+NZ_ABZS01000172.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_165, whole genome shotgun sequence
+NZ_ABZS01000171.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_87, whole genome shotgun sequence
+NZ_ABZS01000170.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_149, whole genome shotgun sequence
+NZ_ABZS01000169.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_126, whole genome shotgun sequence
+NZ_ABZS01000168.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_98, whole genome shotgun sequence
+NZ_ABZS01000167.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_215, whole genome shotgun sequence
+NZ_ABZS01000166.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_164, whole genome shotgun sequence
+NZ_ABZS01000165.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_217, whole genome shotgun sequence
+NZ_ABZS01000164.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_24, whole genome shotgun sequence
+NZ_ABZS01000163.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_83, whole genome shotgun sequence
+NZ_ABZS01000162.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_148, whole genome shotgun sequence
+NZ_ABZS01000161.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_25, whole genome shotgun sequence
+NZ_ABZS01000160.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_152, whole genome shotgun sequence
+NZ_ABZS01000159.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_15, whole genome shotgun sequence
+NZ_ABZS01000158.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_198, whole genome shotgun sequence
+NZ_ABZS01000157.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_54, whole genome shotgun sequence
+NZ_ABZS01000156.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_105, whole genome shotgun sequence
+NZ_ABZS01000155.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_142, whole genome shotgun sequence
+NZ_ABZS01000154.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_71, whole genome shotgun sequence
+NZ_ABZS01000153.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_154, whole genome shotgun sequence
+NZ_ABZS01000152.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_5, whole genome shotgun sequence
+NZ_ABZS01000151.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_20, whole genome shotgun sequence
+NZ_ABZS01000150.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_222, whole genome shotgun sequence
+NZ_ABZS01000149.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_41, whole genome shotgun sequence
+NZ_ABZS01000148.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_44, whole genome shotgun sequence
+NZ_ABZS01000147.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_179, whole genome shotgun sequence
+NZ_ABZS01000146.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_42, whole genome shotgun sequence
+NZ_ABZS01000145.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_204, whole genome shotgun sequence
+NZ_ABZS01000144.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_38, whole genome shotgun sequence
+NZ_ABZS01000143.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_76, whole genome shotgun sequence
+NZ_ABZS01000142.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_189, whole genome shotgun sequence
+NZ_ABZS01000141.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_12, whole genome shotgun sequence
+NZ_ABZS01000140.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_129, whole genome shotgun sequence
+NZ_ABZS01000139.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_6, whole genome shotgun sequence
+NZ_ABZS01000138.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_155, whole genome shotgun sequence
+NZ_ABZS01000137.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_137, whole genome shotgun sequence
+NZ_ABZS01000136.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_226, whole genome shotgun sequence
+NZ_ABZS01000135.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_120, whole genome shotgun sequence
+NZ_ABZS01000134.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_65, whole genome shotgun sequence
+NZ_ABZS01000133.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_4, whole genome shotgun sequence
+NZ_ABZS01000132.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_52, whole genome shotgun sequence
+NZ_ABZS01000131.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_55, whole genome shotgun sequence
+NZ_ABZS01000130.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_147, whole genome shotgun sequence
+NZ_ABZS01000129.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_188, whole genome shotgun sequence
+NZ_ABZS01000128.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_1, whole genome shotgun sequence
+NZ_ABZS01000127.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_53, whole genome shotgun sequence
+NZ_ABZS01000126.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_51, whole genome shotgun sequence
+NZ_ABZS01000125.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_107, whole genome shotgun sequence
+NZ_ABZS01000124.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_157, whole genome shotgun sequence
+NZ_ABZS01000123.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_228, whole genome shotgun sequence
+NZ_ABZS01000122.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_160, whole genome shotgun sequence
+NZ_ABZS01000121.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_192, whole genome shotgun sequence
+NZ_ABZS01000120.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_209, whole genome shotgun sequence
+NZ_ABZS01000119.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_33, whole genome shotgun sequence
+NZ_ABZS01000118.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_132, whole genome shotgun sequence
+NZ_ABZS01000117.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_34, whole genome shotgun sequence
+NZ_ABZS01000116.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_111, whole genome shotgun sequence
+NZ_ABZS01000115.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_97, whole genome shotgun sequence
+NZ_ABZS01000114.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_177, whole genome shotgun sequence
+NZ_ABZS01000113.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_143, whole genome shotgun sequence
+NZ_ABZS01000112.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_193, whole genome shotgun sequence
+NZ_ABZS01000111.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_68, whole genome shotgun sequence
+NZ_ABZS01000110.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_227, whole genome shotgun sequence
+NZ_ABZS01000109.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_197, whole genome shotgun sequence
+NZ_ABZS01000108.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_172, whole genome shotgun sequence
+NZ_ABZS01000107.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_139, whole genome shotgun sequence
+NZ_ABZS01000106.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_21, whole genome shotgun sequence
+NZ_ABZS01000105.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_221, whole genome shotgun sequence
+NZ_ABZS01000104.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_36, whole genome shotgun sequence
+NZ_ABZS01000103.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_43, whole genome shotgun sequence
+NZ_ABZS01000102.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_31, whole genome shotgun sequence
+NZ_ABZS01000101.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_91, whole genome shotgun sequence
+NZ_ABZS01000100.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_170, whole genome shotgun sequence
+NZ_ABZS01000099.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_47, whole genome shotgun sequence
+NZ_ABZS01000098.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_103, whole genome shotgun sequence
+NZ_ABZS01000097.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_99, whole genome shotgun sequence
+NZ_ABZS01000096.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_13, whole genome shotgun sequence
+NZ_ABZS01000095.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_218, whole genome shotgun sequence
+NZ_ABZS01000094.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_62, whole genome shotgun sequence
+NZ_ABZS01000093.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_122, whole genome shotgun sequence
+NZ_ABZS01000092.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_180, whole genome shotgun sequence
+NZ_ABZS01000091.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_195, whole genome shotgun sequence
+NZ_ABZS01000090.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_166, whole genome shotgun sequence
+NZ_ABZS01000089.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_93, whole genome shotgun sequence
+NZ_ABZS01000088.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_161, whole genome shotgun sequence
+NZ_ABZS01000087.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_117, whole genome shotgun sequence
+NZ_ABZS01000086.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_70, whole genome shotgun sequence
+NZ_ABZS01000085.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_167, whole genome shotgun sequence
+NZ_ABZS01000084.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_75, whole genome shotgun sequence
+NZ_ABZS01000083.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_119, whole genome shotgun sequence
+NZ_ABZS01000082.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_30, whole genome shotgun sequence
+NZ_ABZS01000081.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_56, whole genome shotgun sequence
+NZ_ABZS01000080.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_92, whole genome shotgun sequence
+NZ_ABZS01000079.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_29, whole genome shotgun sequence
+NZ_ABZS01000078.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_40, whole genome shotgun sequence
+NZ_ABZS01000077.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_131, whole genome shotgun sequence
+NZ_ABZS01000076.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_181, whole genome shotgun sequence
+NZ_ABZS01000075.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_200, whole genome shotgun sequence
+NZ_ABZS01000074.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_182, whole genome shotgun sequence
+NZ_ABZS01000073.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_123, whole genome shotgun sequence
+NZ_ABZS01000072.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_124, whole genome shotgun sequence
+NZ_ABZS01000071.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_114, whole genome shotgun sequence
+NZ_ABZS01000070.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_153, whole genome shotgun sequence
+NZ_ABZS01000069.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_206, whole genome shotgun sequence
+NZ_ABZS01000068.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_163, whole genome shotgun sequence
+NZ_ABZS01000067.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_118, whole genome shotgun sequence
+NZ_ABZS01000066.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_45, whole genome shotgun sequence
+NZ_ABZS01000065.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_205, whole genome shotgun sequence
+NZ_ABZS01000064.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_23, whole genome shotgun sequence
+NZ_ABZS01000063.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_144, whole genome shotgun sequence
+NZ_ABZS01000062.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_110, whole genome shotgun sequence
+NZ_ABZS01000061.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_175, whole genome shotgun sequence
+NZ_ABZS01000060.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_134, whole genome shotgun sequence
+NZ_ABZS01000059.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_133, whole genome shotgun sequence
+NZ_ABZS01000058.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_101, whole genome shotgun sequence
+NZ_ABZS01000057.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_14, whole genome shotgun sequence
+NZ_ABZS01000056.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_94, whole genome shotgun sequence
+NZ_ABZS01000055.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_136, whole genome shotgun sequence
+NZ_ABZS01000054.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_66, whole genome shotgun sequence
+NZ_ABZS01000053.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_207, whole genome shotgun sequence
+NZ_ABZS01000052.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_72, whole genome shotgun sequence
+NZ_ABZS01000051.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_196, whole genome shotgun sequence
+NZ_ABZS01000050.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_22, whole genome shotgun sequence
+NZ_ABZS01000049.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_211, whole genome shotgun sequence
+NZ_ABZS01000048.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_116, whole genome shotgun sequence
+NZ_ABZS01000047.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_194, whole genome shotgun sequence
+NZ_ABZS01000046.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_202, whole genome shotgun sequence
+NZ_ABZS01000045.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_113, whole genome shotgun sequence
+NZ_ABZS01000044.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_127, whole genome shotgun sequence
+NZ_ABZS01000043.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_146, whole genome shotgun sequence
+NZ_ABZS01000042.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_141, whole genome shotgun sequence
+NZ_ABZS01000041.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_174, whole genome shotgun sequence
+NZ_ABZS01000040.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_46, whole genome shotgun sequence
+NZ_ABZS01000039.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_2, whole genome shotgun sequence
+NZ_ABZS01000038.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_57, whole genome shotgun sequence
+NZ_ABZS01000037.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_19, whole genome shotgun sequence
+NZ_ABZS01000036.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_190, whole genome shotgun sequence
+NZ_ABZS01000035.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_212, whole genome shotgun sequence
+NZ_ABZS01000034.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_159, whole genome shotgun sequence
+NZ_ABZS01000033.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_135, whole genome shotgun sequence
+NZ_ABZS01000032.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_168, whole genome shotgun sequence
+NZ_ABZS01000031.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_80, whole genome shotgun sequence
+NZ_ABZS01000030.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_37, whole genome shotgun sequence
+NZ_ABZS01000029.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_74, whole genome shotgun sequence
+NZ_ABZS01000028.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_28, whole genome shotgun sequence
+NZ_ABZS01000027.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_210, whole genome shotgun sequence
+NZ_ABZS01000026.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_128, whole genome shotgun sequence
+NZ_ABZS01000025.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_138, whole genome shotgun sequence
+NZ_ABZS01000024.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_3, whole genome shotgun sequence
+NZ_ABZS01000023.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_102, whole genome shotgun sequence
+NZ_ABZS01000022.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_145, whole genome shotgun sequence
+NZ_ABZS01000021.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_16, whole genome shotgun sequence
+NZ_ABZS01000020.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_96, whole genome shotgun sequence
+NZ_ABZS01000019.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_77, whole genome shotgun sequence
+NZ_ABZS01000018.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_88, whole genome shotgun sequence
+NZ_ABZS01000017.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_220, whole genome shotgun sequence
+NZ_ABZS01000016.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_10, whole genome shotgun sequence
+NZ_ABZS01000015.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_156, whole genome shotgun sequence
+NZ_ABZS01000014.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_32, whole genome shotgun sequence
+NZ_ABZS01000013.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_61, whole genome shotgun sequence
+NZ_ABZS01000012.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_26, whole genome shotgun sequence
+NZ_ABZS01000011.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_121, whole genome shotgun sequence
+NZ_ABZS01000010.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_58, whole genome shotgun sequence
+NZ_ABZS01000009.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_17, whole genome shotgun sequence
+NZ_ABZS01000008.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_185, whole genome shotgun sequence
+NZ_ABZS01000007.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_191, whole genome shotgun sequence
+NZ_ABZS01000006.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_150, whole genome shotgun sequence
+NZ_ABZS01000005.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_169, whole genome shotgun sequence
+NZ_ABZS01000004.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_108, whole genome shotgun sequence
+NZ_ABZS01000003.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_216, whole genome shotgun sequence
+NZ_ABZS01000002.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_64, whole genome shotgun sequence
+NZ_ABZS01000001.1 Sulfurihydrogenibium yellowstonense SS-5 gcontig_208, whole genome shotgun sequence
+CP000924.1 Thermoanaerobacter pseudethanolicus ATCC 33223, complete genome
+CP000916.1 Thermotoga neapolitana DSM 4359, complete genome
+CP000702.1 Thermotoga petrophila RKU-1, complete genome
+CP000969.1 Thermotoga sp. RQ2, complete genome
+CP001230.1 Persephonella marina EX-H1, complete genome
+AE017221.1 Thermus thermophilus HB27, complete genome
+AE017226.1 Treponema denticola ATCC 35405, complete genome
+BX571656.1 Wolinella succinogenes DSM 1740, complete genome
+NZ_KQ961402.1 Zymomonas mobilis strain ATCC 31823 Scaffold1, whole genome shotgun sequence
+NZ_KQ961403.1 Zymomonas mobilis strain ATCC 31823 Scaffold2, whole genome shotgun sequence
+NZ_LSFP01000005.1 Zymomonas mobilis strain ATCC 31823 Scaffold3_1, whole genome shotgun sequence
+NZ_LSFP01000006.1 Zymomonas mobilis strain ATCC 31823 Scaffold4_1, whole genome shotgun sequence
+NZ_LSFP01000007.1 Zymomonas mobilis strain ATCC 31823 Scaffold5_1, whole genome shotgun sequence
+NZ_KQ961404.1 Zymomonas mobilis strain ATCC 31823 Scaffold6, whole genome shotgun sequence
+NZ_KQ961405.1 Zymomonas mobilis strain ATCC 31823 Scaffold7, whole genome shotgun sequence
+NZ_KQ961406.1 Zymomonas mobilis strain ATCC 31823 Scaffold8, whole genome shotgun sequence
+NZ_LSFP01000014.1 Zymomonas mobilis strain ATCC 31823 Scaffold9_1, whole genome shotgun sequence
+NZ_KQ961407.1 Zymomonas mobilis strain ATCC 31823 Scaffold10, whole genome shotgun sequence
+NZ_KQ961408.1 Zymomonas mobilis strain ATCC 31823 Scaffold11, whole genome shotgun sequence
+NZ_LSFP01000019.1 Zymomonas mobilis strain ATCC 31823 Scaffold12_1, whole genome shotgun sequence
+NZ_LSFP01000020.1 Zymomonas mobilis strain ATCC 31823 Scaffold13_1, whole genome shotgun sequence
+NZ_LSFP01000021.1 Zymomonas mobilis strain ATCC 31823 Scaffold14_1, whole genome shotgun sequence
+NZ_LSFP01000022.1 Zymomonas mobilis strain ATCC 31823 Scaffold15_1, whole genome shotgun sequence
+NZ_LSFP01000023.1 Zymomonas mobilis strain ATCC 31823 Scaffold16_1, whole genome shotgun sequence
+NZ_LSFP01000024.1 Zymomonas mobilis strain ATCC 31823 Scaffold17_1, whole genome shotgun sequence
+NZ_LSFP01000025.1 Zymomonas mobilis strain ATCC 31823 Scaffold18_1, whole genome shotgun sequence
+NZ_LSFP01000026.1 Zymomonas mobilis strain ATCC 31823 Scaffold19_1, whole genome shotgun sequence
+NZ_LSFP01000027.1 Zymomonas mobilis strain ATCC 31823 Scaffold20_1, whole genome shotgun sequence
+NZ_LSFP01000028.1 Zymomonas mobilis strain ATCC 31823 Scaffold21_1, whole genome shotgun sequence
+NZ_KQ961409.1 Zymomonas mobilis strain ATCC 31823 Scaffold22, whole genome shotgun sequence
+NZ_LSFP01000031.1 Zymomonas mobilis strain ATCC 31823 Scaffold23_1, whole genome shotgun sequence
+NZ_KQ961410.1 Zymomonas mobilis strain ATCC 31823 Scaffold24, whole genome shotgun sequence
+NZ_KQ961411.1 Zymomonas mobilis strain ATCC 31823 Scaffold25, whole genome shotgun sequence
+NZ_LSFP01000036.1 Zymomonas mobilis strain ATCC 31823 Scaffold26_1, whole genome shotgun sequence
+NZ_LSFP01000037.1 Zymomonas mobilis strain ATCC 31823 Scaffold27_1, whole genome shotgun sequence
+NZ_KQ961412.1 Zymomonas mobilis strain ATCC 31823 Scaffold28, whole genome shotgun sequence
+NZ_LSFP01000040.1 Zymomonas mobilis strain ATCC 31823 Scaffold29_1, whole genome shotgun sequence
+NZ_LSFP01000041.1 Zymomonas mobilis strain ATCC 31823 Scaffold30_1, whole genome shotgun sequence
+NZ_CH959311.1 Sulfitobacter sp. EE-36 scf_1099451318005, whole genome shotgun sequence
+NZ_CH959310.1 Sulfitobacter sp. EE-36 scf_1099451318008, whole genome shotgun sequence
+NZ_AALV01000015.1 Sulfitobacter sp. EE-36 1099451317983, whole genome shotgun sequence
+NZ_AALV01000007.1 Sulfitobacter sp. EE-36 1099451317995, whole genome shotgun sequence
+NZ_AALV01000004.1 Sulfitobacter sp. EE-36 1099451317994, whole genome shotgun sequence
+NZ_CH959317.1 Sulfitobacter sp. NAS-14.1 scf_1099451320472, whole genome shotgun sequence
+NZ_CH959316.1 Sulfitobacter sp. NAS-14.1 scf_1099451320473, whole genome shotgun sequence
+NZ_CH959315.1 Sulfitobacter sp. NAS-14.1 scf_1099451320470, whole genome shotgun sequence
+NZ_CH959314.1 Sulfitobacter sp. NAS-14.1 scf_1099451320475, whole genome shotgun sequence
+NZ_CH959313.1 Sulfitobacter sp. NAS-14.1 scf_1099451320476, whole genome shotgun sequence
+NZ_CH959312.1 Sulfitobacter sp. NAS-14.1 scf_1099451320477, whole genome shotgun sequence
+NZ_AALZ01000021.1 Sulfitobacter sp. NAS-14.1 1099451320444, whole genome shotgun sequence
+NZ_AALZ01000017.1 Sulfitobacter sp. NAS-14.1 1099451320455, whole genome shotgun sequence
+NZ_AALZ01000011.1 Sulfitobacter sp. NAS-14.1 1099451320457, whole genome shotgun sequence
+NZ_AALZ01000007.1 Sulfitobacter sp. NAS-14.1 1099451320460, whole genome shotgun sequence
+NZ_AALZ01000006.1 Sulfitobacter sp. NAS-14.1 1099451320454, whole genome shotgun sequence
+NZ_DS996397.1 Desulfovibrio piger ATCC 29098 Scfld442, whole genome shotgun sequence
+NZ_DS996396.1 Desulfovibrio piger ATCC 29098 Scfld439, whole genome shotgun sequence
+NZ_DS996395.1 Desulfovibrio piger ATCC 29098 Scfld438, whole genome shotgun sequence
+NZ_DS996394.1 Desulfovibrio piger ATCC 29098 Scfld434, whole genome shotgun sequence
+NZ_DS996393.1 Desulfovibrio piger ATCC 29098 Scfld433, whole genome shotgun sequence
+NZ_DS996392.1 Desulfovibrio piger ATCC 29098 Scfld432, whole genome shotgun sequence
+NZ_DS996391.1 Desulfovibrio piger ATCC 29098 Scfld430, whole genome shotgun sequence
+NZ_DS996390.1 Desulfovibrio piger ATCC 29098 Scfld429, whole genome shotgun sequence
+NZ_DS996389.1 Desulfovibrio piger ATCC 29098 Scfld427, whole genome shotgun sequence
+NZ_DS996388.1 Desulfovibrio piger ATCC 29098 Scfld426, whole genome shotgun sequence
+NZ_DS996387.1 Desulfovibrio piger ATCC 29098 Scfld425, whole genome shotgun sequence
+NZ_DS996386.1 Desulfovibrio piger ATCC 29098 Scfld424, whole genome shotgun sequence
+NZ_DS996385.1 Desulfovibrio piger ATCC 29098 Scfld423, whole genome shotgun sequence
+NZ_DS996384.1 Desulfovibrio piger ATCC 29098 Scfld422, whole genome shotgun sequence
+NZ_DS996383.1 Desulfovibrio piger ATCC 29098 Scfld421, whole genome shotgun sequence
+NZ_DS996382.1 Desulfovibrio piger ATCC 29098 Scfld420, whole genome shotgun sequence
+NZ_DS996381.1 Desulfovibrio piger ATCC 29098 Scfld419, whole genome shotgun sequence
+NZ_DS996380.1 Desulfovibrio piger ATCC 29098 Scfld418, whole genome shotgun sequence
+NZ_DS996379.1 Desulfovibrio piger ATCC 29098 Scfld416, whole genome shotgun sequence
+NZ_DS996378.1 Desulfovibrio piger ATCC 29098 Scfld415, whole genome shotgun sequence
+NZ_DS996377.1 Desulfovibrio piger ATCC 29098 Scfld412, whole genome shotgun sequence
+NZ_DS996376.1 Desulfovibrio piger ATCC 29098 Scfld411, whole genome shotgun sequence
+NZ_DS996375.1 Desulfovibrio piger ATCC 29098 Scfld405, whole genome shotgun sequence
+NZ_DS996374.1 Desulfovibrio piger ATCC 29098 Scfld403, whole genome shotgun sequence
+NZ_DS996373.1 Desulfovibrio piger ATCC 29098 Scfld402, whole genome shotgun sequence
+NZ_DS996372.1 Desulfovibrio piger ATCC 29098 Scfld399, whole genome shotgun sequence
+NZ_DS996371.1 Desulfovibrio piger ATCC 29098 Scfld391, whole genome shotgun sequence
+NZ_DS996370.1 Desulfovibrio piger ATCC 29098 Scfld390, whole genome shotgun sequence
+NZ_DS996369.1 Desulfovibrio piger ATCC 29098 Scfld387, whole genome shotgun sequence
+NZ_DS996368.1 Desulfovibrio piger ATCC 29098 Scfld201, whole genome shotgun sequence
+NZ_DS996367.1 Desulfovibrio piger ATCC 29098 Scfld18, whole genome shotgun sequence
+NZ_DS996366.1 Desulfovibrio piger ATCC 29098 Scfld15, whole genome shotgun sequence
+NZ_DS996365.1 Desulfovibrio piger ATCC 29098 Scfld14, whole genome shotgun sequence
+NZ_DS996364.1 Desulfovibrio piger ATCC 29098 Scfld13, whole genome shotgun sequence
+NZ_DS996363.1 Desulfovibrio piger ATCC 29098 Scfld12, whole genome shotgun sequence
+NZ_DS996362.1 Desulfovibrio piger ATCC 29098 Scfld11, whole genome shotgun sequence
+NZ_DS996361.1 Desulfovibrio piger ATCC 29098 Scfld10, whole genome shotgun sequence
+NZ_DS996360.1 Desulfovibrio piger ATCC 29098 Scfld9, whole genome shotgun sequence
+NZ_DS996359.1 Desulfovibrio piger ATCC 29098 Scfld8, whole genome shotgun sequence
+NZ_DS996358.1 Desulfovibrio piger ATCC 29098 Scfld7, whole genome shotgun sequence
+NZ_DS996357.1 Desulfovibrio piger ATCC 29098 Scfld6, whole genome shotgun sequence
+NZ_DS996356.1 Desulfovibrio piger ATCC 29098 Scfld5, whole genome shotgun sequence
+NZ_DS996355.1 Desulfovibrio piger ATCC 29098 Scfld4, whole genome shotgun sequence
+NZ_DS996354.1 Desulfovibrio piger ATCC 29098 Scfld3, whole genome shotgun sequence
+NZ_DS996353.1 Desulfovibrio piger ATCC 29098 Scfld2, whole genome shotgun sequence
+NZ_DS996352.1 Desulfovibrio piger ATCC 29098 Scfld1, whole genome shotgun sequence
+NZ_DS996351.1 Desulfovibrio piger ATCC 29098 Scfld0, whole genome shotgun sequence
+BA000023.2 Sulfolobus tokodaii str. 7 DNA, complete genome
+NC_011663.1 Shewanella baltica OS223, complete genome
+NC_011664.1 Shewanella baltica OS223 plasmid pS22301, complete sequence
+NC_011668.1 Shewanella baltica OS223 plasmid pS22302, complete sequence
+NC_011665.1 Shewanella baltica OS223 plasmid pS22303, complete sequence

@@ -1,0 +1,491 @@
+NC_008751.1 Desulfovibrio vulgaris DP4, complete genome
+NC_008741.1 Desulfovibrio vulgaris DP4 plasmid pDVUL01, complete sequence
+NC_011663.1 Shewanella baltica OS223, complete genome
+NC_011664.1 Shewanella baltica OS223 plasmid pS22301, complete sequence
+NC_011668.1 Shewanella baltica OS223 plasmid pS22302, complete sequence
+NC_011665.1 Shewanella baltica OS223 plasmid pS22303, complete sequence
+NC_006461.1 Thermus thermophilus HB8 chromosome, complete genome
+NC_006462.1 Thermus thermophilus HB8 plasmid pTT27, complete sequence
+NC_006463.1 Thermus thermophilus HB8 plasmid pTT8, complete sequence
+NZ_CM000440.1 Fusobacterium nucleatum subsp. polymorphum ATCC 10953 chromosome, whole genome shotgun sequence
+NC_009506.1 Fusobacterium nucleatum subsp. polymorphum ATCC 10953 plasmid pFN3, complete sequence
+NZ_KQ235732.1 Fusobacterium nucleatum subsp. vincentii 4_1_13 supercont2.1, whole genome shotgun sequence
+NZ_KQ235733.1 Fusobacterium nucleatum subsp. vincentii 4_1_13 supercont2.2, whole genome shotgun sequence
+NZ_KQ235734.1 Fusobacterium nucleatum subsp. vincentii 4_1_13 supercont2.3, whole genome shotgun sequence
+NZ_KQ235735.1 Fusobacterium nucleatum subsp. vincentii 4_1_13 supercont2.4, whole genome shotgun sequence
+NZ_KQ235736.1 Fusobacterium nucleatum subsp. vincentii 4_1_13 supercont2.5, whole genome shotgun sequence
+NZ_KQ235737.1 Fusobacterium nucleatum subsp. vincentii 4_1_13 supercont2.6, whole genome shotgun sequence
+NZ_KQ235738.1 Fusobacterium nucleatum subsp. vincentii 4_1_13 supercont2.7, whole genome shotgun sequence
+NZ_AGVN01000001.1 Enterococcus faecalis M7 contig00001, whole genome shotgun sequence
+NZ_AGVN01000002.1 Enterococcus faecalis M7 contig00002, whole genome shotgun sequence
+NZ_AGVN01000003.1 Enterococcus faecalis M7 contig00003, whole genome shotgun sequence
+NZ_AGVN01000004.1 Enterococcus faecalis M7 contig00004, whole genome shotgun sequence
+NZ_AGVN01000005.1 Enterococcus faecalis M7 contig00005, whole genome shotgun sequence
+NZ_AGVN01000006.1 Enterococcus faecalis M7 contig00006, whole genome shotgun sequence
+NZ_AGVN01000007.1 Enterococcus faecalis M7 contig00008, whole genome shotgun sequence
+NZ_AGVN01000008.1 Enterococcus faecalis M7 contig00009, whole genome shotgun sequence
+NZ_AGVN01000009.1 Enterococcus faecalis M7 contig00010, whole genome shotgun sequence
+NZ_AGVN01000010.1 Enterococcus faecalis M7 contig00012, whole genome shotgun sequence
+NZ_AGVN01000011.1 Enterococcus faecalis M7 contig00013, whole genome shotgun sequence
+NZ_AGVN01000012.1 Enterococcus faecalis M7 contig00014, whole genome shotgun sequence
+NZ_AGVN01000013.1 Enterococcus faecalis M7 contig00015, whole genome shotgun sequence
+NZ_AGVN01000014.1 Enterococcus faecalis M7 contig00016, whole genome shotgun sequence
+NZ_AGVN01000015.1 Enterococcus faecalis M7 contig00017, whole genome shotgun sequence
+NZ_AGVN01000016.1 Enterococcus faecalis M7 contig00018, whole genome shotgun sequence
+NZ_AGVN01000017.1 Enterococcus faecalis M7 contig00019, whole genome shotgun sequence
+NZ_AGVN01000018.1 Enterococcus faecalis M7 contig00020, whole genome shotgun sequence
+NZ_AGVN01000019.1 Enterococcus faecalis M7 contig00021, whole genome shotgun sequence
+NZ_AGVN01000020.1 Enterococcus faecalis M7 contig00022, whole genome shotgun sequence
+NZ_AGVN01000021.1 Enterococcus faecalis M7 contig00023, whole genome shotgun sequence
+NZ_AGVN01000022.1 Enterococcus faecalis M7 contig00024, whole genome shotgun sequence
+NZ_AGVN01000023.1 Enterococcus faecalis M7 contig00025, whole genome shotgun sequence
+NZ_AGVN01000024.1 Enterococcus faecalis M7 contig00026, whole genome shotgun sequence
+NZ_AGVN01000025.1 Enterococcus faecalis M7 contig00027, whole genome shotgun sequence
+NZ_AGVN01000026.1 Enterococcus faecalis M7 contig00028, whole genome shotgun sequence
+NZ_AGVN01000027.1 Enterococcus faecalis M7 contig00029, whole genome shotgun sequence
+NZ_AGVN01000028.1 Enterococcus faecalis M7 contig00030, whole genome shotgun sequence
+NZ_AGVN01000029.1 Enterococcus faecalis M7 contig00031, whole genome shotgun sequence
+NZ_AGVN01000030.1 Enterococcus faecalis M7 contig00032, whole genome shotgun sequence
+NZ_AGVN01000031.1 Enterococcus faecalis M7 contig00033, whole genome shotgun sequence
+NZ_AGVN01000032.1 Enterococcus faecalis M7 contig00035, whole genome shotgun sequence
+NZ_AGVN01000033.1 Enterococcus faecalis M7 contig00036, whole genome shotgun sequence
+NZ_AGVN01000034.1 Enterococcus faecalis M7 contig00037, whole genome shotgun sequence
+NZ_AGVN01000035.1 Enterococcus faecalis M7 contig00038, whole genome shotgun sequence
+NZ_AGVN01000036.1 Enterococcus faecalis M7 contig00039, whole genome shotgun sequence
+NZ_AGVN01000037.1 Enterococcus faecalis M7 contig00042, whole genome shotgun sequence
+NZ_AGVN01000038.1 Enterococcus faecalis M7 contig00043, whole genome shotgun sequence
+NZ_AGVN01000039.1 Enterococcus faecalis M7 contig00044, whole genome shotgun sequence
+NZ_AGVN01000040.1 Enterococcus faecalis M7 contig00045, whole genome shotgun sequence
+NZ_AGVN01000041.1 Enterococcus faecalis M7 contig00046, whole genome shotgun sequence
+NZ_AGVN01000042.1 Enterococcus faecalis M7 contig00047, whole genome shotgun sequence
+NZ_AGVN01000043.1 Enterococcus faecalis M7 contig00048, whole genome shotgun sequence
+NZ_AGVN01000044.1 Enterococcus faecalis M7 contig00049, whole genome shotgun sequence
+NZ_AGVN01000045.1 Enterococcus faecalis M7 contig00050, whole genome shotgun sequence
+NZ_AGVN01000046.1 Enterococcus faecalis M7 contig00051, whole genome shotgun sequence
+NZ_AGVN01000047.1 Enterococcus faecalis M7 contig00052, whole genome shotgun sequence
+NZ_AGVN01000048.1 Enterococcus faecalis M7 contig00053, whole genome shotgun sequence
+NZ_AGVN01000049.1 Enterococcus faecalis M7 contig00054, whole genome shotgun sequence
+NZ_AGVN01000050.1 Enterococcus faecalis M7 contig00055, whole genome shotgun sequence
+NZ_AGVN01000051.1 Enterococcus faecalis M7 contig00056, whole genome shotgun sequence
+NZ_AGVN01000052.1 Enterococcus faecalis M7 contig00057, whole genome shotgun sequence
+NZ_AGVN01000053.1 Enterococcus faecalis M7 contig00058, whole genome shotgun sequence
+NZ_AGVN01000054.1 Enterococcus faecalis M7 contig00059, whole genome shotgun sequence
+NZ_AGVN01000055.1 Enterococcus faecalis M7 contig00060, whole genome shotgun sequence
+NZ_AGVN01000056.1 Enterococcus faecalis M7 contig00062, whole genome shotgun sequence
+NZ_AGVN01000057.1 Enterococcus faecalis M7 contig00063, whole genome shotgun sequence
+NZ_AGVN01000058.1 Enterococcus faecalis M7 contig00064, whole genome shotgun sequence
+NZ_AGVN01000059.1 Enterococcus faecalis M7 contig00067, whole genome shotgun sequence
+NZ_AGVN01000060.1 Enterococcus faecalis M7 contig00068, whole genome shotgun sequence
+NZ_AGVN01000061.1 Enterococcus faecalis M7 contig00069, whole genome shotgun sequence
+NZ_AGVN01000062.1 Enterococcus faecalis M7 contig00071, whole genome shotgun sequence
+NZ_AGVN01000063.1 Enterococcus faecalis M7 contig00072, whole genome shotgun sequence
+NZ_AGVN01000064.1 Enterococcus faecalis M7 contig00073, whole genome shotgun sequence
+NZ_AGVN01000065.1 Enterococcus faecalis M7 contig00074, whole genome shotgun sequence
+NZ_AGVN01000066.1 Enterococcus faecalis M7 contig00075, whole genome shotgun sequence
+NZ_AGVN01000067.1 Enterococcus faecalis M7 contig00076, whole genome shotgun sequence
+NZ_AGVN01000068.1 Enterococcus faecalis M7 contig00077, whole genome shotgun sequence
+NZ_AGVN01000069.1 Enterococcus faecalis M7 contig00078, whole genome shotgun sequence
+NZ_AGVN01000070.1 Enterococcus faecalis M7 contig00079, whole genome shotgun sequence
+NZ_AGVN01000071.1 Enterococcus faecalis M7 contig00080, whole genome shotgun sequence
+NZ_AGVN01000072.1 Enterococcus faecalis M7 contig00081, whole genome shotgun sequence
+NZ_AGVN01000073.1 Enterococcus faecalis M7 contig00083, whole genome shotgun sequence
+NZ_AGVN01000074.1 Enterococcus faecalis M7 contig00084, whole genome shotgun sequence
+NZ_AGVN01000075.1 Enterococcus faecalis M7 contig00086, whole genome shotgun sequence
+NZ_AGVN01000076.1 Enterococcus faecalis M7 contig00087, whole genome shotgun sequence
+NZ_AGVN01000077.1 Enterococcus faecalis M7 contig00088, whole genome shotgun sequence
+NZ_ATKF01000001.1 Fusobacterium hwasookii ChDC F174 Contig001, whole genome shotgun sequence
+NZ_ATKF01000002.1 Fusobacterium hwasookii ChDC F174 Contig002, whole genome shotgun sequence
+NZ_ATKF01000003.1 Fusobacterium hwasookii ChDC F174 Contig003, whole genome shotgun sequence
+NZ_ATKF01000004.1 Fusobacterium hwasookii ChDC F174 Contig004, whole genome shotgun sequence
+NZ_ATKF01000005.1 Fusobacterium hwasookii ChDC F174 Contig005, whole genome shotgun sequence
+NZ_ATKF01000006.1 Fusobacterium hwasookii ChDC F174 Contig006, whole genome shotgun sequence
+NZ_ATKF01000007.1 Fusobacterium hwasookii ChDC F174 Contig007, whole genome shotgun sequence
+NZ_ATKF01000008.1 Fusobacterium hwasookii ChDC F174 Contig008, whole genome shotgun sequence
+NZ_ATKF01000009.1 Fusobacterium hwasookii ChDC F174 Contig009, whole genome shotgun sequence
+NZ_ATKF01000010.1 Fusobacterium hwasookii ChDC F174 Contig010, whole genome shotgun sequence
+NZ_ATKF01000011.1 Fusobacterium hwasookii ChDC F174 Contig011, whole genome shotgun sequence
+NZ_ATKF01000012.1 Fusobacterium hwasookii ChDC F174 Contig012, whole genome shotgun sequence
+NZ_ATKF01000013.1 Fusobacterium hwasookii ChDC F174 Contig013, whole genome shotgun sequence
+NZ_ATKF01000014.1 Fusobacterium hwasookii ChDC F174 Contig014, whole genome shotgun sequence
+NZ_ATKF01000015.1 Fusobacterium hwasookii ChDC F174 Contig015, whole genome shotgun sequence
+NZ_ATKF01000016.1 Fusobacterium hwasookii ChDC F174 Contig016, whole genome shotgun sequence
+NZ_ATKF01000017.1 Fusobacterium hwasookii ChDC F174 Contig017, whole genome shotgun sequence
+NZ_ATKF01000018.1 Fusobacterium hwasookii ChDC F174 Contig018, whole genome shotgun sequence
+NZ_ATKF01000019.1 Fusobacterium hwasookii ChDC F174 Contig019, whole genome shotgun sequence
+NZ_ATKF01000020.1 Fusobacterium hwasookii ChDC F174 Contig020, whole genome shotgun sequence
+NZ_ATKF01000021.1 Fusobacterium hwasookii ChDC F174 Contig021, whole genome shotgun sequence
+NZ_ATKF01000022.1 Fusobacterium hwasookii ChDC F174 Contig022, whole genome shotgun sequence
+NZ_ATKF01000023.1 Fusobacterium hwasookii ChDC F174 Contig023, whole genome shotgun sequence
+NZ_ATKF01000024.1 Fusobacterium hwasookii ChDC F174 Contig024, whole genome shotgun sequence
+NZ_ATKF01000025.1 Fusobacterium hwasookii ChDC F174 Contig025, whole genome shotgun sequence
+NZ_ATKF01000026.1 Fusobacterium hwasookii ChDC F174 Contig026, whole genome shotgun sequence
+NZ_ATKF01000027.1 Fusobacterium hwasookii ChDC F174 Contig027, whole genome shotgun sequence
+NZ_ATKF01000028.1 Fusobacterium hwasookii ChDC F174 Contig028, whole genome shotgun sequence
+NZ_ATKF01000029.1 Fusobacterium hwasookii ChDC F174 Contig029, whole genome shotgun sequence
+NZ_ATKF01000030.1 Fusobacterium hwasookii ChDC F174 Contig030, whole genome shotgun sequence
+NZ_ATKF01000031.1 Fusobacterium hwasookii ChDC F174 Contig031, whole genome shotgun sequence
+NZ_ATKF01000032.1 Fusobacterium hwasookii ChDC F174 Contig032, whole genome shotgun sequence
+NZ_ATKF01000033.1 Fusobacterium hwasookii ChDC F174 Contig033, whole genome shotgun sequence
+NZ_ATKF01000034.1 Fusobacterium hwasookii ChDC F174 Contig034, whole genome shotgun sequence
+NZ_ATKF01000035.1 Fusobacterium hwasookii ChDC F174 Contig035, whole genome shotgun sequence
+NZ_ATKF01000036.1 Fusobacterium hwasookii ChDC F174 Contig036, whole genome shotgun sequence
+NZ_ATKF01000037.1 Fusobacterium hwasookii ChDC F174 Contig037, whole genome shotgun sequence
+NZ_ATKF01000038.1 Fusobacterium hwasookii ChDC F174 Contig038, whole genome shotgun sequence
+NZ_ATKF01000039.1 Fusobacterium hwasookii ChDC F174 Contig039, whole genome shotgun sequence
+NZ_ATKF01000040.1 Fusobacterium hwasookii ChDC F174 Contig040, whole genome shotgun sequence
+NZ_ATKF01000041.1 Fusobacterium hwasookii ChDC F174 Contig041, whole genome shotgun sequence
+NZ_ATKF01000042.1 Fusobacterium hwasookii ChDC F174 Contig042, whole genome shotgun sequence
+NZ_ATKF01000043.1 Fusobacterium hwasookii ChDC F174 Contig043, whole genome shotgun sequence
+NZ_ATKF01000044.1 Fusobacterium hwasookii ChDC F174 Contig044, whole genome shotgun sequence
+NZ_ATKF01000045.1 Fusobacterium hwasookii ChDC F174 Contig045, whole genome shotgun sequence
+NZ_ATKF01000046.1 Fusobacterium hwasookii ChDC F174 Contig046, whole genome shotgun sequence
+NZ_ATKF01000047.1 Fusobacterium hwasookii ChDC F174 Contig047, whole genome shotgun sequence
+NZ_ATKF01000048.1 Fusobacterium hwasookii ChDC F174 Contig048, whole genome shotgun sequence
+NZ_ATKF01000049.1 Fusobacterium hwasookii ChDC F174 Contig049, whole genome shotgun sequence
+NZ_ATKF01000050.1 Fusobacterium hwasookii ChDC F174 Contig050, whole genome shotgun sequence
+NZ_ATKF01000051.1 Fusobacterium hwasookii ChDC F174 Contig051, whole genome shotgun sequence
+NZ_ATKF01000052.1 Fusobacterium hwasookii ChDC F174 Contig052, whole genome shotgun sequence
+NZ_ATKF01000053.1 Fusobacterium hwasookii ChDC F174 Contig053, whole genome shotgun sequence
+NZ_ATKF01000054.1 Fusobacterium hwasookii ChDC F174 Contig054, whole genome shotgun sequence
+NZ_ATKF01000055.1 Fusobacterium hwasookii ChDC F174 Contig055, whole genome shotgun sequence
+NZ_ATKF01000056.1 Fusobacterium hwasookii ChDC F174 Contig056, whole genome shotgun sequence
+NZ_ATKF01000057.1 Fusobacterium hwasookii ChDC F174 Contig057, whole genome shotgun sequence
+NZ_ATKF01000058.1 Fusobacterium hwasookii ChDC F174 Contig058, whole genome shotgun sequence
+NZ_ATKF01000059.1 Fusobacterium hwasookii ChDC F174 Contig059, whole genome shotgun sequence
+NZ_ATKF01000060.1 Fusobacterium hwasookii ChDC F174 Contig060, whole genome shotgun sequence
+NZ_ATKF01000061.1 Fusobacterium hwasookii ChDC F174 Contig061, whole genome shotgun sequence
+NZ_ATKF01000062.1 Fusobacterium hwasookii ChDC F174 Contig062, whole genome shotgun sequence
+NZ_ATKF01000063.1 Fusobacterium hwasookii ChDC F174 Contig063, whole genome shotgun sequence
+NZ_ATKF01000064.1 Fusobacterium hwasookii ChDC F174 Contig064, whole genome shotgun sequence
+NZ_ATKF01000065.1 Fusobacterium hwasookii ChDC F174 Contig065, whole genome shotgun sequence
+NZ_ATKF01000066.1 Fusobacterium hwasookii ChDC F174 Contig066, whole genome shotgun sequence
+NZ_ATKF01000067.1 Fusobacterium hwasookii ChDC F174 Contig067, whole genome shotgun sequence
+NZ_ATKF01000068.1 Fusobacterium hwasookii ChDC F174 Contig068, whole genome shotgun sequence
+NZ_ATKF01000069.1 Fusobacterium hwasookii ChDC F174 Contig069, whole genome shotgun sequence
+NZ_ATKF01000070.1 Fusobacterium hwasookii ChDC F174 Contig070, whole genome shotgun sequence
+NZ_ATKF01000071.1 Fusobacterium hwasookii ChDC F174 Contig071, whole genome shotgun sequence
+NZ_ATKF01000072.1 Fusobacterium hwasookii ChDC F174 Contig072, whole genome shotgun sequence
+NZ_ATKF01000073.1 Fusobacterium hwasookii ChDC F174 Contig073, whole genome shotgun sequence
+NZ_ATKF01000074.1 Fusobacterium hwasookii ChDC F174 Contig074, whole genome shotgun sequence
+NZ_ATKF01000075.1 Fusobacterium hwasookii ChDC F174 Contig075, whole genome shotgun sequence
+NZ_ATKF01000076.1 Fusobacterium hwasookii ChDC F174 Contig076, whole genome shotgun sequence
+NZ_ATKF01000077.1 Fusobacterium hwasookii ChDC F174 Contig077, whole genome shotgun sequence
+NZ_ATKF01000078.1 Fusobacterium hwasookii ChDC F174 Contig078, whole genome shotgun sequence
+NZ_ATKF01000079.1 Fusobacterium hwasookii ChDC F174 Contig079, whole genome shotgun sequence
+NZ_ATKF01000080.1 Fusobacterium hwasookii ChDC F174 Contig080, whole genome shotgun sequence
+NZ_ATKF01000081.1 Fusobacterium hwasookii ChDC F174 Contig081, whole genome shotgun sequence
+NZ_ATKF01000082.1 Fusobacterium hwasookii ChDC F174 Contig082, whole genome shotgun sequence
+NZ_ATKF01000083.1 Fusobacterium hwasookii ChDC F174 Contig083, whole genome shotgun sequence
+NZ_ATKF01000084.1 Fusobacterium hwasookii ChDC F174 Contig084, whole genome shotgun sequence
+NZ_ATKF01000085.1 Fusobacterium hwasookii ChDC F174 Contig085, whole genome shotgun sequence
+NZ_ATKF01000086.1 Fusobacterium hwasookii ChDC F174 Contig086, whole genome shotgun sequence
+NZ_ATKF01000087.1 Fusobacterium hwasookii ChDC F174 Contig087, whole genome shotgun sequence
+NZ_ATKF01000088.1 Fusobacterium hwasookii ChDC F174 Contig088, whole genome shotgun sequence
+NZ_ATKF01000089.1 Fusobacterium hwasookii ChDC F174 Contig089, whole genome shotgun sequence
+NZ_ATKF01000090.1 Fusobacterium hwasookii ChDC F174 Contig090, whole genome shotgun sequence
+NZ_ATKF01000091.1 Fusobacterium hwasookii ChDC F174 Contig091, whole genome shotgun sequence
+NZ_ATKF01000092.1 Fusobacterium hwasookii ChDC F174 Contig092, whole genome shotgun sequence
+NZ_ATKF01000093.1 Fusobacterium hwasookii ChDC F174 Contig093, whole genome shotgun sequence
+NZ_ATKF01000094.1 Fusobacterium hwasookii ChDC F174 Contig094, whole genome shotgun sequence
+NZ_ATKF01000095.1 Fusobacterium hwasookii ChDC F174 Contig095, whole genome shotgun sequence
+NZ_ATKF01000096.1 Fusobacterium hwasookii ChDC F174 Contig096, whole genome shotgun sequence
+NZ_ATKF01000097.1 Fusobacterium hwasookii ChDC F174 Contig097, whole genome shotgun sequence
+NZ_ATKF01000098.1 Fusobacterium hwasookii ChDC F174 Contig098, whole genome shotgun sequence
+NZ_ATKF01000099.1 Fusobacterium hwasookii ChDC F174 Contig099, whole genome shotgun sequence
+NZ_ATKF01000100.1 Fusobacterium hwasookii ChDC F174 Contig100, whole genome shotgun sequence
+NZ_ATKF01000101.1 Fusobacterium hwasookii ChDC F174 Contig101, whole genome shotgun sequence
+NZ_ATKF01000102.1 Fusobacterium hwasookii ChDC F174 Contig102, whole genome shotgun sequence
+NZ_ATKF01000103.1 Fusobacterium hwasookii ChDC F174 Contig103, whole genome shotgun sequence
+NZ_ATKF01000104.1 Fusobacterium hwasookii ChDC F174 Contig104, whole genome shotgun sequence
+NZ_ATKF01000105.1 Fusobacterium hwasookii ChDC F174 Contig105, whole genome shotgun sequence
+NZ_ATKF01000106.1 Fusobacterium hwasookii ChDC F174 Contig106, whole genome shotgun sequence
+NZ_ATKF01000107.1 Fusobacterium hwasookii ChDC F174 Contig107, whole genome shotgun sequence
+NZ_ATKF01000108.1 Fusobacterium hwasookii ChDC F174 Contig108, whole genome shotgun sequence
+NZ_ATKF01000109.1 Fusobacterium hwasookii ChDC F174 Contig109, whole genome shotgun sequence
+NZ_ATKF01000110.1 Fusobacterium hwasookii ChDC F174 Contig110, whole genome shotgun sequence
+NZ_ATKF01000111.1 Fusobacterium hwasookii ChDC F174 Contig111, whole genome shotgun sequence
+NZ_ATKF01000112.1 Fusobacterium hwasookii ChDC F174 Contig112, whole genome shotgun sequence
+NZ_ATKF01000113.1 Fusobacterium hwasookii ChDC F174 Contig113, whole genome shotgun sequence
+NZ_ATKF01000114.1 Fusobacterium hwasookii ChDC F174 Contig114, whole genome shotgun sequence
+NZ_ATKF01000115.1 Fusobacterium hwasookii ChDC F174 Contig115, whole genome shotgun sequence
+NZ_ATKF01000116.1 Fusobacterium hwasookii ChDC F174 Contig116, whole genome shotgun sequence
+NZ_ATKF01000117.1 Fusobacterium hwasookii ChDC F174 Contig117, whole genome shotgun sequence
+NZ_ATKF01000118.1 Fusobacterium hwasookii ChDC F174 Contig118, whole genome shotgun sequence
+NZ_KI965381.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.1, whole genome shotgun sequence
+NZ_KI965382.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.10, whole genome shotgun sequence
+NZ_KI965383.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.11, whole genome shotgun sequence
+NZ_KI965384.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.12, whole genome shotgun sequence
+NZ_KI965385.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.13, whole genome shotgun sequence
+NZ_KI965386.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.2, whole genome shotgun sequence
+NZ_KI965387.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.3, whole genome shotgun sequence
+NZ_KI965388.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.4, whole genome shotgun sequence
+NZ_KI965389.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.5, whole genome shotgun sequence
+NZ_KI965390.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.6, whole genome shotgun sequence
+NZ_KI965391.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.7, whole genome shotgun sequence
+NZ_KI965392.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.8, whole genome shotgun sequence
+NZ_KI965393.1 Fusobacterium nucleatum 13_3C adlCx-supercont1.9, whole genome shotgun sequence
+NZ_JANA01000001.1 Fusobacterium sp. OBRC1 ctgN310L54181C40.3705, whole genome shotgun sequence
+NZ_JANA01000002.1 Fusobacterium sp. OBRC1 ctgN309L9174C40.1342, whole genome shotgun sequence
+NZ_JANA01000003.1 Fusobacterium sp. OBRC1 ctgN346L15681C39.4567, whole genome shotgun sequence
+NZ_JANA01000004.1 Fusobacterium sp. OBRC1 ctgN294L45156C40.6118, whole genome shotgun sequence
+NZ_JANA01000005.1 Fusobacterium sp. OBRC1 ctgN354L20571C40.9755, whole genome shotgun sequence
+NZ_JANA01000006.1 Fusobacterium sp. OBRC1 ctgN269L27984C40.4869, whole genome shotgun sequence
+NZ_JANA01000007.1 Fusobacterium sp. OBRC1 ctgN365L1796C37.2906, whole genome shotgun sequence
+NZ_JANA01000008.1 Fusobacterium sp. OBRC1 ctgN300L7466C37.1617, whole genome shotgun sequence
+NZ_JANA01000009.1 Fusobacterium sp. OBRC1 ctgN281L30261C40.2279, whole genome shotgun sequence
+NZ_JANA01000010.1 Fusobacterium sp. OBRC1 ctgN355L20670C40.7435, whole genome shotgun sequence
+NZ_JANA01000011.1 Fusobacterium sp. OBRC1 ctgN279L77728C40.5883, whole genome shotgun sequence
+NZ_JANA01000012.1 Fusobacterium sp. OBRC1 ctgN321L2527C39.9466, whole genome shotgun sequence
+NZ_JANA01000013.1 Fusobacterium sp. OBRC1 ctgN335L6340C39.7685, whole genome shotgun sequence
+NZ_JANA01000014.1 Fusobacterium sp. OBRC1 ctgN369L11934C39.445, whole genome shotgun sequence
+NZ_JANA01000015.1 Fusobacterium sp. OBRC1 ctgN357L847C31.947, whole genome shotgun sequence
+NZ_JANA01000016.1 Fusobacterium sp. OBRC1 ctgN301L619C40.1649, whole genome shotgun sequence
+NZ_JANA01000017.1 Fusobacterium sp. OBRC1 ctgN338L7439C37.7178, whole genome shotgun sequence
+NZ_JANA01000018.1 Fusobacterium sp. OBRC1 ctgN344L16780C38.7569, whole genome shotgun sequence
+NZ_JANA01000019.1 Fusobacterium sp. OBRC1 ctgN288L8455C40.1474, whole genome shotgun sequence
+NZ_JANA01000020.1 Fusobacterium sp. OBRC1 ctgN272L11081C39.9965, whole genome shotgun sequence
+NZ_JANA01000021.1 Fusobacterium sp. OBRC1 ctgN308L23561C39.6246, whole genome shotgun sequence
+NZ_JANA01000022.1 Fusobacterium sp. OBRC1 ctgN312L63594C40.0075, whole genome shotgun sequence
+NZ_JANA01000023.1 Fusobacterium sp. OBRC1 ctgN273L20302C40.0993, whole genome shotgun sequence
+NZ_JANA01000024.1 Fusobacterium sp. OBRC1 ctgN362L1961C36.458, whole genome shotgun sequence
+NZ_JANA01000025.1 Fusobacterium sp. OBRC1 ctgN326L1885C40.0836, whole genome shotgun sequence
+NZ_JANA01000026.1 Fusobacterium sp. OBRC1 ctgN4L9969C36.1035, whole genome shotgun sequence
+NZ_JANA01000027.1 Fusobacterium sp. OBRC1 ctgN361L22211C40.488, whole genome shotgun sequence
+NZ_JANA01000028.1 Fusobacterium sp. OBRC1 ctgN348L21076C40.1371, whole genome shotgun sequence
+NZ_JANA01000029.1 Fusobacterium sp. OBRC1 ctgN306L13524C40.0504, whole genome shotgun sequence
+NZ_JANA01000030.1 Fusobacterium sp. OBRC1 ctgN328L1025C32.6814, whole genome shotgun sequence
+NZ_JANA01000031.1 Fusobacterium sp. OBRC1 ctgN316L53971C40.2643, whole genome shotgun sequence
+NZ_JANA01000032.1 Fusobacterium sp. OBRC1 ctgN347L7349C36.3909, whole genome shotgun sequence
+NZ_JANA01000033.1 Fusobacterium sp. OBRC1 ctgN339L13673C39.4822, whole genome shotgun sequence
+NZ_JANA01000034.1 Fusobacterium sp. OBRC1 ctgN318L42188C40.0883, whole genome shotgun sequence
+NZ_JANA01000035.1 Fusobacterium sp. OBRC1 ctgN274L536C30.9501, whole genome shotgun sequence
+NZ_JANA01000036.1 Fusobacterium sp. OBRC1 ctgN278L4052C33.7646, whole genome shotgun sequence
+NZ_JANA01000037.1 Fusobacterium sp. OBRC1 ctgN366L7931C38.9286, whole genome shotgun sequence
+NZ_JANA01000038.1 Fusobacterium sp. OBRC1 ctgN330L32218C41.0247, whole genome shotgun sequence
+NZ_JANA01000039.1 Fusobacterium sp. OBRC1 ctgN341L51533C40.4183, whole genome shotgun sequence
+NZ_JANA01000040.1 Fusobacterium sp. OBRC1 ctgN337L2576C28.7465, whole genome shotgun sequence
+NZ_JANA01000041.1 Fusobacterium sp. OBRC1 ctgN356L11395C40.3187, whole genome shotgun sequence
+NZ_JANA01000042.1 Fusobacterium sp. OBRC1 ctgN349L2827C35.5133, whole genome shotgun sequence
+NZ_JANA01000043.1 Fusobacterium sp. OBRC1 ctgN323L92878C40.8085, whole genome shotgun sequence
+NZ_JANA01000044.1 Fusobacterium sp. OBRC1 ctgN3L20788C40.5377, whole genome shotgun sequence
+NZ_JANA01000045.1 Fusobacterium sp. OBRC1 ctgN360L1907C39.5983, whole genome shotgun sequence
+NZ_JANA01000046.1 Fusobacterium sp. OBRC1 ctgN286L6300C39.7712, whole genome shotgun sequence
+NZ_JANA01000047.1 Fusobacterium sp. OBRC1 ctgN345L20046C39.4347, whole genome shotgun sequence
+NZ_JANA01000048.1 Fusobacterium sp. OBRC1 ctgN332L533C32.3054, whole genome shotgun sequence
+NZ_JANA01000049.1 Fusobacterium sp. OBRC1 ctgN350L6170C39.6352, whole genome shotgun sequence
+NZ_JANA01000050.1 Fusobacterium sp. OBRC1 ctgN353L42037C40.7414, whole genome shotgun sequence
+NZ_JANA01000051.1 Fusobacterium sp. OBRC1 ctgN351L32498C40.3752, whole genome shotgun sequence
+NZ_JANA01000052.1 Fusobacterium sp. OBRC1 ctgN130L20410C40.8033, whole genome shotgun sequence
+NZ_JANA01000053.1 Fusobacterium sp. OBRC1 ctgN280L181103C40.6313, whole genome shotgun sequence
+NZ_JANA01000054.1 Fusobacterium sp. OBRC1 ctgN0L33977C40.4372, whole genome shotgun sequence
+NZ_JANA01000055.1 Fusobacterium sp. OBRC1 ctgN307L48087C41.0208, whole genome shotgun sequence
+NZ_JANA01000056.1 Fusobacterium sp. OBRC1 ctgN367L1501C33.4993, whole genome shotgun sequence
+NZ_JANA01000057.1 Fusobacterium sp. OBRC1 ctgN2L110866C40.6976, whole genome shotgun sequence
+NZ_JANA01000058.1 Fusobacterium sp. OBRC1 ctgN305L13128C40.0074, whole genome shotgun sequence
+NZ_JANA01000059.1 Fusobacterium sp. OBRC1 ctgN368L920C47.148, whole genome shotgun sequence
+NZ_JANA01000060.1 Fusobacterium sp. OBRC1 ctgN358L12858C40.1877, whole genome shotgun sequence
+NZ_JANA01000061.1 Fusobacterium sp. OBRC1 ctgN317L115027C40.4644, whole genome shotgun sequence
+NZ_JANA01000062.1 Fusobacterium sp. OBRC1 ctgN277L1647C37.2123, whole genome shotgun sequence
+NZ_JANA01000063.1 Fusobacterium sp. OBRC1 ctgN352L7526C38.9928, whole genome shotgun sequence
+NZ_JANA01000064.1 Fusobacterium sp. OBRC1 ctgN340L4171C32.8496, whole genome shotgun sequence
+NZ_JANA01000065.1 Fusobacterium sp. OBRC1 ctgN327L4408C35.1518, whole genome shotgun sequence
+NZ_JANA01000066.1 Fusobacterium sp. OBRC1 ctgN297L14779C40.0279, whole genome shotgun sequence
+NZ_JANA01000067.1 Fusobacterium sp. OBRC1 ctgN331L32392C40.6224, whole genome shotgun sequence
+NZ_JANA01000068.1 Fusobacterium sp. OBRC1 ctgN363L3473C40.5696, whole genome shotgun sequence
+NZ_JANA01000069.1 Fusobacterium sp. OBRC1 ctgN295L125945C41.4318, whole genome shotgun sequence
+NZ_JANA01000070.1 Fusobacterium sp. OBRC1 ctgN319L24576C40.6283, whole genome shotgun sequence
+NZ_JANA01000071.1 Fusobacterium sp. OBRC1 ctgN324L50206C40.6416, whole genome shotgun sequence
+NZ_JANA01000072.1 Fusobacterium sp. OBRC1 ctgN296L6331C40.9831, whole genome shotgun sequence
+NZ_JANA01000073.1 Fusobacterium sp. OBRC1 ctgN276L16921C39.8885, whole genome shotgun sequence
+NZ_JANA01000074.1 Fusobacterium sp. OBRC1 ctgN268L619C28.0798, whole genome shotgun sequence
+NZ_JANA01000075.1 Fusobacterium sp. OBRC1 ctgN370L120013C40.9385, whole genome shotgun sequence
+NZ_JANA01000076.1 Fusobacterium sp. OBRC1 ctgN171L2958C37.0785, whole genome shotgun sequence
+NZ_JANA01000077.1 Fusobacterium sp. OBRC1 ctgN313L94589C41.0168, whole genome shotgun sequence
+NZ_JANA01000078.1 Fusobacterium sp. OBRC1 ctgN271L22060C40.3796, whole genome shotgun sequence
+NZ_JANA01000079.1 Fusobacterium sp. OBRC1 ctgN329L1123C31.3399, whole genome shotgun sequence
+NZ_JANA01000080.1 Fusobacterium sp. OBRC1 ctgN325L915C32.8767, whole genome shotgun sequence
+NZ_JANA01000081.1 Fusobacterium sp. OBRC1 ctgN270L95234C40.788, whole genome shotgun sequence
+NZ_JANA01000082.1 Fusobacterium sp. OBRC1 ctgN315L18109C39.4739, whole genome shotgun sequence
+NZ_JANA01000083.1 Fusobacterium sp. OBRC1 ctgN201L1609C38.0328, whole genome shotgun sequence
+NZ_JANA01000084.1 Fusobacterium sp. OBRC1 ctgN311L199939C41.22, whole genome shotgun sequence
+NZ_JANA01000085.1 Fusobacterium sp. OBRC1 ctgN314L58259C41.1807, whole genome shotgun sequence
+NZ_JANA01000086.1 Fusobacterium sp. OBRC1 ctgN320L18219C40.7962, whole genome shotgun sequence
+NZ_JANA01000087.1 Fusobacterium sp. OBRC1 ctgN261L24170C40.3977, whole genome shotgun sequence
+NZ_CXYJ01000001.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000002.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000003.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000004.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000005.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000006.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000007.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000008.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000009.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000010.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000011.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000012.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000013.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000014.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000015.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000016.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000017.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000018.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000019.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000020.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000021.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000022.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000023.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000024.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000025.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000026.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000027.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000028.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000029.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000030.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000031.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000032.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000033.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000034.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000035.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000036.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000037.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000038.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000039.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000040.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000041.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000042.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000043.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000044.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000045.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000046.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000047.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000048.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000049.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000050.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000051.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000052.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000053.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000054.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000055.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000056.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000057.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000058.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000059.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000060.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000061.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000062.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000063.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000064.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000065.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000066.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000067.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000068.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000069.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000070.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000071.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000072.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000073.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000074.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000075.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000076.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000077.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000078.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000079.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000080.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000081.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000082.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000083.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000084.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000085.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000086.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000087.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000088.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000089.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000090.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000091.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000092.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000093.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000094.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000095.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000096.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000097.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000098.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000099.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000100.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000101.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000102.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000103.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000104.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000105.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000106.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000107.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000108.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000109.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000110.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000111.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000112.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000113.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CXYJ01000114.1 Escherichia coli isolate YS river water, whole genome shotgun sequence
+NZ_CP013121.1 Fusobacterium nucleatum subsp. polymorphum strain ChDC F306, complete genome
+NZ_CP013122.1 Fusobacterium nucleatum subsp. polymorphum strain ChDC F306 plasmid unnamed1, complete sequence
+NZ_CP013123.1 Fusobacterium nucleatum subsp. polymorphum strain ChDC F306 plasmid unnamed2, complete sequence
+NZ_FNDZ01000023.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000025.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000010.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000024.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000007.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000009.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000004.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000008.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000001.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000021.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000013.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000014.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000002.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000011.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000018.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000012.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000015.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000016.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000017.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000019.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000020.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000005.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000003.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000006.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FNDZ01000022.1 Proteiniclasticum ruminis strain CGMCC 1.5058, whole genome shotgun sequence
+NZ_FOVK01000036.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000034.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000032.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000026.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000035.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000010.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000014.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000024.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000006.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000005.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000007.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000027.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000009.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000003.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000018.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000002.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000015.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000028.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000008.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000004.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000030.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000016.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000021.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000011.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000001.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000012.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000031.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000017.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000033.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000023.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000022.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000029.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000013.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000019.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000025.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
+NZ_FOVK01000020.1 Proteiniclasticum ruminis strain ML2, whole genome shotgun sequence
