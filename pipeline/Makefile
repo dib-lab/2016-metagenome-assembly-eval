@@ -317,7 +317,7 @@ SRR606249-trimV.sig:
 SRR606249-hardtrim:
 	trim-low-abund.py -k 31 -M 20e9 -C 5 SRR606249.pe.qc.fastq SRR606249.se.qc.fastq --gzip -o SRR606249.hardtrim.qc.fq.gz
 
-SRR606249-hardtrim.sig:
+SRR606249-hardtrim.sig: SRR606249-hardtrim
 	gunzip -c SRR606249.hardtrim.qc.fq.gz | sourmash compute --scaled 10000 -k 21,31,41,51 - -o SRR606249-hardtrim.sig
 
 mircea.fa.sig: ${FULL_REFERENCE}
@@ -340,6 +340,8 @@ unmapped-mqc-assembly500.fa.sig: unmapped-mqc-assembly500.fa
 
 unmapped-mqc-rm-assembly500.fa.sig: unmapped-mqc-rm-assembly500.fa
 	sourmash compute --scaled 10000 -k 21,31,41,51 unmapped-mqc-rm-assembly500.fa -o unmapped-mqc-rm-assembly500.fa.sig
+
+### garbage targets for Titus.
 
 bar:
 	${NUCMER}/nucmer --coords -p bestunal unaligned/best-matches.fa unmapped-mqc-assembly500.fa

@@ -262,18 +262,18 @@ sets from NCBI GenBank using the latest available assemblies with
 plasmid content (June 2017); the accession numbers are available as
 {\tt accession-list-ref.txt} in the Zenodo repository, @@CTB.
 For convenience, the updated reference genome collection is
-available for download at https://osf.io/8uxj9/ @@CTB.
+available for download at the archival URL https://osf.io/vbhy5/.
 
 \section*{Methods}
 
-% @CTB License; Zenodo.
 The analysis code and run scripts for this paper are written in Python
-and bash, and are available at:
-https://github.com/dib-lab/2015-metagenome-assembly/. The scripts and
-overall pipeline were examined by the first and senior authors for
-correctness.  In addition, the bespoke reference-based analysis
-scripts were tested by running them on a single-colony {\em E. coli} MG1655
-data set with a high quality reference genome \cite{chitsaz2011}.
+and bash, and are available at
+https://github.com/dib-lab/2016-metagenome-assembly-eval/ (archived at
+Zenodo DOI: @@CTB). The scripts and overall pipeline were examined by
+the first and senior authors for correctness.  In addition, the
+bespoke reference-based analysis scripts were tested by running them
+on a single-colony {\em E. coli} MG1655 data set with a high quality
+reference genome \cite{chitsaz2011}.
 
 \subsection*{Quality Filtering} 
 
@@ -282,8 +282,6 @@ TruSeq adapters \cite{trimmomatic}, using light quality score trimming
 ({\tt LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25})
 as recommended in MacManes, 2014 \cite{macmanes2014optimal}.
 
-%We next used the fastq\_quality\_filter from the FASTX-Toolkit v0.0.13.2  \cite{FXtoolkit} to remove sequences using the parameters  {\tt{-Q33   -q 30 --p 50}} , which keeps all sequences with  50\%  or more bases with quality score greater than or equal to 30.
-
 \subsection*{Reference Coverage Profile}
 
 To evaluate how much of the reference metagenome was contained in the
@@ -291,6 +289,8 @@ read data, we used {\tt bwa aln} (v0.7.7.r441) to map reads to the
 reference genome \cite{bwa}.  We then calculated how many reference
 bases were covered by mapped reads (custom script {\tt
   coverage-profile.py}).
+
+% Makefile target: readcoverage
 
 \subsection*{Measuring k-mer inclusion and Jaccard similarity}
 
@@ -306,9 +306,13 @@ union.  K-mer sizes for comparison were chosen at 21, 31, or 51,
 depending on the level of taxonomic specificity desired - genus,
 species, or strain, respectively, as described in \cite{metapalette}.
 
-When specified, high-abundance k-mers were selected for counting by
+% Makefile target: sigs
+
+Where specified, high-abundance k-mers were selected for counting by
 using the script {\tt trim-low-abund.py} script with {\tt -C 5} from
 khmer v2 \cite{streaming, khmer2}.
+
+% Makefile target: SRR606249-hardtrim
 
 \subsection*{Assemblers}
 
@@ -318,11 +322,15 @@ assemblers: IDBA-UD \cite{idba}, MetaSPAdes \cite{metaspades}, and MEGAHIT
   {--pre\_correction}} to perform pre-correction before assembly and
 -r for the pe files.
 
+% Makefile target: idba-quality-assembly500.fa
+
 For MetaSPAdes v3.9.0 \cite{metaspades}, we used { \tt {--meta --pe1-12
     --pe1-s}} where {\tt{--meta}} is used for
 metagenomic data sets, {\tt{--pe1-12}} specifies the interlaced reads
 for the first paired-end library, and {\tt{--pe1-s}} provides the
 orphan reads remaining from quality trimming.
+
+% Makefile target: spades-quality-assembly500.fa
 
 For MEGAHIT v1.1.1-2-g02102e1 \cite{megahit}, we used -l 101 {\tt{-m 3e9
     --cpu-only}} where {\tt -l} is for maximum read length, {\tt -m} is
@@ -332,6 +340,8 @@ for max memory in bytes to be used in constructing the graph, and {\tt
   {--12} } and {\tt{-r}} to specify the
 interleaved-paired-end and single-end files respectively.  MEGAHIT allows
 the specification of a memory limit and we used {\tt -M 1e+10} for 10 GB.
+
+% Makefile target: megahit-quality-assembly500.fa
 
 All three assemblies were executed on the same high-memory buy-in node
 on the Michigan State University High Performance Compute Cluster, and
@@ -351,28 +361,6 @@ paired-end and orphaned reads. To count the unaligned reads, we
 included only those records with the ``4'' flag in the SAM files
 \cite{sam-stools}.
  
-
-%To extract the reads that contribute to unaligned contigs, we mapped
-%the quality filtered reads to the unaligned contigs using bwa aln
-%(v0.7.7.r441) \cite{bwa}.  Then we used samtools to retrieve the reads
-%that mapped to the unaligned contigs.
-
-
-%We found chimeric alignments (alignments that split reads in two or more) with the bwa mem aligner using the default parameters (v0.7.7.r441). 
-
-%To count the chimeric alignments, we count the secondary alignments (records with the ``SA" flag) in the SAM file \cite{samtools}. 
-
-%We used SamStats \cite{samstats} to analyze the quality of mapping and errors. 
-
-%\subsection*{k-mer Presence}
-%In order to examine k-mer presence for a k-mer size of 20, we built a
-%k-mer counting table from the given quality filtered reads using
-%{\tt{load-into-counting.py}} from khmer \cite{khmer2016}. Then we
-%calculate abundance distribution of the k-mers in the quality filtered
-%reads using the pre-made k-mer counting table using
-%{\tt{abundance-dist.py}}. We followed the same approach to examine
-%k-mer presence in assemblies.
-
 \subsection*{Assembly analysis using NUCmer}
 
 We used the NUCmer tool from MUMmer3.23 \cite{mummer3.0} to align
@@ -380,6 +368,8 @@ assemblies to the reference genome with options {\tt \--coords} {\tt
   -p}. Then we parsed the generated ``.coords'' file using a custom
 script {\tt{analyze\_assembly.py}}, and calculated several analysis
 metrics across all three assemblies at a 99\% alignment identity.
+
+% Makefile target: mqc500.coords assemblies.stats.QC.AMBIGUOUS.99
 
 \subsection*{Reference-based analysis of the assemblies}
 
@@ -389,15 +379,20 @@ alignments, including redundant and overlapping alignments. ``Strict''
 alignment conditions took only the longest alignment for any given
 contig, eliminating all other alignments.
 
+% see Makefile target above, assemblies.stats.QC.AMBIGUOUS.99 (loose) and
+% assemblies.stats.QC.BESTHIT.99 (strict)
+
 The script {\tt summarize-coords2.py} was used to calculate aligned
 coverage from the loose alignment conditions: each base in the reference
 was marked as ``covered'' if it was included in at least one alignment.
 The script {\tt analyze\_ng50.py} was used to calculate NGA 50 for
 each individual reference genome.
 
+% Makefile target: nga50
+
 \subsection*{Analysis of chimeric misassemblies}
 
-%CTB cami, disco just used quast.
+%CTB cami, disco used quast.
 
 We analyzed each assembly for chimeric misassemblies by counting the
 number of contigs that contained matches to two distinct reference
@@ -410,14 +405,15 @@ negative control on our analysis, we verified that this approach
 yielded no positive results when applied to the alignments of the
 reference metagenome against itself.
 
-% CTB note that cami reported megahit has highest # misassemblies.
+% Makefile target: chimera.sqc50k.txt
 
-%\subsection*{Gene annotations using Prokka}
-%We used prokka \cite{prokka} to annotate the reference genome using
-%{\tt{--metagenome}}. Then we parsed
-%the testasm.tbl output file to get the coordinates of CDS genes and
-%searched the alignments for how many genes were contained in those
-%alignments.
+\subsection*{Analysis of unmapped reads}
+
+We conducted assembly and analysis of unmapped reads with MEGAHIT,
+NUCmer, and sourmash as above.  The new GenBank genomes are listed in
+the Zenodo archive at the file {\tt accession-list-unmapped.txt} and
+for convenience are available for download at the archival URL
+https://osf.io/34ef8/.
 
 \section*{Results}
 
@@ -434,13 +430,10 @@ contained 10.98 Gbp in 108,942,761 reads.  This quality trimmed (``QC'')
 data set was used as the basis for all further analyses.
 % These numbers are calculated using readstats from khmer
 
-%\subsection*{Mapping Quality and Error Profiles}
-
-%%Might need to be merged with previous section  @CTB
-%We used SAMStat \cite{samstat} to analyze the mapping quality and error profiles of quality filtered reads mapped to the reference genome. Figure \ref{fig:mapquality} shows number of alignments in various mapping quality (MAPQ) intervals and number of unmapped sequences. The percentage and number of alignments in each category is given in brackets. 
-%Figure \ref{fig:basequality} shows mean base quality of reads with low and high mapping quality. %Figure \ref{fig:errorprofile30} shows the error profile for MAPQ $\geq 30$ and Figure \ref{fig:nucleotidecomposition.png} shows the nucleotide compositions. We also found 309,414 chimeric reads. 
-
 \begin{figure}[!h]
+
+% notebooks/coverage-profile.ipynb
+  
 \centering
 \includegraphics[width=0.45\textwidth]{CoverageProfile.pdf}  
 \caption{\label{fig:coverage-profile} Cumulative coverage profile for the reference metagenome, based on read mapping. }
@@ -484,15 +477,6 @@ reads for $k$ of 21, 31, 41, and 51 (Table \ref{table:ref_in_reads}).
 The k-mer overlap decreases from 96.8\% to 94.1\% as the k-mer size
 increases. This could be caused by low coverage of some portions
 of the reference and/or variation between the reads and the reference.
-
-
-%Of
-%the 174m 20-mers in the reference metagenome, 98.7\% were present in the
-%QC reads and 95.5\% of them occurred with abundance 5 or greater in
-%the QC reads.
-%Data source note: the 95.5 is from
-% SRR606249.qc.dist (1-0.045)*100 , the 98.7 is from the same file but
-% (1-0.013) *100
 
 \subsection*{Some individual reference genomes are poorly represented in the reads.}
 
@@ -761,6 +745,9 @@ reference, with MEGAHIT recovering the most -- 89.3\% of the reference
 \newpage
 
 \begin{figure}[!h]
+
+% notebooks/ng50.ipynb
+  
 \centering
 \includegraphics[width=\textwidth]{combined.pdf}  
 \caption{NGA50 and genome fraction covered, by genome and assembler. A '*' after the name indicates the presence of at least one other genome with $>$ 2\% Jaccard similarity at k=31 in the community.}
