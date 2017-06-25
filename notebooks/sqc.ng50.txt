@@ -1,0 +1,51 @@
+1000.0,1000.0,Sulfitobacter NAS-14.1
+1000.0,1000.0,Sulfurihydrogenibium yellowstonense SS-5
+1000.0,1000.0,Thermotoga petrophila
+4264.0,1000.0,Shewanella baltica OS185
+4755.0,1000.0,Sulfitobacter sp. EE-36
+10517.0,1480.0,Salinispora arenicola
+19311.0,3238.0,Sulfurihydrogenibium sp. YO3AOP1
+27607.0,5691.0,Porphyromonas gingivalis
+31608.0,9504.0,Methanosarcina acetivorans
+38735.0,1000.0,Caldicellulosiruptor bescii
+39297.0,1634.0,Caldicellulosiruptor saccharolyticus
+40768.0,5459.0,Chlorobium phaeobacteroides
+43704.0,5599.0,Thermotoga sp. RQ2
+45459.0,10723.0,Nitrosomonas europaea ATCC 19718
+47062.0,1000.0,Thermotoga neapolitana
+54527.0,7458.0,Thermoanaerobacter pseudethanolicus
+54785.0,11546.0,Pyrococcus furiosus DSM 3638
+56088.0,11787.0,Desulfovibrio piger ATCC 29098
+62785.0,22655.0,Chloroflexus aurantiacus
+63059.0,8799.0,Clostridium thermocellum ATCC 27405
+63417.0,14462.0,Sulfolobus tokodaii
+71329.0,13583.0,Pyrobaculum aerophilum str. IM2
+81048.0,29333.0,Aciduliprofundum boonei T469
+88328.0,10457.0,Bacteroides vulgatus ATCC 8482
+89288.0,17892.0,Pelodictyon phaeoclathratiforme BU-1
+100747.0,20587.0,Chlorobium limicola
+104557.0,27064.0,Herpetosiphon aurantiacus ATCC 23779
+106693.0,25291.0,Wolinella succinogenes DSM 1740
+109901.0,43621.0,Methanococcus maripaludis S2
+115462.0,25109.0,Nostoc sp. PCC 7120
+121749.0,23076.0,Methanocaldococcus jannaschii DSM 2661
+125434.0,35463.0,Bacteroides thetaiotaomicron VPI-5482
+126182.0,28324.0,Methanococcus maripaludis C5
+136484.0,49014.0,Akkermansia muciniphila ATCC BAA-835
+139137.0,55375.0,Chlorobium tepidum
+139553.0,44747.0,Treponema denticola ATCC 35405
+141758.0,33184.0,Archaeoglobus fulgidus DSM 4304
+154757.0,52595.0,Pyrobaculum arsenaticum DSM 13514
+161888.0,56841.0,Geobacter sulfurreducens PCA
+169814.0,43682.0,Ignicoccus hospitalis KIN4/I
+177554.0,39485.0,Chlorobiumphaeo vibrioides DSM 265
+178349.0,57853.0,Dictyoglomus turgidum DSM 6724
+198450.0,46820.0,Rhodopirellula baltica SH 1
+199595.0,78707.0,Acidobacterium capsulatum ATCC 51196
+202727.0,50189.0,Hydrogenobaculum sp. Y04AAS1
+221757.0,55073.0,Pyrobaculum calidifontis JCM 11548
+228889.0,104419.0,Pyrococcus horikoshii OT3 DNA
+391891.0,223561.0,Gemmatimonas aurantiaca T-27 DNA
+474022.0,474022.0,Nanoarchaeum equitans Kin4-M
+935745.0,169098.0,Methanopyrus kandleri AV19
+987376.0,95018.0,Persephonella marina EX-H1

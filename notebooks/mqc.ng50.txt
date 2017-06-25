@@ -1,0 +1,51 @@
+707.0,1000.0,Thermotoga petrophila
+929.0,1000.0,Sulfitobacter NAS-14.1
+1302.0,1000.0,Sulfurihydrogenibium yellowstonense SS-5
+1596.0,1000.0,Sulfitobacter sp. EE-36
+3774.0,1000.0,Shewanella baltica OS185
+4155.0,984.0,Sulfurihydrogenibium sp. YO3AOP1
+5012.0,1000.0,Thermotoga sp. RQ2
+11816.0,2480.0,Salinispora arenicola
+24190.0,5405.0,Methanosarcina acetivorans
+27642.0,1068.0,Caldicellulosiruptor bescii
+28058.0,2227.0,Caldicellulosiruptor saccharolyticus
+28205.0,4842.0,Porphyromonas gingivalis
+28480.0,6022.0,Methanococcus maripaludis C5
+30353.0,6215.0,Methanococcus maripaludis S2
+40595.0,3243.0,Chlorobium phaeobacteroides
+46039.0,12536.0,Nitrosomonas europaea ATCC 19718
+46631.0,3605.0,Thermotoga neapolitana
+48999.0,12841.0,Chloroflexus aurantiacus
+53400.0,7320.0,Thermoanaerobacter pseudethanolicus
+53856.0,10824.0,Sulfolobus tokodaii
+54030.0,11958.0,Pyrococcus furiosus DSM 3638
+54973.0,8024.0,Clostridium thermocellum ATCC 27405
+56576.0,13710.0,Pyrobaculum aerophilum str. IM2
+66213.0,10974.0,Desulfovibrio piger ATCC 29098
+67013.0,14357.0,Methanocaldococcus jannaschii DSM 2661
+73778.0,10672.0,Bacteroides vulgatus ATCC 8482
+76052.0,9217.0,Pelodictyon phaeoclathratiforme BU-1
+81532.0,20297.0,Nostoc sp. PCC 7120
+85124.0,27040.0,Archaeoglobus fulgidus DSM 4304
+89377.0,30192.0,Ignicoccus hospitalis KIN4/I
+94466.0,11384.0,Chlorobium limicola
+100755.0,25404.0,Wolinella succinogenes DSM 1740
+107605.0,19846.0,Herpetosiphon aurantiacus ATCC 23779
+109581.0,36829.0,Akkermansia muciniphila ATCC BAA-835
+111933.0,47234.0,Dictyoglomus turgidum DSM 6724
+113177.0,34114.0,Bacteroides thetaiotaomicron VPI-5482
+114982.0,30383.0,Pyrococcus horikoshii OT3 DNA
+120666.0,27762.0,Aciduliprofundum boonei T469
+127113.0,23623.0,Pyrobaculum arsenaticum DSM 13514
+130936.0,39653.0,Chlorobium tepidum
+146492.0,22806.0,Treponema denticola ATCC 35405
+148135.0,33048.0,Hydrogenobaculum sp. Y04AAS1
+152481.0,53337.0,Acidobacterium capsulatum ATCC 51196
+153187.0,38236.0,Rhodopirellula baltica SH 1
+168426.0,48758.0,Geobacter sulfurreducens PCA
+171373.0,44704.0,Pyrobaculum calidifontis JCM 11548
+248463.0,61879.0,Methanopyrus kandleri AV19
+251975.0,36842.0,Chlorobiumphaeo vibrioides DSM 265
+344595.0,192129.0,Gemmatimonas aurantiaca T-27 DNA
+474084.0,474084.0,Nanoarchaeum equitans Kin4-M
+987438.0,96210.0,Persephonella marina EX-H1
