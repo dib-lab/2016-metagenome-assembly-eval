@@ -1,0 +1,1061 @@
+MEGAHIT v1.1.1-2-g02102e1
+--- [Sat Jul  1 14:59:46 2017] Start assembly. Number of CPU threads 16 ---
+--- [Sat Jul  1 14:59:46 2017] Available memory: 126745165824, used: 10000000000
+--- [Sat Jul  1 14:59:46 2017] Converting reads to binaries ---
+/home/titus/megahit/megahit_asm_core buildlib megahit.qc.pe/tmp/reads.lib megahit.qc.pe/tmp/reads.lib
+    [read_lib_functions-inl.h  : 209]     Lib 0 (SRR606249.pe.qc.fq.gz): interleaved, 108422358 reads, 101 max length
+    [read_lib_functions-inl.h  : 209]     Lib 1 (SRR606249.se.qc.fq.gz): se, 520403 reads, 101 max length
+    [utils.h                   : 126]     Real: 372.0831	user: 102.7520	sys: 12.3200	maxrss: 155748
+--- [Sat Jul  1 15:05:59 2017] k-max reset to: 117 ---
+--- [Sat Jul  1 15:05:59 2017] k list: 27,37,47,57,67,77,87,97,107,117 ---
+--- [Sat Jul  1 15:05:59 2017] Extracting solid (k+1)-mers and building sdbg for k = 27 ---
+cmd: /home/titus/megahit/megahit_sdbg_build read2sdbg -k 27 -m 1 --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k27/27 --num_cpu_threads 16 --num_output_threads 5 --read_lib_file megahit.qc.pe/tmp/reads.lib
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [cx1_read2sdbg_s1.cpp      : 140]     108942761 reads, 101 max read length, 10948474438 total bases
+    [cx1.h                     : 450]     Preparing data...
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 0.0000
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_read2sdbg_s2.cpp      : 333]     2 words per substring, words per dummy node ($v): 2
+    [cx1_read2sdbg_s2.cpp      : 457]     Memory for sequence: 3694195692
+    [cx1_read2sdbg_s2.cpp      : 458]     max # lv.1 items = 1551860097
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 15.1449
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2115
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 17.6946
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 36.6560
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2115 to 5268
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 19.2230
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 37.7244
+    [cx1.h                     : 515]     Lv1 scanning from bucket 5268 to 9030
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 19.0299
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 38.7220
+    [cx1.h                     : 515]     Lv1 scanning from bucket 9030 to 13324
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 19.0213
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 37.4555
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13324 to 18143
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 18.1566
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 39.0591
+    [cx1.h                     : 515]     Lv1 scanning from bucket 18143 to 23543
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 20.2587
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 37.8526
+    [cx1.h                     : 515]     Lv1 scanning from bucket 23543 to 29610
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 18.3430
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 40.3593
+    [cx1.h                     : 515]     Lv1 scanning from bucket 29610 to 36498
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 18.9631
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 38.3726
+    [cx1.h                     : 515]     Lv1 scanning from bucket 36498 to 44537
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 20.0243
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 39.2723
+    [cx1.h                     : 515]     Lv1 scanning from bucket 44537 to 54567
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 20.0590
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 40.0958
+    [cx1.h                     : 515]     Lv1 scanning from bucket 54567 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 16.3995
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 29.9228
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 622.6952
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_read2sdbg_s2.cpp      : 899]     Number of $ A C G T A- C- G- T-:
+    [cx1_read2sdbg_s2.cpp      : 902]     13247975 254821746 280412025 279832002 254571595 4637017 4792968 4796304 4602668
+    [cx1_read2sdbg_s2.cpp      : 911]     Total number of edges: 1101714300
+    [cx1_read2sdbg_s2.cpp      : 912]     Total number of ONEs: 1069637368
+    [cx1_read2sdbg_s2.cpp      : 913]     Total number of $v edges: 13247975
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0659
+    [utils.h                   : 126]     Real: 653.5862	user: 9812.3120	sys: 35.2000	maxrss: 9777488
+--- [Sat Jul  1 15:16:52 2017] Assembling contigs from SdBG for k = 27 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k27/27 -o megahit.qc.pe/intermediate_contigs/k27 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k27/27 Done. Time elapsed: 13.252042
+    [assembler.cpp             : 152]     Number of Edges: 1101714300; K value: 27
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 1105538; time elapsed: 6.4378
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 2365240; time elapsed: 9.5160
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 4319662; time elapsed: 13.3719
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 16981670; time elapsed: 26.9805
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 21969740; time elapsed: 25.1327
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 54; Accumulated tips removed: 23006969; time elapsed: 26.0366
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 107.536397
+    [assembler.cpp             : 188]     unitig graph size: 11665103, time for building: 117.846527
+    [assembler.cpp             : 211]     Number of bubbles removed: 1544554, Time elapsed(sec): 7.429331
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 122161, Time elapsed(sec): 5.526520
+    [assembler.cpp             : 243]     Number unitigs disconnected: 4897359, time: 10.380242
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 1931123, time: 7.228486
+    [assembler.cpp             : 200]     Tips removed: 13704, time: 2.336549
+    [assembler.cpp             : 211]     Number of bubbles removed: 66120, Time elapsed(sec): 2.521538
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 35500, Time elapsed(sec): 3.072307
+    [assembler.cpp             : 243]     Number unitigs disconnected: 102485, time: 1.897246
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 2339, time: 1.757038
+    [assembler.cpp             : 200]     Tips removed: 74847, time: 2.228187
+    [assembler.cpp             : 211]     Number of bubbles removed: 3951, Time elapsed(sec): 1.002269
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 2188, Time elapsed(sec): 2.432241
+    [assembler.cpp             : 243]     Number unitigs disconnected: 3218, time: 1.768254
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 401, time: 1.730081
+    [assembler.cpp             : 200]     Tips removed: 1052, time: 2.069301
+    [assembler.cpp             : 211]     Number of bubbles removed: 96, Time elapsed(sec): 0.699956
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 29, Time elapsed(sec): 2.294942
+    [assembler.cpp             : 243]     Number unitigs disconnected: 575, time: 1.792231
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 78, time: 1.724357
+    [assembler.cpp             : 200]     Tips removed: 192, time: 1.904345
+    [assembler.cpp             : 211]     Number of bubbles removed: 20, Time elapsed(sec): 0.646313
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 2, Time elapsed(sec): 2.280222
+    [assembler.cpp             : 243]     Number unitigs disconnected: 112, time: 1.761464
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 16, time: 1.698070
+    [assembler.cpp             : 132]     Total length: 343178153, N50: 525, Mean: 148, number of contigs: 2309169
+    [assembler.cpp             : 133]     Maximum length: 108961
+    [assembler.cpp             : 290]     Time to output: 23.871359
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 66456, complex bubbles removed: 6462, time: 174.945120
+    [assembler.cpp             : 132]     Total length: 239824092, N50: 2886, Mean: 203, number of contigs: 1175636
+    [assembler.cpp             : 133]     Maximum length: 108961
+    [utils.h                   : 126]     Real: 521.6145	user: 7654.7240	sys: 10.4680	maxrss: 3204972
+--- [Sat Jul  1 15:25:34 2017] Local assembling k = 27 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k27.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k27.local.fa --kmax 37
+    [local_assembler.cpp       :  89]     Number of contigs: 118983, Mapper size: 23188174
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.10 sd: 29.60
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 98055340, added 7665298 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 319607, added 3717 reads for local assembly
+    [utils.h                   : 126]     Real: 240.7856	user: 3574.1640	sys: 5.6960	maxrss: 4481592
+--- [Sat Jul  1 15:29:35 2017] Extracting iterative edges from k = 27 to 37 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k27.contigs.fa -b megahit.qc.pe/intermediate_contigs/k27.bubble_seq.fa -t 16 -k 27 -s 10 -o megahit.qc.pe/tmp/k37/37 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 727997
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 3178025
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 10951866. Iterative edges: 12206190
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 17610742. Iterative edges: 14945126
+    [iterate_edges.cpp         : 451]     Writing iterative edges...
+    [utils.h                   : 126]     Real: 280.3436	user: 3614.6120	sys: 11.6280	maxrss: 855284
+--- [Sat Jul  1 15:34:16 2017] Building graph for k = 37 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k37/37 --num_cpu_threads 16 -k 37 --kmer_from 27 --num_edge_files 1 --input_prefix megahit.qc.pe/tmp/k37/37 --addi_contig megahit.qc.pe/intermediate_contigs/k27.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k27.local.fa --contig megahit.qc.pe/intermediate_contigs/k27.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k27.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 406]     Number edges: 14945126
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 1207240214, number contigs: 3212251, number multiplicity: 18157377
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 327508072, multiplicity vector: 18157377
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 327508072, multiplicity vector: 18157377
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 3.2906
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 371151018
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 134110264
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 2.2237
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2194
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.4802
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.5726
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2194 to 6742
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.0612
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 5.1354
+    [cx1.h                     : 515]     Lv1 scanning from bucket 6742 to 12791
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.2344
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 5.8699
+    [cx1.h                     : 515]     Lv1 scanning from bucket 12791 to 20283
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.5104
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 6.2876
+    [cx1.h                     : 515]     Lv1 scanning from bucket 20283 to 29465
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.5182
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 6.7992
+    [cx1.h                     : 515]     Lv1 scanning from bucket 29465 to 40983
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.5694
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 7.0735
+    [cx1.h                     : 515]     Lv1 scanning from bucket 40983 to 56926
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.5080
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 7.6703
+    [cx1.h                     : 515]     Lv1 scanning from bucket 56926 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.0864
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.0582
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 69.4477
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     2679179 131110184 147767079 145694695 131399226 137411 152635 164372 127607
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 559232388
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 555971184
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 2679179
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0636
+    [utils.h                   : 126]     Real: 75.0281	user: 751.3840	sys: 16.8720	maxrss: 933380
+--- [Sat Jul  1 15:35:31 2017] Assembling contigs from SdBG for k = 37 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k37/37 -o megahit.qc.pe/intermediate_contigs/k37 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k37/37 Done. Time elapsed: 6.064358
+    [assembler.cpp             : 152]     Number of Edges: 559232388; K value: 37
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 17308; time elapsed: 3.5389
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 58383; time elapsed: 3.9846
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 132329; time elapsed: 4.9008
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 259694; time elapsed: 7.7706
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 649472; time elapsed: 12.8788
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 1403668; time elapsed: 20.5644
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 74; Accumulated tips removed: 2897498; time elapsed: 12.4459
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 66.132153
+    [assembler.cpp             : 188]     unitig graph size: 561530, time for building: 35.595982
+    [assembler.cpp             : 211]     Number of bubbles removed: 102581, Time elapsed(sec): 17.440961
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 40528, Time elapsed(sec): 3.152680
+    [assembler.cpp             : 243]     Number unitigs disconnected: 9295, time: 0.123212
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 1655, time: 0.100647
+    [assembler.cpp             : 200]     Tips removed: 241, time: 0.218797
+    [assembler.cpp             : 211]     Number of bubbles removed: 260, Time elapsed(sec): 0.137284
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 734, Time elapsed(sec): 1.042522
+    [assembler.cpp             : 243]     Number unitigs disconnected: 762, time: 0.122759
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 11, time: 0.096758
+    [assembler.cpp             : 200]     Tips removed: 115, time: 0.219984
+    [assembler.cpp             : 211]     Number of bubbles removed: 16, Time elapsed(sec): 0.077880
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 35, Time elapsed(sec): 1.029251
+    [assembler.cpp             : 243]     Number unitigs disconnected: 143, time: 0.119483
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 2, time: 0.097003
+    [assembler.cpp             : 200]     Tips removed: 27, time: 0.217270
+    [assembler.cpp             : 211]     Number of bubbles removed: 2, Time elapsed(sec): 0.065624
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 6, Time elapsed(sec): 1.024613
+    [assembler.cpp             : 243]     Number unitigs disconnected: 19, time: 0.119364
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 1, time: 0.096362
+    [assembler.cpp             : 200]     Tips removed: 2, time: 0.218996
+    [assembler.cpp             : 211]     Number of bubbles removed: 2, Time elapsed(sec): 0.065619
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 1.000024
+    [assembler.cpp             : 243]     Number unitigs disconnected: 2, time: 0.121848
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.065499
+    [assembler.cpp             : 132]     Total length: 212054860, N50: 8056, Mean: 772, number of contigs: 274669
+    [assembler.cpp             : 133]     Maximum length: 180779
+    [assembler.cpp             : 290]     Time to output: 14.903857
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 6750, complex bubbles removed: 1020, time: 10.450237
+    [assembler.cpp             : 132]     Total length: 197426211, N50: 9211, Mean: 834, number of contigs: 236673
+    [assembler.cpp             : 133]     Maximum length: 180779
+    [utils.h                   : 126]     Real: 173.8219	user: 2197.4840	sys: 4.7200	maxrss: 1273916
+--- [Sat Jul  1 15:38:25 2017] Local assembling k = 37 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k37.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k37.local.fa --kmax 47
+    [local_assembler.cpp       :  89]     Number of contigs: 77014, Mapper size: 24319009
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.38 sd: 29.66
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 102165824, added 5365486 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 333966, added 2522 reads for local assembly
+    [utils.h                   : 126]     Real: 221.7170	user: 3280.1920	sys: 6.2040	maxrss: 4443328
+--- [Sat Jul  1 15:42:07 2017] Extracting iterative edges from k = 37 to 47 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k37.contigs.fa -b megahit.qc.pe/intermediate_contigs/k37.bubble_seq.fa -t 16 -k 37 -s 10 -o megahit.qc.pe/tmp/k47/47 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 418296
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 862813
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 6655239. Iterative edges: 4757653
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 10591452. Iterative edges: 5093263
+    [iterate_edges.cpp         : 451]     Writing iterative edges...
+    [utils.h                   : 126]     Real: 148.2356	user: 1962.2160	sys: 7.6440	maxrss: 543540
+--- [Sat Jul  1 15:44:35 2017] Building graph for k = 47 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k47/47 --num_cpu_threads 16 -k 47 --kmer_from 37 --num_edge_files 1 --input_prefix megahit.qc.pe/tmp/k47/47 --addi_contig megahit.qc.pe/intermediate_contigs/k37.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k37.local.fa --contig megahit.qc.pe/intermediate_contigs/k37.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k37.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 406]     Number edges: 5093263
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 950502766, number contigs: 1041103, number multiplicity: 6134366
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 245954524, multiplicity vector: 6134366
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 245954524, multiplicity vector: 6134366
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 2.0095
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 263716602
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 137680064
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 3.0564
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2801
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.5054
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8957
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2801 to 7471
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.0588
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1205
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7471 to 13433
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.2072
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1695
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13433 to 20692
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.4631
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.3492
+    [cx1.h                     : 515]     Lv1 scanning from bucket 20692 to 29451
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.7521
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.7702
+    [cx1.h                     : 515]     Lv1 scanning from bucket 29451 to 40275
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.9112
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.9408
+    [cx1.h                     : 515]     Lv1 scanning from bucket 40275 to 54823
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 6.3421
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.9863
+    [cx1.h                     : 515]     Lv1 scanning from bucket 54823 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.2210
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.8183
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 61.5123
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     115251 100754967 107379697 107312518 100733326 62444 75657 64956 67530
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 416566346
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 416180508
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 115251
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0344
+    [utils.h                   : 126]     Real: 66.6151	user: 467.4400	sys: 8.4360	maxrss: 814432
+--- [Sat Jul  1 15:45:42 2017] Assembling contigs from SdBG for k = 47 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k47/47 -o megahit.qc.pe/intermediate_contigs/k47 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k47/47 Done. Time elapsed: 4.675089
+    [assembler.cpp             : 152]     Number of Edges: 416566346; K value: 47
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 3026; time elapsed: 2.5184
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 8476; time elapsed: 2.3639
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 16196; time elapsed: 2.3607
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 26408; time elapsed: 2.6609
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 40922; time elapsed: 2.9644
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 104256; time elapsed: 2.9358
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 94; Accumulated tips removed: 130797; time elapsed: 2.7034
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 18.531154
+    [assembler.cpp             : 188]     unitig graph size: 344719, time for building: 36.151267
+    [assembler.cpp             : 211]     Number of bubbles removed: 61657, Time elapsed(sec): 21.294879
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 33151, Time elapsed(sec): 3.529028
+    [assembler.cpp             : 243]     Number unitigs disconnected: 8309, time: 0.079932
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 2726, time: 0.077766
+    [assembler.cpp             : 200]     Tips removed: 89, time: 0.118032
+    [assembler.cpp             : 211]     Number of bubbles removed: 198, Time elapsed(sec): 0.086493
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 686, Time elapsed(sec): 0.939079
+    [assembler.cpp             : 243]     Number unitigs disconnected: 441, time: 0.074546
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 18, time: 0.067938
+    [assembler.cpp             : 200]     Tips removed: 149, time: 0.125529
+    [assembler.cpp             : 211]     Number of bubbles removed: 12, Time elapsed(sec): 0.060671
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 49, Time elapsed(sec): 0.729812
+    [assembler.cpp             : 243]     Number unitigs disconnected: 26, time: 0.071838
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.050671
+    [assembler.cpp             : 200]     Tips removed: 2, time: 0.128095
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.035071
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.710358
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.079377
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.039982
+    [assembler.cpp             : 132]     Total length: 207767025, N50: 15115, Mean: 1463, number of contigs: 141940
+    [assembler.cpp             : 133]     Maximum length: 294316
+    [assembler.cpp             : 290]     Time to output: 14.370147
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 1258, complex bubbles removed: 287, time: 6.077582
+    [assembler.cpp             : 132]     Total length: 187605746, N50: 17245, Mean: 1509, number of contigs: 124301
+    [assembler.cpp             : 133]     Maximum length: 294316
+    [utils.h                   : 126]     Real: 121.6407	user: 1500.4440	sys: 4.6680	maxrss: 925988
+--- [Sat Jul  1 15:47:43 2017] Local assembling k = 47 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k47.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k47.local.fa --kmax 57
+    [local_assembler.cpp       :  89]     Number of contigs: 58945, Mapper size: 24736450
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.52 sd: 29.68
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 103114214, added 3932119 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 363160, added 13735 reads for local assembly
+    [utils.h                   : 126]     Real: 215.8201	user: 3224.4280	sys: 6.0800	maxrss: 4422568
+--- [Sat Jul  1 15:51:19 2017] Extracting iterative edges from k = 47 to 57 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k47.contigs.fa -b megahit.qc.pe/intermediate_contigs/k47.bubble_seq.fa -t 16 -k 47 -s 10 -o megahit.qc.pe/tmp/k57/57 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 290919
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 509573
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 4452238. Iterative edges: 2893207
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 7036635. Iterative edges: 3039425
+    [iterate_edges.cpp         : 451]     Writing iterative edges...
+    [utils.h                   : 126]     Real: 119.6385	user: 1562.1200	sys: 5.6600	maxrss: 468544
+--- [Sat Jul  1 15:53:19 2017] Building graph for k = 57 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k57/57 --num_cpu_threads 16 -k 57 --kmer_from 47 --num_edge_files 1 --input_prefix megahit.qc.pe/tmp/k57/57 --addi_contig megahit.qc.pe/intermediate_contigs/k47.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k47.local.fa --contig megahit.qc.pe/intermediate_contigs/k47.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k47.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 406]     Number edges: 3039425
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 874768200, number contigs: 639768, number multiplicity: 3679193
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 223810204, multiplicity vector: 3679193
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 223810204, multiplicity vector: 3679193
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 1.7511
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 236407620
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 137071071
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 2.8769
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2887
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.6598
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8653
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2887 to 7621
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.1024
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0444
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7621 to 13621
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.5853
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2224
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13621 to 20906
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.6377
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1648
+    [cx1.h                     : 515]     Lv1 scanning from bucket 20906 to 29678
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.9550
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2109
+    [cx1.h                     : 515]     Lv1 scanning from bucket 29678 to 40513
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.8035
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.3937
+    [cx1.h                     : 515]     Lv1 scanning from bucket 40513 to 55148
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.7753
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.5619
+    [cx1.h                     : 515]     Lv1 scanning from bucket 55148 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.0887
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.3955
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 58.4677
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     72903 100220515 106383232 106359296 100218527 40525 46907 46853 39557
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 413428315
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 413181570
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 72903
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0270
+    [utils.h                   : 126]     Real: 63.1240	user: 432.5320	sys: 5.2560	maxrss: 789668
+--- [Sat Jul  1 15:54:22 2017] Assembling contigs from SdBG for k = 57 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k57/57 -o megahit.qc.pe/intermediate_contigs/k57 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k57/57 Done. Time elapsed: 4.429202
+    [assembler.cpp             : 152]     Number of Edges: 413428315; K value: 57
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 1188; time elapsed: 2.4622
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 3910; time elapsed: 2.5331
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 8024; time elapsed: 2.0894
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 13635; time elapsed: 2.5335
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 19993; time elapsed: 2.7143
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 51992; time elapsed: 2.5793
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 114; Accumulated tips removed: 68294; time elapsed: 2.8703
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 17.802890
+    [assembler.cpp             : 188]     unitig graph size: 235963, time for building: 34.952148
+    [assembler.cpp             : 211]     Number of bubbles removed: 39188, Time elapsed(sec): 20.334916
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 23982, Time elapsed(sec): 3.055771
+    [assembler.cpp             : 243]     Number unitigs disconnected: 7880, time: 0.051969
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 2864, time: 0.046306
+    [assembler.cpp             : 200]     Tips removed: 34, time: 0.072259
+    [assembler.cpp             : 211]     Number of bubbles removed: 177, Time elapsed(sec): 0.070847
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 659, Time elapsed(sec): 0.697226
+    [assembler.cpp             : 243]     Number unitigs disconnected: 264, time: 0.046119
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 14, time: 0.037240
+    [assembler.cpp             : 200]     Tips removed: 145, time: 0.071204
+    [assembler.cpp             : 211]     Number of bubbles removed: 10, Time elapsed(sec): 0.022554
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 29, Time elapsed(sec): 0.568596
+    [assembler.cpp             : 243]     Number unitigs disconnected: 7, time: 0.048569
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 1, time: 0.037810
+    [assembler.cpp             : 200]     Tips removed: 1, time: 0.071005
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.019262
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.601947
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.046751
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.026393
+    [assembler.cpp             : 132]     Total length: 206313610, N50: 21961, Mean: 2225, number of contigs: 92698
+    [assembler.cpp             : 133]     Maximum length: 365081
+    [assembler.cpp             : 290]     Time to output: 13.878499
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 565, complex bubbles removed: 141, time: 4.941402
+    [assembler.cpp             : 132]     Total length: 181253075, N50: 26288, Mean: 2279, number of contigs: 79522
+    [assembler.cpp             : 133]     Maximum length: 365081
+    [utils.h                   : 126]     Real: 113.9328	user: 1380.2040	sys: 2.2840	maxrss: 903024
+--- [Sat Jul  1 15:56:16 2017] Local assembling k = 57 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k57.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k57.local.fa --kmax 67
+    [local_assembler.cpp       :  89]     Number of contigs: 48258, Mapper size: 24959515
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.59 sd: 29.68
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 102836655, added 2913888 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 338975, added 1577 reads for local assembly
+    [utils.h                   : 126]     Real: 205.8567	user: 3111.8520	sys: 5.0120	maxrss: 4404524
+--- [Sat Jul  1 15:59:42 2017] Extracting iterative edges from k = 57 to 67 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k57.contigs.fa -b megahit.qc.pe/intermediate_contigs/k57.bubble_seq.fa -t 16 -k 57 -s 10 -o megahit.qc.pe/tmp/k67/67 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 196271
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 334905
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 2822305. Iterative edges: 1889534
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 4411540. Iterative edges: 1981575
+    [iterate_edges.cpp         : 451]     Writing iterative edges...
+    [utils.h                   : 126]     Real: 91.5016	user: 1169.2600	sys: 4.9520	maxrss: 430740
+--- [Sat Jul  1 16:01:14 2017] Building graph for k = 67 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k67/67 --num_cpu_threads 16 -k 67 --kmer_from 57 --num_edge_files 1 --input_prefix megahit.qc.pe/tmp/k67/67 --addi_contig megahit.qc.pe/intermediate_contigs/k57.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k57.local.fa --contig megahit.qc.pe/intermediate_contigs/k57.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k57.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 406]     Number edges: 1981575
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 791386671, number contigs: 429224, number multiplicity: 2410799
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 201280468, multiplicity vector: 2410799
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 201280468, multiplicity vector: 2410799
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 1.5217
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 210886260
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 129158082
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 2.5772
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2983
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.1497
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.7325
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2983 to 7779
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.6270
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8964
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7779 to 13816
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.9276
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.9213
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13816 to 21120
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.1034
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0000
+    [cx1.h                     : 515]     Lv1 scanning from bucket 21120 to 29890
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.1889
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2585
+    [cx1.h                     : 515]     Lv1 scanning from bucket 29890 to 40704
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.3799
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1249
+    [cx1.h                     : 515]     Lv1 scanning from bucket 40704 to 55315
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.4933
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.7577
+    [cx1.h                     : 515]     Lv1 scanning from bucket 55315 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.7503
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.5919
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 53.9041
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     53770 99903475 105884425 105885152 99903382 33427 27865 33691 30043
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 411755230
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 411576434
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 53770
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0297
+    [utils.h                   : 126]     Real: 58.0370	user: 415.1200	sys: 6.4480	maxrss: 737708
+--- [Sat Jul  1 16:02:12 2017] Assembling contigs from SdBG for k = 67 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k67/67 -o megahit.qc.pe/intermediate_contigs/k67 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k67/67 Done. Time elapsed: 4.626220
+    [assembler.cpp             : 152]     Number of Edges: 411755230; K value: 67
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 904; time elapsed: 2.5886
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 2758; time elapsed: 2.5067
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 6195; time elapsed: 2.5500
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 10216; time elapsed: 2.6274
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 14693; time elapsed: 2.4161
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 29331; time elapsed: 2.9330
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 128; Accumulated tips removed: 44167; time elapsed: 3.0283
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 134; Accumulated tips removed: 45219; time elapsed: 2.5181
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 21.185428
+    [assembler.cpp             : 188]     unitig graph size: 171499, time for building: 33.518895
+    [assembler.cpp             : 211]     Number of bubbles removed: 25532, Time elapsed(sec): 16.937241
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 18335, Time elapsed(sec): 2.743119
+    [assembler.cpp             : 243]     Number unitigs disconnected: 7061, time: 0.038892
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 2682, time: 0.037770
+    [assembler.cpp             : 200]     Tips removed: 24, time: 0.059196
+    [assembler.cpp             : 211]     Number of bubbles removed: 141, Time elapsed(sec): 0.079726
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 631, Time elapsed(sec): 0.613928
+    [assembler.cpp             : 243]     Number unitigs disconnected: 237, time: 0.033983
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 14, time: 0.025720
+    [assembler.cpp             : 200]     Tips removed: 142, time: 0.058367
+    [assembler.cpp             : 211]     Number of bubbles removed: 2, Time elapsed(sec): 0.014669
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 29, Time elapsed(sec): 0.477018
+    [assembler.cpp             : 243]     Number unitigs disconnected: 5, time: 0.035040
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.018016
+    [assembler.cpp             : 200]     Tips removed: 3, time: 0.060697
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.013374
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.469835
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.050468
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.017701
+    [assembler.cpp             : 132]     Total length: 205339738, N50: 28327, Mean: 3082, number of contigs: 66625
+    [assembler.cpp             : 133]     Maximum length: 551093
+    [assembler.cpp             : 290]     Time to output: 14.160994
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 365, complex bubbles removed: 101, time: 2.441158
+    [assembler.cpp             : 132]     Total length: 176110514, N50: 35100, Mean: 3213, number of contigs: 54795
+    [assembler.cpp             : 133]     Maximum length: 551093
+    [utils.h                   : 126]     Real: 110.2281	user: 1324.7040	sys: 2.3760	maxrss: 898808
+--- [Sat Jul  1 16:04:02 2017] Local assembling k = 67 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k67.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k67.local.fa --kmax 77
+    [local_assembler.cpp       :  89]     Number of contigs: 42177, Mapper size: 25080982
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.63 sd: 29.68
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 102650758, added 2185260 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 338082, added 1426 reads for local assembly
+    [utils.h                   : 126]     Real: 197.2230	user: 2910.2640	sys: 3.6120	maxrss: 4394692
+--- [Sat Jul  1 16:07:19 2017] Extracting iterative edges from k = 67 to 77 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k67.contigs.fa -b megahit.qc.pe/intermediate_contigs/k67.bubble_seq.fa -t 16 -k 67 -s 10 -o megahit.qc.pe/tmp/k77/77 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 139742
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 234796
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 1715855. Iterative edges: 1295743
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 2649714. Iterative edges: 1362601
+    [iterate_edges.cpp         : 451]     Writing iterative edges...
+    [utils.h                   : 126]     Real: 79.5300	user: 1003.6200	sys: 5.7760	maxrss: 413436
+--- [Sat Jul  1 16:08:39 2017] Building graph for k = 77 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k77/77 --num_cpu_threads 16 -k 77 --kmer_from 67 --num_edge_files 1 --input_prefix megahit.qc.pe/tmp/k77/77 --addi_contig megahit.qc.pe/intermediate_contigs/k67.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k67.local.fa --contig megahit.qc.pe/intermediate_contigs/k67.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k67.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 406]     Number edges: 1362601
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 698683416, number contigs: 300698, number multiplicity: 1663299
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 177076448, multiplicity vector: 1663299
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 177076448, multiplicity vector: 1663299
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 1.5449
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 184600842
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 115155096
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 2.2197
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 3015
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.7162
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8290
+    [cx1.h                     : 515]     Lv1 scanning from bucket 3015 to 7864
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.1424
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8141
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7864 to 13949
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.3008
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8345
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13949 to 21294
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 4.5353
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0404
+    [cx1.h                     : 515]     Lv1 scanning from bucket 21294 to 30099
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.7808
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0751
+    [cx1.h                     : 515]     Lv1 scanning from bucket 30099 to 40955
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.7753
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1132
+    [cx1.h                     : 515]     Lv1 scanning from bucket 40955 to 55647
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.5459
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.3555
+    [cx1.h                     : 515]     Lv1 scanning from bucket 55647 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.3443
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.4535
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 49.6573
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     47897 99659832 105537265 105557526 99658525 22006 24535 19894 24272
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 410551752
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 410413148
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 47897
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0621
+    [utils.h                   : 126]     Real: 53.4879	user: 394.6120	sys: 9.5440	maxrss: 657408
+--- [Sat Jul  1 16:09:32 2017] Assembling contigs from SdBG for k = 77 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k77/77 -o megahit.qc.pe/intermediate_contigs/k77 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k77/77 Done. Time elapsed: 4.544969
+    [assembler.cpp             : 152]     Number of Edges: 410551752; K value: 77
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 854; time elapsed: 1.9680
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 2768; time elapsed: 2.0134
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 5802; time elapsed: 2.5327
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 8938; time elapsed: 2.1422
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 12237; time elapsed: 2.5089
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 17266; time elapsed: 2.2114
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 128; Accumulated tips removed: 32335; time elapsed: 2.6787
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 154; Accumulated tips removed: 35462; time elapsed: 3.0686
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 19.152196
+    [assembler.cpp             : 188]     unitig graph size: 125861, time for building: 31.524057
+    [assembler.cpp             : 211]     Number of bubbles removed: 15259, Time elapsed(sec): 9.929102
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 13515, Time elapsed(sec): 2.141911
+    [assembler.cpp             : 243]     Number unitigs disconnected: 6105, time: 0.036289
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 2371, time: 0.041403
+    [assembler.cpp             : 200]     Tips removed: 20, time: 0.047035
+    [assembler.cpp             : 211]     Number of bubbles removed: 102, Time elapsed(sec): 0.032186
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 484, Time elapsed(sec): 0.446149
+    [assembler.cpp             : 243]     Number unitigs disconnected: 187, time: 0.033910
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 5, time: 0.032489
+    [assembler.cpp             : 200]     Tips removed: 115, time: 0.046736
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.009523
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 32, Time elapsed(sec): 0.343896
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.034251
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.028221
+    [assembler.cpp             : 200]     Tips removed: 0, time: 0.044429
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.010316
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.332967
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.035137
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.029092
+    [assembler.cpp             : 132]     Total length: 205104475, N50: 33277, Mean: 3872, number of contigs: 52966
+    [assembler.cpp             : 133]     Maximum length: 551127
+    [assembler.cpp             : 290]     Time to output: 13.188923
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 239, complex bubbles removed: 53, time: 2.071936
+    [assembler.cpp             : 132]     Total length: 173141473, N50: 42618, Mean: 4150, number of contigs: 41715
+    [assembler.cpp             : 133]     Maximum length: 551127
+    [utils.h                   : 126]     Real: 94.6417	user: 1237.3520	sys: 3.2760	maxrss: 885884
+--- [Sat Jul  1 16:11:07 2017] Local assembling k = 77 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k77.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k77.local.fa --kmax 87
+    [local_assembler.cpp       :  89]     Number of contigs: 37348, Mapper size: 25156633
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.67 sd: 29.68
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 102294070, added 1721535 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 337243, added 1159 reads for local assembly
+    [utils.h                   : 126]     Real: 192.2072	user: 2830.1680	sys: 6.5040	maxrss: 4380824
+--- [Sat Jul  1 16:14:20 2017] Extracting iterative edges from k = 77 to 87 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k77.contigs.fa -b megahit.qc.pe/intermediate_contigs/k77.bubble_seq.fa -t 16 -k 77 -s 10 -o megahit.qc.pe/tmp/k87/87 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 97038
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 169299
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 964752. Iterative edges: 885707
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 1432973. Iterative edges: 938930
+    [iterate_edges.cpp         : 451]     Writing iterative edges...
+    [utils.h                   : 126]     Real: 54.1368	user: 667.7760	sys: 5.3920	maxrss: 395348
+--- [Sat Jul  1 16:15:14 2017] Building graph for k = 87 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k87/87 --num_cpu_threads 16 -k 87 --kmer_from 77 --num_edge_files 1 --input_prefix megahit.qc.pe/tmp/k87/87 --addi_contig megahit.qc.pe/intermediate_contigs/k77.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k77.local.fa --contig megahit.qc.pe/intermediate_contigs/k77.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k77.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 406]     Number edges: 938930
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 594096279, number contigs: 218946, number multiplicity: 1157876
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 150275648, multiplicity vector: 1157876
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 150275648, multiplicity vector: 1157876
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 1.0858
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 156053076
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 95478887
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 1.6425
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2996
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 1.9773
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.4882
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2996 to 7886
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.8805
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.6565
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7886 to 14028
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.3381
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8799
+    [cx1.h                     : 515]     Lv1 scanning from bucket 14028 to 21434
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.3941
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8634
+    [cx1.h                     : 515]     Lv1 scanning from bucket 21434 to 30308
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.8490
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0267
+    [cx1.h                     : 515]     Lv1 scanning from bucket 30308 to 41232
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.5762
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0473
+    [cx1.h                     : 515]     Lv1 scanning from bucket 41232 to 55985
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 3.0307
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2757
+    [cx1.h                     : 515]     Lv1 scanning from bucket 55985 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 1.6299
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.3178
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 41.2408
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     47638 99408092 105227669 105253499 99409440 14632 17246 17186 14618
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 409410020
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 409298700
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 47638
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0598
+    [utils.h                   : 126]     Real: 44.0305	user: 372.5080	sys: 8.0000	maxrss: 552652
+--- [Sat Jul  1 16:15:58 2017] Assembling contigs from SdBG for k = 87 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k87/87 -o megahit.qc.pe/intermediate_contigs/k87 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k87/87 Done. Time elapsed: 4.855240
+    [assembler.cpp             : 152]     Number of Edges: 409410020; K value: 87
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 932; time elapsed: 2.4306
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 2794; time elapsed: 2.4878
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 6502; time elapsed: 2.5241
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 9792; time elapsed: 2.3959
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 12338; time elapsed: 2.7044
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 16418; time elapsed: 2.6339
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 128; Accumulated tips removed: 28639; time elapsed: 2.7900
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 174; Accumulated tips removed: 32575; time elapsed: 2.7581
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 20.740869
+    [assembler.cpp             : 188]     unitig graph size: 89204, time for building: 31.524913
+    [assembler.cpp             : 211]     Number of bubbles removed: 8544, Time elapsed(sec): 3.816026
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 8801, Time elapsed(sec): 1.738949
+    [assembler.cpp             : 243]     Number unitigs disconnected: 4300, time: 0.026319
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 1646, time: 0.026259
+    [assembler.cpp             : 200]     Tips removed: 16, time: 0.032438
+    [assembler.cpp             : 211]     Number of bubbles removed: 70, Time elapsed(sec): 0.060131
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 304, Time elapsed(sec): 0.383302
+    [assembler.cpp             : 243]     Number unitigs disconnected: 104, time: 0.020877
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 1, time: 0.017189
+    [assembler.cpp             : 200]     Tips removed: 54, time: 0.032225
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.007574
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 6, Time elapsed(sec): 0.267289
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.023209
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.013632
+    [assembler.cpp             : 200]     Tips removed: 0, time: 0.037291
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.008715
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.268535
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.022124
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.013252
+    [assembler.cpp             : 132]     Total length: 205079953, N50: 39882, Mean: 4737, number of contigs: 43290
+    [assembler.cpp             : 133]     Maximum length: 940071
+    [assembler.cpp             : 290]     Time to output: 12.447891
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 122, complex bubbles removed: 26, time: 0.954736
+    [assembler.cpp             : 132]     Total length: 168088906, N50: 53139, Mean: 5258, number of contigs: 31965
+    [assembler.cpp             : 133]     Maximum length: 940071
+    [utils.h                   : 126]     Real: 87.3031	user: 1138.2480	sys: 1.9040	maxrss: 883716
+--- [Sat Jul  1 16:17:25 2017] Local assembling k = 87 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k87.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k87.local.fa --kmax 97
+    [local_assembler.cpp       :  89]     Number of contigs: 33532, Mapper size: 25189978
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.67 sd: 29.69
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 101884602, added 1487500 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 335766, added 1192 reads for local assembly
+    [utils.h                   : 126]     Real: 188.7041	user: 2803.5160	sys: 5.9160	maxrss: 4381492
+--- [Sat Jul  1 16:20:34 2017] Extracting iterative edges from k = 87 to 97 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k87.contigs.fa -b megahit.qc.pe/intermediate_contigs/k87.bubble_seq.fa -t 16 -k 87 -s 10 -o megahit.qc.pe/tmp/k97/97 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 59748
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 116057
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 411098. Iterative edges: 436646
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 608188. Iterative edges: 495783
+    [iterate_edges.cpp         : 451]     Writing iterative edges...
+    [utils.h                   : 126]     Real: 35.6214	user: 434.0960	sys: 4.7080	maxrss: 386932
+--- [Sat Jul  1 16:21:10 2017] Building graph for k = 97 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k97/97 --num_cpu_threads 16 -k 97 --kmer_from 87 --num_edge_files 1 --input_prefix megahit.qc.pe/tmp/k97/97 --addi_contig megahit.qc.pe/intermediate_contigs/k87.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k87.local.fa --contig megahit.qc.pe/intermediate_contigs/k87.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k87.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 406]     Number edges: 495783
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 463508468, number contigs: 156576, number multiplicity: 652359
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 117129736, multiplicity vector: 652359
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 117129736, multiplicity vector: 652359
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 0.8949
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 120981138
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 72842869
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 1.4866
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2893
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 1.9349
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.5876
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2893 to 7720
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.0568
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1894
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7720 to 13833
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.0893
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.8278
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13833 to 21240
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.1649
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2697
+    [cx1.h                     : 515]     Lv1 scanning from bucket 21240 to 30144
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.2118
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.7182
+    [cx1.h                     : 515]     Lv1 scanning from bucket 30144 to 41106
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.3629
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.9108
+    [cx1.h                     : 515]     Lv1 scanning from bucket 41106 to 55864
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 2.2830
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1215
+    [cx1.h                     : 515]     Lv1 scanning from bucket 55864 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 1.4336
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.3242
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 39.4913
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     68937 99112882 104911538 104941963 99115589 11237 9049 11317 10273
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 408192785
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 408081972
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 68937
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0261
+    [utils.h                   : 126]     Real: 41.9000	user: 382.3160	sys: 8.0240	maxrss: 431744
+--- [Sat Jul  1 16:21:52 2017] Assembling contigs from SdBG for k = 97 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k97/97 -o megahit.qc.pe/intermediate_contigs/k97 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len -1 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k97/97 Done. Time elapsed: 4.872097
+    [assembler.cpp             : 152]     Number of Edges: 408192785; K value: 97
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 2814; time elapsed: 2.4166
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 8912; time elapsed: 2.3099
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 23610; time elapsed: 2.4965
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 28521; time elapsed: 2.5675
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 30973; time elapsed: 2.3509
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 35151; time elapsed: 2.8368
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 128; Accumulated tips removed: 49040; time elapsed: 3.2760
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 194; Accumulated tips removed: 55020; time elapsed: 3.0057
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 21.281771
+    [assembler.cpp             : 188]     unitig graph size: 50815, time for building: 29.613940
+    [assembler.cpp             : 211]     Number of bubbles removed: 2184, Time elapsed(sec): 0.464970
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 2608, Time elapsed(sec): 1.403746
+    [assembler.cpp             : 243]     Number unitigs disconnected: 2831, time: 0.024687
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 1029, time: 0.016962
+    [assembler.cpp             : 200]     Tips removed: 21, time: 0.024722
+    [assembler.cpp             : 211]     Number of bubbles removed: 22, Time elapsed(sec): 0.012957
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 167, Time elapsed(sec): 0.299664
+    [assembler.cpp             : 243]     Number unitigs disconnected: 73, time: 0.011518
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 5, time: 0.011304
+    [assembler.cpp             : 200]     Tips removed: 32, time: 0.027387
+    [assembler.cpp             : 211]     Number of bubbles removed: 2, Time elapsed(sec): 0.007028
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 2, Time elapsed(sec): 0.207324
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.010860
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.006875
+    [assembler.cpp             : 200]     Tips removed: 0, time: 0.025864
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.006445
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.199268
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.011533
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.007369
+    [assembler.cpp             : 132]     Total length: 205272287, N50: 44766, Mean: 5781, number of contigs: 35504
+    [assembler.cpp             : 133]     Maximum length: 1151863
+    [assembler.cpp             : 290]     Time to output: 13.782433
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 81, complex bubbles removed: 15, time: 0.667672
+    [assembler.cpp             : 132]     Total length: 157949968, N50: 63105, Mean: 7083, number of contigs: 22299
+    [assembler.cpp             : 133]     Maximum length: 1151863
+    [utils.h                   : 126]     Real: 84.0437	user: 1078.1600	sys: 2.0760	maxrss: 875136
+--- [Sat Jul  1 16:23:16 2017] Local assembling k = 97 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k97.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k97.local.fa --kmax 107
+    [local_assembler.cpp       :  89]     Number of contigs: 31298, Mapper size: 25308396
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.66 sd: 29.72
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 100811374, added 1303434 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 335368, added 1204 reads for local assembly
+    [utils.h                   : 126]     Real: 182.6373	user: 2689.5440	sys: 5.5320	maxrss: 4382540
+--- [Sat Jul  1 16:26:19 2017] Extracting iterative edges from k = 97 to 107 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k97.contigs.fa -b megahit.qc.pe/intermediate_contigs/k97.bubble_seq.fa -t 16 -k 97 -s 10 -o megahit.qc.pe/tmp/k107/107 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 17797
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 58530
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 0. Iterative edges: 0
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 0. Iterative edges: 0
+    [utils.h                   : 126]     Real: 9.2085	user: 10.7680	sys: 2.6120	maxrss: 370752
+--- [Sat Jul  1 16:26:28 2017] Building graph for k = 107 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k107/107 --num_cpu_threads 16 -k 107 --kmer_from 97 --num_edge_files 1 --addi_contig megahit.qc.pe/intermediate_contigs/k97.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k97.local.fa --contig megahit.qc.pe/intermediate_contigs/k97.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k97.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 342884217, number contigs: 94432, number multiplicity: 94432
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 86476520, multiplicity vector: 94432
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 86476520, multiplicity vector: 94432
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 0.7055
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 88460730
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 59703692
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 0.4729
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2770
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5007
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2947
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2770 to 7524
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.4635
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1771
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7524 to 13596
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5032
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1285
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13596 to 20991
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5433
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1281
+    [cx1.h                     : 515]     Lv1 scanning from bucket 20991 to 29919
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5823
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2471
+    [cx1.h                     : 515]     Lv1 scanning from bucket 29919 to 40942
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5662
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1039
+    [cx1.h                     : 515]     Lv1 scanning from bucket 40942 to 55845
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.7304
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.4723
+    [cx1.h                     : 515]     Lv1 scanning from bucket 55845 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.4395
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.3665
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 28.2479
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     44542 98631187 104362992 104392168 98632823 4856 5269 4536 5386
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 406083759
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 406019170
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 44542
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0248
+    [utils.h                   : 126]     Real: 29.4518	user: 388.3760	sys: 6.4720	maxrss: 353072
+--- [Sat Jul  1 16:26:57 2017] Assembling contigs from SdBG for k = 107 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k107/107 -o megahit.qc.pe/intermediate_contigs/k107 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len 194.0 --careful_bubble
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k107/107 Done. Time elapsed: 4.373583
+    [assembler.cpp             : 152]     Number of Edges: 406083759; K value: 107
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 234; time elapsed: 2.4531
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 652; time elapsed: 2.1133
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 1520; time elapsed: 2.4707
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 2958; time elapsed: 2.5736
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 5032; time elapsed: 2.5432
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 8524; time elapsed: 2.6887
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 128; Accumulated tips removed: 14474; time elapsed: 3.2247
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 194; Accumulated tips removed: 16602; time elapsed: 2.8919
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 20.977574
+    [assembler.cpp             : 188]     unitig graph size: 37790, time for building: 29.872473
+    [assembler.cpp             : 211]     Number of bubbles removed: 600, Time elapsed(sec): 0.064035
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 1221, Time elapsed(sec): 0.517174
+    [assembler.cpp             : 243]     Number unitigs disconnected: 2275, time: 0.015045
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 919, time: 0.016190
+    [assembler.cpp             : 200]     Tips removed: 28, time: 0.017095
+    [assembler.cpp             : 211]     Number of bubbles removed: 6, Time elapsed(sec): 0.012090
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 135, Time elapsed(sec): 0.208329
+    [assembler.cpp             : 243]     Number unitigs disconnected: 97, time: 0.010536
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 42, time: 0.012548
+    [assembler.cpp             : 200]     Tips removed: 19, time: 0.016785
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.004498
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 1, Time elapsed(sec): 0.158061
+    [assembler.cpp             : 243]     Number unitigs disconnected: 7, time: 0.010324
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 3, time: 0.012490
+    [assembler.cpp             : 200]     Tips removed: 0, time: 0.017084
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.004449
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.157204
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.010276
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.009647
+    [assembler.cpp             : 132]     Total length: 204988990, N50: 48999, Mean: 6949, number of contigs: 29497
+    [assembler.cpp             : 133]     Maximum length: 1151873
+    [assembler.cpp             : 290]     Time to output: 13.176378
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 42, complex bubbles removed: 4, time: 0.532994
+    [assembler.cpp             : 132]     Total length: 136424479, N50: 71433, Mean: 9013, number of contigs: 15136
+    [assembler.cpp             : 133]     Maximum length: 1151873
+    [utils.h                   : 126]     Real: 79.0354	user: 1002.5720	sys: 1.2560	maxrss: 872172
+--- [Sat Jul  1 16:28:16 2017] Local assembling k = 107 ---
+cmd: /home/titus/megahit/megahit_asm_core local -c megahit.qc.pe/intermediate_contigs/k107.contigs.fa -l megahit.qc.pe/tmp/reads.lib -t 16 -o megahit.qc.pe/intermediate_contigs/k107.local.fa --kmax 117
+    [local_assembler.cpp       :  89]     Number of contigs: 27844, Mapper size: 25343543
+    [read_lib_functions-inl.h  : 256]     Before reading, sizeof seq_package: 3608660708
+    [read_lib_functions-inl.h  : 260]     After reading, sizeof seq_package: 3608660708
+    [local_assembler.cpp       : 330]     Lib 0, insert size: 207.67 sd: 29.72
+    [local_assembler.cpp       : 462]     Lib 0: total 108422358 reads, aligned 100351199, added 976871 reads for local assembly
+    [local_assembler.cpp       : 462]     Lib 1: total 520403 reads, aligned 331365, added 257 reads for local assembly
+    [utils.h                   : 126]     Real: 175.4855	user: 2664.0360	sys: 3.5640	maxrss: 4396444
+--- [Sat Jul  1 16:31:12 2017] Extracting iterative edges from k = 107 to 117 ---
+cmd: /home/titus/megahit/megahit_asm_core iterate -c megahit.qc.pe/intermediate_contigs/k107.contigs.fa -b megahit.qc.pe/intermediate_contigs/k107.bubble_seq.fa -t 16 -k 107 -s 10 -o megahit.qc.pe/tmp/k117/117 -r megahit.qc.pe/tmp/reads.lib.bin -f binary
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 7336
+    [iterate_edges.cpp         : 570]     Number of crusial kmers: 35696
+    [iterate_edges.cpp         : 443]     Processed: 67108864, aligned: 0. Iterative edges: 0
+    [iterate_edges.cpp         : 447]     Total: 108942761, aligned: 0. Iterative edges: 0
+    [utils.h                   : 126]     Real: 10.0896	user: 10.1680	sys: 3.9000	maxrss: 367744
+--- [Sat Jul  1 16:31:22 2017] Building graph for k = 117 ---
+/home/titus/megahit/megahit_sdbg_build seq2sdbg --host_mem 10000000000 --mem_flag 1 --gpu_mem 0 --output_prefix megahit.qc.pe/tmp/k117/117 --num_cpu_threads 16 -k 117 --kmer_from 107 --num_edge_files 1 --addi_contig megahit.qc.pe/intermediate_contigs/k107.addi.fa --local_contig megahit.qc.pe/intermediate_contigs/k107.local.fa --contig megahit.qc.pe/intermediate_contigs/k107.contigs.fa --bubble megahit.qc.pe/intermediate_contigs/k107.bubble_seq.fa
+    [sdbg_builder.cpp          : 339]     Host memory to be used: 10000000000
+    [sdbg_builder.cpp          : 340]     Number CPU threads: 16
+    [cx1.h                     : 450]     Preparing data...
+    [cx1_seq2sdbg.cpp          : 446]     Bases to reserve: 289069281, number contigs: 64396, number multiplicity: 64396
+    [cx1_seq2sdbg.cpp          : 452]     Before reading, sizeof seq_package: 72782500, multiplicity vector: 64396
+    [cx1_seq2sdbg.cpp          : 541]     After reading, sizeof seq_package: 72782500, multiplicity vector: 64396
+    [cx1.h                     : 457]     Preparing data... Done. Time elapsed: 0.6720
+    [cx1.h                     : 464]     Preparing partitions and initialing global data...
+    [cx1_seq2sdbg.cpp          : 748]     Memory for sequence: 74636684
+    [cx1_seq2sdbg.cpp          : 749]     max # lv.1 items = 57048512
+    [cx1.h                     : 480]     Preparing partitions and initialing global data... Done. Time elapsed: 0.4557
+    [cx1.h                     : 486]     Start main loop...
+    [cx1.h                     : 515]     Lv1 scanning from bucket 0 to 2756
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.4821
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.6123
+    [cx1.h                     : 515]     Lv1 scanning from bucket 2756 to 7504
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5590
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0694
+    [cx1.h                     : 515]     Lv1 scanning from bucket 7504 to 13574
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.6129
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.0890
+    [cx1.h                     : 515]     Lv1 scanning from bucket 13574 to 20967
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.6278
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 2.9727
+    [cx1.h                     : 515]     Lv1 scanning from bucket 20967 to 29896
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5696
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.1601
+    [cx1.h                     : 515]     Lv1 scanning from bucket 29896 to 40921
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.5591
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.2280
+    [cx1.h                     : 515]     Lv1 scanning from bucket 40921 to 55830
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.6406
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 3.3185
+    [cx1.h                     : 515]     Lv1 scanning from bucket 55830 to 65536
+    [cx1.h                     : 528]     Lv1 scanning done. Large diff: 0. Time elapsed: 0.4754
+    [cx1.h                     : 594]     Lv1 fetching & sorting done. Time elapsed: 1.2810
+    [cx1.h                     : 607]     Main loop done. Time elapsed: 27.2597
+    [cx1.h                     : 613]     Postprocessing...
+    [cx1_seq2sdbg.cpp          :1147]     Number of $ A C G T A- C- G- T-:
+    [cx1_seq2sdbg.cpp          :1150]     39902 98478536 104168970 104196137 98481005 3588 3790 3705 3501
+    [cx1_seq2sdbg.cpp          :1159]     Total number of edges: 405379134
+    [cx1_seq2sdbg.cpp          :1160]     Total number of ONEs: 405324648
+    [cx1_seq2sdbg.cpp          :1161]     Total number of $v edges: 39902
+    [cx1.h                     : 621]     Postprocess done. Time elapsed: 0.0229
+    [utils.h                   : 126]     Real: 28.4110	user: 377.8640	sys: 6.1840	maxrss: 338352
+--- [Sat Jul  1 16:31:50 2017] Assembling contigs from SdBG for k = 117 ---
+cmd: /home/titus/megahit/megahit_asm_core assemble -s megahit.qc.pe/tmp/k117/117 -o megahit.qc.pe/intermediate_contigs/k117 -t 16 --min_standalone 300.0 --prune_level 2 --merge_len 20 --merge_similar 0.95 --low_local_ratio 0.2 --min_depth 2 --bubble_level 2 --max_tip_len 184.0 --is_final_round
+    [assembler.cpp             : 148]     Loading succinct de Bruijn graph: megahit.qc.pe/tmp/k117/117 Done. Time elapsed: 4.647090
+    [assembler.cpp             : 152]     Number of Edges: 405379134; K value: 117
+    [assembler.cpp             : 162]     Number of CPU threads: 16
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 2; Accumulated tips removed: 140; time elapsed: 1.9091
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 4; Accumulated tips removed: 482; time elapsed: 1.7921
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 8; Accumulated tips removed: 1062; time elapsed: 1.7565
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 16; Accumulated tips removed: 2044; time elapsed: 1.8242
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 32; Accumulated tips removed: 3572; time elapsed: 2.0185
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 64; Accumulated tips removed: 6258; time elapsed: 2.0994
+    [assembly_algorithms.cpp   : 162]     Removing tips with length less than 128; Accumulated tips removed: 8847; time elapsed: 2.4596
+    [assembly_algorithms.cpp   : 170]     Removing tips with length less than 184; Accumulated tips removed: 9213; time elapsed: 2.7713
+    [assembler.cpp             : 179]     Tips removal done! Time elapsed(sec): 16.649259
+    [assembler.cpp             : 188]     unitig graph size: 32709, time for building: 29.553562
+    [assembler.cpp             : 211]     Number of bubbles removed: 290, Time elapsed(sec): 0.025851
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 797, Time elapsed(sec): 0.243263
+    [assembler.cpp             : 243]     Number unitigs disconnected: 1600, time: 0.021638
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 650, time: 0.022117
+    [assembler.cpp             : 200]     Tips removed: 14, time: 0.014419
+    [assembler.cpp             : 211]     Number of bubbles removed: 2, Time elapsed(sec): 0.004125
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 42, Time elapsed(sec): 0.166009
+    [assembler.cpp             : 243]     Number unitigs disconnected: 35, time: 0.007406
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 11, time: 0.005831
+    [assembler.cpp             : 200]     Tips removed: 10, time: 0.015884
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.004110
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 1, Time elapsed(sec): 0.177786
+    [assembler.cpp             : 243]     Number unitigs disconnected: 1, time: 0.007661
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.003529
+    [assembler.cpp             : 200]     Tips removed: 1, time: 0.016862
+    [assembler.cpp             : 211]     Number of bubbles removed: 0, Time elapsed(sec): 0.004208
+    [assembler.cpp             : 225]     Number of complex bubbles removed: 0, Time elapsed(sec): 0.175712
+    [assembler.cpp             : 243]     Number unitigs disconnected: 0, time: 0.008039
+    [assembler.cpp             : 265]     Unitigs removed in excessive pruning: 0, time: 0.003795
+    [assembler.cpp             : 317]     Number of local low depth unitigs removed: 28, complex bubbles removed: 1, time: 0.337269
+    [assembler.cpp             : 132]     Total length: 205384360, N50: 51597, Mean: 7496, number of contigs: 27399
+    [assembler.cpp             : 133]     Maximum length: 1151883
+    [utils.h                   : 126]     Real: 66.1177	user: 892.8160	sys: 2.1360	maxrss: 867192
+--- [Sat Jul  1 16:32:57 2017] Merging to output final contigs ---
+--- [STAT] 26355 contigs, total 205128628 bp, min 200 bp, max 1151883 bp, avg 7783 bp, N50 51674 bp
+--- [Sat Jul  1 16:32:58 2017] ALL DONE. Time elapsed: 5591.810258 seconds ---

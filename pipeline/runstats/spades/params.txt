@@ -1,0 +1,35 @@
+Command line: /home/titus/SPAdes-3.10.1-Linux/bin/metaspades.py	-t	16	--pe1-12	/home/titus/podar/SRR606249.pe.qc.fq.gz	--pe1-s	/home/titus/podar/SRR606249.se.qc.fq.gz	-o	/home/titus/podar/podar	
+
+System information:
+  SPAdes version: 3.10.1
+  Python version: 2.7.12
+  OS: Linux-4.4.0-81-generic-x86_64-with-Ubuntu-16.04-xenial
+
+Output dir: /home/titus/podar/podar
+Mode: read error correction and assembling
+Debug mode is turned OFF
+
+Dataset parameters:
+  Metagenomic mode
+  Reads:
+    Library number: 1, library type: paired-end
+      orientation: fr
+      left reads: not specified
+      right reads: not specified
+      interlaced reads: ['/home/titus/podar/SRR606249.pe.qc.fq.gz']
+      single reads: ['/home/titus/podar/SRR606249.se.qc.fq.gz']
+Read error correction parameters:
+  Iterations: 1
+  PHRED offset will be auto-detected
+  Corrected reads will be compressed (with gzip)
+Assembly parameters:
+  k: [21, 33, 55]
+  Repeat resolution is enabled
+  Mismatch careful mode is turned OFF
+  MismatchCorrector will be SKIPPED
+  Coverage cutoff is turned OFF
+Other parameters:
+  Dir for temp files: /home/titus/podar/podar/tmp
+  Threads: 16
+  Memory limit (in Gb): 118
+

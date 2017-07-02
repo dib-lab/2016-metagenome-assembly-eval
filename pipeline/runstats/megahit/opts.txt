@@ -1,0 +1,17 @@
+-f
+-l
+101
+--cpu-only
+--presets
+meta-large
+--12
+SRR606249.pe.qc.fq.gz
+-t
+16
+-m
+1e+10
+-r
+SRR606249.se.qc.fq.gz
+-o
+megahit.qc.pe
+MEGAHIT_TEMP_DIR: megahit.qc.pe/tmp/
