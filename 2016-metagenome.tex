@@ -322,7 +322,7 @@ khmer v2 \cite{streaming, khmer2}.
 
 We assembled the quality-filtered reads using three different
 assemblers: IDBA-UD \cite{idba}, MetaSPAdes \cite{metaspades}, and MEGAHIT
-\cite{megahit}.  For IDBA-UD v1.1.1 \cite{idba}, we used {\tt
+\cite{megahit}.  For IDBA-UD v1.1.3 \cite{idba}, we used {\tt
   {--pre\_correction}} to perform pre-correction before assembly and
 -r for the pe files.  IDBA could not ingest the single-ended files so
 they were omitted from the assembly.
@@ -582,7 +582,7 @@ variants, below.
 \hline
 MEGAHIT & 1191m & 1h 33m & 10 GB \\
 \hline
-IDBA-UD & 2117m & 2h 41m & 21 GB \\
+IDBA-UD & 1904m & 2h 27m & 17 GB \\
 \hline
 MetaSPAdes & 2554m & 4h 7m & 28 GB \\
 \hline
@@ -594,12 +594,12 @@ MetaSPAdes & 2554m & 4h 7m & 28 GB \\
 We ran three commonly used metagenome assemblers on the QC data set:
 IDBA-UD, MetaSPAdes, and MEGAHIT. We recorded the time and memory
 usage of each (Table \ref{table:time-memory}).  In computational
-requirements, MEGAHIT outperformed both MetaSPAdes and IDBA-UD,
-, producing an assembly in 1.5 hours (``wall time'') --
-1.7 times faster than IDBA and 2.6 times faster than MetaSPAdes.
-MEGAHIT used only 10 GB of RAM as requested -- half to almost a
-third of the memory used by IDBA and MetaSPAdes, respectively.
-CPU time measurements (which include processing on multiple CPU cores)
+requirements, MEGAHIT outperformed both MetaSPAdes and IDBA-UD, ,
+producing an assembly in 1.5 hours (``wall time'') -- 1.7 times faster
+than IDBA and 2.6 times faster than MetaSPAdes.  MEGAHIT used only 10
+GB of RAM as requested -- about 60\% of the memory used by IDBA and a
+third of the memory used by IDBA and MetaSPAdes, respectively.  CPU
+time measurements (which include processing on multiple CPU cores)
 show that all three assemblers use multiple cores effectively.
 
 % see pipeline/runtimes/
@@ -949,20 +949,30 @@ where contigs that share paths in the assembly graphs are broken in twain.
 MEGAHIT is clearly the most efficient computationally, outperforming
 both MetaSPAdes and IDBA in memory and time
 (Table~\ref{table:time-memory}).  The MEGAHIT assembly also included
-more of the reads than either IDBA or MetaSPAdes, and omitted only 0.4\%
-more of the unique 51-mers from the reads than IDBA.  MEGAHIT covered
-more of the reference genome with both loose and strict alignments
-(Table~\ref{table:contig-coverage} and
+more of the reads than either IDBA or MetaSPAdes, and omitted only
+0.4\% more of the unique 51-mers from the reads than IDBA.  MEGAHIT
+covered more of the reference genome with both loose and strict
+alignments (Table~\ref{table:contig-coverage} and
 Table~\ref{table:contig-accuracy}), with little duplication.  This is
-clearly because of MEGAHIT's generally superior performance in recovering the
-genomes of closely related strains (Figure~\ref{fig:nga50}, right
-panel).  The sum ``fraction of genome recovered'' is arguably the most
-important measure of a metagenome assembler (see \cite{Vollmers2017}
-in particular) and here MEGAHIT excels for individual genomes even in
-the presence of strain variation.
+clearly because of MEGAHIT's generally superior performance in
+recovering the genomes of closely related strains
+(Figure~\ref{fig:nga50}, right panel).  The sum ``fraction of genome
+recovered'' is arguably the most important measure of a metagenome
+assembler (see \cite{Vollmers2017} in particular) and here MEGAHIT
+excels for individual genomes even in the presence of strain
+variation.
+
+In general other studies have found that MEGAHIT excels in recovery of
+sequence through assembly \cite{CAMI,Greenwald2017} and is
+considerably more computationally efficient than most other assemblers
+\cite{CAMI,metag_one}.  However, studies have also shown that MEGAHIT
+produces more misassemblies than other assemblers \cite{CAMI} and
+performs poorly on high coverage portions of the data set
+\cite{Vollmers2017} Thus while we can recommend MEGAHIT as a good
+first assembler, we can also not unambiguously recommend it as the only
+assembler to use.
 
 % @CTB reference Nature foo strain foo.
-
 
 When comparing details of sequence recovery between the assemblers,
 the assembly content differs by only a small amount when loose
@@ -1001,7 +1011,6 @@ genomes of the actually included strain variants, rendering conclusive
 identification impossible.
 
 \section*{Conclusions}
-
 
 Overall, assembly of this mock community works well, with good
 recovery of known genomic sequence for the majority of genomes.  All
@@ -1065,7 +1074,7 @@ controls (e.g. see \cite{metag_one} and \cite{ahowe2014}) we strongly
 believe that standardized communities constructed {\em in vitro} and
 sequenced with the latest technologies are critical to the evaluation
 of both canonical and emerging tools, e.g. efforts such as
-\cite{Brown2017}. From the perspective of tool evaluation, we must
+\cite{Brown2017}. From the perspective of tool evaluation, we
 disagree somewhat with Vollmers et al. \cite{Vollmers2017}: good
 metagenome tool evaluation necessarily depends on mock communities
 that are as realistic as we can make them.  Likewise, from the
@@ -1074,7 +1083,7 @@ critical because it can evaluate confounding effects such as kit
 contamination \cite{Salter2014}.  Large-scale studies of computational
 approaches systematically applied to mock communities such as CAMI
 \cite{CAMI} can then provide fair comparisons of entire toolchains
-(wet + dry) applied to these mock communities.
+(wet and dry combined) applied to these mock communities.
 
 % CTB didn't mesaure N50, error rates, etc.
 % CTB size cutoff for recovery / binning / 2kb on figure!!
@@ -1088,15 +1097,15 @@ assembly discussed above will apply; or require multiple samples
 only default parameters with all three assemblers, for two reasons.
 First, we are not aware of any widely used automated approaches for
 determining the ``best'' set of parameters or evaluating the output,
-other than those integrated into the assemblers themselves
-(e.g. choice of k-mer sizes), and absent such guidance we do not feel
-comfortable blessing any particular set of parameters; here the choice
-of default parameters is parsimonious.  Second, any parameter
-exploration pipeline would not only need to be automated but would
-need to run multiple assemblies, whose time and resource usage should
-be measured; in this case, any comparison based on
-runtime of the parameter choice pipeline should naturally favor MEGAHIT
-because of its advantage in computational efficiency.
+other than those integrated into the assemblers themselves (e.g. the
+choice of k-mer sizes by MEGAHIT and MetaSPAdes), and absent such
+guidance we do not feel comfortable blessing any particular set of
+parameters; here the choice of default parameters is parsimonious.
+Second, any parameter exploration pipeline would not only need to be
+automated but would need to run multiple assemblies, whose time and
+resource usage should be measured; in this case, any comparison based
+on runtime of the parameter choice pipeline should naturally favor
+MEGAHIT because of its advantage in computational efficiency.
 
 \subsection*{Author contributions}
 

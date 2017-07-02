@@ -1,21 +1,21 @@
 	Command being timed: "/home/titus/idba-1.1.3/bin/idba_ud --num_threads=16 --pre_correction -r SRR606249.pe.qc.fa -o SRR606249.idba.d.qc"
-	User time (seconds): 126570.22
-	System time (seconds): 453.19
-	Percent of CPU this job got: 1309%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:41:40
+	User time (seconds): 113890.39
+	System time (seconds): 323.98
+	Percent of CPU this job got: 1286%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:27:57
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 20911728
+	Maximum resident set size (kbytes): 17296800
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 15876139
-	Voluntary context switches: 2733157
-	Involuntary context switches: 331086
+	Minor (reclaiming a frame) page faults: 14738338
+	Voluntary context switches: 2610665
+	Involuntary context switches: 322316
 	Swaps: 0
-	File system inputs: 35306864
-	File system outputs: 87353432
+	File system inputs: 8
+	File system outputs: 87353208
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
