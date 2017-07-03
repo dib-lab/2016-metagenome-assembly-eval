@@ -4,6 +4,8 @@
 % @CTB make point about sequencing individual colonies in a mock?
 % @CTB comment re metaspades vs spades
 % @CTB comment re megahit / high coverage / performing worse
+% http://online.liebertpub.com/doi/abs/10.1089/cmb.2017.0008 viral assembly
+% https://twitter.com/gedankenstuecke/status/879340345955409920, http://onlinelibrary.wiley.com/doi/10.1111/1755-0998.12463/full
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -80,7 +82,7 @@ introduces metagenome-specific challenges in analysis
 metagenomic data rely on mapping or comparing sequencing reads to
 reference sequence collections. However, reference databases contain
 only a small subset of microbial diversity \cite{geba}, and much
-of the remaining diversity is evolutionarily distant and search
+of the remaining diversity is evolutionarily distant and reference-based search
 techniques may not recover it \cite{CAMI}.
 
 As sequencing capacity increases and sequence data is generated from
@@ -95,12 +97,12 @@ general lack of good quality reference metagenomes.
 
 %-----------Literature Review starts here ---------------------
 
-Moya et al. in \cite{moya2014} evaluated metagenome assembly using
-two simulated 454 viral metagenome and six assemblers. The assemblies
-were evaluated based on several metrics including N50, percentages of
-reads assembled, accuracy when compared to the reference genome. In
-addition to, chimeras per contigs and the effect of assembly on
-taxonomic and functional annotations.
+Moya et al. in \cite{moya2014} evaluated metagenome assembly using two
+simulated 454 viral metagenome and six assemblers. The assemblies were
+evaluated based on several metrics including N50, percentages of reads
+assembled, accuracy when compared to the reference genome. In addition
+to these metrics, the authors evaluated chimeras per contigs and the
+effect of assembly on taxonomic and functional annotations.
  
 Mavromatis et al. in \cite{mavromatis2007} provided a benchmark study
 to evaluate the fidelity of metagenome processing methods. The study used
@@ -120,13 +122,13 @@ compared the quality of the assembly of the data sets in terms of
 contig length and assembly accuracy. The study also took into
 consideration the effect of kmer size and the degree of chimericity.
 However, the study evaluated the assembly based on only one
-assembler. Also, both previous studies used simulated data, which may
+assembler. Also, these previous studies used simulated data, which may
 lack confounders of assembly such as sequencing artifacts and GC bias.
 
 In a landmark study, Shakya et al. (2013) constructed a synthetic
 community of organisms by mixing DNA isolated from individual cultures
 of 64 bacteria and archaea, including a variety of strains across a
-range of nucleotide distances \cite{podar}.  In addition to performing
+range of average nucleotide distances \cite{podar}.  In addition to performing
 16s amplicon analysis and doing 454 sequencing, the authors
 shotgun-sequenced the mixture with Illumina.  While the authors
 concluded that this metagenomic sequencing generally outperformed
@@ -154,7 +156,7 @@ biological goal and computational resources defined the choice of
 assembler.  Also see \cite{Greenwald2017} for an analysis of a previously
 generated HMP benchmark data set; however, the Illumina reads used for this
 study are much shorter than current sequencing and are arguably not relevant
-for future studies.
+to future studies.
 
 In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
@@ -324,8 +326,8 @@ We assembled the quality-filtered reads using three different
 assemblers: IDBA-UD \cite{idba}, MetaSPAdes \cite{metaspades}, and MEGAHIT
 \cite{megahit}.  For IDBA-UD v1.1.3 \cite{idba}, we used {\tt
   {--pre\_correction}} to perform pre-correction before assembly and
--r for the pe files.  IDBA could not ingest the single-ended files so
-they were omitted from the assembly.
+-r for the pe files.  IDBA could not ingest orphan sequences so
+singleton reads were omitted from this assembly.
 
 % Makefile target: idba-quality-assembly500.fa
 
@@ -337,10 +339,10 @@ orphan reads remaining from quality trimming.
 
 % Makefile target: spades-quality-assembly500.fa
 
-For MEGAHIT v1.1.1-2-g02102e1 \cite{megahit}, we used -l 101 {\tt{-m 3e9
+For MEGAHIT v1.1.1-2-g02102e1 \cite{megahit}, we used {\tt -l 101} {\tt{-m 3e9
     --cpu-only}} where {\tt -l} is for maximum read length, {\tt -m} is
 for max memory in bytes to be used in constructing the graph, and {\tt
-  {--cpu-only}} to use only the CPU and no GPUs. We also used {\tt
+  {--cpu-only}} uses only the CPU and no GPUs. We also used {\tt
   {--presets meta-large}} for large and complex metagenomes, and {\tt
   {--12} } and {\tt{-r}} to specify the
 interleaved-paired-end and single-end files respectively.  MEGAHIT allows
@@ -356,7 +358,7 @@ GUI/Xfce added).  Assemblers were limited to 16 threads.  We recorded
 RAM and CPU time for each assembly using {\tt /usr/bin/time -v}.
 Install and execute details as well as output timings and logs are
 available in the {\tt pipeline/runstats} directory of the Zenodo
-release.
+archive.
 
 Unless otherwise mentioned, we eliminated all contigs less than 500 bp
 from each assembly prior to further analysis.
@@ -429,7 +431,7 @@ https://osf.io/34ef8/.
 
 \subsection*{The raw data is high quality.}
 
-The reads contains 11,072,579,096 bp (11.07 Gbp) in 109,629,496 reads
+The reads contain 11,072,579,096 bp (11.07 Gbp) in 109,629,496 reads
 with 101.0 average length (2x101bp Illumina HiSeq).
 
 Trimming removed 686,735 reads (0.63\%).  After trimming, we retained
@@ -595,10 +597,10 @@ We ran three commonly used metagenome assemblers on the QC data set:
 IDBA-UD, MetaSPAdes, and MEGAHIT. We recorded the time and memory
 usage of each (Table \ref{table:time-memory}).  In computational
 requirements, MEGAHIT outperformed both MetaSPAdes and IDBA-UD, ,
-producing an assembly in 1.5 hours (``wall time'') -- 1.7 times faster
+producing an assembly in 1.5 hours (``wall time'') -- 1.6 times faster
 than IDBA and 2.6 times faster than MetaSPAdes.  MEGAHIT used only 10
 GB of RAM as requested -- about 60\% of the memory used by IDBA and a
-third of the memory used by IDBA and MetaSPAdes, respectively.  CPU
+third of the memory used by MetaSPAdes.  CPU
 time measurements (which include processing on multiple CPU cores)
 show that all three assemblers use multiple cores effectively.
 
@@ -980,7 +982,9 @@ alignments are allowed: all three assemblers miss more content
 (approximately 2.5\% of the reference) than they generate uniquely
 (1.7\% or less).  In addition to preferring no one assembler over any
 other, this suggests that combining assemblies may have little value
-in terms of recovering additional metagenome content.
+in terms of recovering additional metagenome content.  The genome alignment
+statistics in Figure 2 suggest that much of this differential assembly
+content is due to the impact of strains.
 
 \subsection*{The missing reference may be present in strain variants of the intended species.}
 
@@ -990,7 +994,8 @@ reads (4.4\% of 108m) did not map to the full reference metagenome.
 These appear to be related issues: upon analysis of the unmapped reads
 against GenBank, we find that many of the contigs assembled from the
 unmapped reads can be assigned to strain variants of the species in
-the mock community (Table~\ref{table:gather}).  This suggests that the
+the mock community (Table~\ref{table:gather}) and align closely
+to the identified genomes.  This suggests that the
 constructors of the mock community may have unintentionally included
 strain variants of {\em Fusobacterium nucleatum}, {\em Thermus
   thermophilus} HB27, and {\em Enterococcus faecalis}; note that the
@@ -1095,17 +1100,19 @@ e.g. \cite{laczny2017busybee}), in which case the challenges with
 assembly discussed above will apply; or require multiple samples
 (e.g. \cite{Cleary2015}), which we do not have.  We also chose to use
 only default parameters with all three assemblers, for two reasons.
-First, we are not aware of any widely used automated approaches for
-determining the ``best'' set of parameters or evaluating the output,
-other than those integrated into the assemblers themselves (e.g. the
-choice of k-mer sizes by MEGAHIT and MetaSPAdes), and absent such
-guidance we do not feel comfortable blessing any particular set of
-parameters; here the choice of default parameters is parsimonious.
-Second, any parameter exploration pipeline would not only need to be
-automated but would need to run multiple assemblies, whose time and
-resource usage should be measured; in this case, any comparison based
-on runtime of the parameter choice pipeline should naturally favor
-MEGAHIT because of its advantage in computational efficiency.
+First, we are not aware of any effective automated approaches for
+determining the ``best'' set of parameters or evaluating the output
+for metagenome assemblers, other than those integrated into the
+assemblers themselves (e.g. the choice of k-mer sizes by MEGAHIT and
+MetaSPAdes), and absent such guidance we do not feel comfortable
+blessing any particular set of parameters; here the choice of default
+parameters is parsimonious (and also see \cite{Greshake2015} for the
+dangers of poorly chosen objective functions).  Second, any parameter
+exploration pipeline would not only need to be automated but would
+need to run multiple assemblies, whose time and resource usage should
+be measured; in this case, any comparison based on runtime of the
+parameter choice pipeline should naturally favor MEGAHIT because of
+its advantage in computational efficiency.
 
 \subsection*{Author contributions}
 
