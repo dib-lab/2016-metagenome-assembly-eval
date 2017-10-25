@@ -5,7 +5,7 @@
 % @CTB comment re metaspades vs spades
 % @CTB comment re megahit / high coverage / performing worse
 % http://online.liebertpub.com/doi/abs/10.1089/cmb.2017.0008 viral assembly
-% https://twitter.com/gedankenstuecke/status/879340345955409920, http://onlinelibrary.wiley.com/doi/10.1111/1755-0998.12463/full
+% update khmer ref to joss pub.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -772,10 +772,13 @@ yields the lowest NGA50 for 28 of the 51 genomes, while MetaSPAdes yields
 the highest NGA50 for 32 of the 51 genomes.
 
 We also evaluated aligned coverage per genome for each of the three
-assemblies (right panel, Figure~\ref{fig:nga50}).  We found that 13
-of the 51 genomes were missing 5\% or more of bases in at least one
+assemblies (right panel, Figure~\ref{fig:nga50}).  We found that 13 of
+the 51 genomes were missing 5\% or more of bases in at least one
 assembly, despite all 51 genomes having 99\% or higher read- and
-51-mer coverage.
+51-mer coverage.  While some of these missing bases may be in the assembled
+contigs that are less than 500 bp in length, contigs shorter than 500 bp
+are unlikely to contain more than half of a typical bacterial gene
+\cite{xu2006average}.
 
 There are 12 genomes with k=31 Jaccard similarity greater than 2\% to
 other genomes in the community, and these (denoted by '*' after the
