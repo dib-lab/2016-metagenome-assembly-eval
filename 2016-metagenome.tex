@@ -1029,6 +1029,30 @@ contig alignment.  However, GenBank is unlikely to contain the exact
 genomes of the actually included strain variants, rendering conclusive
 identification impossible.
 
+\subsection*{Omissions in this study: binning and parameter sweeps}
+
+We omitted two important questions in this study: binning and choice
+of parameters.  We chose not to evaluate genome binning because most
+binning strategies either operate post-assembly (see
+e.g. \cite{laczny2017busybee}), in which case the challenges with
+assembly discussed above will apply; or require multiple samples
+(e.g. \cite{Cleary2015}), which we do not have.  We also chose to use
+only default parameters with all three assemblers, for two reasons.
+First, we are not aware of any effective automated approaches for
+determining the ``best'' set of parameters or evaluating the output
+for metagenome assemblers, other than those integrated into the
+assemblers themselves (e.g. the choice of k-mer sizes by MEGAHIT and
+MetaSPAdes), and absent such guidance we do not feel comfortable
+blessing any particular set of parameters; here the choice of default
+parameters is parsimonious (and also see \cite{Greshake2015} for the
+dangers of poorly chosen objective functions).  Second, any parameter
+exploration pipeline would not only need to be automated but would
+need to run multiple assemblies, whose time and resource usage should
+be measured; in this case, any comparison based on runtime of the
+parameter choice pipeline should naturally favor MEGAHIT because of
+its advantage in computational efficiency.
+
+
 \section*{Conclusions}
 
 Overall, assembly of this mock community works well, with good
@@ -1102,31 +1126,11 @@ critical because it can evaluate confounding effects such as kit
 contamination \cite{Salter2014}.  Large-scale studies of computational
 approaches systematically applied to mock communities such as CAMI
 \cite{CAMI} can then provide fair comparisons of entire toolchains
-(wet and dry combined) applied to these mock communities.
+(wet and dry combined).
+
 
 % CTB didn't mesaure N50, error rates, etc.
 % CTB size cutoff for recovery / binning / 2kb on figure!!
-
-We omitted two important questions in this study: binning and choice
-of parameters.  We chose not to evaluate genome binning because most
-binning strategies either operate post-assembly (see
-e.g. \cite{laczny2017busybee}), in which case the challenges with
-assembly discussed above will apply; or require multiple samples
-(e.g. \cite{Cleary2015}), which we do not have.  We also chose to use
-only default parameters with all three assemblers, for two reasons.
-First, we are not aware of any effective automated approaches for
-determining the ``best'' set of parameters or evaluating the output
-for metagenome assemblers, other than those integrated into the
-assemblers themselves (e.g. the choice of k-mer sizes by MEGAHIT and
-MetaSPAdes), and absent such guidance we do not feel comfortable
-blessing any particular set of parameters; here the choice of default
-parameters is parsimonious (and also see \cite{Greshake2015} for the
-dangers of poorly chosen objective functions).  Second, any parameter
-exploration pipeline would not only need to be automated but would
-need to run multiple assemblies, whose time and resource usage should
-be measured; in this case, any comparison based on runtime of the
-parameter choice pipeline should naturally favor MEGAHIT because of
-its advantage in computational efficiency.
 
 \subsection*{Author contributions}
 
