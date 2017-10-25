@@ -302,7 +302,8 @@ as recommended in MacManes, 2014 \cite{macmanes2014optimal}.
 \subsection*{Reference Coverage Profile}
 
 To evaluate how much of the reference metagenome was contained in the
-read data, we used {\tt bwa aln} (v0.7.7.r441) to map reads to the
+read data, we used {\tt bwa aln} (v0.7.7.r441) to map paired-end and
+orphaned reads to the
 reference genome \cite{bwa}.  We then calculated how many reference
 bases were covered by mapped reads (custom script {\tt
   coverage-profile.py}).
@@ -376,13 +377,11 @@ from each assembly prior to further analysis.
 
 \subsection*{Mapping}
 
-We aligned all quality-filtered reads to the reference metagenome with
-bwa aln (v0.7.7.r441) \cite{bwa}. We aligned paired-end and orphaned
-reads separately. We then used samtools (v0.1.19)
-\cite{sam-stools} to convert SAM files to BAM files for both
-paired-end and orphaned reads. To count the unaligned reads, we
-included only those records with the ``4'' flag in the SAM files
-\cite{sam-stools}.
+Starting from the reference alignment calculated with bwa aln above,
+we used samtools (v0.1.19) \cite{sam-stools} to convert SAM files to BAM
+files for both paired-end and orphaned reads. To count the unaligned
+reads, we included only those records with the ``4'' flag in the SAM
+files \cite{sam-stools}.
  
 \subsection*{Assembly analysis using NUCmer}
 
