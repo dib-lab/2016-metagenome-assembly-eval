@@ -135,17 +135,19 @@ concluded that this metagenomic sequencing generally outperformed
 amplicon sequencing, they did not conduct an assembly based analysis.
 This data set was also used in several other evaluation studies,
 including gbtools for binning \cite{Seah2015} and benchmarking of the
-MEGAHIT assembler \cite{Li2016}.
+MEGAHIT and metaSPAdes assemblers \cite{Li2016,nurk2017metaspades}.
+Importantly, the authors of the MEGAHIT benchmarking paper noted the
+presence of unexpected sequence in this data set.
 
 % @CTB pignatelli & moya 2011
 
 More recently, several benchmark studies systematically evaluated
 metagenome assembly of short reads.  The Critical Assessment of
 Metagenome Interpretation (CAMI) collaboration benchmarked a number of
-metagenome assemblers on several data sets of varying complexity,
-evaluating recovery of novel genomes and multiple strain variants
-\cite{CAMI}.  Notably, CAMI concluded that ``The resolution of
-strain-level diversity represents a substantial challenge to all
+metagenome assemblers on several simulated data sets of varying
+complexity, evaluating recovery of novel genomes and multiple strain
+variants \cite{CAMI}.  Notably, CAMI concluded that ``The resolution
+of strain-level diversity represents a substantial challenge to all
 evaluated programs.''  Another recent study evaluated eight assemblers
 on nine environmental metagenomes and three simulated data sets and
 provided a workflow for choosing a metagenome assembler based on the
@@ -153,14 +155,22 @@ biological goal and computational resources available
 \cite{metag_one}.  \cite{Vollmers2017} explored metagenome assembler
 performance on a pair of real data sets, again concluding that the
 biological goal and computational resources defined the choice of
-assembler.  Also see \cite{Greenwald2017} for an analysis of a previously
-generated HMP benchmark data set; however, the Illumina reads used for this
-study are much shorter than current sequencing and are arguably not relevant
-to future studies.
+assembler.  Also see \cite{Greenwald2017} for an analysis of a
+previously generated HMP benchmark data set; however, the Illumina
+reads used for this study are much shorter than current sequencing and
+are arguably not relevant to future studies.
 
 In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
-data set.  First, we update the list of reference genomes for Shakya
+data set.  This data set is the most complex synthetic community for
+which bulk sequencing data is available, and has been used for several
+independent assembly benchmarking efforts
+\cite{Seah2015,Li2016,nurk2017metaspades}.  However, while previous
+efforts have noted the presence of unexpected sequence data in the
+data set \cite{Li2016}, no further analysis has been done to
+characterize this sequence or its likely origins.
+
+Below, we first update the list of reference genomes for Shakya
 et al. to include the latest GenBank assemblies along with
 plasmids. We then compare IDBA \cite{idba}, MetaSPAdes \cite{metaspades},
 and MEGAHIT \cite{megahit} performance on assembling this short-read
