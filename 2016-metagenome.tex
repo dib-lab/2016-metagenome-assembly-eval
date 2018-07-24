@@ -460,7 +460,7 @@ data set was used as the basis for all further analyses.
   
 \centering
 \includegraphics[width=0.45\textwidth]{CoverageProfile.pdf}  
-\caption{\label{fig:coverage-profile} Cumulative coverage profile for the reference metagenome, based on read mapping. }
+\caption{\label{fig:coverage-profile} Cumulative coverage profile for the reference metagenome, based on read mapping. The x axis shows the number of reads that overlap each base, and the y axis shows the number of bases with that number of overlapping reads.}
 \end{figure}
 
 \subsection*{The reference metagenome is not completely present in the reads.}
@@ -477,7 +477,7 @@ the bases in the reference were not covered by any reads in the QC data
 set.
 
 \begin{table}[t]
-\caption{Jaccard containment of the reference in the reads}
+\caption{Jaccard containment of the reference in the reads. For each k-mer size we calculated the fraction of k-mers in the reference that are present in the reads.}
 \centering
 \begin{tabular}{|c|c|}
 \hline
@@ -508,7 +508,7 @@ of the reference and/or variation between the reads and the reference.
 
 \begin{table}[!h]
 \centering
-\caption{Top uncovered genomes}
+\caption{Top uncovered genomes.  More than 5\% of the bases in four of the 64 reference genomes had no quality filetered reads mapping to them.}
 \begin{tabular}{|l|c|c|}\hline
 \textbf{Genome} & \textbf {Read coverage} \\ \hline 
 
@@ -545,7 +545,8 @@ coverage above 95\%.  The remaining four varied significantly
 reference genome are covered by one or more mapped reads.
 
 \begin{table}[t]
-\caption{Genomes removed from reference for low 51-mer presence}
+  \caption{Genomes removed from reference for low 51-mer presence. The reads were missing 1\% of more the true 51-mers in thirteen of
+  the 64 reference genomes. }
 \centering
 \begin{tabular}{|c|l|}
 \hline
@@ -588,7 +589,7 @@ variants, below.
 
  %------------------------------------Cost of Assembly ---------------
  \begin{table}[h]
-\caption{Running Time and Memory Utilization}
+\caption{Running time and memory utilization of each of the assemblers. We measured the total CPU time (which includes individual processor compute), }
 \centering
 \begin{tabular}{|l|c|c|c|}
 \hline
