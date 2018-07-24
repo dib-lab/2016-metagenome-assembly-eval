@@ -41,7 +41,7 @@ stats: idba.stats spades.stats megahit.stats
 ref-analysis: mircea.fa mircea.rm13.fa ref.x.self.coords \
 	assemblies.stats.QC.AMBIGUOUS.99 \
 	assemblies.stats.QC.BESTHIT.99 \
-	assemblies.tats.QC.NOOVERLAP.99
+	assemblies.stats.QC.NOOVERLAP.99
 
 read-analysis: unmapped-qc-to-ref-rm.fq unmapped-mqc-assembly500.fa \
 	SRR606249.qc.coverage \
@@ -73,7 +73,7 @@ megahit-quality: SRR606249.pe.qc.fq.gz \
 	megahit.qc.pe/final.contigs.fa \
 	megahit-quality-assembly.fa
 
-#-------------------------------------------------Run Analysis----------------------------------------------------------------------------------------------
+# assembly -> reference-based analysis 
 analysis: idba-quality-assembly500.fa spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa \
 	mqc500.coords \
@@ -87,8 +87,6 @@ readcoverage: SRR606249.pe.qc.fq.gz \
 	unmapped-qc-to-ref \
 	SRR606249.qc.coverage
  
-#run-analysis.sh includes in addition to the above: common-uncovered-coverage.out and mqc500.dist	 
-
 ### quality trimming
 
 # adapters that come with trimmomatic
@@ -96,11 +94,11 @@ TruSeq2-PE.fa:
 	cp /opt/miniconda/pkgs/trimmomatic-*/share/trimmomatic-*/adapters/TruSeq2-PE.fa .
 
 # interleaved PE reads
-SRR606249.pe.qc.fq.gz: s1_pe
+SRR606249.pe.qc.fq.gz:
 	interleave-reads.py s1_pe s2_pe | gzip -9c > SRR606249.pe.qc.fq.gz
 
 # orphaned reads
-SRR606249.se.qc.fq.gz: s1_pe
+SRR606249.se.qc.fq.gz:
 	cat s1_se s2_se | gzip -9c > SRR606249.se.qc.fq.gz
 
 # PE reads
@@ -116,7 +114,7 @@ SRR606249.spades.d/scaffolds.fasta: SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
 	/usr/bin/time -a -o sqc.txt  ${SPADES} --pe1-12 SRR606249.pe.qc.fq.gz --pe1-s SRR606249.se.qc.fq.gz -o SRR606249.spades.d -t ${THREADS}
 
 spades-quality-assembly.fa: SRR606249.spades.d/scaffolds.fasta  
-	python ${MYSCRIPTS}/multi-rename.py assembly SRR606249.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
+	${MYSCRIPTS}/multi-rename.py assembly SRR606249.spades.d/scaffolds.fasta  > spades-quality-assembly.fa
 
 # IDBA assembly
 
@@ -127,23 +125,23 @@ SRR606249.idba.d.qc/scaffold.fa: SRR606249.pe.fa
 	/usr/bin/time -a -o iqc.txt idba_ud --num_threads=${THREADS} --pre_correction -r SRR606249.pe.fa -o SRR606249.idba.d.qc 
 
 idba-quality-assembly.fa: SRR606249.idba.d.qc/scaffold.fa
-	python ${MYSCRIPTS}/multi-rename.py assembly SRR606249.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
+	${MYSCRIPTS}/multi-rename.py assembly SRR606249.idba.d.qc/scaffold.fa > idba-quality-assembly.fa
 
 # megahit assembly:
 megahit.qc.pe/final.contigs.fa: SRR606249.pe.qc.fq.gz  
 	/usr/bin/time  -a  -o megqc.txt megahit -f -l 101 --cpu-only --presets meta-large --12 SRR606249.pe.qc.fq.gz -t ${THREADS} -m 1e+10 -r SRR606249.se.qc.fq.gz -o megahit.qc.pe 
 
 megahit-quality-assembly.fa: megahit.qc.pe/final.contigs.fa 
-	python ${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa
+	${MYSCRIPTS}/multi-rename.py assembly megahit.qc.pe/final.contigs.fa > megahit-quality-assembly.fa
 
 # length-filtered assemblies
-idba-quality-assembly500.fa:  idba-quality-assembly.fa
+idba-quality-assembly500.fa:  #idba-quality-assembly.fa
 	extract-long-sequences.py -l 500 idba-quality-assembly.fa -o idba-quality-assembly500.fa
 
-spades-quality-assembly500.fa: spades-quality-assembly.fa
+spades-quality-assembly500.fa: #spades-quality-assembly.fa
 	extract-long-sequences.py -l 500 spades-quality-assembly.fa -o spades-quality-assembly500.fa
 
-megahit-quality-assembly500.fa: megahit-quality-assembly.fa
+megahit-quality-assembly500.fa: #megahit-quality-assembly.fa
 	extract-long-sequences.py -l 500 megahit-quality-assembly.fa -o megahit-quality-assembly500.fa
 
 ### assembly stats
@@ -175,35 +173,38 @@ iqc500.coords: ${REFERENCE} idba-quality-assembly500.fa
 sqc500.coords: ${REFERENCE} spades-quality-assembly500.fa
 	nucmer --coords -p  sqc500  ${REFERENCE}  spades-quality-assembly500.fa
 
-mqc500.coords: ${REFERENCE} megahit-quality-assembly.fa
+mqc500.coords: ${REFERENCE} megahit-quality-assembly500.fa
 	nucmer --coords -p  mqc500  ${REFERENCE}  megahit-quality-assembly500.fa
 
 mqc500.full.coords: #megahit-quality-assembly500.fa 
 	nucmer --coords -p  mqc500.full  ${FULL_REFERENCE} megahit-quality-assembly500.fa
 
 assemblies.stats.QC.AMBIGUOUS.99: mqc500.coords iqc500.coords sqc500.coords
-	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.99 -a True 99 
 
 assemblies.stats.QC.BESTHIT.99: mqc500.coords iqc500.coords sqc500.coords
-	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.99 -b True 99
 
 assemblies.stats.QC.NOOVERLAP.99: mqc500.coords iqc500.coords sqc500.coords
-	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
          megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.99 -c True 99
 
 assemblies.stats.QC.AMBIGUOUS.95: mqc500.coords
-	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.AMBIGUOUS.95 -a True 95 
-	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.BESTHIT.95 -b True 95
-	python ${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
+	${MYSCRIPTS}/analyze_assembly.py  ${REFERENCE}  idba-quality-assembly500.fa  spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa  iqc500.coords  sqc500.coords  mqc500.coords QC.NOOVERLAP.95 -c True 95
 
 ### read-analysis
 
-qc-ref.bam: ${FULL_REFERENCE} SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
+qc-ref.bam: qc-ref.pe.bam
+	samtools merge  qc-ref.bam  qc-ref.pe.bam  qc-ref.se.bam 
+
+qc-ref.pe.bam: ${FULL_REFERENCE} SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
 	bwa index  ${FULL_REFERENCE} 
 	bwa aln  ${FULL_REFERENCE}  SRR606249.pe.qc.fq.gz   >  qc-ref.pe.sai 
 	bwa aln  ${FULL_REFERENCE}  SRR606249.se.qc.fq.gz   >  qc-ref.se.sai
@@ -213,13 +214,10 @@ qc-ref.bam: ${FULL_REFERENCE} SRR606249.pe.qc.fq.gz SRR606249.se.qc.fq.gz
 	samtools import  ${FULL_REFERENCE}.fai  qc-ref.pe.sam  qc-ref.pe.bam 
 	samtools import  ${FULL_REFERENCE}.fai  qc-ref.se.sam  qc-ref.se.bam 
 	-rm qc-ref.bam
-	samtools merge  qc-ref.bam  qc-ref.pe.bam  qc-ref.se.bam 
 
 qc-ref.sam: qc-ref.bam
 	-rm qc-ref.sam
 	samtools view -h -o  qc-ref.sam  qc-ref.bam
-
-qc-ref.pe.bam: qc-ref.bam
 
 unmapped-qc-to-ref: qc-ref.pe.bam
 	samtools view -h -o  qc-ref.pe.sam  qc-ref.pe.bam
@@ -253,15 +251,15 @@ unmapped-qc-to-ref-rm.fq: qc-ref-rm.sam
 	samtools bam2fq unmapped-qc-to-ref-rm.bam > unmapped-qc-to-ref-rm.fq
 
 unmapped-mqc-assembly500.fa: unmapped-qc-to-ref.fq
-	python ${MEGAHIT} -f -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref.fq -o unmapped-mqc-assembly
-	python ${SCRIPTS}/extract-long-sequences.py unmapped-mqc-assembly/final.contigs.fa -l 500 -o unmapped-mqc-assembly500.fa
+	megahit -f -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref.fq -o unmapped-mqc-assembly
+	extract-long-sequences.py unmapped-mqc-assembly/final.contigs.fa -l 500 -o unmapped-mqc-assembly500.fa
 
 unmapped-mqc-rm-assembly500.fa: unmapped-qc-to-ref-rm.fq
-	python ${MEGAHIT} -f -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref-rm.fq -o unmapped-mqc-rm-assembly
-	python ${SCRIPTS}/extract-long-sequences.py unmapped-mqc-rm-assembly/final.contigs.fa -l 500 -o unmapped-mqc-rm-assembly500.fa
+	megahit -f -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref-rm.fq -o unmapped-mqc-rm-assembly
+	extract-long-sequences.py unmapped-mqc-rm-assembly/final.contigs.fa -l 500 -o unmapped-mqc-rm-assembly500.fa
 
 SRR606249.qc.coverage: qc-ref.sam
-	python ${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  SRR606249.qc.coverage 
+	${MYSCRIPTS}/coverage-profile.py  ${REFERENCE}  qc-ref.sam  SRR606249.qc.coverage 
 
 ### read mapping analysis
 
@@ -311,15 +309,15 @@ mq-unmapped.count: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa
 mqc500.dist: SRR606249.pe.qc.fq.gz megahit-quality-assembly500.fa
 	gunzip -c SRR606249.pe.qc.fq.gz > SRR606249.pe.qc.fastq 
 	gunzip -c SRR606249.se.qc.fq.gz > SRR606249.se.qc.fastq  
-	python ${SCRIPTS}/load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh SRR606249.pe.qc.fastq SRR606249.se.qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh ${REFERENCE} SRR606249.qc.dist -s
+	load-into-counting.py -x 2e9 -N 4 -k 20 qc.counts.kh SRR606249.pe.qc.fastq SRR606249.se.qc.fastq 
+	abundance-dist.py -s qc.counts.kh ${REFERENCE} SRR606249.qc.dist -s
 	cat SRR606249.pe.qc.fastq SRR606249.se.qc.fastq  > SRR606249-qc.fastq 
-	python ${SCRIPTS}/abundance-dist.py qc.counts.kh SRR606249-qc.fastq qc.dist -s
+	abundance-dist.py qc.counts.kh SRR606249-qc.fastq qc.dist -s
 	cat idba-quality-assembly500.fa spades-quality-assembly500.fa megahit-quality-assembly500.fa > qc-assembly500.fa 
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
-	python ${SCRIPTS}/abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
+	abundance-dist.py -s qc.counts.kh qc-assembly500.fa qc500.dist -s
+	abundance-dist.py -s qc.counts.kh idba-quality-assembly500.fa  iqc500.dist -s
+	abundance-dist.py -s qc.counts.kh spades-quality-assembly500.fa  sqc500.dist -s
+	abundance-dist.py -s qc.counts.kh megahit-quality-assembly500.fa mqc500.dist -s
 
 ### individual genomes & mapped reads
 
@@ -339,15 +337,15 @@ genomes/:
 ### chimeric
 
 chimera.sqc50k.txt:
-	python analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 500 --save-contigs mqc.chimeric.contigs > chimera.mqc500.txt
-	python analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 500 --save-contigs iqc.chimeric.contigs > chimera.iqc500.txt
-	python analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 500 --save-contigs sqc.chimeric.contigs > chimera.sqc500.txt
-	python analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 5000 > chimera.mqc5k.txt
-	python analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 5000 > chimera.iqc5k.txt
-	python analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 5000 > chimera.sqc5k.txt
-	python analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 50000 > chimera.mqc50k.txt
-	python analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 50000 > chimera.iqc50k.txt
-	python analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 50000 > chimera.sqc50k.txt
+	analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 500 --save-contigs mqc.chimeric.contigs > chimera.mqc500.txt
+	analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 500 --save-contigs iqc.chimeric.contigs > chimera.iqc500.txt
+	analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 500 --save-contigs sqc.chimeric.contigs > chimera.sqc500.txt
+	analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 5000 > chimera.mqc5k.txt
+	analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 5000 > chimera.iqc5k.txt
+	analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 5000 > chimera.sqc5k.txt
+	analyze_chimeric2.py mircea.rm13.fa megahit-quality-assembly500.fa mqc500.coords -l 50000 > chimera.mqc50k.txt
+	analyze_chimeric2.py mircea.rm13.fa idba-quality-assembly500.fa iqc500.coords -l 50000 > chimera.iqc50k.txt
+	analyze_chimeric2.py mircea.rm13.fa spades-quality-assembly500.fa sqc500.coords -l 50000 > chimera.sqc50k.txt
 
 ### sourmash stuff / Jaccard comparison foo
 
