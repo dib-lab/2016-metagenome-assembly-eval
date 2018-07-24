@@ -5,7 +5,7 @@
 % @CTB comment re metaspades vs spades
 % @CTB comment re megahit / high coverage / performing worse
 % http://online.liebertpub.com/doi/abs/10.1089/cmb.2017.0008 viral assembly
-% https://twitter.com/gedankenstuecke/status/879340345955409920, http://onlinelibrary.wiley.com/doi/10.1111/1755-0998.12463/full
+% update khmer ref to joss pub.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -135,17 +135,19 @@ concluded that this metagenomic sequencing generally outperformed
 amplicon sequencing, they did not conduct an assembly based analysis.
 This data set was also used in several other evaluation studies,
 including gbtools for binning \cite{Seah2015} and benchmarking of the
-MEGAHIT assembler \cite{Li2016}.
+MEGAHIT and metaSPAdes assemblers \cite{Li2016,nurk2017metaspades}.
+Importantly, the authors of the MEGAHIT benchmarking paper noted the
+presence of unexpected sequence in this data set.
 
 % @CTB pignatelli & moya 2011
 
 More recently, several benchmark studies systematically evaluated
 metagenome assembly of short reads.  The Critical Assessment of
 Metagenome Interpretation (CAMI) collaboration benchmarked a number of
-metagenome assemblers on several data sets of varying complexity,
-evaluating recovery of novel genomes and multiple strain variants
-\cite{CAMI}.  Notably, CAMI concluded that ``The resolution of
-strain-level diversity represents a substantial challenge to all
+metagenome assemblers on several simulated data sets of varying
+complexity, evaluating recovery of novel genomes and multiple strain
+variants \cite{CAMI}.  Notably, CAMI concluded that ``The resolution
+of strain-level diversity represents a substantial challenge to all
 evaluated programs.''  Another recent study evaluated eight assemblers
 on nine environmental metagenomes and three simulated data sets and
 provided a workflow for choosing a metagenome assembler based on the
@@ -153,29 +155,38 @@ biological goal and computational resources available
 \cite{metag_one}.  \cite{Vollmers2017} explored metagenome assembler
 performance on a pair of real data sets, again concluding that the
 biological goal and computational resources defined the choice of
-assembler.  Also see \cite{Greenwald2017} for an analysis of a previously
-generated HMP benchmark data set; however, the Illumina reads used for this
-study are much shorter than current sequencing and are arguably not relevant
-to future studies.
+assembler.  Also see \cite{Greenwald2017} for an analysis of a
+previously generated HMP benchmark data set; however, the Illumina
+reads used for this study are much shorter than current sequencing and
+are arguably not relevant to future studies.
 
 In this study, we extend previous work by delving into questions of
 chimeric misassembly and strain recovery in the Shakya et al. (2013)
-data set.  First, we update the list of reference genomes for Shakya
-et al. to include the latest GenBank assemblies along with
-plasmids. We then compare IDBA \cite{idba}, MetaSPAdes \cite{metaspades},
-and MEGAHIT \cite{megahit} performance on assembling this short-read
-data set, and explore concordance in recovery between the three
-assemblers.  We describe the effects of ``strain confusion'' between
-multiple strains.  We also detect and analyze several previously
-unreported strains and genomes in the Shakya et al. data set.  We find
-that in the absence of closely related genomes, all three metagenome
+data set.  This data set is the most complex synthetic community for
+which bulk sequencing data is available, and has been used for several
+independent assembly benchmarking efforts
+\cite{Seah2015,Li2016,nurk2017metaspades}.  However, while previous
+efforts have noted the presence of unexpected sequence data in the
+data set \cite{Li2016}, no further analysis has been done to
+characterize this sequence or its likely origins.
+
+Below, we first update the list of reference genomes for Shakya et
+al. to include the latest GenBank assemblies along with plasmids. We
+then compare IDBA \cite{idba}, MetaSPAdes \cite{metaspades}, and
+MEGAHIT \cite{megahit} performance on assembling this short-read data
+set, and explore concordance in recovery between the three assemblers.
+We describe the effects of ``strain confusion'' between multiple
+strains.  We also detect and analyze several previously unreported
+strains and genomes in the Shakya et al. data set.  We find that in
+the absence of closely related genomes, all three metagenome
 assemblers recover 95\% or more of known reference genomes.  However,
 in the presence of closely related genomes, these three metagenome
 assemblers vary widely in their performance and, in extreme cases, can
 fail to recover the majority of some genomes even when they are
-completely present in the reads.  Our report provides strong guidance
-on choice of assemblers and extends previous analyses of this
-low-complexity metagenome benchmarking data set.
+completely present in the reads.  Our report looks specifically at the
+most poorly recovered genoems, provides strong guidance on choice of
+assemblers, and extends previous analyses of this low-complexity
+metagenome benchmarking data set.
 
 % \subsection*{Sections}
 
@@ -250,6 +261,8 @@ low-complexity metagenome benchmarking data set.
  
 % \subsection*{Mathematics}
 
+\section*{Methods}
+
 \subsection*{Datasets}
 %Numbers in this section are up to date 22 december 2016
 
@@ -269,7 +282,7 @@ plasmid content (June 2017); the accession numbers are available as
 For convenience, the updated reference genome collection is
 available for download at the archival URL https://osf.io/vbhy5/.
 
-\section*{Methods}
+\subsection*{Software code.}
 
 The analysis code and run scripts for this paper are written in Python
 and bash, and are available at
@@ -291,7 +304,8 @@ as recommended in MacManes, 2014 \cite{macmanes2014optimal}.
 \subsection*{Reference Coverage Profile}
 
 To evaluate how much of the reference metagenome was contained in the
-read data, we used {\tt bwa aln} (v0.7.7.r441) to map reads to the
+read data, we used {\tt bwa aln} (v0.7.7.r441) to map paired-end and
+orphaned reads to the
 reference genome \cite{bwa}.  We then calculated how many reference
 bases were covered by mapped reads (custom script {\tt
   coverage-profile.py}).
@@ -365,13 +379,11 @@ from each assembly prior to further analysis.
 
 \subsection*{Mapping}
 
-We aligned all quality-filtered reads to the reference metagenome with
-bwa aln (v0.7.7.r441) \cite{bwa}. We aligned paired-end and orphaned
-reads separately. We then used samtools (v0.1.19)
-\cite{sam-stools} to convert SAM files to BAM files for both
-paired-end and orphaned reads. To count the unaligned reads, we
-included only those records with the ``4'' flag in the SAM files
-\cite{sam-stools}.
+Starting from the reference alignment calculated with bwa aln above,
+we used samtools (v0.1.19) \cite{sam-stools} to convert SAM files to BAM
+files for both paired-end and orphaned reads. To count the unaligned
+reads, we included only those records with the ``4'' flag in the SAM
+files \cite{sam-stools}.
  
 \subsection*{Assembly analysis using NUCmer}
 
@@ -448,7 +460,7 @@ data set was used as the basis for all further analyses.
   
 \centering
 \includegraphics[width=0.45\textwidth]{CoverageProfile.pdf}  
-\caption{\label{fig:coverage-profile} Cumulative coverage profile for the reference metagenome, based on read mapping. }
+\caption{\label{fig:coverage-profile} Cumulative coverage profile for the reference metagenome, based on read mapping. The x axis shows the number of reads that overlap each base, and the y axis shows the number of bases with that number of overlapping reads.}
 \end{figure}
 
 \subsection*{The reference metagenome is not completely present in the reads.}
@@ -465,7 +477,7 @@ the bases in the reference were not covered by any reads in the QC data
 set.
 
 \begin{table}[t]
-\caption{Jaccard containment of the reference in the reads}
+\caption{Jaccard containment of the reference in the reads. For each k-mer size we calculated the fraction of k-mers in the reference that are present in the reads.}
 \centering
 \begin{tabular}{|c|c|}
 \hline
@@ -496,7 +508,7 @@ of the reference and/or variation between the reads and the reference.
 
 \begin{table}[!h]
 \centering
-\caption{Top uncovered genomes}
+\caption{Top uncovered genomes.  More than 5\% of the bases in four of the 64 reference genomes had no quality filetered reads mapping to them.}
 \begin{tabular}{|l|c|c|}\hline
 \textbf{Genome} & \textbf {Read coverage} \\ \hline 
 
@@ -533,7 +545,8 @@ coverage above 95\%.  The remaining four varied significantly
 reference genome are covered by one or more mapped reads.
 
 \begin{table}[t]
-\caption{Genomes removed from reference for low 51-mer presence}
+  \caption{Genomes removed from reference for low 51-mer presence. The reads were missing 1\% of more the true 51-mers in thirteen of
+  the 64 reference genomes. }
 \centering
 \begin{tabular}{|c|l|}
 \hline
@@ -576,7 +589,7 @@ variants, below.
 
  %------------------------------------Cost of Assembly ---------------
  \begin{table}[h]
-\caption{Running Time and Memory Utilization}
+\caption{Running time and memory utilization of each of the assemblers. We measured the total CPU time (which includes individual processor compute), }
 \centering
 \begin{tabular}{|l|c|c|c|}
 \hline
@@ -596,7 +609,7 @@ MetaSPAdes & 2554m & 4h 7m & 28 GB \\
 We ran three commonly used metagenome assemblers on the QC data set:
 IDBA-UD, MetaSPAdes, and MEGAHIT. We recorded the time and memory
 usage of each (Table \ref{table:time-memory}).  In computational
-requirements, MEGAHIT outperformed both MetaSPAdes and IDBA-UD, ,
+requirements, MEGAHIT outperformed both MetaSPAdes and IDBA-UD,
 producing an assembly in 1.5 hours (``wall time'') -- 1.6 times faster
 than IDBA and 2.6 times faster than MetaSPAdes.  MEGAHIT used only 10
 GB of RAM as requested -- about 60\% of the memory used by IDBA and a
@@ -740,7 +753,7 @@ MetaSPAdes &  83.4\% \\ \hline
 \end{table}
 
 When counting only the best (longest) alignment per contig at a 99\%
-identity threshold, each of the three assemblies recovers more than 87.3\% of the
+identity threshold, each of the three assemblies recovers more than 83.4\% of the
 reference, with MEGAHIT recovering the most -- 89.3\% of the reference
 (Table~\ref{table:contig-accuracy}).
 
@@ -772,10 +785,13 @@ yields the lowest NGA50 for 28 of the 51 genomes, while MetaSPAdes yields
 the highest NGA50 for 32 of the 51 genomes.
 
 We also evaluated aligned coverage per genome for each of the three
-assemblies (right panel, Figure~\ref{fig:nga50}).  We found that 13
-of the 51 genomes were missing 5\% or more of bases in at least one
+assemblies (right panel, Figure~\ref{fig:nga50}).  We found that 13 of
+the 51 genomes were missing 5\% or more of bases in at least one
 assembly, despite all 51 genomes having 99\% or higher read- and
-51-mer coverage.
+51-mer coverage.  While some of these missing bases may be in the assembled
+contigs that are less than 500 bp in length, contigs shorter than 500 bp
+are unlikely to contain more than half of a typical bacterial gene
+\cite{xu2006average}.
 
 There are 12 genomes with k=31 Jaccard similarity greater than 2\% to
 other genomes in the community, and these (denoted by '*' after the
@@ -1015,9 +1031,33 @@ contig alignment.  However, GenBank is unlikely to contain the exact
 genomes of the actually included strain variants, rendering conclusive
 identification impossible.
 
+\subsection*{Omissions in this study: binning and parameter sweeps}
+
+We omitted two important questions in this study: binning and choice
+of parameters.  We chose not to evaluate genome binning because most
+binning strategies either operate post-assembly (see
+e.g. \cite{laczny2017busybee}), in which case the challenges with
+assembly discussed above will apply; or require multiple samples
+(e.g. \cite{Cleary2015}), which we do not have.  We also chose to use
+only default parameters with all three assemblers, for two reasons.
+First, we are not aware of any effective automated approaches for
+determining the ``best'' set of parameters or evaluating the output
+for metagenome assemblers, other than those integrated into the
+assemblers themselves (e.g. the choice of k-mer sizes by MEGAHIT and
+MetaSPAdes), and absent such guidance we do not feel comfortable
+blessing any particular set of parameters; here the choice of default
+parameters is parsimonious (and also see \cite{Greshake2015} for the
+dangers of poorly chosen objective functions).  Second, any parameter
+exploration pipeline would not only need to be automated but would
+need to run multiple assemblies, whose time and resource usage should
+be measured; in this case, any comparison based on runtime of the
+parameter choice pipeline should naturally favor MEGAHIT because of
+its advantage in computational efficiency.
+
+
 \section*{Conclusions}
 
-Overall, assembly of this mock community works well, with good
+Overall, assembly of this mock community performs well, with good
 recovery of known genomic sequence for the majority of genomes.  All
 three assemblers that we evaluated recover similar amounts of most
 genomic sequence, but (recapitulating several other studies \cite{CAMI,Vollmers2017,metag_one})
@@ -1066,8 +1106,8 @@ instruments \cite{Cherf2012}) will perform on complex metagenomes:
 with high error rates, deep coverage of each individual genome is
 required to achieve accurate assembly, and this may not be easily
 obtainable for complex communities.  Single-molecule barcoding
-(e.g. 10X Genomics \cite{Moss125211}) and HiC approaches
-\cite{SmukowskiHeil150722} show promise but these remain untested on
+(e.g. 10X Genomics \cite{Moss125211}), HiC approaches
+\cite{SmukowskiHeil150722}, and cell-sorting cells into ``minimetagenomes'' \cite{ji2017metasort} show promise but these remain untested on
 well-defined complex communities and are still challenged by the
 complexity of complex environmental metagenomes; see
 \cite{Burton2014,Marbouty2014,Beitel2014}.
@@ -1088,31 +1128,11 @@ critical because it can evaluate confounding effects such as kit
 contamination \cite{Salter2014}.  Large-scale studies of computational
 approaches systematically applied to mock communities such as CAMI
 \cite{CAMI} can then provide fair comparisons of entire toolchains
-(wet and dry combined) applied to these mock communities.
+(wet and dry combined).
+
 
 % CTB didn't mesaure N50, error rates, etc.
 % CTB size cutoff for recovery / binning / 2kb on figure!!
-
-We omitted two important questions in this study: binning and choice
-of parameters.  We chose not to evaluate genome binning because most
-binning strategies either operate post-assembly (see
-e.g. \cite{laczny2017busybee}), in which case the challenges with
-assembly discussed above will apply; or require multiple samples
-(e.g. \cite{Cleary2015}), which we do not have.  We also chose to use
-only default parameters with all three assemblers, for two reasons.
-First, we are not aware of any effective automated approaches for
-determining the ``best'' set of parameters or evaluating the output
-for metagenome assemblers, other than those integrated into the
-assemblers themselves (e.g. the choice of k-mer sizes by MEGAHIT and
-MetaSPAdes), and absent such guidance we do not feel comfortable
-blessing any particular set of parameters; here the choice of default
-parameters is parsimonious (and also see \cite{Greshake2015} for the
-dangers of poorly chosen objective functions).  Second, any parameter
-exploration pipeline would not only need to be automated but would
-need to run multiple assemblies, whose time and resource usage should
-be measured; in this case, any comparison based on runtime of the
-parameter choice pipeline should naturally favor MEGAHIT because of
-its advantage in computational efficiency.
 
 \subsection*{Author contributions}
 
