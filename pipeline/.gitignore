@@ -1,9 +1,9 @@
-modified:   SRR606249.qc.coverage
-modified:   assemblies.stats.QC.AMBIGUOUS.95
-modified:   assemblies.stats.QC.AMBIGUOUS.99
-modified:   assemblies.stats.QC.BESTHIT.95
-modified:   assemblies.stats.QC.BESTHIT.99
-modified:   assemblies.stats.QC.NOOVERLAP.95
+SRR606249.qc.coverage
+assemblies.stats.QC.AMBIGUOUS.95
+assemblies.stats.QC.AMBIGUOUS.99
+assemblies.stats.QC.BESTHIT.95
+assemblies.stats.QC.BESTHIT.99
+assemblies.stats.QC.NOOVERLAP.95
 QC.AMBIGUOUS.95.uncovered
 QC.AMBIGUOUS.95.uncovered.bases
 QC.AMBIGUOUS.99.uncovered
@@ -180,3 +180,37 @@ unmapped-mqc-assembly500.fa
 unmapped-qc-to-ref-rm.fq
 unmapped-qc-to-ref.bam
 unmapped-qc-to-ref.fq
+QC.NOOVERLAP.99.uncovered
+QC.NOOVERLAP.99.uncovered.bases
+SRR606249.idba.d.qc/
+SRR606249.spades.d/
+chimera.iqc500.txt
+chimera.iqc50k.txt
+chimera.iqc5k.txt
+chimera.mqc50k.txt
+chimera.mqc5k.txt
+chimera.sqc500.txt
+chimera.sqc50k.txt
+chimera.sqc5k.txt
+iqc.chimeric.contigs
+iqc500.QC.NOOVERLAP.99.aligned
+iqc500.QC.NOOVERLAP.99.aligned.partial
+iqc500.QC.NOOVERLAP.99.count.covered
+iqc500.QC.NOOVERLAP.99.count.uncovered
+iqc500.QC.NOOVERLAP.99.unaligned
+megahit.qc.pe/
+mqc.chimeric.contigs
+mqc500.QC.NOOVERLAP.99.aligned
+mqc500.QC.NOOVERLAP.99.aligned.partial
+mqc500.QC.NOOVERLAP.99.count.covered
+mqc500.QC.NOOVERLAP.99.count.uncovered
+mqc500.QC.NOOVERLAP.99.unaligned
+qc-ref-rm.bam
+sqc.chimeric.contigs
+sqc500.QC.NOOVERLAP.99.aligned
+sqc500.QC.NOOVERLAP.99.aligned.partial
+sqc500.QC.NOOVERLAP.99.count.covered
+sqc500.QC.NOOVERLAP.99.count.uncovered
+sqc500.QC.NOOVERLAP.99.unaligned
+unmapped-qc-to-ref-rm
+assemblies.stats.QC.NOOVERLAP.99
