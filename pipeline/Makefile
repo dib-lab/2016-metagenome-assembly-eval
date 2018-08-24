@@ -26,12 +26,15 @@ all: install download trim assemble stats analysis
 install:
 	conda install -y trimmomatic==0.38 khmer==2.1.2 megahit==1.1.3 \
 		spades==3.12.0 idba==1.1.3 mummer==3.23 bwa==0.7.17 \
-		samtools==1.9
+		samtools==1.9 numpy==1.15
 	pip2 install screed
 
 download: SRR606249_1.fastq.gz SRR606249_2.fastq.gz genomes/
 
 trim: SRR606249.se.qc.fq.gz SRR606249.pe.qc.fq.gz
+
+run-assembly: idba-quality-assembly.fa spades-quality-assembly.fa \
+	megahit-quality-assembly.fa
 
 assemble: idba-quality-assembly500.fa spades-quality-assembly500.fa \
 	megahit-quality-assembly500.fa
@@ -243,13 +246,15 @@ qc-ref-rm.sam: ${REFERENCE} SRR606249.pe.qc.fq.gz
 	samtools view -h -o  qc-ref-rm.sam  qc-ref-rm.bam
 
 unmapped-qc-to-ref-rm: qc-ref-rm.sam 
-	samtools view -h -o  qc-ref-rm.pe.sam  qc-ref-rm.pe.bam
+#	samtools view -h -o  qc-ref-rm.pe.sam  qc-ref-rm.pe.bam
 	samtools view -h -c -f 4  qc-ref-rm.pe.bam >> unmapped-qc-to-ref-rm
-	samtools view -h -o  qc-ref-rm.se.sam  qc-ref-rm.se.bam
+#	samtools view -h -o  qc-ref-rm.se.sam  qc-ref-rm.se.bam
 	samtools view -h -c -f 4  qc-ref-rm.se.bam >> unmapped-qc-to-ref-rm
 
-unmapped-qc-to-ref-rm.fq: qc-ref-rm.sam
-	samtools bam2fq unmapped-qc-to-ref-rm.bam > unmapped-qc-to-ref-rm.fq
+unmapped-qc-to-ref-rm.fq: unmapped-qc-to-ref-rm
+	cat unmapped-qc-to-ref-rm | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' > unmapped-qc-to-ref-rm.fq
+
+#	samtools bam2fq unmapped-qc-to-ref-rm.bam > unmapped-qc-to-ref-rm.fq
 
 unmapped-mqc-assembly500.fa: unmapped-qc-to-ref.fq
 	megahit -f -l 101 -m 1e+10 --cpu-only --presets meta-large -r unmapped-qc-to-ref.fq -o unmapped-mqc-assembly

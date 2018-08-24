@@ -1,4 +1,4 @@
-#! /usr/bin/env python2
+#! /usr/bin/env python
 import sys
 import argparse
 import screed
@@ -37,7 +37,7 @@ def main():
     for samline in ignore_at(open(args.samfile1)):
         n += 1
         if n % 1000000 == 0:
-            print >>sys.stderr, '...1', n
+            print('...1', n, file=sys.stderr)
 
         # parse each SAM record
         readname, flags, refname, refpos, _, _, _, _, _, seq = \
@@ -76,11 +76,11 @@ def main():
 
     for i in range(len(arr)):
         if arr[i]:
-            print >>fp, i, arr[i]
+            print(i, arr[i], file=fp)
 
     # @CTB this seems like a problem -- it outputs this as the last line
     # of the coverage file. what awk command is being used to count?
-    print >>fp, args.samfile1, float(cov) / float(total), cov, total
+    print(args.samfile1, float(cov) / float(total), cov, total, file=fp)
 
 
 if __name__ == '__main__':

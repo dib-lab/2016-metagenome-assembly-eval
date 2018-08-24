@@ -1,4 +1,4 @@
-#! /usr/bin/env python2
+#! /usr/bin/env python3
 import numpy
 import screed
 import sys
@@ -13,7 +13,7 @@ def load_assembly(filename):
 def n50(d):
     ncontigs = sorted(d.values(),reverse=True)
     total = sum(ncontigs)
-    print 'Assembly has',total, 'base pairs'
+    print('Assembly has',total, 'base pairs')
     nfifty = 0
     for i in ncontigs:
         nfifty += i
@@ -25,7 +25,7 @@ def n50(d):
 def ng50(assem, ref): 
      ncontigs = sorted(assem.values(), reverse=True)
      total = sum(ref.values())
-     print 'Reference has',total, 'base pairs'
+     print('Reference has',total, 'base pairs')
      ngfifty = 0
      for i in ncontigs:
          ngfifty += i
@@ -39,14 +39,14 @@ def main():
     filename1 = sys.argv[1]
     filename2 = sys.argv[2]
 
-    print 'loading assembly'
+    print('loading assembly')
     d = load_assembly(filename1)
     ref = load_assembly(filename2)
 
     nfifty = n50(d)
     ngfifty = ng50(d, ref)
-    print 'N50 equals:', nfifty
-    print 'NG50 equals:', ngfifty
+    print('N50 equals:', nfifty)
+    print('NG50 equals:', ngfifty)
 
 if __name__ == '__main__':
     main()
