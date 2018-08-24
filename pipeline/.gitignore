@@ -213,3 +213,4 @@ sqc500.QC.NOOVERLAP.99.count.covered
 sqc500.QC.NOOVERLAP.99.count.uncovered
 sqc500.QC.NOOVERLAP.99.unaligned
 unmapped-qc-to-ref-rm
+assemblies.stats.QC.NOOVERLAP.99
